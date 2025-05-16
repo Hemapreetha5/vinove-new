@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>MAIEPT PRIIP KID</title>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   <meta name="keywords" content="Citicode=OEPE;
+Constraint=;
+DateOfPublication=;
+DisseminationRecipient=;
+DocumentType=PRIIP KID;
+DocumentTypeCode=PK;
+DocumentUrl=;
+GeneratorContact=customersupport@fefundinfo.com;
+ISIN=GB00BZ7MQD81;
+Language=EN;
+LevelType=no use;
+MEX Code=ITSDVP;
+ModificationDate=;
+PriipDocumentType=PRP;
+Productcode=;
+ProductionDateTime=;
+PublicationCountry=-;
+RecordDate=2022-09-23;
+SEDOL=BZ7MQD8;
+ShareClass=GB00BZ7MQD81;
+Supplier=Maitland PRIIPs;
+SupplierCode=FGEN-MAIT;
+Version=3.2;
+" />
+   <style>
+      body {
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-size: 9pt;
+      }
+
+      h2 {
+         font-size: 10pt;
+      }
+
+      @page {
+         size: 21cm 29.7cm;
+         margin: 0;
+         counter-increment: page 1;
+      }
+
+      .page {
+         width: 21cm;
+         height: 29.7cm;
+      }
+
+      .pageNumber::after {
+         content: counter(page);
+      }
+
+      .pageTotal::after {
+         content: counter(pages);
+      }
+
+      html {
+         -ro-rounding-mode: floor;
+      }
+
+      .clientRating {
+         width: 250px;
+      }
+
+      .rating {
+         max-width: 100px;
+      }
+
+      .kiiRiskRating {
+         width: 250px
+      }
+
+      .kiiRiskRating .header th:first-child,
+      .kiiRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .kiiRiskRating .header th:last-child,
+      .kiiRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .kiiRiskRating .arrow td {
+         background-image: url('./theme/common/arrow.svg');
+         background-size: 246px 15px;
+         height: 13px;
+      }
+
+      .kiiRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .kiiRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .kiiRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating {
+         width: 250px
+      }
+
+      .sriRangeRiskRating .header th:first-child,
+      .sriRangeRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .sriRangeRiskRating .header th:last-child,
+      .sriRangeRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .sriRangeRiskRating .arrow td {
+         background-image: url('./theme/common/arrow.svg');
+         background-size: 246px 15px;
+         height: 16px;
+      }
+
+      .sriRangeRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .sriRangeRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .sriRangeRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border-top: 2px solid #ffcc66;
+         border-bottom: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.start {
+         border-left: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.end {
+         border-right: 2px solid #ffcc66;
+      }
+
+      .clear {
+         clear: both;
+      }
+
+      .page1>.row1>.column1 {
+         float: left;
+         width: 50%;
+      }
+
+      .page1>.row1>.column2 {
+         float: left;
+         width: 50%;
+      }
+
+      .costComposition>p {
+         width: 100%;
+      }
+
+      .costComposition>table {
+         width: 100%;
+      }
+
+      .costComposition th,
+      .costComposition .category,
+      .costComposition .subcategory {
+         font-weight: bold;
+         text-align: left;
+      }
+
+      .costComposition .category,
+      .costComposition .subcategory,
+      .costComposition .costs {
+         width: 20%
+      }
+
+      .costComposition .description {
+         width: 40%
+      }
+   </style>
+   <script src="./script/jquery.1.8.2.min.js"></script>
+   <script src="./script/jquery-ui.1.11.0.min.js"></script>
+   <script src="./script/highcharts.9.3.0.js"></script>
+   <script src="./script/highcharts-3d.9.3.0.js"></script>
+   <script src="./script/custom-barchart.js"></script>
+   <script src="./script/awesomizr.js"></script>
+   <script src="./script/awesomizr.js"></script>
+   <link rel="stylesheet" href="./theme/theme.css">
+</head>
+
+<body>
+   <h1 style="position: absolute"></h1>
+   <div class="section page page1" data-pageorder="1" data-sectionId="581844" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="581845" data-sectiontype="2">
+         <div class="section column column1" data-sectionId="581846">
+            <div class="section row row1" data-roworder="1" data-sectionId="581847" data-sectiontype="2">
+               <div class="section contentSection text text1 keyinformationdocument" data-sectionId="581848">
+                  <h2 class="item2">Key Information Document</h2>
+               </div>
+               <div class="clear"></div>
+            </div>
+            <div class="section row row2" data-roworder="2" data-sectionId="581849" data-sectiontype="2">
+               <div class="section contentSection text text1" data-sectionId="581850">
+                  <h2 class="item2">Purpose</h2>
+                  <p class="item3">This document provides you with key information about this investment product. It is
+                     not marketing material. The information is required by law to help you understand the nature,
+                     risks, costs, potential gains and losses of this product and to help you compare it with other
+                     products.</p>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="section column column2" data-sectionId="581851">
+            <div class="section row row1" data-roworder="1" data-sectionId="581852" data-sectiontype="2">
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="581853" data-sectiontype="2">
+         <div class="section contentSection text text1 generalinformation" data-sectionId="581854">
+            <h2 class="item2">Product</h2>
+            <p class="FundNameWB">Example Asset Manager Mortgage Investment Trust PLC</p>
+            <p class="IsinCode">ISIN: GB00BZ7MQD81</p>
+            <p class="GeneralInfo">ISIN GB00ABCDE001, has appointed Example Asset Manager Mortgage Investment Trust PLC
+               as its manager and secretary. They can be contacted at www.assetmortgage.com or on 0800 000 0000. Example
+               Asset Manager Mortgage Investment Trust PLC is authorised and regulated by the Financial Conduct
+               Authority.</p>
+            <p class="IssuedOnDate">Date of Production 23/09/2022</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="581855" data-sectiontype="2">
+         <div class="section row row1" data-roworder="1" data-sectionId="581858" data-sectiontype="2">
+            <div class="section contentSection text text1 complexitywarning" data-sectionId="581859">
+               <p class="ProductWarning">You are about to purchase a product that is not simple and may be difficult to
+                  understand</p>
+            </div>
+            <div class="clear"></div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="581862" data-sectiontype="2">
+         <div class="section contentSection text text1 whatisthisproduct" data-sectionId="581863">
+            <h2 class="item2">What is this product?</h2>
+            <p class="Whatisthisproduct">The information contained in this document and the methodologies for
+               calculating risks, costs and potential returns are prescribed by law. The Product is an ordinary share in
+               a closed-ended investment trust, a company whose shares are listed on the London Stock Exchange. The
+               Trust is an actively managed, low cost investment trust that invests in a reasonably well diversified
+               portfolio of assets. It aims to maximise total return over the long-term from investment primarily in
+               shares of companies from across the globe. The Managers look for strong, well run businesses which offer
+               the best potential durable growth opportunities for the future and aim to achieve a greater return than
+               the FTSE All-World Index (in sterling terms) over a 5 year rolling period, although the Trust's portfolio
+               is constructed without any reference to the index and will not replicate it. The majority of the
+               portfolio will be held in quoted equities and up to a maximum of 30% of the assets may be invested in
+               companies not listed on a public market (measured at the time of purchase). It can borrow money to invest
+               with the intention of increasing returns (sometimes known as gearing) but in a falling market losses may
+               thus be magnified.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="581864" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="581865">
+            <div class="section contentSection text text1 whataretherisks compositeheader" data-sectionId="581866">
+               <h2 class="item2">What are the risks and what could I get in return?
+               </h2>
+            </div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="581867" data-sectiontype="2">
+                  <div class="section contentSection text text1 SRIdescription" data-sectionId="581868">
+                     <p class="WhatAreTheRisksPRIIPsV2">You are about to purchase a product that is not simple and may
+                        be difficult to understand. You are about to purchase a product that is not simple and may be
+                        difficult to understand</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="581869" data-sectiontype="2">
+                  <div class="section contentSection text text1 warning" data-sectionId="581870">
+                     <p class="Sri">
+                     <table class="sriRiskRating">
+                        <tr class="ratings">
+                           <td colspan="2">
+                              <table>
+                                 <tr>
+                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                 <tr>
+                                    <td class="rating">1</td>
+                                    <td class="rating">2</td>
+                                    <td class="rating">3</td>
+                                    <td class="selected rating">4</td>
+                                    <td class="rating">5</td>
+                                    <td class="rating">6</td>
+                                    <td class="rating">7</td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                        <tr class="arrow">
+                           <td colspan="2"></td>
+                        </tr>
+                        <tr class="header">
+                           <th>Lower risk</th>
+                           <th>Higher risk</th>
+                        </tr>
+                     </table>
+                     </p>
+                     <p class="SRInarrative1">The risk indicator assumes you keep the product for a minimum of 5 years.
+                        The actual risk can vary significantly if you cash in at an early stage and you may get back
+                        less. You may not be able to sell your product easily or you may have to sell at a price that
+                        significantly impacts on how much you get back.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="581871" data-sectiontype="2">
+                  <div class="section contentSection text text1 narrative" data-sectionId="581872">
+                     <p class="SRInarrative2">In accordance with legislation, we have classified this product as 4,
+                        which is a medium risk class. Please note that even the lowest risk class can lose you money and
+                        that extreme adverse market circumstances can mean you suffer severe losses in all cases. The
+                        summary risk indicator only reflects historical share price volatility of the Company's shares.
+                        Gearing, exposure to emerging markets, unlisted investments, foreign currencies, derivatives and
+                        the ability of the Trust to buy back its own shares may increase risk. This product does not
+                        include any protection from future market performance so you could lose some or all of your
+                        investment.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row6" data-roworder="6" data-sectionId="581873" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="581874">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page2" data-pageorder="2" data-sectionId="581875" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="581876" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="581877">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="581878"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="581879" data-sectiontype="2">
+                  <div class="section contentSection text text1 whataretheriskscontinued" data-sectionId="581880">
+                     <h2 class="item2">Investment performance information</h2>
+                     <p class="InvestPerformanceInfoPRIIPsV2">The scenarios are calculated on historical performance
+                        figures based on the last five years when markets have been particularly strong and might not be
+                        replicated in the future. When there has been steady and consistent growth over the relevant
+                        period of time it can make the performance scenarios look overly optimistic; past performance is
+                        not a guide to future performance and future returns could be significantly worse than shown.
+                        The returns shown are produced by applying a prescribed formula to the Trust’s returns over the
+                        last five years. They are not intended to show that the past performance of the Trust is
+                        expected to continue or to indicate which scenario is most likely over the time periods shown.
+                     </p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="581881" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="581882">
+                     <h2 class="item2">What could affect my return positively?</h2>
+                     <p class="AffectReturnsPositivelyPRIIPsV2">You are about to purchase a product that is not simple
+                        and may be difficult to understand</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="581883" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="581884">
+                     <h2 class="item2">What could affect my return negatively?</h2>
+                     <p class="AffectNegativelyPRIIPsV2">You are about to purchase a product that is not simple and may
+                        be difficult to understand</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="581885" data-sectiontype="2">
+         <div class="section contentSection text text1 unabletopay" data-sectionId="581886">
+            <h2 class="item2">What happens if Maitland is unable to pay out? </h2>
+            <p class="UnableToPayOut">You are about to purchase a product that is not simple and may be difficult to
+               understand. You are about to purchase a product that is not simple and may be difficult to understand</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="581887" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="581888">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="581889"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="581892" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="581893">
+                     <h2 class="item2">What are the costs?</h2>
+                     <p class="Whatarethecosts?">The scenarios are calculated on historical performance figures based on
+                        the last five years when markets have been particularly strong and might not be replicated in
+                        the future. When there has been steady and consistent growth over the relevant period of time it
+                        can make the performance scenarios look overly optimistic; past performance is not a guide to
+                        future performance and future returns could be significantly worse than shown. The returns shown
+                        are produced by applying a prescribed formula to the Trust’s returns over the last five years.
+                        They are not intended to show that the past performance of the Trust is expected to continue or
+                        to indicate which scenario is most likely over the time periods shown.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="583536" data-sectiontype="2">
+                  <div class="section contentSection costOverTime costOverTime1" data-sectionId="583537"
+                     style="page-break-inside:avoid">
+                     <h2 class="">
+                        <!--HIDE-->
+                     </h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class='investmentheader'>
+                                       <th class='investment' colSpan='4'>Investment GBX1,000 each year</th>
+                                    </tr>
+                                    <tr class='scenarioheader'>
+                                       <th class='scenarios'>Scenarios</th>
+                                       <th class='scenario1'>If you cash in after 1 year</th>
+                                       <th class='scenario2'>If you cash in after 10 years</th>
+                                       <th class='scenario3'>If you cash in at 20 years</th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <thead></thead>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class='row'>
+                                          <td class='totalcostsheader'>Total costs</td>
+                                          <td class='totalcosts1'>GBX10</td>
+                                          <td class='totalcosts2'>GBX10</td>
+                                          <td class='totalcosts3'>GBX10</td>
+                                       </tr>
+                                       <tr class='row'>
+                                          <td class='riyheader'>Impact on return (RIY) per year</td>
+                                          <td class='riy1'>10.12%</td>
+                                          <td class='riy2'>10.12%</td>
+                                          <td class='riy3'>10.12%</td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="581894" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="581895">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page3" data-pageorder="3" data-sectionId="581896" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="581897" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="581898">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="581899"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="581902" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="588597">
+                     <h2 class="item2">What are the costs? (Continued)</h2>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="588596" data-sectiontype="2">
+                  <div class="section contentSection costComposition costComposition1" data-sectionId="581901"
+                     style="page-break-inside:avoid">
+                     <h2 class="">
+                        <!--HIDE-->
+                     </h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class="tableHeader">
+                                       <th colspan=3></th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class="entrycosts">
+                                          <td class="category" rowspan="2">One-off costs</td>
+                                          <td class="subcategory">Entry costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the cost of exiting your investment.
+                                             Example asset manager mortgage investment trust plc does not make any
+                                             charges when you sell your investment. The impact of the cost of exiting
+                                             your investment. Example asset manager mortgage investment trust plc does
+                                             not make any charges when you sell your investment</td>
+                                       </tr>
+                                       <tr class="exitcosts">
+                                          <td class="subcategory">Exit costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the cost of exiting your investment.
+                                             Example asset manager mortgage investment trust plc does not make any
+                                             charges when you sell your investment</td>
+                                       </tr>
+                                       <tr class="portfoliotrxcosts">
+                                          <td class="category" rowspan="2">Ongoing costs</td>
+                                          <td class="subcategory">Portfolio transaction costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs of us buying and selling
+                                             underlying investments for the product</td>
+                                       </tr>
+                                       <tr class="otherongoingcosts">
+                                          <td class="subcategory">Other ongoing costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs of us buying and selling
+                                             underlying investments for the product The impact of the costs of us buying
+                                             and selling underlying investments for the product</td>
+                                       </tr>
+                                       <tr class="performancefees">
+                                          <td class="category" rowspan="2">Incidental costs</td>
+                                          <td class="subcategory">Performance fees</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">-</td>
+                                       </tr>
+                                       <tr class="carriedinterests">
+                                          <td class="subcategory">Carried interests</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of carried interests on your investment
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="581904" data-sectiontype="2">
+         <div class="section contentSection text text1 howlong" data-sectionId="581905">
+            <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+            <p class="HowlongshouldIholditandcanItakemoneyoutearly"><b>Recommended holding period: 5 years</b> The
+               recommended holding period of 5 years has been selected for illustrative purposes only. Equity
+               investments should be seen as long-term investments however there is no minimum (or maximum) holding
+               period for the shares. The shares can be sold when the markets on which they trade are open, in this
+               instance the London Stock Exchange. At any time the value of your investment is based on the market value
+               of the shares (the share price) multiplied by the number of shares you own.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="581906" data-sectiontype="2">
+         <div class="section contentSection text text1 howcanicomplain" data-sectionId="581907">
+            <h2 class="item2">How can I complain?
+            </h2>
+            <p class="HowcanIcomplain">This Key Information Document has been produced by Example Asset Manager Mortgage
+               Investment Trust PLC. This Key Information Document has been produced by Example Asset Manager Mortgage
+               Investment Trust PLC. This Key Information Document has been produced by Example Asset Manager Mortgage
+               Investment Trust PLC. This Key Information Document has been produced by Example Asset Manager Mortgage
+               Investment Trust PLC.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="581908" data-sectiontype="2">
+         <div class="section contentSection text text1 otherrelevantinformation" data-sectionId="581909">
+            <h2 class="item2">Other relevant information</h2>
+            <p class="RelInfo">This Key Information Document has been produced by Example Asset Manager Mortgage
+               Investment Trust PLC.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="581910" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="581911">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+</body>
+
+</html>

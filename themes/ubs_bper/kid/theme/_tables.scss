@@ -1,0 +1,128 @@
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    // display:contents
+}
+
+.groupHeader1 table {
+    th {
+        padding: 1mm;
+        background: $thBg;
+        color: $thColor;
+        border: 0.5pt solid $thBorder;
+        font-family: $thType;
+        font-size: map-get($font-weight, 'micro');
+        font-weight: map-get($font-weight, 'normal') !important;
+        page-break-inside: avoid;
+        // border-right-color: $th-right-border-color;
+        // border-left-color: $th-left-border-color;
+        text-align: left;
+
+        &:first-of-type {
+            text-align: left;
+        }
+    }
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+    td {
+        border: 0.5pt solid $tdBorder;
+        // border-left-color: $td-left-border-color;
+        // border-right-color: $td-right-border-color;
+        font-family: $fontLight;
+        color: $tdColor;
+        padding: 1mm 1mm;
+    }
+
+    @each $item in $rowheader {
+        #{$item} {
+            border: 0.5pt solid $tdBorder;
+            // border-left-color: $td-left-border-color;
+            // border-right-color: $td-right-border-color;
+
+            th {
+                font-family: $fontSemiBold;
+                font-weight: map-get($font-weight, 'normal') !important;
+                text-align: left;
+                padding: 1mm;
+            }
+        }
+    }
+}
+
+// performanceScenario 
+.performanceScenario {
+    >table:first-of-type {
+        margin: 0.1cm 0 0.5cm 0;
+    }
+
+    .survival-scenario th {
+        border-top: 0;
+    }
+
+    th[class*="period"] {
+        width: 3.05cm;
+    }
+
+    td[class*="period"] {
+        width: 3cm;
+    }
+}
+
+// costOverTime
+
+.costOverTime {
+    >table:first-of-type {
+        margin: 0.1cm 0 0.5cm 0;
+    }
+
+    table {
+        .tableheader {
+            display: none;
+        }
+
+        // th {
+        //     width: 4.75cm;
+        // }
+
+        // td {
+        //     width: 4.75cm;
+
+        // }
+    }
+}
+
+// costComposition 
+
+.costComposition {
+    >table:first-of-type {
+        margin: 0.1cm 0 0.25cm 0;
+    }
+
+    table {
+        .tableHeader {
+            display: none;
+        }
+
+        .oneofcosts {
+            th:last-of-type {
+                width: 3.1cm;
+            }
+        }
+
+        td:last-of-type {
+            width: 3.1cm;
+        }
+    }
+}

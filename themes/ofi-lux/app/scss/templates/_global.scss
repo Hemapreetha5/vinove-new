@@ -1,0 +1,167 @@
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: $font-regular;
+  font-size: $body-font;
+  font-weight: $font-normal;
+  color: $body-color;
+  line-height: $line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+table,
+td,
+th {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  line-height: $line-height;
+  font-size: $body-font;
+}
+
+p {
+  padding: 0 0 1mm;
+}
+
+b {
+  @if $is-custom-font {
+    font-family: $font-bold;
+    font-weight: $font-normal;
+  }
+}
+
+h2 {
+  background: $header-title-bg;
+  font-family: $font-header-title;
+  // font-weight: $font-normal;
+  font-size: $h2-font;
+
+  @if $header-title-bg ==null {
+    padding: 0 0 1mm 0;
+    color: $body-color;
+  }
+
+  @else {
+    padding: 1mm;
+    color: $header-title-color;
+  }
+
+  margin-bottom: 0.2cm;
+  //  border-bottom: 0.5pt solid $header-title-border;
+}
+
+h3 {
+  font-family: $font-regular;
+  font-weight: $font-light;
+  font-size: $h3-font;
+  color: $header-title-color;
+}
+
+p:empty,
+h2:empty {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: inherit;
+  min-height: inherit;
+  width: auto;
+  height: auto;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.clear {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.page {
+  position: relative;
+  width: $page-width;
+  height: $page-height;
+  padding: $page-spacing;
+}
+
+.page>.row .composite1 .compositebody>.row .column {
+  float: none;
+  width: auto;
+}
+
+.page1 {
+  @if $is-UBS {
+    >.row4>.composite1>.compositebody>.row3>.column1 {
+      float: left;
+      width: 21%;
+      margin-right: 1%;
+    }
+
+    >.row4>.composite1>.compositebody>.row3>.column2 {
+      float: left;
+      width: 78%;
+    }
+  }
+
+  >.row6 {
+    .compositebody {
+      page-break-inside: avoid;
+    }
+  }
+}
+
+.page2,
+.page3 {
+  >.row2 {
+    .compositebody {
+      page-break-inside: avoid;
+    }
+  }
+}
+
+.contentSection {
+  position: relative;
+
+  >table {
+    margin: 0.2cm 0;
+  }
+}
+
+
+
+
+// @if $logo-in-first-page {
+//   .page1 {
+//     padding: $page1-padd;
+//     background: $logo-url;
+//     background-size: $logo-bg-width $logo-bg-height;
+//     background-position: $logo-direction;
+//     background-repeat: no-repeat;
+//   }
+
+// }
+
+// @else {
+//   .page {
+//     background: $logo-url;
+//     background-size: $logo-bg-width $logo-bg-height;
+//     background-position: $logo-direction;
+//     background-repeat: no-repeat;
+//   }
+// }

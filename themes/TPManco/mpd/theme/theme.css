@@ -1,0 +1,556 @@
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  font: 8.5pt "frutigerlightregular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h2:empty {
+  display: none;
+}
+
+ul li {
+  list-style: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font: 14pt "frutigerlightbold";
+  color: #1B1B1B;
+  margin: 1.4mm 0 0 0;
+  padding: 1.4mm 0 0.3cm 0;
+}
+
+/*p{
+   @include paraAlingments(true);
+ }
+ */
+p,
+.description {
+  font: 8.5pt "frutigerlightregular";
+  color: #231F20;
+  margin: 0 0 0.4cm 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.subheader p {
+  font: 8.5pt "frutigerlightbold";
+  color: #231F20;
+}
+
+.header1 p,
+.header2 p {
+  font: 14pt "frutigerlightbold";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 14pt "frutigerlightregular";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen {
+  .page {
+    width: 18cm;
+  }
+}
+.page1 {
+  position: relative;
+  padding: 1.83cm 0 0 0;
+  background: "";
+  background-size: auto 2.2cm;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.page2,
+.page3 {
+  position: relative;
+  padding: 0cm 1cm 0cm 1cm;
+  height: auto;
+}
+
+.contentSection h2 {
+  border-top: 0.01cm solid #000000;
+  font: 8.5pt "frutigerlightbold";
+}
+
+.page1 > .row2 > .contentSection .item3 {
+  font-weight: 700 !important;
+  width: 95%;
+  text-align: left;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font: 25pt "frutigerlightregular";
+  color: #000000;
+  margin: 1.4mm 0 0 0;
+  border-top: 0px !important;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+@page {
+  margin: 1cm 1.6cm 0.8cm 1.6cm;
+  padding: 0cm;
+  @bottom-right {
+    content: element(pgnum);
+    width: 4cm;
+    position: relative;
+    z-index: 1;
+    margin: 0cm 0 0cm 0;
+  }
+}
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination {
+  display: none;
+}
+
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 {
+  width: 69% !important;
+  height: auto;
+}
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 .row2 {
+  margin-top: 0.4cm;
+}
+.page1 .row4 > .composite1 .compositebody > .row3 .column2 {
+  width: 25% !important;
+  background: #bebebe;
+  padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+  margin-left: 7px;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.monthlyperformancetable1 * {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario th {
+  padding: 4px 2px !important;
+}
+.monthlyperformancetable1 tr.headerData th {
+  text-align: center;
+  color: #000000;
+  border: 1pt solid #000000;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+.monthlyperformancetable1 table tr td {
+  border: 0.5pt solid #000000 !important;
+  padding: 4px 0px !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  font-size: 6pt !important;
+  font-weight: 700 !important;
+}
+.monthlyperformancetable1 .NonDeathscenario table tr td {
+  padding: 3px 2px !important;
+}
+.monthlyperformancetable1 .headerData:first-child th {
+  padding: 4px 0px !important;
+}
+.monthlyperformancetable1 .headerData:nth-child(2) th {
+  font-size: 7pt !important;
+  padding: 4px 2px !important;
+}
+.monthlyperformancetable1 .SubheaderData th {
+  word-break: break-word;
+  background: transparent;
+  border-color: #000000;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  padding: 4px 2px !important;
+  font-size: 6pt !important;
+  font-weight: 700 !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(1) {
+  width: 6%;
+  border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(2) {
+  width: 6%;
+  text-align: center;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(3) {
+  width: 5%;
+  text-align: center;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(4) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(5) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(6) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(7) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(8) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(9) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(10) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(11) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(12) {
+  width: 9%;
+  text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th {
+  word-break: break-word;
+  background: transparent;
+  border-color: #000000;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  padding: 4px 2px !important;
+  font-size: 6pt !important;
+  font-weight: 700 !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(1) {
+  width: 7%;
+  border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(2) {
+  width: 7%;
+  text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(3) {
+  width: 5%;
+  text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(4) {
+  width: 14%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(5) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(6) {
+  width: 14%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(7) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(8) {
+  width: 14%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(9) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(10) {
+  width: 14%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(11) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .Row td:first-child {
+  width: 6%;
+  border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .Row td:nth-child(2) {
+  width: 6%;
+  text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(4) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(6) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(8) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9) {
+  width: 7%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(10) {
+  width: 9%;
+  text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:first-child {
+  width: 7%;
+  border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:nth-child(2) {
+  width: 7%;
+  text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(2) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(3) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(4) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(5) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(6) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(7) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(8) {
+  width: 11.5%;
+  border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(9) {
+  width: 8%;
+  font-weight: 200 !important;
+}
+/*
+font-size:map-get($font-size,'micro') !important;
+        border-left-color:transparent;
+        border-right-color:transparent;
+*/
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+:root {
+  --fw-light: 300;
+  --fw-normal: 300;
+  --fw-bold: bold;
+  --h2-color: #000000;
+  --black: #000000;
+}
+
+p {
+  text-align: justify;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font-size: 26pt;
+}
+
+.TextSection p {
+  font-size: 10pt;
+}
+
+.contentSection h2 {
+  color: var(--h2-color);
+  font-size: 12pt;
+}
+
+.FooterCSS {
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection {
+  height: 23px;
+}
+.FooterCSS .content:before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+/* UBS_MPD_publifund_standard_theme */
+/* Theme name TPManco_M */
+
+/*# sourceMappingURL=theme.css.map */

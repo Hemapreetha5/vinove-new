@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Cost Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .hidden { display: none; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .button-group { margin-top: 20px; text-align: center; }
+        button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        #prevBtn { background: #ccc; }
+        #nextBtn, #submitBtn { background: #007bff; color: white; }
+        label { display: block; margin: 10px 0; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        .steps-navigation { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .steps-navigation div { padding: 10px; cursor: pointer; background: #ddd; border-radius: 5px; }
+        .steps-navigation div.active { background: #007bff; color: white; }
+        .steps-navigation div.disabled { background: #ccc; pointer-events: none; opacity: 0.5; }
+        .steps-navigation div.active.disabled{background: #007bff;pointer-events: inherit; opacity:1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cost Calculator</h2>
+        <div class="steps-navigation" id="stepsNav"></div>
+        <form id="calculatorForm">
+            <div class="step active" id="step1">
+                <h3>What is your industry?</h3>
+                <div id="industryOptions"></div>
+            </div>
+            <div class="step" id="step2">
+                <h3>What is the size of your company?</h3>
+                <div id="companySizeOptions"></div>
+            </div>
+            <div class="step" id="step3">
+                <h3>What SIEM services are you interested in?</h3>
+                <div id="serviceOptions"></div>
+            </div>
+            <div class="step" id="step4">
+                <h3>What work model do you prefer?</h3>
+                <div id="workModelOptions"></div>
+                <h3>Where are you located?</h3>
+                <div id="locationOptions"></div>
+            </div>
+            <div class="step" id="step5">
+                <h3>Your Contact Data</h3>
+                <label>Full Name: <input type="text" id="fullName" required></label>
+                <label>Company Name: <input type="text" id="companyName" required></label>
+                <label>Work Email: <input type="email" id="workEmail" required></label>
+                <label>Phone Number: <input type="text" id="phoneNumber"></label>
+            </div>
+            <div class="button-group">
+                <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden">Back</button>
+                <button type="button" id="nextBtn" onclick="changeStep(1)" disabled>Next</button>
+                <button type="submit" id="submitBtn" class="hidden">Finish</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const formData = {
+            industry: ["Healthcare", "Banking", "Insurance", "Lending", "Investment", "Payments", "Manufacturing", "Transportation", "Retail and wholesale", "Oil & Gas", "Professional services", "Telecommunications", "Engineering & Construction", "Utilities", "Public sector", "Real estate", "Entertainment", "Information technologies", "Multi-industry", "Other"],
+            companySize: ["1-10 employees", "11-50 employees", "51-200 employees", "201-500 employees", "501-1,000 employees", "1,001-5,000 employees", "5,001-10,000 employees", "10,000+ employees"],
+            services: ["Health check & optimization", "Design & deployment", "Customization & development", "Fine-tuning & delivery", "Support & maintenance", "Training", "SIEM-based SOC/SOAR services", "QLEAN app suite", "Other"],
+            workModel: ["Onsite", "Remote", "Hybrid", "Not sure"],
+            location: ["APAC & Japan", "EMEA", "North America", "South America", "Other"]
+        };
+
+        function populateOptions(id, options, type = "radio") {
+            const container = document.getElementById(id);
+            options.forEach(option => {
+                const label = document.createElement('label');
+                if (option === "Other") {
+                    label.innerHTML = `<input type="${type}" name="${id}" value="${option}" onclick="validateSelection()"> ${option}
+                                    <textarea id="${id}_other" placeholder="Please specify..." oninput="validateSelection()"></textarea>`;
+                } else {
+                    label.innerHTML = `<input type="${type}" name="${id}" value="${option}" onclick="validateSelection()"> ${option}`;
+                }
+                container.appendChild(label);
+            });
+        }
+
+        populateOptions('industryOptions', formData.industry);
+        populateOptions('companySizeOptions', formData.companySize);
+        populateOptions('serviceOptions', formData.services, "checkbox");
+        populateOptions('workModelOptions', formData.workModel);
+        populateOptions('locationOptions', formData.location);
+
+        let currentStep = 1;
+        const steps = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const stepsNav = document.getElementById('stepsNav');
+        let validSteps = [false, false, false, false, false]; // Track valid steps
+
+        function updateNavigation() {
+            stepsNav.innerHTML = '';
+            steps.forEach((_, index) => {
+                const stepNav = document.createElement('div');
+                stepNav.innerText = `Step ${index + 1}`;
+                stepNav.classList.remove('active'); // Remove active from all steps
+                if (index + 1 === currentStep) {
+                    stepNav.classList.add('active'); // Only add active to the current step
+                }
+
+                // Allow clicks only for valid or completed steps
+                if (validSteps[index]) {
+                    stepNav.classList.remove('disabled');
+                    stepNav.onclick = () => goToStep(index + 1); // Enable navigation up to the current valid step
+                } else {
+                    stepNav.classList.add('disabled');
+                    stepNav.onclick = null; // Disable navigation for future or invalid steps
+                }
+
+                stepsNav.appendChild(stepNav);
+            });
+        }
+
+        function validateStep(step) {
+            const stepInputs = steps[step - 1].querySelectorAll('input, textarea');
+            let isValid = false;
+
+            stepInputs.forEach(input => {
+                if ((input.type === "radio" || input.type === "checkbox") && input.checked) {
+                    isValid = true;
+                } else if ((input.type === "text" || input.type === "email" || input.tagName === "TEXTAREA") && input.value.trim()) {
+                    isValid = true;
+                }
+            });
+
+            return isValid;
+        }
+
+        function validateSelection() {
+            validSteps[currentStep - 1] = validateStep(currentStep); // Track the current step validity
+            nextBtn.disabled = !validSteps[currentStep - 1]; // Disable Next button if current step is invalid
+            updateNavigation(); // Update navigation to show which steps are valid
+        }
+
+        function goToStep(step) {
+            steps[currentStep - 1].classList.remove('active');
+            currentStep = step;
+            steps[currentStep - 1].classList.add('active');
+            updateNavigation();
+            prevBtn.classList.toggle('hidden', currentStep === 1);
+            nextBtn.classList.toggle('hidden', currentStep === steps.length);
+            submitBtn.classList.toggle('hidden', currentStep !== steps.length);
+            validateSelection();
+        }
+
+        function changeStep(direction) {
+            if (direction === 1 && !validSteps[currentStep - 1]) {
+                alert("Please fill out the required fields before proceeding.");
+                return;
+            }
+            goToStep(currentStep + direction);
+        }
+
+        updateNavigation();
+        validateSelection();
+    </script>
+</body>
+</html>

@@ -1,0 +1,687 @@
+@font-face{
+    font-family:'Neue_Haas_Unica';
+    src:url('images/NEUEHAASUNICAPRO-LIGHT.TTF') format('truetype');
+    font-weight:300;
+    font-style:normal;
+}
+@font-face{
+    font-family:'Neue_Haas_Unica';
+    src:url('images/NEUEHAASUNICAPRO-MEDIUM.TTF') format('truetype');
+    font-weight:500;
+    font-style:normal;
+}
+:root{
+    --black:#000;
+    --white:#FFF;
+    --gold:#f0ece4;
+    --goldDark:#A59482;
+    --green:#6d9d84;
+    --textColor:#231F20;
+    --font:"Neue_Haas_Unica";
+    --bold:500;
+    --lineHeight:1.27;
+    --lineHeightHigh:1.2;
+    --box-spacing:7px;
+}
+*{
+    box-sizing: border-box;
+}
+body { color:var(--textColor);font-family: var(--font); font-size: 8pt;font-weight: 300; }
+b,h1,h2,h3,h4,h5,h6,th{ font-weight: 500;}
+.page{ position: relative; width: 21cm; height: 29.7cm; padding:0 1cm 0 1.9cm;clear: both;}
+.row { margin-bottom: 0.01cm; }
+.column > .section { margin-left: 0.25cm; }
+.column:first-child > .section { margin-left: 0; }
+h1, h2, h3 { margin:0; color: var(--green); }
+p { margin: 0; margin-bottom: 0;     font-size: 8pt;
+    line-height:var(--lineHeight);color:var(--textColor);}
+.vertical-list div { margin-bottom: 0.25cm; }
+/* .vertical-list div span:first-child { color: #3399FF; } */
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+/* .page > .row1 h2 { font-size: 24pt; padding-left: 3cm; min-height: 2cm; background-image: url('./Images/logo.png'); background-repeat: no-repeat; margin-bottom: 0.5cm; } */
+/* .page1 > .row2 > .column2 > .section { background-color: #efefef; border-radius: 0.25cm; padding: 0.25cm; } */
+.page > .row1 .logo {
+    background-image: url(images/logo-image-black.png);
+    width: 5.1cm !important;
+    height: 1.3cm !important;
+    background-size: auto 1.05cm;
+    background-repeat: no-repeat;
+}
+.page > .row1 .column1 .logo {
+    background-image: url(images/logo-image-black.png);
+}
+.page > .row1 .column2 .logo {
+    background-image: url(images/logo-image2.png);
+    background-size: auto 1.1cm;
+
+}
+.page1 > .row1 > .column{
+    width:auto !important;
+}
+.tabs.breakdowns { border: none; margin: 10px; }
+.tabs.breakdowns > .tabpanes { border: none; }
+.tabs.breakdowns > .tabpanes > .slider > .tab  { padding-bottom: 20px; }
+.tabs.breakdowns > .tabbuttons { position: absolute; bottom: 5px; z-index: 10000; }
+.tabs.breakdowns > .tabbuttons > .tab { border: none; background-color: #000; height: 10px; width: 10px; border-radius: 10px; overflow: hidden; margin-right: 10px; text-indent: -10000px; }
+.cler {font-size:24pt;}
+.reportheader {font-size:34pt;color: rgb(253, 226, 17);padding-left:0.5cm;}
+.headerbackground{background-color: rgb(138, 216, 216); height:10cm; background-image:url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');background-repeat: no-repeat;background-size: 100%;}
+.bottomrightheaderpage{margin-top: 10cm;}
+.compositepadding{padding-left: 1cm;background-color: rgb(138, 216, 216);margin-left: 1cm;margin-right: 1cm;padding-bottom: 1.6cm;}
+
+.securityaccount{background-color: rgb(138, 216, 216); padding-top: 7cm;font-size: 34pt;padding-bottom: .5cm;}
+.esgdata {background-color: rgb(167, 179, 179); padding-top: 4cm;font-size: 34pt;padding-bottom:3cm}
+
+.FooterCSS .column1{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column2{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column3{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column5{
+	width:15%;
+	float:left;
+}
+
+
+.FooterCSS .column4{
+	width:40%;
+	float:left;
+	text-align:center;
+}
+
+
+footer {
+position: running(footerIdentifier)
+}
+@page {
+padding-top:0.85cm;
+padding-bottom:0.25cm;
+@bottom-left {
+content: element(footerIdentifier)
+}
+}
+
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+
+    .compositefooter .content {
+        margin-right: 0cm;
+        position: relative;
+        overflow: visible;
+    }
+
+        .compositefooter .content:before {
+            content: '';
+            width: 1px;
+            height: 100px;
+            background-color: #a7a5a6;
+            position: absolute;
+            top: 0;
+            left: -3px;
+        }
+
+
+/* @page:first {
+
+@bottom-left {
+content: "";
+}
+} */
+.FooterCSS {
+
+    width: 20cm;
+
+    padding: 0px 0px 0px 4px;
+
+    position: absolute;
+
+    bottom: 0.3cm;
+
+    left: 0;
+
+    z-index: 1;
+
+    border-top: 0.5px solid #909090;
+
+    font-size: 7.5pt;
+
+}
+
+
+
+    .FooterCSS .content {
+
+        margin-right: 0cm;
+
+        position: relative;
+
+        overflow: visible;
+
+    }
+
+.FooterCSS .row{
+	margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection{
+height: 23px;
+}
+        .FooterCSS .content:before {
+
+            content: '';
+
+            width: 1px;
+
+            height: 60px;
+
+            background-color: #a7a5a6;
+
+            position: absolute;
+
+            top: 0;
+
+            left: 1px;
+
+        }
+
+		.EsgCoverPageImage{
+width: 100%;
+}
+
+
+.EsgCoverPage{
+	width:100%
+}
+/* br {
+    content: "";
+    height: 4px;
+    margin: 1px 0;
+    display: block;
+} */
+.logo {
+    width: auto;
+    height: auto;
+}
+.page1 > .row2 h2 {
+    font-size: 23.5pt;
+    font-weight: 300;
+}
+.page1 > .row3 h2{
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.page1 > .row4 {
+    display: flex;
+}
+.page1 > .row4 > .column1,.page1 > .row4 > .column2,.page1 > .row6,
+.page1 > .row7 > .column1 > .row1,.page1 > .row7 > .column2 > .row1,
+.page2 > .row1 p.item3,.page2 > .row2 > .composite1 > .compositebody > .row2 > .column1 > .section,
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column2 > .section,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column1 > .section,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column2 > .section{
+    /* background-color: var(--gold); */
+    padding:var(--box-spacing);
+    border:1pt solid var(--green);
+}
+.page1 > .row7 > .column1 > .row2{
+    padding-top:var(--box-spacing);
+    padding-left:var(--box-spacing);
+    padding-right:var(--box-spacing);
+    border:1pt solid var(--green);
+    margin-top:10px;
+    border-bottom:none;
+}
+.page1 > .row7 > .column1 > .row3{
+    padding-bottom:var(--box-spacing);
+    padding-left:var(--box-spacing);
+    padding-right:var(--box-spacing);
+    border:1pt solid var(--green);
+    border-top:none;
+}
+.page2 > .row2 > .composite1 > .compositebody > .row2,
+.page3 > .row1 > .composite1 > .compositebody > .row2{
+    display: flex;
+}
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column2,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column1,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column2{
+    display: inline-flex;
+}
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column1 > .section,
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column2 > .section,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column1 > .section,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column2 > .section{
+    display: inline-flex;
+    margin-bottom:10px;
+}
+.page2 > .row1 p.item3{
+    margin-bottom:7px;
+    line-height: var(--lineHeightHigh);
+}
+.page1 > .row4 > .column2,.page1 > .row6,.page1 > .row7,
+.page2 > .row2 > .composite1 > .compositebody > .row2 > .column p,
+.page3 > .row1 > .composite1 > .compositebody > .row2 > .column p{
+    page-break-inside: avoid;
+}
+.page1 > .row4 > .column2{
+    margin-left: 0.25cm;
+}
+.page1 > .row4 > .column2 {
+    width: calc(50% - 0.25cm) !important;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column2 {
+    margin-left: 3%;
+}
+.page1 > .row4 > .column2 > .section,.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column2 > .section,
+.page1 > .row4 > .column2 .column > .section  {
+    margin-left: 0;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column1,
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column2{
+    background-color: var(--white);
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column1{
+    width:34% !important;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column2{
+    width:34% !important;
+    margin-left: 0;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3{
+    width:32% !important;
+    font-size: 6.8pt;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .section{
+    margin-left: 0.05cm;
+}
+.horizontal-list span:first-child {
+    font-weight: 300;
+}
+.iconSection {
+    height: 0.75cm;
+    width: auto;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column .iconSection {
+    height: 0.9cm; 
+}
+h2 {
+    font-size: 9pt;
+}
+.page1 > .row4 > .column1 text.highcharts-title {
+    font-size: 6.8pt !important;
+    font-weight: 300 !important;
+    font-family: var(--font) !important;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column .highcharts-axis-labels.highcharts-xaxis-labels span {
+    font-size: 6.8pt !important;
+    font-weight: 300 !important;
+    font-family: var(--font) !important;
+    left: 5px !important;
+}
+.page1 > .row4 > .column1 text.highcharts-title tspan{
+    display: none;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column p.item2 {
+    margin: 0 0 -14px 0;
+    font-weight: var(--bold);
+    padding: 0 5px;
+}
+.page1 > .row6{
+    margin-bottom:8px;
+    display: flex;
+}
+.page1 > .row6 > .column1 .row1 .row3 {
+    background-color: var(--white);
+    padding-top: 5px;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column1 .chart, .page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column2 .chart {
+    height: 190px !important;
+}
+.page1 > .row4 > .column,.page1 > .row6 > .column2  {
+    position: relative;
+    padding-bottom: 16px;
+}
+.page1 > .row4 > .column2 > .row1 .row4, .page1 > .row4 > .column1 .row3 {
+    text-align: right;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    right: 1px;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column1 {
+    width: 100% !important;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column2{
+    width: 100% !important;
+    padding-top: 5px;
+}
+.page1 > .row4 > .column2 .row3 p.item2 {
+    padding: 10px 0;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list span:first-child {
+    font-weight: 300;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list span:last-child{
+    float:left;
+}
+.page1 > .row6 > .column1 .gwp-chart-legend {
+    margin-bottom: 0;
+    display: none;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Portfolio"],
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Benchmarks"] {
+    position: relative;
+    padding-top:21px;
+    width: auto;
+    padding-right: 30px;
+    background-color: var(--white);
+    margin-bottom:3px;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Portfolio"] span.value,
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Benchmarks"] span.value{
+    position: absolute;
+    font-size: 15pt;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    font-weight: var(--bold);
+    line-height: 20px;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Benchmarks"]{
+    padding-right:5px;
+}
+.page1 > .row4 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column div[class*="Benchmarks"] span.value{
+    color:var(--goldDark);
+}
+.page1 > .row4 > .column > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row3 > .column .item1 .value {
+    width: 100%;
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+.page1 > .row7 > .column  .row .column {
+    width: 100% !important;
+}
+.page1 > .row7 > .column  .row .column > .section{
+    margin-left: 0;
+}
+/* .page1 > .row7 > .column .row .column .horizontal-list > div{
+    border-bottom:1pt solid var(--black);
+    padding:5px 0;
+} */
+.page1 > .row7 > .column  .row .column .horizontal-list span:first-child{
+    width:80%;
+}
+.page1 > .row7 > .column  .row .column .horizontal-list span:last-child {
+    width:20%;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column1 h2 {
+    top: 15px;
+    position: absolute;
+    right: 0px;
+    left: -189px;
+    font-size: 7pt;
+    line-height: var(--lineHeight);
+    color: var(--textColor);
+    width: 170px;
+    text-align: right;
+}
+div.gwp-chart-wrapper.gwp-chart-container > div:nth-child(2) {
+    border-top: 0.5pt solid var(--black);
+    padding-top: 0.3em;
+}
+div.gwp-chart-wrapper.gwp-chart-container > div:first-child {
+    margin-bottom: 1.5px;
+}
+.page1 > .row4 > .column1 p.item3 {
+    margin-bottom: 5px;
+}
+.page1 > .row5 h2 {
+    padding: 5px 0;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list div[class^="Portfolio"] {
+    padding-left: 10px;
+    font-size: 6.5pt;
+    position: relative;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list div[class^="Portfolio"]::before {
+    content:"";
+    position: absolute;
+    top:3px;
+    left:0;
+    z-index: 9;
+    width:8px;
+    height:8px;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list .Portfolio\.Overall\.MSCI\.Carbon\.CarbonEmissions\.CorporateEmissions\.CorporateCarbonFootprintScope12\.Coverage::before{
+    background-color: #121415;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list .Portfolio\.Overall\.MSCI\.Carbon\.CarbonEmissions\.CorporateEmissions\.CorporateCarbonFootprintScope3\.Coverage::before{
+    background-color: #929595;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list .Portfolio\.Overall\.MSCI\.Carbon\.CarbonEmissions\.CorporateEmissions\.CorporateWeightedAverageCarbonIntensitySalesScope12\.Coverage::before{
+    background-color: #121415;
+}
+.page1 > .row4 > .column1 > .row2 > .composite1 > .compositebody > .row2 > .column3 .horizontal-list .Portfolio\.Overall\.MSCI\.Carbon\.CarbonEmissions\.CorporateEmissions\.CorporateWeightedAverageCarbonIntensitySalesScope3\.Coverage::before{
+    background-color: #929595;
+}
+.page1 > .row7 > .column1 .row4 {
+    text-align: right;
+    float: right;
+    margin-top: -10px;
+    margin-bottom: -5px;
+}
+.page2 p,.page3 p{
+    margin-bottom: 0.1cm;
+    line-height: var(--lineHeightHigh);
+}
+.page2 br,.page3 br{
+    content: "";
+    display: block;
+    margin: 0.5px 0;
+    height:1px;
+}
+.page2 br + br,.page3 br + br {
+    content: "";
+    display: block;
+    margin: 0.25px 0;
+    height:0.5px;
+}
+.page1 > .row7 {
+    display: flex;
+}
+.page1 > .row7 > .column2 {
+    display: inline-flex;
+}
+div.gwp-chart-wrapper.gwp-chart-container .gwp-chart span.arrow {
+    display: none;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column1 {
+    position: relative;
+}
+.page1 > .row6 > .column1 {
+    float: left;
+    width: 71% !important;
+}
+.page1 > .row6 > .column2 {
+    width: 29% !important;
+}
+.page1 > .row6 > .column3 {
+    width: 100% !important;
+    display: none;
+}
+.page1 > .row6 > .column1 .compositebody > .row2{
+    width:100% !important;
+    float: left;
+    position: relative;
+}
+.page1 > .row6 > .column1 .compositebody > .row3 {
+    width: 57% !important;
+    float: left;
+}
+.page1 > .row6 > .column1 .compositebody > .row4 {
+    width: 43% !important;
+    float: left;
+    padding-left: 20px;
+}
+.page1 > .row6 > .column1 .barChartSection.barChartSection1 {
+    margin-bottom: -15px;
+}
+.page1 > .row6 > .column2 .row3 {
+    position: absolute;
+    left: -184px;
+    width: 180px;
+    z-index: 9;
+    top: 75px;
+}
+.page1 > .row6 > .column2 .row4{
+    position: absolute;
+    left: -183px;
+    width: 100%;
+    z-index: 9;
+    top: auto;
+    bottom: -3px;
+    text-align: left;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2 {
+    position: relative;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column1{
+    width:100% !important;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2 {
+    width: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column1 p.item3,
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column1 p.item4 {
+    width: 50% !important;
+    float:left;
+    padding-top:23px;
+    /* font-size: 7pt; */
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2 p {
+    width: 50% !important;
+    float: left;
+    font-size: 13pt;
+    font-weight: var(--bold);
+    line-height: 19px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2 p[class*="Benchmarks"] {
+    color: var(--goldDark);
+}
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column2 p[class*="Portfolio"] {
+    min-height: 19px;
+}
+.page1 > .row6 > .column1 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2 > .section{
+    margin-left: 0;
+}
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column2 p {
+    font-weight: var(--bold);
+}
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column1{
+    width:65% !important;
+}
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column2{
+    width:35% !important;
+}
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column2 p.item3,
+.page1 > .row6 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .composite1 > .compositebody > .row2 > .column2 p.item4{
+    display: none;
+}
+.page1 > .row7 > .column1 > .row2 .compositebody > .row3 {
+    border-top: 0.5pt solid var(--black);
+    border-bottom: 0.5pt solid var(--black);
+    margin: 8px 0 2px;
+    padding: 4px 0;
+}
+.page1 > .row7 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 .row1 .horizontal-list > div:first-child {
+    margin: 8px 0 0;
+    border-top: 0.5pt solid var(--black);
+}
+.page1 > .row7 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 .row1 .horizontal-list > div {
+    border-bottom: 0.5pt solid var(--black);
+    margin: 0;
+    padding: 4px 0;
+}
+.page1 > .row7 > .column1 > .row3 > .column2{
+    border-bottom: 0.5pt solid var(--black);
+    margin-bottom:10px;
+    padding-bottom: 4px;
+}
+.page1 > .row7 > .column2 > .row1 > .composite1 > .compositebody > .row4 > .composite1 > .compositebody > .row2 > .column2{
+    border-bottom: 0.5pt solid var(--black);
+    padding-bottom: 4px;
+}
+.page1 > .row7 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 .row1 .horizontal-list > div.clear {
+    display: none;
+}
+.page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 {
+    position: relative;
+}
+.page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column1 p.item3, .page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column1 p.item4 {
+    width: 33% !important;
+    float: left;
+    padding-top: 23px;
+}
+.page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 p {
+    width: 33% !important;
+    float: left;
+    font-size: 13pt;
+    font-weight: var(--bold);
+    line-height: 19px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+.page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 p[class*="Benchmarks"] {
+    color:var(--goldDark);
+}
+.page1 > .row7 > .column1 > .row1 > .composite1 > .compositebody > .row3 > .composite1 > .compositebody > .row2 > .column2 {
+    position: absolute;
+    bottom: 13px;
+    left: 0;
+    top: auto;
+    z-index: 9;
+}
+.gwp-chart-container .gwp-chart {
+    height: 25px !important;
+}
+.gwp-chart-container .gwp-chart .gwp-chart-range{
+    height: 25px !important;
+}
+.gwp-chart-container .gwp-chart .gwp-chart-range-span {
+    border-top-width:13px !important;
+    border-bottom-width:12px !important;
+}
+.gwp-chart-container .gwp-chart .text {
+    font-size: 7pt;
+}
+/* SCS_BKB */

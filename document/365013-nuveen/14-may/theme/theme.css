@@ -1,0 +1,1820 @@
+@font-face {
+  font-family: 'Georgia';
+  src: url('./images/Georgia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('./images/Georgia-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('./images/Georgia-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('./images/Georgia-Bold-Italic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url('./images/tt0047m_.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url('./images/tt0049m_.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root {
+  /* --gray:rgb(103,112,120);  */
+  --gray: rgb(179, 179, 178);
+  --lightGray: rgb(239, 240, 241);
+  --white: #fff;
+  /* --primary:#00A9D8; */
+  --primary: rgb(0, 169, 218);
+  /* --lightBlue:#B9E3F3; */
+  --lightBlue: rgb(190, 233, 244);
+  --lightBlueBox: rgb(237, 244, 252);
+  --skyBlue: #E1F3F9;
+  --black: #000;
+  --footerText: rgb(91, 90, 95);
+  /* --darkGray:#233645; */
+  --darkGray: rgb(38, 50, 65);
+  --font-family: 'News Gothic';
+  --font-family-Georgia: 'Georgia';
+}
+
+.triangle-1 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+  border-radius: 20%;
+}
+
+.triangle-1,
+.triangle-1::before,
+.triangle-1::after {
+  width: 20rem;
+  height: 20rem;
+}
+
+.triangle-1::before,
+.triangle-1::after {
+  content: "";
+  position: absolute;
+  background: yellow;
+  pointer-events: auto;
+}
+
+.triangle-1::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-1::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-1::before {
+  border-radius: 20% 20% 20% 55%;
+}
+
+.triangle-1::after {
+  border-radius: 20% 20% 55% 20%;
+}
+
+.triangle-2 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+}
+
+.triangle-2,
+.triangle-2::before,
+.triangle-2::after {
+  width: 10rem;
+  height: 10rem;
+}
+
+.triangle-2::before,
+.triangle-2::after {
+  content: "";
+  position: absolute;
+  background: #000000;
+  pointer-events: auto;
+}
+
+.triangle-2::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-2::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-3 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+  border-radius: 20%;
+}
+
+.triangle-3,
+.triangle-3::before,
+.triangle-3::after {
+  width: 15rem;
+  height: 15rem;
+}
+
+.triangle-3::before,
+.triangle-3::after {
+  content: "";
+  position: absolute;
+  background: gray;
+  pointer-events: auto;
+}
+
+.triangle-3::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-3::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-3::before {
+  border-radius: 20% 20% 20% 55%;
+}
+
+.triangle-3::after {
+  border-radius: 20% 20% 55% 20%;
+}
+
+.triangle-4 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+}
+
+.triangle-4,
+.triangle-4::before,
+.triangle-4::after {
+  width: 17.5rem;
+  height: 17.5rem;
+}
+
+.triangle-4::before,
+.triangle-4::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right, orange 0%, red 100%);
+  pointer-events: auto;
+}
+
+.triangle-4::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-4::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-Georgia);
+}
+
+h2 {
+  font: 12pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+  margin: 0.15cm 0;
+  padding: 0.2cm 0 0.2mm 0;
+}
+
+p,
+.description {
+  font: 8pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+  margin: 0 0 0cm;
+  /* padding: 1mm 0 0.07cm 0; */
+  padding: 0.07cm 0 0.07cm 0;
+  /* line-height: 1; */
+  line-height: normal;
+}
+
+p.IssuedOnDate {
+  border-bottom: 0px #187aba solid;
+  text-align: left;
+}
+
+.subheader p {
+  font: 10pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+}
+
+.header1 p,
+.header2 p {
+  font: 12pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 12pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 19cm;
+  height: auto;
+  padding: 0cm;
+}
+
+.page1 {
+  padding: 0;
+  /* background: url(images/3f.jpg); */
+  /* background-size: 1.95cm 1.75cm; */
+  /* background: url('images/logo-image.png');  */
+  /* background-size: 3cm 1.45cm; */
+  /* background-size: auto 1.45cm; */
+  /* background-position: top right; */
+  /* background-position: top right;
+  background-repeat: no-repeat; */
+  position: relative;
+}
+
+.page1:before {
+  content: "";
+  padding: 0;
+  background: url('images/logo-image.png');
+  /* background-size: 2.3cm auto; */
+  background-size: 4.15cm auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+  width: 6.5cm;
+  /* height: 1.45cm; */
+  height: 1.6cm;
+  z-index: 9;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* background-color: #CCCCCC; */
+}
+
+p br {
+  display: block !important;
+  margin: 0 0 !important;
+  line-height: 0.2 !important;
+  padding: 0 !important;
+  content: "";
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  text-align: left;
+}
+
+.keyinformationdocument.contentSection h2 {
+  /* font: 16pt var(--font-family-Georgia); */
+  /* font: 12pt var(--font-family-Georgia); */
+  font: 12pt var(--font-family);
+  /* color: #000; */
+  color: var(--darkGray);
+  margin: 0 0 0;
+  padding: 1mm 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.contentSection h2 {
+  font: 12pt var(--font-family-Georgia);
+  /* color: #000; */
+  color: var(--darkGray);
+  /* margin: 0.07cm 0; */
+  /* margin: 0.23cm 0 0.23cm; */
+  margin: 0.25cm 0 0.26cm;
+  /* padding: 0cm 0 0.6mm 0; */
+  /* padding: 0.25cm 0 0 0; */
+  padding: 0.25cm 0 0 0;
+  border-bottom: 0.1pt solid #666666;
+  border-bottom: none;
+  border-top: 0.02cm solid var(--gray);
+  clear: both;
+  font-weight: bold;
+}
+
+.fundName h2 {
+  font: 18pt var(--font-family-Georgia);
+  /* color: #4fbc84; */
+  margin: 0.15cm 0;
+  padding: 0;
+}
+
+.page2>.row1 .column1 .pagenumbers p[class*="WB_Footer"],
+.page3>.row1 .column1 .pagenumbers p[class*="WB_Footer"],
+.page4>.row1 .column1 .pagenumbers p[class*="WB_Footer"] {
+  display: none;
+}
+
+/* Header text only */
+.page2 .WB_GeneralInformation_2 {
+  position: running(headerText);
+  font-size: 8pt !important;
+  /* padding: 0 0 0.08cm 0; */
+  /* padding: 0 0 0.15cm 0; */
+  margin: 0;
+  /* border-bottom: 0.02cm solid var(--gray); */
+  width: 100%;
+  min-height: 35px;
+  font-family: var(--font-family-Georgia);
+  color: var(--darkGray);
+}
+
+/* As per request last b tag content hided */
+.page2 .WB_GeneralInformation_2 b:last-child {
+  display: none;
+}
+
+.page2 .WB_GeneralInformation_2 br {
+  display: none !important;
+}
+
+.page2 .WB_GeneralInformation_2 b {
+  font-weight: normal !important;
+}
+
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination p {
+  text-align: left;
+  font-weight: bold;
+}
+
+
+p[class*="WB_Footer"] {
+  /* display: none; */
+}
+
+/* .page1>.row1 .column1 .pagenumbers, .page2>.row1 .column1 .pagenumbers, .page3>.row1 .column1 .pagenumbers {
+  text-align: left;
+} */
+.page>.row1 .column1 .pagenumbers {
+  /* display: none; */
+}
+
+.page1>.row1 .column1 .pagenumbers {
+  text-align: left;
+  position: running(pgfooterRight);
+  display: block;
+}
+
+.page .column2 .pagenumbers .Pagination {
+  position: running(pageFooter);
+}
+
+.page>.row1 * {
+  font-size: 8pt !important;
+}
+
+.page1 > .row5 > .pagenumbers > .Pagination {
+display: none;
+}
+
+@page {
+  /* margin: 1cm 0.8cm 1cm 0.8cm; */
+  /* margin: 0.7cm 1cm 0.6cm 1cm; */
+  /* margin: 0.7cm 1cm 1cm 1cm; */
+  /* margin: 1.6cm 1cm 1cm 1cm; */
+  margin: 2cm 1cm 1.8cm 1cm;
+
+  @top-left {
+    content: element(headerText);
+    padding-top: 0.7cm;
+    font: 6pt var(--font-family-Georgia);
+    padding-bottom: 0;
+    margin-bottom: 0.2cm;
+  }
+
+  @bottom-right-corner {
+    content: "nuveen.com/global";
+    font-size: 9pt;
+    font-family: var(--font-family-Georgia);
+    font-weight: bold;
+    width: 300px;
+    color: var(--darkGray);
+    position: absolute;
+    right: 1cm;
+    bottom: 0.6cm;
+    z-index: 9;
+    text-align: right;
+  }
+
+  @bottom-right {
+    content: element(pgfooterRight);
+    font: 6pt var(--font-family-Georgia);
+    padding-bottom: 0;
+    width: 19cm;
+    border-top: 0.02cm solid var(--gray);
+    /* margin: 0 0 0.4cm; */
+    position: absolute;
+    left: 1cm;
+    bottom: 0.48cm;
+    z-index: 8;
+    padding-top: 0.65cm;
+  }
+
+  @bottom-center {
+    content: element(pageFooter);
+    position: absolute;
+    left: 1cm;
+    bottom: 0.48cm;
+    z-index: 9;
+  }
+
+}
+
+@page:-ro-nth(1) { 
+  margin-top:0.9cm;
+  @top-center {
+    content:"";
+    font: 6pt var(--font-family-Georgia);
+    position: absolute;
+    right:2.675cm;
+    top:0;
+    z-index:8;
+    background-color: var(--primary);
+    width:2.50cm;
+    padding:0;
+    height:2.30cm;
+  }
+  @top-right {
+    content:"";
+    padding-top:0.7cm;
+    font: 6pt var(--font-family-Georgia);
+    position: absolute;
+    right:0.9cm;
+    top:0;
+    z-index:8;
+    background-color: var(--lightBlueBox);
+    width:1.70cm;
+    padding:0;
+    height:2.30cm;
+  }
+}
+
+.page1 .row4 .compositebody>.row .column,
+.page1 .row5 .compositebody>.row .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+.page1 .row4 .compositebody>.row .column h2,
+.page1 .row5 .compositebody>.row .column h2 {
+  column-span: all;
+}
+
+.page2 .row2 .compositebody * {
+  break-before: avoid-page;
+}
+
+.page2 .row2 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+.page2 .row2 .compositebody .row3 h2 {
+  column-span: all;
+}
+
+.page2 .row2 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 0pt solid transparent;
+}
+
+table { width: 100%; }
+table td, table th { overflow-wrap: anywhere; }
+
+table th:not(.groupHeader1) {
+  color: #000;
+}
+
+table.NonDeathscenario tbody tr th {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  font-size: 5.8pt;
+}
+html[lang="en-GB"] table.NonDeathscenario tbody tr th,
+html[lang="en"] table.NonDeathscenario tbody tr th,
+html[lang="en-EN"] table.NonDeathscenario tbody tr th {
+  font-size: 7.4pt;
+}
+table th:last-of-type {
+  border-right: 0 !important;
+  border-bottom: 0pt solid #4fbc84;
+}
+
+table.NonDeathscenario tbody tr td {
+  border-bottom: 1px solid #000000;
+  text-align: center;
+}
+
+table.NonDeathscenario tbody tr.Row td:first-child {
+  width: 64px;
+}
+
+table.NonDeathscenario tbody tr.Row td:last-child {
+  width: 77px;
+}
+
+table.NonDeathscenario tbody tr:not(.Row) td:first-child {
+  width: 8.5%;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 5px;
+}
+
+table td:not(.rating):last-of-type {
+  border-right: 0 !important;
+  /*border-bottom: $td-bottom-border-size solid $th-border;*/
+}
+
+table td {
+  vertical-align: middle;
+  border-top: 0pt solid #4fbc84;
+  /* border-right: 0.2pt solid #4fbc84; */
+  /*border-bottom: $td-bottom-border-size solid $td-border;*/
+  /* padding: 1mm 1mm; */
+  padding: 1.5mm 0.5mm;
+  margin: 0;
+  background: #ffffff;
+}
+
+table th {
+  vertical-align: middle;
+  margin: 0;
+  /* padding: 1mm 1mm; */
+  padding: 2mm 0.5mm;
+}
+
+.groupHeader1 table th {
+  padding: 1.75mm 0.5mm;
+  /* background: #4fbc84; */
+  background: var(--lightBlue);
+  /* color: var(--black); */
+  color: var(--darkGray);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 8pt;
+  /* border-right: 0pt solid #4fbc84;
+  border-bottom: 0.5pt solid #4fbc84; */
+  border-right: 0pt solid var(--gray);
+  border-bottom: 0.02cm solid var(--gray);
+}
+
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+
+.groupHeader1 table tr:last-of-type th {
+  word-wrap: anywhere;
+}
+
+.groupRow1 table td {
+  /* border-right: 0.2pt solid #4fbc84;
+  border-bottom: 0.5pt solid #4fbc84; */
+  border-right: 0.02cm solid var(--gray);
+  border-bottom: 0.02cm solid var(--gray);
+  font-family: var(--font-family);
+  font-size: 8pt;
+}
+
+.groupRow1 table .header th {
+  font-family: var(--font-family);
+  font-weight: 400 !important;
+  text-align: left;
+  /* border-bottom: 0.5pt solid #4fbc84;  */
+  border-bottom: 0.02cm solid var(--gray);
+}
+
+.groupRow1 table .incidentalcosts th {
+  font-family: var(--font-family);
+  /* font-weight: 400 !important; */
+  text-align: left;
+  /* border-bottom: 0.5pt solid #4fbc84; */
+  border-bottom: 0.02cm solid var(--primary);
+  background-color: var(--lightBlue);
+  /* color: var(--black) !important; */
+  color: var(--darkGray) !important;
+  font-weight: 700 !important;
+  font-size: 8pt;
+}
+
+.groupRow1 table .ongoingcosts th {
+  font-family: var(--font-family);
+  text-align: left;
+  /* border-bottom: 0.5pt solid #4fbc84; */
+  border-bottom: 0.02cm solid var(--primary);
+  background-color: var(--lightBlue);
+  /* color: var(--black) !important; */
+  color: var(--darkGray) !important;
+  font-weight: 700 !important;
+  font-size: 8pt;
+}
+
+.groupRow1 table .ongoingcosts th,
+.groupRow1 table .incidentalcosts th {
+  border-top: 0.07cm solid transparent;
+}
+
+.groupHeader1 table tr.oneofcosts th,
+.groupHeader1 table tr.scenarioheader th {
+  border-bottom: 0.02cm solid var(--primary);
+}
+
+.groupHeader1 table tr.oneofcosts th,
+.groupHeader1 table tr.scenarioheader th {
+  border-right: 0.02cm solid var(--lightBlue);
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario1] {
+  background-color: var(--skyBlue);
+}
+
+.performanceScenario>table {
+  border-top: 0pt solid #4fbc84;
+  /* width: 97.5%;
+  margin: 0 0.2cm; */
+  width: 100%;
+  margin: 0;
+}
+
+.performanceScenario table tr .holding-period th:last-child,
+.performanceScenario table tr .investment-amount th:last-child,
+.performanceScenario table tr .insurance-premium th:last-child {
+  text-align: left;
+}
+
+.performanceScenario table td.scenario {
+  font-weight: 700;
+  font-family: var(--font-family);
+}
+
+.performanceScenario .survival-scenario {
+  border-top: 0pt;
+  border-bottom: 0pt;
+}
+
+.performanceScenario .survival-scenario th {
+  border-top: 0pt;
+  /* border-bottom: 0.5pt solid #4fbc84; */
+  border-bottom: 0.02cm solid var(--gray);
+}
+
+.performanceScenario th[class*=period] {
+  /* width: 3.05cm; */
+  /* width: 3.15cm; */
+  width: 3.98cm;
+  text-align: center;
+}
+
+.performanceScenario td[class*=period] {
+  /* width: 3cm; */
+  /* width: 3.15cm; */
+  width: 3.98cm;
+  text-align: center;
+}
+
+.performanceScenario th[class*=period1],
+.performanceScenario td[class*=period1],
+.performanceScenario th[class*=period2],
+.performanceScenario td[class*=period2] {
+  width: 2.45cm;
+}
+
+.costOverTime {
+  padding-bottom: 0.2cm;
+}
+
+.costOverTime>table {
+  border-top: 0pt solid #4fbc84;
+  width: 100%;
+  margin: 0;
+}
+
+.costOverTime table .tableheader {
+  display: none;
+}
+
+.costOverTime table th {
+  width: 4.75cm;
+}
+
+.costOverTime table td {
+  width: 4.75cm;
+}
+
+.costOverTime table td.totalcostsheader,
+.costOverTime table td.riyheader {
+  font-weight: 400;
+  font-family: var(--font-family);
+}
+
+.costOverTime table td[class*=totalcosts],
+.costOverTime table td[class*=riy] {
+  text-align: right;
+}
+
+.costOverTime table td.riyheader,
+.costOverTime table td.totalcostsheader {
+  text-align: left;
+}
+
+.costOverTime table th[class*=scenario] {
+  text-align: right;
+}
+
+.costOverTime {
+  /* padding: 0 0.25cm 0.2cm 0.2cm; */
+  /* padding: 0 0 0.2cm 0; */
+  padding: 0 0 0.25cm 0;
+}
+
+.costOverTime.costovertime_4columntable.contentSection {
+  /* costovertime table fullwidth css for 4column <<<<*/
+}
+
+.costOverTime.costovertime_4columntable.contentSection>table {
+  width: 100% !important;
+  margin: 0;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th:first-of-type {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table tbody td.totalcostsheader {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection {
+  /* costovertime table fullwidth css for 3column <<<<*/
+}
+
+.costOverTime.costovertime_3columntable.contentSection>table {
+  width: 98% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th:first-of-type {
+  width: 33.4% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table tbody td.totalcostsheader {
+  width: 33.4% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 33.3% !important;
+  text-transform: uppercase;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table td[class*=totalcosts] {
+  width: 33.3% !important;
+  font-weight: bold;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table .groupRowDiv1 tbody td:first-child {
+  font-weight: bold;
+}
+
+.costOverTime.costovertime_2columntable.contentSection {
+  /* costovertime table fullwidth css for 2column <<<<*/
+}
+
+.costOverTime.costovertime_2columntable.contentSection>table {
+  width: 100% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th:first-of-type {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table tbody td.totalcostsheader {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table td[class*=totalcosts] {
+  width: 50% !important;
+}
+
+.costComposition {
+  padding-bottom: 0.2cm;
+}
+
+.costComposition>table {
+  border-top: 0pt solid #4fbc84;
+  /* width: 97.5%;
+  margin: 0 0.2cm; */
+  width: 100%;
+  margin: 0;
+}
+
+.costComposition>table table .tableHeader>th {
+  text-align: center;
+}
+
+.costComposition table .tableHeader {
+  display: none;
+}
+
+/* .costComposition table .oneofcosts th:last-of-type {
+  width: 3.15cm;
+}
+.costComposition table td:last-of-type {
+  width: 3.1cm;
+} */
+.costComposition .groupRowDiv1 table .oneofcosts th:last-of-type,
+.costComposition .groupRowDiv1 table td:last-of-type {
+  width: 2.45cm;
+  padding-left: 0.9cm;
+  padding-right: 0.9cm;
+}
+
+.sriRiskRating table {
+  /* width: calc(100% - 0.4cm); */
+  width: 100%;
+  margin: 0.2cm 0;
+}
+
+.sriRiskRating table td.rating {
+  /* border: 0.02cm solid #002a5e; */
+  border: 2pt solid var(--white);
+  /* background-color: #ffffff; */
+  background-color: var(--lightBlue);
+  text-align: center;
+  padding: 0.1cm;
+  font-size: 8pt;
+  font-family: var(--font-family);
+  /* color: #000000; */
+  color: var(--darkGray);
+  font-weight: bold;
+}
+
+.sriRiskRating table td.rating.active {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.sriRiskRating table td.rating.selected {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.sriRiskRating .header {
+  font-size: 10pt;
+  font-family: var(--font-family-Georgia);
+}
+
+.sriRiskRating .header th:first-of-type {
+  text-align: left;
+  /* padding-left: 0.3cm; */
+  padding-left: 0;
+  padding-bottom: 0.1cm;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 0.2cm 0cm;
+  background-size: 20%;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+  font-family: var(--font-family-Georgia);
+}
+
+.sriRiskRating .header th:last-of-type {
+  text-align: right;
+  font-family: var(--font-family-Georgia);
+  /* padding-right: 0.3cm; */
+  padding-right: 0cm;
+  padding-bottom: 0.1cm;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 7.3cm 0cm;
+  background-size: 20%;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+}
+
+.sriRiskRating .arrow {
+  background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23000000;stroke-miterlimit:10;%7D .st1%7Bfill:%23000000;%7D%0A%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A") no-repeat center/100% 2.5mm;
+  height: 4mm;
+  margin: 0;
+}
+
+.sriRiskRating>tbody {
+  position: relative;
+}
+
+.sriRiskRating>tbody .ratings>td {
+  padding-top: 1cm;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sriRiskRating>tbody .arrow {
+  position: absolute;
+  top: 0.7cm;
+  left: 0;
+  right: 0;
+}
+
+.sriRiskRating>tbody .header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 0.2cm;
+  left: 0;
+  right: 0;
+}
+
+p.Sri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent #000000 transparent;
+  margin: 20px 12px 0 0;
+  float: left;
+}
+
+p.Sri::after {
+  content: "!";
+  font-size: 18pt;
+  font-family: var(--font-family-Georgia);
+  color: #ffffff;
+  position: relative;
+  left: -6px;
+  top: 9px;
+}
+
+/* Different types of project templates prps_monthperf/ubs_kid_base/prps_pastperf/priips_base/priips_kid_base */
+.footer p {
+  display: none;
+}
+
+.page1 {
+  padding-top: 2cm;
+  /* padding-top: 0; */
+}
+
+.keyinformationdocument.contentSection h2 {
+  border-bottom: 0pt;
+  border-top: 0;
+  font-weight: bold;
+}
+
+.description {
+  padding-left: 1mm;
+  padding-right: 1mm;
+}
+
+.WB_Whatisthisproduct_43,
+.WB_Whatisthisproduct_44,
+.WB_Whatisthisproduct_45,
+.WB_Whatisthisproduct_46,
+.WB_Whatisthisproduct_47,
+.WB_Whatisthisproduct_48,
+.WB_Whatisthisproduct_49 {
+  background: #f4f4f4;
+  padding: 0.5mm 2mm;
+}
+
+ul {
+  padding-left: 0.5cm;
+}
+
+ul li {
+  /* color: #000000; */
+  color: var(--darkGray);
+  font-family: var(--font-family-Georgia);
+  font-size: 8pt;
+}
+
+h2:empty,
+.contentSection:empty {
+  display: none;
+}
+
+.WB_GeneralInformation_21 {
+  /* text-align: right; */
+  text-align: left;
+}
+
+.header p {
+  font-size: 12pt;
+}
+
+.header p.WB_GeneralInformation_4 {
+  font-size: 8pt;
+}
+
+/* p span {
+  color: #000000 !important;
+  color: #000000 !important;
+}
+p b {
+  color: #000000;
+}
+p b span {
+  color: #000000 !important;
+} */
+
+.page1>.row1>.composite1>.compositebody>.row2>.column2,
+.page2>.row1>.composite1>.compositebody>.row2>.column2,
+.page3>.row1>.composite1>.compositebody>.row2>.column2 {
+  /*footer width extended to full page width*/
+  text-align: right;
+}
+
+.groupHeader1 table th {
+  border-bottom: 0 solid #4fbc84;
+}
+
+.groupRow1 table tbody tr td {
+  /* border-right: 0.2pt solid #4fbc84; */
+  border-right: 0.02cm solid var(--gray);
+  /* color: #000; */
+  color: var(--darkGray);
+  /* border-bottom: 0.2pt solid #4fbc84; */
+  border-bottom: 0.02cm solid var(--gray);
+}
+
+.page1>.row5>.composite1>.compositebody>.row2>.column1,
+.page1>.row6>.composite1>.compositebody>.row2>.column1 {
+  width: 100%;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+  /* text-align: justify; */
+}
+
+.page1 .row2>.composite1>.compositebody>.row2>.column1 {
+  width: 100%;
+}
+
+.page1 .row6>.composite1>.compositebody>.row2>.column1 h2 {
+  column-span: all;
+  /* border-top: none;
+  padding-top:0; */
+  margin-top: 0;
+}
+
+/* @page {
+  @bottom-left {
+    content: "Page " counter(page) " of " counter(pages);
+    width: 4cm;
+    margin-top: 0.1cm;
+    font: 7pt var(--font-family-Georgia);
+  }
+} */
+/*table td:not(.rating):last-of-type{
+	border-right:0.4pt solid $black !important;
+}
+.groupRowDiv1>table td,.performancescenariotable table .survival-scenario th,.groupRow1 table .header th,table .ongoingcosts th, table .incidentalcosts th {
+    border: 0.4pt solid $black;
+}*/
+.oneofcosts th:last-of-type {
+  text-align: left;
+}
+
+.performanceScenario,
+.costcomposition {
+  padding-bottom: 0.2cm;
+  padding-top: 0.2cm;
+}
+
+.page3 .compositebody {
+  break-inside: avoid-page;
+  break-inside: avoid;
+  break-inside: unset;
+}
+
+h1 {
+  position: running(pageheader);
+}
+
+.groupRow1 table .header th {
+  /* color: #000000; */
+  color: var(--darkGray);
+}
+
+.groupRow1 table .incidentalcosts th {
+  /* color: #000000; */
+  color: var(--darkGray);
+}
+
+.groupRow1 table .ongoingcosts th {
+  /* color: #000000; */
+  color: var(--darkGray);
+}
+
+/*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+		background : $grey;
+}*/
+.stress-return .scenario,
+.stress-return .description {
+  font-weight: bold;
+}
+
+.averagereturn .scenario,
+.averagereturn .description {
+  font-weight: bold;
+}
+
+.unfavourable-return .scenario,
+.unfavourable-return .description {
+  font-weight: bold;
+}
+
+.moderate-return .scenario,
+.moderate-return .description {
+  font-weight: bold;
+}
+
+.invest .scenario,
+.invest .description {
+  font-weight: bold;
+}
+
+.favourable-return .scenario,
+.favourable-return .description {
+  font-weight: bold;
+}
+
+.costOverTime.costovertime_3columntable.contentSection>table {
+  width: 100% !important;
+  margin: 0;
+}
+
+.page2>.row2>.composite1>.compositebody *,
+.page3>.row2>.composite1>.compositebody * {
+  break-before: auto;
+}
+
+.arrow>td {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+/* .WB_SRInarrative2_1 {
+  background: url(images/warning-icon.png);
+  background-size: 18%;
+  background-position: 0px 0px;
+  width: 79%;
+  height: 53px;
+  padding: 7px 0px 0px 63px;
+  display: block;
+  background-repeat: no-repeat;
+  font: 8pt var(--font-family-Georgia) !important;
+} */
+p.Sri {
+  display: none;
+  border: none;
+  margin: 0;
+  float: none;
+  width: initial;
+  height: initial;
+  /*&:before {
+  	position: absolute;
+  	top: -2.3cm;
+  	left: -0.7cm;
+  	width: max-content;
+  }*/
+  /*&:after {
+
+  }*/
+}
+
+.sriRiskRating {
+  position: relative;
+}
+
+.sriRiskRating .header th:last-of-type,
+.sriRiskRating .header th:first-of-type {
+  /* font-size: 7pt; */
+  font-size: 8pt;
+  /* color: #000; */
+  color: var(--darkGray);
+}
+
+.sriRiskRating table td.rating {
+  /* width: 1.28cm;
+  height: 0.8cm; */
+  width: 1.10cm;
+  height: 1cm;
+  box-sizing: border-box;
+}
+
+.sriRiskRating table td.rating.selected {
+  color: #ffffff;
+}
+
+table.sriRiskRating th:not(.groupHeader1) {
+  background: none;
+}
+
+/* .page1 >.row6  {
+	break-after: always !important;
+}  */
+.page2>.row2>.composite1>.compositebody * {
+  break-before: avoid-page;
+}
+
+.page3>.row2>.composite1>.compositebody * {
+  break-before: auto;
+}
+
+.sriRiskRating {
+  break-inside: avoid;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1>.row5 {
+  break-before: avoid;
+}
+
+/*>>>>>>costovertime table fullwidth css for 3column*/
+/*page 2 floating code*/
+/*
+
+  .performanceScenario.performancescenariotable {
+    page-break-inside:auto !important;
+}
+*/
+/*Theme name:DPAS_theme_3F_202210_EU*/
+/*# sourceMappingURL=map/theme.css.map */
+
+.WB_GeneralInformation_22 {
+  font-size: 10pt;
+}
+
+
+.page4>.row1 {
+  position: static;
+  display: block;
+}
+
+.page4>.row1 {
+  /*New page should be introduced for swiss disclaimer only when , this ".page4 > .row1 .compositebody" is added in html*/
+  page-break-before: always;
+}
+
+.page4>.row1 p:empty {
+  /*Added to remove empty space, when disclaimer is not available for some place holders*/
+  padding: 0;
+  margin: 0;
+  height: 0;
+}
+
+.WB_Performancescenariosnarrative_33 {
+  padding-top: 1mm !important;
+}
+
+.WB_Performancescenariosnarrative_33,
+.WB_Performancescenariosnarrative_34,
+.WB_Performancescenariosnarrative_35 {
+  padding-bottom: 0.07cm;
+}
+
+.WB_Performancescenariosnarrative_35 {
+  padding-bottom: 0.15cm !important;
+}
+
+.WB_Whatisthisproduct_42 {
+  background-color: white !important;
+}
+
+p:empty,
+div:empty {
+  display: none;
+}
+
+.page1>.row6 .compositebody .column1 {
+  page-break-before: always;
+}
+
+.page2>.row2>.composite1>.compositebody .header th:last-child {
+  text-align: right;
+}
+
+.page1>.row3 .row2 .contentSection h2 {
+  border-bottom: none;
+  border-top: none;
+}
+
+.row7 .narrative p[class*="WB_SRInarrative2_"]:first-child {
+  background: url(images/warning-icon.png);
+  background-size: 18%;
+  background-position: 0 0px;
+  width: 77.3%;
+  /* margin: -1px 0px 5px 0.2cm; */
+  margin: -1px 0px 5px 0;
+  height: 60px;
+  padding: 3px 4px 6px 66px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.row7 .narrative p[class*="WB_SRInarrative2_5"] {
+  width: 77.2%;
+  min-height: 26px;
+  padding: 0 0 0 2mm;
+  /* margin: -40px 0 2px 58px; */
+  margin: -40px 0 15px 58px;
+  display: block;
+}
+
+.WB_SRInarrative2_1 {
+  width: 79%;
+  padding: 7px 0px 0px 0;
+  display: block;
+  background-repeat: no-repeat;
+  font: 8pt var(--font-family-Georgia) !important;
+  position: absolute;
+  /* top: 40px; */
+  top: 30px;
+  z-index: 9;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1 {
+  position: relative;
+  /* margin-bottom:0.25cm; */
+  margin-bottom: 0.1cm;
+}
+
+.page1 .row6>.composite1>.compositebody>.row2>.column1 h2 {
+  margin-bottom: 30px;
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1,
+.page2>.row2>.composite1>.compositebody th.groupHeader1 * {
+  background: var(--skyBlue);
+}
+
+.page2>.row2>.composite1>.compositebody tr.minimum {
+  background: var(--skyBlue);
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tbody tr:nth-child(3) th {
+  border-color: var(--skyBlue);
+  text-transform: uppercase;
+}
+
+.page2>.row2>.composite1>.compositebody .groupHeaderDiv1 th {
+  border-color: var(--lightBlue);
+}
+
+/* .page2>.row2>.composite1>.compositebody tr.minimum td{
+  border-bottom-color: var(--primary);
+} */
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tr.header.header * {
+  background: var(--lightBlue);
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th {
+  /* border-right: 0.02cm solid var(--white); */
+}
+
+.page2>.row2>.composite1>.compositebody .groupHeaderDiv1 th {
+  /* border-bottom: 0.02cm solid var(--white); */
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tbody tr:nth-child(3) th {
+  border-bottom: 0.02cm solid var(--primary);
+}
+
+.page2>.row2>.composite1>.compositebody .groupHeaderDiv1 th.period1 {
+  border-left: 0.02cm solid var(--white);
+  border-right: 0.02cm solid var(--white);
+}
+
+.page2>.row2>.composite1>.compositebody .groupHeaderDiv1 tr:last-child th {
+  border-bottom: 0.03cm solid var(--white);
+}
+
+.performanceScenario tr[class$="-return"] td.description,
+.performanceScenario tr[class$="-return"] td.period1,
+.performanceScenario tr[class$="-return"] td.period2 {
+  border-top: none !important;
+  border-bottom: none !important;
+  font-weight: bold;
+  padding-bottom: 1px;
+  padding-top: 8.5px;
+}
+
+.performanceScenario tr[class$="averagereturn"] td.description,
+.performanceScenario tr[class$="averagereturn"] td.period1,
+.performanceScenario tr[class$="averagereturn"] td.period2 {
+  border-top: none !important;
+  border-bottom: 0.02cm solid var(--gray) !important;
+  padding-top: 1px;
+  padding-bottom: 8.5px;
+}
+
+.performanceScenario .averagereturn .description {
+  font-weight: normal;
+}
+
+.groupHeader1 table tr.oneofcosts * {
+  background: var(--lightBlue);
+}
+
+.page2>.row2>.composite1>.compositebody tbody:nth-child(2) {
+  position: relative;
+}
+
+.page2>.row2>.composite1>.compositebody .groupRowDiv1 th.groupHeader1 .survival-scenario th {
+  position: absolute;
+  top: -37px;
+  z-index: 9;
+  left: 0;
+  padding-top: 1px;
+  border: none !important;
+  padding-bottom: 1px;
+  width: 5cm;
+  overflow: hidden;
+}
+
+.pagenumbers p[class*="WB_Footer"]:first-child {
+  padding-left: 60px;
+}
+
+.pagenumbers p[class*="WB_Footer"]:last-child {
+  /* float: right; */
+}
+
+.pagenumbers p[class*="WB_Footer"]:first-child {
+  float: left;
+}
+
+.page3>.row1>.composite1>.compositebody>.row2>.column1 {
+  width: 100% !important;
+}
+
+.pagenumbers p {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.Pagination p {
+  padding-left: 0;
+}
+
+a {
+  color: var(--primary);
+}
+
+p.WB_GeneralInformation_2 b {
+  font-weight: normal;
+}
+
+p.WB_GeneralInformation_2 b:first-child {
+  color: var(--primary);
+  font-weight: bold !important;
+  font-size: 16pt;
+}
+
+.page2 p.WB_GeneralInformation_2 b:first-child {
+  color: var(--primary);
+  font-weight: bold !important;
+  font-size: 8pt;
+}
+
+p.WB_GeneralInformation_2 {
+  margin-bottom: 14px;
+  font-size: 14pt;
+}
+
+p.WB_WhatAreTheCosts_continued_2 {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.33cm;
+}
+
+.page2>.row3 {
+  clear: both;
+}
+
+.page2>.row3 .contentSection h2 {
+  display: inline-block;
+  width: 100%;
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tr.header th,
+.page2>.row2>.composite1>.compositebody th.groupHeader1 .survival-scenario th {
+  font-size: 10pt;
+  font-family: var(--font-family-Georgia);
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tr.header.holding-period th {
+  padding-bottom: 2px;
+  padding-top: 7px;
+}
+
+.page2>.row2>.composite1>.compositebody th.groupHeader1 tr.header.investment-amount th {
+  padding-top: 1px;
+  padding-bottom: 7px;
+}
+
+/* .WB_SRInarrative2_34 b {
+  font-weight: normal;
+} */
+.costOverTime.costovertime_2columntable.contentSection .groupRowDiv1 td:first-child {
+  font-weight: bold;
+}
+
+.page3>.row2>.composite1>.compositebody .groupRowDiv1 td:nth-child(2) {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+.page3>.row2>.composite1>.compositebody .groupRowDiv1 td:nth-child(1) {
+  border-right-color: transparent !important;
+  font-weight: bold;
+}
+
+.page2>.row2>.composite1>.compositebody td,
+.costOverTime.costovertime_2columntable.contentSection .groupRowDiv1 td {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table .groupRowDiv1 td {
+  border-left: transparent !important;
+  border-right: transparent !important;
+}
+
+.costComposition table .groupRowDiv1 .oneofcosts th:last-of-type {
+  text-transform: uppercase;
+}
+
+.costComposition table .groupRowDiv1 .oneofcosts th:last-of-type,
+.costComposition table .groupRowDiv1 td:last-of-type {
+  text-align: center;
+}
+
+p.WB_GeneralInformation_6 {
+  letter-spacing: -0.04px;
+}
+
+.Pagination p,
+.pagenumbers p {
+  color: var(--footerText);
+  font-family: var(--font-family);
+  font-size: 8pt !important;
+}
+
+.page3 .row3 .contentSection h2 {
+  border-top: none;
+  margin-top: 0.05cm;
+}
+
+p.WB_HowlongshouldIholdit_4 {
+  font-size: 10pt;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table .groupRowDiv1 tbody td:nth-child(2),
+.costOverTime.costovertime_3columntable.contentSection table .groupRowDiv1 tbody td:nth-child(3),
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th[class*=scenario] {
+  text-align: center;
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th:first-of-type,
+.costOverTime.costovertime_3columntable.contentSection table .groupRowDiv1 tbody td:first-child {
+  width: 50% !important;
+}
+
+.groupHeader1 table tr.oneofcosts th:first-child,
+.groupRow1 table .ongoingcosts th:first-child,
+.groupRow1 table .incidentalcosts th:first-child {
+  font-size: 8.5pt;
+}
+
+p.WB_Performancescenariosnarrative_33,
+p.WB_Performancescenariosnarrative_34,
+p.WB_Performancescenariosnarrative_35,
+p.WB_WhatAreTheCosts_22 {
+  font-size: 8pt;
+  font-family: var(--font-family);
+}
+
+.page1>.row1>.TextSection>.item2 {
+  font-size: 12pt !important;
+}
+
+.page1>.row4>.composite>.compositebody>.row2>.TextSection>.item2 {
+  font-size: 8pt !important;
+}
+
+.NonDeathscenario tr.SubheaderData th:first-child {
+   width: 64px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(2) {
+  width: 77px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(3) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(1) {
+  width: 50px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(4) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(2) {
+  width: 70px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(6) , 
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(4) {
+  width: 62px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(8) , 
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(6) {
+  width: 64px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(10) , 
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(8) {
+  width: 63px;
+}
+
+.NonDeathscenario tr.SubheaderData th:nth-child(5) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(3) ,
+.NonDeathscenario tr.SubheaderData th:nth-child(7) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(5),
+.NonDeathscenario tr.SubheaderData th:nth-child(9) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(7),
+.NonDeathscenario tr.SubheaderData th:nth-child(11) ,
+table.NonDeathscenario tbody tr:not(.Row) td:nth-child(9) {
+  /* width: 50px; */
+    width: 70px;
+}
+
+html[lang="de-DE"]  .NonDeathscenario tr.SubheaderData th:nth-child(5) ,
+html[lang="de-DE"]  table.NonDeathscenario tbody tr:not(.Row) td:nth-child(3) ,
+html[lang="de-DE"]  .NonDeathscenario tr.SubheaderData th:nth-child(7) ,
+html[lang="de-DE"]  table.NonDeathscenario tbody tr:not(.Row) td:nth-child(5),
+html[lang="de-DE"]  .NonDeathscenario tr.SubheaderData th:nth-child(9) ,
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(7),
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(11) ,
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(9) {
+  /* width: 50px; */
+    width: 69px;
+}
+html[lang="de-DE"] table.NonDeathscenario tbody tr th{
+  font-size: 5.3pt;
+}
+html[lang="de-DE"] table th,
+html[lang="de-DE"] table td{
+  padding-left:0.1mm;
+  padding-right:0.1mm;
+}
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(4) ,
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(2) {
+  width: 75px;
+}
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(6) , 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(4) ,
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(8),
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(6),
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(10), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(8){
+  width: 70px;
+}
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(3), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(1){
+    width: 44px;
+}
+html[lang="de-DE"] table.NonDeathscenario tbody tr.Row td:last-child , 
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(2) {
+  width: 60px;
+}
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:first-child,
+html[lang="de-DE"] table.NonDeathscenario tbody tr.Row td:first-child{
+  width: 65px;
+}
+.NonDeathscenario tbody tr:nth-child(27) {
+  page-break-after: always;
+}
+
+/* 
+html[lang="de-DE"] .NonDeathscenario tr th ,
+html[lang="de-DE"] table.NonDeathscenario tbody tr td {
+  font-size: 7.5pt !important;
+}
+
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(3), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(1) {
+  width: 61px;
+}
+
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(4), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(2) {
+  width: 100px;
+}
+
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(5), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(3), 
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(7), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(5), 
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(9), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(7), 
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(11), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(9){
+  width: 65px;
+}
+
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(6), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(4), 
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(8), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(6),
+html[lang="de-DE"] .NonDeathscenario tr.SubheaderData th:nth-child(10), 
+html[lang="de-DE"] table.NonDeathscenario tbody tr:not(.Row) td:nth-child(8){
+  width: 90px;
+} */
+
+/* Theme name - PrpMonthlyPerf_Nuveen */

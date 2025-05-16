@@ -1,0 +1,59 @@
+@include LogoDirection($logo-direction-left);
+.keyinformationdocument.contentSection h2 {
+    font: $kid-h2-Size $h2-type;
+    color: $kid-h2-color;
+    margin: $key-header-margin;
+    padding: $kid-header-padding;
+    line-height: $h2-line-height;
+}
+
+.contentSection h2 {
+    font: $h2-size $h2-type;
+    color: $h2-color;
+    margin: $header-margin;
+    padding: $header-padding;
+    border-bottom: $border-bottom-h2-size solid $border-bottom-h2-color;
+}
+
+.fundName h2 {
+    font: $h1-size $h1-type;
+    color: $h1-color;
+    margin: $header-margin;
+    padding: 0;
+}
+
+@if $need-logo {
+    .page1>.row1 .compositebody {
+        @include logo;
+        @include checkHeader;
+    }
+}
+
+@page {
+    @top-left {
+        content: "Key Information Document";
+        margin-left: 1cm;
+        margin-right: 1cm;
+        width: calc(100% - 2cm);
+        height: 1cm;
+        border-bottom: 0.5pt solid $black;
+    }
+}
+@page :first {
+    @top-left {
+        content: none;
+    }
+}
+
+@if $sticky-header {
+    @page {
+        padding: 1.5cm 1cm 1cm;
+    }
+}
+
+@else {
+    @page {
+        margin: $page-margin;
+        /*border:1px solid ;*/
+    }
+}

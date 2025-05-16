@@ -1,0 +1,1036 @@
+:root{
+	--header:#000066;
+	--headerbg:rgb(241, 242, 242);
+	--parabg:rgb(241, 242, 242);
+	--white:#fff;
+	--tableborder:#fff;
+	--tableheader:#fff;
+	--tablerowheader:#000066;
+	--tableheaderbg:rgba(0,156,166,0.2);
+	--tablesubheaderbg:rgba(0,156,166,0.05);
+	--altrow:rgba(0,156,166,0.1);
+	--bodyfont:9pt;
+	--h2:14pt;
+	--h3:10pt;
+}
+@font-face {
+    font-family: 'FrutigerLTW02-45Light';
+    src: url('images/FrutigerLTW02-45Light.woff2') format('woff2'),
+        url('images/FrutigerLTW02-45Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/**/
+body {
+	font-family: 'FrutigerLTW02-45Light';
+	font-weight:normal;
+	line-height: 1.2;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	color:#231F20;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+.contentSection>table{
+	margin: 0.2cm 0;
+}
+table {
+		width: 100%;
+	border-collapse: collapse;
+	border: 0pt solid #000;
+}
+table th, table td {
+	margin: 0;
+	vertical-align: middle;
+	padding: 0;
+	text-align: left;
+	padding: 1mm 1mm;
+	font-size: var(--bodyfont);
+	border-right: 0.5pt solid var(--tableborder);
+	border-bottom: 0.5pt solid var(--tableborder);
+    background: #e6ebeb;
+    text-align: center;
+}
+table td[class*="period"]{
+	text-align: right;
+}
+table th {
+	font-family: 'FrutigerLTW02-45Light';
+	font-weight: bold;
+	/*! background: var(--tableheaderbg); */
+	page-break-inside: avoid;
+}
+h2 {
+	margin: 0;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+b{
+	font-weight:normal;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+.page{
+	width: 100%;
+}
+/*page 1 starts*/
+.page1 {
+	position: relative;
+	padding: 0;
+
+	background-color: transparent;
+	background: url(images/VG_logo.png);
+	background-size: 3cm auto;
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+.page2, .page3 {
+	position: relative;
+
+	height: auto;
+}
+.page2 > .row1, .page3 > .row1{
+	/*! border-top: 1pt solid #8E3193; */
+	/*! padding-top:0.5cm; */
+}
+.contentSection h2 {
+	font-family: 'FrutigerLTW02-45Light';
+	margin-bottom:0.2cm;
+	padding: 0px;
+	font-size: var(--h2);
+	color: #000066;
+	font-weight: 300;
+}
+.contentSection h3{
+		font-size: var(--h2);
+	font-weight: 600;
+}
+.SRIMop b, .MOPText b{
+	font-family: 'FrutigerLTW02-45Light';
+	font-weight: normal;
+}
+.contentSection, .composite {
+	margin: 0 0 0cm 0;
+	padding:0;
+}
+.page1 .composite,.page .compositebody{
+	/* background: var(--parabg); */
+}
+.contentSection ol{
+	margin-bottom:0;
+}
+.contentSection p,.contentSection p.description,div.description{
+	font-size: var(--bodyfont);
+	line-height: 1.3;
+	color: #000066;
+	margin-bottom: 0.2cm;
+}
+p:empty,h2:empty{
+	display: none;
+}
+.contentSection h2{
+	
+	color:var(--header);
+/* 	string-set: chaptertitle self; */
+}
+.contentSection h2 b{
+	
+	background: var(--headerbg);
+	margin-top:0.2cm;
+	padding: 1mm 0mm 0;
+	color:var(--header);
+/* 	string-set: chaptertitle self; */
+  font-weight: bold;
+}
+.page1 .row1 .row2>.contentSection>*{
+	background:none !important;
+	padding-left: 0;
+	padding-right: 0;
+}
+.whatisthisproduct{
+	background-color: var(--parabg);
+}
+.contentSection p,.contentSection h2+.description,div.description{
+	width: auto;
+}
+.contentSection.text p{
+}
+.composite .contentSection{
+	padding:0;
+}
+.unabletopay {
+	/*! margin-bottom: 0.4cm; */
+	background-color: var(--parabg);
+}
+.contentSection.costOverTime>table{
+	margin: 0 0;
+	
+}
+.contentSection.costOverTime{
+	padding-bottom: 0.2cm;
+
+}
+.complexitywarning{
+	/* background-color:#FF0000; */
+	padding: 0.2cm 0cm 0cm 0cm;
+	/* margin-bottom:0.4cm; */
+	text-align:center;
+}
+.complexitywarning p{
+	font-size: 12pt;
+	color: var(--header);
+}
+.compositeheader{
+	padding:0;
+	margin:0;
+}
+.page1 > .row1 > .column1 {
+	float: left;
+	width: 100%;
+}
+.section .contentSection.keyinformationdocument {
+	padding: 0;
+	border: 0;
+
+}
+.page1 > .row1 > .column1 .keyinformationdocument h2 {
+	/*     font-family: 'FrutigerLTW02-45Light';
+	font-weight: normal;
+	font-size: 24pt;
+	color: #009ca6;
+	border-bottom: 1pt solid #009ca6;
+	line-height: 1.5;
+	padding: 0; */
+	/*! margin-bottom: 0.3cm; */
+	/*! position:relative; */
+	/*! top:-0.2cm; */
+	/*! background: url(Images/FEfundinfo.png); */
+	/*! text-align: right; */
+	/*! background-size: 5cm auto; */
+	/*! background-position: 1.3cm 0.5cm; */
+	/*! background-repeat: no-repeat; */
+	/*! text-transform: uppercase; */
+}
+.section .contentSection.keyinformationdocument h2,
+.section .contentSection.keyinformationdocument p{
+	background: none;
+}
+.section .contentSection.keyinformationdocument{
+	margin-bottom: 0.2cm;  
+}
+.page1 > .row1 > .column1 .keyinformationdocument h2 + p {
+	line-height:1.2;
+	font-weight:normal;
+}
+.contentSection p.IssuedOnDate{
+	text-align:right;
+}
+.sriRangeRiskRating, .sriRiskRating  {
+	/* width: 18.6cm;
+	margin: 0 0.2cm !important; */
+	margin: auto !important;
+	position: relative;
+}
+.sriRangeRiskRating .ratings > td, .sriRiskRating .ratings > td{
+	padding:0.2cm 0;
+	background: none;
+}
+.sriRangeRiskRating .rating, .sriRiskRating .rating {
+	border: 0.5pt solid #fff;
+	font-weight: bold;
+	color: #fff;
+	background: #000066;
+	font-size: 13pt;
+	text-align: center;
+	width: 1.65cm;
+    height: 1cm;
+}
+
+.sriRiskRating table th{
+	background: none;
+}
+
+.sriRangeRiskRating .rating.selected.start, .sriRiskRating .rating.selected.start {
+	border-left: 0.5pt solid #000000;
+}
+.sriRangeRiskRating .rating.selected.end, .sriRiskRating .rating.selected.end {
+	border-right: 0.5pt solid #000000;
+}
+.sriRangeRiskRating .rating.selected, .sriRiskRating .rating.selected {
+	background-color:#fff;
+	border:1pt solid #000066;
+	color: #000066;
+}
+.sriRiskRating .rating.selected {
+}
+
+.sriRangeRiskRating .arrow td, .sriRiskRating .arrow td{
+	padding:0;
+	height:0;
+}
+table tr.arrow td{
+	border: none !important;
+}
+.sriRiskRating tbody>tr.ratings>td {
+	border: none;
+}
+.sriRangeRiskRating .header th:first-child, .sriRangeRiskRating .description td:first-child, .sriRiskRating .header th:first-child, .sriRiskRating .description td:first-child {
+	text-align: left;
+	/* background-image:url(images/less_risk.svg); */
+	/* background-repeat:no-repeat;
+	background-position:top left;
+	background-size:20%;*/
+	background-color: transparent; 
+	border: 0;
+	padding-top: 0.5cm;
+    padding-left: 1cm;
+	color: #000066;
+}
+.sriRangeRiskRating .header th:last-child, .sriRangeRiskRating .description td:last-child, .sriRiskRating .header th:last-child, .sriRiskRating .description td:last-child {
+	text-align: right;
+	/* background-image:url(images/high_risk.svg); */
+	background-repeat:no-repeat;
+	/* background-position:top right;
+	background-size:20%;*/
+	background-color: transparent; 
+	border: 0;
+    padding-top: 0.5cm;
+    padding-right: 1cm;
+	color: #000066;
+}
+.sriRiskRating .arrow {
+    background: url(images/arrow.svg) no-repeat center/100% 2.5mm;
+    height: 4mm;
+    margin: 0 0.2cm;
+	position: absolute;
+	left: 0;
+    right: 0;
+}
+.costOverTime p b, .WhatAreTheCosts p b{
+	font-weight:normal;
+}
+.costovertimetable{
+	text-align:right;
+	margin:0 0.2cm;
+	width: 97.5%;
+}
+/*.performanceScenario table tr th:empty{
+	display:none;
+}*/
+.performanceScenario>table> tbody>tr>th>.groupHeaderDiv1>table{
+	border-bottom: 0.5pt solid var(--tableborder);
+
+}
+.performanceScenario table{
+	text-align:right;
+	margin:0 ;
+	width:100%;
+}
+
+.performanceScenario table table{
+	margin-bottom: 0;
+	width: 100% !important;
+}
+table table{
+	margin: 0 !important;
+	width: 100% !important;
+}
+.costovertimetable th, .performanceScenario table th{
+	text-align:center;
+}
+table>tbody>tr>th[class*="group"],
+table>tbody>tr>td[class*="group"]{
+	padding: 0 !important;
+	border: 0 !important;
+}
+.survival-scenario th{
+	padding: 1mm 1mm;
+	font-size: 10pt;
+	font-weight: bold;
+	background-color: var(--tablesubheaderbg);
+}
+
+.groupHeader1 table th{
+	background: var(--tableheaderbg);
+	font-size: 10pt;
+	font-weight: bold;
+	border-bottom: 0.5pt solid var(--tableborder);
+	padding: 1mm 1mm;
+	border-right: 0.5pt solid var(--tableborder);
+	text-align: center !important;
+} 
+table th:not(.groupHeader1){
+	border-right: 0.5pt solid var(--tableborder);
+	color: var(--tableheader);
+	background:var(--tablerowheader);
+}
+.groupHeader1 table tr:last-of-type th {
+	/*! border-bottom: none; */
+	word-wrap: anywhere;
+}
+/*.costOverTime th:last-of-type[colspan="4"]{
+	display: none;
+}*/
+
+
+
+.scenarioheader th:first-of-type,table tbody td.totalcostsheader{
+	width: 5.6cm !important;
+	max-width: 5.6cm !important;
+	min-width: 5.6cm !important;
+}
+
+
+.costOverTime .groupHeader1 .groupHeaderDiv1 > table tbody tr:first-child .tableheader{
+	display:none;
+}
+.scenarioheader th[class*='scenario'],table td[class*='totalcosts']{
+	width: 4.05cm;
+	max-width: 4.05cm;
+	min-width: 4.05cm;
+}
+/* costovertime table fullwidth css for 4column <<<<*/
+.costovertime_4columntable.contentSection.costOverTime>table{
+	width: 98% !important;
+}
+.costovertime_4columntable .scenarioheader th:first-of-type,.costovertime_4columntable table tbody td.totalcostsheader{
+	width: 25% !important;
+}
+
+.costovertime_4columntable .scenarioheader th[class*='scenario'],.costovertime_4columntable table td[class*='totalcosts']{
+	width: 25% !important;
+}/*>>>>>>costovertime table fullwidth css for 4column*/
+
+/* costovertime table fullwidth css for 2column <<<<*/
+.costovertime_2columntable.contentSection.costOverTime>table{
+	width: 100% !important;
+}
+.costovertime_2columntable .scenarioheader th:first-of-type,.costovertime_2columntable table tbody td.totalcostsheader{
+	width: 50% !important;
+}
+
+.costovertime_2columntable .scenarioheader th[class*='scenario'],.costovertime_2columntable table td[class*='totalcosts']{
+	width: 50% !important;
+}/*>>>>>>costovertime table fullwidth css for 2column*/
+
+/* costovertime table fullwidth css for 3column <<<<*/
+.costovertime_3columntable.contentSection.costOverTime>table{
+	width: 98% !important;
+}
+.costovertime_3columntable .scenarioheader th:first-of-type,.costovertime_3columntable table tbody td.totalcostsheader{
+	width: 33.4% !important;
+}
+
+.costovertime_3columntable .scenarioheader th[class*='scenario'],.costovertime_3columntable table td[class*='totalcosts']{
+	width: 33.3% !important;
+}/*>>>>>>costovertime table fullwidth css for 3column*/
+
+/*<<<<<<<<<<<performanceScenario table fullwidth css for 3periodcolumn*/
+/*.performanceScenario_3columnperiod*/
+/*.performanceScenario>table>tbody>tr>th>div>table{
+	width:18.5cm !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr:nth-child(4){
+	width:100% !important;
+    display: table-row;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr.header > th:first-child{
+	width:90% !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr.header > th:last-child{
+	width:10% !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr:nth-child(4)> th:first-child{
+	width:6cm !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr:nth-child(4)> th.period1{
+	width:3cm !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr:nth-child(4)> th.period2{
+	width:3cm !important;
+}
+.performanceScenario>table>tbody>tr>th>div>table>tbody tr:nth-child(4)> th.period3{
+	width:3cm !important;
+}
+*/
+
+/*>>>>>>performanceScenario table fullwidth css for 3periodcolumn*/
+.costovertimetable .scenarioheader, .performanceScenario table .scenarios {
+	border-top:0.5pt solid var(--tableborder);
+	border-bottom:0.5pt solid var(--tableborder);
+	background-color:var(--tablesubheaderbg);
+}
+.incidentalcosts th,.oneofcosts th{
+	background-color:var(--tablesubheaderbg);
+}
+.costovertimetable .investmentheader th:first-child, .costovertimetable .scenarios:first-child, .costovertimetable .totalcostsheader:first-child, .costovertimetable .riyheader:first-child, .performanceScenario table th:first-child{
+	text-align:center;
+}
+.costovertimetable .investmentheader {
+	background: var(--tableheaderbg);
+} .costComposition th{
+	/*! padding:0; */
+}
+.costComposition table{
+	margin:0 ;
+	width:auto !important;
+}
+.costComposition>table{
+	width:100% !important;
+}
+.costComposition table th table{
+	width: 100% !important;
+}
+.costComposition{
+	/* background: var(--parabg); */
+	padding-bottom: 0.2cm !important;
+}
+.costComposition table td, .performanceScenario table td{
+	border-top:0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	border-bottom: 0.5pt solid var(--tableborder);
+}
+.performanceScenario table tr:nth-child(even) td{
+	border-right:0.5pt solid var(--tableborder);
+	border-bottom:0.5pt solid var(--tableborder);
+}
+.performanceScenario table td.description {
+  width: 5.5cm;
+}
+table td:not(.ratings):last-of-type,
+table th:last-of-type{
+	border-right: 0 ;
+	border-bottom: 0.5pt solid var(--tableborder);
+}
+.performanceScenario table td, .costovertimetable td{
+	/*! border-right:0; */
+}
+td.description {
+  width: 5.5cm;
+}
+.performanceScenario table td:last-child, .costovertimetable td:last-child{
+	border-right:0;
+}
+.performanceScenario table .scenario{
+	font-family: 'FrutigerLTW02-45Light';
+	font-weight: normal;
+}
+.costComposition .subcategory {
+	width: 20%;
+}
+.costComposition .category{
+	width:12%;
+}
+.costComposition .costs{
+	width:11%;
+}
+.costComposition table .category, .costComposition table .subcategory, .costComposition table .costs{
+	border-right:0.5pt solid var(--tableborder);
+}
+.costComposition th, .costComposition .category, .costComposition .subcategory{
+}
+.totalcostsheader, .riyheader, .category, .subcategory{
+	font-family: 'FrutigerLTW02-45Light';
+	font-weight: normal;
+}
+.compositionofcosts table table .tableHeader>th,
+.costComposition table table .tableHeader>th{
+	text-align: center !important;
+}
+.pagenumbers.contentSection{
+	padding:0cm 0 0 ;
+	margin:0;
+	position: running(pgnum);
+	text-align: right;
+}
+.pagenumbers.contentSection p{
+	background: none;
+}
+.pagenumbers .footer{
+	margin: 0 0.8cm 1cm 0;
+}
+.performanceScenario table th span, .perfscenarios table th span {
+	display:block;
+}
+.performanceScenario .period1, .performanceScenario .period2, .performanceScenario .period3, .perfscenarios .period1, .perfscenarios .period2, .perfscenarios .period3{
+	width:3cm;
+
+
+}
+
+.performanceScenario table td:empty, .perfscenarios table td:empty{
+	/* display:none; */
+}
+.generalinformation {
+	/* 	position: running(ProdDate); */
+	background-color: var(--header);
+	padding: 2mm;
+}
+.generalinformation  h2{
+	color: #fff;
+}
+
+.generalinformation p{
+	color: #fff;
+}
+.page1 > .row1 > .column1 .keyinformationdocument h2{
+	/* 	position: running(pageTopBar); */
+	padding: 0;
+	/*! height: 1cm; */
+	font-size: 18pt;
+	margin-top: 1.7cm;
+}
+.otherrelevantinformation{
+	/*! page-break-before: always; */
+}
+.otherrelevantinformation h2{
+	/*! margin: 0; */
+}
+.performanceScenario .period1, .performanceScenario .period2, .performanceScenario .period3{
+	text-align:center;
+}
+
+.costComposition .groupHeaderDiv1 tr.oneofcosts th:first-child{
+	/*! width: 70% !important; */
+}
+.costComposition .groupHeaderDiv1 tr.oneofcosts th:last-child{
+	/*! width: 5.35cm !important; */
+	/*! word-wrap: break-word !important; */
+}
+.compositionofcosts .groupHeaderDiv1 tr.oneofcosts th:first-child,.costComposition .groupHeaderDiv1 tr.oneofcosts th:first-child{
+	max-width: 10cm !important;
+}
+.compositionofcosts .groupHeaderDiv1 tr.oneofcosts th:last-child,.costComposition .groupHeaderDiv1 tr.oneofcosts th:last-child{
+	width: 4cm !important;
+}
+.costComposition .groupRowDiv1 tr.transactioncosts td,.costComposition .groupRowDiv1 tr.exitcosts td,.costComposition .groupRowDiv1 tr.entrycosts td,.costComposition .groupRowDiv1 tr.managementfeesandothercosts td,.costComposition .groupRowDiv1 tr.performancefees td {
+	max-width: 9cm !important;
+}
+.costComposition .groupRowDiv1 tr.transactioncosts td:first-child,.costComposition .groupRowDiv1 tr.exitcosts td:first-child,.costComposition .groupRowDiv1 tr.entrycosts td:first-child,.costComposition .groupRowDiv1 tr.managementfeesandothercosts td:first-child,.costComposition .groupRowDiv1 tr.performancefees td:first-child{
+	max-width: 5cm !important;
+}
+.costComposition .groupRowDiv1 tr.transactioncosts td:last-child,.costComposition .groupRowDiv1 tr.exitcosts td:last-child,.costComposition .groupRowDiv1 tr.entrycosts td:last-child,.costComposition .groupRowDiv1 tr.managementfeesandothercosts td:last-child,.costComposition .groupRowDiv1 tr.performancefees td:last-child{
+	width: 4cm !important;
+}
+
+.riyheader > .annualcost-label, .totalcostsheader> .totalcost-label{
+	text-decoration:underline;
+}/*Adding underline for MOP docs -pbi 223086*/
+
+
+
+
+@page{
+	margin:1.58cm  1cm;
+	@top-left{
+		/* 		content:element(pageTopBar); */
+/* 				content:string(chaptertitle); */
+/* 			font-family: 'FrutigerLTW02-45Light';
+	font-weight: normal;
+ 		 position: absolute; */
+/* 		border-bottom: 1pt solid #b3c1c2; */
+/* 		display: block;
+		width: 19cm;
+		height: 1.2cm;
+		margin: 0 1cm; */
+	}
+	@bottom-left{
+		/* 		content:element(ProdDate);
+		margin: -0cm 0 0cm 0.8cm;
+		position: relative;
+		z-index: 1; */
+	}
+	@bottom-right{
+		content: "";
+		position:absolute;
+		z-index: 0;
+		left:0;
+		height:1cm;
+	}
+	@bottom-center{
+		
+		content:element(pgnum);
+		width: 2cm;
+		position: relative;
+		z-index: 1;
+		margin: 0cm 0 0cm 0;
+	}
+}
+@page:first{
+		@top-left{
+	   content:none;
+			border: none;
+	}
+}
+ .performanceScenario table tr.holding-period th:last-child,.performanceScenario table tr.investment-amount th:last-child,.performanceScenario table tr.insurance-premium th:last-child
+{
+	text-align:left;
+}
+
+/*monthlyperformancetable  design styles<<<<<<<<<<<<<<<<<<<<*/
+
+
+.monthlyperformancetable table th:not(.groupHeader1){
+	border:none !important;
+}
+.monthlyperformancetable1 tr.headerData th{
+	text-align:center;
+	/* background: #009ca8; */
+	color: #fff;
+	border-right-color: var(--tableheader) !important;
+}
+.monthlyperformancetable th.groupHeaderDiv1 {
+	padding:0 !important;
+}
+.monthlyperformancetable1 > table tr th{
+ /*border:0;*/
+ border: 0.5pt solid transparent !important;
+}
+.monthlyperformancetable1 table tr td{
+ /*border:0;*/
+ border: 0.5pt solid var(--tableborder) !important;
+}
+.monthlyperformancetable1 table tr td{
+  padding:3px 2px !important;
+}
+
+.monthlyperformancetable1 .groupHeaderDiv1 .headerData th{
+	font-size:7pt !important;
+	border-left-color:transparent !important;
+	border-right-color:transparent !important;
+}
+
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th{
+	word-break: break-word;
+	background:#e6f6f6 !important;
+    border-color:#e6f6f6 !important;
+	border-left-color: transparent !important;
+	border-right-color: transparent !important;
+	color: #000;
+	  padding:4px 2px !important;
+
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .Row td:first-child{
+	width: 6%;
+	border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .Row td:nth-child(2){
+	width: 6%;
+	text-align: center;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(1){
+	width: 5%;
+	text-align: center;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2){
+	width: 11.75%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3){
+	width: 7%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(4){
+	width: 11.75%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5){
+	width: 7%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(6){
+	width: 11.75%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7){
+	width: 7%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(8){
+	width: 11.75%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(11),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9){
+	width: 7%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .groupHeaderDiv1 .SubheaderData th:nth-child(12),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(10){
+	width: 8%;
+	text-align: center;
+}
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9){
+		/* padding-left:20px !important; */
+		color:rgb(0,0,0,0.5);
+}
+
+
+/*monthlyperformancetable  design styles>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+.page > .row > .contentSection, .page > .row > .composite1  {
+	border:1pt solid #000066;
+	margin-bottom: 0.3cm;
+	padding: 1mm;
+}
+.page1 > .row1{
+	margin-bottom: 0.1cm;
+}
+.page1 > .row1> .contentSection {
+	border:none;
+	padding: 0;
+	
+}
+.page1 > .row2> .contentSection {
+	border:none;
+	margin-bottom: 0.1cm;
+	padding: 0;
+}
+.page > .row > .pagenumbers {
+	border:none;
+	margin-bottom: 0;
+	padding: 0;
+}
+.page1 > .row4  .warning{
+	background: #e6ebeb;
+	margin-bottom: 0.2cm;
+	padding-bottom: 2mm;
+}
+.WB_SRInarrative2_1, .WB_SRInarrative2_2 {
+    background: url(images/warning-icon.png);
+	background-size: 10%;
+    background-position: 0px -5px;
+    width: 79% !important;
+    height: 61px;
+    padding: 0px 0px 0px 63px;
+    display: block;
+    background-repeat: no-repeat;
+}
+.page1 > .row1 > .TextSection > h2{
+	padding-top: 1.7cm;
+	font-size: 18pt;
+}
+.page1 > .row3{
+	background-color: var(--header);
+    padding: 2mm;
+	margin-bottom: 0.1cm;
+}
+.page1 > .row3 h2, .page1 > .row3 p{
+	color: #fff;
+	margin-bottom: 0;
+}
+.page1 > .row3 > .contentSection {
+	border:none;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.monthlyperformancetable1 *{
+	font-size:6pt !important;
+	margin:0 !important;
+	padding:0 !important;
+	font-weight:normal !important;
+	
+}
+.monthlyperformancetable table th:not(.groupHeader1){
+	border:none !important;
+}
+.monthlyperformancetable1 tr.headerData th{
+	text-align:center;
+	background: #000066;
+	color: #fff;
+}
+
+.monthlyperformancetable1 > table tr th{
+   border: 0.5pt solid transparent !important;
+}
+
+.monthlyperformancetable1 table tr td{
+   padding:3px 2px !important;
+   border:0.5pt solid #fff;
+   color:#000066;
+}
+.monthlyperformancetable1  .headerData:first-child th{
+	padding:4px 0px !important;
+}
+.monthlyperformancetable1  .headerData:nth-child(2) th{
+	font-size:7pt !important;
+	border-left-color:#009ca8 !important;
+	border-right-color:#009ca8 !important;
+	padding:4px 2px !important;
+}
+/*.monthlyperformancetable th {
+	padding:4px 0 !important;
+}*/
+.monthlyperformancetable1  .SubheaderData th{
+	word-break: break-word;
+	background:#000066 !important;
+	color: #fff;
+	padding:4px 2px !important;
+
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .Row td:first-child{
+	width: 6%;
+	/* border-left-color: transparent !important; */
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .Row td:nth-child(2){
+	width: 6%;
+	text-align: center;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(1){
+	width: 5%;
+	text-align: center;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2){
+	width: 11.5%;
+	/* border-right-color: transparent; */
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3){
+	width: 7%;
+	color:#fff;
+
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(4){
+	width: 11.5%;
+	/* border-right-color: transparent; */
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5){
+	width: 7%;
+	color:#fff;
+
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(6){
+	width: 11.5%;
+	/* border-right-color: transparent; */
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7){
+	width: 7%;
+	color:#fff;
+
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(8){
+	width: 11.5%;
+	/* border-right-color: transparent; */
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(11),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9){
+	width: 7%;
+	color:#fff;
+
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(12),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(10){
+	width: 9%;
+	text-align: center;
+}
+
+/*nondeathsenario*/
+.monthlyperformancetable1 .NonDeathscenario .headerData th{
+	font-size:7pt !important;
+	border-left-color:transparent !important;
+	border-right-color:transparent !important;
+	border: 1px solid #009ca8  !important;
+}
+.monthlyperformancetable .NonDeathscenario th {
+	padding:4px 2px !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th{
+	word-break: break-word;
+	background:#e6f6f6 !important;
+    border-color:#e6f6f6 !important;
+	border-left-color: transparent !important;
+	border-right-color: transparent !important;
+	color: #000;
+	padding:4px 2px !important;
+
+}
+.monthlyperformancetable1 .NonDeathscenario table tr td{
+   padding:3px 2px !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:first-child{
+	width: 7%;
+	border-left-color: transparent !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:nth-child(2){
+	width: 7%;
+	text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(1){
+	width: 5%;
+	text-align: center;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(2){
+	width: 14%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(3){
+	width: 8%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(4){
+	width: 14%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(5){
+	width: 8%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(6){
+	width: 14%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(7){
+	width: 8%;
+	color:rgb(0,0,0,0.5);
+
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(8){
+	width: 14%;
+	border-right-color: transparent;
+}
+.monthlyperformancetable1  .NonDeathscenario .SubheaderData th:nth-child(11),.monthlyperformancetable1  .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(9){
+	width: 8%;
+	color:rgb(0,0,0,0.5);
+
+}
+
+/*nondeathsenario*/
+
+.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9){
+	/* padding-left:20px !important; */
+	color:#404040;
+}
+.page1 > .row4 > .composite1 > .compositebody > .row3 > .column2 {
+    width: 25% !important;
+    background: #e6ebeb;
+    padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+    /* min-height: 368px; */
+    margin-left: 7px;
+}
+.page1 > .row4 > .composite1 > .compositebody > .row3 > .column1 {
+    width: 69% !important;
+    height: auto;
+}
+.highcharts-point{
+	fill:#000066 !important;
+}
+/* PRIIPS-Eu */

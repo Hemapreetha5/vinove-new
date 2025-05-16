@@ -1,0 +1,646 @@
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerboldregular";
+  src: url("images/frutiger-boldregular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerboldregular";
+  src: url("images/frutiger-boldregular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font: 12pt "frutigerlightbold";
+  color: #1B1B1B;
+  margin: 0.46cm 0 0.05cm 0;
+  padding: 1.4mm 0 0.1cm 0;
+}
+
+p {
+  text-align: left;
+  word-break: break-word;
+}
+
+.otherrelevantinformation p {
+  /*Exclude this 'otherrelevant information' para to justify align, all other para will be justified*/
+  text-align: left;
+  word-break: break-word;
+}
+
+p,
+.description {
+  font: 9pt "frutigerlightregular";
+  color: #000000;
+  margin: 0 0 0.2cm 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.narrative .WB_HowlongshouldIholdit_1 {
+  background-color: #bebebe;
+  padding: 8px 2px;
+  color: #ffffff;
+}
+
+.header1 p,
+.header2 p {
+  font: 12pt "frutigerlightbold";
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 12pt "frutigerlightregular";
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+.page1 {
+  padding: 2cm 0 0 0;
+  background: url(images/ubs_olz_202001.svg);
+  background-size: 196.536px auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.contentSection h2 {
+  border-top: 0.01cm solid #000000;
+}
+
+.keyinformationdocument h2 {
+  font: 24pt "frutigerlightregular";
+  color: #000000;
+  margin: 0.46cm 0 0.05cm 0;
+  padding: 0cm 0;
+}
+
+.fundName h2 {
+  font: 24pt "frutigerlightbold";
+  color: slategray;
+  margin: 0.46cm 0 0.05cm 0;
+  padding: 0;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+@page {
+  /*border:1px solid;*/
+  margin: 1cm 1.6cm 0.8cm 1.6cm;
+  padding: 0cm;
+}
+@page :-ro-nth(1) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.5cm;
+    padding: 0 0 0cm;
+  }
+}
+@page :-ro-nth(2) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0 0cm;
+  }
+}
+@page :-ro-nth(3) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0cm;
+  }
+}
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination {
+  display: none;
+}
+
+.page1 .row4 .compositebody > .row .column, .page1 .row5 .compositebody > .row .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+.page1 .row4 .compositebody > .row .column h2, .page1 .row5 .compositebody > .row .column h2 {
+  column-span: all;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.groupHeader1 table th {
+  padding: 1mm;
+  background: transparent;
+  color: #000000;
+  border: 0.5pt solid #000000;
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  page-break-inside: avoid;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  text-align: left;
+}
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+
+.groupRow1 table td {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  font-family: "frutigerlightregular";
+  color: #000000;
+  padding: 1mm 1mm;
+}
+.groupRow1 table .header {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.groupRow1 table .header th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+.groupRow1 table .incidentalcosts {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.groupRow1 table .incidentalcosts th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+.groupRow1 table .ongoingcosts {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.groupRow1 table .ongoingcosts th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+
+.performanceScenario > table:first-of-type {
+  margin: 0.1cm 0 0.5cm 0;
+}
+.performanceScenario .survival-scenario th {
+  border-top: 0;
+}
+.performanceScenario th[class*=period] {
+  width: 3.05cm;
+}
+.performanceScenario td[class*=period] {
+  width: 3cm;
+}
+
+.costOverTime > table:first-of-type {
+  margin: 0.1cm 0 0.5cm 0;
+}
+.costOverTime table .tableheader {
+  display: none;
+}
+.costOverTime table th {
+  width: 4.75cm;
+}
+.costOverTime table td {
+  width: 4.75cm;
+}
+
+.costComposition > table:first-of-type {
+  margin: 0.1cm 0 0.5cm 0;
+}
+.costComposition table .tableHeader {
+  display: none;
+}
+.costComposition table .oneofcosts th:last-of-type {
+  width: 3.15cm;
+}
+.costComposition table td:last-of-type {
+  width: 3.1cm;
+}
+
+.sriRiskRating table {
+  width: calc(100% - 0.4cm);
+  margin: 0.6cm 0.2cm 0.05cm 0.2cm;
+}
+.sriRiskRating table td.rating {
+  border: 1pt solid #bebebe;
+  text-align: center;
+  padding: 0.1cm;
+  font-size: 16pt;
+  font-family: "frutigerlightbold";
+}
+.sriRiskRating table td.rating.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+.sriRiskRating table td.rating.selected {
+  background-color: #c3a284;
+  color: #ffffff;
+}
+.sriRiskRating .header {
+  font-size: 8.5pt;
+  font-family: "frutigerlightregular";
+  margin-top: 0.5cm;
+}
+.sriRiskRating .header th:first-of-type {
+  text-align: left;
+  padding-left: 0.3cm;
+  padding-bottom: 0.1cm;
+}
+.sriRiskRating .header th:last-of-type {
+  text-align: right;
+  padding-right: 0.3cm;
+  padding-bottom: 0.1cm;
+}
+.sriRiskRating .arrow {
+  background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='239' height='7' viewBox='0 0 239 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_125_2)'%3e%3cpath d='M1.89999 3.20001H236' stroke='%23E60000' stroke-width='0.5' stroke-miterlimit='10'/%3e%3cpath d='M4.30001 6.09999L4.70001 5.59999L2.20001 3.19999L4.70001 0.799988L4.30001 0.299988L1.10001 3.19999L4.30001 6.09999Z' fill='%23E60000'/%3e%3cpath d='M233.6 6.09999L233.1 5.59999L235.7 3.19999L233.1 0.799988L233.6 0.299988L236.7 3.19999L233.6 6.09999Z' fill='%23E60000'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_125_2'%3e%3crect width='238.2' height='6.4' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e ") no-repeat center/96% 3mm;
+  height: 4mm;
+  margin: 0 0.2cm;
+}
+
+.sriRiskRating > tbody {
+  position: relative;
+}
+.sriRiskRating > tbody .ratings > td {
+  padding-top: 1cm;
+}
+.sriRiskRating > tbody .arrow {
+  position: absolute;
+  top: 0.7cm;
+  left: 0;
+  right: 0;
+}
+.sriRiskRating > tbody .header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 0.2cm;
+  left: 0;
+  right: 0;
+}
+
+p.Sri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent #bebebe transparent;
+  margin: 20px 12px 0 0;
+  float: left;
+}
+
+p.Sri:after {
+  content: "!";
+  font-size: 25pt;
+  font-family: "frutigerlightregular";
+  color: #ffffff;
+  position: relative;
+  left: -6px;
+  top: 9px;
+}
+
+.SRIdescription:after {
+  content: "Risk indicator";
+  font-weight: 700;
+  font-family: "frutigerlightbold";
+}
+
+:root {
+  --fw-light: 300;
+  --fw-normal: 300;
+  --fw-bold: bold;
+  --h2-color: #000000;
+  --black: #000000;
+}
+
+.page:not(.page1) > .row {
+  margin-top: 0.46cm;
+}
+
+.page1 {
+  padding-top: 2.9cm;
+}
+.page1 > .row1 > .column1 {
+  width: 100%;
+}
+.page1 > .row3 .contentSection h2,
+.page1 > .row4 .contentSection h2 {
+  display: none;
+}
+.page1 > .row4 .column p {
+  font-size: 10pt;
+}
+.page1 > .row6 .compositebody > .row .column {
+  column-count: 2;
+}
+.page1 > .row6 .compositebody > .row .column h2 {
+  column-span: all;
+}
+
+.page2 > .row2 .compositebody > .row .column {
+  column-count: 2;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+
+.WB_SRInarrative2_1 {
+  background-size: 18%;
+  background-position: 0px -5px;
+  width: 79%;
+  height: 61px;
+  padding: 0px 0px 0px 63px;
+  display: block;
+  background-repeat: no-repeat;
+  position: relative;
+  --warning-color: #bebebe;
+  --triangle-width: 0.8cm;
+  --triangle-height: 0.7cm;
+}
+.WB_SRInarrative2_1::before, .WB_SRInarrative2_1::after {
+  position: absolute;
+  top: 0;
+  left: calc(var(--triangle-width));
+}
+.WB_SRInarrative2_1::before {
+  content: "";
+  --border-width: calc(var(--triangle-width) / 2);
+  left: calc(var(--triangle-width));
+  width: 0;
+  height: 0;
+  border-left: var(--border-width) solid transparent;
+  border-right: var(--border-width) solid transparent;
+  border-bottom: var(--triangle-height) solid var(--warning-color);
+  display: flex;
+  justify-content: center;
+}
+.WB_SRInarrative2_1:after {
+  content: "!";
+  color: #ffffff;
+  font-size: 18pt;
+  text-align: center;
+  width: var(--triangle-width);
+  top: 1pt;
+}
+
+.Sri {
+  display: none;
+}
+
+.sriRiskRating {
+  break-inside: avoid;
+  position: relative;
+  margin-bottom: 2mm;
+}
+.sriRiskRating table {
+  margin-top: 0.2cm;
+}
+.sriRiskRating table td.rating {
+  border-color: #c3a284;
+}
+.sriRiskRating .rating {
+  width: 1cm;
+  height: 1cm;
+}
+.sriRiskRating .header {
+  margin-top: 0.2cm;
+  font-size: 8pt;
+}
+.sriRiskRating .header th {
+  font-weight: 400;
+}
+.sriRiskRating .header th:first-of-type {
+  padding-left: 0.9cm;
+}
+.sriRiskRating .header th:last-of-type {
+  padding-right: 0.9cm;
+}
+.page3 .compositebody {
+  break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1 > .groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+  border-bottom: 0px;
+}
+
+.page3 > .row3 > .composite > .compositebody > .row2 > .sectiontitle > h2 {
+  border-top: 0px;
+}
+
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1 {
+  width: 100%;
+}
+
+.contentSection h2 {
+  color: var(--h2-color);
+}
+.contentSection h2:empty {
+  display: none;
+}
+
+.contentSection.purpose h2 {
+  font: 12pt "frutigerlightbold";
+}
+
+.keyinformationdocument h2 {
+  font-size: 28pt;
+  color: var(--black);
+}
+
+.section .contentSection.keyinformationdocument h2 {
+  border: none;
+  margin-bottom: 2mm;
+}
+
+.page2 > .row2 > .composite1 > .compositebody *,
+.page3 > .row2 > .composite1 > .compositebody * {
+  break-before: avoid-page;
+}
+
+.performanceScenario table tr.header.holding-period th:first-child {
+  font-family: "frutigerlightregular" !important;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+  background-color: transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn + .invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+  background-color: transparent;
+  font-weight: 700 !important;
+  font-family: "frutigerlightbold" !important;
+}
+
+.performanceScenario table td.description {
+  color: #000000;
+}
+
+table tr[class*=-return] td {
+  font-family: "frutigerboldregular";
+}
+
+@media only screen {
+  .page {
+    width: 18cm;
+  }
+}
+.WB_Purpose_1 {
+  font-size: 10pt;
+  margin-bottom: 0.4cm;
+}
+
+.WB_GeneralInformation_1,
+.WB_GeneralInformation_3,
+.WB_GeneralInformation_5 {
+  display: none;
+}
+
+.WB_GeneralInformation_2,
+.WB_GeneralInformation_4 {
+  font-family: "frutigerboldregular";
+  margin-bottom: 0;
+}
+
+.WB_GeneralInformation_4 {
+  margin-bottom: 0.1cm;
+}
+
+@page :-ro-nth(1) {
+  margin-top: 0.6cm;
+}
+@page :-ro-last {
+  margin-bottom: 3cm;
+  @bottom-left {
+    height: 2.2cm;
+  }
+}
+/* Theme name OLZ */
+
+/*# sourceMappingURL=theme.css.map */

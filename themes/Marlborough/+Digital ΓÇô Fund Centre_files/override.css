@@ -1,0 +1,273 @@
+/* ---------- General classes --------------- */
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskRegular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskBold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskBoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskItalic.ttf") format("truetype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskLight.ttf") format("truetype");
+  font-weight: 300;
+}
+
+:root {
+  /* Primary Colors */
+  --primary-blue: #051f30;
+  --primary-green: #88f469;
+  --primary-white: #ebf2ed;
+  --white: #ffffff;
+  /* Secondary Colors */
+  --font-family: "Klarheit Grotesk";
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 300;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  background-color: var(--white);
+  color: var(--primary-blue);
+}
+
+.ui-widget {
+  font-size: 1em;
+  font-family: var(--font-family);
+}
+
+.ui-widget-content {
+  border: 1px solid #ddd;
+  background: #fff;
+  background-color: var(--primary-blue);
+  border-color: var(--primary-white);
+  color: var(--primary-white);
+}
+
+.ui-widget-content a {
+  color: var(--primary-white);
+}
+
+.ui-state-active a,
+.ui-state-active a:link {
+  color: var(--primary-green);
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background-color: var(--white);
+  border: 0;
+}
+
+.ui-tabs.ui-widget.ui-widget-content {
+  border: 1px solid var(--primary-white);
+}
+
+/* #searchform-1::before {
+  content: "";
+  display: block;
+  width: 4cm;
+  height: 1cm;
+  background: no-repeat url(fe_img/MRBH-green.svg);
+  background-size: contain;
+  margin-bottom: 0.2cm;
+} */
+
+.fe-fund-tableBody td {
+  padding: 10px;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  float: left;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+.ui-widget-content a {
+  color: #333;
+}
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mfs-container {
+  position: relative;
+  width: 230px;
+  color: #666;
+  font-family: Helvetica, Arial;
+  font-size: 12px;
+}
+
+.ui-widget-content {
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+}
+
+.fe-search-container {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid #c3c3c3;
+  padding: 20px;
+  font-size: 12px;
+  margin: 0 0 15px;
+}
+
+.ui-logo-container::before {
+  content: "Fund Center";
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  border-bottom: 10px solid;
+  border-image: linear-gradient(to right,
+      var(--primary-green) 40%,
+      transparent 40%) 100% 1;
+}
+
+.fe-tabs-tab-FundCentre li a {
+  font-size: 20px;
+}
+
+.ui-logo-container {
+  padding-bottom: 20px;
+  background-image: url(fe_img/MRBH-green.svg);
+  background-size: 250px 52px;
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+.mfs-container a.mfs-selected-option {
+  background: #f6f6f6;
+  border-radius: 0px !important;
+  padding: 10px 5px;
+  font-size: 16px;
+}
+
+.mfs-container a.mfs-selected-option span {
+  padding: 10px 0px !important;
+}
+
+.mfs-selected-option span {
+  border-radius: 0px !important;
+}
+
+.mfs-container a.mfs-selected-option span {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  padding: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mfs-container a.mfs-selected-option span {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  padding: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mfs-selected-option span {
+  background: #fff url(fe_img/dropDownArrow.png) no-repeat center 14px !important;
+  float: left;
+}
+
+.fe-search-fileters-container {
+  margin: 13px 13px 18px 13px !important;
+}
+
+.fe-search-textbox {
+  width: 235px;
+  margin-right: 25px;
+  padding: 10px 5px;
+  font-size: 16px;
+}
+
+label {
+  font-size: 18px !important;
+}
+
+.fe-search-searchbox-container button {
+  height: 38px;
+  font-size: 16px;
+}
+
+.fe-search-searchbox-container::before {
+  content: "Filter";
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.ui-widget-header,
+.fe-paging-navContainer {
+  font-size: 20px;
+}
+
+.ui-tabs .ui-tabs-nav {
+  margin: 0;
+  padding: 1em 1.5em;
+}
+
+.ui-helper-clearfix:before {
+  content: "Funds";
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  padding: 10px;
+}
+
+.ui-icon-triangle-1-n {
+  background-position: 0px -16px;
+}
+
+.ui-icon-triangle-1-s {
+  background-position: -65px -15px;
+}
+
+.fe-ordering-icon {
+  height: 12px;
+}
+
+
+/*# sourceMappingURL=override.css.map */
+
+/* Theme: marlborough --- Fundcentre */

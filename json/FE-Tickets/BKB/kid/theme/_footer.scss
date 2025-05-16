@@ -1,0 +1,30 @@
+#{$footerPath}{
+    position: running(footerRight);
+    text-align: right;
+}
+
+@if ($footershow) {
+@page{
+        @bottom-right{
+            content:element(footerRight);
+            margin-bottom: 1cm; 
+            width:$pageWidth;
+            border-top:1px solid $secondary;     
+        }
+   }
+}
+@if ($footerlogo) {
+    @page:-ro-last{
+        margin-bottom: 2cm; 
+        @bottom-left{
+            @include logo;            
+            width:$pageWidth;
+        }
+   }
+}
+
+@if($hidepagination) {
+    .Pagination{
+        display: none;
+    }
+}

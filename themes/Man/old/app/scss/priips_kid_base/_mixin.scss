@@ -1,0 +1,53 @@
+@mixin triangle($size: 2rem, $background: $yellow, $radius: true) {
+	&, &::before, &::after {
+		width: $size;
+		height: $size;
+	}
+	position: relative;
+	overflow: hidden;
+	transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+	pointer-events: none;
+
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		background: $background;
+		pointer-events: auto;
+	}
+
+	&::before {
+		transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+	}
+
+	&::after {
+		transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+	}
+
+	@if ($radius) {
+		border-radius: 20%;
+		&::before {
+			border-radius: 20% 20% 20% 55%;
+		}
+		&::after {
+			border-radius: 20% 20% 55% 20%;
+		}
+	}
+}
+
+.triangle {
+	&-1 {
+		@include triangle(20rem, $yellow, true);
+	}
+
+	&-2 {
+		@include triangle(10rem, $black, false);
+	}
+
+	&-3 {
+		@include triangle(15rem, gray, true);
+	}
+
+	&-4 {
+		@include triangle(17.5rem, linear-gradient(to right, orange 0%, red 100%), false);
+	}
+}

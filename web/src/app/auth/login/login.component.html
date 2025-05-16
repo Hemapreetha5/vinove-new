@@ -1,0 +1,78 @@
+<div class="container">
+     <div class="row">
+        <div class="col text-center" >
+            <img height="170" width="170" src="appLogo.png" />
+        </div>
+    </div> 
+    <div class="row text-center">
+        <div class="col">
+             <h3 class="spnWelcome">Welcome To</h3>
+             <h3 class="spnUniName">University Name</h3>
+        </div>
+    </div> 
+     <div class="row">
+        <div class="col text-end"><button class="border-0 btnCommon btnLogin">Login</button></div>
+        <div class="col text-start"><button class="border-0 btnCommon btnSignUp">Sign Up</button></div>
+    </div>
+    <div class="row">
+        <div class="col text-wrap divMsg">
+            <span class="spnMsg">
+                To login please enter your student number and pin
+            </span>
+        </div>
+    </div>
+    <hr/>
+    <div class="row text-start">
+        <div class="col form-input">
+             <mat-form-field class="inpStuNo" appearance="outline"><input matInput></mat-form-field>
+        </div>
+    </div>
+    <div class="row text-start">
+        <div class="col form-input">
+            <mat-form-field class="inpStuNo" appearance="outline">
+                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"  required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row aForgotLink">
+        <div class="col">
+            <a mat-button href="#" target="_blank">Forgot Student Number?</a>
+        </div>
+        <div class="col">
+            <a mat-button href="#" target="_blank">Forgot pin?</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="row text-center">
+        <div class="col">
+            <button class="border-0 btnSubmit" (click)="onLoginClick($event)">Login</button>
+        </div>
+    </div>
+    <hr/>
+    <div class="row text-center">
+        <div class="col">
+            <p>
+                <span class="spnMsg">
+                    Don't have an account? 
+                </span>
+                <a class="aNotAcc" mat-button href="#" target="_blank">Sign up Now</a>
+            </p>
+        </div>
+    </div>
+    <hr/>
+    <div class="row text-center">
+        <div class="col">
+            <p>
+                <span class="spnTypo">
+                    © [2024] Adapt IT Holdings Limited. All Rights Reserved.
+                    By continuing, you agree to accept our 
+                    <a class="aPrivacy" mat-button href="#" target="_blank">Privacy Policy</a>
+                    & <br/>
+                    <a class="aPrivacy" mat-button href="#" target="_blank">Terms of Service</a>
+                </span>
+            </p>
+        </div>
+        
+    </div> 
+</div>

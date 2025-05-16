@@ -1,0 +1,427 @@
+@font-face {
+  font-family: "frutigerregular";
+  src: url("images/frutiger-45-light-regular.ttf") format("truetype"), url("images/frutiger-45-light-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerbold";
+  src: url("images/frutiger-bold-regular.ttf") format("truetype"), url("images/frutiger-bold-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/frutiger-45-light-bold.ttf") format("truetype"), url("images/frutiger-45-light-bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --primary: #000000;
+  --secondary: #BEBEBE;
+  --red: #E60000;
+  --black: #000000;
+  --white: #FFFFFF;
+  --border: var(--black);
+  --tableborder: var(--black);
+  --tableheaderbg: #b0b0b0;
+  --tableheader: var(--black);
+  --alert: var(--secondary);
+  --ratingbg: var(--white);
+  --ratingborder: var(--secondary);
+  --ratingselected: var(--secondary);
+  --bodycolor: var(--black);
+  --bodyfont: 9pt;
+  --footerfont: 6.5pt;
+  --lineheight: 1.1;
+  --h2: 9pt;
+  --h3: 8pt;
+  --fontRegular: frutigerregular;
+  --fontBold: frutigerbold;
+  --fontLightBold: frutigerlightbold;
+}
+
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  line-height: var(--lineheight);
+  color: var(--bodycolor);
+  font-family: var(--fontRegular);
+  font-size: var(--bodyfont);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  font-family: var(--fontLightBold);
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+table td {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: var(--fontBold);
+  font-size: var(--h2);
+  font-weight: 100;
+  color: var(--bodyfont);
+  border-top: 0.5pt solid var(--black);
+  padding: 0.15cm 0 0;
+  margin: 0 0 0.1cm;
+}
+
+p:empty,
+h2:empty {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 0;
+  min-height: 0;
+  width: auto;
+  height: auto;
+}
+
+table th:empty {
+  padding: 0;
+}
+
+table th.tableheader,
+table .tableHeader th {
+  border: 0 !important;
+}
+
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0 0 0.1cm;
+}
+
+b {
+  font-family: var(--fontBold);
+  font-weight: 100;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+/* page styles*/
+.page {
+  width: 18cm;
+  height: auto;
+  padding: 0cm 1.5cm 0.25cm 1.5cm;
+}
+
+.page1 {
+  padding-top: 1cm;
+  background: url(images/BCC_logo.svg);
+  background-size: 6.16cm 0.56cm;
+  background-position: 1.5cm 0;
+  background-repeat: no-repeat;
+}
+
+.keyinformationdocument h2 {
+  font-family: var(--fontRegular);
+  font-size: 24pt;
+  font-weight: 100;
+  border: 0;
+}
+
+.page > .row > .composite1 > .compositebody > .row > .column {
+  width: 100%;
+  float: none;
+}
+
+.page1 > .row4 > .composite1 > .compositebody > .row3 > .column1 {
+  float: left;
+  width: 21%;
+  margin-right: 1%;
+}
+
+.page1 > .row4 > .composite1 > .compositebody > .row3 > .column2 {
+  float: left;
+  width: 78%;
+}
+
+.Product_SubHeader p:not(:empty),
+.Product_Value p:not(:empty) {
+  margin-bottom: 0.07cm;
+  min-height: 0.4cm;
+}
+
+.Product_SubHeader p.WB_GeneralInformation_1,
+.Product_Value p.WB_GeneralInformation_2 {
+  min-height: 0.7cm;
+}
+
+.subheader p[class*=WB_Whatisthisproduct],
+.WB_Whatisthisproduct_1,
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5,
+.WB_Whatisthisproduct_7,
+.WB_Whatisthisproduct_9 {
+  font-family: var(--fontBold);
+}
+
+/* Sri ratings */
+p.SriRange,
+p.Sri {
+  width: 1px;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent var(--alert) transparent;
+  position: relative;
+  padding: 0;
+  padding-top: 0cm;
+  margin-right: 1cm;
+  margin-top: 0cm;
+  float: left;
+}
+
+p.SriRange:before,
+p.Sri:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -0.7cm;
+  font-weight: 700;
+  font-family: var(--fontBold);
+  width: max-content;
+}
+
+p.SriRange:after,
+p.Sri:after {
+  content: "!";
+  font-family: var(--fontRegular);
+  font-size: 18pt;
+  color: var(--white);
+  position: relative;
+  left: -4px;
+  top: 0.35cm;
+}
+
+.sriRiskRating,
+.sriRangeRiskRating {
+  width: 41%;
+  margin-top: 0.4cm;
+  position: relative;
+}
+
+.sriRiskRating .ratings td.rating,
+.sriRangeRiskRating .ratings td.rating {
+  width: 1cm;
+  height: 0.8cm;
+  border: 1pt solid var(--ratingborder);
+  font-family: var(--fontRegular);
+  font-size: 18pt;
+  line-height: 21pt;
+  text-align: center;
+}
+
+.sriRiskRating .ratings td.rating.selected,
+.sriRangeRiskRating .ratings td.rating.selected {
+  background: var(--ratingselected);
+  color: var(--white);
+}
+
+.sriRiskRating .header th,
+.sriRangeRiskRating .header th {
+  background: none;
+  width: 50%;
+  text-align: left;
+  font-family: var(--fontLightBold);
+  border: 0;
+  padding: 4mm 0 1mm;
+}
+
+.sriRiskRating .header th:last-of-type,
+.sriRangeRiskRating .header th:last-of-type {
+  text-align: right;
+}
+
+.sriRiskRating .arrow,
+.sriRangeRiskRating .arrow {
+  background: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23E60000;stroke-miterlimit:10;%7D .st1%7Bfill:%23E95326;%7D%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center/100% 3mm;
+  height: 4mm;
+  width: 100%;
+  position: absolute;
+}
+
+.WB_Whataretherisks_1 {
+  font-family: var(--fontBold);
+}
+
+.contentSection > table {
+  margin: 0.2cm 0;
+}
+
+table th.groupHeader1 {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+table .groupRowDiv1 .groupHeaderDiv1 th {
+  border-top: 0;
+}
+
+.groupHeaderDiv1 th,
+.groupRowDiv1 td,
+.groupRowDiv1 th,
+.groupRowDiv1 tr.header th {
+  padding: 1mm;
+  border-right: 0.5pt solid var(--black);
+  border-bottom: 0.5pt solid var(--black);
+  text-align: left;
+}
+
+.groupHeaderDiv1 th:first-child,
+.groupRowDiv1 td:first-child,
+.groupRowDiv1 th:first-child,
+.groupRowDiv1 tr.header th:first-child {
+  border-left: 0.5pt solid var(--black);
+}
+
+.groupHeaderDiv1 table .header th,
+.groupHeaderDiv1 table .scenarioheader th,
+.groupHeaderDiv1 table .oneofcosts th {
+  border-top: 0.5pt solid var(--black);
+}
+
+.performanceScenario th[class*=period],
+.performanceScenario td[class*=period] {
+  width: 3cm;
+}
+
+.performanceScenario .groupRowDiv1 td[rowspan],
+.performanceScenario .groupRowDiv1 td.description:nth-child(2) {
+  font-family: var(--fontLightBold);
+}
+
+.performanceScenario .groupRowDiv1 td[rowspan] {
+  width: 2.5cm;
+  vertical-align: top;
+}
+
+.costOverTime.costovertime_2columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_2columntable .groupRowDiv1 td {
+  width: 50%;
+}
+
+.costOverTime.costovertime_3columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_3columntable .groupRowDiv1 td {
+  width: 33.3%;
+}
+
+.costOverTime.costovertime_4columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_4columntable .groupRowDiv1 td {
+  width: 25%;
+}
+
+.costOverTime table td[class*=totalcosts] {
+  font-family: var(--fontLightBold);
+}
+
+.costComposition {
+  margin: 0 0 0.3cm;
+}
+
+.costComposition .oneofcosts th:last-of-type,
+.costComposition td:last-of-type {
+  width: 3cm;
+}
+
+.costComposition .entrycosts td:first-of-type,
+.costComposition .exitcosts td:first-of-type,
+.costComposition .managementfeesandothercosts td:first-of-type,
+.costComposition .transactioncosts td:first-of-type,
+.costComposition .performancefees td:first-of-type {
+  font-family: var(--fontLightBold);
+  width: 4cm;
+}
+
+.costComposition tr.oneofcosts th,
+.groupRow1 table .ongoingcosts th,
+.groupRow1 table .incidentalcosts th {
+  background: var(--tableheaderbg);
+}
+
+.WB_HowlongshouldIholdit_1,
+.WB_HowlongshouldIholdit_4 {
+  background: var(--tableheaderbg);
+  font-family: var(--fontLightBold);
+  padding: 1mm;
+  border-top: 0.5pt solid var(--black);
+  border-bottom: 0.5pt solid var(--black);
+}
+
+.WB_WhatAreTheCosts_3,
+.WB_WhatAreTheCosts_continued_2 {
+  font-family: var(--fontBold);
+}
+
+.pagenumbers .footer {
+  margin: 0.1cm 0cm 0.1cm 0 !important;
+  float: right;
+  font-size: var(--footerfont);
+  position: relative;
+  z-index: 1;
+}
+
+.page1 > .row1,
+.page2 > .row1,
+.page3 > .row1 {
+  position: running(footerRight);
+  text-align: right;
+  display: none;
+}
+
+.page2 .compositebody,
+.page3 .compositebody {
+  /*break-inside: avoid-page;*/
+}
+
+.page4 > .row1 {
+  break-before: page;
+}
+
+/* @page styles */
+@page {
+  margin: 1.25cm 0 1cm 0;
+  padding: 0cm;
+  @bottom-right {
+    /* content: element(footerRight); */
+    margin: 0 1.5cm 0.5cm;
+    padding: 0cm;
+    font-size: var(--footerfont);
+    font-family: var(--fontRegular);
+    font-size: var(--footerfont);
+  }
+}
+@page :-ro-nth(4) {
+  @bottom-right {
+    content: none;
+  }
+}
+/*theme name:BCC_PRIIPs*/
+
+/*# sourceMappingURL=theme.css.map */

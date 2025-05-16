@@ -1,0 +1,59 @@
+@import "./_chart.scss";
+
+@mixin columnCount{
+    width: 100% !important;
+    column-count: 2;
+    column-gap: 0.5cm;
+    column-fill: balance !important;
+}
+
+.page1{
+    .row4>.composite1
+    {
+        .compositebody>.row3{
+        .column1{
+            width: 69% !important;
+            height: auto;  
+            .row2{
+                margin-top:0.4cm;
+            }        
+        }
+        .column2{
+            width: 25% !important;
+	        background: $medgrey;
+	        padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+	        margin-left: 7px;
+        }
+    }
+    }
+}
+
+.page2{
+    .row1 .compositebody
+    {   
+        *{
+            break-before:avoid-page;
+        }
+        
+        .row3{
+            
+            @include columnCount;
+            h2{
+              column-span:all;  
+            }
+    }
+        .row5{
+            .column{
+                @include columnCount;
+            }
+        }
+    }
+}
+
+h2{
+    bookmark-level:1;
+} 
+.subheader p{
+    bookmark-level:2;
+}
+

@@ -1,0 +1,368 @@
+:root {
+
+    --fw-light: 300;
+    --fw-normal: 300;
+    --fw-bold: bold;
+    --h2-color: #5b504b;
+    --black: #000000;
+
+}
+
+
+h2 {
+    //  font: $h2Size $h2Type;
+    font-size: 9pt;
+    margin: 0cm 0 0.2cm 0;
+    padding: 0.19cm 0 0cm 0;
+}
+
+p:empty:not(.Sri) {
+    display: none;
+}
+
+// .page:not(.page1) {
+//     >.row {
+//         margin-top: .46cm;
+//     }
+// }
+tbody {
+    display: table;
+    width: 100%;
+
+}
+
+.page1 {
+    padding-top: 1.5cm;
+
+    >.row1>.column1 {
+        width: 100%;
+    }
+
+}
+
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 {
+    width: 21%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 {
+    width: 79%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader p:not(:empty) {
+    height: .8cm;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader>p {
+    margin-bottom: 0;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value p:not(:empty) {
+    height: .8cm;
+    /* border: 1px solid; */
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value>p {
+    margin-bottom: 0;
+}
+
+.page1>.row5>.composite1>.compositebody>.row2>.column1 {
+    width: 100%;
+}
+
+// .page2 {
+//     >.row2 {
+
+//         .compositebody>.row .column {
+//             column-count: 2;
+//             column-gap: 0.8cm;
+//             column-fill: balance !important;
+//         }
+//     }
+// }
+
+
+// .WB_SRInarrative2_4,
+// .WB_SRInarrative2_1 {
+//     // background: url(images/warning-icon.png);
+//     background-size: 18%;
+//     background-position: 0px -5px;
+//     width: 79%;
+//     height: 61px;
+//     padding: 0px 0px 0px 63px;
+//     display: block;
+//     background-repeat: no-repeat;
+
+//     position: relative;
+//     --warning-color: #bebebe;
+//     --triangle-width: 0.8cm;
+//     --triangle-height: 0.7cm;
+
+//     &::before,
+//     &::after {
+//         position: absolute;
+//         top: 0;
+//         left: calc(var(--triangle-width));
+//     }
+
+//     &::before {
+//         content: "";
+//         --border-width: calc(var(--triangle-width) / 2);
+//         left: calc(var(--triangle-width));
+//         width: 0;
+//         height: 0;
+//         border-left: var(--border-width) solid transparent;
+//         border-right: var(--border-width) solid transparent;
+//         border-bottom: var(--triangle-height) solid var(--warning-color);
+//         display: flex;
+//         justify-content: center;
+//     }
+
+//     &:after {
+//         content: "!";
+//         color: #ffffff;
+//         font-size: 18pt;
+//         text-align: center;
+//         width: var(--triangle-width);
+//         top: 1pt;
+//     }
+
+// }
+
+p.Sri {
+    margin-top: 39px;
+}
+
+
+.sriRiskRating {
+    break-inside: avoid;
+    position: relative;
+    // margin-bottom: 2mm;
+    width: 50%;
+    top: -0.3cm;
+
+    table {
+        margin-top: .2cm;
+
+        td.rating {
+            border-color: $sri-current;
+        }
+    }
+
+    .rating {
+        width: 1cm;
+        height: 1cm;
+    }
+
+
+
+    .header {
+        margin-top: .2cm;
+        font-size: 8pt;
+
+        th {
+            font-weight: 400;
+
+            &:first-of-type {
+                padding-left: .9cm;
+            }
+
+            &:last-of-type {
+                padding-right: .9cm;
+            }
+        }
+    }
+
+    >tbody {
+        .arrow {
+            // top: .3cm;
+        }
+
+        .ratings>td {
+            // padding-top: 0;
+        }
+    }
+}
+
+.page3 .compositebody {
+    break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1>.groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+    border-bottom: 0px;
+}
+
+// .page3>.row3>.composite>.compositebody>.row2>.sectiontitle>h2 {
+//     border-top: 0px;
+// }
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+    width: 100%;
+}
+
+.contentSection {
+    h2 {
+        color: var(--h2-color);
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.contentSection.purpose h2 {
+    border-top: none;
+}
+
+.keyinformationdocument {
+    h2 {
+        font-family: $fontUbsHeadline;
+        color: var(--black);
+        font-size: 25pt;
+        margin-top: 0.4cm;
+
+    }
+}
+
+.section .contentSection.keyinformationdocument h2 {
+    border: none;
+    // margin-bottom: 2mm;
+}
+
+// .page2 .row2 .compositebody .row2 .sectiontitle h2 {
+//     border: 0;
+//     font-size: $h2microSize;
+//     font-family: $h2Type  !important;
+//     padding: 0mm 0 2mm;
+//     margin: 0cm 0 0 0;
+// }
+
+// .page2>.row2>.composite1>.compositebody *,
+// .page3>.row2>.composite1>.compositebody * {
+//     break-before: avoid-page;
+// }
+
+.performanceScenario table tr.header.holding-period th:first-child {
+    font-family: $tdType !important;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+    background-color: $transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+    background-color: $transparent;
+    font-weight: map-get($font-weight, 'bold') !important;
+    font-family: $thType !important;
+}
+
+.groupHeader1 .survival-scenario th {
+    border-left: 0;
+}
+
+.performanceScenario tbody+tbody .groupHeader1 {
+    border-left: 0.5pt solid #000000;
+}
+
+.performanceScenario table td.description {
+    color: $black;
+}
+
+.performanceScenario {
+    page-break-inside: auto !important;
+}
+
+table tr[class*="-return"] td {
+    font-family: $fontBoldregular;
+}
+
+.costovertime_3columntable {
+
+    th,
+    td {
+        width: 33.33%;
+    }
+}
+
+.costovertime_4columntable {
+
+    th,
+    td {
+        width: 25%;
+    }
+}
+
+.page1>.row5 .compositebody .subheader p,
+.WB_Whatisthisproduct_1,
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5 {
+    font-weight: 700;
+    font-family: "frutigerlightbold";
+    margin-bottom: 0;
+}
+
+//,.WB_Whataretherisks_1
+
+.WB_WhatAreTheCosts_3,
+.WB_WhatAreTheCosts_continued_2,
+.WB_Whataretherisks_1 {
+    font-weight: 700;
+    font-family: "frutigerlightbold";
+}
+
+
+
+@media only screen {
+    .page {
+        width: $screenpageWidth;
+    }
+}
+
+// .WB_Purpose_1 {
+//     font-size: 10pt;
+//     margin-bottom: .4cm;
+// }
+
+// .WB_GeneralInformation_1,
+// .WB_GeneralInformation_3,
+// .WB_GeneralInformation_5 {
+//     display: none;
+// }
+
+// .WB_GeneralInformation_2,
+// .WB_GeneralInformation_4 {
+
+//     font-family: $fontBoldregular;
+//     margin-bottom: 0;
+// }
+
+// .WB_GeneralInformation_4 {
+//     margin-bottom: .1cm;
+// }
+
+// @page :-ro-last {
+
+//     @bottom-left {
+
+//         background-image: none;
+
+//     }
+// }
+
+/* Theme name BPER */

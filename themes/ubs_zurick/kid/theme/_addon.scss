@@ -1,0 +1,519 @@
+:root {
+    --font-family: 'ZurichSans';
+    --fw-light: 300;
+    //--fw-normal: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+    --black: #000000;
+    --white: #ffffff;
+    --primary-blue: rgb(0, 23, 156);
+    //--h2-color: var(--primary-blue);
+    --arrow-color: rgb(25, 133, 255);
+}
+
+body {
+    color: var(--primary-blue);
+}
+
+p {
+    font-family: var(--font-family);
+    font-weight: var(--fw-light);
+    color: inherit;
+
+}
+
+h2 {
+    //  font: $h2Size $h2Type;
+    font-size: 9pt;
+
+    margin: 0cm 0 0.2cm 0;
+    padding: 0.19cm 0 0cm 0;
+}
+
+// p {
+//     font-family: var(--font-regular);
+//     line-height: 1.1;
+// }
+tbody {
+    display: table;
+    width: 100%;
+}
+
+
+.page1 {
+    padding-top: 0;
+
+    >.row1>.column1 {
+        width: 100%;
+    }
+
+    >.row3,
+    >.row4 {
+        .contentSection h2 {
+            // display: none;
+        }
+    }
+
+    >.row4 {
+
+        .column {
+            p {
+
+                // font-size: 10pt;
+            }
+        }
+
+    }
+
+
+    >.row6 {
+
+        .compositebody>.row .column {
+            // column-count: 2;
+        }
+    }
+
+    >.row6 {
+        .compositebody>.row .column h2 {
+            column-span: all;
+        }
+    }
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 {
+    width: 21%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 {
+    width: 79%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3 {
+
+    >.column1 .Product_SubHeader,
+    >.column2 .Product_Value {
+        p {
+            margin-bottom: 0;
+
+            &:not(:empty) {
+                height: .7cm;
+                // margin-bottom: .1cm;
+            }
+        }
+    }
+
+    >.column1> :not(.row1) .Product_SubHeader,
+    >.column2> :not(.row1) .Product_Value {
+        p:not(:empty) {
+            height: .6cm;
+
+
+        }
+    }
+
+    >.column>.row {
+        &:last-of-type {
+            p:not(:empty) {
+                height: auto;
+                margin-bottom: .15cm;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+// .page2 {
+//     >.row2 {
+
+//         .compositebody>.row .column {
+//             column-count: 2;
+//             column-gap: 0.8cm;
+//             column-fill: balance !important;
+//         }
+//     }
+// }
+
+
+// .WB_SRInarrative2_4,
+// .WB_SRInarrative2_1 {
+//     // background: url(images/warning-icon.png);
+//     background-size: 18%;
+//     background-position: 0px -5px;
+//     width: 79%;
+//     height: 61px;
+//     padding: 0px 0px 0px 63px;
+//     display: block;
+//     background-repeat: no-repeat;
+
+//     position: relative;
+//     --warning-color: #bebebe;
+//     --triangle-width: 0.8cm;
+//     --triangle-height: 0.7cm;
+
+//     &::before,
+//     &::after {
+//         position: absolute;
+//         top: 0;
+//         left: calc(var(--triangle-width));
+//     }
+
+//     &::before {
+//         content: "";
+//         --border-width: calc(var(--triangle-width) / 2);
+//         left: calc(var(--triangle-width));
+//         width: 0;
+//         height: 0;
+//         border-left: var(--border-width) solid transparent;
+//         border-right: var(--border-width) solid transparent;
+//         border-bottom: var(--triangle-height) solid var(--warning-color);
+//         display: flex;
+//         justify-content: center;
+//     }
+
+//     &:after {
+//         content: "!";
+//         color: #ffffff;
+//         font-size: 18pt;
+//         text-align: center;
+//         width: var(--triangle-width);
+//         top: 1pt;
+//     }
+
+// }
+
+// .narrative .WB_HowlongshouldIholdit_1 {
+//     background-color: var(--arrow-color);
+// }
+.narrative p:last-of-type,
+.page1>.row4>.composite>.compositebody>.row4>.text1 p[class*=WB_GeneralInformation_]:last-of-type {
+    padding-bottom: 0.15cm;
+}
+
+p.Sri {
+    margin-top: 1cm;
+}
+
+
+.sriRiskRating {
+    break-inside: avoid;
+    position: relative;
+    margin-bottom: 2mm;
+    // float: left;
+    width: 50%;
+
+    table {
+        margin-top: .2cm;
+
+        td.rating {
+            border-color: var(--arrow-color);
+            font-family: var(--font-family);
+            font-weight: var(--fw-medium);
+
+            &.selected {
+                background-color: var(--arrow-color);
+            }
+        }
+    }
+
+    .rating {
+        width: 1cm;
+        height: 1cm;
+    }
+
+
+
+    .header {
+        margin-top: 0;
+
+        font-size: 8pt;
+        font-family: var(--font-family);
+
+        th {
+            font-weight: var(--fw-light);
+
+            &:first-of-type {
+                padding-left: .7cm;
+            }
+
+            &:last-of-type {
+                padding-right: .7cm;
+            }
+        }
+    }
+
+    >tbody {
+        .arrow {
+            margin: 0;
+            top: .4cm;
+        }
+
+        .header {
+            top: 0.1cm;
+        }
+
+        .ratings>td {
+            padding-top: 0.7cm;
+        }
+
+    }
+}
+
+.page3 .compositebody {
+    break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1>.groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+    border-bottom: 0px;
+}
+
+
+
+
+
+.costovertime_3columntable {
+
+    th,
+    td {
+        width: 33.33%;
+    }
+}
+
+.costovertime_4columntable {
+
+    th,
+    td {
+        width: 25%;
+    }
+}
+
+// .scenarioheader {
+//     >th {
+//         width: 33.33% !important;
+//     }
+// }
+
+// .page3>.row3>.composite>.compositebody>.row2>.sectiontitle>h2 {
+//     border-top: 0px;
+// }
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+    width: 100%;
+}
+
+
+
+.groupRow1 table td,
+.groupHeader1 table th {
+    color: var(--primary-blue);
+    font-family: var(--font-family);
+    // font-weight: var(--fw-light);
+}
+
+.groupRow1 table .header td {
+    font-family: var(--font-family);
+}
+
+.groupHeader1 table th {
+    // font-weight: var(--fw-medium) !important;
+}
+
+.contentSection {
+    h2 {
+        color: inherit;
+        font-family: var(--font-family);
+        font-weight: var(--fw-medium);
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.contentSection.purpose h2 {
+    border-top: none;
+}
+
+.keyinformationdocument {
+    h2 {
+        // font-family: $fontBoldregular;
+        font-size: 25pt;
+        // color: var(--black);
+    }
+}
+
+.section .contentSection.keyinformationdocument h2 {
+    border: none;
+    // margin-bottom: 2mm;
+    margin-top: 0;
+}
+
+// .page2 .row2 .compositebody .row2 .sectiontitle h2 {
+//     border: 0;
+//     font-size: $h2microSize;
+//     font-family: $h2Type  !important;
+//     padding: 0mm 0 2mm;
+//     margin: 0cm 0 0 0;
+// }
+
+// .page2>.row2>.composite1>.compositebody *,
+// .page3>.row2>.composite1>.compositebody * {
+//     break-before: avoid-page;
+// }
+.performanceScenario {
+    page-break-inside: auto !important;
+}
+
+
+.performanceScenario table tr.header.holding-period th:first-child {
+    // font-family: $tdType !important;
+}
+
+.holding-period {
+    th {
+        &:first-of-type {
+            font-weight: var(--fw-light);
+        }
+    }
+}
+
+
+.investment-amount {
+    th {
+        font-weight: var(--fw-medium);
+    }
+}
+
+.WB_WhatAreTheCosts_3,
+.WB_WhatAreTheCosts_continued_2,
+.page1>.row5 .compositebody .subheader p,
+.WB_Whatisthisproduct_1,
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5,
+.WB_Whataretherisks_1 {
+    font-weight: var(--fw-medium);
+}
+
+.minimum .description,
+.averagereturn td,
+[class*="riy"] // .entrycosts td:nth-of-type(n+2),
+
+// .exitcosts td:nth-of-type(n+2) 
+    {
+    font-weight: var(--fw-light);
+}
+
+.costComposition {
+    td {
+        &:nth-of-type(n+2) {
+            font-weight: var(--fw-light);
+        }
+    }
+}
+
+
+.costComposition tr.oneofcosts th,
+.groupRow1 table .ongoingcosts th,
+.groupRow1 table .incidentalcosts th {
+    background: var(--arrow-color);
+    color: var(--white);
+}
+
+
+.narrative .WB_HowlongshouldIholdit_1 {
+    // background: var(--arrow-color);
+    // color: var(--white);
+    padding-left: .1cm;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+    background-color: $transparent;
+}
+
+// .groupHeader1 .survival-scenario th {
+//     border-left: 0;
+// }
+
+// .performanceScenario tbody+tbody .groupHeader1 {
+//     border-left: 0.5pt solid #000000;
+// }
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+    background-color: $transparent;
+    // font-weight: map-get($font-weight, 'bold') !important;
+    font-family: var(--font-family) !important;
+}
+
+// .performanceScenario table td.description {
+//     color: $black;
+// }
+
+// table tr[class*="-return"] td {
+//     font-family: $fontBoldregular;
+// }
+
+
+@media only screen {
+    .page {
+        width: $screenpageWidth;
+    }
+}
+
+.WB_Purpose_1 {
+    // font-size: 10pt;
+    // margin-bottom: .4cm;
+}
+
+.WB_GeneralInformation_1,
+.WB_GeneralInformation_3,
+.WB_GeneralInformation_5 {
+    // display: none;
+}
+
+.WB_GeneralInformation_2,
+.WB_GeneralInformation_4 {
+
+    // font-weight: var(--fw-medium);
+    // margin-bottom: 0;
+}
+
+.WB_GeneralInformation_4 {
+    // margin-bottom: .1cm;
+}
+
+// @page :-ro-nth(1) {
+//     margin-top: .6cm;
+// }
+
+// @page :-ro-last {
+//     margin-bottom: 3cm;
+
+//     @bottom-left {
+
+//         height: 2.2cm;
+
+//     }
+// }
+
+
+/* Theme name Zurich_K */

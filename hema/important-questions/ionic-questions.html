@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hema Ionic Interview questions</title>
+	<style>
+		body{
+            padding:15px;
+            margin:0;
+            background-color:#000;
+            color:#fff;
+			counter-reset: section;
+			line-height: 24px;
+        }
+		*{
+			box-sizing: border-box;
+		}
+		pre {
+			white-space: pre-wrap;
+		}
+		h1{
+			color:#8a2ae4;
+            font-size:16px;
+            margin-bottom:15px;
+		}
+		h1::before {
+			counter-increment: section;
+			content: counter(section) ") ";
+		}
+		p,li{
+			color:#fff;
+            font-size:14px;
+            margin-bottom:15px;
+			line-height: 24px;
+		}
+		table{
+            color:#fff;
+        }
+        table,tr,th,td{
+            border:1px solid #fff;
+            border-collapse: collapse;
+            padding:10px;
+        }
+		code.language-typescript, code.language-javascript,code {
+			background: rgba(255,255,255,0.08);
+    		color: #ff6ecd;
+		}
+	</style>
+</head>
+<body>
+	<h1>Requirement of ionic?</h1>
+	<p>Angular, NPM , Editor, Ionic Cli, Node modules </p>
+<h1>App flow?</h1>
+	<p>index.js to create component</p>
+<h1>Layout for login screen 2 input and one button ? big screen horizontal and small screen vertical</h1>
+<p>Three <b><span><</span>ion-col size-md-4 size-xs-12 <span>></span></</span><span><</span>ion-col></b> for 2 inputs and button for big screen.  Three <b>size-xs-12</b> for 2 inputs and one button</p>
+<h1>Call 2 api one by one? and show error message?</h1>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+export class ApiService {
+ private apiUrl1 = 'https://api.example.com/endpoint1';
+ private apiUrl2 = 'https://api.example.com/endpoint2';
+
+constructor(private http: HttpClient) {}
+  callApis() {
+   this.http.get(this.apiUrl1)
+    .pipe(
+      catchError(error => {
+       console.log('API 1 failed:', error);
+       return throwError('API 1 failed');
+      })
+    )
+    .subscribe(response => {
+      console.log('API 1 response:', response);
+      this.http.get(this.apiUrl2)
+       .pipe(
+          catchError(error => {
+           console.log('API 2 failed:', error);
+           return throwError('API 2 failed');
+         })
+       )
+      .subscribe(response => {
+        console.log('API 2 response:', response);
+      });
+    });
+ }
+}
+</code>
+</pre>
+<h1>Click button nothing happen how we debugging?</h1>
+<p><pre>Click F12 to open Developer Tools in Chrome. ...
+Go to Sources tab and expand Event Listener Breakpoints section. ...
+Expand the Mouse checkbox and select the click checkbox</pre></p>
+<h1>How you check api call is succeded or not?</h1>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+selector: 'app-root',
+templateUrl: 'app.component.html'
+})
+export class AppComponent {
+constructor(private http: HttpClient) {}
+
+makeAPICall() {
+this.http.get('https://api.example.com/data').subscribe(
+(response) => {
+console.log('API call succeeded:', response);
+// Do something with the response data here
+},
+(error) => {
+console.log('API call failed:', error);
+// Handle the error here
+}
+);
+}
+}
+</code>
+</pre>
+<p>If the API call is successful, the <code>response</code> object is logged to the console and the response data can be processed in the <code>(response)</code> callback. If the API call fails, the <code>error</code> object is logged to the console and the error can be handled in the <code>(error)</code> callback.</p>
+<h1>Network response check in chrome ?</h1>
+<ol><li><p>Open the Developer Tools by pressing F12 or by right-clicking on the page and selecting "Inspect".</p></li><li><p>Click on the "Network" tab in the Developer Tools.</p></li><li><p>Make the API request by refreshing the page or triggering the request in your application.</p></li><li><p>You should now see the API request listed in the Network tab. Click on the API request to see its details.</p></li><li><p>The "Headers" tab displays the request and response headers.</p></li><li><p>The "Preview" or "Response" tab displays the response body. The Preview tab will show you a nicely formatted version of the response data, whereas the Response tab will show you the raw JSON data.</p></li><li><p>If the API request returned an error, you should see the error details in the "Response" tab.</p></li></ol>
+<h1>Breakpoints in your application?</h1>
+<h1>Tab view and should be in top?</h1>
+<code>slot = "top"</code>
+<h1>Pass data to one page to another page</h1>
+<p>In page1.ts</p>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+data: any = {
+ name: 'John',
+ age: 30,
+ email: 'john@example.com'
+};
+constructor(public navController: NavController) { }
+goToPage2() {
+ this.navController.navigateForward('/page-data2', { queryParams: { userData: JSON.stringify(this.data) } });
+}
+</code>
+</pre>
+<p>In page2.ts</p>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+userData: any;
+constructor(public route: ActivatedRoute,private navController:NavController) {
+ this.route.queryParams.subscribe(params => {
+  if (params && params["userData"]) {
+   this.userData = JSON.parse(params["userData"]);
+    console.log(this.userData);
+   }
+ });
+}
+</code>
+</pre>
+<h1>Data binding Parent to child and child to Parent</h1>
+@input , @output
+<h1>Pipe?</h1>
+<p>Pipes can be used to transform data before displaying it in the view.</p>
+<p>Some pipe methods are date, uppercase, lowercase, titlecase , json, currency, percent.</p>
+<h1>RXJS (Reactive Extensions for JavaScript)?</h1>
+<code>npm install rxjs</code>
+<p>In Ionic, RxJS is commonly used with Angular to handle asynchronous operations such as HTTP requests and user interactions. It provides a convenient way to handle streams of data and allows you to easily manipulate and transform that data.</p>
+<pre>
+<code class="!whitespace-pre hljs language-javascript">
+import { Observable } from 'rxjs';
+
+const customObservable = <span class="hljs-title class_">Observable</span>.create(observer =&gt; {
+<span class="hljs-regexp">//</span> <span class="hljs-title class_">Emit</span> data
+observer.<span class="hljs-keyword">next</span>(<span class="hljs-string">'data 1'</span>);
+observer.<span class="hljs-keyword">next</span>(<span class="hljs-string">'data 2'</span>);
+observer.<span class="hljs-keyword">next</span>(<span class="hljs-string">'data 3'</span>);
+
+<span class="hljs-regexp">//</span> <span class="hljs-title class_">Complete</span> the observable
+observer.complete();
+});
+</code>
+<code class="!whitespace-pre hljs language-javascript">
+<span class="hljs-keyword">const</span> numbersObservable = <span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-keyword">const</span> squaredNumbersObservable = numbersObservable.<span class="hljs-title function_">pipe</span>(
+	<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num * num)
+);
+</code>
+</pre>
+<p>Output is : 1, 4, 9, 16, and 25</p>
+<h1>Observables?</h1>
+	<p>An Observable is simply a collection of future values or events that is able to be invoked or called.</p>
+<h1>Diff b/w observable and promises?</h1>
+<p><pre>Promise is always asynchronous.
+Observable can be either asynchronous or synchronous.
+Promise can provide a single value.
+Observable is a stream of values (from 0 to multiple values).Use RXJS</pre></p>
+<h1>ipa generated?(product)</h1>
+	<p>product => clean
+	build
+	run
+	Archieve => then Export.</p>
+<h1>Develop method apk? (clean,build, run)</h1>
+<pre>1)In the toolbar, select your app from the run configurations menu.
+2)In the target device menu, select the device that you want to run your app on.
+3)Click Run .</pre>
+<h1>App bundle </h1>
+<pre>1)An Android App Bundle is a new upload format that includes all your app's compiled code and resources, but defers APK generation and signing to Google Play.
+2)Gradlew
+Android/gradle
+3)Ionic cordova build android</pre>
+<h1>App upload in playstore?</h1>
+<p><pre>Open Play Console.
+Select All apps > Create app.
+Select a default language and add the name of your app as you want it to appear on Google Play. You can change this later.
+Specify whether your application is an app or a game. You can change this later.
+Specify whether your application is free or paid.
+Add an email address that Play Store users can use to contact you about this application.
+In the "Declarations" section:
+Acknowledge the “Developer Program Policies” and “US export laws” declarations.
+Accept the Play App Signing Terms of Service.
+Select Create app.
+Then upload apk file.</pre></p>
+<h1>Provisioning profile android?</h1>
+<p>The provisioning profile is a combination of the Team ID, Bundle ID, App ID, Device ID, and Entitlements.
+<pre>1)the app can only run trust based on the certificate embedded in the provisioning profile.
+2)an app with that app ID can run on certain devices included in the provisioning profile.
+3)a specific app with an App ID.</pre></p>
+<h1>Provisioning profile xcode?</h1>
+<p>A provisioning profile is a collection of information that links an App ID with signing certificates and authorized devices.
+It is used to control and authorize the devices on which the app can run and the Apple services it can access (such as iCloud or In-App Payment).</p>
+<h1>Provisional profile => automatic signin?</h1>	
+<p><pre>Enable automatic provisioning
+Open an iOS project in Visual Studio for Mac.
+Open the Info. plist file.
+Select the Application tab.
+In the Signing section, select Automatic Provisioning:
+Select your team from the Team dropdown.
+After a few seconds a Signing Certificate and Provisioning profile will be created</pre></p>
+<h1>Push notifications. how to create push notification?</h1>
+<ul>
+	<li>Install FCM cordova plugins</li>
+	<li>Create & login firebase cloud message site.</li>
+	<li>Create project</li>
+	<li>Step 1 => inside project enter app name which is mentioned in confix.xml file widget id like (io.ionic.starter) then register app.</li>
+	<li>Step 2 => It provide google-services.json then download and add in app folder.</li>
+	<li>Step 3 => Add firebase sdk.
+		<ol>
+			<li>dependencies{classpath 'com.google.gms:google-services:4.3.15'}
+			</li>
+			<li>Android/app/build.gradle file some of lined need to add.</li>
+			<li>then sync gradle files.</li>
+		</ol>
+	</li>
+	<li>Choose cloud message and create messaging . 
+		<ol><h4>Notification Compose</h4>
+			<li>Notification title </li>
+			<li>Notification text </li>
+			<li>Notification image (Optional) </li>
+			<li>Notification name (Optional) </li>
+		</ol>
+	</li>
+	<li>
+		<ol>
+			<h4>Target</h4>
+			<li>Choose app name like io.ionic.starter</li>
+		</ol>
+	</li>
+	<li>
+		<ol>
+			<h4>Schedule</h4>
+			<li>Choose schedule time like now or mention schedule time or daily or custom. </li>
+		</ol>
+	</li>
+	<li>
+		<ol>
+			<h4>Conversion events (optional)</h4>
+		</ol>
+	</li>
+	<li>
+		<ol>
+			<h4>Additional options(optional)</h4>
+		</ol>
+	</li>
+</ul>
+<h1>Custom plugin and push it to cordova?</h1>
+<h1>Capacitor?</h1>
+<p>Capacitor is an open source native runtime for building Web Native apps. Create cross-platform iOS, Android, and Progressive Web Apps with JavaScript, HTML
+<pre>Capacitor plugins:
+1)Action Sheet
+2)Browser
+3)Camera
+4)Clipboard
+5)Dialog
+6)Http
+7)Keyboard
+8)Screen Reader
+9)Status Bar
+10)Toast</pre>
+</p>
+<h1>Cordova plugin?</h1>
+<p>Accessing native device features from within your app (the camera, for example) requires using Cordova Plugins
+<pre>1)Camera
+2)Batery Status
+3)File
+4)Dialog
+5)In App Browser
+6)Splash screen
+7)Media
+8)Status bar</pre></p>
+<h1>Ionic project creation command?</h1>
+<p>ionic start <code>project-name template </code></p>
+<h1>Ionic project flow (index.js to component generation)</h1>
+<ol><li><p><strong>Project creation</strong>: You start by creating a new Ionic project using the <code>ionic start</code> command in your terminal. You can choose from various starter templates to kickstart your project.</p></li><li><p><strong>Project structure</strong>: Once you create a new Ionic project, you'll see that it has a predefined directory structure. The <code>src</code> directory contains your application code, while the <code>www</code> directory contains the compiled code that can be deployed to your target platforms.</p></li><li><p><strong>Development</strong>: You start developing your application by writing code in the <code>src</code> directory. You can use various Ionic components, such as buttons, forms, and tabs, to build your UI. You can also use Angular to create components, services, and other application logic.</p></li><li><p><strong>Testing</strong>: You can test your application by running it on a local server using the <code>ionic serve</code> command. This will open your application in a web browser, allowing you to test it on various screen sizes.</p></li><li><p><strong>Building</strong>: Once you're ready to deploy your application, you can build it using the <code>ionic build</code> command. This will compile your code and create a build that can be deployed to your target platforms.</p></li><li><p><strong>Deployment</strong>: You can deploy your application to various platforms, such as iOS, Android, or the web, using the appropriate tools and commands. For example, you can use Xcode to deploy your application to iOS, or Android Studio to deploy it to Android.</p></li><li><p><strong>Maintenance</strong>: Once your application is deployed, you'll need to maintain it by fixing bugs, adding new features, and updating dependencies. You can use various tools, such as Ionic CLI and Git, to manage your application's codebase and keep it up-to-date.</p></li></ol>
+<h1>What is an ion-app ?</h1>
+<p>ion-app is a core component in the Ionic Framework that represents the root component of an Ionic application. It is the container for the entire application, and it must be included in the app's template.The ion-app component is responsible for setting the default styles and layout for the app, such as setting the background color, defining the app's font, and setting the app's orientation.</p>
+<h1>What is an ion-router-outlet?</h1>
+<p>ion-router-outlet is a core component in the Ionic Framework. it is used to handle the navigation and routing of the app.</p>
+<h1>Difference between ionic 3 and ionic 4?</h1>
+<table>
+	<thead>
+		<th>Ionic 3</th>
+		<th>ionic 4</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				Ionic 3 used AngularJS.
+			</td>
+			<td>
+				It uses Angular 6+ as its default framework.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Ionic 4 has better performance than Ionic 3
+			</td>
+			<td>
+				Ionic 3 has slower performance compared to Ionic 4
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UI components different.Routing different.
+			</td>
+			<td>
+				UI components different.Routing different.
+			</td>
+		</tr>
+	</tbody>
+   </table>
+<h1>Post method for creation why we cant use put method for form creation?</h1>
+<p> POST method is used to submit data to be processed by a specified resource. When creating a new resource, the POST method is typically used because the server generates a unique identifier for the new resource, which is included in the response from the server.</p>
+<p> PUT method is typically used to update an existing resource, and it requires the client to specify the identifier for the resource being updated. This can make it difficult to use PUT for form creation because the client does not yet have a unique identifier for the new resource being created.</p>
+<h1>Write code for Service file, http get method and share data?</h1>
+<code>ionic generate service data-share</code>
+<p>In DataShareService.ts file</p>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
+@Injectable({
+	providedIn: 'root'
+})
+export class DataShareService {
+ apiurl = `https://jsonplaceholder.typicode.com`
+  constructor(private http:HttpClient) {
+ }
+ getData(){
+  const endpointurl=`${this.apiurl}/posts`;
+  return this.http.get(endpointurl);
+ }
+}
+</code>
+</pre>
+<p>In component ts file</p>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+ import { DataShareService } from '../services/data-share.service';
+ responseData : any;
+ constructor(private navController:NavController,private dataShare:DataShareService) {
+   this.dataShare.getData().subscribe(response =>
+	 {
+	   this.responseData = response;
+	   console.log("response data" , this.responseData)
+	 }
+   );
+ }
+</code>
+</pre>
+<h1>Ionic => which is better angular or react?</h1>
+<p><b>Angular</b> is a full-featured framework that provides robust tooling and powerful web application development.</p>
+<p><b>React</b> is a javascript library and React is a more lightweight and flexible library, highly performant and scalable web application.</p>
+<p>both Angular and React are excellent choices for Ionic development, and the decision should be based on your project requirements and the skillset of your team.</p>
+
+<h1>Difference between Ionic prepare and ionic build command?</h1>
+<p><b>ionic prepare</b> command prepares your app's web assets and generates the necessary files.</p>
+<ul><li>Copies the app's web assets to the platform-specific directory (e.g., <code>platforms/android/assets/www</code>)</li><li>Updates the platform-specific configuration files with the necessary settings for the app</li><li>Generates any necessary platform-specific code, such as Gradle files for Android</li></ul>
+<p><b>ionic build</b> builds your app for a specific platform.</p>
+<ul><li>Compiles your app's source code (TypeScript, JavaScript, HTML, and CSS)</li><li>Bundles the code using a tool such as Webpack or Rollup</li><li>Minifies and optimizes the code for production</li><li>Merges the code with the platform-specific code generated by the <code>ionic prepare</code> command</li><li>Creates a binary file for the platform (e.g., an APK file for Android)</li></ul>
+<h1>Why we are using Cordova?</h1>
+<p>Cordova is a popular open-source mobile application development framework </p>
+<ul>
+	<li>Cross-platform development</li>
+	<li>Access to native features</li>
+	<li>Community support</li>
+	<li>Integration with other frameworks: Cordova can be easily integrated with other popular frameworks such as Angular, React, and Vue.js</li>
+</ul>
+<h1>Why we are using Capacitor?</h1>
+<p>Capacitor is a modern open-source cross-platform native runtime for building web apps that enables developers to build native mobile, desktop, and web apps using web technologies like HTML, CSS, and JavaScript. </p>
+<ul>
+	<li>Cross-platform development</li>
+	<li>Access to native features</li>
+	<li>Modern development workflow => Capacitor offers a modern and flexible development workflow with features such as hot module replacement, live reload, and TypeScript support, allowing developers to build apps faster and with fewer errors.</li>
+</ul>
+<h1>Difference between Cordova and Capacitor?</h1>
+<ol><li><p>Architecture: Cordova uses a WebView to render web content within a native app, whereas Capacitor uses a native bridge to communicate between web code and native code. This means that Capacitor provides better performance and allows for more native-like UI experience.</p></li><li><p>Plugin system: Cordova has a large and mature plugin ecosystem that enables developers to access native device features like camera and file system. Capacitor also has a growing list of plugins, but its plugins are generally smaller and more focused on specific tasks.</p></li><li><p>Configuration: Cordova requires additional configuration files for each platform, which can be complex to manage, especially when working with multiple platforms. Capacitor, on the other hand, has a simpler configuration system that is easier to manage and less error-prone.</p></li><li><p>TypeScript support: Capacitor natively supports TypeScript, whereas Cordova requires additional configuration to enable TypeScript.</p></li><li><p>Development workflow: Capacitor has a modern and flexible development workflow with features such as hot module replacement and live reload, making it easier and faster to develop mobile apps. Cordova, on the other hand, has a more traditional development workflow with slower build times.</p></li></ol>
+<h1>What are the plugins available in cordova and Capacitor?</h1>
+<p>Camera , Geolocation, Device oreinetation, Image picker ,Files, Contacts, Status bar, Battery status.</p>
+<h1>Can we use cordova along with capacitor?</h1>
+<ol>
+<li>cordova plugin add plugin-name</li>
+<li>npm install @capacitor/compat</li>
+<li>
+<pre>
+<code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">import</span> { registerPlugin } <span class="hljs-keyword">from</span> <span class="hljs-string">'@capacitor/core'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">CameraPlugin</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'cordova-plugin-camera'</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Camera</span> = <span class="hljs-title function_">registerPlugin</span>(<span class="hljs-string">'Camera'</span>, {
+<span class="hljs-attr">web</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./web'</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <span class="hljs-keyword">new</span> m.<span class="hljs-title class_">CameraWeb</span>()),
+<span class="hljs-attr">native</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CameraPlugin</span>()
+});
+
+<span class="hljs-keyword">export</span> { <span class="hljs-title class_">Camera</span> };
+</code>
+</pre>
+</li>
+<li>
+<pre>
+<code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Camera</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'./cordova-camera'</span>;
+
+...
+
+<span class="hljs-keyword">async</span> <span class="hljs-title function_">takePicture</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">const</span> photo = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Camera</span>.<span class="hljs-title function_">getPhoto</span>({
+<span class="hljs-attr">quality</span>: <span class="hljs-number">90</span>,
+<span class="hljs-attr">allowEditing</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-attr">resultType</span>: <span class="hljs-title class_">CameraResultType</span>.<span class="hljs-property">Base64</span>
+});
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">myImage</span> = photo.<span class="hljs-property">base64Data</span>;
+}
+</code>
+</pre>
+</li>
+</ol>
+<h1>How capacitor is better than cordova?</h1>
+<ol>
+	<li>Improved performance:</li>
+	<li>Better support for modern web technologies</li>
+	<li>Easier debugging and testing</li>
+	<li>Support for cross-platform development: Capacitor supports not only iOS and Android but also other platforms like Electron</li>
+</ol>
+<h1>Popover => Center Align.. once click need to show that position .. tell the parameter?</h1>
+<p>set the position property to middle.</p>
+<div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-bash">&lt;ion-button (click)=<span class="hljs-string">"presentPopover(<span class="hljs-variable">$event</span>)"</span>&gt;Show Popover&lt;/ion-button&gt;
+</code></div>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+async presentPopover(ev: any) {
+const popover = await this.popoverController.create({
+component: MyPopoverPage,
+event: ev,
+translucent: true,
+animated: true,
+position: 'middle'
+});
+return await popover.present();
+}
+</code>
+</pre>
+
+<h1>IonViewWillEnter & IonViewDidEnter difference?</h1>
+<p>ionViewWillEnter: This event is triggered just before the page is about to be displayed, and can be used to perform any necessary setup tasks before the page is shown.</p>
+<p>ionViewDidEnter: This event is triggered after the page has been fully rendered and is now visible to the user.</p>
+<h1>CORS?</h1>
+<ul>
+<li>CORS (Cross-Origin Resource Sharing) is a security mechanism implemented in web browsers that restricts web pages from making requests to a different domain than the one that served the web page. This is to prevent malicious websites from accessing data from other websites without permission.</li>
+<li>In an Ionic application, CORS can be an issue when making API calls to a server hosted on a different domain than the one the application is running on. To resolve this issue, you can configure your server to allow CORS requests from your Ionic application.</li>
+<pre>
+<code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
+
+app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
+res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">'Access-Control-Allow-Origin'</span>, <span class="hljs-string">'*'</span>);
+res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">'Access-Control-Allow-Methods'</span>, <span class="hljs-string">'GET, POST, PUT, DELETE'</span>);
+res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">'Access-Control-Allow-Headers'</span>, <span class="hljs-string">'Content-Type, Authorization'</span>);
+<span class="hljs-title function_">next</span>();
+});
+
+<span class="hljs-comment">// other server code here...</span>
+
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>);
+</code>
+</pre>
+</ul>
+<h1>Http client & Http ngx?</h1>
+<ul><li><p><code>HttpClient</code>: This is the default HTTP module in Angular. It provides a higher-level interface for making HTTP requests and is designed to be used with observables. It has a simpler API than the <code>HTTP</code> module and supports features such as automatic JSON parsing and request interception.</p></li><li><p><code>HTTP</code>: This is a lower-level HTTP module that is part of the <code>@ionic-native/http</code> package. It provides a more fine-grained control over the HTTP requests and allows you to use the native HTTP implementation on the device (e.g. <code>NSURLSession</code> on iOS and <code>OkHttp</code> on Android) for better performance. It has a more complex API than the <code>HttpClient</code> and requires you to manually handle things like headers, request body, and response parsing.</p></li></ul>
+<h1>SSL certificate?</h1>
+<p>SSL (Secure Sockets Layer) is a security protocol that provides encryption and authentication for network communications. It is commonly used to secure web connections, such as those used for HTTP requests in an Ionic application.</p>
+<h1>Any person does not use rooted device?</h1>
+<p>Check the login device is rooted or not. If rooted device means go to specific page.otherwise display the user is not rooted device.</p>
+<h1>ngOninit & Constructor difference?</h1>
+constructor for dependency injection and ngOnInit for initialization logic.
+<h1>Ionic life cycle?</h1>
+<img src="images/life-cycle1.png" alt="life cycle" />
+<ol><li><p>Initialization: This is the first stage in the lifecycle of an Ionic app. The <code>platform.ready()</code> method is called when the platform is ready, which means that the native plugins and platform-specific code have been loaded.</p></li><li><p>Page Load: When a page is loaded, the <code>ionViewDidLoad()</code> method is called. This is the perfect time to load any data that needs to be displayed on the page.</p></li><li><p>Page Activation: When a page is activated, the <code>ionViewWillEnter()</code> method is called. This is a good place to set up the page before it becomes visible to the user.</p></li><li><p>Page Display: When a page is displayed, the <code>ionViewDidEnter()</code> method is called. This is the perfect time to start any animations or other visual effects.</p></li><li><p>Page Deactivation: When a page is about to be deactivated, the <code>ionViewWillLeave()</code> method is called. This is a good place to clean up any resources that were allocated during page activation.</p></li><li><p>Page Dismissal: When a page is dismissed, the <code>ionViewDidLeave()</code> method is called. This is a good place to perform any final cleanup before the page is removed from the stack.</p></li><li><p>Destruction: When a page is destroyed, the <code>ionViewWillUnload()</code> method is called. This is the perfect time to release any resources that were allocated during the page's lifecycle.</p></li></ol>
+<h1>Ios build generation in apple store?</h1>
+<ol>
+	<li>ionic cordova build ios --prod --release
+		<p>This will create an iOS build of your app in the platforms/ios/build/device directory.</p>
+	</li>
+	<li><p>Generate an App Store Distribution Certificate and Provisioning Profile:
+		You will need a valid App Store Distribution Certificate and Provisioning Profile to sign and upload your app to the App Store. You can create these in the Apple Developer portal. Make sure the certificate and profile are valid for App Store Distribution, and not for development or ad hoc distribution.</p></li><li><p>Sign your app with the Distribution Certificate:
+		Use Xcode to sign your app with the App Store Distribution Certificate you generated in step 2. Open the <code>.xcworkspace</code> file in the <code>platforms/ios</code> directory and navigate to the "Build Settings" tab. Under "Code Signing Identity" and "Provisioning Profile", select the Distribution Certificate and Provisioning Profile you created in step 2.</p></li><li><p>Archive your app:
+		In Xcode, select "Product" -&gt; "Archive" to create an archive of your app.</p></li><li><p>Export the archive as an .ipa file:
+		In Xcode, select the archive you just created and click "Export". Choose "App Store" as the export method and follow the prompts to export your app as an .ipa file.</p></li><li><p>Validate the .ipa file:
+		Use the Application Loader tool in Xcode to validate your .ipa file before uploading it to the App Store. This will ensure that your app meets all App Store guidelines and requirements.</p></li><li><p>Upload your app to the App Store:
+		Once your .ipa file has been validated, you can use the Application Loader tool to upload it to the App Store. Follow the prompts to upload your app and submit it for review by Apple.</p></li>
+</ol>
+<h1>Cordova plugin list command?</h1>
+<p><code>cordova plugin list</code></p>
+<h1>LocalStorage , Sqllite, Sessionstorage which is better?</h1>
+<p>Sqllite is powerful than LocalStorage or SessionStorage and can handle complex queries and data relationships</p>
+<p>LocalStorage => is a simple key-value storage mechanism that can be used to store small amounts of data, such as user preferences or authentication tokens. It stores data in the browser's storage and is limited to a maximum of 5-10MB per domain. It's easy to use and requires minimal setup, but it's not recommended for storing large amounts of data.</p>
+<p>SQLite => is a full-featured relational database that can be used to store large amounts of structured data in Ionic applications. </p>
+<p>SessionStorage => has some limitations, such as a maximum storage size of 5-10MB per domain and data being cleared when the user closes the browser or navigates away from the application. However, it can be a useful tool for storing temporary data in Ionic </p>
+<h1>Change app name ? After config.xml what we need to change for app name?</h1>
+<p>Open the config.xml file.</p>
+<p>Locate the name element, which contains the current name of your application.Then change the name and save it.</p>
+<p>Run ionic cordova build and ionic cordova run android</p>
+<h1>How to debug build?</h1>
+<ol><li><p>Check the console output: When you run the <code>ionic build</code> command, it will output information about the build process to the console. Look for any error messages or warnings that might indicate the source of the problem.</p></li><li><p>Check the build logs: The build process generates logs that can be found in the <code>platforms/&lt;platform&gt;/cordova/console.log</code> file. Look for any error messages or warnings that might indicate the source of the problem.</p></li><li><p>Check the code: Look for syntax errors, missing or incorrect import statements, and other issues in your code that might be causing the build to fail.</p></li><li><p>Try building for a different platform: If you're having trouble building for a particular platform, try building for a different platform to see if the problem is specific to that platform.</p></li><li><p>Remove and re-add platforms/plugins: Try removing and re-adding the platform or plugin that's causing the build to fail. Sometimes this can help resolve issues with dependencies or conflicting versions.</p></li><li><p>Update dependencies: Make sure that all of the dependencies in your project are up-to-date, including Ionic, Cordova, and any plugins that you're using.</p></li><li><p>Use the <code>--verbose</code> flag: Adding the <code>--verbose</code> flag to the <code>ionic build</code> command can provide additional information about the build process that might help you identify the source of the problem.</p></li></ol>
+<h1>Ionic advantage & disadvantage </h1>
+<p>Advantages</p>
+<ul>
+	<li>Simple to learn</li>
+	<li>Cross-platform: The ionic application may run on a variety of platforms, including native iOS, Android, desktop, and the web, all from a single codebase. These applications are written once and run anywhere.</li>
+	<li>Large developer community</li>
+	<li>Access to native features: Ionic provides plugins that allow you to access native features of the device, such as the camera, GPS, and contacts.</li>
+	<li>Ionic's user interface: It includes themes and components</li>
+</ul>
+<p>Disadvantage</p>
+<ul>
+	<li>Performance is low compared to native app</li>
+	<li>Security is low compared to native app</li>
+</ul>
+<h1>Lazy Loading?</h1>
+<p> lazy loading is that we only load the HTML, CSS, and JavaScript that our application requires to render its first route, and then load other components as needed.</p>
+<pre>
+<code class="!whitespace-pre hljs language-typescript">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [
+ {
+  path: 'home',
+  loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+ },
+ {
+  path: 'about',
+  loadChildren: () => import('./about/about.module').then(m => m.AboutPageModule)
+ },
+ {
+  path: 'contact',
+  loadChildren: () => import('./contact/contact.module').then(m => m.ContactPageModule)
+ }
+];
+
+@NgModule({
+ imports: [RouterModule.forRoot(routes)],
+ exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code>
+</pre>
+<h1>Lazy Loading uses?</h1>
+<p>Used to improve the performance of an application by loading components and pages only when they are needed</p>
+</body>
+</html>

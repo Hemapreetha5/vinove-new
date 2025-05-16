@@ -1,0 +1,93 @@
+ body {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    padding: 0;
+    margin: 0;
+ }
+
+
+
+ @mixin paraAlingments($pos) {
+    @if($pos) {
+       text-align: $allparaAlignment;
+       word-break: break-word;
+    }
+
+    @else {
+       text-align: left;
+       word-break: break-word;
+    }
+ }
+
+ p {
+    @include paraAlingments(true);
+ }
+
+ .otherrelevantinformation p {
+    /*Exclude this 'otherrelevant information' para to justify align, all other para will be justified*/
+    @include paraAlingments(false);
+ }
+
+ p,
+ .description {
+    font: $paraSize $paraType;
+    color: $paraColor;
+    margin: 0;
+    padding: $paraPadding;
+    line-height: $paraLineHeight;
+ }
+
+ .narrative {
+
+    .WB_HowlongshouldIholdit_1,
+    .WB_HowlongshouldIholdit_4 {
+       background-color: $medgrey;
+       padding: 8px 2px;
+       color: $white;
+       font-weight: var(--fw-bold);
+       margin-bottom: 0.2cm;
+    }
+ }
+
+
+ //  .subheader p {
+ //     font: $h3Size $h3Type;
+ //     color: $h3Color;
+ //  }
+
+ .header1 p,
+ .header2 p {
+    font: $h2Size $h3Type;
+    color: $h3Color;
+    margin: 0;
+    padding: 0;
+ }
+
+ .header3 p,
+ .header4 p {
+    font: $h2Size $fontLight;
+    color: $h3Color;
+    margin: 0;
+    padding: 0;
+ }
+
+ //   print specific
+ .page {
+    width: $pageWidth;
+    height: $pageHeight;
+
+ }
+
+ .page1 {
+    padding: 2cm 0 0 0;
+    background: $logourl;
+    background-size: $logobgWidth $logobgHeight;
+    background-position: $logoDirection;
+    background-repeat: no-repeat;
+ }
+
+ .contentSection h2 {
+    border-top: 0.01cm solid $primary;
+    //  font: bold 12pt var(--font-regular);
+
+ }

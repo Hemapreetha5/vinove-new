@@ -1,0 +1,1169 @@
+@font-face {
+    font-family: "Helvetica Neue LT W05 45 Light";
+    src: url("images/f9c5199e-a996-4c08-9042-1eb845bb7495.woff2") format("woff2"),
+        url("images/2a34f1f8-d701-4949-b12d-133c1c2636eb.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Helvetica Neue LT W05 65 Medium";
+    src: url("images/240c57a0-fdce-440d-9ce3-85e0cb56f470.woff2") format("woff2"),
+        url("images/7802e576-2ffa-4f22-a409-534355fbea79.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Helvetica Neue LT W05 75 Bold";
+    src: url("images/800da3b0-675f-465f-892d-d76cecbdd5b1.woff2") format("woff2"),
+        url("images/7b415a05-784a-4a4c-8c94-67e9288312f5.woff") format("woff");
+}
+
+@font-face {
+    font-family: "TiemposRegular";
+    src: url("images/tiempos-text-regular.woff2") format("woff2"),
+        url("images/tiempos-text-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "TiemposMedium";
+    src: url("images/tiempos-text-medium.woff2") format("woff2"),
+        url("images/tiempos-text-medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: "TiemposSemiBold";
+    src: url("images/tiempos-text-semibold.woff2") format("woff2"),
+        url("images/tiempos-text-semibold.woff") format("woff");
+}
+
+@font-face {
+    font-family: FontAwesome;
+    src: url(images/fontawesome-webfont.eot?v=4.6.3);
+    src: url(images/fontawesome-webfont.eot?#iefix&v=4.6.3) format("embedded-opentype"),
+        url(images/fontawesome-webfont.woff2?v=4.6.3) format("woff2"),
+        url(images/fontawesome-webfont.woff?v=4.6.3) format("woff"),
+        url(images/fontawesome-webfont.ttf?v=4.6.3) format("truetype"),
+        url(images/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --blue: #015A78;
+    --teal: #00B6C9;
+    --orange: #FF7E2B;
+    --red: #E02E50;
+    --yellow: #E8CF03;
+    --lightGreen: #749676;
+    --darkGreen: #356D48;
+    --purple: #6B4B9E;
+    --pink: #EF5690;
+    --grey: #E6E4E0;
+    --black: #1C2B39;
+    --border: #1DB6C8;
+    --bodytextalingment: left;
+    --parabodylnheight: 1.3;
+    /*pbi:242592 : changed from 1.05*/
+    --fontRegular: "TiemposRegular";
+    --fontMedium: "TiemposMedium";
+    --fontSemiBold: "TiemposSemiBold";
+    --headingLight: "Helvetica Neue LT W05 45 Light";
+    --headingMedium: "Helvetica Neue LT W05 65 Medium";
+    --headingBold: "Helvetica Neue LT W05 75 Bold";
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    zoom: 1;
+}
+
+body {
+    color: var(--blue);
+    /*pbi:242592 :changed from --black*/
+    font-size: 9pt;
+    font-family: var(--fontRegular);
+    padding: 0;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+p:empty {
+    display: none;
+}
+
+.logo {
+    background-position: center center !important;
+    background: url(images/Atriumlogo.svg) no-repeat;
+    background-size: 12cm 7cm;
+    max-height: 2cm;
+    width: 4.25cm;
+    float: right;
+    margin-top: -10px;
+}
+
+.page {
+    position: relative;
+    height: 27.7cm;
+    width: 19cm;
+    /*border:1px solid blue;*/
+}
+
+h1 {
+    font-family: var(--headingMedium);
+    font-size: 26px;
+    font-weight: normal;
+    color: #00244a;
+    font-style: normal;
+    line-height: 31px;
+}
+
+h2 {
+    margin: 0.05cm 0cm 0.02cm 0cm;
+    padding: 0.15cm 0cm 0.01cm 0cm;
+    font-family: var(--headingMedium) !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 12pt !important;
+    color: var(--teal) !important;
+    line-height: 26px !important;
+}
+
+h3 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color: #fff;
+    font-family: var(--headingBold) !important;
+}
+
+h4 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #00244a;
+    font-family: var(--headingMedium);
+}
+
+a {
+    text-decoration: none;
+    color: #ff7e2b;
+}
+
+ul {
+    padding: 0 0 0 .3cm
+}
+
+.highcharts-container {
+    /*aligning the chart y axisi lables with Growth Header*/
+    margin-left: -10px;
+    width:100% !important;
+}
+
+.topheader p.item2,
+.topname p.item2 {
+    padding-top: 0.2cm;
+    font-family: HelveticaNeueLTStd-Md;
+    font-size: 9.5pt;
+    color: #8797ac;
+}
+
+.InvestmentCate .Key img {
+    display: none;
+}
+
+.InvestmentCate .Key {
+    width: 100%;
+    padding-top: 0;
+    overflow: hidden;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.InvestmentCate tbody tr:nth-of-type(1) td.Key {
+    background: linear-gradient(90deg, var(--darkGreen) 0%, rgba(52, 109, 72, 0.2) 100%) 0% 0% no-repeat padding-box;
+}
+
+.InvestmentCate tbody tr:nth-of-type(1) td.Name b {
+    font-family: var(--headingMedium);
+    font-size: 10pt;
+    color: var(--darkGreen);
+}
+
+.InvestmentCate tbody tr:nth-of-type(2) td.Key {
+    background: linear-gradient(90deg, var(--orange) 0%, rgba(253, 125, 56, 0.2) 100%) 0% 0% no-repeat padding-box;
+}
+
+.InvestmentCate tbody tr:nth-of-type(2) td.Name b {
+    font-family: var(--headingMedium);
+    font-size: 10pt;
+    color: var(--orange);
+}
+
+.InvestmentCate tbody tr:nth-of-type(3) td.Key {
+    background: linear-gradient(90deg, var(--purple) 0%, rgba(107, 75, 158, 0.2) 100%) 0% 0% no-repeat padding-box;
+}
+
+.InvestmentCate tbody tr:nth-of-type(3) td.Name b {
+    font-family: var(--headingMedium);
+    font-size: 10pt;
+    color: var(--purple);
+}
+
+.keyinfo {
+    border-bottom: .5pt solid #d9d9d9;
+    margin-bottom: .2cm;
+}
+
+.keyinfo .keyinfo {
+    margin: 0;
+}
+
+.keyinfoheader h2 {
+    margin: 0;
+    font-family: HelveticaNeueLTStd-Th;
+    font-size: 16pt;
+    color: #10293e;
+    padding-bottom: .12cm;
+    border-bottom: 1pt solid #0071bb;
+}
+
+.keyinfobody .column1 {
+    width: 48% !important;
+}
+
+.keyinfobody .column2 {
+    width: 48% !important;
+    float: right !important
+}
+
+.horizontal-list>div {
+    width: 100%;
+    padding: .1cm 0 0.1cm;
+    border-bottom: 1pt solid var(--border);
+}
+
+.horizontal-list>div:first-of-type {
+    border-top: 2pt solid var(--border);
+}
+
+.horizontal-list>div:last-of-type {
+    border-bottom: 1pt solid var(--border);
+}
+
+.horizontal-list>div span {
+    margin: 0;
+    padding: 0 3%;
+    float: left;
+}
+
+.horizontal-list>div .label {
+    line-height: normal;
+    width: 42%;
+    padding-left: 1mm;
+    font-family: var(--fontMedium);
+    font-size: 9pt;
+    font-weight: normal;
+}
+
+.Key_Info_Right.horizontal-list>div .label {
+    width: 57%;
+}
+
+.Key_Info_Right.horizontal-list>div .value {
+    width: 32%;
+}
+
+.Key_Info_Left.horizontal-list>div .label {
+    width: 45%;
+}
+
+.Key_Info_Left.horizontal-list>div .value {
+    width: 47%;
+    padding: 0 3% 0 0;
+    text-align: right;
+}
+
+.page1 .keyinfo .row3 .text.text1 {
+    margin: 0.2cm 0;
+}
+
+.page1 .keyinfo .row3 .text.text1 .item2,
+.page1 .keyinfo .row3 .text.text1 .item3 {
+    font-size: 6pt;
+    color: #b4b6b9;
+    margin: 0;
+}
+
+.horizontal-list>div .value {
+    width: 46%;
+}
+
+.horizontal-list .clear {
+    border: 0;
+    padding: 0
+}
+
+.page1>.row3>.column1 {
+    float: left;
+    width: 65%
+}
+
+.page1>.row3>.column2 {
+    float: right;
+    width: 35%
+}
+
+.breakdown {
+    width: 100%;
+    position: relative;
+}
+
+.breakdown .chart {
+    width: 6cm !important;
+    margin: 0.3cm 1.52cm 0;
+}
+
+.breakdown table {
+    width: 100% !important;
+    float: left !important;
+}
+
+.page2>.row1>.composite1>.compositebody>.row2>.column1>.row1>.breakdown1.AssetAllocation2 table {
+    width: 95% !important;
+    margin-top: 10px;
+}
+
+.breakdown .footer,
+.Performance_Chart .footer,
+.Disclaimer p,
+.page1 .Footnote p {
+    font-size: 8pt;
+    padding-top: 10px;
+    width: 95%;
+    display: block;
+    clear: both;
+    color: #7C878E;
+    line-height: 1.03;
+}
+
+.InvestmentCate {
+    padding: 0;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.page2>.row1>.composite>.compositebody>.row2>.column1>.row1>.AssetAllocation2 .footer {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-before: avoid;
+    break-after: column;
+}
+
+.page2>.row1>.composite1>.compositebody>.row2 {
+    column-count: 2;
+    column-gap: 6px;
+}
+
+.page2>.row1>.composite1>.compositebody>.row2>.column2 p,
+.page1 .column2>.row6 .text p.item3,
+.page1 .column2>.row6 .text p.item5 {
+    text-align: var(--bodytextalingment);
+}
+
+.page2>.row1>.composite1>.compositebody>.row2>.column {
+    float: none;
+    width: 100%;
+}
+
+.page2>.row1>.composite1>.compositebody>.row2>.column2 {
+    padding-top: 1cm;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+table th {
+    font-weight: normal;
+    color: var(--blue);
+}
+
+table td {
+    padding: 5px;
+}
+
+.breakdown table td {
+    /*238599*/
+    padding: 1mm 1mm;
+    border-bottom: 1px solid var(--border);
+}
+
+.breakdown table tbody tr:first-of-type td {
+    /*238599*/
+    border-top: 3px solid var(--border);
+}
+
+.breakdown table tbody tr:last-of-type td {
+    /*238599*/
+    border-bottom: 3px solid var(--border);
+}
+
+.TopExposures table tr {
+    border: none !important;
+}
+
+.TopExposures table td {
+    padding: 1mm 1mm;
+    border-bottom: 1pt solid var(--border);
+}
+
+.TopExposures table tbody tr:first-of-type td {
+    border-top: 2pt solid var(--border);
+}
+
+.TopExposures table tbody tr:last-of-type td {
+    border-bottom: 2pt solid var(--border);
+}
+
+table .Weight,
+.performancetable table td:not(.rowheader),
+.performancetable table th:not(.rowheader) {
+    text-align: right;
+}
+
+table .Name,
+.performancetable table th.blank {
+    text-align: left;
+}
+
+table .CustomField1 {
+    text-align: right;
+}
+
+.InvestmentCate table td {
+    height: auto;
+    display: block;
+    padding: 1mm 0;
+}
+
+.key-color {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px
+}
+
+.designed,
+.objective,
+.strategy {
+    margin-bottom: .2cm;
+    border-bottom: .5pt solid #d9d9d9;
+    padding-bottom: .10cm;
+    line-height: 10pt;
+}
+
+.designed {
+    border: 0;
+    margin: 0
+}
+
+.holding,
+.PlatformHTMLTable,
+.Platforms_Availability {
+    width: 95%;
+    margin-bottom: .1cm;
+}
+
+.PlatformHTMLTable p:empty {
+    display: none;
+}
+
+.holding h2,
+.Snapshot h2,
+.Portfolio_Update h2 {
+    padding-bottom: .15cm;
+    border-bottom: 1pt solid #0071bb;
+    margin: 0;
+}
+
+.holding table tr td,
+.PlatformHTMLTable table tr td {
+    border-bottom: 0.5pt dotted #a9a9a9;
+}
+
+.holding table tr th {
+    background-color: #fbfbfa;
+    padding: 1mm 1mm;
+    color: #5c676f;
+    display: none;
+}
+
+.holding table tr .Name {
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.holding table tr td {
+    padding: 1mm 1mm;
+}
+
+.performancetable {
+    margin-bottom: .1cm;
+}
+
+.performancetable h2,
+.Ratios h2 {
+    border-bottom: 0px;
+    width: 95%;
+    /* padding-top: 0; */
+    padding-left: 0;
+    /* padding-bottom: 0; */
+}
+
+.performancetable table {
+    font-size: 12px;
+    /*margin-bottom: .25cm;*/
+    /*equalizing the padding and margin across all sections , by commenting this line*/
+    width: 95% !important;
+}
+
+tr.odd.PaSinceLaunch td.unitWorkbook,
+tr.odd.PaSinceLaunch td.benchmark,
+tr.even.Pa120M td.unitWorkbook,
+tr.even.Pa120M td.benchmark,
+tr.odd.Pa84M td.unitWorkbook,
+tr.odd.Pa84M td.benchmark,
+tr.even.Pa60M td.unitWorkbook,
+tr.even.Pa60M td.benchmark,
+tr.odd.Pa36M td.unitWorkbook,
+tr.odd.Pa36M td.benchmark {
+    background: rgba(230, 228, 224, 0.75);
+}
+
+.Ratios table {
+    font-size: 12px;
+    width: 100% !important;
+}
+
+.page1>.row3>.column2>.row5 {
+    /*correcting header padding for Ratings and awards section*/
+    /* margin-top:0.26cm; */
+}
+
+.performancetable table tr,
+.Ratios tr {
+    border-bottom: 1pt solid var(--border);
+}
+
+.performancetable table tr:last-of-type,
+.CustomSharpe tr:last-of-type {
+    border-bottom: 2pt solid var(--border);
+}
+
+.Ratios tr:last-of-type {
+    border-bottom: 1pt solid var(--border);
+}
+
+.Ratios td:nth-child(1),
+.CustomSharpe td:nth-child(1) {
+    width: 33%;
+    text-align: left;
+    font-family: var(--fontMedium) !important;
+
+}
+
+.Rating {
+    display: inline-block; 
+    margin: 0.2cm 0;
+}
+
+.Rating p img {
+    width: auto;
+    height: 2cm;
+}
+
+.Rating p {
+float: left;
+margin-right: 5px;
+}
+
+.Rating p[class*="item"]:last-of-type {
+ width: 100%;
+ font-size: 8pt;
+ margin: 0.2cm 0 0;
+}
+
+.Ratios td,
+.CustomSharpe td {
+    width: 16%;
+    text-align: right;
+}
+
+.performancetable table tr th,
+.Ratios table tr th {
+    background-color: transparent;
+    font-family: var(--fontMedium);
+    padding: 1mm 1.2mm;
+    text-align: center;
+    color: var(--blue);
+    /*pbi:242592 :changed from --black*/
+    border-top: 2pt solid var(--border);
+
+}
+
+.highcharts-axis-labels text {
+    fill: var(--blue) !important;
+    /*pbi:242592 :changed from #000*/
+/*     font-size: 9px !important; */
+}
+
+.highcharts-axis-labels.highcharts-xaxis-labels span {
+    color: var(--blue) !important;
+    white-space: normal !important;
+}
+
+.highcharts-credits {
+   display:none;
+}
+
+.performancetable table tr td,
+.Ratios table tr td {
+    padding: 1mm 1.5mm;
+    text-align: center;
+    font-family: var(--fontRegular);
+}
+
+.Ratios table tr td,
+.Ratios table tr th {
+    text-align: right;
+}
+
+.performancetable table tr .rowheader,
+.Ratios table tr .rowheader,
+.Ratios table tr .blank {
+    text-align: left;
+    font-family: var(--fontMedium);
+}
+
+.Ratios table tr .rowheader,
+.Ratios table tr .blank {
+    padding-right: 0;
+}
+
+.disclaimer {
+    position: absolute;
+    left: 1.5cm;
+    bottom: 1.25cm;
+    width: 18cm;
+    line-height: 8px !important;
+}
+
+.caveat ol {
+    margin: 0;
+    padding: 0 0 0 4mm;
+}
+
+.caveat ol li {
+    padding-left: .5mm;
+}
+
+.pno {
+    position: absolute;
+    bottom: 0.75cm;
+    left: 1.5cm;
+}
+
+.pno p {
+    margin: 0;
+    color: #000;
+}
+
+.p {
+    margin: 0;
+}
+
+.date {
+    clear: both;
+    position: absolute;
+    bottom: 0.75cm;
+    right: 1.5cm;
+}
+
+.date .DataAsAtDate {
+    margin: 0;
+    font-size: 9.5pt;
+    color: #8797ac;
+}
+
+.date ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.date ul li {
+    float: left;
+    list-style-type: none;
+    font-size: 9.5pt;
+    color: #8797ac;
+    padding: 0 2mm;
+    line-height: 9.5pt;
+    border-left: .5pt solid #e3e3e3;
+}
+
+.date ul li:first-child {
+    border: 0;
+}
+
+.date ul li:last-child {
+    padding-right: 0;
+}
+
+.page2>.row4>.column1 {
+    float: left;
+    width: 65%;
+}
+
+.page2>.row4>.column2 {
+    float: right;
+    width: 35%;
+}
+
+.pdfperformancechart,
+.Portfolio_Update {
+    padding-right: 5%;
+    width: 95%;
+}
+
+.pdfperformancechart .chart {
+    height: 7cm;
+}
+
+.keyWrapper {
+    margin-top: .2cm;
+}
+
+.keyWrapper .keyContainer {
+    height: 4mm;
+    display: inline;
+}
+
+.keyWrapper .keyContainer .label {
+    line-height: 3mm;
+    margin-left: 1mm;
+    margin-right: 3mm;
+}
+
+.investment,
+.philosophy {
+    margin-bottom: .2cm;
+    border-bottom: .5pt solid #d9d9d9;
+    padding-bottom: .15cm;
+    line-height: 10pt;
+}
+
+.philosophy {
+    border: 0;
+    margin: 0;
+    width: 95%;
+}
+
+.manager .Commentary {
+    line-height: 10pt;
+}
+
+.page1>.row1>.column1 {
+    width: 100%;
+}
+
+.span.small {
+    font-size: 6pt;
+    align: left;
+}
+
+.benchmark table td.Weight {
+    display: none;
+}
+
+.benchmark table td.Name {
+    padding-left: 10px;
+    padding-right: 0px !important;
+}
+
+.benchmark h2 {
+    font-weight: normal;
+    font-size: 7pt;
+    line-height: normal;
+    width: 42%;
+    colour: #707070 !important;
+    padding-left: 6px;
+    display: inline;
+}
+
+.benchmark .label {
+    colour: #707070 !important;
+}
+
+.benchmark {
+    colour: #707070 !important;
+}
+
+.keyfacts2 {
+    border-top: .5pt solid #d9d9d9;
+}
+
+/*.sector h2, .objective h2, .strategy h2, .designed h2, .holding h2, .investment h2, .pdfperformancechart h2, .philosophy h2, .performancetable h2 {color: #00aadb;}*/
+.Top_Header * {
+    font-size: 17pt;
+    margin-top: 0;
+    /* padding-top: 1.0cm; */
+    padding-bottom: 0;
+    width: 100%;
+    font-family: var(--headingMedium);
+    font-weight: normal;
+    font-size: 20pt;
+    color: var(--blue);
+}
+
+
+.page1>.row3>.column1 {
+    width: 52%;
+}
+
+.page1>.row3>.column2 {
+    width: 48%;
+}
+
+.page1>.row4>.column1 {
+    float: left;
+    width: 48% !important;
+}
+
+.page1>.row4>.column2 {
+    float: right !important;
+    width: 48% !important;
+}
+
+.page2>.row4>.column1 {
+    float: left;
+    width: 48% !important;
+    text-align: justify;
+}
+
+.page2>.row4>.column2 {
+    float: right !important;
+    width: 48% !important;
+    text-align: justify;
+}
+
+.page1>.row5>.column1 {
+    float: left;
+    width: 48% !important;
+}
+
+.page1>.row5>.column2 {
+    float: right !important;
+    width: 48% !important;
+}
+
+.page1>.row6>.column1 {
+    float: left;
+    width: 48% !important;
+}
+
+
+.page1>.row3 {
+    /*border: 1px solid #707070;*/
+    /*padding-bottom: 10px;*/
+    /*padding equalizing for page1*/
+    /*margin-bottom: 12px;*/
+    /*padding equalizing for page1*/
+}
+
+/*
+div.Investment_Strategy, div.For_Investors_Who {
+border-top: .5pt solid #d9d9d9;
+padding-top: 5px;
+}
+*/
+
+.page2>.row1
+
+/*,.page2>.row2*/
+    {
+    width: 19cm;
+    float: left;
+}
+
+/*.page2>.row2{ 
+	margin-top:5mm;
+}*/
+/*correcting market update section header padding  by commenting*/
+.page2>.row3 {
+    display: inline-block;
+    width: 100%;
+}
+
+.page2>.row5>.composite1>.compositebody>.row2>.column {
+    width: 25%;
+}
+
+.page1 .column2>.row5,
+.page1 .column2>.row6,
+.page1 .column2>.row7 {
+    padding-right: 0;
+}
+
+.RatingRight {
+    padding-left: 8px;
+}
+
+.RatingLeft {
+    padding-right: 8px;
+    width: 85%;
+}
+
+.Picture .clientRating {
+    width: 100%;
+}
+
+.RatingsLogoLonsec {
+    text-align: center;
+}
+
+.RatingsLogoLonsec {
+    width: 105px;
+}
+
+.page1>.row4>.column1>.row1>.breakdown1.AssetAllocationBreakdown .chart {
+    float: left;
+}
+
+.Platforms table th {
+    color: #0087d2;
+    text-align: center;
+    padding: 5px;
+    font-size: 10pt;
+    font-family: var(--fontRegular);
+}
+
+.Platforms table td {
+    padding: 5px;
+    font-size: 9pt;
+    text-align: center;
+    background-color: #f3f3f3;
+    border-bottom: 0.5pt dotted #ccc;
+    font-size: 10pt;
+}
+
+.Platforms table th:first-child,
+.Platforms table td:first-child {
+    text-align: left;
+}
+
+h2+p,
+.page1>.row3>.column1>.row4>.text>p {
+    margin-top: 0px;
+    text-align: var(--bodytextalingment);
+    /*test*/
+    font-family: var(--fontRegular);
+}
+
+.Rating .lonsec {
+    padding: 0 0 0 1px;
+    margin: 0 0 0 1px;
+}
+
+p {
+    margin: 0;
+    font-family: var(--fontRegular);
+    line-height: var(--parabodylnheight);
+    text-align: var(--bodytextalingment);
+}
+
+p b {
+    display: block;
+    /*border:1px solid blue;*/
+    margin: 0.1cm 0 0.1cm;
+    font-family: var(--fontSemiBold);
+    font-weight: normal;
+}
+
+.page1 p b {
+    padding: 0.3cm 0 0.05cm;
+}
+
+.page1 p.item4 b {
+    /*what is sharpe ratio*/
+    margin-top: 0;
+    padding-bottom: 0.05cm;
+}
+
+p.DataAsAtDate b {
+    font-family: var(--fontMedium);
+}
+
+table p b {
+    margin: 0;
+}
+
+.Portfolio_Update p,
+.Snapshot p {
+    margin-top: 6px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    font-size: 8.3pt
+}
+
+.PlatformHTMLTable td:last-child,
+.PlatformHTMLTable th:last-child,
+.Platforms_Availability span.value {
+    text-align: right;
+    padding-right: 5px;
+
+}
+
+.Platforms_Availability.horizontal-list span.label {
+    font-weight: 400;
+}
+
+.PlatformHTMLTable th {
+    display: none;
+}
+
+.composite2 {
+
+    font-size: 6pt;
+}
+
+.footnotecomposite {
+    font-size: 8pt;
+    line-height: 0.3cm;
+    text-align: var(--bodytextalingment);
+    color: #7C878E;
+    float: footnote;
+}
+
+.footnotecomposite::footnote-call {
+    content: "*";
+    color: transparent;
+
+}
+
+.footnotecomposite::footnote-marker {
+    content: "*";
+    display: none;
+}
+
+.footnotecomposite p {
+    margin: 0px !important;
+    font-family: var(--fontRegular);
+}
+
+@page {
+    size: A4;
+    counter-reset: footnote;
+    padding: 1cm 1cm 0.5cm 1cm;
+    margin-bottom: 0;
+
+    @footnote {
+        border: 0;
+        margin-bottom: 0.5cm;
+    }
+
+    .documentdate p {
+        font-size: 15px;
+        font-weight: normal;
+
+    }
+
+    .performancetable1 tbody tr:nth-child(2) td:nth-child(1):after {
+        content: "Benchmark";
+    }
+
+    .caveat {
+        bottom: 0.8cm !important;
+        position: absolute !important;
+        line-height: 7pt;
+    }
+}
+
+@page: -ro-nth(2) {
+    padding-bottom: 0.8cm;
+
+}
+
+.page2>.row3 p:last-child {
+    margin-top: 0;
+    text-align: justify;
+}
+
+.page2>.row3 p.item2,
+.page2>.row3 .Preservers-Growth-Diversifiers {
+    margin-bottom: 0 !important;
+}
+
+.page3>.row2>.column2 {
+    float: right;
+    width: 48%;
+    text-align: justify;
+}
+
+.page1 .ResearchRating {
+    padding-top: 13px;
+}
+
+.page1>.row3>.column1>.row4>.contentSection {
+    width: 96%;
+}
+
+/*238599*/
+
+.page2>.row>.contentSection.Help {
+    /*238599*/
+    margin-bottom: 0.5cm;
+    float: footnote;
+}
+
+.page2>.row>.contentSection.Help::footnote-call {
+    content: "*";
+    color: transparent;
+
+}
+
+.page2>.row>.contentSection.Help::footnote-marker {
+    content: "*";
+    display: none;
+}
+tr.even.Pa12M td.benchmark,
+tr.odd.P6M td.benchmark,
+tr.even.P3M td.benchmark,
+tr.odd.P1M td.benchmark {
+    color: #fff;
+}
+tr.odd.Pa36M td.benchmark,
+tr.even.Pa12M td.benchmark,
+tr.odd.P6M td.benchmark,
+tr.even.P3M td.benchmark,
+tr.odd.P1M td.benchmark {
+    color: #fff;
+}
+
+tr.even.Pa60M td.benchmark,
+tr.odd.Pa36M td.benchmark,
+tr.even.Pa12M td.benchmark,
+tr.odd.P6M td.benchmark,
+tr.even.P3M td.benchmark,
+tr.odd.P1M td.benchmark {
+    color: #fff;
+}
+/*.highcharts-xaxis-labels text{
+	width: 7px !important;
+	height: auto;
+	white-space: break-spaces;
+	word-break: break-all;
+}*/
+/*AtriumPDF*/

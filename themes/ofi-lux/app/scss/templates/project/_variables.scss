@@ -1,0 +1,79 @@
+@import "./_colors.scss";
+@import "./_fonts.scss";
+
+$page-width: 19.5cm;
+$page-height: auto;
+$page-spacing: 0cm .75cm 0cm .75cm;
+$page-gutter: 1cm;
+$body-font: 8pt;
+$body-color: $black;
+$line-height: 1.2;
+$h2-font: 8pt;
+$h3-font: 8pt;
+$kid-header-font: 16pt;
+$kid-header-color: $black;
+$font-regular: "Arial Narrow", Arial, sans-serif;
+$font-light: "Arial Narrow", Arial, sans-serif;
+$font-bold: "Arial Narrow", Arial, sans-serif;
+$font-semi-bold: "Arial Narrow", Arial, sans-serif;
+$font-header-title: "Arial Narrow", Arial, sans-serif;
+$font-normal: 400;
+$font-strong: 700;
+
+$header-title-bg: rgb(0, 100, 127);
+$table-header-bg: rgb(0, 46, 61);
+$SRI-header-bg: rgb(0, 100, 127);
+$logo-url: url('./images/OFI_INVEST_LUX_Horizontal_RVB.jpg');
+$is-logo-all-pages: true;
+$is-logo-first-pages: false;
+$logo-width: 3.02cm;
+$logo-height: 0.74cm;
+$logo-direction: calc($page-width - ($logo-width - $page-gutter)) 0cm;
+/* Condition check */
+$is-fund-centre: true;
+$is-MOP: false;
+$is-UBS: false;
+$is-boxed-layout: false;
+$is-bordered-layout: false;
+$is-product-highlighted: true;
+$is-custom-font: false;
+$is-two-column: true;
+$column-count: 2;
+/* table conditions*/
+$is-column-border: true;
+$is-ongoing-incidental-highlight: false;
+$is-show-warning: true;
+$is-warning-inline: false;
+$is-SRI-arrow-top: false;
+$is-SRI-header-top: false;
+$is-dual-risk-text: false;
+$SRI-header-risk-lower: "Typically lower rewards";
+$SRI-header-risk-higher: "Typically higher rewards";
+$SRI-column-width: 12.9mm;
+$SRI-column-height: 5mm;
+$SRI-rating-bg: rgb(177, 179, 180);
+$SRI-arrow-only: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23" +$SRI-arrow-color+";stroke-miterlimit:10;%7D .st1%7Bfill:%23" +$SRI-arrow-color+";%7D%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center/100% 3mm;
+$SRI-arrow-only-solid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 238.25 6.45'%3E%3Cdefs%3E%3Cstyle%3E.d%7Bstroke-miterlimit:10;stroke-width:1.42px;%7D.d,.e%7Bfill:none;stroke:%23" +$SRI-arrow-color+";%7D.f%7Bfill:%23" +$SRI-arrow-color+";%7D.e%7Bstroke-linecap:round;stroke-linejoin:round;stroke-width:.85px;%7D%3C/style%3E%3C/defs%3E%3Cg id='a'/%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cline class='d' x1='3.23' y1='3.22' x2='232.83' y2='3.22'/%3E%3Cpolyline class='f' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3E%3Cpolyline class='e' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3E%3Cpolyline class='f' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3E%3Cpolyline class='e' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center/100% 3mm;
+$SRI-arrow-strong: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_2' data-name='Layer 2' viewBox='0 0 227.82 6.62'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: none; stroke: %23000; stroke-miterlimit: 10; stroke-width: 1.42px; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cline class='cls-1' x1='.52' y1='3.31' x2='227.29' y2='3.31'/%3E%3Cline class='cls-1' x1='.52' y1='3.59' x2='3.36' y2='.48'/%3E%3Cline class='cls-1' x1='.52' y1='3.03' x2='3.36' y2='6.15'/%3E%3Cline class='cls-1' x1='227.29' y1='3.59' x2='224.46' y2='.48'/%3E%3Cline class='cls-1' x1='227.29' y1='3.03' x2='224.46' y2='6.15'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/100% 3mm;
+$SRI-arrow-light: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23000000;stroke-miterlimit:10;%7D .st1%7Bfill:%23000000;%7D%0A%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A") no-repeat center/100% 3mm;
+$SRI-arrow-dotted: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_2' data-name='Layer 2' viewBox='0 0 249.44 11.34'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-dasharray: 0 0 2.84 1.06; stroke-width: 1.42px; %7D .cls-1, .cls-2 %7B fill: none; stroke: %23010101; %7D .cls-2 %7B stroke-width: 1.5px; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpath class='cls-2' d='M244.94,7.92l3-2.25-3-2.25'/%3E%3Cpath class='cls-2' d='M4.5,3.42L1.5,5.67l3,2.25'/%3E%3Cpath class='cls-1' d='M4.98,5.67H244.46'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/100% 5mm;
+
+$arrow-style: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 270.45 10.28'%3E%3Cdefs%3E%3Cstyle%3E .cls-1, .cls-2 %7B fill: %23007d9f; %7D .cls-2 %7B fill-rule: evenodd; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='cls-2' points='5.56 9.89 5.56 0 0 4.95 5.56 9.89'/%3E%3Cpolygon class='cls-2' points='262.76 .39 262.76 10.28 270.45 5.34 262.76 .39'/%3E%3Crect class='cls-1' x='1.76' y='4.74' width='262.2' height='.45'/%3E%3C/g%3E%3C/svg%3E");
+;
+$is-howlong-hold-it: true;
+
+/* footer styles */
+$footer-column: 2;
+$footer-selector: '.pagenumbers .Pagination'
+    /* or '.pagenumbers .Pagination'*/
+;
+$footer-font: 7pt;
+$is-show-pagination: true;
+$is-custom-pagination: false;
+$custom-pagination-text: "Page " counter(page) " of " counter(pages);
+$pagination-position: right;
+$page1-padd: 1cm;
+$logo-bg-width: 32.5mm;
+$logo-bg-height: auto;
+$logo-in-first-page: false;
+$logo-direction: left 1cm top;

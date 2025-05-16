@@ -1,0 +1,1017 @@
+@font-face {
+	font-family: "Cormorant Garamond";
+	src: url("images/CormorantGaramond-Regular.eot");
+	/* IE9*/
+	src: url("images/CormorantGaramond-Regular.eot?#iefix") format("embedded-opentype"), url("images/CormorantGaramond-Regular.woff2") format("woff2"), url("images/CormorantGaramond-Regular.woff") format("woff"), url("images/CormorantGaramond-Regular.ttf") format("truetype"), url("images/CormorantGaramond-Regular.svg#CormorantGaramond-Regular") format("svg");
+	/* iOS 4.1- */
+  }
+:root {
+	--primary:#688c94;
+}
+
+  
+  /*
+  
+  @font-face {
+	  font-family: 'bentonsans_regular';
+	  src: url('images/BentonSans Condensed Regular.otf') format('opentype');
+	  font-weight: normal;
+	  font-style: normal;
+  }
+  
+  @font-face {
+	  font-family: 'bentonsans_semibold';
+	  src: url('images/BentonSans Medium.otf') format('opentype');
+	  font-weight: normal;
+	  font-style: normal;
+  }
+  
+  @font-face {
+	  font-family: 'bentonsans_bold';
+	  src: url('images/BentonSans Condensed Bold.otf') format('opentype');
+	  font-weight: normal;
+	  font-style: normal;
+  }*/
+  /*outer border for page row sections groups*/
+  /* logo visible in pdf page margin  */
+  /*show /hide logo in all pages*/
+  /*show /hide logo in Ist page*/
+  /*$logoWidth:100%;
+  $logoHeight:1cm;*/
+  /*$pagination-path:".pagenumbers";*/
+  /*Common shared files of same template projects*/
+  .triangle-1 {
+	position: relative;
+	overflow: hidden;
+	transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+	pointer-events: none;
+	border-radius: 20%;
+  }
+  
+  .triangle-1,
+  .triangle-1::before,
+  .triangle-1::after {
+	width: 20rem;
+	height: 20rem;
+  }
+  
+  .triangle-1::before,
+  .triangle-1::after {
+	content: "";
+	position: absolute;
+	background: yellow;
+	pointer-events: auto;
+  }
+  
+  .triangle-1::before {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+  }
+  
+  .triangle-1::after {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+  }
+  
+  .triangle-1::before {
+	border-radius: 20% 20% 20% 55%;
+  }
+  
+  .triangle-1::after {
+	border-radius: 20% 20% 55% 20%;
+  }
+  
+  .triangle-2 {
+	position: relative;
+	overflow: hidden;
+	transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+	pointer-events: none;
+  }
+  
+  .triangle-2,
+  .triangle-2::before,
+  .triangle-2::after {
+	width: 10rem;
+	height: 10rem;
+  }
+  
+  .triangle-2::before,
+  .triangle-2::after {
+	content: "";
+	position: absolute;
+	background: #000000;
+	pointer-events: auto;
+  }
+  
+  .triangle-2::before {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+  }
+  
+  .triangle-2::after {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+  }
+  
+  .triangle-3 {
+	position: relative;
+	overflow: hidden;
+	transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+	pointer-events: none;
+	border-radius: 20%;
+  }
+  
+  .triangle-3,
+  .triangle-3::before,
+  .triangle-3::after {
+	width: 15rem;
+	height: 15rem;
+  }
+  
+  .triangle-3::before,
+  .triangle-3::after {
+	content: "";
+	position: absolute;
+	background: gray;
+	pointer-events: auto;
+  }
+  
+  .triangle-3::before {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+  }
+  
+  .triangle-3::after {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+  }
+  
+  .triangle-3::before {
+	border-radius: 20% 20% 20% 55%;
+  }
+  
+  .triangle-3::after {
+	border-radius: 20% 20% 55% 20%;
+  }
+  
+  .triangle-4 {
+	position: relative;
+	overflow: hidden;
+	transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+	pointer-events: none;
+  }
+  
+  .triangle-4,
+  .triangle-4::before,
+  .triangle-4::after {
+	width: 17.5rem;
+	height: 17.5rem;
+  }
+  
+  .triangle-4::before,
+  .triangle-4::after {
+	content: "";
+	position: absolute;
+	background: linear-gradient(to right, orange 0%, red 100%);
+	pointer-events: auto;
+  }
+  
+  .triangle-4::before {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+  }
+  
+  .triangle-4::after {
+	transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+  }
+  
+  body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	font-size: 9pt;
+	font-family: "Calibri";
+	padding: 0;
+	margin: 0;
+  }
+  
+  h2 {
+	/* font: 12pt "CormorantGaramond-Regular"; */
+	font: 12pt "Calibri";
+	color: #060606;
+	margin: 0 2mm 1mm 2mm;
+	padding: 0.2cm 0 0.6mm 0;
+  }
+  
+  .WB_FundName {
+	color: #060606;
+	font-size: 12pt;
+	font-weight: bold;
+  }
+  
+  .WB_IsinCode,
+  .WB_GeneralInformation_3,
+  .WB_GeneralInformation_4,
+  .WB_GeneralInformation_5 {
+	color: #060606;
+  }
+  
+  p,
+  .description {
+	font: 9pt "Calibri";
+	color: #000000;
+	margin: 0 0 0cm;
+	padding: 1mm 0mm 1mm;
+	line-height: 1.1;
+	text-align: justify;
+  }
+  
+  table .description {
+	padding: 1mm 1mm;
+  }
+  
+  .page1>.row4 .compositebody p {
+	padding-top: 0.1mm;
+	padding-bottom: 0;
+  }
+  
+  p.IssuedOnDate {
+	border-bottom: 0px #187aba solid;
+	text-align: left;
+  }
+  
+  .subheader p {
+	font: 8pt "Calibri";
+	color: #000000;
+  }
+  
+  .header1 p,
+  .header2 p {
+	font: 12pt "Calibri";
+	color: #000000;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .header3 p,
+  .header4 p {
+	font: 12pt "Calibri";
+	color: #000000;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .page1>.row5 .compositebody p {
+	padding: 0;
+  }
+  
+  .page {
+	width: 19cm;
+	height: auto;
+	padding: 0cm;
+  }
+  
+  .page1 {
+	padding: 0 0;
+	background: url(images/st-petri.png);
+	background-size: 5cm auto;
+	background-position: 0cm 1.1cm;
+	background-repeat: no-repeat;
+  }
+  
+  br {
+	display: block !important;
+	margin: 0 0 !important;
+	line-height: 0.2 !important;
+	padding: 0 !important;
+	content: "";
+  }
+  
+  
+  .keyinformationdocument h2,
+  .fundName h2 {
+	text-align: left;
+  }
+  
+  .keyinformationdocument.contentSection h2 {
+	/* font: 16pt "CormorantGaramond-Regular"; */
+	font: 16pt "Calibri";
+	color: #060606;
+	margin: 0 0 0;
+	padding: 1mm 2mm;
+	line-height: 1;
+  }
+  
+  /*.whatisthisproduct h2,.generalinformation h2,.page1>.row2>.text>h2{
+	color:#060606;
+  }*/
+  
+  .contentSection h2 {
+	/* font: 16pt "CormorantGaramond-Regular"; */
+	font: 16pt "Calibri";
+	color: #060606;
+	font-weight: bold;
+	margin: 0;
+	padding: 0.1cm 0 0.6mm 0;
+	border-bottom: 0.5pt solid #060606;
+  }
+  .contentSection.generalinformation h2,
+  .page1>.row1>.column1>.row2>.text>h2 {
+	margin: 0.1cm 0 0 0;
+    padding: 0.1cm 0 0.6mm 0;
+    border-top: 0.5pt solid #060606;
+	border-bottom:none;
+}
+  .fundName h2 {
+	/* font: 16pt "CormorantGaramond-Regular"; */
+	font: 16pt "Calibri";
+	color: #6ec4e9;
+	margin: 0 2mm 1mm 2mm;
+	padding: 0;
+  }
+  
+  .generalinformation>h2 {
+	border-bottom-color: #000;
+  }
+  
+  @page {
+	@top-left {
+	  content: element(header);
+	}
+  }
+  
+  @page {
+	margin: 1cm 1cm 1cm;
+	/*border:1px solid ;*/
+  }
+  
+  .page1>.row1 {
+	padding-top: 1cm;
+  }
+  
+  @page {
+	@bottom-left {
+	  content: " Page - " counter(page) " of " counter(pages);
+	  margin-bottom: 0.8cm;
+	  font-size: 6pt;
+	  /* font-family: "CormorantGaramond-Regular"; */
+	  font-family: "Calibri";
+	  width: 19cm;
+	}
+  }
+  
+  /*.page2 .row2 .compositebody * {
+	break-before: avoid-page;
+  }*/
+  .page1>.row6>.composite>.compositebody,
+  .whatisthisproduct {
+	width: 100% !important;
+	column-count: 2;
+	column-gap: 0.5cm;
+	column-fill: balance !important;
+  }
+  
+  .whatisthisproduct h2,
+  .whataretherisks h2 {
+	column-span: all;
+	margin-bottom: 0.2cm;
+  }
+  
+  .whataretherisks+.compositebody>.row3 {
+	break-inside: avoid-column;
+	position: relative;
+	/* top:-50px;
+	left:0;
+	width:100%;
+	z-index: 9;
+	height: 180px; */
+	}
+	/* .whataretherisks+.compositebody>.row2 {
+	  position: relative;
+	  top: 180px;
+  } */
+  
+  h2 {
+	bookmark-level: 1;
+  }
+  
+  .subheader p {
+	bookmark-level: 2;
+  }
+  
+  .groupRow1,
+  .groupRowDiv1,
+  .groupHeader1,
+  .groupHeaderDiv1 {
+	padding: 0;
+  }
+  
+  table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 0pt solid transparent;
+  }
+  
+  table th:not(.groupHeader1) {
+	color: #ffffff;
+	/* background: #678a93; */
+	background: var(--primary);
+  }
+  
+  table th:last-of-type {
+	border-right: 0 !important;
+	border-bottom: 0pt solid #000000;
+  }
+  
+  table td:not(.rating):last-of-type {
+	border-right: 0 !important;
+	/*border-bottom: $td-bottom-border-size solid $th-border;*/
+  }
+  
+  table td {
+	vertical-align: middle;
+	border-top: 0pt solid #000000;
+	border-right: 0.75pt solid #000000;
+	/*border-bottom: $td-bottom-border-size solid $td-border;*/
+	padding: 1mm 1mm;
+	margin: 0;
+	background: #ffffff;
+  }
+  
+  table th {
+	vertical-align: middle;
+	margin: 0;
+	padding: 1mm 1mm;
+  }
+  
+  .groupHeader1 table th {
+	padding: 1mm 1mm;
+	color: #ffffff;
+	/* font-family: "NordeaSansSmall"; */
+	font-weight: 700;
+	font-size: 8pt;
+	border-right: 0pt solid #000000;
+	border-bottom: 0.5pt solid #000000;
+  }
+  
+  .groupHeader1 table th:first-of-type {
+	text-align: left;
+  }
+  
+  .groupHeader1 table tr:last-of-type th {
+	word-wrap: anywhere;
+  }
+  
+  .groupRow1 table td {
+	border-right: 0.75pt solid #000000;
+	border-bottom: 0.5pt solid #000000;
+	font-family: "Calibri";
+	font-size: 8pt;
+  }
+  
+  .groupRow1 table .header th {
+	font-family: "Calibri";
+	font-weight: 400 !important;
+	text-align: left;
+	border-bottom: 0.5pt solid #000000;
+  }
+  
+  .groupRow1 table .incidentalcosts th {
+	font-family: "Calibri";
+	font-weight: 400 !important;
+	text-align: left;
+	border-bottom: 0.5pt solid #000000;
+  }
+  
+  .groupRow1 table .ongoingcosts th {
+	font-family: "Calibri";
+	font-weight: 400 !important;
+	text-align: left;
+	border-bottom: 0.5pt solid #000000;
+  }
+  
+  .performanceScenario>table {
+	border-top: 0pt solid #6ec4e9;
+	width: 97.5%;
+	margin: 0 0.2cm;
+  }
+  
+  .performanceScenario table tr .holding-period th:last-child,
+  .performanceScenario table tr .investment-amount th:last-child,
+  .performanceScenario table tr .insurance-premium th:last-child {
+	text-align: left;
+  }
+  
+  .performanceScenario table td.scenario {
+	font-weight: 700;
+	/* font-family: "NordeaSansSmall"; */
+	font-family: "Calibri";
+  }
+  
+  .performanceScenario .survival-scenario {
+	border-top: 0pt;
+	border-bottom: 0pt;
+  }
+  
+  .performanceScenario .survival-scenario th {
+	border-top: 0pt;
+	border-bottom: 0.5pt solid #000000;
+  }
+  
+  .performanceScenario th[class*=period] {
+	width: 3.05cm;
+	text-align: right;
+  }
+  
+  .performanceScenario td[class*=period] {
+	width: 3cm;
+	text-align: right;
+  }
+  
+  .performanceScenario .groupRowDiv1>table {
+	border-left: 0.5pt solid #000;
+	border-right: 0.5pt solid #000;
+  }
+  
+  .costOverTime {
+	padding-bottom: 0.2cm;
+  }
+  
+  .costOverTime>table {
+	border-top: 0pt solid #6ec4e9;
+	border-left: 0.5pt solid #000;
+	border-right: 0.5pt solid #000;
+	width: 100%;
+	margin: 0 0.2cm;
+  }
+  
+  .costOverTime table .tableheader {
+	display: none;
+  }
+  
+  .costOverTime table th {
+	width: 4.75cm;
+  }
+  
+  .costOverTime table td {
+	width: 4.75cm;
+  }
+  
+  .costOverTime table td.totalcostsheader,
+  .costOverTime table td.riyheader {
+	font-weight: 400;
+	/* font-family: "NordeaSansSmall"; */
+  }
+  
+  .costOverTime table td[class*=totalcosts],
+  .costOverTime table td[class*=riy] {
+	text-align: right;
+  }
+  
+  .costOverTime table td.riyheader,
+  .costOverTime table td.totalcostsheader {
+	text-align: left;
+  }
+  
+  .costOverTime table th[class*=scenario] {
+	text-align: right;
+  }
+  
+  .costOverTime {
+	padding: 0 0.25cm 0.2cm 0.2cm;
+  }
+  
+  .costOverTime.costovertime_4columntable.contentSection>table {
+	width: 100% !important;
+	margin: 0;
+  }
+  
+  .costOverTime.costovertime_4columntable.contentSection .scenarioheader th:first-of-type {
+	width: 25% !important;
+  }
+  
+  .costOverTime.costovertime_4columntable.contentSection table tbody td.totalcostsheader {
+	width: 25% !important;
+  }
+  
+  .costOverTime.costovertime_4columntable.contentSection .scenarioheader th[class*=scenario] {
+	width: 25% !important;
+  }
+  
+  .costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+	width: 25% !important;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection {
+	/* costovertime table fullwidth css for 3column <<<<*/
+	padding: 0 0.2cm 0.2cm 0.2cm;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection>table {
+	/* width: 98% !important; */
+	margin-left: 0;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection .scenarioheader th:first-of-type {
+	width: 33.4% !important;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection table tbody td.totalcostsheader {
+	width: 33.4% !important;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection .scenarioheader th[class*=scenario] {
+	width: 33.3% !important;
+  }
+  
+  .costOverTime.costovertime_3columntable.contentSection table td[class*=totalcosts] {
+	width: 33.3% !important;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection {
+	/* costovertime table fullwidth css for 2column <<<<*/
+	padding: 0 0.2cm 0.2cm 0.2cm;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection>table {
+	/* width: 98% !important; */
+	margin-left: 0;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection .scenarioheader th:first-of-type {
+	width: 50% !important;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection table tbody td.totalcostsheader {
+	width: 50% !important;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario] {
+	width: 50% !important;
+  }
+  
+  .costOverTime.costovertime_2columntable.contentSection table td[class*=totalcosts] {
+	width: 50% !important;
+  }
+  
+  .costComposition {
+	padding-bottom: 0.2cm;
+  }
+  
+  .costComposition>table {
+	border-top: 0pt solid #6ec4e9;
+	width: 97.5%;
+	margin: 0 0.2cm;
+  }
+  
+  .costComposition>table table .tableHeader>th {
+	text-align: center;
+  }
+  
+  .costComposition table .tableHeader {
+	display: none;
+  }
+  
+  .costComposition table .oneofcosts th:last-of-type {
+	width: 3.15cm;
+  }
+  
+  .costComposition table td:last-of-type {
+	width: 3.1cm;
+  }
+  
+  .sriRiskRating table {
+	width: calc(100% - 0.4cm);
+	margin: 0.2cm;
+	border-collapse: separate;
+	border-spacing: 4px;
+  }
+  
+  .sriRiskRating table td.rating {
+	border: 1pt solid #fff;
+	/* background-color: #ffffff; */
+	text-align: center;
+	padding: 0.1cm;
+	font-size: 15pt;
+	font-family: "Calibri";
+	color: #fff;
+  }
+  
+  .sriRiskRating table td.rating.active {
+	background-color: #321FBF;
+	color: #ffffff;
+  }
+  
+  .sriRiskRating table td.rating.selected {
+	background-color: #ffd966;
+	color: #000;
+  }
+  
+  .sriRiskRating .header {
+	font-size: 9pt;
+	font-family: "Calibri";
+  }
+  
+  .sriRiskRating .header th:first-of-type {
+	text-align: left;
+	padding-left: 0.3cm;
+	padding-bottom: 0.1cm;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: 0.2cm 0cm;
+	background-size: 20%;
+	background-color: transparent;
+	border: 0;
+	padding-top: 0;
+	/* font-family: "NordeaSansSmall"; */
+  }
+  
+  .sriRiskRating .header th:last-of-type {
+	text-align: right;
+	/* font-family: "NordeaSansSmall"; */
+	padding-right: 0.3cm;
+	padding-bottom: 0.1cm;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: 7.3cm 0cm;
+	background-size: 20%;
+	background-color: transparent;
+	border: 0;
+	padding-top: 0;
+  }
+  
+  .sriRiskRating .arrow {
+	background: url("images/arrow2.svg") no-repeat center/96% 2.5mm;
+	height: 4mm;
+	margin: 0 0.2cm;
+  }
+  
+  p.Sri {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 25px 43.3px 25px;
+	border-color: transparent transparent #060606 transparent;
+	margin: 20px 12px 0 0;
+	float: left;
+  }
+  
+  p.Sri::after {
+	content: "!";
+	font-size: 16pt;
+	/* font-family: "NordeaSansSmall"; */
+	color: #ffffff;
+	position: relative;
+	left: -6px;
+	top: 9px;
+  }
+  
+  /* Different types of project templates prps_monthperf/ubs_kid_base/prps_pastperf/priips_base/priips_kid_base */
+  
+  
+  .keyinformationdocument.contentSection h2 {
+	border-bottom: 0pt;
+	text-align: right;
+	font-weight: 700;
+	font-size: 22pt;
+    margin-bottom: 1cm;
+  }
+  
+  .purpose>h2 {
+	padding-top: 0.4cm;
+  }
+  
+  .Product>h2 {
+	padding-top: 0.1cm;
+  }
+  
+  .page>.row1>.composite1>.compositebody>.row2>.column2 {
+	/*footer width extended to full page width*/
+	width: 100%;
+  }
+  
+  .page>.row1>.composite1>.compositebody>.row2>.column1 {
+	width: 0;
+  }
+  
+  .groupHeader1 table th {
+	border-bottom: 0 solid #000000;
+  }
+  
+  .costOverTime .groupHeader1 table th,
+  .performancescenariotable .groupHeader1 table th {
+	padding: 1mm 2mm 1mm 1mm;
+  }
+  
+  .groupRow1 table tbody tr td {
+	border-right: 0.75pt solid #000000;
+	color: #000;
+  }
+  
+  .page1>.row1>.column2 {
+	float: left;
+	width: 0;
+  }
+  
+  .page1>.row1>.column1 {
+	float: left;
+	width: 100%;
+  }
+  
+  .page1>.row1>.column1>.row2>.text>h2 {
+	border-bottom: 0;
+  }
+  
+  .costComposition table table td:last-of-type {
+	text-align: right;
+  }
+  
+  .costComposition>table {
+	width: 98%;
+	margin-top: 0.2cm;
+	border-left: 0.5pt solid;
+	border-right: 0.5pt solid;
+  }
+  
+  /*.groupRowDiv1>table td,.performancescenariotable table .survival-scenario th,.groupRow1 table .header th,table .ongoingcosts th, table .incidentalcosts th {
+	  border: 0.4pt solid $black;
+  }*/
+  /*.oneofcosts th:last-of-type {
+	  text-align: left;
+  }*/
+  .performanceScenario,
+  .costComposition {
+	padding-bottom: 0.2cm;
+	padding-top: 0.2cm;
+  }
+  
+  /*.page3 .compositebody {
+	break-inside: avoid-page;
+	break-inside: avoid;
+  }
+  */
+  h1 {
+	position: running(pageheader);
+  }
+  
+  .groupRow1 table .header th {
+	color: #fff;
+  }
+  
+  .groupRow1 table .incidentalcosts th {
+	color: #fff;
+  }
+  
+  .groupRow1 table .ongoingcosts th {
+	color: #fff;
+  }
+  
+  /*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+		  background : $grey;
+  }*/
+  .stress-return .scenario,
+  .stress-return .description {
+	font-weight: bold;
+  }
+  
+  .averagereturn .scenario,
+  .averagereturn .description {
+	font-weight: bold;
+  }
+  
+  .unfavourable-return .scenario,
+  .unfavourable-return .description {
+	font-weight: bold;
+  }
+  
+  .moderate-return .scenario,
+  .moderate-return .description {
+	font-weight: bold;
+  }
+  
+  .invest .scenario,
+  .invest .description {
+	font-weight: bold;
+  }
+  
+  .favourable-return .scenario,
+  .favourable-return .description {
+	font-weight: bold;
+  }
+  
+  /*.page1 >.row6  {
+	  break-after: always !important;
+  }*/
+  /*.page2>.row2>.composite1>.compositebody  *,*/
+  /*.page3 > .row2 > .composite1 > .compositebody * {
+	break-before: avoid-page;
+  }
+  
+  .page2 > .row2 > .composite1 > .compositebody * {
+	break-before: auto !important;
+	break-inside: auto !important;
+  }*/
+  
+  .arrow>td {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+  }
+  .WB_Performancescenariosnarrative_1,.WB_Performancescenariosnarrative_2 {
+    padding-top: 5px;
+}
+.WB_SRInarrative1 {
+	height: auto;
+	min-height: 55px;
+	padding-right: 2mm !important;
+}
+.WB_SRInarrative1:before {
+	background: url(images/warning_icon.svg);
+	background-size: 90% 94%;
+	background-position: 3px 0px;
+	width: 50px;
+	content: "";
+	height: auto;
+	min-height: 53px;
+	padding: 0px 9px 0px 0px;
+	display: inline;
+	float: left;
+	background-repeat: no-repeat;
+}
+  /*.WB_SRInarrative2_1 {
+	background: url(images/warning_icon.svg);
+	background-size: 18% 80%;
+	background-position: 0px -5px;
+	width: 79%;
+	height: auto;
+	min-height: 61px;
+	padding: 7px 0px 0px 63px;
+	display: block;
+	background-repeat: no-repeat;
+  }*/
+  
+  p.Sri {
+	border: none;
+	margin: 0;
+	float: none;
+	width: initial;
+	height: initial;
+  }
+  
+  p.Sri:after {
+	display: none;
+  }
+  
+  .sriRiskRating .header th:last-of-type,
+  .sriRiskRating .header th:first-of-type {
+	font-size: 6pt;
+  }
+  
+  .sriRiskRating table td.rating {
+	width: 1.24cm;
+	height: 0.92cm;
+  }
+  
+  table.sriRiskRating th:not(.groupHeader1) {
+	background: none;
+  }
+  
+  .sriRiskRating {
+	break-inside: avoid;
+  }
+  
+  .page1>.row6>.composite1>.compositebody>.row2>.column1>.row5 {
+	break-before: avoid;
+  }
+  
+  h2:empty {
+	border: 0;
+	height: 0;
+	padding: 0;
+	margin: 0;
+  }
+  
+  .warning * {
+	background:var(--primary);
+	color: #fff;
+  }
+  
+  .pagenumbers {
+	display: none;
+  }
+  
+  p:empty {
+	display: none;
+  }
+  .page1 >.row5 .compositebody {
+    width: 100%;
+    column-count: 2;
+    column-gap: 0.5cm;
+    column-fill: balance !important;
+	/* break-inside: avoid-page;
+	min-height:220px; */
+    position: relative;
+}
+  /*>>>>>>costovertime table fullwidth css for 3column*/
+  /*page 2 floating code*/
+  
+  
+  /*.performanceScenario.performancescenariotable ,.costComposition {
+	  page-break-inside:auto !important;
+  }*/
+  
+  /*Theme name:FC_SEB_PRIIPS_ST_PETRI_KID*/
+  /*# sourceMappingURL=map/theme.css.map */

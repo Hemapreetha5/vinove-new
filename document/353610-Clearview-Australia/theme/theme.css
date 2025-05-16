@@ -1,0 +1,950 @@
+/*@font-face {
+  font-family: 'HurmeGeometricSans1-Bold';
+  src: url('images/HurmeGeometricSans1-Bold.eot?#iefix') format('embedded-opentype'),  url('images/HurmeGeometricSans1-Bold.otf')  format('opentype'),
+	     url('images/HurmeGeometricSans1-Bold.woff') format('woff'), url('images/HurmeGeometricSans1-Bold.ttf')  format('truetype'), url('images/HurmeGeometricSans1-Bold.svg#HurmeGeometricSans1-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HurmeGeometricSans1-Regular';
+  src: url('images/HurmeGeometricSans1-Regular.eot?#iefix') format('embedded-opentype'),  url('images/HurmeGeometricSans1-Regular.otf')  format('opentype'),
+	     url('images/HurmeGeometricSans1-Regular.woff') format('woff'), url('images/HurmeGeometricSans1-Regular.ttf')  format('truetype'), url('images/HurmeGeometricSans1-Regular.svg#HurmeGeometricSans1-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HurmeGeometricSans1-Light';
+  src: url('images/HurmeGeometricSans1-Light.eot?#iefix') format('embedded-opentype'),  url('images/HurmeGeometricSans1-Light.otf')  format('opentype'),
+	     url('images/HurmeGeometricSans1-Light.woff') format('woff'), url('images/HurmeGeometricSans1-Light.ttf')  format('truetype'), url('images/HurmeGeometricSans1-Light.svg#HurmeGeometricSans1-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}*/
+@font-face {
+    font-family: 'gothambook';
+    src:  url('images/gothambook-webfont.woff')  format('woff'),
+          url('images/gothambook-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'gothambold';
+    src:  url('images/gothambold-webfont.woff')  format('woff'),
+          url('images/gothambold-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  html {
+      -webkit-text-size-adjust: 100%;
+      zoom: 1
+  }
+  
+  a {
+      color: #E11F8F;
+  }
+  
+  body {
+      font-family: 'gothambook';
+      font-style:normal;
+      font-size:9pt;
+      color: #000;
+      background-color: #fff;
+      text-rendering: optimizeLegibility!important;
+      -webkit-font-smoothing: antialiased!important;
+      line-height: 1.45;
+  }
+  .logo {
+      background-position:top right !important;
+      max-height: 1.2cm;
+      width: 5.25cm; 
+      float: right;
+      margin-top: 42px;
+  }
+  .page {
+      position: relative;
+      padding: 0cm 1.5cm;
+      width: 18cm;
+      height: auto;
+      /*border:1px solid blue;*/
+  }
+
+  
+  .page1{
+          background: url("images/clearviewwealthlogo_bg.png") no-repeat;
+          background-size: 21cm auto;
+          background-position: 0 -3.5cm;
+          height: 29.5cm;
+  }
+  .page1>.row1{
+      background: url("images/clearviewlogo.png") no-repeat;
+      background-size: 30%;
+      background-position: 462px 58px;
+  }
+  h1, h2, h3 {
+      margin: 0 
+  0 .1cm;
+      line-height: normal;
+      font-weight: 400;
+  }
+  h2 {
+      font-size: 14pt;
+      padding: 5px 0;
+      font-family: 'gothambook';
+      font-weight: normal;
+      color: #e11f8f;
+      padding-top: 20px;
+  }
+  .Performance_Table p.footer {
+      font-family: 'gothambook';
+      font-style:normal;
+      font-size: 7pt;
+      margin-top: 2px;
+      margin-bottom: -6px;
+  }
+  .DataAsAtDate{
+      padding: 5px 0; 
+      font-family: 'gothambook';
+      font-weight: normal;
+      color: #e11f8f;	
+  font-size: 14pt;margin: -1cm 0 0 0;
+      text-align: right;
+      position: absolute;
+      right: 1.6cm;
+      top: 5.2cm;
+  }
+  a {
+      text-decoration: none
+  }
+  ul {
+      padding: 0 0 0 .3cm
+  
+  }
+  .topheader p.item2, .topname p.item2 {
+      padding-top: .2cm;
+      font-family: HelveticaNeueLTStd-Md, Arial, serif;
+      font-size: 9.5pt;
+      color: #8797ac
+  }
+  .keyinfo {
+      border-bottom: .5pt solid #d9d9d9;
+      margin-bottom: .2cm;
+  }
+  
+  .page1 > .row1 >.composite1 >.compositebody >.row2>.column1>.row1>.contentSection{
+      height: 133px;
+  }
+  
+  .footnote2{
+     font-size: 7pt;
+     line-height: 1.1;
+  }
+  
+  .keyinfo .keyinfo {
+      margin: 0
+  }
+  .keyinfoheader h2 {
+      margin: 0;
+      font-family: HelveticaNeueLTStd-Th, Arial, serif;
+      font-size: 16pt;
+      color: #10293e;
+      padding-bottom: .12cm;
+      border-bottom: 1pt solid #0071bb
+  }
+  .keyinfobody .column1 {
+      width: 48%!important
+  }
+  .keyinfobody .column2 {
+      width: 48%!important;
+      float: right!important
+  }
+  .horizontal-list>div {
+      width: 100%;
+      padding: .1cm 0 0.1cm;
+      border-bottom: 0.5pt dotted #a9a9a9;
+      display: table;
+  }
+  .horizontal-list>div span {
+      margin: 0;
+      padding: 0 3% 0 0;
+      float: left
+  }
+  .horizontal-list>div .label {
+      line-height: normal;
+      /*! width: 42%; */
+      padding-left: 1mm;
+      font-family: 'Gothambook';
+      font-size: 9pt;
+  }
+  .Key_Info_Right.horizontal-list>div .label,.Key_Info_Left.horizontal-list>div .label{
+      width: 4cm;
+      float: none;
+      display: table-cell;
+  }
+  .Key_Info_Right.horizontal-list>div .value{
+      /*! width: 40%; */
+      float: none;
+      line-height: normal;
+      display: table-cell;
+  }
+  
+  .Key_Info_Left.horizontal-list>div .value{
+      width: 4.2cm !important;
+      line-height: normal;
+      float: none;
+      display: table-cell;
+  }
+  .page2>.row4 p{
+      margin: 1mm 0;
+  }
+  .QuarterlyCommentary,.HowTheFundWorks,.AboutManager{
+      text-align: justify;
+      font-size: 8pt;
+  }
+  /*.page2>.row4{
+      position: absolute;
+      bottom: 4cm;
+  }*/
+  .page1 .keyinfo .row3 .text.text1{
+    margin: 0.2cm 0;
+  }
+  .page1 .keyinfo .row3 .text.text1 .item2,.page1 .keyinfo .row3 .text.text1 .item3{
+    font-size: 6pt;
+  color: #b4b6b9;
+    margin: 0;
+  }
+  /*
+  .horizontal-list>div.item1 {
+      background: rgba(222, 222, 222, 0.5)!important;
+  }	
+  */
+  
+  .horizontal-list>div .value {
+      /*! width: 46%; */
+      /* background: red; */
+  }
+  .horizontal-list .clear {
+      border: 0;
+      padding: 0
+  }
+  /*
+  .horizontal-list .item5 {
+      border: 0;
+      padding-bottom: 0
+  }
+  */
+  .page1>.row3>.column1 {
+      float: left;
+      width: 65%
+  }
+  .page1>.row3>.column2 {
+      float: right;
+      width: 35%
+  }
+  .breakdown {
+      width: 95%;
+      position: relative;
+  }
+  .breakdown .chart {
+      width: 45%!important
+  }
+  .highcharts-point{
+      stroke-width: 0 !important;
+  }
+  .breakdown table {
+      width: 50%!important;
+      float: right!important;
+      margin-top: 10px;
+  }
+  .breakdown .footer {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      font-size: 7pt
+  }
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0
+  }
+  table th {
+      font-weight: 400;
+      color: #5c676f
+  }
+  table td {
+      padding: 5px;
+  }
+  .breakdown table td {
+      padding: 4px 3px 4px;
+      line-height: 1;
+      vertical-align: top;
+  }
+  table .Weight {
+      text-align: right
+  }
+  .key-color {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      margin-top: 2px;
+  }
+  .designed, .objective, .strategy {
+      margin-bottom: .2cm;
+      border-bottom: .5pt solid #d9d9d9;
+      padding-bottom: .10cm;
+      line-height: 10pt;
+  }
+  .designed {
+      border: 0;
+      margin: 0
+  }
+  .holding, .PlatformHTMLTable,.Platforms_Availability{
+      width: 95%;
+      margin-bottom: .1cm;
+  }
+  .PlatformHTMLTable p:empty{
+      display: none;
+  }
+  .holding h2, .Snapshot h2, .Portfolio_Update h2 {
+      padding-bottom: .15cm;
+      border-bottom: 1pt solid #0071bb;
+      margin: 0;
+  }
+  .holding table tr td, .PlatformHTMLTable table tr td {
+      border-bottom: 0.5pt dotted #a9a9a9;
+  }
+  .holding table tr th {
+      background-color: #fbfbfa;
+      padding: 1mm 1mm;
+      color: #5c676f;
+      display: none;
+  }
+  .holding table tr .Name {
+      text-align: left;
+      text-transform: uppercase;
+  }
+  .holding table tr td {
+      padding: 1mm 1mm;
+  }
+  .performancetable {
+      margin-bottom: 0;
+  margin-top: 0;
+  }
+  
+  .performancetable h2 {
+      border-bottom: 0px;
+      margin: 0;
+      width: 95%;
+      padding-top: 15px;
+      padding-left: 0.1cm;
+      padding-bottom: 2mm;
+      font-family: 'gothambook';
+      font-weight: normal;
+      color: #e11f8f;	
+  }
+  
+  p.footer{
+         font-size: 7pt;
+         line-height: 1.1;
+         margin: 5px;
+  }
+  
+  .performancetable table { 
+      font-size: 10px;
+      margin-bottom: 0;
+  width: 100% !important; 
+  }
+  .performancetable table tr ,.performancetable table tr th{
+      border-bottom: .5pt solid #f6c65c;
+  }
+  .performancetable table th {/*! border-top: 2.8pt solid #f6c65c; */border-right: 0.5px solid #fff;}
+  .performancetable table tr th {
+      background-color: #f9f2dc;
+      padding: 1mm 1mm 1mm 0mm;
+      text-align: right;
+      color: #e11f8f;
+      border-bottom: 3pt solid #f6c65c;
+      /*! vertical-align: bottom; */
+      line-height: 1.2; 
+      background-color: transparent;
+      font-weight: bold;
+  }
+  .performancetable table tr th.PaSinceLaunch,
+  .performancetable table tr th.Pa84M{
+      /*! padding-bottom: 0.7cm; */
+  }
+  .performancetable table tr td {
+      padding: 1.5mm 1.5mm 0 0;
+      text-align: right;
+  }
+  .performancetable.UnderlyingFundPer table tr td,.performancetable.UnderlyingFundPer table tr th{
+      text-align: center;
+  }
+  .performancetable.UnderlyingFundPer table tr .rowheader {
+      width: 7cm;
+      text-align:left;
+      /*! background-color: #f9f2dc; */
+  }
+  .performancetable.UnderlyingFundPer table tr th {
+      background-color: #fff;
+      /*! vertical-align: bottom; */
+      
+  }
+  .performancetable.UnderlyingFundPer table tr th.P1M,
+  .performancetable.UnderlyingFundPer table tr th.P3M{
+    /*! padding-bottom: 0.5cm */
+  }
+  .performancetable table tr .rowheader {
+      text-align: left;
+      width: 3.5cm;
+      border-right: 0;
+  
+      background: no-repeat;
+  }
+  .page2 .row4 .text1 .NameWB{
+      display:none;
+  }
+  /*
+  .caveat, .disclaimer {
+      font-size: 6pt;
+      color: #b4b6b9
+  }
+  */
+  /*
+  .disclaimer {
+      position: absolute;
+      left: 1.5cm;
+      bottom: 1.25cm;
+      width: 18cm;
+      line-height: 8px !important;
+  }
+  */
+  .caveat ol {
+      margin: 0;
+      padding: 0 0 0 4mm
+  }
+  .caveat ol li {
+      padding-left: .5mm
+  }
+  .pno {
+      position: absolute;
+      bottom: 0.75cm;
+      left: 1.5cm;
+  }
+  .pno p {
+      margin: 0;
+      color: #000
+  }
+  
+  
+  .p {
+      margin: 0;
+  }
+  .date {
+      clear: both;
+      position: absolute;
+      bottom: 0.75cm;
+      right: 1.5cm
+  }
+  .date .DataAsAtDate {
+      margin: 0;
+      font-size: 9.5pt;
+      color: #8797ac
+  }
+  .date ul {
+      float: right;
+      margin: 0;
+      padding: 0
+  }
+  .date ul li {
+      float: left;
+      list-style-type: none;
+      font-size: 9.5pt;
+      color: #8797ac;
+      padding: 0 2mm;
+      line-height: 9.5pt;
+      border-left: .5pt solid #e3e3e3
+  }
+  .date ul li:first-child {
+      border: 0
+  }
+  .date ul li:last-child {
+      padding-right: 0
+  }
+  .page2>.row4>.column1 {
+      float: left;
+      width: 65%
+  }
+  .page2>.row4>.column2 {
+      float: right;
+      width: 35%
+  }
+  .pdfperformancechart {/*	border-bottom: .5pt solid #d9d9d9;*/padding-bottom: .15cm;margin-bottom: .2cm;}
+  .pdfperformancechart,.Portfolio_Update{
+      padding-right: 0%;
+      width: 100%;
+      padding-bottom: 0.2cm;
+      color:#454545 !important;
+      margin: 0;
+  }
+  .pdfperformancechart .chart {
+      height: 5cm
+  }
+  .keyWrapper {
+      margin: 0.2cm auto 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+  .keyWrapper .keyContainer {
+      height: 4mm;
+      /*margin: 0 auto;*/
+      }
+  .keyWrapper .keyContainer .label {
+      line-height: 3mm;
+      margin-left: 1mm;
+      margin-right: 3mm;
+  }
+  .investment, .philosophy {
+      margin-bottom: .2cm;
+      border-bottom: .5pt solid #d9d9d9;
+      padding-bottom: .15cm;
+      line-height: 10pt
+  }
+  .philosophy {
+      border: 0;
+      margin: 0;
+      width: 95%
+  }
+  .philosophy ul {
+      padding: 0 0 0 3.5mm
+  }
+  .manager {
+      position: relative;
+   
+   }
+  .page2 > .row5{
+      /*! display: none; */
+  }
+  .About.the.manager h2.item2{
+     font-size: 10pt;
+     font-family: "gothamBold";	
+     padding: 2mm 0;
+     margin: 0 !important;
+  }
+  .manager .managerphoto {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px
+  }
+  .manager .managerphoto img {
+      max-width: 100%;
+      height: auto
+  }
+  .manager .FundManagersStartDates {
+      font-family: HelveticaNeueLTStd-Md, Arial, serif;
+      font-weight: 400;
+      color: #10293e
+  }
+  .manager .Commentary {
+      line-height: 10pt
+  }
+  .compositeManager .fundManagers1 h2, .compositeManager .fundManagers1 .Name {
+      display: none;
+  }
+  .compositeManagerbody .column1 {
+      width: 75% !important;
+  }
+  .compositeManagerbody .column2 {
+      width: 24% !important;
+  }
+  .compositeManager p.FundManagers {
+      font-size: 10pt;
+      color: #00aadb;
+  margin: 0px;
+  }
+  .compositeManager p.ManagerJobTitle {
+      font-size: 8pt;
+      font-weight: 500;
+      color: #000;
+  margin-top:0px;
+  }
+  .Biography {
+      margin-top: 5px;
+      line-height: 10pt;
+      font-weight: normal;
+  }
+  .page1 > .row1 > .column1 {
+      width:100%;
+  }
+  .span.small { 
+      font-size: 6pt; 
+      align: left;
+  }
+  span.web{
+          color: #e11e8f; 
+          font-weight:bold;
+      padding-top: 0.2cm;
+      display: block;
+  }
+   
+span.web br{
+    display: none;
+}
+  .benchmark table td.Weight { display: none; }
+  .benchmark table td.Name { padding-left: 10px; padding-right: 0px !important; }
+  .benchmark h2 {
+  font-family: HelveticaNeueLTStd-Md, Arial, serif;
+      font-weight: 400;
+  
+      font-size: 7pt;
+      line-height: normal;
+      width: 42%;
+  colour: #454545 !important;
+  padding-left: 6px;
+  display: inline;
+  }
+  .benchmark .label { colour: #707070 !important; }
+  .benchmark { colour: #707070 !important;}
+  .keyfacts2 { border-top: .5pt solid #d9d9d9; }
+  /*.sector h2, .objective h2, .strategy h2, .designed h2, .holding h2, .investment h2, .pdfperformancechart h2, .philosophy h2, .performancetable h2 {color: #00aadb;}*/
+  .Top_Header *{
+      font-size: 18pt;
+      font-family: "gothamBold";
+       display: inline-block;
+      padding-top: 0.7cm;
+      width: 70%;
+      color: #e11f8f;
+      margin: 0;
+  }
+  .Key_Info_Header h2 {
+      border-top: 4px solid #ab004f;
+      font-family: 'gothamBold';
+      font-size: 14pt;
+      color: #667775;
+      font-weight: normal;
+      padding-top: 15px;
+      display: none;
+  }
+  .page1>.row3>.column1{
+      width: 50%;
+  }
+  .page1>.row3>.column2{
+      width: 50%;
+  }
+  .page1 > .row3 {/* border-bottom: 1px solid #707070; */padding-bottom: 5px;margin-bottom: 0px;}
+  
+  .page1 > .row3 > .contentSection > h2{
+      font-size:14pt;
+      font-weight: normal;
+      font-family: gothambook;
+      margin: 0px 0 0.4cm 0;
+  }
+  /*
+  div.Investment_Strategy, div.For_Investors_Who {
+      border-top: .5pt solid #d9d9d9;
+      padding-top: 5px;
+  }
+  */
+  .page2 > .row5 > .composite1 > .compositebody > .row2 > .column{
+      width: 25%;
+  }
+  .clientRating {
+      max-height: 70px !important;
+      width: auto;
+          max-width: 350px;
+  }
+.AboutManagerLogo{
+    margin-bottom: 0;
+}
+  p.ClearViewLogo{
+  
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      margin-top: 38px;
+  }
+  .ClearViewLogo:before{
+      /*! background: url("images/clearviewwealthlogo.png") no-repeat; */
+      background-size: 61%;
+      top: 10px;
+      width: 422px;
+      height: 102px;
+      float: right;
+      content:'';
+      position: relative;
+      display: block;
+  }
+  .ClearViewLogo img{
+      left: 50px;
+      position: absolute;
+      width: 6.5cm;
+      height: auto;
+  }
+  
+  /*.clientRating {
+      padding-top: 7px;
+  }*/
+  
+  .RatingsLogoLonsec{
+      text-align:center;
+  }
+  .RatingsLogoLonsec {
+      width: 105px;
+  }
+  .SQMRating, .RatingsLogoZenith {
+      padding-top: 15px;
+  }
+  .page1 > .row4 > .column1 > .row1 > .breakdown1.AssetAllocationBreakdown .chart{
+      float: left;
+  }
+  .Platforms table th {
+      color: #0087d2;
+      text-align: center;
+      padding: 5px;
+      font-size: 10pt;
+      font-family: 'HurmeGeometricSans1-Regular';
+  }
+  .Platforms table td {
+      padding: 5px;
+      font-size: 9pt;
+      text-align: center;
+      background-color: #f3f3f3;
+      border-bottom: 0.5pt dotted #ccc;
+      font-size: 10pt;
+  }
+  .Platforms table th:first-child, .Platforms table td:first-child{
+      text-align: left;
+  }
+  h2 + p {
+      margin-top: 3px;
+  }
+  .Portfolio_Update p, .Snapshot p {
+      margin-top: 6px;
+      line-height: 1.1;
+      margin-bottom:10px;
+          font-size: 8.3pt
+  }	
+   
+  .PlatformHTMLTable td:last-child, 
+  .PlatformHTMLTable th:last-child,
+  .Platforms_Availability span.value {
+      text-align: right;
+      padding-right: 5px;
+      
+  }
+  .Platforms_Availability.horizontal-list span.label{
+       font-weight:400;
+  }
+  .PlatformHTMLTable th {
+      display: none;
+  }
+  .composite2 {
+  
+      font-size: 6pt;
+  }
+  .Footnotes {
+      /*position: running(disclaimerfooter);*/
+  /*! float:footnote; */
+      font-size: 7pt;
+      line-height: 1.1;/*0.3cm*/
+      
+  }
+   
+  .Footnotes p { margin: 0px !important; text-align: justify;}
+  /*.page1>.row1:after { position: running(header); content:'Wealth foundations';}*/
+  .Footer {
+      position: running(footer);
+      margin:0cm 0cm 0.8cm 0cm;
+      font-size: 10pt;
+      font-family: gothambook;
+      font-weight: 600;
+      line-height:0.5;
+      color: #e11f8f;
+      }
+  @page {
+      counter-reset: footnote;
+      height: auto;
+      @bottom-right{
+          content: element(footer); 
+          border-top:3pt solid #f6c65c;
+          margin:0cm 1.5cm;
+          position: fixed; 
+          width: 85.8%; 
+          bottom: 0; 
+          left: 0;
+          right: 0;
+      }
+      /*@footnote{
+          border:0;
+          margin-right: 1.5cm;
+          margin-left: 1.5cm;
+          margin-bottom:0.2cm;		 
+      }*/
+  
+  
+  .documentdate p { 
+      font-size: 15px;
+      font-weight: 700;
+  }
+  
+  .performancetable1 tbody tr:nth-child(2) td:nth-child(1):after { content: "Benchmark"; }
+  }
+  @page:-ro-nth(2){
+      margin-bottom: 1.8cm;
+      padding-bottom:0;
+      /*@bottom-left {
+      content: element(disclaimerfooter); 
+      bottom: 2cm;
+      left: 1.5cm;
+      right: 1.5cm;
+      position:absolute;
+       
+     }*/
+    /* @footnote{
+              border: none;
+            
+               margin:0.3cm 1.5cm 0cm 1.5cm;
+              padding: 0 0 0cm;
+    }*/
+  }
+  @page:-ro-nth(3){
+      /*margin-top:40px;*/
+      margin-bottom: 1.8cm;
+      padding-bottom:0;
+      margin-top: 20px;
+      /*@bottom-left {
+      content: element(disclaimerfooter); 
+      bottom: 2cm;
+      left: 1.5cm;
+      right: 1.5cm;
+      position:absolute;
+       
+     }*/
+     /*@footnote{
+              border: none;
+               margin:0.3cm 1.5cm 0cm 1.5cm;
+              padding: 0 0 0cm;
+    }*/
+  }
+  
+  .Performance_Chart h2{
+      padding-bottom: 10px;
+      padding-top: 0.7cm;
+      font-size: 14pt;
+      font-family: 'gothambook';
+      font-weight: normal;
+      color: #e11f8f;
+  }
+  .page2 .Performance_Chart h2{
+      font-family: gothambook;
+      font-size: 14pt;
+  }
+  /*.page1> .section.row4,.page1> .section.row5,.page1> .section.row6{
+      margin-bottom:0.5cm;
+  }*/
+  .page1 > .section.row.row7 .AssetAllocationBreakdown h2{
+      content:'';
+      position: relative;
+      width: 100%;
+      /* padding-bottom: 0px; */
+      /* left:0px; */
+      /* top: -33px; */
+      /* height: 0px; */
+      /* border-bottom: 1.5pt solid #ab004f; */
+  }
+  .breakdown h2{
+      font-size: 14pt;
+      font-family: 'gothambook';
+      font-weight: normal;
+      color: #e11f8f;
+  }
+  .page1 > .section.row.row7 >.column1 >.row1{
+      /* margin-top: 33px; */
+  }
+  .page2> .section.row1,.page2> .section.row1 >.column1,.page2> .section.row1 >.column2{
+      height: 10px;
+  }
+  .page2>.row2{
+      margin-top:10px !important;
+  }
+  .page2 .Top_Header *{
+      margin:0;
+      padding:0;
+  }
+  .highcharts-graph{
+      stroke-width:2 !important;
+  }
+  .pdfperformancechart .highcharts-plot-background{
+      fill:#fff !important;
+  }
+  .highcharts-xaxis-labels text{
+      fill:#454545 !important;
+  }
+  .highcharts-yaxis-labels text{
+      fill:#454545 !important;
+  }
+  .Footnote .item2{
+      /*font-size: 8pt;*/
+      font-size: 7pt;
+      text-align: justify;
+      margin: 0;
+  }
+  .row7 .Contact p{
+      margin:0;
+  }
+  .page2 .row7{
+       /*position:running(contactusfooter);*/
+        float:footnote; 
+       
+   }
+   .page2 .row7 .Contact{
+       padding-bottom:0.2cm;
+   }
+  .page2 .row7::footnote-marker,
+  .page2 .row7::footnote-call,
+  .footnotecomposite::footnote-marker,
+  .footnotecomposite::footnote-call{
+      display:none;
+  }
+  .page1 .row2 .Date h2{
+      padding-top:12px !important;
+  }
+  .page2 .row7 .footnotecompositebody .address,.page2 .row7 .footnotecompositebody .telephone,.page2 .row7 .footnotecompositebody .email{
+      font-size:9pt;
+      line-height: 1.5;
+  }
+   /* @page:-ro-last{
+      margin-bottom: 1.8cm;
+      padding-bottom:0;
+       @top-left{
+           content:element(contactusfooter);
+           margin:0 1.5cm;
+           width:18cm;
+           position: fixed;
+           bottom:7.5cm;
+       }
+       @top-right{
+           content:element(disclaimerfooter);
+           margin:0 1.5cm 1.7cm;
+           width:18cm;
+           position: fixed;
+           bottom:0;
+       }
+       @footnote{
+              border: none;
+               margin:0.3cm 1.5cm 0cm 1.5cm;
+              padding: 0 0 0cm;
+           }
+  } */
+  .footnotecompositebody {
+    border: none;
+    margin:0.3cm -1.5cm 0cm 1.5cm;
+    padding: 0 0 0cm;
+ }
+.page2 .row7 .composite1{
+	width: 18cm !important;
+}
+  
+  /*ClearView*/

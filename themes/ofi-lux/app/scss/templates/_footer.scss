@@ -1,0 +1,109 @@
+.pagenumbers .footer,
+.pagenumbers .Pagination {
+  font-size: $footer-font;
+  position: relative;
+  z-index: 1;
+}
+
+.pagenumbers .footer p,
+.pagenumbers .Pagination p {
+  position: running(pagination);
+  text-align: $pagination-position;
+}
+
+.WB_Footer_1 {
+  display: none;
+}
+
+.pagenumbers .Pagination {
+  font-size: 0;
+}
+
+.pagenumbers .pageNumber {
+  font-size: 8pt;
+}
+
+@page {
+  margin: 2.8cm 0 1cm 0;
+
+
+  @top-center {
+    content: element(kid);
+    margin: .4cm .75cm 0 0;
+    background-image: url(./images/OFI_INVEST_LUX_Horizontal_RVB.jpg);
+    background-size: 32.5mm auto;
+    background-repeat: no-repeat;
+    background-position: left 0.7cm top .75cm;
+  }
+}
+
+@if $is-show-pagination {
+  @page {
+    @if $pagination-position ==left {
+      @bottom-left {
+        @if $is-custom-pagination {
+          content: $custom-pagination-text;
+        }
+
+        @else {
+          content: element(pagination);
+        }
+
+        width: calc($page-width / $footer-column)cm;
+        // border-top: 0.5pt solid $footer-border;
+        padding: 0.15cm 0cm 0cm 0cm;
+        margin: 0cm 1cm 1cm 1cm;
+        font-size: $footer-font;
+        font-family: $font-regular;
+        text-align: right;
+      }
+    }
+
+    @else if $pagination-position ==right {
+      @bottom-right {
+        @if $is-custom-pagination {
+          content: $custom-pagination-text;
+        }
+
+        @else {
+          content: element(pagination);
+        }
+
+        width: calc($page-width / $footer-column)cm;
+        // border-top: 0.5pt solid $footer-border;
+        padding: 0.15cm 0cm 0cm 0cm;
+        margin: 0cm 1cm 1cm 1cm;
+        font-size: $footer-font;
+        font-family: $font-regular;
+        text-align: right;
+      }
+    }
+
+    @else {
+      @bottom-center {
+        @if $is-custom-pagination {
+          content: $custom-pagination-text;
+        }
+
+        @else {
+          content: element(pagination);
+        }
+
+        width: calc($page-width / $footer-column)cm;
+        border-top: 0.5pt solid $footer-border;
+        padding: 0.15cm 0cm 0cm 0cm;
+        margin: 0cm 1cm 1cm 1cm;
+        font-size: $footer-font;
+        font-family: $font-regular;
+        text-align: center;
+      }
+    }
+
+  }
+}
+
+@else {
+  #{$footer-selector} {
+    display: none;
+  }
+}

@@ -1,0 +1,246 @@
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    // display:contents;
+}
+
+
+@mixin subheaderdesign {
+
+    th {
+        word-break: break-word;
+        background: transparent;
+        border-color: $tdBorder;
+        border-left-color: transparent !important;
+        border-right-color: transparent !important;
+        padding: 4px 2px !important;
+        font-size:map-get($font-size,'nano') !important;
+        font-weight: map-get($font-weight,'bold') !important;
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+
+                @if($i ==1) {
+                    width: 6%;
+                    border-left-color: transparent !important;
+                }
+
+                @else if($i ==2) {
+                    width: 6%;
+                    text-align: center;
+                }
+
+                @else if($i ==3) {
+                    width: 5%;
+                    text-align: center;
+                }
+
+                @else if($i ==10 or $i ==4 or $i ==6 or $i ==8) {
+                    width: 11.5%;
+                    border-right-color: transparent;
+                }
+
+                @else if($i ==5 or $i ==7 or $i ==9 or $i ==11) {
+                    width: 7%;
+                    font-weight: map-get($font-weight,'light') !important;
+                }
+
+                @else if($i ==12) {
+                    width: 9%;
+                    text-align: center;
+                }
+            }
+
+        }
+    }
+}
+
+
+
+@mixin nondeath_subheaderdesign {
+
+    th {
+        word-break: break-word;
+        background: transparent;
+        border-color: $tdBorder;
+        border-left-color: transparent !important;
+        border-right-color: transparent !important;
+        padding:4px 2px !important;
+        font-size:map-get($font-size,'nano') !important;
+        font-weight: map-get($font-weight,'bold') !important;
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+
+                @if($i ==1) {
+                    width: 7%;
+                    border-left-color: transparent !important;
+                }
+
+                @else if($i ==2) {
+                    width: 7%;
+                    text-align: center;
+                }
+
+                @else if($i ==3) {
+                    width: 5%;
+                    text-align: center;
+                }
+
+                @else if($i ==10 or $i ==4 or $i ==6 or $i ==8) {
+                    width: 14%;
+                    border-right-color: transparent;
+                }
+
+                @else if($i ==5 or $i ==7 or $i ==9 or $i ==11) {
+                    width: 8%;
+                    font-weight: map-get($font-weight,'light') !important;
+                }
+            }
+
+        }
+    }
+}
+
+
+@mixin grouprowdesign {
+    .Row td:first-child {
+        width: 6%;
+        border-left-color: transparent !important;
+    }
+
+    .Row td:nth-child(2) {
+        width: 6%;
+        text-align: center;
+    }
+
+    tr:not(.Row) td {
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                @if($i ==1) {
+                    width: 5%;
+                    text-align: center;
+                }
+
+                @else if($i ==2 or $i ==4 or $i ==6 or $i ==8) {
+                    width: 11.5%;
+                    border-right-color: transparent;
+                }
+
+                @else if($i ==3 or $i ==5 or $i ==7 or $i ==9) {
+                    width: 7%;
+                    font-weight: map-get($font-weight,'light') !important;
+                }
+
+                @else if($i ==10) {
+                    width: 9%;
+                    text-align: center;
+                }
+
+            }
+        }
+
+    }
+}
+
+
+@mixin nondeath_grouprowdesign {
+    .Row td:first-child {
+        width: 7%;
+        border-left-color: transparent !important;
+    }
+
+    .Row td:nth-child(2) {
+        width: 7%;
+        text-align: center;
+    }
+
+    tr:not(.Row) td {
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                @if($i ==1) {
+                    width: 5%;
+                    text-align: center;
+                }
+
+                @else if($i ==2 or $i ==4 or $i ==6 or $i ==8) {
+                    width: 11.5%;
+                    border-right-color: transparent;
+                }
+
+                @else if($i ==3 or $i ==5 or $i ==7 or $i ==9) {
+                    width: 8%;
+                    font-weight: map-get($font-weight,'light') !important;
+                }
+
+            }
+        }
+
+    }
+}
+
+.monthlyperformancetable1 {
+
+    *{
+        margin:0 !important;
+        padding:0 !important;
+        text-align:center;
+    }
+    .NonDeathscenario th {
+        padding:4px 2px !important;
+    }
+    tr.headerData th{
+        text-align:center;
+        color: $thColor;
+        border: 1pt solid $thBorder;
+        border-left-color:transparent !important;
+        border-right-color:transparent!important;
+    }
+    table tr td {
+        border: 0.5pt solid $thBorder !important;
+        padding:4px 0px !important;
+        border-left-color:transparent !important;
+        border-right-color:transparent!important;
+        font-size:map-get($font-size,'nano') !important;
+        font-weight: map-get($font-weight,'bold') !important;
+    }
+    .NonDeathscenario table tr td {
+        padding:3px 2px !important;
+    }
+    .headerData:first-child th{
+        padding:4px 0px !important;
+    }
+    .headerData:nth-child(2) th{
+        font-size:7pt !important;
+        padding:4px 2px !important;
+    }
+    .SubheaderData {
+
+        @include subheaderdesign;
+    }
+    .NonDeathscenario .SubheaderData{
+        @include nondeath_subheaderdesign
+    }
+
+    .groupRowDiv1 {
+        @include grouprowdesign;
+    }
+    .groupRowDiv1 .NonDeathscenario {
+        @include nondeath_grouprowdesign;
+    }
+}
+
+
+
+// performanceScenario 
+
+/*
+font-size:map-get($font-size,'micro') !important;
+        border-left-color:transparent;
+        border-right-color:transparent;
+*/

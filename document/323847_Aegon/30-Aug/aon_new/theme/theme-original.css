@@ -1,0 +1,611 @@
+@font-face {
+    font-family: 'HelveticaNow';
+    src: url('./images/HelveticaNow-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'HelveticaNow';
+    src: url('./images/HelveticaNow-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HelveticaNow';
+    src: url('./images/HelveticaNow-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+:root{
+    --primary-color:#EB0017;
+    --black:#000;
+    --white:#fff;
+    --gray:#bbb;
+    --font:'HelveticaNow';
+}
+body {
+    font-family: var(--font);
+    font-size: 8pt;
+    color: var(--black);
+}
+.page {
+    position: relative;
+    width: 19.5cm;
+    height: 28.45cm;
+    padding: 0.50cm 0.75cm;
+}
+.page1{
+	background: url('images/logo-image.png') no-repeat;
+    background-position: top 10px left 0.75cm;
+    background-size: auto 75px;
+}
+.header{
+	padding-top: 1cm;
+}
+.row {
+     /* margin-bottom: 0.1cm;  */
+     margin-bottom: 0.025cm; 
+}
+.page2 .row{
+	margin-bottom:0;
+}
+.WBFundName {
+	width: 20cm;
+}
+.column:first-child > .section {
+    margin-left: 0;
+	margin-bottom: 0;
+}
+h1, h2, h3 {
+    margin: 0;
+    color: #114F8E;
+    font-weight: normal;
+}
+p {
+    margin: 0;
+    /* margin-bottom: 0.25cm; */
+    margin-bottom: 0.05cm;
+}
+p.WBRiskWarning {
+	margin-bottom: 0;
+}
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+    color: #114F8E;
+}
+.page > .row1 {
+    border-bottom: 0px solid #114F8E;
+    position: relative;
+}
+.page > .row1 h2 {
+    font-size: 17.5pt;
+    padding-left: 0;
+    min-height: 0;
+    background: none;
+    margin-bottom: 0;
+    height: 1.3cm;
+    font-family: var(--font);
+}
+.page2 > .row1 h2, .page3 > .row1 h2 {
+	height: 1.5cm;
+} 
+.page1 > .row2 > .column1,.page1 > .row2 > .column2 {
+    margin-top:0.1cm;
+}
+.page1 > .row2 > .column2 > .section {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+.horizontal-list.fundinfo .clear {
+	padding: 0;
+}
+.tabs.breakdowns > .tabpanes {
+    border: none;
+}
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+    padding-bottom: 20px;
+}
+.tabs.breakdowns > .tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+.tabs.breakdowns > .tabbuttons > .tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+.performancechart {
+	position: relative;
+}
+.performancechart:before {
+    content: "Percentage growth";
+    transform: rotate(270deg);
+    position: absolute;
+    top: 2cm;
+    left: -1.3cm;
+    font-size: 8pt;
+}
+.text.text1.compositeheader p.item2 {
+    display: none;
+}
+.page1 .FundName, .page1 h2.WBFundName {
+    padding-top: 2cm;
+}
+.FundName, .WBFundName {
+    padding-top: 0;
+}
+.DocumentDate, .DataAsAtDate {
+    color: var(--white);
+    float: right;
+    margin-top: -48pt;
+}
+.DocumentDate+.item4, .DataAsAtDate+.item4 {
+    float: right;
+    margin-top: -72pt;
+    color: #3BC7EF;
+}
+h2 {
+    margin-bottom: 2pt;
+    font-size: 11pt;
+    font-family:var(--font);
+}
+.horizontal-list.fundinfo>div, .horizontal-list.codes>div, .horizontal-list.underinfo>div, .manager>div:not(.Biography) {
+    border-bottom: 1px solid var(--black);
+    padding: 3pt 0;
+}
+.FundName .value {
+    width: 4.5cm;
+    text-align: right;
+}
+.fundinfo > .item12 {
+    border-bottom: none !important;
+}
+.aboutfund p {
+	margin-bottom: 0.25cm !important;
+}
+.evenManager div, .oddManager div {
+	float: left;
+	width: 99%;
+}
+.evenManager .Biography {
+	clear: both;
+}
+.underinfo .FundManagementGroupName .label, .StartDate .label, .evenManager .Name .label, .BenchmarkName .label, .SectorNameFull .label {
+    width: 39%;
+}
+.underinfo .FundManagementGroupName .value, .evenManager .Name .value, .BenchmarkName .value, .SectorNameFull .value {
+    width: 58%;
+    text-align: right;
+}
+.horizontal-list.fundinfo>div.item13{
+	border: 0;
+}
+.horizontal-list>div:empty {
+    border: none;
+}
+.horizontal-list>div span.label, .manager>div span.label {
+    margin: 0;
+    font: normal inherit var(--font);
+}
+.manager>div.Biography span.label {
+    display: none;
+}
+.horizontal-list>div span.value, .manager>div:not(.Biography) span.value {
+    margin: 0;
+    font: normal inherit var(--font);
+    float: right;
+}
+.riskcaveats.horizontal-list>div span.value{
+	float: left;
+}
+.manager>div.Biography {
+    padding-top: 0.1cm;
+}
+.highcharts-root{
+	margin-left: 5px;
+}
+.ObjectiveText, .risktext p, .aboutfund p {
+    margin: 0;
+    font: normal inherit var(--font);
+}
+.CrownRating img {
+    width: 50pt;
+    margin-top: 2pt;
+}
+.clientRating {
+    width: 60pt;
+    margin-left: 0;
+    margin-top: 2pt;
+}
+.pdfperformancechart .chart {
+    /* height: 150px; */
+    height: 80px;
+}
+.performancetable h2 {
+    display: none;
+}
+table {
+    border-collapse: collapse;
+}
+table th {
+    font: normal inherit var(--font);
+}
+.performancetable table th {
+    padding: 0;
+    width: 1.35cm;
+    text-align: left;
+}
+.performancetable table th.rowheader{
+	width: 1.5cm;
+}
+.discreteprefir .rowheader, .cumulativeperfir .rowheader {
+    width: 1cm !important;
+	padding-left: 0;
+}
+.discreteprefir table th, .cumulativeperfir table th, .cumulativeperfir td, .discreteprefir td, .cumulativeperf table th, .cumulativeperf td, .discretepref table th, .discretepref td {
+	padding-left: 0.3cm;
+}
+.discreteprefir table th {
+    width: 1.3cm;
+}
+.cumulativeperfir table th {
+	width: 1.8cm;
+}
+.cumulativeperf table th {
+	width: 1.9cm;
+}
+.cumulativeperf table th:last-child {
+	width: 1.33cm;
+}
+.cumulativeperfir table th:last-child {
+    width: 1.28cm;
+}
+.cumulativeperf .rowheader, .discretepref .rowheader {
+	width: 1.8cm !important;
+	padding-left: 0;
+}
+table td {
+    font: normal inherit var(--font);
+}
+table tr.total td{
+	font: normal inherit var(--font);
+}
+table tr {
+    border-bottom: 1px solid var(--black);
+}
+table {
+    width: 100%;
+}
+.breakdown table thead th.Key + th.Name, .breakdown table tbody tr.total td.Key + td.Name{
+	text-indent: -0.55cm;
+}
+table .Weight {
+    text-align: right;
+}
+div.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0.5cm;
+    right: 0.5cm;
+}
+.page:last-child div.footer {
+    bottom: 0;
+    padding-top: 1.1cm;
+    background-image: url(images/footer-logo.svg);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 3cm 1cm;
+}
+.footer p {
+    border-top: 1px solid var(--black);
+    padding-top: 0.2cm;
+    font: normal 7pt var(--font);
+}
+.key-color {
+    height: 2.8mm;
+    width: 3.5mm;
+    margin: 1mm;
+}
+.riskcaveats {
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+.riskdescription p {
+    font: normal inherit var(--font) !important;
+}
+.riskcaveats .label {
+    width: 20%;
+    display: table-cell;
+    color: #114F8E;
+    font: normal inherit var(--font) !important;
+}
+.riskcaveats .value {
+    width: auto;
+    display: table-cell;
+}
+.DocumentDate, .DataAsAtDate-Price, .DataAsAtDate-AnnualCharge, .DataAsAtDate-FundSizeDate, .FundSizeDate-DataAsAtDate {
+    color: #114F8E;
+    margin: 0;
+    position: absolute;
+    top: auto;
+    bottom: -0.65cm;
+    right: 0;
+    font-family:var(--font);
+    font-size: 11pt;
+}
+
+/* .page1 .header p:nth-child(3) {
+    position: absolute;
+    top: 2.3cm;
+    right: 0;
+    margin: 0;
+    font-family:var(--font);
+    font-size: 11pt;
+    color: #114F8E;
+} */
+.page1 .header p.DocumentDate, .page1 .header p.DataAsAtDate-Price, .page1 .header p.DataAsAtDate-AnnualCharge {
+    color: #114F8E;
+    margin: 0;
+    position: absolute;
+    top: 2.8cm;
+    right: 0.5cm;
+    font-family:var(--font);
+    font-size: 11pt;
+}
+.performancechart h2 {
+    display: none;
+}
+.source p, .Biography span, .performance p {
+    font-family:var(--font);
+    font-size: inherit;
+}
+ .Biography span  {
+    font: inherit var(--font);
+}
+.manager .Photo {
+    height: 75px;
+}
+.manager>.Photo {
+    margin-top:0.2cm
+}
+.manager>.Photo:empty {
+	height: 15px;
+}
+td.Key {
+    width: 5%;
+}
+th.Name {
+    text-align: left;
+}
+.column > .section {
+    margin-left: 0.5cm;
+}
+.page3 .clear{
+    display:none;
+}
+.page2 .CrownRating{
+	margin-bottom: 11px;
+	height: 16px;
+}
+.page3 > .row2 h2{
+	margin-top: 0.2cm;
+}
+.page2 .breakdown{
+	margin-bottom:0.4cm
+}
+.page2>.row2>.column2,.page2>.row2>.column1{
+   margin-top:0.2cm;
+}
+.ObjectiveText{
+   margin-bottom: 0.1cm;
+}
+.page1 > .row2 > .column1>.row1>.row1>.fundinfo{
+  margin-bottom: 0.2cm;
+}
+.page1 > .row2 > .column2>.row5>.row1>.performancetable{
+	margin-top:0.3cm;
+}
+.page1 > .row2 > .column2>.row5>.row2>.performancetable{
+	margin-top:0.2cm;
+}
+.page1 > .row2 > .column2>.row4 .row3> .pdfperformancechart.pdfperformancechart1{
+	margin-top: 0.2cm;
+}
+h2{
+    color:var(--primary-color);
+    font-weight: normal;
+    margin-bottom: 3pt;
+}
+h2.WBFundName{
+    font-weight: bold;
+}
+.horizontal-list1 h2.item1 {
+    border-bottom:1px solid var(--black);
+    margin: 0;
+    padding-bottom:2pt;
+}
+.horizontal-list div{
+    width: 100%;
+}
+.horizontal-list>div span.label {
+    width: 37%;
+}
+ p.DataAsAtDate-FundSizeDate {
+    color: var(--primary-color);
+}
+.header2 p.item3 {
+    color: var(--black);
+}
+.keyWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+.keyWrapper .keyContainer {
+    padding-right: 10pt;
+}
+.keyWrapper .keyContainer .key-color {
+    margin-top: 0.7mm;
+}
+.performancechart.pdfperformancechart {
+    padding-bottom: 0;
+}
+br {
+    content: "";
+    display: block;
+    height: 1px;
+    margin: 0.5px 0;
+}
+.cumulativeperf p.footer {
+    /* padding-top: 5pt; */
+    padding-top: 1pt;
+    /* line-height: 15px; */
+}
+.AssetSplit .key-color {
+    margin: 0;
+}
+.AssetSplit table tr {
+    border-bottom: none;
+}
+.AssetSplit table th.Key,.AssetSplit table td.Key {
+    width: 18px;
+    min-width: 18px;
+}
+.performancetable1 td, .performancetable1 th {
+    /* padding: 1mm 0.5mm !important; */
+    padding: 0.5mm 0.5mm !important;
+}
+.Definedcontributions p {
+    color: var(--black);
+    font-size: 10pt;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 5pt;
+    font-weight: bold;
+}
+.aoncaveat p {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.aoncaveat.text{
+    position: absolute;
+    bottom: 5px;
+    left: 0.75cm;
+    z-index: 9;
+    width: 100%;
+}
+.page3 .aoncaveat:after {
+    content:"";
+    position: absolute;
+    background: url('./images/logo-image.png') no-repeat;
+    background-size: 110px auto;
+    bottom:10px;
+    right:1.5cm;
+    width:110px;
+    height:80px;
+    left:auto;
+}
+.page > .row1 .header p.WBFundName, .page > .row1 .header2 h2.WBFundName {
+    font-size: 17.5pt;
+    padding-left: 0;
+    min-height: 0;
+    background: none;
+    margin-bottom: 5px;
+    /* height: 1.3cm; */
+    height: auto;
+    color: var(--primary-color);
+    font-family: var(--font);
+    border-bottom: 1px solid var(--black);
+}
+.page.page1 > .row1 .header2 h2.WBFundName {
+    /* margin-bottom: 0; */
+    border: none;
+}
+.performance p.WBFundName {
+    font-size: 10pt;
+    font-weight: bold;
+}
+.page3 > .row2 {
+    position: absolute;
+    bottom: 2.5cm;
+    left: 0.75cm;
+    right: 0.75cm;
+    z-index: 9;
+}
+.page1>.row2>.column1 {
+    width: 30% !important;
+}
+.page1>.row2>.column2 {
+    width: 70% !important;
+}
+.quarter p{
+    line-height:normal;
+}
+.quarter .QeDataAsAtDate {
+    font-size: 50pt;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 0;
+    line-height: 40pt;
+    text-align: right;
+    padding-right: 0;
+}
+/* .year {
+    position: absolute;
+    top: 18px;
+    transform: rotate(270deg);
+    right: -17px;
+    z-index: 9;
+} */
+.year{
+    text-align: right;
+}
+.year .AsAtYearYYYY {
+    margin: 0;
+    line-height: normal;
+    font-size: 11pt;
+    letter-spacing: 3px;
+    color: var(--primary-color);
+}
+.page1>.row1>.column2 {
+    position: relative;
+}
+.highcharts-axis-labels span, .highcharts-legend-item span,.chart text {
+    font-family: var(--font) !important;
+}
+.page1>.row3>.column1 .horizontal-list1 > div > *{
+    box-sizing: border-box;
+}
+.page1>.row3>.column1 .horizontal-list1 > div {
+    width: 100%;
+}
+.page1>.row3>.column1 .horizontal-list1 span:first-child{
+    width: 42% !important;
+}
+.page1>.row3>.column1 .horizontal-list1 span:nth-child(2){
+    width:58%;
+    text-align: right;
+}
+text.highcharts-title {
+    display: none !important;
+}
+.barChartSection1 .chart {
+    /* height: 200px; */
+    height: 170px;
+}
+/* aon_new */

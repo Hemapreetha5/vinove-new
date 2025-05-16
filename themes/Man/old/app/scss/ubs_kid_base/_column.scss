@@ -1,0 +1,55 @@
+@mixin columnCount{
+    width: 100% !important;
+    column-count: $columncount;
+    column-gap:  $columngap;
+    column-fill: balance !important;
+}
+.page1{
+    .row4,.row5
+    {
+        .compositebody>.row{
+        .column{
+            @include columnCount;
+            h2{
+              column-span:all;  
+            }
+            
+        }
+    }
+    }
+}
+ 
+.page2{
+    .row1 .compositebody
+    {   
+        *{
+            break-before:avoid-page;
+        }
+        
+        .row3{
+            
+            @include columnCount;
+            h2{
+              column-span:all;  
+            }
+    }
+        .row5{
+            .column{
+                @include columnCount;
+            }
+        }
+    }
+}
+
+h2{
+    bookmark-level:1;
+} 
+.subheader p{
+    bookmark-level:2;
+}
+
+@if $stickyHeader{
+    .keyinformationdocument h2,.fundName h2{
+        bookmark-level:none;
+    } 
+}

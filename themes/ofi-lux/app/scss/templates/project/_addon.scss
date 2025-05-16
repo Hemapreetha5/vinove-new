@@ -1,0 +1,122 @@
+@if $is-boxed-layout {
+
+	.generalinformation,
+	.whatisthisproduct,
+	.page1>.row5>.composite,
+	.page2>.row1>.composite,
+	.unabletopay,
+	.page2>.row3>.composite,
+	.page3>.row1>.composite,
+	.howlong,
+	.howcanicomplain,
+	.otherrelevantinformation {
+		background: $secondary;
+		padding: 2.5mm;
+		margin-bottom: 4mm;
+	}
+}
+
+@else if $is-bordered-layout {
+
+	.generalinformation,
+	.whatisthisproduct,
+	.page1>.row5>.composite,
+	.page2>.row1>.composite,
+	.unabletopay,
+	.page2>.row3>.composite,
+	.page3>.row1>.composite,
+	.howlong,
+	.howcanicomplain,
+	.otherrelevantinformation {
+		border: 1pt solid $border;
+		padding: 2.5mm;
+		margin-bottom: 4mm;
+	}
+}
+
+@if $is-howlong-hold-it {
+
+	.WB_HowlongshouldIholdit_1,
+	.WB_HowlongshouldIholdit_4 {
+		background: $how-long-hold-it-bg;
+		font-family: $font-bold;
+		padding: 2mm;
+		color: $white;
+	}
+}
+
+@if $is-UBS {
+
+	.Product_SubHeader,
+	.Product_Value {
+		p {
+			margin-bottom: 0.34cm;
+			min-height: 0.6cm;
+		}
+	}
+
+	.subheader p[class*='WB_Whatisthisproduct'],
+	.WB_Whatisthisproduct_1,
+	.WB_Whatisthisproduct_3,
+	.WB_Whatisthisproduct_5,
+	.WB_Whatisthisproduct_7,
+	.WB_Whatisthisproduct_9,
+	.WB_WhatAreTheCosts_3,
+	.WB_WhatAreTheCosts_continued_2 {
+		font-family: $font-bold;
+	}
+}
+
+tbody {
+	display: table;
+	width: 100%;
+}
+
+
+
+.groupRowDiv1 {
+
+	th,
+	td {
+		border-color: #b1b3b4;
+
+
+	}
+
+	td {
+		border-color: #b1b3b4;
+
+		&:first-of-type {
+			border-color: #b1b3b4;
+		}
+	}
+}
+
+.costComposition {
+	thead+tbody {
+		th:first-of-type {
+			border-left-color: #b1b3b4;
+			border-right-color: #b1b3b4;
+		}
+	}
+
+	.groupHeaderDiv1 {
+		th {
+			border-bottom-color: $table-header-bg;
+		}
+	}
+}
+
+.performanceScenario {
+	.groupHeaderDiv1 {
+		th {
+			// border-color: black;
+		}
+	}
+
+	.survival-scenario th {
+		border-bottom-color: $table-header-bg;
+	}
+}
+
+/* priipskid_OFILUX_theme_EU*/

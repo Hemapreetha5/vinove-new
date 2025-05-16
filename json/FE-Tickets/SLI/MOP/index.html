@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>STLSYEIB MOP</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=MOP;
+PublicationCountry=IE;
+Language=en;
+RecordDate=2022-12-19;
+ShareClass=;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=*;
+Productcode=STLSYEIB;
+PublicationDate=2023-01-01;
+DateOfPublication=2023-01-01;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=;
+CalculationDate=2022-11-30;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row1>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row1>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row2>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row2>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row5>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row5>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/template.common.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet"
+        href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="page1 page section" data-pageorder="1" data-sectionId="616413" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionId="616414" data-sectiontype="2">
+            <div class="column1 column section" data-sectionId="616415">
+                <div class="row1 row section" data-roworder="1" data-sectionId="616416" data-sectiontype="2">
+                    <div class="text1 SLDocHead text contentSection section" data-sectionId="616417">
+                        <h2 class="item2">Key Information Document</h2>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 row section" data-roworder="2" data-sectionId="616418" data-sectiontype="2">
+                    <div class="text1 SLIntro text contentSection section" data-sectionId="616419">
+                        <h2 class="item2">Purpose</h2>
+                        <p class="item3">This document provides you with key information about this investment product.
+                            It is not marketing material. The information is required by law to help you understand the
+                            nature, risks, costs, potential gains and losses of this product and to help you compare it
+                            with other products.</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="column2 column section" data-sectionId="616420">
+                <div class="row1 row section" data-roworder="1" data-sectionId="616421" data-sectiontype="2">
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionId="636719" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionId="636720">
+                <div class="text1  compositeheader text contentSection section" data-sectionId="636721">
+                    <h2 class="item2">Product</h2>
+                </div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionId="636722" data-sectiontype="2">
+                        <div class="column1 column section" data-sectionId="637573">
+                            <div class="row1 row section" data-roworder="1" data-sectionId="637574"
+                                data-sectiontype="2">
+                                <div class="text1 generalinformation text contentSection section"
+                                    data-sectionId="616423">
+                                    <p class="WBFundName">Name of Product:
+                                    <div>Synergy Investment Bond</div>
+                                    </p>
+                                    <p class="item3">Website:
+                                    <div><a href="www.standardlife.co.uk">www.standardlife.co.uk</a></div>
+                                    </p>
+                                    <p class="DateOfPublication">Date of Production:
+                                    <div>01/01/2023</div>
+                                    </p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="column2 column section" data-sectionId="637575">
+                            <div class="row1 row section" data-roworder="1" data-sectionId="637576"
+                                data-sectiontype="2">
+                                <div class="text1 generalinformation text contentSection section"
+                                    data-sectionId="636724">
+                                    <p class="PriipManufacturerwb">Manufacturer:
+                                    <div>Standard Life International dac</div>
+                                    </p>
+                                    <p class="item3">Regulator:
+                                    <div>Central Bank of Ireland</div>
+                                    </p>
+                                    <p class="item4">Telephone:
+                                    <div>01 639 7000</div>
+                                    </p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionId="616424" data-sectiontype="2">
+            <div class="row1 row section" data-roworder="1" data-sectionId="616427" data-sectiontype="2">
+                <div class="text1 complexitywarning text contentSection section" data-sectionId="616428">
+                    <p class="item2">You are about to purchase a product that is not simple and may be difficult to
+                        understand.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row4 row section" data-roworder="4" data-sectionId="616431" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616432">
+                <h2 class="item2">What is this product?</h2>
+                <p class="Whatisthisproduct"></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row5 row section" data-roworder="5" data-sectionId="618070" data-sectiontype="2">
+            <div class="column1 column section" data-sectionId="618072">
+                <div class="row1 row section" data-roworder="1" data-sectionId="618073" data-sectiontype="2">
+                    <div class="text1 SLGen text contentSection section" data-sectionId="618076">
+                        <p class="Type"><b>Type</b>
+                        <p>A whole of life, investment linked insurance contract into which one off and additional
+                            single premiums can be made.  <br>The investments available through the Policy are funds
+                            offered by Standard Life, investments via an Execution-only Stockbroker and Deposits are
+                            also available. <br>The Policy value depends on the value of the underlying investments,
+                            which can go down as well as up, less any product, third party charges and taxes
+                            applied.<br>For further information on the underlying funds, please refer to the relevant
+                            Supplemenary Information Document (SID). You should also read Key Feaures document
+                            (SYIBKF1), Self-Directed Options guide (SYSDO1) , Policy Provisions (SYIB60) and we recommed
+                            you speak to your financial adviser.<br><br>This document illustrates the maximum charge
+                            applicable to this product.</p>
+                        </p>
+                        <p class="Objectives"><b>Objectives</b>
+                        <p>This product aims to:<br>- Increase the value of investments (capital growth),<br>- Provide
+                            access to a wide range of investment options,<br>- Manage money in a tax efficient way,<br>-
+                            Offer wealth transfer opportunities via a trust or assignment of the policy.</p>
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="column2 column section" data-sectionId="618074">
+                <div class="row1 row section" data-roworder="1" data-sectionId="618075" data-sectiontype="2">
+                    <div class="text1 SLGen text contentSection section" data-sectionId="618077">
+                        <p class="IntendedMarket"><b>Intended market</b>
+                        <p>The type of investor to whom this policy is intended to be marketed varies on the basis of
+                            the underlying investment.<br>Investors should aim to hold the policy over the medium to
+                            long term (7<br>years plus) in order to balance out any short term fluctuations in the
+                            market and benefit from the relative stability of investment returns over the longer term.
+                        </p>
+                        </p>
+                        <p class="Insurancebenefitsandcosts"><b>Insurance benefits and costs</b>
+                        <p>The policy is written on the life of one or more lives assured. On the death of the last
+                            surviving life assured the policy ends and we will pay out death benefits of 101% of the
+                            policy value, less any charges. There is no charge for this death benefit and it does not
+                            impact the return on your investment.</p>
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 row section" data-roworder="2" data-sectionId="618078" data-sectiontype="2">
+                    <div class="row1 row section" data-roworder="1" data-sectionId="618081" data-sectiontype="2">
+                        <div class="text1 SLGen text contentSection section" data-sectionId="618084">
+                            <p class="Termofbondorpolicy"><b>Term of the Bond</b>
+                            <p>There is no maturity date; the policy comes to an end on the death of the last life
+                                assured or on surrender. We have the right to cancel the policy in certain circumstances
+                                and so do you. Please refer to the Policy Provisions (SYIB60) for details.</p>
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row6 row section" data-roworder="6" data-sectionId="616433" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionId="616434">
+                <div class="text1 SRIMop compositeheader text contentSection section" data-sectionId="616435">
+                    <h2 class="item2">What are the risks and what could I get in return?</h2>
+                    <p class="item3"><b>Summary Risk Indicator</b></p>
+                </div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionId="616436" data-sectiontype="2">
+                        <div class="composite composite1 composite section" data-sectionId="616437">
+                            <div class="text1  compositeheader text contentSection section" data-sectionId="616438">
+                            </div>
+                            <div class="compositebody">
+                                <div class="row2 row section" data-roworder="2" data-sectionId="616439"
+                                    data-sectiontype="2">
+                                    <div class="text1 warning text contentSection section" data-sectionId="616440">
+                                        <p class="SriRange">
+                                        <table class="sriRangeRiskRating">
+                                            <tr class="ratings">
+                                                <td colspan="2">
+                                                    <table>
+                                                        <tr>
+                                                            <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                                        <tr>
+                                                            <td class="rating selected start">1</td>
+                                                            <td class="rating selected">2</td>
+                                                            <td class="rating selected">3</td>
+                                                            <td class="rating selected">4</td>
+                                                            <td class="rating selected end">5</td>
+                                                            <td class="rating">6</td>
+                                                            <td class="rating">7</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr class="arrow">
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr class="header">
+                                                <th>Lower risk</th>
+                                                <th>Higher risk</th>
+                                            </tr>
+                                        </table>
+                                        </p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="row3 row section" data-roworder="3" data-sectionId="616441"
+                                    data-sectiontype="2">
+                                    <div class="text1 warning text contentSection section" data-sectionId="616442">
+                                        <p class="Rhp"><b>The risk indicator assumes that you keep the product for 7
+                                                years. </b></p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionId="616443" data-sectiontype="2">
+                        <div class="text1 narrative text contentSection section" data-sectionId="616444">
+                            <p class="SRInarrative1">The summary risk indicator is a guide to the level of risk of this
+                                product compared to other products. It shows how likely it is that the product will lose
+                                money because of movements in the markets or because we are not able to pay you. The
+                                policy itself does not have a risk indicator because the returns are based on the
+                                underlying assets that you choose to link to it.<br>The policy offers a range of
+                                underlying investment options with risk classes which may range from 1 as the lowest and
+                                7 as the highest. The returns on your investment will be dependent upon which investment
+                                option you choose. Further details of the possible returns for each investment fund we
+                                make available can be found in the Supplementary Information Document. These can be
+                                found on our website www.standardlife.ie in our dedicated fund centre, via your adviser
+                                or by requesting them from us.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row4 row section" data-roworder="4" data-sectionId="616445" data-sectiontype="2">
+                        <div class="text1 narrative text contentSection section" data-sectionId="616446">
+                            <p class="item2"><b>Other risks materially relevant to the policy not included in the risk
+                                    indicator:</b></p>
+                            <p class="SRInarrative2">In certain market conditions, investments in property may become
+                                relatively illiquid and more difficult to realise than equities or bonds. The value of
+                                funds that invest in overseas assets can be significantly affected by exchange rates and
+                                political or economic situations. Some underlying investment option providers may apply
+                                exit penalties or restrictions to early withdrawals.Tax is also payable on returns made
+                                on this investment and may have an impact on the actual payout, however tax is not
+                                included in the costs table in this document or the calculations in the Supplementary
+                                Information Document (SID). If you do not hold the policy for the recommended holding
+                                period, there is a greater risk that your investment return will be impacted by short
+                                term market fluctuations. Charges, laws and tax rules may change in the future. The
+                                policy does not include any protection from future market performance so you could lose
+                                some or all of your investment. If we are not able to pay you what is owed, you could
+                                lose your entire investment.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row7 row section" data-roworder="7" data-sectionId="616447" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionId="616448">
+                <p class="item2">
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                </div>
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="page2 page section" data-pageorder="2" data-sectionId="616449" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionId="616450" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616451">
+                <h2 class="item2">What are the risks and what could I get in return? (continued)</h2>
+                <p class="Whataretheriskscont">Performance Scenarios<br>The returns on your investment will be dependent
+                    upon which investment option you choose to invest in. Further details of the possible returns for
+                    each investment fund available can be found in the applicable Supplementary Information
+                    Document.<br>These can be found on our website www.standardlife.ie in our dedicated fund centre, via
+                    your financial adviser or by requesting them from us.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionId="616452" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616453">
+                <h2 class="item2">What happens if Standard Life Ireland is unable to pay out? </h2>
+                <p class="WhatHappensIf">The assets linked to your policy are legally owned by Standard Life. These
+                    assets are appropriately ring-fenced and protected, so that, in the unlikely event of our
+                    insolvency, they must be used to pay the claims of our policyholders. In Ireland, there is no
+                    statutory investor protection or compensation scheme for life assurance companies who hold deposits,
+                    or for customers who hold policies with life assurance companies.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionId="616454" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionId="616455">
+                <div class="text1  compositeheader text contentSection section" data-sectionId="616456"></div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionId="616457" data-sectiontype="2">
+                        <div class="costOverTime1 tableforcosts costOverTime contentSection section costovertime_3columntable"
+                            data-sectionId="616458" style="page-break-inside:avoid">
+                            <h2 class="">What are the costs?</h2>
+                            <p>The tables show the amounts that are taken from your investment to cover different types
+                                of costs. These amounts depend on how much you invest, how long you hold the product and
+                                how well the product does. The amounts shown here are illustrations based on an example
+                                investment amount of &#8364;10000 and a holding period based on a moderate scenario.
+                            </p>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr>
+                                                    <th colspan='3' class=tableheader></th>
+                                                </tr>
+                                                <tr class='scenarioheader'>
+                                                    <th colspan=3></th>
+                                                    <th class='scenario1'>If you exit after 1 year</th>
+                                                    <th class='scenario2'>If you exit after 7 years</th>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr class='row'>
+                                                        <td class='totalcostsheader'> <span
+                                                                class='totalcost-labelrangeonly'> Total
+                                                                costs</span><br /></td>
+                                                        <td class='totalcosts1'><br />&#8364;1147 to &#8364;1251</td>
+                                                        <td class='totalcosts2'> <br />&#8364;1752 to &#8364;3614</td>
+                                                    </tr>
+                                                    <tr class='row'>
+                                                        <td class='riyheader'> <span
+                                                                class='annualcost-labelrangeonly'>Annual cost impact
+                                                                (*)</span><br /></td>
+                                                        <td class='riy1'><br />11.6 to 12.7%</td>
+                                                        <td class='riy2'> <br />2.7 to 3.9% each year</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionId="616459" data-sectiontype="2">
+                        <div class="text1 MOPText text contentSection section" data-sectionId="642235">
+                            <p class="item2">(*) This illustrates how costs reduce your return each year over the
+                                holding period.</p>
+                            <p class="item3">The person advising you about this product may charge you other costs. If
+                                so, this person will provide you with information about these costs, and show you
+                                the impact that all costs will have on your investment over time.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row4 row section" data-roworder="4" data-sectionId="616461" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionId="616462">
+                <p class="item2">
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                </div>
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="page3 page section" data-pageorder="3" data-sectionId="616463" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionId="616464" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionId="616465">
+                <div class="text1  compositeheader text contentSection section" data-sectionId="616466"></div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionId="616467" data-sectiontype="2">
+                        <div class="costComposition1 WhatAreTheCosts costComposition contentSection section"
+                            data-sectionId="616468" style="page-break-inside:avoid">
+                            <h2 class="">What are the costs? (continued)</h2>
+                            <p>The table below shows the impact each year of the different types of costs on the
+                                investment return you might get at the end of the recommended holding period and, what
+                                the different cost categories mean. </p>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr class="tableHeader">
+                                                    <th colspan=3>This table shows the impact on return per year</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr>
+                                                        <th class="groupHeader1" colspan="3">
+                                                            <div class="groupHeaderDiv1">
+                                                                <table>
+                                                                    <tr class="oneofcosts">
+                                                                        <th colspan=2>One-off costs upon entry or exit
+                                                                        </th>
+                                                                        <th>Annual cost impact if you exit after 7 years
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <thead></thead>
+                                                    <tr class="entrycosts">
+                                                        <td>Entry costs</td>
+                                                        <td>The impact of the costs you pay when entering your
+                                                            investment. This figure takes into account the government
+                                                            levy of 1%.</td>
+                                                        <td>0.0%</td>
+                                                    </tr>
+                                                    <tr class="exitcosts">
+                                                        <td>Exit costs</td>
+                                                        <td>The impact of the costs of exiting your investment when it
+                                                            matures.</td>
+                                                        <td>0.0%</td>
+                                                    </tr>
+                                                    <tr class="ongoingcosts">
+                                                        <th colspan=3> Ongoing costs taken each year</th>
+                                                    </tr>
+                                                    <tr class="managementfeesandothercosts">
+                                                        <td>Management fees and other administrative or operating costs
+                                                        </td>
+                                                        <td>The impact of the costs that we take each year for managing
+                                                            your investments and the costs of distribution of your
+                                                            product. This is the most you will pay, and you could pay
+                                                            less.</td>
+                                                        <td>0.0%</td>
+                                                    </tr>
+                                                    <tr class="transactioncosts">
+                                                        <td>Transaction costs</td>
+                                                        <td>The impact of the costs of us buying and selling underlying
+                                                            investments for the product.</td>
+                                                        <td>0.0%</td>
+                                                    </tr>
+                                                    <tr class="incidentalcosts">
+                                                        <th colspan=3>Incidental costs taken under specific conditions
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="performancefees">
+                                                        <td>Performance fees</td>
+                                                        <td>There is no performance fee for this product.</td>
+                                                        <td>N/A</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionId="616469" data-sectiontype="2">
+                        <div class="text1 whatarecoststext text contentSection section" data-sectionId="616470">
+                            <p class="CostsCaveat"></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionId="616471" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616472">
+                <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+                <p class="HowlongshouldIholditandcanItakemoneyoutearly"><b>Recommended holding period: 7
+                        years.</b><br>Investors should aim to hold the policy over the medium to long term (7 years
+                    plus) in order to balance out any short term fluctuations in the market and<br>benefit from the
+                    relative stability of investment returns over the longer term.<br>You can begin to take money out of
+                    the policy one month after the start date, this may reduce its value and have a tax impact. You may
+                    also have to pay an<br>early encashment charge, see the Key Features Document (SYIBKF1) for more
+                    details. Some underlying investment providers may apply exit penalties,<br>suspensions, deferrals or
+                    restrictions. This could impact (i) your ability to take your money out; and/or (ii) the amount you
+                    take out. If you invest in the<br>policy you have a legal right to cancel your contract within 30
+                    days from when you receive your policy schedule. You may get back less than you paid in<br>because
+                    we may make a deduction to reflect any market loss we have experienced between the date we received
+                    your payment and the date we received<br>your instruction to cancel. For more information see the
+                    Key Features Document.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionId="616473" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616474">
+                <h2 class="item2">How can I complain?</h2>
+                <p class="HowCanIComplain">If you have a complaint about Standard Life's product or our conduct, contact
+                    us by:<br><br>- Post: Operations Director, 90 St Stephen's Green, Dublin 2.<br>- Phone: +353 1 639
+                    7000 (Mon-Fri, 9am to 5pm) Calls may be monitored and/or recorded to protect both you and us and
+                    help with our training. Call charges will vary.<br>- Email:
+                    customerservice@standardlife.ie<br><br>If your complaint relates to the advice you received, please
+                    contact your financial adviser.<br><br>If you are not satisfied with our final response, you can
+                    complain to:<br>Financial Services and Pensions Ombudsman<br>Lincoln House, Lincoln Place, Dublin
+                    2<br>Call: +353 1 567 7000<br>Email: info@fspo.ie<br>www.fspo.ie</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row4 row section" data-roworder="4" data-sectionId="616475" data-sectiontype="2">
+            <div class="text1 MOPText text contentSection section" data-sectionId="616476">
+                <h2 class="item2">Other relevant information</h2>
+                <p class="RelInfo">Please ensure you read the following documents which we are legally required to make
+                    available to you. These should be provided by your financial adviser.<br>- Synergy Investment Bond
+                    Policy Provisions (SYIB60)<br>You may also wish to read:<br>- your personal illustration, Synergy
+                    Investment bond Key Features Document (SYIBKF1) and Self-Directed Options guide (SYSDO1) which can
+                    be provided<br>by your financial adviser.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row5 row section" data-roworder="5" data-sectionId="616477" data-sectiontype="2">
+            <div class="text1 SLFooter text contentSection section" data-sectionId="636718">
+                <p class="item2">Standard Life International dac is regulated by the Central Bank of Ireland. Standard
+                    Life International dac is a designated activity company limited by shares and registered in Dublin,
+                    Ireland (408507) at 90 St Stephen’s Green, Dublin 2. Standard Life International dac is part of the
+                    Phoenix Group and uses the Standard Life brand under licence from the Standard life Aberdeen Group.
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row6 row section" data-roworder="6" data-sectionId="636726" data-sectiontype="2">
+            <div class="text1 SLFooterL text contentSection section" data-sectionId="636727">
+                <p class="item2">
+                <div><a href="www.standardlife.co.uk">www.standardlife.co.uk</a></div>
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row7 row section" data-roworder="7" data-sectionId="636731" data-sectiontype="2">
+            <div class="text1 SLFooterR text contentSection section" data-sectionId="636732">
+                <p class="item2">©2023 Standard Life Aberdeen, reproduced under licence. All rights reserved.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row8 row section" data-roworder="8" data-sectionId="636717" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionId="616478">
+                <p class="item2">
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                </div>
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+
+</html>

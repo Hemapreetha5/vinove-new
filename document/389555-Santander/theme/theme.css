@@ -1,0 +1,1019 @@
+@font-face {
+  font-family: "SantanderHeadline-Bold";
+  src: url("images/SantanderHeadline-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderHeadline-Regular";
+  src: url("images/SantanderText-Regular.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderHeadline-Light";
+  src: url("images/SantanderHeadlineLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderText-Bold";
+  src: url("images/SantanderText-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderText-Regular";
+  src: url("images/SantanderText-Regular.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderText-Light";
+  src: url("images/SantanderText-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SantanderText-Italic";
+  src: url("images/SantanderText-Italic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --white: #fff;
+  --black: #000;
+  /* --headingcolor: #77a7b7; */
+  --headingcolor: #005879;
+  --subHeadingColor: #3d7892;
+  --box-color: #ebeef0;
+  --line-color: #231f20;
+  --lightGray:#f2f2f2;
+  --redColor:#ED1C24;
+  --footerred:#EC0000;
+  --bodyfont: 8pt "SantanderHeadline-Light";
+  --fontHeadlineBold: "SantanderHeadline-Bold";
+  --fontHeadlineRegular: "SantanderHeadline-Regular";
+  --fontHeadlineLight: "SantanderHeadline-Light";
+  --fontTextBold: "SantanderText-Bold";
+  --fontTextRegular: "SantanderText-Regular";
+  --fontTextLight: "SantanderText-Light";
+  --fontTextItalic: "SantanderText-Italic";
+  --heading: normal 11.5pt var(--fontHeadlineLight);
+  --subHeading: normal 14pt "SantanderHeadline-Regular";
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 8pt;
+  padding: 0;
+  margin: 0;
+  /* line-height: normal; */
+  font-family: var(--fontTextLight);
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.page {
+  position: relative;
+  padding: 0;
+  padding-bottom: 0;
+  width: 21cm;
+  height: 29.7cm;
+}
+.row {
+  margin-bottom: 0.3cm;
+}
+/* .column > .section {
+  background-color: #f2f2f2;
+} */
+.page1 > .row2 > .column1 > .section {
+  background-color: #f2f2f2;
+}
+.column:first-child > .section {
+  margin-left: 0;
+}
+h1,
+h2,
+h3 {
+  margin: 0;  
+  color: var(--headingcolor);
+}
+h2 {
+  font: var(--heading);
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.1cm;
+  font-size: 8pt;
+}
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+  color: #9c1915;
+  margin: 0;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+b {
+  font-family: "SantanderText-Bold";
+}
+.section.page {
+  background: url(images/AM_Logo.png) no-repeat 1cm 1cm;
+  background-size: 120px;
+}
+.page2,.page3{
+  padding-top:2.5cm;
+}
+.section.page1 {
+  background: none;
+}
+.page1:before {
+  position: absolute;
+  background: url("images/Header.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  content: "";
+  height: 155pt;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.page1 > .row1:before {
+  position: absolute;
+  background: url(images/Santander_logo.png) no-repeat 0 0;
+  background-size: 4.4cm;
+  content: "";
+  height: 50px;
+  width: 210px;
+  right: 27px;
+  top: 13mm;
+  z-index: 1;
+}
+
+.page1 > .row2 {
+  margin-top: 15mm;
+  margin-bottom: 0;
+}
+
+.page2 h2 {
+  text-transform: uppercase;
+  padding-bottom: 2mm;
+}
+.PortfolioBreakdownHeader h2 {
+  margin: 0.3cm 0 0.15cm 0;
+  font-weight: bold;
+  font-family: Arial;
+  font-size: 9pt;
+  padding: 0;
+}
+.page1 > .row2 > .column2 > .section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+/******************************/
+.page1 > .row1 .FundName {
+  padding: 1.45cm 0 0 1.1cm;
+}
+
+.page1 > .row1 .FundName p {
+  color: #fff;
+  font: normal 12pt var(--fontHeadlineRegular) !important;
+  margin-bottom: 0cm;
+}
+.page1 > .row2 > .column1 {
+  float: left;
+  width: 6.15cm;
+  background: #f2f2f2 !important;
+  background-size: 8cm auto;
+  display: block;
+  color: #000000;
+  padding: 0.3cm 0.3cm 0.3cm 0.3cm;
+  /* height: 25.7cm; */
+  /* border: 1pt solid #19637a; */
+  margin-left: 1cm;
+  margin-top: 70px;
+  height: 22.4cm;
+}
+.page1 > .row2 > .column1 h2 {
+  color: var(--headingcolor);
+  padding-bottom: 0.1cm;
+  font-size: 11.5pt !important;
+}
+.TomCaddick p,
+.TobyVaughan p,
+.AzimMeghji p,
+.GrahamAshby p,
+.DavidScammell p {
+  margin: 0;
+  font-size: 8pt;
+}
+.column:first-child > .section {
+  margin-bottom: 0.2cm;
+}
+
+.column:first-child > .section > .section {
+  margin-bottom: 0;
+}
+/* .Definitions p {
+  font-size: 7pt;
+} */
+.horizontal-list div {
+  padding: 0.3mm 0;
+  border-bottom: 0.5pt solid #bfbfbf;
+}
+.page1 > .row2 .column1 .clear {
+  display: none !important;
+}
+.section.row.row7 .horizontal-list div {
+  border-bottom: 0 solid #bfbfbf;
+}
+
+.horizontal-list div.clear {
+  border: 0;
+  padding: 0px;
+}
+.horizontal-list div span.label {
+  color: #000000 !important;
+  width: auto !important;
+  margin-left: 0;
+  font-size: 7pt !important;
+  font-weight: normal;
+  line-height: 3mm;
+}
+.ManagerStartDate.horizontal-list div span.label {
+  font-size: 7pt;
+}
+.horizontal-list div span.value {
+  color: rgb(89, 89, 89) !important;
+  width: auto !important;
+  margin-left: 0;
+  font-size: 7pt !important;
+  font-weight: normal;
+  text-align: right;
+  line-height: 3mm;
+}
+.ManagerStartDate.horizontal-list div span.value {
+  font-size: 7pt;
+}
+.ShareClassInformation.horizontal-list div.item4 span.value,
+.FundStatistics.horizontal-list div.item5 span.value {
+  font-size: 7pt;
+}
+.horizontal-list div.DividendPayDates span.value,
+.horizontal-list div.DividendXDDates span.value {
+  width: 80% !important;
+}
+.horizontal-list div.FundManagementGroupName span.label,
+.horizontal-list div.FundManagementGroupName span.value {
+  width: 50% !important;
+}
+.FundManagers .manager .Name .label {
+  display: none;
+}
+.FundManagers .manager .Name {
+  display: inline-block;
+}
+.FundManagers .manager .Name .value {
+  font-size: 11px;
+  /*font-style: italic;*/
+  display: block;
+  font-weight: bold;
+  font-family: "SantanderText-Bold";
+}
+.manager {
+  margin-bottom: 0.1cm;
+  display: inline-block;
+  width: 100%;
+}
+.page1 > .row2 > .column1 > .row5,
+.page1 > .row2 > .column1 > .row5 > .row,
+.page1 > .row2 > .column1 > .row6,
+.page1 > .row2 > .column1 > .row6 > .row {
+  margin: 0;
+}
+.FundManagers .manager .Photo {
+  display: block;
+  float: right;
+  height: auto;
+  margin-left: 0.5cm;
+  width: 47px;
+}
+.FundManagers .manager .Photo .label {
+  display: none;
+}
+.FundManagers .manager .Photo .value {
+  width: 47px;
+  /*! height: 47px; */
+  float: right;
+  overflow: hidden;
+  padding-bottom: 3mm;
+}
+.FundManagers .manager .Biography .label {
+  display: none;
+}
+.FundManagers .manager .Biography .value {
+  display: block;
+  margin-top: 2mm;
+  font-size: 8pt;
+  text-align: justify;
+  line-height: 9pt;
+}
+.page1 > .row2 > .column2 {
+  float: right;
+  /* width: 12.65cm; */
+  width: 13.3cm;
+}
+.page1 > .row2 > .column2 > .section {
+  background: none;
+  padding: 0 0 0 0;
+  border-radius: 0;
+  margin-right: 1cm;
+  margin-left: 0;
+  margin-bottom: 0.1cm;
+}
+.page1 > .row2 > .column2 > .section.row > .row {
+  margin-bottom: 0.05cm;
+}
+/*.CumulativePerformanceChartConditionOne {
+      border-top: 1pt solid #9c1915;
+      padding: 0.25cm 0 0 0;
+  }*/
+.page1 .row2 .column2 > .row1 {
+  margin-right: 1cm;
+}
+.page1 .row2 .column2 > .row1 {
+  margin-top: 0cm;
+}
+.FundObjectives {
+  background: #fff;
+  padding-top: 0.2cm;
+  border-bottom: 1pt solid #f14f54;
+  padding-bottom: 0.2cm;
+}
+.CumulativePerformance,
+.AnnualPerformance,
+.ManagerStartDate {
+  border-bottom: 1pt solid var(--line-color);
+  padding-bottom: 0.15cm;
+}
+.RiskandRewardProfile {
+  border-top: 1pt solid var(--line-color);
+  padding-top: 0.15cm;
+}
+.RiskRating {
+  height: 2.5cm;
+}
+.clientRating {
+  width: 10cm;
+  max-height: 3cm;
+}
+.RatingsLogos {
+  position: absolute;
+  bottom: 0.2cm;
+}
+.RatingsLogos p {
+  /*! float: left; */
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 0.2cm;
+  margin-right: 0.1cm;
+}
+.RatingsLogos p:empty {
+  padding: 0;
+}
+.RatingsLogos .clientRating {
+  height: 1cm;
+  width: auto;
+  /*! max-height:3cm; */
+}
+.RiskandRewardProfile.vertical-list div {
+  margin: 0 0 0;
+}
+.RiskandRewardProfile.vertical-list div.RiskRating span:first-child {
+  display: none;
+}
+.RiskandRewardProfile.vertical-list div.RiskRating span:last-child {
+  width: 100%;
+}
+.page1 > .row2 > .column2 > .section h2 {
+  /* font: 12px Arial; */
+  /* padding-bottom: 0.1cm;
+  border-bottom: 1pt solid var(--line-color); */
+}
+.page1 > .row2 > .column2 > .section h2 b {
+  font-weight: normal;
+}
+.keyWrapper .label {
+  font-size: 7pt !important;
+  line-height: 1mm;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.5em;
+}
+th {
+  font-weight: normal;
+  font-size: 8pt;
+}
+table td {
+  margin: 0;
+  padding: 1.2mm 0 1mm;
+  vertical-align: top;
+  font-size: 8pt;
+  text-align: right;
+  line-height: 5pt;
+}
+.AnnualPerformance table {
+  margin: 0;
+}
+.keyContainer {
+  height: 3mm;
+}
+.key-color {
+  display: block;
+  width: 3mm;
+  height: 2mm;
+}
+table td {
+  /* border-bottom: 1pt dotted #bfbfbf; */
+}
+th {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 1mm 0;
+  font-weight: bold;
+  /* border-bottom: 1pt dotted #000000; */
+  font-family: "SantanderText-Bold";
+}
+.unitWorkbook td,
+.ranking td {
+  background-color: #ebeef0;
+  text-align: right;
+}
+.unitWorkbook td {
+  min-width: 0.6cm;
+}
+.performancetable th:first-child {
+  width: 38%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th:first-child {
+  width: 31%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P1M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P3M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P6M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.PYTD {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P36M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P12M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable th.P60M {
+  width: 9.8%;
+}
+
+.page1 > .row2 > .column2 > .row2 .performancetable td.P1M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.P3M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.P6M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.PYTD {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.P36M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.P12M {
+  width: 9.8%;
+}
+.page1 > .row2 > .column2 > .row2 .performancetable td.P60M {
+  width: 9.8%;
+}
+
+/*.performancetable th.P0To12M  {width: 13.8%;}
+  .performancetable th.P12To24M { width:13.8%; }
+  .performancetable th.P24To36M { width:13.8%; }
+  .performancetable th.P36To48M { width:13.8%;}
+  .performancetable th.P48To60M { width:13.8%; }
+  
+  .performancetable td.P0To12M  { width:13.8%; }
+  .performancetable td.P12To24M  { width:13.8%; }
+  .performancetable td.P24To36M  { width:13.8%; }
+  .performancetable td.P36To48M { width:13.8%; }
+  .performancetable td.P48To60M { width:13.8%; }*/
+
+.performancetable th {
+  text-align: right;
+  width: auto;
+  font-size: 7pt;
+}
+td.rowheader {
+  text-align: left;
+  width: 25%;
+  /* font-weight: bold; */
+  /* color: #9c1915; */
+  /*! text-transform: uppercase; */
+  line-height: 7pt;
+  /* font-family: "SantanderText-Bold"; */
+}
+.pdfperformancechart .chart {
+  height: 3.8cm;
+}
+.page2 > .section,.page3 > .section{
+  margin: 0 1cm;
+}
+.page2 .section.row.row8 {
+  /* background-color: #f2f2f2; */
+}
+.page2 .row {
+  margin-bottom: 0;
+}
+.page2 > .row1 {
+  margin: 0;
+  visibility: hidden;
+  height: 0;
+}
+.page2 > .row5 {
+  margin-bottom: 0;
+  /* background-color: #f2f2f2; */
+}
+.PortfolioHoldings {
+  border-top: 1pt dotted #000000;
+  padding: 0.5cm 0.5cm 0;
+}
+.PortfolioHoldings .Name {
+  line-height: 7pt;
+  text-align: left;
+  width: 40%;
+}
+.PortfolioHoldings .Weight {
+  width: 8%;
+  text-align: right;
+}
+.PortfolioHoldings .spacer {
+  width: 4%;
+}
+.page2 .breakdown,
+.page2 .holding {
+  /* border-top: 1pt solid #9c1915; */
+  padding: 2mm 3mm;
+  /* background-color: #f2f2f2; */
+}
+.page2 .breakdown {
+  /* padding: 2mm 4mm 0 4mm; */
+  padding: 2mm 4mm 0 0mm;
+}
+.page2 > .row5 > .column3 .breakdown {
+  /* padding: 2mm 4mm 0 4mm; */
+  padding-right: 0;
+}
+.page2 .holding {
+  border: 0;
+  padding: 0;
+}
+.page2 .breakdown table,
+.page2 .holding table {
+  margin-bottom: 0;
+}
+.page2 .breakdown table th,
+.page2 .holding table th {
+  display: none;
+}
+.page2 .breakdown table td,
+.page2 .holding table td {
+  padding: 0.06cm 0;
+}
+.page2 .holding table td,
+.page2 .holdings table td,
+.page2 .Holding table td,
+.page2 .Holdings table td,
+.page2 .breakdown.holding table td,
+.page2 .breakdown.holdings table td {
+  padding: 0.5mm 0;
+  line-height: 8pt;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+}
+.page2 .holding table td.Name {
+  width: 43%;
+}
+.page2 .holding table td.Weight {
+  width: 6%;
+  text-align: right;
+}
+.page2 .Holdings table td.spacer,
+.page2 .Holding table td.spacer,
+.page2 .holdings table td.spacer,
+.page2 .holding table td.spacer {
+  width: 0.5cm;
+}
+.holding .Name {
+  text-align: left;
+  text-transform: uppercase !important;
+}
+.breakdown .Key {
+  text-align: left;
+  width: 5%;
+}
+.breakdown .Name {
+  text-align: left;
+  padding-left: 3pt;
+}
+.breakdown .Weight {
+  text-align: right;
+}
+.breakdown td.Name {
+  line-height: 8pt;
+  text-transform: uppercase;
+}
+.page2 > .row2 > .row1 > .breakdown1 table {
+  width: 50% !important;
+  float: left !important;
+}
+.breakdown .chart {
+  width: 125px !important;
+  float: left !important;
+  margin-right: 10.5%;
+  margin-top: -8px;
+}
+.page2 .vertical-list {
+  background-color: #f2f2f2;
+  /* border-top: 1pt solid #9c1915; */
+  border-top: 1pt solid var(--redColor);
+  /* border-bottom: 1pt solid #9c1915; */
+  padding: 3mm 4mm;
+}
+.page2 .vertical-list > div {
+  width: 25%;
+  float: left;
+  margin: 0;
+}
+.page2 > .row2{
+  border-bottom: 1pt solid var(--redColor);
+  padding-bottom:15px;
+  margin-bottom:0;
+}
+.page2 .row3 {
+  margin-top: 25px;
+}
+.page2 .vertical-list > div span {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+.page2 .vertical-list > div span.label {
+  font-size: 7pt;
+  font-weight: bold;
+  font-family: "SantanderText-Bold";
+}
+.page2 .vertical-list > div span.value {
+  font-size: 7pt;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  min-height: 12px;
+  padding: 1mm 0;
+}
+.Disclaimer p {
+  font-size: 7pt;
+  margin-bottom: 0.2cm;
+  line-height: 1;
+}
+.Disclaimer .item2 + p {
+  border-bottom: 1px solid #9c1915;
+  padding-bottom: 0mm;
+  margin-bottom: 1mm;
+}
+.Disclaimer .item3 + p,
+.Disclaimer .item3 + p + p + p {
+  color: #9c1915;
+  text-align: center;
+}
+.Disclaimer {
+  /* background: url(images/header.jpg) no-repeat 100% 100%; */
+  padding-bottom: 1.2cm;
+  position: absolute;
+  bottom: 0cm;
+  left: 1cm;
+  right: 1cm;
+  padding-top: 0;
+}
+.RiskandRewardIndicator p {
+  margin: 0;
+  font-size: 6.5pt;
+}
+.FundObjectives p.ObjectiveText,
+.FundObjectives p.ShortFundObjective {
+  margin: 0;
+  line-height: 1.1;
+}
+.Definitions p {
+  margin: 0;
+}
+p:empty {
+  margin: 0;
+}
+p.DataAsAtDate-FundCurrencyCode,
+p.DataAsAtDate {
+  margin-bottom: 0.05cm;
+  font-size: 7pt;
+}
+
+h2 small,
+small small,
+small {
+  font-size: inherit;
+}
+
+/*Updated - 5/12/2017*/
+
+.RatingLogos {
+  position: absolute;
+  bottom: -6px;
+}
+.RatingLogos img:nth-child(2) {
+  margin-top: 20px;
+}
+.RatingLogos img:nth-child(3) {
+  position: absolute;
+  top: 0;
+  left: 63px;
+}
+.Countries {
+  text-align: center;
+  position: absolute;
+  bottom: 42px;
+  width: 83%;
+}
+.horizontal-list .FundManagers span.label {
+  width: 40% !important;
+}
+.horizontal-list .FundManagers span.value {
+  width: 60% !important;
+}
+.AssetAllocation h2,
+.breakdown h2 {
+  padding-bottom: 1mm;
+}
+.breakdown td {
+  font-size: 7.5pt;
+}
+div.ACD p {
+  /* margin-bottom: 0; */
+  margin-bottom: 15px;
+}
+div.ACD {
+  /* border-top: 1pt solid #9c1915; */
+  margin-top: 5px;
+  /* padding: 2px 0; */
+}
+/* End */
+
+/* Updated- 15-05 */
+
+.page1 > .row2 > .column1 > .row4 {
+  margin-bottom: 0px !important;
+}
+.page1 > .row2 > .column1 > .row6 {
+  margin-top: 0.2cm;
+}
+
+.page1 .row9 p,
+.page1 .row10 p,
+.page1 .row11 p,
+.page1 .row12 p,
+.page1 .row13 p,
+.page1 .row9,
+.page1 .row10,
+.page1 .row11,
+.page1 .row12,
+.page1 .row13 {
+  margin-bottom: 0 !important;
+}
+
+.page1 > .row2 > .column1 .row9,
+.page1 > .row2 > .column1 .row10,
+.page1 > .row2 > .column1 .row11,
+.page1 > .row2 > .column1 .row12,
+.page1 > .row2 > .column1 .row13 {
+  font-size: 6.2pt;
+}
+
+.BenchmarkOverride > .value {
+  font-size: 6.2pt !important;
+}
+
+.Definitions p, .DefinitionsAddOn1 p, .DefinitionsAddOn2 p {
+  padding-bottom: 0.1cm;
+  font-size: 7pt !important;
+}
+.ManagerBiography, .DefinitionsAddOn3 p {
+  font-size: 7pt !important;
+}
+p:empty {
+  display: none;
+}
+/* .row9 .Definitions p b,
+.DefinitionsAddOn1 p b,
+.DefinitionsAddOn3 p b {
+  font-size: 7pt;
+}
+
+.row9 .Definitions p,
+.DefinitionsAddOn1 p,
+.DefinitionsAddOn3 p {
+  font-size: 6.5pt;
+} */
+
+.page2 .vertical-list > div.RiskRating {
+  width: 100%;
+}
+.RiskRating img.clientRating {
+  width: 100%;
+}
+.page2 > .row2 > .column2 {
+  padding-left: 0.5cm;
+}
+.page3 > .row1 {
+  background-color: var(--lightGray);
+  padding:5px 10px;
+}
+.page2 .holding tbody tr:nth-child(even) {
+  background: var(--lightGray);
+}
+.page2 .holding tbody tr td{
+  padding:1.5mm 1mm;
+  font-size: 9pt;
+}
+.page2 > .row5 > .column > .row > .breakdown1 table {
+  width: 100% !important; 
+}
+.page2 .breakdown h2 {
+  font-size: 9pt;
+  text-transform: none;
+  font-weight: 500;
+  font-family: "SantanderHeadline-Regular";
+}
+.TopHoldings h2 {
+  color: #000;
+  text-transform: none;
+  font-size: 8.5pt;
+  font-weight: 500;
+  font-family: "SantanderHeadline-Regular";
+}
+.page2 .breakdown .key-color {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 22px !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+.page2 .breakdown .Key {
+  width: 11px !important;
+  padding-right: 0;
+}
+.page2 .breakdown table tbody tr:nth-child(odd) {
+  background: var(--lightGray);
+}
+.page2 .breakdown table tbody tr td {
+  padding:1.5mm 1mm;
+  text-transform: none;
+  font-size: 8.5pt;
+}
+.page3 > .row1 > .column2 .row1 p.item2 {
+  margin: 0;
+  color: var(--headingcolor);
+  font: var(--heading);
+}
+.page3 > .row1 > .column1 .row1 h2,
+.page3 > .row1 > .column2 .row1 p.item2,
+.page3 > .row1 > .column1 .IncomePaymentsPY,
+.page3 > .row1 > .column1 .DividendPayDates,
+.page3 > .row1 > .column1 .DividendXDDates,
+.page3 > .row1 > .column1 .item9,
+.page3 > .row1 > .column1 .IsaStatus,
+.page3 > .row1 > .column1 .item11,
+.page3 > .row1 > .column1 .FundManagementGroupName,
+.page3 > .row1 > .column2 .FundManagersWB,
+.page3 > .row1 > .column2 .row2 h2{
+  border-bottom:1pt solid #000;
+  padding-bottom:0.1cm;
+}
+.page3 > .row1 > .column1 .item9,
+.page3 > .row1 > .column1 .IsaStatus,
+.page3 > .row1 > .column1 .item11,
+.page3 > .row1 > .column1 .FundManagementGroupName{
+display: inline-block;
+vertical-align: top;
+}
+.page3 > .row1 > .column1 .item9,
+.page3 > .row1 > .column1 .item11{
+  width:45%;
+}
+.page3 > .row1 > .column1 .IsaStatus,
+.page3 > .row1 > .column1 .FundManagementGroupName{
+  width:55%;
+}
+.page3 > .row1 > .column2{
+  padding-left:0.75cm;
+}
+.page3 > .row1 > .column1 p.item3,
+.page3 > .row1 > .column1 p.item5,
+.page3 > .row1 > .column1 p.item7,
+.page3 > .row1 > .column1 p.item9,
+.page3 > .row1 > .column1 p.item11,
+.page3 > .row1 > .column2 a {
+  text-transform: none;
+  font-weight: 500;
+  font-family: "SantanderHeadline-Regular";
+  color: var(--headingcolor);
+}
+.page3 > .row1 > .column2 a {
+  text-decoration:underline;
+}
+.page3 .row2 .Disclaimer {
+  border-top: 1pt solid #000;
+  padding-top: 5px;
+}
+.page3 .row2 .Disclaimer p u{
+  text-decoration: none;
+  font-weight: 500;
+  font-family: "SantanderHeadline-Regular";
+}
+.CustomDisclaimer + p br{
+  display: none;
+}
+.page3 .row2 .Disclaimer p{
+  font-size: 7.8pt;
+  line-height: normal;
+}
+.page1 .horizontal-list div span.label {
+  color: var(--headingcolor) !important;
+  font-weight: 500;
+  font-family: "SantanderHeadline-Regular";
+}
+.horizontal-list div.BenchmarkText span.value, .horizontal-list div.BenchmarkUpdates span.value {
+  text-align: left;
+}
+
+/*Santander*/

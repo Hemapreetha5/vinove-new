@@ -1,0 +1,147 @@
+body {
+   text-rendering: optimizeLegibility !important;
+   -webkit-font-smoothing: antialiased !important;
+   padding: 0;
+   margin: 0;
+}
+
+h2 {
+   font: $h2-size $h2-type;
+   color: $h2-color;
+   margin: $header-margin;
+   padding: $header-padding;
+}
+
+p,
+.description {
+   font: $para-size $para-type;
+   color: $para-color;
+   margin: $para-margin;
+   padding: $para-padding;
+   line-height: $para-line-height;
+}
+
+p.IssuedOnDate {
+   border-bottom: $date-bottom-border-size $blue $date-bottom-border-style;
+   text-align: $date-alignment;
+}
+
+.subheader p {
+   font: $h3-size $h3-type;
+   color: $h3-color;
+}
+
+.header1,
+.header2 {
+   p {
+      font: $h2-size $h3-type;
+      color: $h3-color;
+      margin: 0;
+      padding: 0;
+   }
+}
+
+.header3,
+.header4 {
+   p {
+      font: $h2-size $font-light;
+      color: $h3-color;
+      margin: 0;
+      padding: 0;
+   }
+
+}
+
+
+
+// print specific
+.page {
+   width: $page-width;
+   height: $page-height;
+   padding: $all-page-padd;
+}
+
+@if $logo-in-first-page {
+   .page1 {
+      padding: $page1-padd;
+      background: $logo-url;
+      background-size: $logo-bg-width $logo-bg-height;
+      background-position: $logo-direction;
+      background-repeat: no-repeat;
+   }
+
+}
+
+@if $logo-in-all-pages {
+   .page {
+      background: $logo-url;
+      background-size: $logo-bg-width $logo-bg-height;
+      background-position: $logo-direction;
+      background-repeat: no-repeat;
+   }
+
+}
+
+
+@if($outer-border-for-sectiongrps) {
+
+   .page1 {
+      >.row2 {
+         @include pageSectionBorders(true);
+      }
+
+      >.row3,
+      >.row4 {
+         @include pageSectionBorders(true, true);
+      }
+
+      >.row5 {
+         @include pageSectionBorders(false, true);
+      }
+
+   }
+
+   .page2 {
+      >.row1 {
+         @include pageSectionBorders(true);
+      }
+
+      >.row2 {
+         @include pageSectionBorders(true, true);
+      }
+
+      >.row3 {
+         @include pageSectionBorders(false, true);
+      }
+
+   }
+
+   .page3 {
+      >.row1 {
+         @include pageSectionBorders(true);
+      }
+
+      >.row2,
+      >.row3 {
+         @include pageSectionBorders(true, true);
+      }
+
+      >.row4 {
+         @include pageSectionBorders(false, true);
+      }
+
+   }
+}
+
+
+
+@if $custom-br {
+   p br {
+      display: block !important;
+      margin: 0 0 !important;
+      line-height: 0.2 !important;
+      padding: 0 !important;
+      content: "";
+   }
+
+}

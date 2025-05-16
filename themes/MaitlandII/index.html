@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>MT2ZERO PRIIP KID</title>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   <meta name="keywords" content="Version=3.2;
+DocumentType=PRP;
+PublicationCountry=GB;
+Language=en;
+RecordDate=2023-01-17;
+ShareClass=LB04;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=LB04;
+Productcode=;
+PublicationDate=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=;
+CalculationDate=2022-12-31;
+" />
+   <style>
+      body {
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-size: 9pt;
+      }
+
+      h2 {
+         font-size: 10pt;
+      }
+
+      @page {
+         size: 21cm 29.7cm;
+         margin: 0;
+         counter-increment: page 1;
+      }
+
+      .page {
+         width: 21cm;
+         height: 29.7cm;
+      }
+
+      .pageNumber::after {
+         content: counter(page);
+      }
+
+      .pageTotal::after {
+         content: counter(pages);
+      }
+
+      html {
+         -ro-rounding-mode: floor;
+      }
+
+      .clientRating {
+         width: 250px;
+      }
+
+      .rating {
+         max-width: 100px;
+      }
+
+      .kiiRiskRating {
+         width: 250px
+      }
+
+      .kiiRiskRating .header th:first-child,
+      .kiiRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .kiiRiskRating .header th:last-child,
+      .kiiRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .kiiRiskRating .arrow td {
+         background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 13px;
+      }
+
+      .kiiRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .kiiRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .kiiRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating {
+         width: 250px
+      }
+
+      .sriRangeRiskRating .header th:first-child,
+      .sriRangeRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .sriRangeRiskRating .header th:last-child,
+      .sriRangeRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .sriRangeRiskRating .arrow td {
+         background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 16px;
+      }
+
+      .sriRangeRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .sriRangeRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .sriRangeRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border-top: 2px solid #ffcc66;
+         border-bottom: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.start {
+         border-left: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.end {
+         border-right: 2px solid #ffcc66;
+      }
+
+      .clear {
+         clear: both;
+      }
+
+      .page1>.row1>.column1 {
+         float: left;
+         width: 50%;
+      }
+
+      .page1>.row1>.column2 {
+         float: left;
+         width: 50%;
+      }
+
+      .costComposition>p {
+         width: 100%;
+      }
+
+      .costComposition>table {
+         width: 100%;
+      }
+
+      .costComposition th,
+      .costComposition .category,
+      .costComposition .subcategory {
+         font-weight: bold;
+         text-align: left;
+      }
+
+      .costComposition .category,
+      .costComposition .subcategory,
+      .costComposition .costs {
+         width: 20%
+      }
+
+      .costComposition .description {
+         width: 40%
+      }
+   </style>
+   <script src="./script/jquery.1.8.2.min.js"></script>
+   <script src="./script/jquery-ui.1.11.0.min.js"></script>
+   <script src="./script/highcharts.9.3.0.js"></script>
+   <script src="./script/highcharts-3d.9.3.0.js"></script>
+   <script src="./script/custom-barchart.js"></script>
+   <script src="./script/awesomizr.js"></script>
+   <link rel="stylesheet" href="./theme/theme.css">
+
+
+</head>
+
+<body>
+   <h1 style="position: absolute"></h1>
+   <div class="page1 page section" data-pageorder="1" data-sectionId="4959788" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="row1 row section" data-roworder="1" data-sectionId="4959789" data-sectiontype="2">
+         <div class="column1 column section" data-sectionId="4959790">
+            <div class="row1 row section" data-roworder="1" data-sectionId="4959791" data-sectiontype="2">
+               <div class="text1 keyinformationdocument text contentSection section" data-sectionId="4959792">
+                  <h2 class="item2">Key Information Document</h2>
+               </div>
+               <div class="clear"></div>
+            </div>
+            <div class="row2 row section" data-roworder="2" data-sectionId="4959793" data-sectiontype="2">
+               <div class="text1 text contentSection section" data-sectionId="4959794">
+                  <h2 class="item2">Purpose</h2>
+                  <p class="item3">This document provides you with key information about this investment product. It is
+                     not marketing material. The information is required by law to help you understand the nature,
+                     risks, costs, potential gains and losses of this product and to help you compare it with other
+                     products.</p>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="column2 column section" data-sectionId="4959795">
+            <div class="row1 row section" data-roworder="1" data-sectionId="4959796" data-sectiontype="2">
+               <div class="text1 text contentSection section" data-sectionId="4959797">
+                  <p class="ClientLogoImage">-</p>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row2 row section" data-roworder="2" data-sectionId="4959798" data-sectiontype="2">
+         <div class="text1 generalinformation text contentSection section" data-sectionId="4959799">
+            <h2 class="item2">Product</h2>
+            <p class="FundNameWB">Lindsell Train IT PLC</p>
+            <p class="IsinCode">ISIN: GB0031977944</p>
+            <p class="GeneralInfo">The Company is not regulated or authorised by the Financial Conduct Authority but is
+               subject to the Listing Rules, the Disclosure Guidance and Transparency Rules, the Market Abuse Regulation
+               and the Prospectus Rules as applicable to closed-ended investment companies. The Company is subject to
+               the oversight of the Financial Conduct Authority in relation to the content and preparation of this
+               document.<br><br>Following the FCA's invitation to Boards to consider how to address a Key Information
+               Document, which is produced in accordance with regulation, which may mislead investors, the Board advise
+               that you refer to the Company's Factsheet, which is published monthly at
+               http://www.lindselltrain.com/funds/lindsell-train-investment-trust-plc/trust-reports/manager-reports/yr.aspx
+            </p>
+            <p class="IssuedOnDate">Date of Publication 17/01/2023</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row3 row section" data-roworder="3" data-sectionId="4959800" data-sectiontype="2">
+         <div class="clear"></div>
+      </div>
+      <div class="row4 row section" data-roworder="4" data-sectionId="4959807" data-sectiontype="2">
+         <div class="text1 whatisthisproduct text contentSection section" data-sectionId="4959808">
+            <h2 class="item2">What is this product?</h2>
+            <p class="Whatisthisproduct">The information contained in this document and the methodologies for
+               calculating risks, costs and potential returns are prescribed by EU rules.<br><br>The Company is a
+               closed-ended investment company whose shares are listed on the London Stock Exchange and an alternative
+               investment fund under the Alternative Investment Fund Managers Directive ("AIFMD"). The Company's shares
+               are therefore available to the general public.<br><br>The objective of the Company is to maximise
+               long-term total returns with a minimum objective to maintain the real purchasing power Sterling capital.
+               The Investment Policy of the Company is to invest:<br>• in a wide range of financial assets including
+               equities, unquoted equities, bonds, funds and cash and other financial investments globally with no
+               limitations on the markets and sectors in which investment may be made, although there may be a bias
+               towards Sterling assets consistent with a Sterling-dominated investment objective. The Directors expect
+               that the flexibility implicit in these powers will assist in the achievement of the absolute returns that
+               the investment objective requires;<br>• in Lindsell Train managed fund products, subject to Board
+               approval, up to 25% of its gross assets; and<br>• in Lindsell Train Limited ("LTL"), in order to benefit
+               from the growth of the business of the Company's Investment Manager.<br><br>Potential investors should
+               note that the holding in LTL is an unlisted investment, and therefore illiquid in nature. In the event of
+               falls in the stock markets, illiquid holdings may fall more than markets do, which means a
+               correspondingly greater fall in the value of the Company's assets.<br><br>The Company expects to invest
+               in a concentrated portfolio of securities with the number of equity investments averaging fifteen
+               companies. The Company will not make investments for the purpose of exercising control of management and
+               will not invest in securities of or lend to any one company (or other members of its group) more than 15%
+               by value of its gross assets at the time of investment. The Company will not invest more than 15% of
+               gross assets in other closed-ended investment funds. The Company only plans to invest in one illiquid
+               stock, LTL, and has no plan to invest in others.<br><br>The Directors have discretion to permit
+               borrowings up to 50% of the Company's Net Asset Value. However, the Directors have decided that it is in
+               the Company's best interests not to use gearing.<br><br>The Director's policy is to pay annual dividends
+               consistent with retaining the maximum permitted earnings in accordance with investment trust
+               regulations.<br><br>The target investors are institutions and individual investors. The Board of the
+               Company recommend that investors also reference other materials when considering investment, notably the
+               Company's factsheets, which are available at
+               https://www.lindselltrain.com/funds/lindsell-train-investment-trust-plc/investment-objective-and-approach.aspx<br><br>There
+               is no fixed maturity date. There is no ability for the Company to terminate shareholdings of investors in
+               the Company unilaterally or automatically.<br><br>The shares of the Company are bought and sold via
+               markets. Typically, at any given time on any given day, the price you pay for a share will be higher than
+               the price at which you could sell it.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row5 row section" data-roworder="5" data-sectionId="4959809" data-sectiontype="2">
+         <div class="composite composite1 composite section" data-sectionId="4959810">
+            <div class="text1 whataretherisks compositeheader text contentSection section" data-sectionId="4959811">
+               <h2 class="item2">What are the risks and what could I get in return?
+               </h2>
+            </div>
+            <div class="compositebody">
+               <div class="row2 row section" data-roworder="2" data-sectionId="4959812" data-sectiontype="2">
+                  <div class="text1 SRIdescription text contentSection section" data-sectionId="4959813">
+                     <p class="WhatAreTheRisksPRIIPsV2">The summary risk indicator is a guide to the level of risk of
+                        this product compared to other products. It shows how likely it is that the product will lose
+                        money because of movements in the markets or because we are not able to pay you.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row3 row section" data-roworder="3" data-sectionId="4959814" data-sectiontype="2">
+                  <div class="text1 warning text contentSection section" data-sectionId="4959815">
+                     <p class="Sri">
+                     <table class="sriRiskRating">
+                        <tr class="ratings">
+                           <td colspan="2">
+                              <table>
+                                 <tr>
+                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                 <tr>
+                                    <td class="rating">1</td>
+                                    <td class="rating">2</td>
+                                    <td class="rating">3</td>
+                                    <td class="rating">4</td>
+                                    <td class="rating">5</td>
+                                    <td class="rating selected">6</td>
+                                    <td class="rating">7</td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                        <tr class="arrow">
+                           <td colspan="2"></td>
+                        </tr>
+                        <tr class="header">
+                           <th>Lower risk</th>
+                           <th>Higher risk</th>
+                        </tr>
+                     </table>
+                     </p>
+                     <p class="SRInarrative1">The risk indicator assumes you keep the product for 10 years. If you sell
+                        the shares at an earlier stage the actual risk can vary significantly, which may mean you get
+                        back less. <br><br></p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row4 row section" data-roworder="4" data-sectionId="4959816" data-sectiontype="2">
+                  <div class="text1 narrative text contentSection section" data-sectionId="4959817">
+                     <p class="SRInarrative2">In accordance with legislation, we have classified this product as 6,
+                        which is a medium risk class. Please note that even the lowest risk class can lose you money and
+                        that extreme adverse market circumstances can mean you suffer severe losses in all
+                        cases.<br><br>In order to understand more about the Company, which is a publicly listed company,
+                        investors are urged to read the information provided on its website, at
+                        http://www.lindselltrain.com/funds/lindsell-train-investment-trust-plc/investment-objective-and-approach.aspx<br><br>
+                        Producing the risk indicator above and the formulaic tabulation of various outcomes under
+                        different scenarios overleaf is a requirement of EU policy applied through the FCA. Following a
+                        statement from the FCA on situations where a Key Information Document may be misleading, the
+                        Board consider that the following table is not helpful. Investors are referred to the Company's
+                        website, and the information and publications available on it.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row6 row section" data-roworder="6" data-sectionId="4959818" data-sectiontype="2">
+         <div class="text1 pagenumbers text contentSection section" data-sectionId="4959819">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="page2 page section" data-pageorder="2" data-sectionId="4959820" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="row1 row section" data-roworder="1" data-sectionId="4959821" data-sectiontype="2">
+         <div class="composite composite1 composite section" data-sectionId="4959822">
+            <div class="text1  compositeheader text contentSection section" data-sectionId="4959823"></div>
+            <div class="compositebody">
+               <div class="row2 row section" data-roworder="2" data-sectionId="4959824" data-sectiontype="2">
+                  <div class="text1 whataretheriskscontinued text contentSection section" data-sectionId="4959825">
+                     <h2 class="item2">Investment performance information</h2>
+                     <p class="InvestPerformanceInfoPRIIPsV2">As an equity fund, one of the key factors that will impact
+                        future performance is the movement in market prices. The investment strategy adopted by the
+                        Investment Manager has a high degree of concentration in the investment portfolio, and the
+                        holding in LTL is an unlisted investment, and therefore illiquid in nature. Other factors that
+                        may affect the return include the exposure to country, currency, industrial sector and
+                        stock-specific factors (including those relating to the sustainability of the business model of
+                        investments). Global, and regional, political and macroeconomic events such as Brexit, supply
+                        chain issues, or labour shortages can all be expected to lead to market volatility. Please refer
+                        to the Company's Annual Report at www.ltit.co.uk which should be read to ensure a fuller
+                        understanding of the factors that may affect future returns. An investor should not make a
+                        decision to invest in the Company solely on the basis of this Key Information Document ('KID').
+                     </p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row3 row section" data-roworder="3" data-sectionId="4959826" data-sectiontype="2">
+                  <div class="text1 text contentSection section" data-sectionId="4959827">
+                     <p class="item2">What could affect my return positively?</p>
+                     <p class="AffectReturnsPositivelyPRIIPsV2">Factors that are likely to have a positive impact
+                        include: increase in market prices; and, the discount or premium attached to the Fund’s share
+                        price relative to the Net Asset Value of the Fund. Currency movements against sterling can also
+                        have a positive impact on the share price of the Fund, as a proportion of the Company’s
+                        investments and income are denominated in currencies other than sterling. If sterling
+                        depreciates against the currencies that the Company’s investments are denominated, this would
+                        broadly be expected to have a positive impact on returns.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row4 row section" data-roworder="4" data-sectionId="4959828" data-sectiontype="2">
+                  <div class="text1 text contentSection section" data-sectionId="4959829">
+                     <p class="item2">What could affect my return negatively?</p>
+                     <p class="AffectNegativelyPRIIPsV2">The same factors identified above as potentially having a
+                        positive impact on returns can equally have a negative impact on returns. Falling market prices,
+                        levels of gearing in declining equity markets and an increase in the discount or reduction in
+                        the premium to the Fund’s share price relative to Net Asset Value can also have a negative
+                        impact on returns. In times of economic recession, the number of companies that suffer financial
+                        distress and potentially enter into administration increases, which can have a negative impact
+                        on returns, even for a fund with as diversified portfolio. If sterling appreciates against the
+                        currencies that the Company’s investments are denominated, this would broadly be expected to
+                        have a negative impact on returns. Interest rates increases may have a negative impact on
+                        returns, increasing borrowing costs for business and consumers reducing the amount of money that
+                        can be spent or invested, with subsequent reductions in businesses' revenues and profits. If a
+                        shareholder decides to sell their shares under severely adverse market conditions, they may get
+                        back less than the amount initially invested.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row5 row section" data-roworder="5" data-sectionId="4959830" data-sectiontype="2">
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row2 row section" data-roworder="2" data-sectionId="4959831" data-sectiontype="2">
+         <div class="text1 unabletopay text contentSection section" data-sectionId="4959832">
+            <h2 class="item2">What happens if the company is unable to pay out?</h2>
+            <p class="Whathappensifthecompanyisunabletopayout?">As a shareholder of a listed company you would not be
+               able to make a claim to the Financial Services Compensation Scheme about the Company in the event the
+               Company becomes insolvent. A default by the Company or any of the underlying holdings could affect the
+               value of your investment.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row3 row section" data-roworder="3" data-sectionId="4959833" data-sectiontype="2">
+         <div class="composite composite1 composite section" data-sectionId="4959834">
+            <div class="text1  compositeheader text contentSection section" data-sectionId="4959835"></div>
+            <div class="compositebody">
+               <div class="row2 row section" data-roworder="2" data-sectionId="4959836" data-sectiontype="2">
+                  <div class="text1 text contentSection section" data-sectionId="4959837">
+                     <h2 class="item2">What are the costs?</h2>
+                     <p class="Whatarethecosts?">The Reduction in Yield (RIY) shows what impact the total costs you pay
+                        will have on the investment return you might get. The total costs take into account one-off,
+                        ongoing and incidental costs.<br><br>The amounts shown here are the cumulative costs of the
+                        product itself, for three different holding periods. They include potential early exit
+                        penalties. The figures assume you invest GBP1,000 each year. The figures are estimates and may
+                        change in the future.<br><br>The person selling you or advising you about this product may
+                        charge you other costs. If so, this person will provide you with information about these costs,
+                        and show you the impact that all costs will have on your investment over time.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row3 row section" data-roworder="3" data-sectionId="4959838" data-sectiontype="2">
+                  <div class="costOverTime1 costOverTime contentSection section costovertime_4columntable"
+                     data-sectionId="4959839" style="page-break-inside:avoid">
+                     <h2 class=""><!--HIDE--></h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class='investmentheader'>
+                                       <th class='investment' colSpan='4'>Investment &#163;10000.00</th>
+                                    </tr>
+                                    <tr class='scenarioheader'>
+                                       <th class='scenarios'>Scenarios</th>
+                                       <th class='scenario1'>If you cash in after 1 year</th>
+                                       <th class='scenario2'>If you cash in after 5 years</th>
+                                       <th class='scenario3'>If you cash in at 10 years</th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <thead></thead>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class='row'>
+                                          <td class='totalcostsheader'>Total costs</td>
+                                          <td class='totalcosts1'>&#163;149.09</td>
+                                          <td class='totalcosts2'>&#163;732.55</td>
+                                          <td class='totalcosts3'>&#163;1436.30</td>
+                                       </tr>
+                                       <tr class='row'>
+                                          <td class='riyheader'>Impact on return (RIY) per year</td>
+                                          <td class='riy1'>1.48%</td>
+                                          <td class='riy2'>1.48%</td>
+                                          <td class='riy3'>1.48%</td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row4 row section" data-roworder="4" data-sectionId="4959840" data-sectiontype="2">
+         <div class="text1 pagenumbers text contentSection section" data-sectionId="4959841">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="page3 page section" data-pageorder="3" data-sectionId="4959842" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="row1 row section" data-roworder="1" data-sectionId="4959843" data-sectiontype="2">
+         <div class="composite composite1 composite section" data-sectionId="4959844">
+            <div class="text1  compositeheader text contentSection section" data-sectionId="4959845"></div>
+            <div class="compositebody">
+               <div class="row2 row section" data-roworder="2" data-sectionId="4959846" data-sectiontype="2">
+                  <div class="text1 text contentSection section" data-sectionId="4959847">
+                     <h2 class="item2">What are the costs? (Continued)</h2>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="row3 row section" data-roworder="3" data-sectionId="4959848" data-sectiontype="2">
+                  <div class="costComposition1 costComposition contentSection section" data-sectionId="4959849"
+                     style="page-break-inside:avoid">
+                     <h2 class=""><!--HIDE--></h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class="tableHeader">
+                                       <th colspan=3></th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class="entrycosts">
+                                          <td class="category" rowspan="2">One-off costs</td>
+                                          <td class="subcategory">Entry costs</td>
+                                          <td class="costs" style="white-space: nowrap;">0.00%</td>
+                                          <td class="description">The impact of the costs you pay when entering your
+                                             invesment.</td>
+                                       </tr>
+                                       <tr class="exitcosts">
+                                          <td class="subcategory">Exit costs</td>
+                                          <td class="costs" style="white-space: nowrap;">0.00%</td>
+                                          <td class="description">The impact of the costs of exiting your investment
+                                             when it matures.</td>
+                                       </tr>
+                                       <tr class="portfoliotrxcosts">
+                                          <td class="category" rowspan="2">Ongoing costs</td>
+                                          <td class="subcategory">Portfolio transaction costs</td>
+                                          <td class="costs" style="white-space: nowrap;">0.00%</td>
+                                          <td class="description">The impact of the costs of us buying and selling
+                                             underlying investments for the product.</td>
+                                       </tr>
+                                       <tr class="otherongoingcosts">
+                                          <td class="subcategory">Other ongoing costs</td>
+                                          <td class="costs" style="white-space: nowrap;">0.82%</td>
+                                          <td class="description">The impact of the costs that are incurred each year
+                                             for managing your investments and running the Company.</td>
+                                       </tr>
+                                       <tr class="performancefees">
+                                          <td class="category" rowspan="2">Incidental costs</td>
+                                          <td class="subcategory">Performance fees</td>
+                                          <td class="costs" style="white-space: nowrap;">0.66%</td>
+                                          <td class="description">The impact of the costs that are incurred each year
+                                             for managing your investments and running the Company. A performance fee is
+                                             payable at the rate of 10 per cent of the amount by which the growth in the
+                                             lower of (i) the Adjusted Market Capitalisation per Ordinary Share of the
+                                             Company and (ii) the Adjusted Net Asset Value per Ordinary Share of the
+                                             Company in each performance period exceeds the annual average running yield
+                                             on the longest-dated UK government fixed rate bond, currently Treasury 3.5%
+                                             2068, calculated using weekly data, plus a premium of 0.5% over the period,
+                                             subject to a minimum yield of 4% and to a high watermark. The Company has
+                                             twelve month performance periods, ending on 31 March in each year. The
+                                             performance fee is payable in arrears in respect of each performance
+                                             period.</td>
+                                       </tr>
+                                       <tr class="carriedinterests">
+                                          <td class="subcategory">Carried interests</td>
+                                          <td class="costs" style="white-space: nowrap;">0.00%</td>
+                                          <td class="description">The impact of carried interests on your investment.
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row2 row section" data-roworder="2" data-sectionId="4959850" data-sectiontype="2">
+         <div class="text1 howlong text contentSection section" data-sectionId="4959851">
+            <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+            <p class="HowlongshouldIholditandcanItakemoneyoutearly">The recommended minimum holding period of 10 years
+               has been selected for illustrative purposes only and reflects the long-term nature of the Company’s
+               investment objectives, but investors may elect to sell their shares on the market at any time without
+               penalty by the Company. The value of shares and the income derived from them (if any) may go down as well
+               as up, and investors may not get back the full value of their investments. Whilst the shares are traded
+               on the London Stock Exchange's Main Market, it is possible that there may not be a liquid market in the
+               shares and investors may have difficulty selling them.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row3 row section" data-roworder="3" data-sectionId="4959852" data-sectiontype="2">
+         <div class="text1 howcanicomplain text contentSection section" data-sectionId="4959853">
+            <h2 class="item2">How can I complain?
+            </h2>
+            <p class="HowcanIcomplain">As a shareholder you do not have the right to complain to the Financial Ombudsman
+               Service ("FOS") about the management of the Company. Complaints about the Company or the Key Information
+               Document can be made via the Contact section of the Company's website, www.lindselltrain.com, by emailing
+               info@frostrow.com or in writing to the Company Secretary, Frostrow Capital LLP, at 25 Southampton
+               Buildings, London, WC2A 1AL.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row4 row section" data-roworder="4" data-sectionId="4959854" data-sectiontype="2">
+         <div class="text1 otherrelevantinformation text contentSection section" data-sectionId="4959855">
+            <h2 class="item2">Other relevant information</h2>
+            <p class="RelInfo">The cost, performance and risk calculations included in this KID follow the methodology
+               prescribed by EU rules. Depending on how you buy these shares you may incur other costs, including broker
+               commission, platform fees and Stamp Duty.<br><br>Other relevant information on the Company can be
+               obtained from Lindsell Train's web pages:
+               http://www.lindselltrain.com/funds/lindsell-train-investment-trust-plc/investment-objective-and-approach.aspx
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="row5 row section" data-roworder="5" data-sectionId="4959856" data-sectiontype="2">
+         <div class="text1 pagenumbers text contentSection section" data-sectionId="4959857">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+</body>
+
+</html>

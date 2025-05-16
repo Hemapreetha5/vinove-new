@@ -1,0 +1,1013 @@
+
+    @font-face {
+        font-family: 'DIN-Light';
+        src: local('DINNextLTPro-Light'), local('DIN-Next-LT-Pro-Light'),
+            url('Images/DINNextLTPro-Light.woff2') format('woff2'),
+            url('Images/DINNextLTPro-Light.woff') format('woff'),
+            url('Images/DINNextLTPro-Light.ttf') format('truetype');
+
+        font-style: normal;
+      }
+    @font-face {
+        font-family: 'DIN';
+        src: local('DINNextLTPro-Regular'), local('DIN-Next-LT-Pro-Regular'),
+            url('Images/DINNextLTPro-Regular.woff2') format('woff2'),
+            url('Images/DINNextLTPro-Regular.woff') format('woff'),
+            url('Images/DINNextLTPro-Regular.ttf') format('truetype');
+
+        font-style: normal;
+      }
+    @font-face {
+        font-family: 'DIN-Medium';
+        src: local('DINNextLTPro-Medium'), local('DIN-Next-LT-Pro-Medium'),
+            url('Images/DINNextLTPro-Medium.woff2') format('woff2'),
+            url('Images/DINNextLTPro-Medium.woff') format('woff'),
+            url('Images/DINNextLTPro-Medium.ttf') format('truetype');
+        font-style: normal;
+      }
+    @font-face {
+        font-family: 'DIN-Bold';
+        src: local('DINNextLTPro-Bold'), local('DIN-Next-LT-Pro-Medium'),
+            url('Images/DINNextLTPro-Bold.woff2') format('woff2'),
+            url('Images/DINNextLTPro-Bold.woff') format('woff'),
+            url('Images/DINNextLTPro-Bold.ttf') format('truetype');
+
+        font-style: normal;
+      }
+
+    :root{
+        --dark-grey:#312f2d;
+        --dark-grey-50:#989796;
+        --dark-grey-60:#848281;
+        --dark-grey-70:#6F6D6C;
+        --light-grey:#bdbcbc;
+        --light-grey-50:#dedede;
+        --light-grey-60:#D8D7D7;
+        --orange:#EC621D;
+    }
+
+    body { font-family:DIN-Light, Georgia, serif; font-size: 9pt; 
+    color: #312f2d;}
+    .page { 
+        position: relative; 
+        width: 19.6cm; 
+        height: 29.7cm; 
+        /* height: auto;  */
+        padding: 0.5cm 0.7cm; 
+        padding-bottom: 0.5cm; 
+        padding-top: 4.7cm;
+        /* overflow: hidden; */
+    }
+
+    .page.page1{
+        padding-top: 0.5cm;
+
+    }
+    /* .page.page2,.page.page3{
+        padding-top: 0cm !important;
+    } */
+    .page3{
+        padding: 4.7cm 0.75cm;
+        width: 19.5cm;
+    }
+    .row { margin-bottom: 0cm; }
+    .column > .section { margin-left: 0.5cm; box-sizing: border-box;}
+    .column:first-child > .section { margin-left: 0; }
+    h1, h2, h3 { margin:0; color: #312f2d; font:normal 12pt/14pt Din-Bold; padding: 5px 0;}
+    h2:empty{
+        display: none;
+    }
+    h2:not(.DataAsAtDate):not(.Shareclass):not(.SecondaryShareclass):not(.AccumulationClass){text-transform: lowercase;}
+    h2:first-letter{ text-transform:uppercase;}
+    p { margin: 0; margin-bottom: 0.25cm; font-size: 9pt;line-height: 12pt;  color: #312f2d;}
+    .vertical-list div { margin-bottom: 0.25cm; }
+    .vertical-list div span:first-child { color: #3399FF; }
+
+    .page > .row1 { border-bottom:  0px solid #3399FF; }
+    .page > .row1 h2 { /*! font-size: 24pt; */ /*! padding-left: 3cm; */ /*! min-height: 2cm; */ /*! background-image: url('./Images/logo.png'); */ /*! background-repeat: no-repeat; */ /*! margin-bottom: 0.5cm; */ }
+    .page1 > .row2 > .column2 > .section.row1 { background-color:#efefef; border-radius: 0; padding: 0.25cm; margin: 0.5cm 0 0 0;}
+
+    .tabs.breakdowns { border: none; margin: 10px; }
+    .tabs.breakdowns > .tabpanes { border: none; }
+    .tabs.breakdowns > .tabpanes > .slider > .tab  { padding-bottom: 20px; }
+    .tabs.breakdowns > .tabbuttons { position: absolute; bottom: 5px; z-index: 10000; }
+    .tabs.breakdowns > .tabbuttons > .tab { border: none; background-color: #000; height: 10px; width: 10px; border-radius: 10px; overflow: hidden; margin-right: 10px; text-indent: -10000px; }
+
+    .page:before{
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 4.3cm;
+        top:0;
+        left: 0;
+        z-index: -1;
+    /* 	 background:   url(images/bg.jpg) no-repeat top left/100% */
+    }  
+
+    .page1>.row1>.column3 .fundbg {
+        position: absolute;
+        position: running(pageBg);
+        display: block;
+        width: 100%;
+        height: 4.2cm;
+        top:0;
+        left: 0;
+        z-index: -1;
+        background:   url(images/bg.jpg) no-repeat top left/100%
+    }
+    /* .modelbg */
+    .page1>.row1>.column3 .row .row .section {
+        position: absolute;
+        position: running(pageBg);
+        display: block;
+        width: 100%;
+        height: 4.2cm;
+        top:0;
+        left: 0;
+        z-index: -1;
+
+    /* background:   url(images/modelBg.jpg) no-repeat top left/100%; */
+    }
+    .page1>.row1>.column3 .row .row .section:before{
+        background: url(images/logo_.svg) no-repeat top left/28mm auto;
+            border-right: 1px solid #fff;
+            height: 2cm;
+            width: 33mm;
+            position: running(header);
+        display: block;
+        content: "";
+        top:1cm;
+        position: relative;
+        left: 1cm;
+    }
+    .page1>.row1>.column3 .row .row .section.noshape:before {
+    /*     	background: #312f2d  ; */
+        border-right: 1px solid #312f2d;
+/*         background: url(images/logo_dark.svg) no-repeat top left/28mm auto; */
+    }
+    .page1>.row1>.column3 .row .row  .modelbg {
+            background:  url(images/modelBg.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape1 {
+            background:  url(images/shape01.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape2 {
+            background:  url(images/shape02.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3  .row .row  .shape3 {
+            background:  url(images/shape03.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape4 {
+            background:  url(images/shape04.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape5 {
+            background:  url(images/shape05.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape6 {
+            background:  url(images/shape06.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape7 {
+            background:  url(images/shape07.jpg) no-repeat top left/100%;
+    }
+    .page1>.row1>.column3 .row .row  .shape8 {
+            background:  url(images/shape08.jpg) no-repeat top left/100%;
+    }
+    .logo{
+            /* background:  url(images/logo_.svg) no-repeat top left/28mm auto; */
+            border-right: 1px solid #fff;
+            height: 2cm;
+            width: 33mm;
+    /*         position: running(header); */ 
+        position: absolute;
+    }
+
+    .page1> .row1{
+
+        height: 160px;
+        border-width: 0; 
+        margin-bottom: 0;
+        /*! width: 21cm; */
+    /*      background:  url(images/bg.jpg) no-repeat top left/100% */
+
+
+        float:left;
+    }
+    .page3> .row1{
+        height: unset;
+    }
+    .page1> .row1 >.column{
+        width: auto;
+    }
+    .page1> .row1 >.column >.row{
+        margin: 19px 0 0 15px;
+    }
+    .fundname{
+    }
+    .page1 > .row1 > .column2{
+        position: running(FundName);
+    }
+    .fundname+.clear{
+        display: none;
+    }
+    .FundNameWorkbook{
+        color: #fff;
+        font-size: 20pt;
+        font-family:'DIN-Bold';
+
+        margin-bottom: 0;
+        line-height: 22pt;
+    }
+    .fundratings img,.page1 .modelratings img{
+        width: 31.37pt;
+    }
+.fundratings  img {
+ width: auto;
+    height: 32px;
+}
+    .strategy h2 ,.investmentprocess h2{
+        padding-top: 0.25cm;
+        border-top: 0.5pt solid #bdbcbc;
+    }
+    .page1 .fundratings p{
+        display: inline-block;
+        margin-right: 20px;
+
+        vertical-align: middle;
+        min-width: 50px;
+        max-width: 50px;
+    }
+    .fundratings h2 {
+        border-top: 0.5pt solid #bdbcbc;
+
+        padding-top: 0.25cm;
+    }
+    .modelratings {
+        padding: 0;
+        margin-top: 0;
+    }
+    .fundTactical h2{
+        border-top: 0.5pt solid #bdbcbc;
+        margin-top: 0.5cm;
+    padding-top: 0.5cm;
+    }
+    .page3 .ratingsfund{
+         border-top: 0.5pt solid #bdbcbc;
+         padding: 0px 0 5px;
+         margin-top: 0.5cm !important;
+    }
+    .page3 .ratingsfund h2{
+        padding-top: 0.5cm;
+    }
+    .page3 .modelratings{
+        border-bottom: 0;
+        padding-top: 0.5cm;
+        margin-top: 0 !important;
+    }
+    .page3 .modelratings p{
+        margin-bottom: 5px;
+    }
+    .page3 .text.section.modelratingstext{
+      margin-top: 10px;  
+    }
+    .invobjandprocess h2,.modelratings h2,.modelimportantinfo h2,.performancechartmp h2,.keyinformationmp h2,
+    .modeltactical h2, .modelstrategic h2{
+        color: #0D7F7C;
+    }
+.invobjandprocessifa h2{
+     color: #0D7F7C
+}
+.row3 .invobjandprocess h2{
+    /*! border-top: 0.5pt solid #bdbcbc; */
+    padding-top: 0.25cm;
+}
+    .keyinformationmp h2,.keyinformation h2{
+        padding-top: 0;
+    }
+    .performancechart h2{
+        padding-top: 0.25cm;
+        border-top: 0.5pt solid #bdbcbc;
+    }
+    .modelratings h2{
+        padding-top: 0.5cm;    
+        /*! border-top: 0.5pt solid #0D7F7C; */    
+    }
+    .page3 .modelratings h2{
+        border-top: 0.5pt solid #0D7F7C; 
+        padding: 0.25cm 0 0.2cm;
+    }
+    .modeltactical h2{
+        border-top: 0.5pt solid #0D7F7C; 
+        margin-top: 0.5cm;
+        padding-top: 0.25cm;
+    }
+    .tactical h2{
+        border-top: 0.5pt solid #bdbcbc; 
+        margin-top: 0.3cm;
+        padding-top: 0.3cm;
+    }
+    .SAAWording,.TAAWording{
+        margin: 0;
+    }
+    .modelratings h2{
+        color: #0D7F7C;
+        border-top: 0.5pt solid #0D7F7C; 
+        margin-top: 0cm;
+        padding-top: 0.25cm;
+        padding-bottom: 0.2cm;
+    }
+    .ratings h2{
+        border-top: 0.5pt solid #bdbcbc; 
+        margin-top: 0cm;
+        padding-top: 0.3cm;
+        padding-bottom: 0.3cm;
+    }
+    .modelfundratings{
+        border-top: 0.5pt solid #0D7F7C; 
+        margin-top: 0.5cm;
+        padding-top: 0.5cm;
+    }
+    .fundratings{
+    /*     border-top: 0.5pt solid #bdbcbc;  */
+    /*     margin-top: 0.5cm; */
+        /*! padding-top: 0.2cm; */
+    }
+    .page2 .modelfundratings h2{
+        color: #0D7F7C;
+    }
+    .page2 .fundratings h2{
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0.5cm;
+    }
+    .performancechartmp h2{
+        padding-top: 0.25cm;    
+        border-top: 0.5pt solid #0D7F7C;    
+    }
+.invobjandprocessifa{
+   border-bottom: 0.5pt solid #0D7F7C;    
+}
+    .performancechartmp h2{
+        width: 99.4%;
+    }
+    .page1 > .row1 > .column2 .item2,.page1 > .row1 > .column2 .productname .ProductHeader{
+        color: #fff;
+        font-size: 20pt;
+        font-family:'DIN-Light';
+        line-height: 22pt;
+    }
+    .page1 > .row1 > .column2 >.row2{
+        margin: 0 0 0 15px; 
+    }
+    .page1 > .row1 > .column2{
+        margin-top: 12px;
+
+        width: 12cm;
+        padding-left: 125px;
+    }
+    .DataAsAtDate {
+        color:#bdbcbc;
+        font-family:'DIN-Bold';
+        text-transform: uppercase;
+        font-size: 10pt;
+        margin-bottom: 0;
+        font-weight: normal;
+        line-height: 12pt;
+        padding-top: 0;
+        padding-bottom: 5px;
+    }
+
+    .page1 .horizontal-list span{
+        font-size:7pt;
+        line-height: 8.4pt;
+        margin-left: 0;
+        color: #312f2d;
+    }
+    .page1 .horizontal-list div:not(.clear){
+        padding-bottom: 0.2cm !important;
+        margin: 0;
+    }
+    .keyinformation .clear,.keyinformation+.clear,.shareclasscodes .clear,.shareclasscodes+.clear,.keyinformationmp .clear,.keyinformationmp+.clear{
+        display: none;
+    }
+    .page1 .horizontal-list>div:nth-last-child(2){
+        /*! margin: 0; */
+    }
+
+    .page1 .horizontal-list span.label{
+        width: 48%;
+        padding-right: 2%;
+        font-family: Din;
+    }
+    .page1 .horizontal-list:not(.keyinformation):not(.keyinformationmp) h2{
+        color: #989796;
+        font-size: 7pt;
+        /*! margin-bottom:0.2cm; */
+        padding-top: 0;
+        font-family: Din-Bold;
+
+    }
+    .page1 .disclaimer p,.page1 .modelkeydisclaimer,.modelkeydisclaimer p,.page1 > .row2 > .column2 p{
+        font-size: 7pt;
+        line-height: 8pt;
+    }
+    .modelkeydisclaimer p{
+        padding-left: 0.2cm;
+    }
+    .modelkeydisclaimer p:nth-last-child(1){
+       text-indent: -0.17cm;
+       margin: 0;
+    }
+    .modelkeydisclaimer p:nth-last-child(2){
+       text-indent: -0.23cm;
+    }
+    .modelkeydisclaimer p:nth-last-child(3){
+       text-indent: -0.15cm;
+    }
+    .page1 .disclaimer p{
+        margin-top: 0.1cm;
+        margin-bottom: 0;
+    }
+    .page1 .horizontal-list.keyinformation h2,
+    .page1 .horizontal-list.keyinformationmp h2{
+        font-size: 12pt;
+        margin-bottom:0.2cm;
+    }
+    .page1 .horizontal-list span.value{
+        float: left;
+        width: 50%;
+    }
+    .page1 .highcharts-container{
+
+          /*! height: 200px !important; */
+        /*! width: 12cm !important; */
+    }
+    .page1 .highcharts-container svg{
+    /*      height: 200px !important; */
+        /*! width: 11.5cm !important; */
+    }
+    .page1 .performancechartmp .highcharts-container{
+
+        /*! height: 180px !important; */
+        /*! width: 19.5cm !important; */
+    }
+    .page1 .performancechartmp .highcharts-container svg{
+    /*      height: 180px !important;
+        width: 19.5cm !important; */
+    }
+    .page1 .chart{    
+    height: 4cm !important;
+    }
+    .highcharts-grid.highcharts-yaxis-grid  .highcharts-grid-line {
+        stroke-dasharray: 1,0 !important;
+        stroke: rgba(95,29, 109,.1 ) !important; 
+    }
+    .highcharts-grid.highcharts-xaxis-grid  .highcharts-grid-line {
+        stroke-dasharray: 1,0 !important;
+        stroke: #fff !important;
+    }
+    .highcharts-axis.highcharts-yaxis .highcharts-tick,
+    .highcharts-axis.highcharts-yaxis .highcharts-axis-line{
+        stroke: #fff !important;
+    }
+    .highcharts-axis.highcharts-xaxis .highcharts-tick,
+    .highcharts-axis.highcharts-xaxis .highcharts-axis-line{
+        stroke: #989796 !important;
+    }
+    .highcharts-axis-labels text tspan{
+        font: 8pt Din-Light;
+        fill: #312f2d;
+    }
+    .highcharts-credits tspan{
+        display: none;
+        color: transparent;
+        font-size: 0;
+        text-indent: -99999px;
+    }
+    .highcharts-plot-lines-0{ }
+
+    .page1 .chart{
+        margin-bottom: 0.2cm; 
+    }
+    .page1 > .row2{
+        width: 19.5cm;
+    }
+    .page1 > .row2 > .column1{
+        width: 11.9cm !important;
+    }
+    .page1 > .row2 > .column2{ 
+        width: 7cm !important;
+        float: right;
+    }
+    .page1 .footer{
+        margin-top: 0.3cm;
+        font-size: 10pt;
+    }
+    .page1>.row2{
+        width: 19.5cm;
+    }
+    .keyWrapper {
+        /*! float: right; */
+        padding-top: 0;
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+    }
+    .keyContainer{
+        float: none;
+        padding-right: 10px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+    .keyContainer .key-color{
+        width: 14px;
+        height: 3px;
+        position: relative;
+        top:6px;
+    }
+    .performancetable  h2{
+        color:#6F6D6C;
+        font-family:'DIN-Light';
+        font-size: 11pt;
+        margin:0cm;
+        font-weight: normal;
+        position: absolute;
+        top:8px;
+         width: 300px;
+    } 
+    .performancetable.discreteperf  h2,
+    .performancetable.discreteperfmp  h2{
+        /*! top:8px; */
+    }
+    .performancetable{
+        position: relative;
+        margin-top: 0.3cm;
+    }
+    table{
+        font-size: 9pt;
+        line-height: 12pt;
+    }
+    .performancetable table{
+        width: 19.5cm;
+        text-align: right;
+        border-collapse: collapse;
+        border-spacing  :0;
+    }
+    .performancetable table td.rowheader{
+        text-align: left;
+    }
+    .performancetable.discreteperf table th:first-child,
+    .discreteperfmp.performancetable table th:first-child{
+        width: 300px;
+    }
+    .cumulativeperftable.performancetable table th:first-child,
+    .cumulativeperftablemp.performancetable table th:first-child{
+        width: 220px;
+    }
+    .performancetable table tr:nth-child(odd):not(:first-child){
+         /*! background-color: #efefef; */
+    }
+    .performancetable table th {
+        padding-right: 10px;
+        /*! padding-top: 0.15cm; */
+        /*! padding-bottom: 0.15cm; */
+    }
+    .performancetable table tr th,.performancetable table tr td{
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0.3cm;
+        height: 8mm;
+        vertical-align: middle;
+    }
+     .performancetable table tr td{
+         border-bottom: 0.75pt solid #D8D7D7;
+         text-align: center;
+         height: 27px;
+         line-height: 1;
+         vertical-align: middle;
+         padding-top: 1mm;
+         padding-bottom: 0.5mm;
+    }
+    .performancetable table tr th:not(:first-child){
+     padding-right: 0.3cm;
+
+    }
+    .discreteperf.performancetable table tr th:not(:first-child),
+    .discreteperfmp.performancetable table tr th:not(:first-child){
+        width:1.8cm;
+    /*     background: red; */
+        /*! padding-left: 0.5cm; */
+         padding-left: 0.3cm; 
+         padding-right: 0.3cm; 
+
+    }
+    .performancetable table tr th{
+       border-bottom: 0.75pt solid #312f2d;
+       padding-bottom: 0.8mm;
+       vertical-align: bottom;
+       text-align: center;
+    }
+    .disclaimerpage1 p,.ComparatorBenchmarkName-UnitBenchmarkName{
+        font-size: 9pt;
+        line-height: 12pt;
+        margin-top: 0.4cm;
+        margin-bottom: 0;
+    }
+    .page2 > .row2 > .breakdown .chart+table{
+        width: 7.5cm;
+        float: right;
+        /*! margin-right: 0.75cm; */
+    }
+    .page2 > .row2 > .breakdown1{
+        padding-bottom: 0.5cm;
+        border-bottom:0.5pt solid #bdbcbc;
+        width: 19.5cm;
+    }
+    .breakdown.barchart {
+        margin-top: 15px;
+    }
+    .breakdown.barchart > .chart{
+        /*! width: 19.5cm; */
+    }
+    .breakdown.barchart > .chart canvas{
+        /*! width: 100%; */
+    }
+    .page3 > .row1 h2 {
+        background: none;
+        padding: 0.1cm;
+        margin: 0;
+        color: #fff;
+        width: 19.5cm !important;
+        font: normal 12pt Din-Bold;
+        height: auto;
+        min-height: unset;
+        background: linear-gradient(to right, rgba(0,0,0,0.2) ,rgba(0,0,0,0.6));
+    } 
+
+    .top10holdings h2{
+        display: none;
+    }
+    .top10holdings .footer {
+    /*! padding-bottom: 0.5cm; */
+        /*! border-bottom:0.5pt solid #bdbcbc */
+    }
+    .top10holdings  table{
+        width: 19.5cm;
+        text-align: left;
+        border-spacing: 0;
+        border-collapse: collapse;   
+    }
+    .top10holdings table th{
+        /*! display: none; */ 
+        border-bottom: 0.75pt solid #312f2d;
+        padding: 6px 0px;
+        /*! font-size: 0.001pt; */
+        color: #312f2d;
+        font: 12pt/14pt Din-Bold;
+        text-align: left;
+    }
+    .top10holdings .footer{
+        margin: 0;
+    }
+    .top10holdings table th.Weight{
+        text-align: right;
+
+    }
+    .top10holdings table th.Name:before{
+/*         content:"Top ten holdings";
+            font:12pt/14pt Din-Bold;
+        color: #312f2d; */
+    }
+    .top10holdings table th.Weight:after{
+/*         content:"Holding weight (%)";
+        font:12pt/14pt Din-Bold;
+        color: #312f2d; */
+    }
+
+    .top10holdings  table tr:nth-child(even),.breakdown table tr:nth-child(odd){
+        /*! background: #efefef; */
+    }
+    .top10holdings table tr td:nth-last-of-type(1){
+        text-align: right;
+    }
+    .top10holdings.holding table td{
+        padding: 0.23cm 0cm 0.17cm 0cm;
+            border-bottom:0.75pt solid #D8D7D7;
+
+    }
+    .top10holdings table tr:nth-last-child(2) td{
+        background: none;
+        border-bottom:0.75pt solid #312f2d;
+
+
+    }
+     .top10holdings table tr:nth-last-child(1) td{
+         border-bottom:0pt solid #312f2d;
+         font-family: Din-Bold; 
+    }
+     .top10holdings table tr.total td.Name,.top10holdings table tr.total td.Weight{
+         border-bottom:0pt solid red;
+         font-family: Din-Bold; 
+    }
+    .top10holdings .footer{
+        /*! text-indent: 7px; */
+    } 
+    .page2 .modelratings img
+    .page2 .ratings img{
+        height: 0.85cm;
+    }
+
+    /* .page3 .ratings p:before, */
+    .page2 .fundratings p span,
+    .page2 .modelratings p span,
+    .page2 .ratings p span{
+        font: 9pt Din-Bold;
+
+        display: block;
+        padding-bottom: 6px;
+    }
+.rsmrfund{
+    width: 32px !important;
+}
+    .page3 .ratings p.item2:before{
+    /*     content:"Defaqto"; */
+    }
+    .page3 .ratings p.item3:before{
+    /*     content:"Dynamic Planner"; */
+    }
+    .page3 .ratings p.item4:before{
+    /*     content:"EValue"; */
+    }
+    .page3 .ratings p.item5:before{
+    /*     content:"FinaMetrica"; */
+    }
+    .page3 .ratings p.item6:before{
+    /*     content:"Synaptic 1-5"; */
+    }
+    .page3 .ratings p.item7:before{
+    /*     content:"Synaptic 1-10"; */
+    }
+    .page2 .text.section.modelratings,
+    .page2 .text.section.ratings{
+        display: block;
+        width: auto;
+        margin-top: 0;
+        padding: 0cm 0;
+    }
+    .page2 .fundratings p,
+    .page2 .modelratings p,
+    .page2 .ratings p{
+        position: relative;
+        display: inline-block;
+        padding:0px 30px 0px 0;
+        margin-bottom: 0.2cm;
+    }
+    .page .text.section:not(.contentSection){
+        margin-top: 0.5cm;
+        width: 19.5cm;
+    }
+    .page3 .text.section.thirdpgdisclaimer{
+    /*     position: running(disclaimer); */
+        background: #312f2d;
+        padding:0.5cm 0.75cm;
+          margin-left:  -0.75cm;
+        margin-right: -0.75cm;
+        margin-top:0;
+        float: footnote;
+         width:100%;
+    }
+    .page3 .row6 .text.section.thirdpgdisclaimer{
+        /*! padding-bottom: 0.1cm; */
+    }
+    .page3 .row7 .text.section.thirdpgdisclaimer{
+        padding-top: 0cm;
+    }
+    .page3 .text.section.thirdpgdisclaimer:footnote-call{
+       color: transparent;
+    }
+    .page3 .text.section.thirdpgdisclaimer:footnote-marker{
+        display: none;
+    }
+    .page2 .text.section.modelratings:empty,
+    .page2 .text.section.ratings:empty{
+        display: none;
+    }
+    .page3 .row7{
+    display: none;
+    }
+    .thirdpgdisclaimer p{
+        color: #fff;
+        font: 6pt Din-Medium !important;
+        margin: 0;
+    }
+    .thirdpgdisclaimer p.Website{
+    /*     content:"www.7im.co.uk"; */
+        display: block;
+        font: 9pt Din-Bold !important;
+        margin-bottom: 0.25cm;
+    }
+    .thirdpgdisclaimer .item2{
+        font:9pt Din-Bold;
+    }
+    .thirdpgdisclaimer .item3{
+        font:6pt Din-Medium;
+        margin: 0;
+    }
+
+    .page2 > .row2 > .breakdown table{
+        width: 50% ;
+        float: left;
+    }
+    .breakdown .key-color{
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        float: right;
+    }
+    .breakdown table{
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+    .breakdown table td{
+        padding: 0.8mm 0.15cm;
+    }
+    .breakdown table td.Key{
+
+    }
+    .page2 > .row2 > .row2 > .breakdown1 table  {
+        width:8cm;
+        float: right; 
+    }
+      .breakdown .highcharts-root{
+        /*! height: 240px !important; */
+        /*! width: 240px !important; */
+    }
+    .SAATextfund p{
+        margin-bottom: 0.2cm;
+    }
+    .page2>.row2{
+        /*! border-bottom: 0.5pt solid #bdbcbc; 0.5pt solid #0D7F7C*/
+        /*! margin-bottom: 0.25cm; */
+        /*! padding-bottom: 0.25cm; */
+    }
+    .page2>.row3{
+           /*! margin-bottom: 0.5cm; */
+        /*! padding-bottom: 0.5cm; */
+        /*! border-bottom: 0.5pt solid #0D7F7C; */
+    }
+    .availability .item2,.ModelAvailabilityText{
+        color: #EC621D;
+        font-family: Din-Medium;
+    }
+    .fundimportantinfo,.modelimportantinfo{
+        background: #E5E4E4;
+    /*  position: running(impInfo); */
+        padding: 0.2cm 0.75cm 0.5cm;
+    /*  position: absolute; */
+        bottom: 0cm;
+        margin-left:  -0.75cm;
+        margin-right: -0.75cm;
+        float: footnote;
+        margin-top: 0;
+
+    }
+    .fundimportantinfo:footnote-call,.modelimportantinfo:footnote-call{
+        color: transparent;
+    }	
+
+    .fundimportantinfo:footnote-marker,.modelimportantinfo:footnote-marker{
+        display:none;
+    }	
+    .fundimportantinfo p{
+         margin: 5px 0 0;
+    }
+    .fundimportantinfo p:empty{
+        display: none;
+    }
+    .fundimportantinfo p:not(:nth-child(2)){
+        padding-left: 0.3cm;
+        text-indent: -0.3cm
+    }
+    .modelimportantinfo p{
+         margin: 5px 0 0;
+        height: 1.8cm;
+
+    }
+    @media print{
+        .logo{
+            position: running(header);
+        }
+        
+        .page{
+    /*         height: 24.7cm; */
+        }
+        .page.page1{
+            height: 20.3cm;
+               padding: 4.6cm 0.7cm 0cm ;
+        }
+        .page.page2,
+        .page.page3{
+               padding: 4.6cm 0.7cm 0 ;
+        }
+
+        .page1 > .row2 > .column1{
+    /*         margin-left: -0.38cm; */
+        }
+        .page1>.row1{
+            height: 0;
+            width: 0;
+        }
+        .page2>.row1{
+             height: unset;
+        }
+        .page3>.row1{
+            height: unset;
+        }
+         .page1 > .row2 > .column1{
+
+        }
+        .page1 > .row1 > .column2{
+            padding: 0;
+        }
+        .page1 .horizontal-list>div.Yield,.page1 .horizontal-list>div.HistoricDistributionYield{
+        padding-bottom: 0cm !important;
+    }
+        .fundimportantinfo,.modelimportantinfo{
+            position: absolute;
+           margin-left:  auto;
+            margin-right: auto;
+        }
+        .page3 .text.section.thirdpgdisclaimer{
+            margin-left:  auto;
+            margin-right: auto;
+        }
+        .page1 .horizontal-list div:not(.clear){
+            padding-bottom: 0.2cm !important;
+            margin: 0;
+        }
+
+        @page{
+            @top-center{
+                content: element(pageBg);
+                position: absolute;
+                width: 100%;
+                top:0;
+                right:0;
+                 height: 4.2cm;
+            }
+            @top-left{
+                content:  element(header);
+                 z-index:100;
+                margin-top:1cm;
+                margin-left: 1cm;
+
+            }
+            @top-right{
+                content: element(FundName); 
+                position: absolute;
+                left: 4.4cm;
+                margin-top: 0.5cm;
+                z-index:100;
+
+            }
+             @footnote{
+            border:none !important;
+        }
+        }
+
+        @page:ro-last{
+    /*        @bottom-right{
+                content: element(disclaimer);
+               position: absolute;
+               margin-top: -1cm;
+            }
+            @bottom-left{
+                content: element(impInfo);
+               position: absolute;
+                margin-top:-5cm;
+            } */
+
+
+
+        }
+        .fundimportantinfo,.modelimportantinfo{
+            width: 95%;
+            position: relative;
+            bottom: -0.2cm;
+            left: -0.2cm;
+        }
+         .page3 .text.section.thirdpgdisclaimer{
+               position: relative;
+             left: -0.2cm;
+             bottom: -0.2cm;
+            }
+    }
+    .KeyInformationDisclaimer{
+        text-indent:0 !important;
+        padding-left:0 !important;
+    }
+    .page1 > .row2 .column1  .row4 {
+        /* page-break-before: always; */
+        padding-top:0;
+    }
+    /*7im*/

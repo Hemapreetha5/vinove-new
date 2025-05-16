@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>LLOZERO PRIIP KID</title>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   <meta name="keywords" content="Version=3.2;
+DocumentType=PRP;
+PublicationCountry=-;
+Language=en;
+RecordDate=2022-11-01;
+ShareClass=DAHH;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=DAHH;
+Productcode=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=;
+CalculationDate=2022-10-31;
+" />
+   <style>
+      body {
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-size: 9pt;
+      }
+
+      h2 {
+         font-size: 10pt;
+      }
+
+      @page {
+         size: 21cm 29.7cm;
+         margin: 0;
+         counter-increment: page 1;
+      }
+
+      .page {
+         width: 21cm;
+         height: 29.7cm;
+      }
+
+      .pageNumber::after {
+         content: counter(page);
+      }
+
+      .pageTotal::after {
+         content: counter(pages);
+      }
+
+      html {
+         -ro-rounding-mode: floor;
+      }
+
+      .clientRating {
+         width: 250px;
+      }
+
+      .rating {
+         max-width: 100px;
+      }
+
+      .kiiRiskRating {
+         width: 250px
+      }
+
+      .kiiRiskRating .header th:first-child,
+      .kiiRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .kiiRiskRating .header th:last-child,
+      .kiiRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .kiiRiskRating .arrow td {
+         background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 13px;
+      }
+
+      .kiiRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .kiiRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .kiiRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating {
+         width: 250px
+      }
+
+      .sriRangeRiskRating .header th:first-child,
+      .sriRangeRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .sriRangeRiskRating .header th:last-child,
+      .sriRangeRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .sriRangeRiskRating .arrow td {
+         background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 16px;
+      }
+
+      .sriRangeRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .sriRangeRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .sriRangeRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border-top: 2px solid #ffcc66;
+         border-bottom: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.start {
+         border-left: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.end {
+         border-right: 2px solid #ffcc66;
+      }
+
+      .clear {
+         clear: both;
+      }
+
+      .page1>.row1>.column1 {
+         float: left;
+         width: 50%;
+      }
+
+      .page1>.row1>.column2 {
+         float: left;
+         width: 50%;
+      }
+
+      .costComposition>p {
+         width: 100%;
+      }
+
+      .costComposition>table {
+         width: 100%;
+      }
+
+      .costComposition th,
+      .costComposition .category,
+      .costComposition .subcategory {
+         font-weight: bold;
+         text-align: left;
+      }
+
+      .costComposition .category,
+      .costComposition .subcategory,
+      .costComposition .costs {
+         width: 20%
+      }
+
+      .costComposition .description {
+         width: 40%
+      }
+   </style>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+   <link rel="stylesheet" href="theme/theme.css">
+</head>
+
+<body>
+   <h1 style="position: absolute"></h1>
+   <div class="section page page1" data-pageorder="1" data-sectionId="591043" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="591044" data-sectiontype="2">
+         <div class="section column column1" data-sectionId="591045">
+            <div class="section row row1" data-roworder="1" data-sectionId="591046" data-sectiontype="2">
+               <div class="section contentSection text text1 keyinformationdocument" data-sectionId="591047">
+                  <h2 class="item2">Key Information Document</h2>
+               </div>
+               <div class="clear"></div>
+            </div>
+            <div class="section row row2" data-roworder="2" data-sectionId="591048" data-sectiontype="2">
+               <div class="section contentSection text text1" data-sectionId="591049">
+                  <h2 class="item2">Purpose</h2>
+                  <p class="item3">This document provides you with key information about this investment product. It is
+                     not marketing material. The information is required by law to help you understand the nature,
+                     risks, costs, potential gains and losses of this product and to help you compare it with other
+                     products.</p>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="section column column2" data-sectionId="591050">
+            <div class="section row row1" data-roworder="1" data-sectionId="591051" data-sectiontype="2">
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="591052" data-sectiontype="2">
+         <div class="section contentSection text text1 generalinformation" data-sectionId="591053">
+            <h2 class="item2">Product</h2>
+            <p class="FundNameWB">Brooks Macdonald International Multi Strategy Fund Limited - High Growth Strategy - A
+               Class (the "Fund")</p>
+            <p class="IsinCode">ISIN
+               JE00BN6MFP02<br>
+               The Manufacturer of the Fund is Brooks Macdonald International Fund Managers Limited (the Manager)<br>
+               Telephone +44 (0) 1534-715555
+               The Fund and the Manager are authorised and regulated by the Jersey Financial Services Commission.
+               <br>
+            </p>
+            <p class="GeneralInfo"></p>
+            <p class="IssuedOnDate">Date of Production 01/11/2022</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="591054" data-sectiontype="2">
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="591061" data-sectiontype="2">
+         <div class="section contentSection text text1 whatisthisproduct" data-sectionId="591062">
+            <h2 class="item2">What is this product?</h2>
+            <p class="Whatisthisproduct">The Fund is a sub fund of Brooks Macdonald International Multi Strategy Fund
+               Limited, a non UCITS open ended investment company. There is no fixed term or maturity date. It is
+               classified as a fund of funds which is a fund that invests in a number of other funds. Fund launch date:
+               07/07/2021. Objective and Policy The objective is to seek to provide a greater potential for long-term
+               growth achieved through investment in a range of funds which invest in various asset classes, weighted
+               towards equities. The policy is to invest in collective investment funds and multimanager funds managed
+               by a range of fund managers including, but not limited to, Brooks Macdonald International Fund Managers
+               Limited and other subsidiaries of Brooks Macdonald Group plc (""Brooks Macdonald Group"" or ""Group"").
+               These funds, in turn, invest in a number of asset classes. These could include, but are not limited to
+               equities, properties and cash. This Fund may be suitable for you if you are willing to risk a loss to
+               your capital and are looking for a medium to long term investment. The Fund can be terminated without the
+               agreement of shareholders, if the value of the Fund is less than £5,000,000 or currency equivalent for a
+               period of four consecutive weeks. Shareholders will be given at least three weeks' written notice of any
+               such action.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="591063" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="591064">
+            <div class="section contentSection text text1 whataretherisks compositeheader" data-sectionId="591065">
+               <h2 class="item2">What are the risks and what could I get in return?
+               </h2>
+            </div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="591066" data-sectiontype="2">
+                  <div class="section contentSection text text1 SRIdescription" data-sectionId="591067">
+                     <p class="item2">The summary risk indicator is a guide to the level of risk and volatility of this
+                        product compared to other products. It shows how likely it is that the product will lose money
+                        because of movements in the markets or the type of underlying assets in which the Fund invests.
+                     </p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="591068" data-sectiontype="2">
+                  <div class="section contentSection text text1 warning" data-sectionId="591069">
+                     <p class="Sri">
+                     <table class="sriRiskRating">
+                        <tr class="ratings">
+                           <td colspan="2">
+                              <table>
+                                 <tr>
+                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                 <tr>
+                                    <td class="rating">1</td>
+                                    <td class="rating">2</td>
+                                    <td class="rating">3</td>
+                                    <td class="selected rating">4</td>
+                                    <td class="rating">5</td>
+                                    <td class="rating">6</td>
+                                    <td class="rating">7</td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                        <tr class="arrow">
+                           <td colspan="2"></td>
+                        </tr>
+                        <tr class="header">
+                           <th>Lower risk</th>
+                           <th>Higher risk</th>
+                        </tr>
+                     </table>
+                     </p>
+                     <p class="SRInarrative1">The risk indicator assumes you keep the product for a minimum of five
+                        years. The actual risk can vary significantly if you sell your shares at an early stage and you
+                        may get back less.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="591070" data-sectiontype="2">
+                  <div class="section contentSection text text1 narrative" data-sectionId="591071">
+                     <p class="SRInarrative2">The base currency of the Fund is sterling. It can invest in securities
+                        denominated in currencies other than sterling so can be affected by currency fluctuations which
+                        may affect the return. The return from investing in a fund denominated in a currency other than
+                        the currency of your residence or domicile may be affected by currency fluctuations. Dividends,
+                        which will be automatically reinvested in shares of the Fund, are not guaranteed and the amount
+                        you receive may fluctuate. The value of investments and the income from them can go down as well
+                        as up and cannot be guaranteed. This product does not include any protection from future market
+                        performance so you could lose some or all of your investment. Past performance is not an
+                        indicator of future performance. Additional risk information is included in the Risk Warnings
+                        section of the prospectus.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row6" data-roworder="6" data-sectionId="591072" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="591073">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page2" data-pageorder="2" data-sectionId="591074" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="591075" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="591076">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="591077"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="591078" data-sectiontype="2">
+                  <div class="section contentSection text text1 investmentperf" data-sectionId="591079">
+                     <h2 class="item2">Investment performance information</h2>
+                     <p class="InvestmentPerformanceInformation">The Manager has given discretion to the Investment
+                        Manager to decide on the type of assets held by each Fund and this may change without notice to
+                        shareholders. The exact allocation of the assets of each Fund between the various asset classes
+                        will be decided by the Investment Manager and will vary depending on the risk profile of each
+                        Fund. The Funds are managed according to their risk profile and each Fund carries a risk of loss
+                        to capital value and/or return particularly in the short to medium term but with potential for
+                        growth over the medium to long term. The level of risk for the High Growth Strategy is medium to
+                        high. Typically, higher growth potential is associated with higher risk, although this cannot be
+                        guaranteed. A suitable benchmark or proxy has been chosen in order to provide a comparator for
+                        information purposes. The relative performance will differ for a number of reasons and is not a
+                        reflection of how the Fund will perform. Past performance is not a reliable indicator of future
+                        results. Under severe market conditions the value of the investment may be adversely impacted,
+                        and you may not get back the amount of your initial investment. This investment is a medium/long
+                        term investment and should be held for the recommended holding period.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="591080" data-sectiontype="2">
+                  <div class="section contentSection text text1 investmentreturn" data-sectionId="591081">
+                     <h2 class="item2">What could affect my return positively?</h2>
+                     <p class="Whatcouldaffectmyreturnpositively">The aim of the High Growth Strategy is to achieve
+                        greater return, the factors that influence your rate of return positively include, exposure to a
+                        broader range of assets, such as stocks, bonds, real estate or cash, low interest rates,
+                        favourable currency fluctuation, government policy or the health of the underlying economy.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="591082" data-sectiontype="2">
+                  <div class="section contentSection text text1 investmentreturn" data-sectionId="591083">
+                     <h2 class="item2">What could affect my return negatively?</h2>
+                     <p class="Whatcouldaffectmyreturnnegatively">The aim of the High Growth Strategy is to achieve a
+                        greater return, the factors that influence your rate of return negatively include, exposure to a
+                        broader range of assets, such as stocks, bonds, real estate or cash, rising interest rates,
+                        unfavourable currency fluctuation, government policy or the health of the underlying economy.
+                        Investing for less than the recommended period may also impact your return.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="591084" data-sectiontype="2">
+         <div class="section contentSection text text1 unabletopay" data-sectionId="591085">
+            <h2 class="item2">What happens if Lloyds International is unable to pay out? </h2>
+            <p class="item3">In the event of the default of the manager or custodian of the Fund, limited protection is
+               provided under the Collective Investment Funds (Recognized Funds) (Compensation for Investors) (Jersey)
+               Regulations, 1988. The maximum compensation payable to any one investor is £48,000 and is dependent upon
+               the size of the investment. The total amount of compensation in any one year is limited to £5,000,000.
+               Please refer to the prospectus for further information.<br><br></p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="591086" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="591087">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="591088"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="591089" data-sectiontype="2">
+                  <div class="costovertime_4columntable section contentSection costOverTime costOverTime1"
+                     data-sectionId="591090" style="page-break-inside:avoid">
+                     <h2 class="">What are the costs?</h2>
+                     <p>The Reduction in Yield (RIY) shows what impact the total costs you pay will have on the
+                        investment return you might get. The total costs take into account one-off, ongoing and
+                        incidental costs.
+                        The amounts shown here are the cumulative costs of the product itself, for three different
+                        holding periods. The figures assume you invest GBP1,000 each year. The figures are estimates and
+                        may change in the future.<br>
+                        The person selling you or advising you about this product may charge you other costs. If so,
+                        this person will provide you with information about these costs, and show you the impact that
+                        all costs will have on your investment over time.</p>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class='investmentheader'>
+                                       <th class='investment' colSpan='4'>Investment GBP1,000 each year</th>
+                                    </tr>
+                                    <tr class='scenarioheader'>
+                                       <th class='scenarios'>Scenarios</th>
+                                       <th class='scenario1'>If you cash in after 1 year</th>
+                                       <th class='scenario2'>If you cash in after 10 years</th>
+                                       <th class='scenario3'>If you cash in at 20 years</th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <thead></thead>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class='row'>
+                                          <td class='totalcostsheader'>Total costs</td>
+                                          <td class='totalcosts1'>GBP10</td>
+                                          <td class='totalcosts2'>GBP10</td>
+                                          <td class='totalcosts3'>GBP10</td>
+                                       </tr>
+                                       <tr class='row'>
+                                          <td class='riyheader'>Impact on return (RIY) per year</td>
+                                          <td class='riy1'>10.12%</td>
+                                          <td class='riy2'>10.12%</td>
+                                          <td class='riy3'>10.12%</td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="591091" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="591092"></div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="591093" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="591094">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page3" data-pageorder="3" data-sectionId="591095" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="591096" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="591097">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="591098"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="591099" data-sectiontype="2">
+                  <div class="section contentSection costComposition costComposition1" data-sectionId="591100"
+                     style="page-break-inside:avoid">
+                     <h2 class="">What are the costs? (continued)</h2>
+                     <p>The table below shows the impact each year of the different types of costs on the investment
+                        return you might get at the end of the recommended holding period and, what the different cost
+                        categories mean.</p>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class="tableHeader">
+                                       <th colspan=3>This table shows the impact on return per year</th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class="entrycosts">
+                                          <td class="category" rowspan="2">One-off costs</td>
+                                          <td class="subcategory">Entry costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs you pay when entering your
+                                             investment.</td>
+                                       </tr>
+                                       <tr class="exitcosts">
+                                          <td class="subcategory">Exit costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs of exiting your investment
+                                             when it matures.</td>
+                                       </tr>
+                                       <tr class="portfoliotrxcosts">
+                                          <td class="category" rowspan="2">Ongoing costs</td>
+                                          <td class="subcategory">Portfolio transaction costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs of us buying and selling
+                                             underlying investments for the product.</td>
+                                       </tr>
+                                       <tr class="otherongoingcosts">
+                                          <td class="subcategory">Other ongoing costs</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">The impact of the costs that we take each year for
+                                             managing your investments.</td>
+                                       </tr>
+                                       <tr class="performancefees">
+                                          <td class="category" rowspan="2">Incidental costs</td>
+                                          <td class="subcategory">Performance fees</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description">There are no performance fees payable for this
+                                             product.</td>
+                                       </tr>
+                                       <tr class="carriedinterests">
+                                          <td class="subcategory">Carried interests</td>
+                                          <td class="costs" style="white-space: nowrap;">10.12%</td>
+                                          <td class="description"></td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="591101" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="591102">
+                     <p class="CostsCaveat"></p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="591103" data-sectiontype="2">
+         <div class="section contentSection text text1 howlong" data-sectionId="591104">
+            <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+            <p class="HowLongTakeMoneyOut">Investment in this Fund should be for a minimum of five years, preferably ten
+               years, however you can normally buy or sell your shares in this Fund on any business day in Jersey by
+               providing an instruction to the Administrator, PO Box 12984, DUNMOW, CM6 9DQ. Further information is
+               available in the prospectus. Cooling off periods and cancellation rights (which provide a time period in
+               which an investor can change their mind) do NOT apply to an investment in this Fund.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="591105" data-sectiontype="2">
+         <div class="section contentSection text text1 howcanicomplain" data-sectionId="591106">
+            <h2 class="item2">How can I complain?
+            </h2>
+            <p class="HowComplain">Complaints should be addressed to the Manager, 5 Anley Street, St. Helier, Jersey,
+               JE2 3QE or email jersey@brooksmacdonald.com, who will investigate all complaints. If you are not
+               satisfied with the Manager's response, you have the right to refer the complaint to the Channel Islands
+               Financial Ombudsman, PO Box 114, Jersey, Channels Islands JE4 9QG. www.ci-fo.org</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="591107" data-sectiontype="2">
+         <div class="section contentSection text text1 otherrelevantinformation" data-sectionId="591108">
+            <h2 class="item2">Other relevant information</h2>
+            <p class="OtherInfo">This document should be read in conjunction with the current prospectus and is issued
+               by Brooks Macdonald International Fund Managers Limited. Registered Office: 5 Anley Street, St. Helier,
+               Jersey, Channel Islands, JE2 3QE. The sum of the Ongoing Costs represents the total expense ratio plus
+               any transaction costs, if applicable, as at the date of the last published Report and Accounts. The
+               custodian is Apex Financial Services (Corporate) Limited. It is a mandatory requirement that the latest
+               available Key Information Document, current prospectus, latest annual and interim Report and Accounts and
+               the Fund prices are available to the investor. These can be obtained from the Manager, 5 Anley Street,
+               St. Helier, Jersey, Channel Islands, JE2 3QE or on the website:
+               www.brooksmacdonald.com/international-funds. Documents are available in English only. The tax legislation
+               of Jersey and in your country of residence or domicile may have an impact on your personal tax situation.
+               Telephone calls may be monitored and recorded. Call costs may vary depending on your service provider.
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="593226" data-sectiontype="2">
+         <div class="section contentSection text text1 DocRefNum" data-sectionId="593227">
+            <p class="DocumentReferenceNumber">BMI 02/22</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row6" data-roworder="6" data-sectionId="591109" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="591110">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+</body>
+
+</html>

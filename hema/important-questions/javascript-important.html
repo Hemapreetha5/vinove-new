@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hema HTML Tutorial</title>
+    <style>
+        ol>li,
+        p {
+            color: #fff;
+            line-height: 24px;
+        }
+
+        h4,
+        ol>li p:first-child {
+            color: #98ffd7;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 24px;
+        }
+        .markdown > ol:first-child > li > p:first-child,
+        .markdown > ol:first-child > li > h4:first-child{
+            /* color: #8a2ae4 !important; */
+            color:#98ffd7 !important;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ff6ecd;
+        }
+
+        body {
+            background-color: #000;
+            line-height: 24px;
+        }
+
+        .flex.items-center.relative.text-token-text-secondary.bg-token-main-surface-secondary {
+            display: none;
+        }
+
+        .markdown.prose p {
+            color: #fff;
+        }
+        ol ol li > p {
+    color: #68ff3c !important;
+}
+::marker{
+    color:#98ffd7;
+}
+    </style>
+</head>
+
+<body>
+    <div class="markdown prose w-full break-words dark:prose-invert light">
+        <ol>
+            <li>
+                <p>What is JavaScript?</p>
+                <p>JavaScript is a high-level, dynamic, and interpreted programming language used to make web pages
+                    interactive and dynamic. It is primarily used for client-side scripting, but it can also be used for
+                    server-side programming.</p>
+            </li>
+            <li>
+                <p>What is the difference between let, var, and const in JavaScript?</p>
+                <p>"let" and "const" are block-scoped variables introduced in ES6, while "var" is Global-scoped. "let"
+                    and "const" cannot be re-declared, while "var" can. "const" variables cannot be reassigned, while
+                    "let" and "var" can be.</p>
+            </li>
+            <li>
+                <p>What is closure in JavaScript?</p>
+                <p>A closure is a function that has access to its parent function's variables, even after the parent
+                    function has returned. Closures are created when a function is defined inside another function.</p>
+            </li>
+            <p>
+            <pre><code>function outerFunction(x) {
+  function innerFunction(y) {
+   return x + y;
+  }
+  return innerFunction;
+}
+
+const add5 = outerFunction(5); // returns the inner function
+console.log(add5(3)); // output: 8
+</code>
+</pre>
+            </p>
+            <li>
+                <p>What is the difference between "==" and "===" in JavaScript?</p>
+                <p>"==" is used for loose equality comparison, meaning it checks for equality of values, but not
+                    necessarily of data types. "===" is used for strict equality comparison, meaning it checks for
+                    equality of both values and data types.</p>
+            </li>
+            <li>
+                <p>What is the difference between null and undefined in JavaScript?</p>
+                <p>"null" is a value that represents the intentional absence of any object value, while "undefined" is a
+                    variable that has been declared but has not been assigned a value.</p>
+            </li>
+            <li>
+                <p>What is a callback function in JavaScript?</p>
+                <p>A callback function is a function that is passed as an argument to another function and is executed
+                    after some specific task is completed. It is often used for asynchronous programming.</p>
+            </li>
+            <p>Example</p>
+            <p>
+                <code>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"myFirst()"</span><span class="cm-tag cm-bracket">&gt;</span>Say Hello<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tag cm-bracket">&gt;</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"mySecond()"</span><span class="cm-tag cm-bracket">&gt;</span>Say Hello<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tag cm-bracket">&gt;</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">p</span> <span class="cm-attribute">id</span>=<span class="cm-string">"demo"</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">p</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></code>
+            </p>
+            <pre><code>function myDisplayer(some) {
+ document.getElementById("demo").innerHTML = some;
+}
+
+function myFirst() {
+ myDisplayer("Hello");
+}
+
+function mySecond() {
+ myDisplayer("Goodbye");
+}
+</code>
+<p class="">//Output
+    Goodbye</p>
+</pre>
+<p>In this example, myDisplayer acts as a callback function since it is used by myFirst and mySecond to handle what happens when the buttons are clicked. However, this example doesn’t strictly show an asynchronous callback, as both functions are synchronous and executed immediately when the buttons are clicked.</p>
+
+            <li>
+                <p>What is the difference between a function declaration and a function expression in JavaScript?</p>
+                <p>A function declaration is a statement that declares a function and can be called before it is
+                    defined, while a function expression is an assignment that defines a function and can only be called
+                    after it is defined.</p>
+            </li>
+            <li>
+                <p>What is the "this" keyword in JavaScript?</p>
+                <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]"><div class="markdown prose w-full break-words dark:prose-invert light"><p>In JavaScript, the <code>this</code> keyword refers to the object that is currently executing the code. The value of <code>this</code> depends on how and where the function is invoked, making it a dynamic context.</p><p>Here's a breakdown of how <code>this</code> works in different contexts:</p><ol><li><p><strong>Global Context</strong>:<br>When used in the global scope, <code>this</code> refers to the global object (<code>window</code> in browsers, <code>global</code> in Node.js).</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// In a browser, this will log the window object.</span>
+</code></div></div></pre></li><li><p><strong>Object Method</strong>:<br>When a function is called as a method of an object, <code>this</code> refers to the object that is calling the method.</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"Petchi"</span>,
+    <span class="hljs-attr">greet</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);
+    }
+};
+obj.<span class="hljs-title function_">greet</span>(); <span class="hljs-comment">// "Petchi" - this refers to obj</span>
+</code></div></div></pre></li><li><p><strong>Constructor Functions</strong>:<br>In a constructor function (using the <code>new</code> keyword), <code>this</code> refers to the new object being created.</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+}
+<span class="hljs-keyword">const</span> person = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">"Petchi"</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-property">name</span>); <span class="hljs-comment">// "Petchi"</span>
+</code></div></div></pre></li><li><p><strong>Event Handlers</strong>:<br>In an event handler, <code>this</code> refers to the element that received the event.</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"button"</span>);
+button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"click"</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// this refers to the button element</span>
+});
+</code></div></div></pre></li><li><p><strong>Arrow Functions</strong>:<br>Arrow functions do not have their own <code>this</code> context. Instead, they inherit <code>this</code> from the enclosing lexical context (the surrounding non-arrow function or global scope).</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"Petchi"</span>,
+    <span class="hljs-attr">greet</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);
+        };
+        <span class="hljs-title function_">arrowFunc</span>(); <span class="hljs-comment">// "Petchi" - this refers to obj</span>
+    }
+};
+obj.<span class="hljs-title function_">greet</span>();
+</code></div></div></pre></li></ol><p>Understanding the <code>this</code> keyword is crucial for working with object-oriented programming in JavaScript, as it helps determine the context in which a function is executed.</p></div></div>
+</li>
+
+
+            <li>
+                <h4>Find element in an array and push it to array javascript</h4>
+                <p>
+                <pre><code>const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [];
+
+const elementToFind = 3;
+const foundElement = arr1.find(element => element === elementToFind);
+
+if (foundElement !== undefined) {
+arr2.push(foundElement);
+}
+
+console.log(arr2); // [3]
+</code></pre>
+                </p>
+            </li>
+            <li>
+                <h4>Remove duplicate array value in javascript</h4>
+                <p>
+                <pre><code>const arr = [1, 2, 2, 3, 4, 4, 5];
+const uniqueArr = [...new Set(arr)];
+console.log(uniqueArr); // [1, 2, 3, 4, 5]
+</code></pre>
+                </p>
+
+                <p>Example 2:</p>
+
+                <p>
+                <pre>
+<code>const arr = [1, 2, 2, 3, 4, 4, 5];
+const uniqueArr = [];
+
+for (let i = 0; i < arr.length; i++) {
+    if (!uniqueArr.includes(arr[i])) {
+        uniqueArr.push(arr[i]);
+    }
+}
+
+console.log(uniqueArr); // [1, 2, 3, 4, 5]
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Find 2 elements in array and push it to another array javascript</h4>
+                <p>
+                <pre>
+<code>
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [];
+
+const elementsToFind = [3, 5];
+const foundElements = arr1.filter(element => elementsToFind.includes(element));
+
+if (foundElements.length === elementsToFind.length) {
+ arr2.push(...foundElements);
+}
+
+console.log(arr2); // [3, 5]
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>
+                    Write map & foreach function for below code?
+                </h4>
+                <p>
+                    The main difference between map and forEach is that map returns a new array with the results of the
+                    function applied to each element, while forEach does not return anything. Both map and forEach can
+                    modify the original array if the callback function modifies its elements.
+                <pre>
+<code>
+// map function
+const a = [1, 2, 3, 4];
+const mapResult = a.map(function(item) {
+    return item * 2;
+});
+console.log(mapResult); // [2, 4, 6, 8]
+
+// forEach function
+const b = [1, 2, 3, 4];
+b.forEach(function(item, index) {
+    console.log(`Element at index ${index} is ${item}`);
+});
+// Output:
+// Element at index 0 is 1
+// Element at index 1 is 2
+// Element at index 2 is 3
+// Element at index 3 is 4 
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Given array const arr=['{','}','$','@']; output is array1 = ['$' , '@' , '{','}'] pls write
+                    javascript code</h4>
+                <p>
+                <pre>
+<code class="!whitespace-pre hljs language-javascript">
+const arr = ['{', '}', '$', '@'];
+
+const array1 = arr.sort((a, b) => {
+if (a === '$') {
+return -1;
+} else if (b === '$') {
+return 1;
+} else if (a === '@') {
+return -1;
+} else if (b === '@') {
+return 1;
+} else if (a === '{') {
+return -1;
+} else if (b === '{') {
+return 1;
+} else if (a === '}') {
+return -1;
+} else {
+return 1;
+}
+});
+
+console.log(array1); // ['$' , '@' , '{', '}']</code></pre>
+        <h5>Example2</h5>
+<pre>
+<div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'{'</span>, <span class="hljs-string">'}'</span>, <span class="hljs-string">'$'</span>, <span class="hljs-string">'@'</span>];
+<span class="hljs-keyword">const</span> order = [<span class="hljs-string">'$'</span>, <span class="hljs-string">'@'</span>, <span class="hljs-string">'{'</span>, <span class="hljs-string">'}'</span>];
+
+<span class="hljs-keyword">const</span> array1 = arr.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> order.<span class="hljs-title function_">indexOf</span>(a) - order.<span class="hljs-title function_">indexOf</span>(b));
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array1); <span class="hljs-comment">// ['$' , '@' , '{', '}']</span>
+</code></div></div>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Write a pgm for passing arguments multiply?
+                    multiply(1, 2, 3, 4);
+                    multiply(1, 2, 3);
+                    multiply(1, 2);</h4>
+                <p>
+                <pre>
+<code class="!whitespace-pre hljs language-javascript">function multiply(...numbers) {
+    let result = 1;
+    for (let i = 0; i < numbers.length; i++) {
+        result *= numbers[i];
+    }
+    console.log(result);
+}
+    
+multiply(1, 2, 3, 4);   // Output: 24
+multiply(1, 2, 3);      // Output: 6
+multiply(1, 2);         // Output: 2   
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>What is lambda function?</h4>
+                <p>In JavaScript, a lambda function is also known as an arrow function. An arrow function is a concise
+                    way to write a function expression that has a shorter syntax than a traditional function.</p>
+                <p>
+                <pre>
+<code class="!whitespace-pre hljs language-javascript">
+// traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// arrow function
+const add = (a, b) => a + b;
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Events looping?</h4>
+                <p>Event loop in JavaScript is a mechanism through which the 'calls waiting for execution' in the
+                    callback queue and executing queued sub-tasks.</p>
+                <pre>
+<code>
+while (queue.waitForMessage()) {
+    queue.processNextMessage();
+}
+</code>
+</pre>
+            </li>
+            <li>
+                <h4>Promise in javascript example program?</h4>
+                <p>
+<pre><code>function getData() {
+    return new Promise(function(resolve, reject) {
+        // make an HTTP request to get some data
+        let apiUrl = new XMLHttpRequest();
+        apiUrl.open('GET', 'https://jsonplaceholder.typicode.com/todos/1');
+        apiUrl.onload = function() {
+            if (apiUrl.status === 200) {
+                resolve(apiUrl.response);
+            } else {
+                reject(apiUrl.statusText);
+            }
+        };
+        apiUrl.onerror = function() {
+            reject('Network error');
+        };
+        apiUrl.send();
+    });
+}
+getData()
+.then(function(data) {
+    console.log(data);
+})
+.catch(function(error) {
+    console.error(error);
+});
+</code></pre></p>
+            </li>
+            <li>
+                <h4>Get window height in javascript?</h4>
+                <p>
+<pre><code>const windowHeight = window.innerHeight;
+console.log(windowHeight);</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>use strict in javascript?</h4>
+                <p>Must add variable data type like var,let, const.</p>
+                <p>use strict is a directive in JavaScript that enables strict mode, which is a special mode that allows
+                    you to write safer and more secure JavaScript code. When you add 'use strict'; at the beginning of
+                    your JavaScript code, it activates strict mode for the entire script or function.</p>
+                <p>
+                <pre><code class="!whitespace-pre hljs language-javascript">function getAge() {
+    'use strict';
+    let age = 21;
+    console.log(age);
+}
+getAge();</code></pre>
+                </p>
+            </li>
+            <li>
+                <h4>Hoisting in JavaScript?</h4>
+                <p>Hoisting in JavaScript is a behavior where variable and function declarations are moved to the top of
+                    their scope before code execution</p>
+                <p>
+                <pre>
+<code class="!whitespace-pre hljs language-javascript">
+console.log(x); // Output: undefined
+var x = 5;    
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Higher-order functions example javascript?</h4>
+                <p>Higher-order functions are functions that operate on other functions by either taking them as
+                    arguments or returning them as values</p>
+                <p>
+                <pre>
+<code>
+// Define a higher-order function that takes two arguments
+function multiplier(factor) {
+ // Return a function that takes one argument and multiplies it by the factor
+ return function(num) {
+  return num * factor;
+ };
+}
+
+// Define two functions that multiply by 2 and 3, respectively
+const double = multiplier(2);
+const triple = multiplier(3);
+
+// Use the functions to multiply some numbers
+console.log(double(5)); // Output: 10
+console.log(triple(5)); // Output: 15
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Sorting two number using javascript?</h4>
+                <p>Example 1
+                <pre>
+<code>
+let numbers = [5, 2, 8, 1,10, 4];
+for (let i = 0; i < numbers.length - 1; i++) {
+ for (let j = 0; j < numbers.length - i - 1; j++) {
+  if (numbers[j] > numbers[j + 1]) {
+   // Swap numbers[j] and numbers[j + 1]
+    let temp = numbers[j];
+    numbers[j] = numbers[j + 1];
+    numbers[j + 1] = temp;
+  }
+ }
+}
+
+console.log(numbers); // Output: [1, 2, 4, 5, 8]
+</code>
+</pre>
+                </p>
+                <p>Example 2
+                <pre>
+<code>
+let num = [1,2,10,14,30];
+let res = num.sort(function(a, b){
+return a - b})
+console.log(res); // Output [1, 2, 10, 14, 30]
+</code>
+</pre>
+                </p>
+                <p>Example 3 Sort words in alaphabetical
+                <pre>
+<code>
+function sortWords(str) {
+    var words = str.split(' ');
+    words.sort();
+    return words.join(' ');
+}
+console.log(sortWords('hello world how are you')); // Output: are hello how world you
+</code>
+    </pre>
+                </p>
+            </li>
+            <li>
+                <h4>Fibonacci series using javascript?</h4>
+                <p>
+                <pre>
+<code>
+ function fibonacci(num) {
+  var a = 0, b = 1, result = [];
+  for (var i = 0; i < num; i++) {
+   result.push(a);
+   var temp = a;
+   a = b;
+   b = temp + b;
+  }
+  return result;
+}        
+console.log(fibonacci(10)); // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code>
+</pre>
+                <p>Example 2</p>
+                <pre>
+<code>
+    function fibonacciSeries(n) {
+        let series = [0, 1];
+        for (let i = 2; i < n; i++) {
+          series[i] = series[i - 1] + series[i - 2];
+        }
+        return series;
+      }
+      
+      console.log(fibonacciSeries(10)); // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Find the Largest Among Three Numbers?</h4>
+                <p>
+                <pre>
+<code>
+function findLargestNum(num1, num2, num3) {
+ var largest = num1;
+ if (num2 > largest) {
+  largest = num2;
+ }
+ if (num3 > largest) {
+  largest = num3;
+ }
+ return largest;
+}
+    
+console.log(findLargestNum(5, 10, 2)); // Output: 10
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Reverse a String?</h4>
+                <p>
+                <pre>
+<code>
+// Example 1:
+function reverseString(str) {
+var reversed = "";
+for (var i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+}
+return reversed;
+}
+
+console.log(reverseString("hello")); // Output: "olleh"
+
+
+// Example 2:
+var arr = [1, 2, 3, 4, 5];
+arr.reverse();
+console.log(arr); // Output: [5, 4, 3, 2, 1]
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Find the Largest Among Three Numbers?</h4>
+                <pre>
+<code>
+function checkNumber(num) {
+ if (num > 0) {
+  return "Positive";
+ }
+ else if (num < 0) {
+  return "Negative";
+ }
+ else {
+  return "Zero";
+ }
+}
+
+console.log(checkNumber(5)); // Output: "Positive"
+console.log(checkNumber(-5)); // Output: "Negative"
+console.log(checkNumber(0)); // Output: "Zero"
+</code>
+</pre>
+            </li>
+            <li>
+                <h4>Javascript Program to Check if a Number is Odd or Even?</h4>
+                <pre>
+<code>
+// Example 1
+function checkNumber(num) {
+    if (num % 2 === 0) {
+        return "Even";
+    } else {
+        return "Odd";
+    }
+}    
+console.log(checkNumber(4)); // Output: "Even"
+console.log(checkNumber(5)); // Output: "Odd"
+
+// Example 2 Using ternary operator
+
+function checkNumber(num) {
+    return num % 2 === 0 ? "Even" : "Odd";
+  }
+
+console.log(checkNumber(4)); // Output: "Even"
+console.log(checkNumber(5)); // Output: "Odd"
+
+</code>
+</pre>
+            </li>
+            <li>
+                <h4>Star program javascript?</h4>
+                <p>
+                <pre>
+<code>
+for (var i = 1; i <= 5; i++) {
+    var star = '';
+
+    for (var j = 1; j <= i; j++) {
+        star += '*';
+    }
+    
+    console.log(star);
+}
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Check Prime Number?</h4>
+                <p>A prime number is a positive integer that is only divisible by 1 and itself. For example, 2, 3, 5, 7,
+                    11 are the first few prime numbers.</p>
+                <p>
+                <pre>
+<code>
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    
+    for (var i = 2; i < num; i++) {
+        if (num % i === 0) {
+        return false;
+        }
+    }
+    
+    return true;
+}
+    
+console.log(isPrime(7)); // Output: true
+console.log(isPrime(12)); // Output: false
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Find the Factorial of a Number?</h4>
+                <p>The factorial of a number is the product of all the numbers from 1 to that number. For example,
+                    factorial of 5 is equal to 1 * 2 * 3 * 4 * 5 = 120.</p>
+                <p>
+                <pre>
+<code>
+function factorial(num) {
+    if (num < 0) {
+        return -1;
+    } else if (num === 0) {
+        return 1;
+    } else {
+        return (num * factorial(num - 1));
+    }
+}    
+console.log(factorial(5)); // Output: 120
+console.log(factorial(0)); // Output: 1   
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Find Armstrong number?</h4>
+                <p>Armstrong number of 3 digits, the sum of cubes of each digit is equal to the number itself. For
+                    example, 153 is an Armstrong number because
+
+                    153 = 1*1*1 + 5*5*5 + 3*3*3</p>
+                <p>
+                <pre>
+<code>
+function isArmstrong(num) {
+    var sum = 0;
+    var numStr = num.toString();
+    
+    for (var i = 0; i < numStr.length; i++) {
+        sum += Math.pow(parseInt(numStr[i]), numStr.length);
+    }
+    
+    return sum === num;
+}
+
+console.log(isArmstrong(153)); // Output: true
+console.log(isArmstrong(371)); // Output: true
+console.log(isArmstrong(9474)); // Output: true
+console.log(isArmstrong(1634)); // Output: true
+console.log(isArmstrong(8208)); // Output: true
+console.log(isArmstrong(9475)); // Output: false
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Check Whether a String is Palindrome or Not?</h4>
+                <p>A string is a palindrome if it is read the same from forward or backward. For example, dad</p>
+                <p>
+                <pre>
+<code>
+function isPalindrome(str) {
+    str = str.toLowerCase();
+    var len = str.length;
+    for (var i = 0; i < len / 2; i++) {
+        if (str[i] !== str[len - 1 - i]) {
+        return false;
+        }
+    }
+    return true;
+}
+
+console.log(isPalindrome('racecar')); // Output: true
+console.log(isPalindrome('hello')); // Output: false
+console.log(isPalindrome('A man a plan a canal Panama')); // Output: true
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Count the Number of Vowels in a String?</h4>
+                <p>
+                <pre>
+<code>
+function countVowels(str) {
+    var vowels = 'aeiouAEIOU';
+    var count = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (vowels.indexOf(str[i]) !== -1) {
+        count++;
+        }
+    }
+    return count;
+}
+console.log(countVowels('hello world')); // Output: 3
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>JavaScript Program to Check Leap Year?</h4>
+                <p>
+                <pre>
+<code>
+// function to check if a given year is a leap year
+function isLeapYear(year) {
+    if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+    return true;
+    } else {
+    return false;
+    }
+}
+
+// example usage
+console.log(isLeapYear(2020)); // true
+console.log(isLeapYear(2021)); // false 
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>Tell the output for below program?</h4>
+                <p>
+                <pre>
+<code>
+for (var i = 0; i < 5; i++) {
+    setTimeout(function log() {
+        console.log(i);
+    }, 1000);
+}
+</code>
+</pre>
+                Output : 5 printed 5 times
+                </p>
+            </li>
+            <li>
+                <h4>What is encapsulation?</h4>
+                <p>Encapsulation in JavaScript is a concept of bundling the data (variables) and the methods (functions)
+                    that operate on the data into a single unit, typically referred to as a class.</p>
+            </li>
+            <li>
+                <h4>How to concatenate two objects?</h4>
+                <pre>
+<code>
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+
+const concatenatedObject = { ...obj1, ...obj2 };
+
+console.log(concatenatedObject);
+</code>
+</pre>
+                Output : { a: 1, b: 3, c: 4 }
+            </li>
+            <li>
+                <h4>In how many ways can we create an object?</h4>
+                <div class="markdown prose w-full break-words dark:prose-invert light">
+                    <p>In JavaScript, there are multiple ways to create objects. Here are some common methods:</p>
+                    <ol>
+                        <li>
+                            <p><strong>Object Literal</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj = { 
+                <span class="hljs-attr">key1</span>: value1, 
+                <span class="hljs-attr">key2</span>: value2 
+            };
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Using the <code>new</code> keyword with Object constructor</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();
+            obj.<span class="hljs-property">key1</span> = value1;
+            obj.<span class="hljs-property">key2</span> = value2;
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Object.create() method</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> objPrototype = {
+                <span class="hljs-attr">key1</span>: value1,
+                <span class="hljs-attr">key2</span>: value2
+            };
+            <span class="hljs-keyword">const</span> obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(objPrototype);
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Function Constructor</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name, age</span>) {
+                <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+                <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;
+            }
+            <span class="hljs-keyword">const</span> person = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">'John'</span>, <span class="hljs-number">30</span>);
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Using ES6 Classes</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
+                <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, age</span>) {
+                    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+                    <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;
+                }
+            }
+            <span class="hljs-keyword">const</span> person = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">'John'</span>, <span class="hljs-number">30</span>);
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Using Object.assign()</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">key1</span>: value1 };
+            <span class="hljs-keyword">const</span> obj2 = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, obj1);
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong>Using Spread Operator (...)</strong>:</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">key1</span>: value1 };
+            <span class="hljs-keyword">const</span> obj2 = { ...obj1 };
+            </code></div></div></pre>
+                        </li>
+                    </ol>
+                    <p>Each method has its advantages and use cases, depending on the requirements of your application
+                        and your coding preferences.</p>
+                </div>
+            </li>
+            <li>
+                <h4>Call,bind, apply javascript in JS?</h4>
+                <div class="markdown prose w-full break-words dark:prose-invert light">
+                    <p>In JavaScript, <code>call</code>, <code>bind</code>, and <code>apply</code> are methods used to
+                        manipulate the <code>this</code> keyword within functions and to control how functions are
+                        executed.</p>
+                    <ol>
+                        <li>
+                            <p><strong><code>call</code> Method</strong>: The <code>call</code> method is used to invoke
+                                a function with a specified <code>this</code> value and arguments provided individually.
+                            </p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>! I'm <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>.`</span>);
+            }
+            
+            <span class="hljs-keyword">const</span> person = { <span class="hljs-attr">name</span>: <span class="hljs-string">'John'</span> };
+            
+            greet.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">'Alice'</span>); <span class="hljs-comment">// Output: Hello, Alice! I'm John.</span>
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong><code>bind</code> Method</strong>: The <code>bind</code> method creates a new
+                                function that, when called, has its <code>this</code> keyword set to a specific value,
+                                and with any number of specified arguments preceding any provided when the new function
+                                is called.</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium">
+                <div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>! I'm <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>.`</span>);
+            }
+            
+            <span class="hljs-keyword">const</span> person = { <span class="hljs-attr">name</span>: <span class="hljs-string">'John'</span> };
+            <span class="hljs-keyword">const</span> greetPerson = greet.<span class="hljs-title function_">bind</span>(person);
+            
+            <span class="hljs-title function_">greetPerson</span>(<span class="hljs-string">'Alice'</span>); <span class="hljs-comment">// Output: Hello, Alice! I'm John.</span>
+            </code></div></div></pre>
+                        </li>
+                        <li>
+                            <p><strong><code>apply</code> Method</strong>: The <code>apply</code> method is similar to
+                                <code>call</code>, but it accepts arguments as an array.</p>
+                            <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name1, name2</span>) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello, <span class="hljs-subst">${name1}</span> and <span class="hljs-subst">${name2}</span>! I'm <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>.`</span>);
+            }
+            
+            <span class="hljs-keyword">const</span> person = { <span class="hljs-attr">name</span>: <span class="hljs-string">'John'</span> };
+            
+            greet.<span class="hljs-title function_">apply</span>(person, [<span class="hljs-string">'Alice'</span>, <span class="hljs-string">'Bob'</span>]); <span class="hljs-comment">// Output: Hello, Alice and Bob! I'm John.</span>
+            </code></div></div></pre>
+                        </li>
+                    </ol>
+                    <p>All three methods are primarily used to control the context (<code>this</code> value) of a
+                        function when it's executed. <code>call</code> and <code>apply</code> immediately invoke the
+                        function, while <code>bind</code> returns a new function with the specified context and
+                        arguments, which can be called later.</p>
+                </div>
+            </li>
+            <li>
+                <h4>Return the 3rd biggest number from an array</h4>
+                <p>
+                <pre>
+<code>
+function findThirdLargest(arr) {
+// Sort the array in descending order
+const sortedArr = arr.sort((a, b) => b - a);
+
+// Check if the array has at least three elements
+if (sortedArr.length < 3) {
+return "Array doesn't have at least 3 elements";
+}
+
+// Return the third element (index 2) from the sorted array
+return sortedArr[2];
+}
+
+// Example usage:
+const numbers = [10, 5, 20, 15, 25];
+console.log(findThirdLargest(numbers)); // Output: 15
+</code>
+</pre>
+                </p>
+            </li>
+            <li>
+                <h4>What is the difference between shift and unshift method of arrays?</h4>
+                <p>
+                <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+                    <div class="markdown prose w-full break-words dark:prose-invert light">
+                        <p>In JavaScript, <code>shift</code> and <code>unshift</code> are methods used to manipulate the
+                            elements of an array, but they do so in opposite ways:</p>
+                        <ul>
+                            <li>
+                                <p><strong><code>shift()</code></strong>: Removes the first element from an array and
+                                    returns that removed element. This method also changes the length of the array.</p>
+                                <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+                    <span class="hljs-keyword">let</span> removedElement = array.<span class="hljs-title function_">shift</span>();
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(removedElement); <span class="hljs-comment">// Output: 1</span>
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// Output: [2, 3]</span>
+                    </code></div></div></pre>
+                            </li>
+                            <li>
+                                <p><strong><code>unshift()</code></strong>: Adds one or more elements to the beginning
+                                    of an array and returns the new length of the array.</p>
+                                <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+                    <span class="hljs-keyword">let</span> newLength = array.<span class="hljs-title function_">unshift</span>(<span class="hljs-number">0</span>);
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newLength); <span class="hljs-comment">// Output: 4</span>
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// Output: [0, 1, 2, 3]</span>
+                    </code></div></div></pre>
+                            </li>
+                        </ul>
+                        <p>So, <code>shift</code> is used to remove elements from the start of an array, while
+                            <code>unshift</code> is used to add elements to the start of an array.</p>
+                    </div>
+                </div>
+                </p>
+            </li>
+            <li>
+<h4>Write a programme to pass an array and return the highest element without any duplicates in that
+array.</h4>
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]"><div class="markdown prose w-full break-words dark:prose-invert light"><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">highestUniqueElement</span>(<span class="hljs-params">arr</span>) {
+    <span class="hljs-comment">// Remove duplicates by converting the array to a Set</span>
+    <span class="hljs-keyword">let</span> uniqueElements = [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr)];
+
+    <span class="hljs-comment">// Return the maximum element from the uniqueElements array</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...uniqueElements);
+}
+
+<span class="hljs-comment">// Example usage:</span>
+<span class="hljs-keyword">let</span> array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">1</span>];
+<span class="hljs-keyword">let</span> result = <span class="hljs-title function_">highestUniqueElement</span>(array);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"The highest element without duplicates is:"</span>, result);
+</code></div></div></pre><h3>Explanation:</h3><ol><li><strong>Remove Duplicates</strong>: The <code>Set</code> object automatically removes duplicate values. The spread operator <code>...</code> is used to convert the Set back into an array.</li><li><strong>Find Maximum</strong>: <code>Math.max(...uniqueElements)</code> finds the highest element in the unique elements array.</li></ol><h3>Example Output:</h3><p>If the input array is <code>[3, 5, 7, 2, 5, 7, 9, 1]</code>, the output will be <code>9</code>.</p></div></div>
+</li>
+            <li>
+                <h4>Write a Javascript program where you will pass a string, and that string should return all the possible word
+                    counts.</h4>
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]"><div class="markdown prose w-full break-words dark:prose-invert light"><p>Here’s a JavaScript program that takes a string as input and returns a count of all the words in that string:</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">wordCount</span>(<span class="hljs-params">str</span>) {
+<span class="hljs-comment">// Convert the string to lowercase and split it into words</span>
+<span class="hljs-keyword">let</span> words = str.<span class="hljs-title function_">toLowerCase</span>().<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/\b\w+\b/g</span>);
+
+<span class="hljs-comment">// Create an object to hold the word counts</span>
+<span class="hljs-keyword">let</span> wordCounts = {};
+
+<span class="hljs-comment">// Iterate over the words and count their occurrences</span>
+words.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">word</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (wordCounts[word]) {
+        wordCounts[word]++;
+    } <span class="hljs-keyword">else</span> {
+        wordCounts[word] = <span class="hljs-number">1</span>;
+    }
+});
+
+<span class="hljs-keyword">return</span> wordCounts;
+}
+
+<span class="hljs-comment">// Example usage:</span>
+<span class="hljs-keyword">let</span> inputString = <span class="hljs-string">"Hello world! Hello everyone. Welcome to the world of JavaScript."</span>;
+<span class="hljs-keyword">let</span> result = <span class="hljs-title function_">wordCount</span>(inputString);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);
+</code></div></div></pre><h3>Explanation:</h3><ol><li><strong>Convert to Lowercase</strong>: The string is converted to lowercase using <code>str.toLowerCase()</code> to ensure that the counting is case-insensitive.</li><li><strong>Split String into Words</strong>: The <code>match(/\b\w+\b/g)</code> method splits the string into words using a regular expression, which matches word boundaries (<code>\b</code>) and word characters (<code>\w</code>).</li><li><strong>Count Occurrences</strong>: The program iterates through the words array, counting the occurrences of each word and storing the count in the <code>wordCounts</code> object.</li></ol><h3>Example Output:</h3><p>For the input string <code>"Hello world! Hello everyone. Welcome to the world of JavaScript."</code>, the output will be:</p><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript">{
+<span class="hljs-attr">hello</span>: <span class="hljs-number">2</span>,
+<span class="hljs-attr">world</span>: <span class="hljs-number">2</span>,
+<span class="hljs-attr">everyone</span>: <span class="hljs-number">1</span>,
+<span class="hljs-attr">welcome</span>: <span class="hljs-number">1</span>,
+<span class="hljs-attr">to</span>: <span class="hljs-number">1</span>,
+<span class="hljs-attr">the</span>: <span class="hljs-number">1</span>,
+<span class="hljs-attr">of</span>: <span class="hljs-number">1</span>,
+<span class="hljs-attr">javascript</span>: <span class="hljs-number">1</span>
+}
+</code></div></div></pre><p>This object contains each word from the input string as keys, with the number of times each word appears as the corresponding value.</p></div></div>
+</li>
+
+
+            <li>
+                <h4>wht is class in JS?</h4>
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]"><div class="markdown prose w-full break-words dark:prose-invert light"><p>In JavaScript (JS), a <strong>class</strong> is a blueprint for creating objects. It defines the properties and methods that the created objects will have. Classes in JavaScript are part of the ECMAScript 6 (ES6) standard and provide a more structured and object-oriented way to create and manage objects.</p><h3>Key Concepts of Classes in JavaScript:</h3><ol><li><p><strong>Class Declaration</strong>:</p><ul><li>A class is defined using the <code>class</code> keyword.</li><li>Inside a class, you define a constructor method and other methods.</li></ul><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, age</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;
+    }
+
+    <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello, my name is <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span> and I am <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.age}</span> years old.`</span>);
+    }
+}
+</code></div></div></pre></li><li><p><strong>Constructor</strong>:</p><ul><li>The <code>constructor</code> method is a special method for creating and initializing objects created with a class.</li><li>It is called automatically when a new instance of the class is created using the <code>new</code> keyword.</li></ul><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> person1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">'John'</span>, <span class="hljs-number">30</span>);
+</code></div></div></pre></li><li><p><strong>Methods</strong>:</p><ul><li>Methods are functions defined inside a class. They operate on instances of the class.</li><li>In the example above, <code>greet</code> is a method that belongs to the <code>Person</code> class.</li></ul><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript">person1.<span class="hljs-title function_">greet</span>();  <span class="hljs-comment">// Output: Hello, my name is John and I am 30 years old.</span>
+</code></div></div></pre></li><li><p><strong>Inheritance</strong>:</p><ul><li>Classes can inherit from other classes using the <code>extends</code> keyword.</li><li>The <code>super</code> keyword is used to call the constructor of the parent class.</li></ul><pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>javascript</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Person</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, age, jobTitle</span>) {
+        <span class="hljs-variable language_">super</span>(name, age);
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">jobTitle</span> = jobTitle;
+    }
+
+    <span class="hljs-title function_">describeJob</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`I am a <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.jobTitle}</span>.`</span>);
+    }
+}
+
+<span class="hljs-keyword">const</span> employee1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">'Jane'</span>, <span class="hljs-number">25</span>, <span class="hljs-string">'Software Developer'</span>);
+employee1.<span class="hljs-title function_">greet</span>();       <span class="hljs-comment">// Output: Hello, my name is Jane and I am 25 years old.</span>
+employee1.<span class="hljs-title function_">describeJob</span>(); <span class="hljs-comment">// Output: I am a Software Developer.</span>
+</code></div></div></pre></li></ol><h3>Summary:</h3><ul><li><strong>Classes</strong> are a way to define reusable object templates in JavaScript.</li><li>They consist of properties (defined in the constructor) and methods (functions that operate on instances of the class).</li><li><strong>Inheritance</strong> allows one class to extend another, enabling code reuse and polymorphism.</li></ul><p>This makes working with objects in JavaScript more organized and closer to traditional object-oriented programming languages like Java or C++.</p></div></div>
+
+            </li>
+            <li>
+                <h4>...</h4>
+                <p>
+                </p>
+            </li>
+        </ol>
+    </div>
+</body>
+
+</html>

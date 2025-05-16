@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> PRIIP KID</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=PRP;
+PublicationCountry=GB;
+Language=en;
+RecordDate=2023-01-01;
+ShareClass=IE00BMGB0004;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=A1HW;
+Productcode=;
+PublicationDate=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=2023-01-12 16:56:10;
+CalculationDate=2022-12-31;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row1>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row1>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/template.common.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="section page page1" data-pageorder="1" data-sectionId="4805392" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805393" data-sectiontype="2">
+            <div class="section column column1" data-sectionId="4805394">
+                <div class="section row row1" data-roworder="1" data-sectionId="4805395" data-sectiontype="2">
+                    <div class="section contentSection text text1 keyinformationdocument" data-sectionId="4805396">
+                        <h2 class="item2">Key Information Document</h2>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="section row row2" data-roworder="2" data-sectionId="4805397" data-sectiontype="2">
+                    <div class="section contentSection text text1" data-sectionId="4805398">
+                        <h2 class="item2">Purpose</h2>
+                        <div class="WB_Purpose_1">This document provides you with key information about this investment
+                            product. It is not marketing material. The information is required by law to help you
+                            understand the nature, risks, costs, potential gains and losses of this product and to help
+                            you compare it with other products.</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section column column2" data-sectionId="4805399">
+                <div class="section row row1" data-roworder="1" data-sectionId="4805400" data-sectiontype="2">
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805401" data-sectiontype="2">
+            <div class="section contentSection text text1 generalinformation" data-sectionId="4805402">
+                <h2 class="item2">Product</h2>
+                <div class="WB_FundName">Findlay Park American Fund (the "Fund") - EUR Unhedged Shares</div>
+                <div class="WB_IsinCode">ISIN: IE00BMGB0004</div>
+                <div class="WB_GeneralInformation_1">
+                    <div>Manufacturer and Investment Manager: Findlay Park Partners LLP, authorised and regulated by the
+                        FCA in the UK.&nbsp;</div>
+                    <div><br></div>
+                    <div>Management Company: MJ Hudson Fund Management (Ireland) Limited, authorised in Ireland and
+                        regulated by the Central Bank of Ireland.&nbsp;</div>
+                    <div><br></div>
+                    <div>The Central Bank of Ireland is responsible for supervising Findlay Park Funds ICAV (the "ICAV")
+                        in relation to this Key Information Document.&nbsp;</div>
+                    <div><br></div>
+                    <div>This Fund is approved as a UCITS sub-fund of the ICAV by the Central Bank of Ireland. &nbsp;
+                    </div>
+                    <div><br></div>
+                    <div>For more information on this product, please contact Findlay Park Partners LLP (email:
+                        info@findlaypark.com; Tel: +44 20 7968 4900)&nbsp;</div>
+                </div>
+                <div class="WB_Issuedondate">Date of Production 01/01/2023</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805403" data-sectiontype="2">
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805410" data-sectiontype="2">
+            <div class="section contentSection text text1 whatisthisproduct" data-sectionId="4805411">
+                <h2 class="item2">What is this product?</h2>
+                <div class="WB_Whatisthisproduct_1"><b>Type</b>
+                    <div>This product is a UCITS sub-fund of the ICAV, an umbrella Irish collective asset-management
+                        vehicle with segregated liability between sub-funds. The Fund's assets are held through its
+                        Depository, which is Brown Brothers Harriman Trustee Services (Ireland) Limited. Further
+                        information in relation to the Fund should be obtained from your financial advisor or
+                        distributor or is available at www.findlaypark.com in English.</div>
+                    <div><br></div>
+                    <div><b>Objectives and Investment Policy</b></div>
+                    <div>The Fund is a sub-fund of the ICAV. The Fund aims to generate capital growth over the long-term
+                        and seeks to achieve a return, over the long-term, above the return of the Russell 1000 Net 30%
+                        Total Return Index (the “Index”).<br><br>The Fund principally invests in the shares of companies
+                        that conduct their business primarily in the US, Canada and Latin America or which derive a
+                        significant proportion of their revenue or profits from those regions.<br><br>The Index has been
+                        chosen as the comparator benchmark because it includes a broad universe of US equities which is
+                        representative of the US equity market.<br><br>The Fund is actively managed using a disciplined
+                        stock selection approach that is based on the Investment Manager’s investment philosophy. The
+                        Investment Manager’s investment decisions are not influenced by the constituents of the Index
+                        and, as a result, the<br>composition of the Fund and its performance is likely to differ
+                        significantly from that of the Index.<br><br>Although the intention of the Fund is to invest
+                        predominantly in shares of companies, it may also invest in cash/money market investments and
+                        debt instruments (such as bonds). <br><br>The Investment Manager has determined that the Fund is
+                        an Article 8 financial product for the purposes of Regulation (EU) 2019/2088 of the European
+                        Parliament and of the Council of 27 November 2019 on sustainability-related disclosures in the
+                        financial services sector.&nbsp;&nbsp;The Fund’s portfolio has a base currency of US Dollars
+                        while the Euro Unhedged share class is priced in Euro. This means that the investments will be
+                        subject to positive or negative fluctuations in currency exchange rates.<br><br>If the Directors
+                        consider, acting in their sole discretion, that the net income after expenses available in the
+                        Fund is sufficient in order to warrant a distribution, then the Directors current intention is
+                        that such net income will, unless an investor specifically requests a cash payment, be
+                        distributed by way of reinvestment in shares for the benefit of the investor. It is not
+                        anticipated that this Fund will generate significant net income.&nbsp;</div>
+                    <div><br></div>
+                    <div><b>Dealing Frequency</b>&nbsp;</div>
+                    <div>Investors can buy and sell shares or switch share classes on demand daily (but not on weekends,
+                        bank holidays in London or on days when the New York Stock Exchange is closed).&nbsp;</div>
+                    <div><br></div>
+                    <div><b>Intended investor</b></div>
+                    <div>The Fund is suitable for investors seeking capital appreciation, with a long-term investment
+                        horizon and who are prepared to accept a level of volatility in the Net Asset Value of their
+                        Shares.</div>
+                    <div><br></div>
+                    <div><b>Term</b></div>
+                    <div>This Fund is an open-ended UCITS and has an indefinite duration. The Fund may be terminated at
+                        any time in line with the constitutional documents of the ICAV, however Findlay Park Partners
+                        LLP may not terminate the Fund unilaterally.&nbsp;</div>
+                    <div><br></div>
+                    <div>For full investment objectives and policy details, please refer to the Investment Objectives
+                        and Investment Policy in the Fund’s Supplement to the Prospectus, which are available at
+                        www.findlaypark.com.</div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4805412" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805413">
+                <div class="section contentSection text text1 whataretherisks compositeheader" data-sectionId="4805414">
+                    <h2 class="item2">What are the risks and what could I get in return?</h2>
+                </div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805415" data-sectiontype="2">
+                        <div class="section contentSection text text1 SRIdescription" data-sectionId="4805416">
+                            <div class="WB_Whataretherisks_3"></div>
+                            <div class="WB_Whataretherisks_1">
+                                <div><b>Risk Indicator</b></div>
+                                <div><br></div>The summary risk indicator is a guide to the level of risk of this
+                                product compared to other products. It shows how likely it is that the product will lose
+                                money because of movements in the markets or because the Investment Manager is not able
+                                to pay you.
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805417" data-sectiontype="2">
+                        <div class="section contentSection text text1 warning" data-sectionId="4805418">
+                            <div class="Sri">
+                                <table class="sriRiskRating">
+                                    <tr class="ratings">
+                                        <td colspan="2">
+                                            <table>
+                                                <tr>
+                                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                                <tr>
+                                                    <td class="rating">1</td>
+                                                    <td class="rating">2</td>
+                                                    <td class="rating">3</td>
+                                                    <td class="rating">4</td>
+                                                    <td class="selected rating">5</td>
+                                                    <td class="rating">6</td>
+                                                    <td class="rating">7</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="arrow">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr class="header">
+                                        <th>Lower risk</th>
+                                        <th>Higher risk</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="WB_SRInarrative1">The risk indicator assumes you keep the product for 5
+                                years.<br>The actual risk can vary significantly if you cash in at an early stage and
+                                you might get back less than you invested.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805419" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionId="4805420">
+                            <div class="WB_SRInarrative2_1">
+                                <div>&nbsp;</div>The Fund has been classed as 5 because its volatility has been assessed
+                                as medium-high. <br><br>Be aware of currency risk. You will receive payments in a
+                                different currency, so the final return you will get depends on the exchange rate
+                                between the two currencies. This risk is not considered in the indicator shown in this
+                                section.&nbsp;<div><br>
+                                    <div>For other material risks relevant to the product which are not taken into
+                                        account in the summary risk indicator, please read the product’s Annual Report
+                                        or Prospectus&nbsp;(in particular, the “Risk Factors” section) which are
+                                        available at www.findlaypark.com.<br><br>This product does not include any
+                                        protection from future market performance so you could lose some or all of your
+                                        investment. If the Investment Manager is not able to pay you what is owed, you
+                                        could lose your entire investment.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row6" data-roworder="6" data-sectionId="4805421" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805422">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page2" data-pageorder="2" data-sectionId="4805423" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805424" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805425">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805426"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805427" data-sectiontype="2">
+                        <div class="section contentSection text text1 whataretheriskscontinued"
+                            data-sectionId="4805428">
+                            <div class="WB_WhatAreTheRisks_continued_1"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805429" data-sectiontype="2">
+                        <div class="section row row1" data-roworder="1" data-sectionId="4805432" data-sectiontype="2">
+                            <div class="section contentSection text text1" data-sectionId="4805433">
+                                <div class="WB_Performancescenariosnarrative_6"></div>
+                                <div class="WB_Performancescenariosnarrative_1">
+                                    <div><b>Performance Scenarios</b></div>
+                                    <div><br></div>The figures shown below include all the costs of the product itself
+                                    but may not include all the costs that you pay to your advisor or distributor. The
+                                    figures do not take into account your personal tax situation, which may also affect
+                                    how much you get back.<br>What you will get from this product depends on future
+                                    market performance. Market developments in the future are uncertain and cannot be
+                                    accurately predicted.
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805436" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805437">
+                            <div class="WB_Performancescenariosnarrative_2">The unfavourable, moderate, and favourable
+                                scenarios shown are illustrations using the worst, average, and best performance of the
+                                product over the last 5 years. Markets could develop very differently in the
+                                future.<br><br>The stress scenario shows what you might get back in extreme market
+                                circumstances.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805438" data-sectiontype="2">
+                        <div class="performancescenariotable_4column section contentSection performanceScenario performanceScenario1 perfscenarios"
+                            data-sectionId="4805439" style="page-break-inside:avoid">
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr class='header holding-period'>
+                                                    <th colspan=2>Recommended holding period: </th>
+                                                    <th colspan='2'>5 years</th>
+                                                </tr>
+                                                <tr class='header investment-amount'>
+                                                    <th colspan=2>Example Investment: </th>
+                                                    <th colspan='2'>&#8364;10,000</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan=2></th>
+                                                    <th class='period1'>If you exit after 1 year</th>
+                                                    <th class='period2'>If you exit after 5 years</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr>
+                                                        <th class="groupHeader1" colspan="4">
+                                                            <div class="groupHeaderDiv1">
+                                                                <table>
+                                                                    <tr class='survival-scenario'>
+                                                                        <th>Scenarios</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <thead></thead>
+                                                    <tr class='minimum'>
+                                                        <td class='scenario' rowspan='1'>Minimum</td>
+                                                        <td class='description' colspan='3'>There is no minimum
+                                                            guaranteed return if you exit before 5 years. You could lose
+                                                            some or all of your investment.</td>
+                                                    </tr>
+                                                    <tr class='stress-return'>
+                                                        <td class='scenario' rowspan='2'> Stress</td>
+                                                        <td class='description'>What you might get back after costs</td>
+                                                        <td class='period1'>&#8364;1,720</td>
+                                                        <td class='period2'>&#8364;1,590</td>
+                                                    </tr>
+                                                    <tr class='stress averagereturn'>
+                                                        <td class='description'>Average return each year</td>
+                                                        <td class='period1'>-82.81%</td>
+                                                        <td class='period2'>-30.80%</td>
+                                                    </tr>
+                                                    <tr class='unfavourable-return'>
+                                                        <td class='scenario' rowspan='2'> Unfavourable</td>
+                                                        <td class='description'>What you might get back after costs</td>
+                                                        <td class='period1'>&#8364;8,470</td>
+                                                        <td class='period2'>&#8364;4,230</td>
+                                                    </tr>
+                                                    <tr class='unfavourable averagereturn'>
+                                                        <td class='description'>Average return each year</td>
+                                                        <td class='period1'>-15.32%</td>
+                                                        <td class='period2'>-15.82%</td>
+                                                    </tr>
+                                                    <tr class='moderate-return'>
+                                                        <td class='scenario' rowspan='2'> Moderate</td>
+                                                        <td class='description'>What you might get back after costs</td>
+                                                        <td class='period1'>&#8364;11,400</td>
+                                                        <td class='period2'>&#8364;19,350</td>
+                                                    </tr>
+                                                    <tr class='moderate averagereturn'>
+                                                        <td class='description'>Average return each year</td>
+                                                        <td class='period1'>14.00%</td>
+                                                        <td class='period2'>14.12%</td>
+                                                    </tr>
+                                                    <tr class='favourable-return'>
+                                                        <td class='scenario' rowspan='2'> Favourable </td>
+                                                        <td class='description'>What you might get back after costs</td>
+                                                        <td class='period1'>&#8364;15,170</td>
+                                                        <td class='period2'>&#8364;22,750</td>
+                                                    </tr>
+                                                    <tr class='favourable averagereturn'>
+                                                        <td class='description'>Average return each year</td>
+                                                        <td class='period1'>51.72%</td>
+                                                        <td class='period2'>17.87%</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row6" data-roworder="6" data-sectionId="4805440" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805441">
+                            <div class="WB_Performancescenariosnarrative_3"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805442" data-sectiontype="2">
+            <div class="section contentSection text text1 unabletopay" data-sectionId="4805443">
+                <h2 class="item2">What happens if Findlay Park Partners LLP is unable to pay out? </h2>
+                <div class="WB_Unabletopayout_1">Subject to eligibility, you may in some circumstances benefit from
+                    rights under the UK’s Financial Services Compensation Scheme if Findlay Park Partners LLP defaults
+                    on its obligations. If any Shareholder is in any doubt about their eligibility, they may wish to
+                    obtain independent professional advice. The assets of the Fund are held with its Depositary, Brown
+                    Brothers Harriman Trustee Services (Ireland) Limited, which is a separate company. Should the Fund
+                    default, the Depositary would liquidate the investments and distribute the proceeds to the
+                    investors. In the worst case, however, you could lose your entire investment.</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805444" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805445">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805446"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805447" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805448">
+                            <h2 class="item2">What are the costs?</h2>
+                            <div class="WB_WhatAreTheCosts_1">
+                                <div><b>Costs over time&nbsp;</b></div>
+                                <div><br></div>The person advising on or selling you this product may charge you other
+                                costs. If so, this person will provide you with information about these costs and how
+                                they affect your investment.
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805449" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805450">
+                            <div class="WB_WhatAreTheCosts_2">The tables show the amounts that are taken from your
+                                investment to cover different types of costs. These amounts depend on how much you
+                                invest and how long you hold the product and how well the product does. The amounts
+                                shown here are illustrations based on an example investment amount and different
+                                possible investment periods. The table below assumes that the product performs as shown
+                                in the moderate scenario and EUR 10,000 is invested.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805451" data-sectiontype="2">
+                        <div class="costovertime_3columntable section contentSection costOverTime costOverTime1 composite"
+                            data-sectionId="4805452" style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr>
+                                                    <th colspan='3' class=tableheader></th>
+                                                </tr>
+                                                <tr class='scenarioheader'>
+                                                    <th colspan=3></th>
+                                                    <th class='scenario1'>If you exit after 1 year</th>
+                                                    <th class='scenario2'>If you exit after 5 years</th>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr class='row'>
+                                                        <td class='totalcostsheader'>Total costs</td>
+                                                        <td class='totalcosts1'>&#8364;125</td>
+                                                        <td class='totalcosts2'> &#8364;972</td>
+                                                    </tr>
+                                                    <tr class='row'>
+                                                        <td class='riyheader'>Annual cost impact (*)</td>
+                                                        <td class='riy1'>1.3%</td>
+                                                        <td class='riy2'> 1.4% each year</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805453" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805454">
+                            <div class="item2">(*) This illustrates how costs reduce your return each year over the
+                                holding period. For example it shows that if you exit at the recommended holding period
+                                your average return per year is projected to be 15.5 % before costs and 14.1 % after
+                                costs.</div>
+                            <div class="WB_WhatAreTheCosts_3"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805455" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805456">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page3" data-pageorder="3" data-sectionId="4805457" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805458" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805459">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805460"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805461" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805462">
+                            <div class="WB_WhatAreTheCosts_continued_1">
+                                <div><b>Composition of costs</b></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805463" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805464">
+                            <div class="WB_WhatAreTheCosts_continued_2"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805465" data-sectiontype="2">
+                        <div class="section contentSection costComposition costComposition1 compositionofcosts"
+                            data-sectionId="4805466" style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr class="tableHeader">
+                                                    <th colspan=3></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr>
+                                                        <th class="groupHeader1" colspan="3">
+                                                            <div class="groupHeaderDiv1">
+                                                                <table>
+                                                                    <tr class="oneofcosts">
+                                                                        <th colspan=2>One-off costs upon entry or exit
+                                                                        </th>
+                                                                        <th>If you exit after 1 year</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <thead></thead>
+                                                    <tr class="entrycosts">
+                                                        <td>Entry costs</td>
+                                                        <td>Not Applicable</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                    <tr class="exitcosts">
+                                                        <td>Exit costs</td>
+                                                        <td>Not Applicable</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                    <tr class="ongoingcosts">
+                                                        <th colspan=3> Ongoing costs taken each year</th>
+                                                    </tr>
+                                                    <tr class="managementfeesandothercosts">
+                                                        <td>Management fees and other administrative or operating costs
+                                                        </td>
+                                                        <td>
+                                                            <div>The Investment Management fee is calculated as follows:
+                                                                0.95% on net assets up to and including $10bn and 0.85%
+                                                                on net assets greater than $10bn (the “Blended IM Fee
+                                                                Rate”). The Ongoing Charges figure is capped at the
+                                                                Blended IM Fee Rate and therefore, the Ongoing Charges
+                                                                figure shown here is an estimate of the charges, based
+                                                                on the Blended IM Fee Rate.</div>
+                                                        </td>
+                                                        <td>&#8364;93</td>
+                                                    </tr>
+                                                    <tr class="transactioncosts">
+                                                        <td>Transaction costs</td>
+                                                        <td>
+                                                            <div>An estimate calculated using the full PRIIPS
+                                                                methodology. Based on a 3-year average cost incurred for
+                                                                purchasing and selling securities within the portfolio.
+                                                                This includes Equites, Futures, FX Spots &amp; FX
+                                                                forwards. The actual amount will vary depending on the
+                                                                Fund’s level of trading.</div>
+                                                        </td>
+                                                        <td>&#8364;32</td>
+                                                    </tr>
+                                                    <tr class="incidentalcosts">
+                                                        <th colspan=3>Incidental costs taken under specific conditions
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="performancefees">
+                                                        <td>Performance fees</td>
+                                                        <td>Not applicable</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805467" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805468">
+                            <div class="WB_WhatAreTheCosts_continued_3">
+                                <div>In certain circumstances, the Fund can apply a swing-pricing mechanism to counter
+                                    the dilution of the Fund’s assets and protect investors from the impact of
+                                    transaction costs arising from subscription and redemption activity.</div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805469" data-sectiontype="2">
+            <div class="section contentSection text text1 howlong" data-sectionId="4805470">
+                <h2 class="item2">How long should I hold it and can I take money out early? </h2>
+                <div class="WB_HowlongshouldIholdit_1">Recommended holding period: 5 years. The Fund has daily
+                    liquidity. The recommended holding period of the Fund assumes the Fund being the sole or majority
+                    holding of the investor. The recommended holding period is primarily based on the historic
+                    volatility of the underlying investments and is not directly applicable if used in a portfolio based
+                    on the investor’s risk profile. The Fund is not intended for short term speculation purposes.</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805471" data-sectiontype="2">
+            <div class="section contentSection text text1 howcanicomplain" data-sectionId="4805472">
+                <h2 class="item2">How can I complain?</h2>
+                <div class="WB_HowcanIcomplain_1">As a shareholder in the Fund, you are entitled to make a complaint
+                    free of charge. Any such complaint must be handled by the Management Company promptly and
+                    effectively. If, after following the Fund’s complaints process, you are still not satisfied with the
+                    response received, you also have the right to refer the relevant complaint to the Financial Services
+                    and Pensions Ombudsman in Ireland.&nbsp;<div><br></div>
+                    <div>Further information on the complaints policy relating to the Fund is available from the
+                        Investment Manager, Website: www.findlaypark.com, Email: info@findlaypark.com, Address:4th
+                        Floor, Almack House, 28 King Street, London, SW1Y 6QW, United Kingdom, Tel:+ 44 20 7968 4900.
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805473" data-sectiontype="2">
+            <div class="section contentSection text text1 otherrelevantinformation" data-sectionId="4805474">
+                <h2 class="item2">Other relevant information</h2>
+                <div class="WB_Otherrelevantinformation_1">
+                    <div>Further documentation, such as the product’s latest Prospectus, Past Performance and Annual and
+                        Semi- annual reports are available in English free of charge from the Investment Manager at
+                        www.findlaypark.com or from the Administrator.&nbsp;</div>
+                    <div><br></div>
+                    <div>The most recent share price is available at www.findlaypark.com and from various information
+                        providers including Bloomberg and the Financial Times.</div>
+                    <div><br></div>
+                    <div>The cost, performance and risk calculations included in this KID follow the methodology
+                        prescribed by EU regulation. Past performance for the previous 10 years is available at
+                        https://www.findlaypark.com/american-fund/. Historical performance scenarios are also available
+                        at https://www.findlaypark.com/american-fund/.<br><br>Details of the up-to-date remuneration
+                        policy of MJ Hudson Fund Management (Ireland) Limited are published online at
+                        https://bridgefundmanagement.mjhudson.com/disclosures/. This includes a description of how
+                        remuneration and benefits are awarded for employees, and information on the remuneration
+                        committee. A paper copy of such remuneration policy is available to investors free of charge
+                        upon request.<br><br>The state of the origin of the Fund is Ireland. In Switzerland, the
+                        representative is Acolin Fund Services AG, Leutschenbachstrasse 50, CH-8050 Zurich (the
+                        “Representative”), whilst the paying agent is Helvetische Bank AG, Seefeldstrasse 215, CH-8008
+                        Zürich. For Swiss Investors, the Prospectus, the key information documents or the key investor
+                        information documents, the articles of association as well as the annual and semi-annual reports
+                        may be obtained free of charge from the Representative.&nbsp;</div>
+                </div>
+                <div class="WB_PastPerformanceURL"></div>
+                <div class="WB_MonthlyPerformanceURL"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4805475" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805476">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script type="text/javascript">Awesomizr.applyAdaptivePageBreaks(".page1 > .row5", 70);</script>
+</body>
+
+</html>

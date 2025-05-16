@@ -1,0 +1,131 @@
+body {
+   text-rendering: optimizeLegibility !important;
+   -webkit-font-smoothing: antialiased !important;
+   padding: 0;
+   margin: 0;
+   // font: $paraSize $paraType;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+   margin: 0;
+   padding: 0;
+}
+
+h2:empty {
+   display: none;
+}
+
+ul li {
+   list-style: none;
+   line-height: normal;
+   margin: 0;
+   padding: 0;
+}
+
+h2 {
+   font: $h2Size $h2Type;
+   color: $h2Color;
+   margin: $headerMargin;
+   padding: $headerPadding;
+}
+
+@mixin paraAlingments($pos) {
+   @if($pos) {
+      text-align: $allparaAlignment;
+      word-break: break-word;
+   }
+
+   @else {
+      text-align: left;
+      word-break: break-word;
+   }
+}
+
+/*p{
+   @include paraAlingments(true);
+ }
+ */
+p,
+.description {
+   // font: $paraSize $paraType;
+   color: $paraColor;
+   // margin: $paraMargin;
+   // padding: $paraPadding;
+   // line-height: $paraLineHeight;
+   margin: 0;
+   padding: 0;
+   line-height: 1.2;
+}
+
+.subheader p {
+   font: $h3Size $h3Type;
+   color: $h3Color;
+}
+
+.header1 p,
+.header2 p {
+   font: $h2Size $h3Type;
+   color: $h3Color;
+   margin: 0;
+   padding: 0;
+}
+
+.header3 p,
+.header4 p {
+   font: $h2Size $fontLight;
+   color: $h3Color;
+   margin: 0;
+   padding: 0;
+}
+
+//   print specific
+.page {
+   width: $pageWidth;
+   height: $pageHeight;
+
+}
+
+@media only screen {
+   .page {
+      width: $screenpageWidth;
+   }
+}
+
+.page1 {
+   padding: 1.8cm 0 0 0;
+   background: $logourl;
+   background-size: $logobgWidth $logobgHeight;
+   background-position: $logoDirection;
+   background-repeat: no-repeat;
+}
+
+.contentSection h2 {
+   border-top: 0.01cm solid $primary;
+   font-size: $h3Size;
+   font-family: var(--font-family);
+}
+
+// .page1 {
+// .row2 {
+//    .contentSection .item3 {
+//       font-weight: map-get($font-weight, 'bold') !important;
+//       width: 95%;
+//       text-align: left;
+//    }
+// }
+
+// .row4>.composite>.compositebody>.row2 {
+//    .contentSection .item3 {
+//       font-weight: map-get($font-weight, 'bold') !important;
+//       width: 95%;
+//       text-align: left;
+//    }
+// }
+// }

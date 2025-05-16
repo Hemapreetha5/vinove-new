@@ -1,0 +1,58 @@
+.page1 {
+
+    .row4,
+    .row5 {
+        .compositebody>.row {
+            .column {
+                @include columnCount;
+
+                h2 {
+                    column-span: all;
+                }
+
+            }
+        }
+    }
+}
+
+
+.page2 {
+    #{$second-page-start-section} .compositebody {
+        * {
+            break-before: avoid-page;
+        }
+
+        .row3 {
+
+            @include columnCount;
+
+            h2 {
+                column-span: all;
+            }
+        }
+
+        .row5 {
+            .column {
+                @include columnCount;
+            }
+        }
+    }
+}
+
+h2 {
+    bookmark-level: 1;
+}
+
+.subheader p {
+    bookmark-level: 2;
+}
+
+@if $sticky-header {
+
+    .keyinformationdocument,
+    .fundName {
+        h2 {
+            bookmark-level: none;
+        }
+    }
+}

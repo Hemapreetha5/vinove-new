@@ -1,0 +1,113 @@
+//Base
+.sriRiskRating{
+    border:1pt solid $primary;
+    table {
+        width: calc( 100% - 0.4cm );
+        margin:0.2cm;
+        @if $ratingSpace{
+                border-collapse: separate;
+                border-spacing: 10pt 0pt;
+        }
+        td.rating{
+            border:1pt solid $grey;
+            text-align: center;
+            padding:  0.1cm;
+            font-size: map-get($font-size,'large');
+            font-family: $fontRegular;
+            &.active{
+                background-color:$riskActive;
+                color:$white;
+            }
+         }
+    }
+    .header{
+        font-size: map-get($font-size,'small');
+        font-family: $fontRegular;
+        font-weight: map-get($font-weight,'base');      
+        th:first-of-type{
+            text-align:left;
+            padding-left: 0.3cm;
+            padding-bottom: 0.1cm;
+        }
+        th:last-of-type{
+            text-align:right;
+            padding-right: 0.3cm;
+            padding-bottom: 0.1cm;
+        }
+    }
+    .arrow {
+        background: $arrowType no-repeat center/95% 3mm;
+        height:4mm;
+        margin:0 0.2cm;
+    }
+}
+
+ 
+
+@if $ratingType==2{
+    .sriRiskRating{
+        >tbody{
+            position: relative;
+            .ratings>td{
+                padding-top:1cm;
+            }
+            .arrow{
+                position: absolute;
+                top:0.7cm;
+                left:0;
+                right:0;
+            }
+            .header{
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                top:0.2cm;
+                left:0;
+                right:0;
+            }
+        }
+    }
+}
+@if $ratingType==3{
+    .sriRiskRating{
+        >tbody{
+            position: relative;
+            .ratings>td{
+                padding-top:1cm;
+            }
+            .arrow{
+                position: absolute;
+                top:0.2cm;
+                left:0;
+                right:0;
+            }
+            .header{
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                top:0.7cm;
+                left:0;
+                right:0;
+            }
+        }
+    }    
+}
+@if $ratingType==4{
+    .sriRiskRating{
+        >tbody{
+            position: relative;
+            .ratings>td{
+                padding-top:0.5cm;
+            }
+            .arrow{
+                position: absolute;
+                top:0.2cm;
+                left:0;
+                right:0;
+            }
+
+        }
+    }    
+}
+
+

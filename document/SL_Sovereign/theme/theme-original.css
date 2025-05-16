@@ -1,0 +1,1256 @@
+@font-face {
+  font-family: Friends Life Dagny Bold;
+  src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+  src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"),
+    url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'gill_sans_mtregular';
+  src: url('images/gil_____-webfont.woff2') format('woff2'),
+    url('images/gil_____-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+:root {
+  --primary: #607e46;
+  --secondary: #231f20;
+  --accent: #15847b;
+  --accent-2: #9DBCBB;
+  --font-regular: 'gill_sans_mtregular';
+  --fontRegular: "itc_legacy_sansbook";
+}
+*{
+  box-sizing: border-box;
+}
+body {
+  /* font-family: var(--font-regular); */
+  font-family: var(--fontRegular);
+  /* font-size: 9pt; */
+  font-size: 8pt;
+  line-height: 1.2;
+  color: var(--secondary);
+}
+
+.page {
+  position: relative;
+  width: 21cm;
+  /* height: auto; */
+  padding: 0.5cm;
+}
+
+.page1 {
+  padding-bottom: 4.5cm
+}
+
+.row {
+  margin-bottom: 0.3cm;
+}
+
+.column>.section {
+  margin-left: 0.5cm;
+}
+
+.column:first-child>.section {
+  margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--accent);
+  /* font-weight: 400; */
+}
+
+h2 {
+  font-size: 15pt;
+}
+
+p {
+  margin: 0.1cm 0 0.25cm;
+}
+
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+  color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page>.row1 .Header h2,
+.page>.row1>.contentSection>h2,
+.page4>.row4>.contentSection>h2 {
+  font-size: 18pt;
+  /* padding-left: 3cm;  */
+  /* min-height: 2cm;  */
+  /* background-image: url('./Images/logo.png'); 
+  background-repeat: no-repeat;  */
+  font-weight: bold;
+  margin-bottom: 0.2cm;
+  color: var(--primary);
+}
+
+.page9>.row1>.contentSection>p.item3,
+.page10>.row1>.contentSection>p.item3,
+.page12>.row1>.contentSection>p.item3 {
+  font-size: 18pt;
+  font-weight: 300;
+  color: var(--primary);
+  padding-left: 20px;
+  margin-top: 0;
+}
+
+.page1>.row2>.column2>.section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+
+.tabs.breakdowns>.tabpanes {
+  border: none;
+}
+
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+  padding-bottom: 20px;
+}
+
+.tabs.breakdowns>.tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+
+.tabs.breakdowns>.tabbuttons>.tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+
+.cler {
+  font-size: 24pt;
+}
+
+.reportheader {
+  font-size: 34pt;
+  color: rgb(253, 226, 17);
+  padding-left: 0.5cm;
+}
+
+.headerbackground {
+  background-color: rgb(138, 216, 216);
+  height: 10cm;
+  background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+
+.compositepadding {
+  padding-left: 1cm;
+  background-color: rgb(138, 216, 216);
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+  background-color: rgb(138, 216, 216);
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: .5cm;
+}
+
+.esgdata {
+  background-color: rgb(167, 179, 179);
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm
+}
+
+.FooterCSS .column1 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column2 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column3 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column5 {
+  width: 15%;
+  float: left;
+}
+
+
+.FooterCSS .column4 {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+
+
+footer {
+  position: running(footerIdentifier)
+}
+.page11 > .row5{
+  position: absolute;
+  bottom: 1cm;
+  left: 1cm;
+}
+
+@page {
+  padding-top: 0.5cm;
+
+  @bottom-left {
+    content: element(footerIdentifier)
+  }
+}
+
+.compositefooter {
+  width: 20cm;
+  padding: 0;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 0;
+  z-index: 1;
+  font-size: 7.5pt;
+}
+
+.compositefooter .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.compositefooter .content:before {
+  content: '';
+  width: 1px;
+  height: 100px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: -3px;
+}
+
+@page: first {
+
+  @bottom-left {
+    content: "";
+  }
+}
+
+.FooterCSS {
+
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+  height: 23px;
+}
+
+.FooterCSS .content:before {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+.EsgCoverPageImage {
+  width: 100%;
+}
+
+.EsgCoverPage {
+  width: 100%
+}
+
+.page1 {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+}
+
+.page1>.row1 {
+  justify-self: start;
+  margin-bottom: auto;
+}
+
+.page1>.row1>.logo1 {
+  background: url(images/Swiss_logo.jpg) no-repeat center;
+  float: right;
+  background-size: contain;
+  height: 3cm;
+}
+
+.page1>.row2 {
+  margin-bottom: 1.5cm;
+}
+
+.page1>.row2 .SwissLife>h2,
+.page1>.row2>.contentSection>h2 {
+  font-size: 40pt;
+  color: var(--primary);
+  font-weight: 400;
+  font-family: var(--font-regular);
+}
+
+.page1>.row3 {
+  margin-bottom: 2.5cm;
+}
+
+.page1>.row3 .FundName>.item2,
+.InvestmentStrategy {
+  font-size: 18pt;
+}
+
+.page1>.row3 .FundName .DocumentDate,
+p.Portfolio\.Metadata\.AsOfDate {
+  font-size: 18pt;
+}
+
+.page2>.row3,
+.page2>.row6,
+.page2>.row8 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.page2>.row3>img {
+  width: 50%;
+}
+
+.page2>.row6>img {
+  /* width: 70%; */
+  width: 90%;
+  height: auto;
+}
+
+.page2>.row8>img {
+  width: 70%;
+}
+
+.page .row .TextSection>h2.item2 {
+  color: var(--accent);
+}
+
+.horizontal-list.SummaryTable>div:not(.clear),
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list>div:not(.clear) {
+  padding: 8px 5px 8px 35px;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.horizontal-list.SummaryTable>div:first-child:not(.clear),
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list>div:first-child:not(.clear),
+.page18>.row5 .row2 .text,
+.page18>.row5 .row3 .text,
+.page18>.row5 .row4 .text {
+  border-top: 1px solid var(--secondary);
+
+}
+
+.horizontal-list.SummaryTable>div:not(.clear)>span.label,
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list>div:not(.clear)>span.label {
+  width: 50%;
+
+}
+
+.horizontal-list.SummaryTable .FundName {
+  background: url(images/icon1.jpg);
+}
+
+.horizontal-list.SummaryTable .FundSize {
+  background: url(images/icon2.jpg);
+}
+
+.horizontal-list.SummaryTable .AssetClassClassification {
+  background: url(images/icon3.jpg);
+}
+
+.horizontal-list.SummaryTable .Label {
+  background: url(images/icon4.jpg);
+}
+
+.horizontal-list.SummaryTable .SwissLifeAMClassification {
+  background: url(images/icon5.jpg);
+}
+
+.horizontal-list.SummaryTable .Universe {
+  background: url(images/icon6.jpg);
+}
+
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list .item1 {
+  background: url(images/icon7.jpg);
+}
+
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list .item2 {
+  background: url(images/icon8.jpg);
+}
+
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list .item3 {
+  background: url(images/icon9.jpg);
+}
+
+.page3>.row3 .compositebody>.row2>.column2>.row1>.horizontal-list .item4 {
+  background: url(images/icon10.jpg);
+}
+
+.standardtable table,
+.holding table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.standardtable table thead th,
+.holding table th {
+  border-bottom: 1px solid var(--secondary);
+  padding: 5px;
+}
+
+.standardtable table tbody td,
+.holding table tbody td {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  text-align: center;
+}
+
+.standardtable table thead th:first-child,
+.standardtable table tbody td:first-child,
+.holding table th:first-child,
+.holding table tbody td:first-child {
+  text-align: left;
+}
+
+.page3>.row6>.composite1>.compositebody>.row2>.column1>.row,
+.page3>.row6>.composite1>.compositebody>.row2>.column2>.row {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.page3>.row6>.composite1>.compositebody>.row2>.column1>.row1,
+.page3>.row6>.composite1>.compositebody>.row2>.column2>.row1 {
+  border-top: 1px solid var(--secondary);
+}
+
+.page3>.row6>.composite1>.compositebody>.row2>.column1>.row *,
+.page3>.row6>.composite1>.compositebody>.row2>.column2>.row * {
+  margin-bottom: 0;
+}
+
+.page5>.row6 {
+  border-bottom: 1px dotted var(--secondary);
+}
+
+.DonutChart text.highcharts-title {
+  font-size: 10pt !important;
+  font-family: var(--font-regular) !important;
+}
+
+.DonutChart .highcharts-container {
+  height: 200px !important;
+}
+
+.DonutChart .highcharts-container .highcharts-root {
+  height: 100% !important;
+}
+
+.Temperature>p {
+  font-size: 10pt;
+}
+
+p.Portfolio\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CoalExposurePct5\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.FossilFuelOtherPct5\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Target\.SBTITarget\.Value,
+.page7 p.Portfolio\.Overall\.Sfdr\.Monthly\.PAI\.GHGIntensity\.Value {
+  color: var(--primary);
+  font-size: 25pt;
+}
+
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Others\.CoalExposurePct5\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Others\.FossilFuelOtherPct5\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Target\.SBTITarget\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.CarbonEmissions\.SovereignEmissions\.SovereignWeightedAverageCarbonIntensityGdp\.Value {
+  color: var(--accent-2);
+  font-size: 25pt;
+}
+
+.section.contentSection.text.Text {
+  font-size: 10pt;
+}
+
+.horizontal-list span:first-child {
+  font-weight: 400;
+}
+
+.horizontal-list span:last-child {
+  float: left;
+  margin-left: 5px;
+  width: 50%;
+}
+
+.page16>.row3>.composite1>.compositebody>.row2>.column2>.row2>.column1 {
+  float: left;
+  width: 65%;
+}
+
+.page16>.row3>.composite1>.compositebody>.row2>.column2>.row2>.column2 {
+  float: left;
+  width: 35%;
+}
+
+.reductionpathincl3,
+.reductionpathexcl3 {
+  font-size: 25pt;
+  color: var(--primary);
+}
+
+.page16>.row6>.column2 .contentSection p.item3 {
+  font-size: 10pt;
+}
+
+.horizontal-list.Table>div:not(.clear) {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-list.Table>div:first-child {
+  border-top: 1px solid var(--secondary);
+}
+
+.horizontal-list.Table>div:not(.clear) span.label {
+  width: 80%;
+}
+
+.horizontal-list.Table>div:not(.clear) span.value {
+  width: 20%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.page>.row1 .PAIs h2 {
+  font-size: 15pt;
+  color: var(--accent);
+}
+
+.contentSection.text.Description p {
+  font-size: 10pt;
+}
+
+.page11>.row5>.row2 .column1 {
+  background-image: url(images/E_SDG_PRINT-09.jpg), url(images/E_SDG_PRINT-11.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 2cm 0cm, 5cm;
+  height: 2.1cm;
+}
+
+.column2 .logo {
+  background-image: url(images/isr-logo.jpg);
+  float: right;
+  background-size: contain;
+  width: 2.5cm;
+  height: 2.5cm;
+  background-repeat: no-repeat;
+}
+
+.page19>.row2 .text,
+.page19>.row3 .text {
+  display: table;
+  float: left;
+  width: 100%;
+}
+
+.page19>.row2 p,
+.page19>.row3 p {
+  display: table;
+  width: 49%;
+  float: left;
+  padding-block: 1px;
+  padding-right: 5px;
+  margin-bottom: 5px;
+  min-height: 15px;
+}
+
+.page19>.row2,
+.page19>.row3 {
+  float: left;
+  width: 100%;
+}
+
+.page19>.row2 p:nth-child(even),
+.page19>.row3 p:nth-child(even) {
+  position: relative;
+}
+
+.page19>.row2 p:nth-child(even)::before,
+.page19>.row3 p:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -376px;
+  border-bottom: 1pt solid black;
+  width: 95vw;
+}
+
+.page8 .row6 .column1 .column1 p:first-child,
+.page8 .row6 .column1 .column2 p:first-child,
+.page8 .row8 .column1 .column1 p:first-child,
+.page8 .row8 .column1 .column2 p:first-child {
+  width: 74px;
+  height: 47px;
+  font-size: 16px;
+  margin-top: 0px;
+  padding-top: 55px;
+  padding-left: 45px;
+  color: #607e46;
+}
+
+.page8 .row6 .column1 .column2 p:first-child,
+.page8 .row8 .column1 .column2 p:first-child {
+  padding-left: 70px;
+}
+
+.page8 .row6 .column1 .column1 p:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 400px;
+  right: 0;
+  background-image: url(images/venus-dark-green.png);
+  background-repeat: no-repeat;
+  background-position: 0.7cm;
+  background-size: 14.5%;
+  z-index: -1;
+}
+
+.page8 .row6 .column1 .column2 p:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 400px;
+  right: 0;
+  background-image: url(images/venus-light-green.png);
+  background-repeat: no-repeat;
+  background-position: 6.5cm;
+  background-size: 16.5%;
+  z-index: -1;
+}
+
+.page8 .row8 .column1 .column1 p:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: -100px;
+  right: 0;
+  background-image: url(images/landmark-dark-green.png);
+  background-repeat: no-repeat;
+  background-position: 0.5cm;
+  background-size: 16.5%;
+  z-index: -1;
+}
+
+.page8 .row8 .column1 .column2 p:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: -100px;
+  right: 0;
+  background-image: url(images/landmark-light-green.png);
+  background-repeat: no-repeat;
+  background-position: 6.5cm;
+  background-size: 16.5%;
+  z-index: -1;
+}
+
+.page8 .row6 .column1 .column1 p:last-child,
+.page8 .row8 .column1 .column1 p:last-child {
+  margin-left: 43px;
+  font-size: 14px;
+}
+
+.page8 .row6 .column1 .column2 p:last-child,
+.page8 .row8 .column1 .column2 p:last-child {
+  margin-left: 65px;
+  font-size: 14px;
+}
+
+.page19>.row2 p.item3 {
+  font-weight: bold;
+}
+
+.page3>.row3>.composite1>.compositebody>.row2>.column1 {
+  /* float: left;
+  width: 50%;
+  position: relative;
+  top: -90px; */
+}
+
+.ISR {
+  width: 2.5cm;
+  float: right;
+}
+
+.page3>.row1 {
+  /* float: right; */
+}
+
+.page7>.row7 .column1 .highcharts-data-labels,
+.page7>.row7 .column1 .highcharts-data-labels text,
+.page7>.row7 .column1 .highcharts-text-outline,
+.page7>.row7 .column1 .highcharts-text-outline tspan {
+  font-size: 18px !important;
+}
+
+.page18>.row5 .row2 .text,
+.page18>.row5 .row3 .text,
+.page18>.row5 .row4 .text {
+  display: flex;
+  /* border-bottom: 0.5pt solid black; */
+}
+
+.page18>.row5 .row2 .text .item3 {
+  /* margin-left: 21px; */
+}
+
+.page18>.row5 .row4 .text .item3 {
+  /* margin-left: 7px; */
+}
+
+.page18>.row5 .row2 .text .item2,
+.page18>.row5 .row3 .text .item2,
+.page18>.row5 .row4 .text .item2 {
+  width: 35%;
+}
+
+.page18>.row5 .row2,
+.page18>.row5 .row3,
+.page18>.row5 .row4 {
+  margin-bottom: 0 !important;
+}
+
+.page18>.row5 .row4 {
+  border-bottom: 1px solid black;
+}
+
+.highcharts-container {
+  height: 200px !important;
+}
+
+.highcharts-container svg {
+  height: 100% !important;
+}
+
+.horizontal-list.SummaryTable div.SLFundName {
+  background: url(images/icon1.jpg) no-repeat;
+  background-size: 20px !important;
+  background-position: left center;
+}
+
+.horizontal-list.SummaryTable div.Portfolio\.Metadata\.AssetsUnderManagement {
+  background: url(images/icon2.jpg) no-repeat;
+  background-size: 20px !important;
+  background-position: left center;
+}
+
+.horizontal-list.SummaryTable .Portfolio\.Metadata\.ReportCurrency {
+  background: url(images/dollar.png) no-repeat;
+}
+
+.horizontal-list .SFDRDisclosure {
+  background: url(images/icon7.jpg) no-repeat;
+}
+
+.horizontal-list .ConsidersPAIs {
+  background: url(images/icon8.jpg) no-repeat;
+}
+
+.horizontal-list .AddressesEUTaxonomy {
+  background: url(images/icon9.jpg) no-repeat;
+}
+
+.horizontal-list .AddressesSustainableInvestments {
+  background: url(images/icon10.jpg) no-repeat;
+}
+.page3>.row8>.contentSection {
+  /* display: flex;
+  flex-wrap: wrap;
+  width: 80%; */
+}
+
+.page3>.row6>.contentSection>p:nth-child(odd),
+.page3>.row7>.contentSection>p:nth-child(odd) {
+  /* width: 75%; */
+}
+/* .page3>.row6>.contentSection>p:nth-child(even), */
+.page3>.row8>.contentSection>p:nth-child(even) {
+  /* width: 25%; */
+}
+
+.page3>.row6>.contentSection>p,
+.page3>.row8>.contentSection>p {
+  /* padding: 5px;
+  border-bottom: 1px solid var(--secondary); */
+}
+
+/* .page3>.row6>.contentSection>p:first-child,
+.page3>.row6>.contentSection>p:nth-child(2), */
+.page3>.row8>.contentSection>p:first-child,
+.page3>.row8>.contentSection>p:nth-child(2) {
+  /* border-top: 1px solid var(--secondary); */
+}
+
+.page12>.row5>.column1 {
+  width: 100%;
+}
+
+span.highcharts-subtitle {
+  text-align: center;
+  top: 65px !important;
+    left: 50px !important;
+    width: 70px !important;
+    white-space: unset !important;
+}
+
+.page12>.row5>.column1>.row1>.column1 {
+  position: relative;
+}
+
+.page12 .ScienceBasedConsensus>p {
+  position: absolute;
+  color: var(--primary);
+  font-size: 8pt;
+  top: 0px;
+  right: 0;
+  width: 115px;
+}
+
+.gwp-chart-wrapper.gwp-chart-container>div:nth-child(2) {
+  border-top: 2px solid var(--primary);
+}
+
+.chart .highcharts-subtitle {
+  font-size: 10px !important;
+}
+.chart .highcharts-subtitle .donutInnerText{
+  font-size: 9px;
+}
+.page14>.row4{
+  margin-top: 0.5cm;
+}
+.page14>.row4>.column>.row:not(.row1){
+  margin-bottom: 0;
+}
+
+.page14>.row4>.column>.row:not(.row1)>.column1{
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid var(--secondary);
+}
+.page14>.row4>.column>.row2{
+  border-top: 1px solid var(--secondary);
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row1{
+  padding-right: 10px;
+  align-items: center;
+  display: flex;
+  margin: 0;
+  width: 115px;
+}
+
+.page14>.row4>.column>.row:not(.row1)>.column1>.row1 .text p
+{
+  width: min-content;
+  max-width: min-content;
+  margin-top: 0.1cm;
+  margin-bottom: 0.1cm;
+}
+
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2{
+  width: 100%;
+  margin-bottom: 0;
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section p{
+  padding: 0.1cm 0;
+  margin: 0;
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section p:nth-child(odd){
+  width: 75%;
+  border-top: 1px solid #000;
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section p:nth-child(even)
+{
+  width: 25%;
+  border-top: 1px solid #000;
+}
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section p:nth-child(1),
+.page14>.row4>.column>.row:not(.row1)>.column1>.row2>.section p:nth-child(2){
+  border-top: 0;
+}
+
+.page14>.row4>.column1>.row2>.column2,
+.page14>.row4>.column1>.row3>.column2,
+.page14>.row4>.column1>.row4,
+.page14 > .row4 > .column2 > .row3 > .column2,
+.page14 > .row4 > .column2 > .row5 > .column2 {
+  width: 0;
+  margin: 0;
+}
+.page14>.row4>.column1>.row5>.column1>.row2>.section p:nth-child(1),
+.page14>.row4>.column1>.row5>.column1>.row2>.section p:nth-child(2),
+.page14 > .row4 > .column2 > .row8 > .column1>.row2>.section p:nth-child(1),
+.page14 > .row4 > .column2 > .row8 > .column1>.row2>.section p:nth-child(2)
+{
+  padding-top: 0.3cm;
+}
+.page14 > .row5 > .column1> .row:not(.row1) .text{
+  display: flex;
+  border-top: 1px solid var(--secondary);
+  align-items: center;
+}
+.page14 > .row5 > .column1> .row:not(.row1){
+  margin-bottom: 0;
+}
+.page14 > .row5 > .column1> .row:not(.row1) .text p{
+  margin: 0;
+}
+.page14 > .row5 > .column1> .row:not(.row1) .text > p.item2{
+  padding: 8px 5px 8px 40px;
+  
+  display: flex;
+  margin: 0;
+  align-items: center;
+  width: 35%;
+  background-size: 24px;
+}
+.page14 > .row5 > .column1> .row2 .text > p.item2{
+  background: url(images/dollar.png) no-repeat left center;
+  /* background-size: 24px; */
+}
+.page14 > .row5 > .column1> .row3 .text > p.item2{
+  background: url(images/icon2.jpg) no-repeat left center;
+}
+.page14 > .row5 > .column1> .row4 .text > p.item2{
+  background: url(images/dataProvider.png) no-repeat left center;
+}
+.page15 > .row2 > .contentSection{
+  display: flex;
+  border-top: 1px solid var(--secondary);
+  border-bottom: 1px solid var(--secondary);
+}
+.page15 > .row2 > .contentSection p{
+  font-weight: bold;
+  padding: 0.3cm 0.1cm;
+  width: 70%;
+  
+}
+.page15 > .row2 > .contentSection p:first-child{
+  width: 30%;
+}
+.page15 > .row3 > .contentSection{
+  display: flex;
+  flex-wrap: wrap;
+}
+.page15 > .row3 > .contentSection p{
+  padding: 0.3cm 0.1cm;
+  margin: 0;
+  
+  /* border-top: 1px solid var(--secondary); */
+  border-bottom: 1px solid var(--secondary);
+}
+.page15 > .row3 > .contentSection p:nth-child(odd){
+  width: 30%;
+}
+.page15 > .row3 > .contentSection p:nth-child(even){
+  width: 70%;
+}
+.clientRating {
+  height: 3cm;
+  float: right;
+  width: auto;
+}
+.page1 .SLFundName {
+  font-size: 18pt;
+  font-weight: bold;
+}
+.page3>.row5{
+  /* width: 50%; */
+  /* float: right; */
+}
+.page3>.row6{
+  /* width: 50%;
+  float: left; */
+}
+.page3>.row7 {
+  /* float: left;
+  width: 100%; */
+  /* clear: both; */
+}
+.page3>.row6>.contentSection{
+  /* display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-right: 0.3cm; */
+}
+.page6 > .row3 > .column:not(.column1){
+  position: relative;
+}
+.page6 > .row3 > .column:not(.column1)>.row:not(.row1){
+  position: absolute;
+  margin: 0;
+  top: 60px;
+  width: 60px;
+  left: 73px;
+  text-align: center;
+}
+p.Portfolio\.Overall\.MSCI\.Sovereign\.GlobalPeaceIndex\.Value{
+  margin: 0
+}
+.page7 > .row2 span.highcharts-subtitle{
+  /* top: 36px !important; */
+}
+.page9 > .row4,
+.page10 > .row4
+{
+  margin-top: 0.5cm;
+}
+.page9 > .row4 > .column:not(.column3),
+.page10 > .row4 > .column:not(.column3) {
+  width: 25%;
+}
+.page9 > .row4 > .column:not(.column3)>.row1>.contentSection, 
+.page10 > .row4 > .column:not(.column3)>.row1>.contentSection 
+{
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page9 > .row4 > .column1>.row1>.contentSection,
+.page10 > .row4 > .column1>.row1>.contentSection
+{
+  background: url(images/landmark-dark-green.jpg) no-repeat center;
+  background-size: contain;
+  color: var(--primary);
+}
+.page9 > .row4 > .column2>.row1>.contentSection,
+.page10 > .row4 > .column2>.row1>.contentSection
+{
+  background: url(images/landmark-light-green.jpg) no-repeat center;
+  background-size: contain;
+  color: var(--accent-2);
+}
+.page9 > .row4 > .column:not(.column3)>.row1>.contentSection p, 
+.page10 > .row4 > .column:not(.column3)>.row1>.contentSection p 
+{
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+  margin-top: 44px;
+  font-weight: 300;
+}
+.page2>.row2,
+.page2>.row5
+{
+  margin: 0;
+}
+.PageNote{
+  position: absolute;
+  bottom: 1cm;
+  left: 1cm;
+}
+h3.TableHeader {
+  font-size: 15pt;
+}
+.ChartLegend{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ChartLegend > p{
+  padding-left: 30px;
+  position: relative;
+}
+.ChartLegend > p::before{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  left: 5px;
+  top:1px;
+  background-color: #e5e5e5;
+}
+.page6 .column2 .ChartLegend > p.item2::before,
+.page7 .column2 .ChartLegend > p.item2::before
+{
+  background-color: #607e46;
+}
+.page6 .column2 .ChartLegend > p.item3::before,
+.page6 .column3 .ChartLegend > p.item3::before,
+.page7 .column2 .ChartLegend > p.item3::before,
+.page7 .column3 .ChartLegend > p.item3::before
+{
+  background-color: #b4b4b4;
+}
+.page6 .column2 .ChartLegend > p.item4::before,
+.page6 .column3 .ChartLegend > p.item4::before,
+.page7 .column3 .ChartLegend > p.item4::before
+{
+  background-color: #e5e5e5;
+}
+.page6 .column3 .ChartLegend > p.item2::before,
+.page7 .column3 .ChartLegend > p.item2::before
+{
+  /* background-color: #9dbdbc; */
+  background-color: #607e46;
+}
+.page7 .column2 .ChartLegend > p.item5::before,
+.page7 .column3 .ChartLegend > p.item5::before
+{
+  background-color:#d4db70;
+}
+
+.page13 .column1 .ChartLegend > p.item2::before,
+.page13 .column2 .ChartLegend > p.item2::before
+{
+  background-color:#808080;
+}
+.page13 .column1 .ChartLegend > p.item3::before,
+.page13 .column2 .ChartLegend > p.item3::before
+{
+  background-color:#bfbfbf;
+}
+.page13 .column1 .ChartLegend > p.item4::before,
+.page13 .column2 .ChartLegend > p.item4::before
+{
+  background-color:#dfdfdf;
+}
+.page13 .column1 .ChartLegend > p.item5::before,
+.page13 .column2 .ChartLegend > p.item5::before
+{
+  background-color:#9dbdbc;
+}
+.page13 .column1 .ChartLegend > p.item6::before,
+.page13 .column2 .ChartLegend > p.item6::before
+{
+  background-color:#ccd457;
+}
+.page13 .column1 .ChartLegend > p.item7::before,
+.page13 .column2 .ChartLegend > p.item7::before
+{
+  background-color:#afbea2;
+}
+.page13 .column1 .ChartLegend > p.item8::before,
+.page13 .column2 .ChartLegend > p.item8::before
+{
+  background-color:#96d5ce;
+}
+.page13 .column1 .ChartLegend > p.item9::before,
+.page13 .column2 .ChartLegend > p.item9::before
+{
+  background-color:#15847b;
+}
+.page13 > .row3 > .column1,
+.page13 > .row5 > .column1,
+.page13 > .row3 > .column2, 
+.page13 > .row5 > .column2 
+{
+  position: relative;
+}
+.page13 p.Portfolio\.Overall\.MSCI\.ESG\.SovereignEsg\.ESGScore,
+.page13 p.Portfolio\.Overall\.MSCI\.ESG\.SovereignEsg\.EsgRating,
+.page13 p.Benchmarks\.\[x\]\.Overall\.MSCI\.ESG\.SovereignEsg\.EsgRating,
+.page13 p.Benchmarks\.\[x\]\.Overall\.MSCI\.ESG\.SovereignEsg\.ESGScore {
+  position: absolute;
+  left: 39%;
+  z-index: 1;
+  width: 85px;
+  text-align: center;
+  font-size: 15px;
+}
+.page13 p.Portfolio\.Overall\.MSCI\.ESG\.SovereignEsg\.EsgRating,
+.page13 p.Benchmarks\.\[x\]\.Overall\.MSCI\.ESG\.SovereignEsg\.EsgRating {
+  top: 30%;
+}
+.page13 p.Portfolio\.Overall\.MSCI\.ESG\.SovereignEsg\.ESGScore,
+.page13 p.Benchmarks\.\[x\]\.Overall\.MSCI\.ESG\.SovereignEsg\.ESGScore{
+  top: 36%;
+}
+.page7 > .row4 > .column2,
+.page7 > .row4 > .column3{
+  padding-left:30px
+}
+.page12 > .row2 .barChartSection1 .chart,
+.page12 > .row2 .barChartSection1 .chart .highcharts-container{
+  height: 300px !important;
+  width: 100% !important;
+}
+.page12 > .row2 .barChartSection1 .chart .highcharts-title{
+  font-size: 13px !important;
+}
+
+/* 
+Theme: SL_Sovereign
+*/

@@ -1,0 +1,242 @@
+.page>.row1 {
+	/*hiding all footers*/
+	display: none;
+}
+
+.keyinformationdocument.contentSection h2 {
+	border-bottom: 0pt;
+	text-align: right;
+	font-weight: map-get($font-weight, 'bold');
+}
+
+.purpose>h2 {
+	padding-top: 0.8cm;
+}
+
+.Product>h2 {
+	padding-top: 0.1cm;
+}
+
+.page>.row1>.composite1>.compositebody>.row2 {
+	>.column2 {
+		/*footer width extended to full page width*/
+		width: 100%;
+	}
+
+	>.column1 {
+		width: 0;
+	}
+}
+
+.groupHeader1 table th {
+	border-bottom: 0 solid $th-border;
+}
+
+.costOverTime,
+.performancescenariotable {
+	.groupHeader1 table th {
+		padding: 1mm 2mm 1mm 1mm;
+	}
+}
+
+.groupRow1 table {
+	tbody tr {
+		td {
+			border-right: 0.75pt solid $td-border;
+			color: $color2;
+		}
+	}
+}
+
+.page1>.row5>.composite1>.compositebody>.row2>.column1
+
+/*.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1*/
+	{
+	width: 100%;
+	column-count: 2;
+	column-gap: 0.2cm;
+	column-fill: balance !important;
+}
+
+.page1 {
+	.row2>.composite1>.compositebody>.row2>.column1 {
+		width: 100%;
+	}
+
+	.row6>.composite1>.compositebody>.row2>.column1 {
+		width: 100%;
+
+		>.row4,
+		>.row5,
+		>.row6 {
+			width: 50%;
+		}
+
+		h2 {
+			column-span: all;
+			margin-top: 0.2cm;
+
+		}
+	}
+}
+
+.costComposition {
+	table {
+
+		td:last-of-type {
+			text-align: right;
+		}
+	}
+
+	>table {
+		width: 98%;
+	}
+}
+
+/*.groupRowDiv1>table td,.performancescenariotable table .survival-scenario th,.groupRow1 table .header th,table .ongoingcosts th, table .incidentalcosts th {
+    border: 0.4pt solid $black;
+}*/
+
+/*.oneofcosts th:last-of-type {
+	text-align: left;
+}*/
+
+.performanceScenario,
+.costComposition {
+	padding-bottom: 0.2cm;
+	padding-top: 0.2cm;
+}
+
+
+.page3 .compositebody {
+	break-inside: avoid-page;
+	break-inside: avoid;
+}
+
+h1 {
+
+	position: running(pageheader);
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+	@each $item in $rowheader {
+		#{$item} {
+			th {
+				color: $black;
+			}
+		}
+	}
+}
+
+/*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+		background : $grey;
+}*/
+
+$scenariosheader : ".stress-return",
+".averagereturn",
+".unfavourable-return",
+".moderate-return",
+".invest",
+".favourable-return";
+
+@each $item in $scenariosheader {
+	#{$item} {
+
+		.scenario,
+		.description {
+			font-weight: bold;
+		}
+	}
+}
+
+/*.page1 >.row6  {
+	break-after: always !important;
+}*/
+/*.page2>.row2>.composite1>.compositebody  *,*/
+.page3>.row2>.composite1>.compositebody * {
+	break-before: avoid-page;
+}
+
+.page2>.row2>.composite1>.compositebody * {
+	break-before: auto !important;
+	break-inside: auto !important;
+}
+
+.arrow>td {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+.WB_SRInarrative2_1 {
+	background: url(images/warning-icon.png);
+	background-size: 18%;
+	background-position: 0px -5px;
+	width: 79%;
+	height: 61px;
+	padding: 7px 0px 0px 63px;
+	display: block;
+	background-repeat: no-repeat;
+}
+
+p.Sri {
+	border: none;
+	margin: 0;
+	float: none;
+	width: initial;
+	height: initial;
+
+	&:after {
+		display: none;
+	}
+
+
+}
+
+.sriRiskRating {
+	.header {
+
+		th:last-of-type,
+		th:first-of-type {
+			font-size: map-get($font-size, 'nano');
+		}
+	}
+
+	table td.rating {
+		width: 1.24cm;
+		height: 0.92cm;
+	}
+}
+
+table.sriRiskRating th:not(.groupHeader1) {
+	background: none;
+}
+
+.sriRiskRating {
+	break-inside: avoid;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1>.row5 {
+	break-before: avoid;
+}
+
+
+/*>>>>>>costovertime table fullwidth css for 3column*/
+
+
+/*page 2 floating code*/
+/*
+
+  .performanceScenario.performancescenariotable {
+    page-break-inside:auto !important;
+}
+*/
+
+
+/*Theme name:nordea_theme_202208_EU*/

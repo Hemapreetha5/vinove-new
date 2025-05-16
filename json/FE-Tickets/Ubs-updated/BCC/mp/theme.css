@@ -1,0 +1,228 @@
+@font-face {
+  font-family: "frutigerregular";
+  src: url("images/frutiger-45-light-regular.ttf") format("truetype"),
+		url("images/frutiger-45-light-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerbold";
+  src: url("images/frutiger-bold-regular.ttf") format("truetype"),
+		url("images/frutiger-bold-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/frutiger-45-light-bold.ttf") format("truetype"),
+		url("images/frutiger-45-light-bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+	--primary: #000000;
+	--secondary: #BEBEBE;
+	--red: #E60000;
+	--black: #000000;
+	--white: #FFFFFF;
+	--border: var(--black);
+	--tableborder: var(--black);
+	--tableheaderbg: var(--white);
+	--tableheader: var(--black);
+	--alert: var(--secondary);
+	--ratingbg: var(--white);
+	--ratingborder: var(--secondary);
+	--ratingselected: var(--secondary);
+	--bodycolor: var(--black);
+	--bodyfont: 9pt;
+	--footerfont: 6.5pt;
+	--lineheight: 1.1;
+	--h2: 9pt;
+	--h3: 8pt;
+	--fontRegular: frutigerregular;
+	--fontBold: frutigerbold;
+	--fontLightBold: frutigerlightbold;
+	
+}
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  line-height: var(--lineheight);
+  color: var(--bodycolor);
+  font-family: var(--fontRegular);
+  font-size: var(--bodyfont);
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+table th {
+	background: var(--tableheaderbg);
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	padding: 1mm;
+	margin: 0;
+	font-family: var(--fontLightBold);
+	font-size: 6pt;
+	text-align: center;
+	page-break-inside: avoid;
+	vertical-align: middle;
+}
+table tr.headerData:first-child th {
+	border-top: 0.5pt solid var(--tableborder);
+	
+}
+table td {
+	background: var(--tableheaderbg);
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	padding: 1mm;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 6pt;
+}
+table th:first-child, table td:first-child {
+	border-left: 0.5pt solid var(--tableborder);
+}
+h2 {
+  font-family:var(--fontBold);
+  font-size: var(--h2);
+  font-weight: 100;
+  color: var(--bodyfont);
+  border-top: 0.5pt solid var(--black);
+  padding: 0.21cm 0 0;
+  margin: 0 0 0.4cm;
+}
+p:empty, h2:empty {
+	margin: 0;
+	padding:0;
+	border: 0;
+	max-width: 0;
+	min-height: 0;
+	width: auto;
+	height: auto;
+}
+
+p, ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	margin: 0 0 0.5cm;
+}
+b {
+	font-family: var(--fontBold);
+	font-weight: 100;
+}
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+/* page styles*/
+.page {
+	width: 18cm;
+	height: auto;
+	padding: 0cm 1.5cm 0.25cm 1.5cm;
+}
+
+.page1 {
+  padding-top: 1cm;
+  background: url(images/BCC_logo.svg);
+  background-size: 6.16cm 0.56cm;
+  background-position: 1.5cm 0;
+  background-repeat: no-repeat;
+}
+.page1 > .row1 .contentSection h2 {
+    font-family: var(--fontRegular);
+    font-size: 24pt;
+    font-weight: 100;
+    border: 0;
+}
+.page1 > .row2 > .contentSection .item3 {
+	font-family: var(--fontBold);
+}
+.monthlyperformancetable1 .SubheaderData th:first-child, .monthlyperformancetable1 .groupRowDiv1 .Row td:first-child, .monthlyperformancetable1 .groupRowDiv1 .Row td:last-child {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(2), .monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2) {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(3), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(1) {
+	width: 6%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(4), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(2) {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(5), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(3) {
+	width: 8%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(5) ~ th, .monthlyperformancetable1 .groupRowDiv1 td:nth-child(3) ~ td {
+	width: 8%;
+}
+/*NonDeathscenario*/
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:first-child{
+	width: 7%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:nth-child(2){
+	width: 7.5%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(1){
+	width: 5%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(2){
+	width: 12%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(3){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(4){
+	width: 12%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(5){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(6){
+	width: 12%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(7){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(8){
+	width: 12%;
+}
+.monthlyperformancetable1  .NonDeathscenario .SubheaderData th:nth-child(11),.monthlyperformancetable1  .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(9){
+	width: 8%;
+}
+.pagenumbers .footer, .pagenumbers .Pagination {
+  position: running(pageNumber);
+  text-align: right;
+  font-family: var(--fontRegular);
+  font-size: var(--footerfont);
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th{
+	word-break: break-word;
+}
+/* @page styles */
+@page {
+	margin: 1.5cm 0 1cm 0;
+	padding: 0cm;
+	@bottom-right {
+		content: element(pageNumber);
+		margin:0 1.5cm 0.5cm;
+		padding: 0cm;
+		font-family: var(--fontRegular);
+		font-size: var(--footerfont);
+	}
+}
+
+/*theme name:BCC_PRIIPs_M*/

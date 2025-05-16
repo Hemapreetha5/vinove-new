@@ -1,0 +1,594 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.nanum-myeongjo-regular {
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+body {
+    font-family: 'Roboto', san-serif;
+font-weight: 300;
+    font-size: 11pt;
+      color:  #000;
+    line-height: 16px;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility!important;
+    -webkit-font-smoothing: antialiased!important;
+}
+.page {
+    position: relative;
+    width: 18cm;
+    height: 26.66cm;
+    padding: 1.5cm 1.5cm;
+/* padding-top: 1cm; */
+padding-top: 0;
+padding-bottom: 1cm;
+    box-decoration-break: clone;
+}
+
+.CoverImage {
+width: 18cm;
+magin-bottom: 3cm;
+}
+.row {
+    margin-bottom: 0.3cm;
+}
+.column > .section {
+    margin-left: 0.5cm;
+}
+.column:first-child > .section {
+    margin-left: 0;
+}
+
+.DocumentNameHeader p{
+    font-family: "Nanum Myeongjo", serif;
+font-size: 35pt;
+line-height: 37pt;
+/* padding-top: 200px; */
+padding-top: 237px;
+}
+.DocumentTypeHeader p{
+    font: normal 20pt Roboto;
+font-weight: 300;
+/* no-repeat 3px 12px /96.4% auto !important; */
+ }
+.DocumentDateandIDHeader h2{
+	font-family: 'Roboto' sans-serif;
+	font-weight: 800;
+color: #000
+}
+.DocumentDateandIDHeader {
+margin-top: 50px;
+line-height: 20px}
+
+.MarketReviewHeader h2{
+	font: normal  32pt GrifosBold;
+    color: #00AC41;
+}
+.chart, .discreteChart { padding-left: 0.35cm }
+.keyWrapper {
+    margin-left: 1.5cm;
+    margin-top: 0.15cm;
+}
+
+@page {  
+    padding-top: 2.5cm;
+    @top-left{
+        content:element(headerText);
+        padding: 1cm 1.5cm 0;
+    }
+    @bottom-right{
+       content: counter(page);  
+        position: relative;
+        font-size:8pt;
+font-family: "Nanum Myeongjo", serif;
+        right: 1cm;
+bottom: 1cm;
+    }
+@bottom-left{
+       content: "FirstChoice Managed Accounts Bulletins";  
+        position: relative;
+        font-size:8pt;
+font-family: "Nanum Myeongjo", serif;
+        left: 1cm;
+bottom: 1cm;
+    }
+@top-right{
+content: element(section_contentSection_logo_logo1);
+	}
+}
+
+@page:first{
+ 
+    }
+@bottom-left{
+
+    }
+
+@page:-ro-last{
+ 
+    }
+
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+.page > .row1 {
+    border-bottom: 1px solid #000;
+height: 13mm;
+position: running(headerText);
+margin-bottom: 0;
+}
+.page > .row1 h2 {
+color: #164a9a;
+    font: normal 20px Roboto;
+    background-repeat: no-repeat;
+    margin-bottom: 1mm;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+[class*='KeyThemesSection'] h2{
+    color: #179BD7;
+    font:12pt Mute-Semibold;
+margin-top: 0.4cm;
+    margin-bottom: 0.4cm;
+}
+
+.ManagerCommentary h3{
+    font: normal  12pt Mute-Semibold ;
+    color: #a6a6a6;
+text-transform: uppercase;
+}
+.MarketReview h2{
+    font: normal  16pt GrifosBold ;
+    color: #00AC41;
+    margin: 0 0 0.4cm 0;
+text-transform: uppercase;
+}
+.MarketReview h3{
+    font: normal  12pt Mute-Semibold ;
+    color: #a6a6a6;
+text-transform: uppercase;
+}
+ul li {
+    list-style: none;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+li {
+    font-weight: normal;
+    padding: 0 0 0 14px;
+    list-style: decimal;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 0cm 0;
+}
+ 
+.logo.logo1{
+ background-image: url('Images/Logo.png');
+max-width: 23mm;
+position: running (logo);
+}
+.PageOneHeader{
+font-family: "Nanum Myeongjo", serif;
+	 font-size: 15px;
+	 text-align: right;
+	 padding-top:20px;
+	 color: #939598;
+position: running (PageOneHeader)
+ }
+.Header p {
+    font-size: 15px;
+    font-family: Roboto;
+    color: #fff;
+    text-align: left;
+    padding: 0 0px 20px;
+    display: block;
+    z-index: 100;
+    position: relative;
+}
+table th{
+	line-height: unset;
+}
+path {
+
+    stroke-width: 0;
+}
+.page1 > .row3 > .column1 {
+    width: 31%;
+	margin-top: 0.7cm;
+}
+.page1 > .row3 > .column2 {
+    width: 67%;
+    float: right;
+	margin-top: 0.7cm;
+}
+.CoverRetailDistribution p ,.brighter p{
+  position: absolute;
+    left: 1.5cm;
+}
+.QuarterEnd p{
+    margin-top: -0.3cm;
+    font: 18px 'Mute-Light';
+    color:#8e929a;
+}
+.QuarterEnd h2, .CoverRetailDistribution h2 ,.brighter h2{
+  display: none;
+}
+
+.QuarterEnd p{
+ 
+}
+.CoverRetailDistribution p{
+  bottom: 3.5cm;
+  font: 7pt Mute-Regular;
+}
+.brighter p{
+  bottom: 2cm;
+  font: 19pt Mute-Regular;
+}
+
+
+table th, table td {
+    border-right: 0px solid #fff;
+    margin: 0;
+    padding: 0;
+}
+.SuperannuationHeader h2, .PensionHeader h2{
+	font-family: Roboto;
+	font-size: 14pt;
+	color: #164a9a;
+}
+ 
+.tableheader{
+    padding-top: 10pt;
+padding-bottom: 5pt;
+}
+.tableheader h2{
+text-align: left;
+font-family: Roboto;
+font-weight: 400;
+	font-size: 12pt;
+color: #164a9a;
+}
+.groupHeaderDiv0 table th{
+    color: #000;
+    background: #e8edf5;
+    min-width: 60px;
+     max-width: 60px;
+     width: 60px;
+ border-bottom: 5px solid #8aa4cd;
+   padding: 2pt;
+    font-family: 'Roboto';
+font-size: 10pt;
+font-weight: 400;
+text-align: center;
+padding: 1.2mm;
+}
+.groupRowDiv0 table td{
+	text-align: center;
+	border-bottom: 2px solid #c6d2e6;
+	min-width: 60px;
+	width: 60px;
+	font-family: 'Roboto';
+	font-size: 10pt;
+padding: 1.2mm;
+}
+
+.groupHeaderDiv0 th.NameWB, .groupRowDiv0 td.NameWB{
+	width: 35%;
+	text-align: left;
+padding: 1.2mm;
+}
+.groupRowDiv0 td.ModelID{
+color: #8aa4cd;
+}
+/* #c5c7ce */
+.groupRowDiv0 table td.groupRow{
+background: #0077a0;
+     color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Mute-Semibold'
+font-size: 9pt;
+text-align: left;
+}
+.Performancetableend1.customTable, .Performancetableend2.customTable, .Performancetableend3.customTable, .Performancetableend4.customTable, .Performancetableend5.customTable, .Performancetableend6.customTable, .Performancetableend17.customTable{
+    margin-top: -0.35cm
+}
+.Performancetableend1.customTable .clear, .Performancetableend1.customTable h2, .Performancetableend2.customTable .clear,.Performancetableend2.customTable h2, .Performancetableend3.customTable .clear,.Performancetableend3.customTable h2, .Performancetableend4.customTable .clear, .Performancetableend4.customTable h2, .Performancetableend5.customTable .clear,.Performancetableend5.customTable h2, .Performancetableend6.customTable .clear,.Performancetableend6.customTable h2, .Performancetableend7.customTable .clear,.Performancetableend7.customTable h2{
+    display: none;  
+}
+.Performancetableend1.customTable .groupHeader0 .groupHeaderDiv0 th{
+
+}
+.Performancetableend2.customTable .groupHeader0 .groupHeaderDiv0 th{
+
+}
+.Performancetableend3.customTable .groupHeader0 .groupHeaderDiv0 th{
+
+}
+.Performancetableend4.customTable .groupHeader0 .groupHeaderDiv0 th{
+    display: none;
+}
+.Performancetableend5.customTable .groupHeader0 .groupHeaderDiv0 th{
+    display: none;
+}
+.Performancetableend6.customTable .groupHeader0 .groupHeaderDiv0 th{
+    display: none;
+}
+.Performancetableend7.customTable .groupHeader0 .groupHeaderDiv0 th{
+    display: none;
+}
+[class*='Performancetableend'] table .groupRowDiv0 tr:nth-child(1) td { 
+color: #fff !important;
+background-color: #004c6c !important;
+}
+[class*='Performancetableend'] table .groupRowDiv0 tr:nth-child(3) td  {
+    background-color: #c0c0c0 !important;
+}
+.InvestmentManagerPerformance_table  .groupRowDiv0 table tr td{
+    background: #e7e7e7;
+}
+.InvestmentManagerPerformance_table .groupRowDiv0 table tr td.groupRow{
+   background: #0077a0;
+text-align: left;
+}
+table td, .Model_Information_Table .value, .MPSAssetAllocation .Name {
+    font-family: Calibri Light;
+}
+table td.Name, table td.rowheader, .DEHtable td.CustomField1 {
+    font-weight: bold;
+    font-family: Calibri;
+}
+.GrowthChart .keyWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.GrowthChart .key-color {
+    height: 0.5mm;
+    width: 5mm;
+    border-radius: 0;
+    vertical-align: top;
+    margin-top: 6px;
+    float: left;
+    margin-right: 5px;
+}
+.GrowthChart {
+    position: relative;
+}
+.GrowthChart h2 {
+    margin-bottom: 17px;
+	margin-top: 1.5cm;
+}
+.chart {
+	height: 7.35cm;
+width: 7.85cm;
+}
+.discreteChart {
+	height: 7.35cm;
+width: 7.85cm;
+}
+[class*='MPPAssetAllocation']  .blueTable{
+    width: 100% !important;
+    text-align: left;
+    
+}
+[class*='MPPAssetAllocation']  .blueTable tr :last-of-type{
+    text-align: center;
+padding: 0.1cm 0.2cm;
+}
+[class*='MPPAssetAllocation']  .blueTable th{
+            color: #179BD7;
+    font: 12pt Mute-Semibold;
+    border-bottom: 1.8px solid;
+    text-transform: uppercase;
+    padding: 0.1cm 0.2cm;
+}
+[class*='MPPAssetAllocation']  .blueTable tr{
+              padding: 0.1cm 0.2cm;
+}#179BD7
+[class*='MPPAssetAllocation']  .blueTable td{
+              padding: 0.1cm 0.2cm;
+}.page:last-of-type{
+ background color: #fff;
+
+}
+.page:last-of-type:after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+   background-size: 55.7mm;
+    background-position: 2cm 26cm;
+}
+.text tspan {
+    font-size: 8pt;
+    
+}
+.horizontal-list div {
+    width: 100%;
+}
+.Key:empty {
+    min-height: 23px;
+}
+.GrowthChart .chart {
+    height: 180px;
+}
+.Full_Fund_Name{
+	margin-top: 25px;
+}
+.Full_Fund_Name h2 {
+    float: left;
+    width: 85%;
+    font-size: 14pt;
+}
+.Full_Fund_Name p {
+    width: 15%;
+    float: right;
+    text-align: right;
+}
+table th.FundNameFull, table td.FundNameFull {
+    display: none;
+}
+.Performancetable1 .groupHeaderDiv0 th,
+.Performancetable2 .groupHeaderDiv0 th,
+.Performancetable3 .groupHeaderDiv0 th,
+.Performancetable4 .groupHeaderDiv0 th,
+.Performancetable5 .groupHeaderDiv0 th,
+.Performancetable6 .groupHeaderDiv0 th,
+.Performancetable7 .groupHeaderDiv0 th,
+.InvestmentManagerPerformance_table .groupHeaderDiv0 th,
+.InvestmentManagerPerformance_table .groupHeaderDiv0 th{
+	font-family: "Mute-Bold";	
+	letter-spacing:-0.1px;
+}
+
+.blueTable th{
+	text-align:left;
+}
+.page5 .row7,
+.page5 .row8,
+.page5 .row15,
+.page5 .row16,
+.page5 .row23,
+.page5 .row24,
+.page8 .row1,
+.page8 .row2
+{
+	margin-bottom:0;
+}
+.Performancetable1 .groupRowDiv0 table tr.odd td,
+.Performancetable2 .groupRowDiv0 table tr.odd td,
+.Performancetable3 .groupRowDiv0 table tr.odd td,
+.Performancetable4 .groupRowDiv0 table tr.odd td,
+.Performancetable5 .groupRowDiv0 table tr.odd td,
+.Performancetable6 .groupRowDiv0 table tr.odd td,
+.Performancetable7 .groupRowDiv0 table tr.odd td{
+    background-color: #fff;
+}
+.ManagerCommentary1 h2{
+	margin-top:0;	
+}
+.MarketReview1{
+	border: 1px hidden red;
+}
+.MarketReview1, .MarketReview2, .MarketReview3, .MarketReview4, .MarketReview5, .MarketReview6, .MarketReview7{
+	margin-top:0.5cm;
+}
+.ContactUs h2{
+	font-family: 'Roboto' sans-serif;
+	font-weight: 300;
+color: #164a9a;
+	font-size:12pt;
+	margin-bottom: 20px;
+	
+}
+.ContactUs {
+	background-color: #f5f5f5;
+	border-top-right-radius: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 40px;
+	padding-left: 10px;
+margin-top: 350px;
+line-height: 20px;
+}
+.page > .row2 .clear {
+    display: none;
+}
+.page > .row2 h2{
+    float: left;
+    width: 100%;  
+    padding-top: 10pt;
+}
+/* cfs_bulletins */

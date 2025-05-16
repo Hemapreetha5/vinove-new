@@ -1,0 +1,1201 @@
+@font-face {
+  font-family: "SourcesansproRegular";
+  src: url("images/sourcesanspro-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SourcesansproBold";
+  src: url("images/sourcesanspro-bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/*outer border for page row sections groups*/
+/* logo visible in pdf page margin  */
+/*show /hide logo in all pages*/
+/*show /hide logo in Ist page*/
+/*$logoWidth:100%;
+$logoHeight:1cm;*/
+/*$pagination-path: ".page > .row1";*/
+/*Common shared files of same template projects*/
+.triangle-1 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+  border-radius: 20%;
+}
+.triangle-1, .triangle-1::before, .triangle-1::after {
+  width: 20rem;
+  height: 20rem;
+}
+.triangle-1::before, .triangle-1::after {
+  content: "";
+  position: absolute;
+  background: yellow;
+  pointer-events: auto;
+}
+.triangle-1::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+.triangle-1::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+.triangle-1::before {
+  border-radius: 20% 20% 20% 55%;
+}
+.triangle-1::after {
+  border-radius: 20% 20% 55% 20%;
+}
+.triangle-2 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+}
+.triangle-2, .triangle-2::before, .triangle-2::after {
+  width: 10rem;
+  height: 10rem;
+}
+.triangle-2::before, .triangle-2::after {
+  content: "";
+  position: absolute;
+  background: #000000;
+  pointer-events: auto;
+}
+.triangle-2::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+.triangle-2::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+.triangle-3 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+  border-radius: 20%;
+}
+.triangle-3, .triangle-3::before, .triangle-3::after {
+  width: 15rem;
+  height: 15rem;
+}
+.triangle-3::before, .triangle-3::after {
+  content: "";
+  position: absolute;
+  background: gray;
+  pointer-events: auto;
+}
+.triangle-3::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+.triangle-3::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+.triangle-3::before {
+  border-radius: 20% 20% 20% 55%;
+}
+.triangle-3::after {
+  border-radius: 20% 20% 55% 20%;
+}
+.triangle-4 {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+  pointer-events: none;
+}
+.triangle-4, .triangle-4::before, .triangle-4::after {
+  width: 17.5rem;
+  height: 17.5rem;
+}
+.triangle-4::before, .triangle-4::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right, orange 0%, red 100%);
+  pointer-events: auto;
+}
+.triangle-4::before {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+.triangle-4::after {
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font: 14pt "SourcesansproRegular";
+  color: #004fb6;
+  margin: 0 2mm 0mm 2mm;
+  padding: 0.2cm 0 0.2mm 0;
+}
+
+p,
+.description {
+  font: 9pt "SourcesansproRegular";
+  color: #2c2a29;
+  margin: 0 0 0cm;
+  padding: 1mm 2mm 1mm;
+  line-height: 1.1;
+}
+
+p.IssuedOnDate {
+  border-bottom: 0px #187aba solid;
+  text-align: left;
+}
+
+.subheader p {
+  font: 9pt "SourcesansproRegular";
+  color: #2c2a29;
+}
+.page2 > .row2 .subheader p {
+  font-weight:bold;
+}
+.header1 p,
+.header2 p {
+  font: 14pt "SourcesansproRegular";
+  color: #2c2a29;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 14pt "SourcesansproRegular";
+  color: #2c2a29;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 19.88cm;
+  height: auto;
+  padding: 0cm;
+}
+
+.page1 {
+  padding: 0;
+  background: url(images/aviva_white_logo.svg);
+  background-size: 2.5cm 1.8cm;
+  background-position: 16.88cm 1.5cm;
+  background-repeat: no-repeat;
+}
+
+
+
+p br {
+  display: block !important;
+  margin: 0 0 !important;
+  line-height: 0.2 !important;
+  padding: 0 !important;
+  content: "";
+}
+
+p[class*=WB_SRInarrative2] br{
+  /*display:none !important;*/
+  margin: 0 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  text-align: left;
+}
+
+.keyinformationdocument.contentSection h2 {
+  font: 30pt "SourcesansproRegular";
+  color: #004fb6;
+  margin: 0 0 0;
+  padding: 1mm 2mm;
+  line-height: 1;
+}
+
+.contentSection h2 {
+  font: 14pt "SourcesansproRegular";
+  color: #004fb6;
+  margin: 0 2mm 0mm 2mm;
+  padding: 0.2cm 0 0.2mm 0;
+  border-bottom: 0 solid transparent;
+}
+
+.fundName h2 {
+  font: 18pt "SourcesansproBold";
+  color: #646464;
+  margin: 0 2mm 0mm 2mm;
+  padding: 0;
+}
+
+@page {
+  margin: 1cm 0.6cm 1cm 0.6cm;
+  /*border:1px solid ;*/
+ 
+  @top-left {
+    content: element(header);
+  }
+}
+
+.pagenumbers .footer {
+  text-align: right;
+  /*position: running(pgfooterRight);*/
+}
+.page1 > .row1{
+	position:running(pgfooterRight1);
+	/*border:1px solid red;*/
+}
+.page2 > .row1{
+	position:running(pgfooterRight2);
+}
+.page3 > .row1{
+	position:running(pgfooterRight3);
+}
+/*.page > .row1 *{
+	border:0.1px solid blue;
+}*/
+.page > .row1 * {
+  font-size: 6.5pt !important;
+}
+
+/*@page {
+  @bottom-center {
+    content: element(pgfooterRight);
+    margin-bottom: 1.8cm;
+    margin-left:-1cm;
+    width: 19cm;
+  }
+}*/
+
+.page1 .row4 .compositebody > .row .column,
+.page1 .row5 .compositebody > .row .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+.page1 .row4 .compositebody > .row .column h2,
+.page1 .row5 .compositebody > .row .column h2 {
+  column-span: all;
+  line-height: 0.7;
+}
+
+.page2 .row2 .compositebody * {
+  break-before: avoid-page;
+}
+.page2 .row2 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+.page2 .row2 .compositebody .row3 h2 {
+  column-span: all;
+}
+.page2 .row2 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 0pt solid transparent;
+}
+table th:not(.groupHeader1) {
+  color: #ffffff;
+  background: #f2f2f2;
+}
+table th:last-of-type {
+  border-right: 0 !important;
+  border-bottom: 0pt solid #ffffff;
+}
+table td:not(.rating):last-of-type {
+  border-right: 0 !important;
+  /*border-bottom: $td-bottom-border-size solid $th-border;*/
+}
+table td {
+  vertical-align: middle;
+  border-top: 0pt solid #ffffff;
+  border-right: 0.4pt solid #ffffff;
+  /*border-bottom: $td-bottom-border-size solid $td-border;*/
+  padding: 1mm 1mm;
+  margin: 0;
+  background: #e5f5f9;
+}
+table th {
+  vertical-align: middle;
+  margin: 0;
+  padding: 1mm 1mm;
+}
+
+.groupHeader1 table th {
+  padding: 1mm 1mm;
+  background: #004fb6;
+  color: #ffffff;
+  font-family: "SourcesansproBold";
+  font-weight: 700;
+  font-size: 8pt;
+  border-right: 0.4pt solid #ffffff;
+  border-bottom: 0.5pt solid #ffffff;
+}
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+.groupHeader1 table tr:last-of-type th {
+  word-wrap: anywhere;
+}
+
+.groupRow1 table td {
+  border-right: 0.4pt solid #ffffff;
+  border-bottom: 0.4pt solid #ffffff;
+  font-family: "SourcesansproRegular";
+  font-size: 8pt;
+}
+.groupRow1 table .header th {
+  font-family: "SourcesansproBold";
+  font-weight: 400 !important;
+  text-align: left;
+  border-bottom: 0.5pt solid #ffffff;
+}
+.groupRow1 table .incidentalcosts th {
+  font-family: "SourcesansproBold";
+  font-weight: 400 !important;
+  text-align: left;
+  border-bottom: 0.5pt solid #ffffff;
+}
+.groupRow1 table .ongoingcosts th {
+  font-family: "SourcesansproBold";
+  font-weight: 400 !important;
+  text-align: left;
+  border-bottom: 0.5pt solid #ffffff;
+}
+
+.performanceScenario > table {
+  border-top: 0pt solid #ffd500;
+  width: 97.5%;
+  margin: 0 0.2cm;
+}
+.performanceScenario table tr .holding-period th:last-child,
+.performanceScenario table tr .investment-amount th:last-child,
+.performanceScenario table tr .insurance-premium th:last-child {
+  text-align: left;
+}
+.performanceScenario table td.scenario {
+  font-weight: 700;
+  font-family: "SourcesansproBold";
+}
+.performanceScenario .survival-scenario {
+  border-top: 0pt;
+  border-bottom: 0pt;
+}
+.performanceScenario .survival-scenario th {
+  border-top: 0pt;
+  border-bottom: 0.5pt solid #ffffff;
+}
+.performanceScenario th[class*=period] {
+  width: 3.05cm;
+  text-align: right;
+}
+.performanceScenario td[class*=period] {
+  width: 3cm;
+  text-align: right;
+}
+
+.costOverTime {
+  padding-bottom: 0.2cm;
+}
+.costOverTime > table {
+  border-top: 0pt solid #ffd500;
+  width: 100%;
+  margin: 0 0;
+}
+.costOverTime table .tableheader {
+  display: none;
+}
+.costOverTime table th {
+  width: 4.75cm;
+}
+.costOverTime table td {
+  width: 4.75cm;
+}
+.costOverTime table td.totalcostsheader,
+.costOverTime table td.riyheader {
+  font-weight: 400;
+  font-family: "SourcesansproBold";
+}
+.costOverTime table td[class*=totalcosts],
+.costOverTime table td[class*=riy] {
+  text-align: right;
+}
+.costOverTime table td.riyheader,
+.costOverTime table td.totalcostsheader {
+  text-align: left;
+}
+.costOverTime table th[class*=scenario] {
+  text-align: right;
+}
+
+.costOverTime {
+  padding: 0 0.25cm 0.2cm 0.2cm;
+}
+.costOverTime.costovertime_4columntable.contentSection {
+  /* costovertime table fullwidth css for 4column <<<<*/
+}
+.costOverTime.costovertime_4columntable.contentSection > table {
+  width: 100% !important;
+  margin: 0;
+}
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th:first-of-type {
+  width: 25% !important;
+}
+.costOverTime.costovertime_4columntable.contentSection table tbody td.totalcostsheader {
+  width: 25% !important;
+}
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 25% !important;
+}
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+  width: 25% !important;
+}
+.costOverTime.costovertime_3columntable.contentSection {
+  /* costovertime table fullwidth css for 3column <<<<*/
+}
+.costOverTime.costovertime_3columntable.contentSection > table {
+  width: 98% !important;
+}
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th:first-of-type {
+  width: 33.4% !important;
+}
+.costOverTime.costovertime_3columntable.contentSection table tbody td.totalcostsheader {
+  width: 33.4% !important;
+}
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 33.3% !important;
+}
+.costOverTime.costovertime_3columntable.contentSection table td[class*=totalcosts] {
+  width: 33.3% !important;
+}
+.costOverTime.costovertime_2columntable.contentSection {
+  /* costovertime table fullwidth css for 2column <<<<*/
+}
+.costOverTime.costovertime_2columntable.contentSection > table {
+  width: 98% !important;
+}
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th:first-of-type {
+  width: 50% !important;
+}
+.costOverTime.costovertime_2columntable.contentSection table tbody td.totalcostsheader {
+  width: 50% !important;
+}
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 50% !important;
+}
+.costOverTime.costovertime_2columntable.contentSection table td[class*=totalcosts] {
+  width: 50% !important;
+}
+
+.costComposition {
+  padding-bottom: 0.2cm;
+}
+.costComposition > table {
+  border-top: 0pt solid #ffd500;
+  width: 97.5%;
+  margin: 0 0.2cm;
+}
+.costComposition > table table .tableHeader > th {
+  text-align: center;
+}
+.costComposition table .tableHeader {
+  /* display: none; */
+}
+.costComposition table .oneofcosts th:last-of-type {
+  width: 3.15cm;
+}
+.costComposition table td:last-of-type {
+  width: 3.1cm;
+}
+
+.sriRiskRating table,.sriRangeRiskRating table{
+  width: calc(100% - 0.4cm);
+  margin: 0.2cm;
+  border-collapse: separate;
+  border-spacing: 10pt 0pt;
+}
+.sriRiskRating table td.rating,.sriRangeRiskRating table td.rating {
+  border: 0.4pt solid #2c2a29;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 0.1cm;
+  font-size: 10pt;
+  font-family: "SourcesansproRegular";
+  color: #646464;
+}
+.sriRiskRating table td.rating.active,.sriRangeRiskRating table td.rating.active {
+  background-color: #004fb6;
+  color: #ffffff;
+}
+.sriRiskRating table td.rating.selected,.sriRangeRiskRating table td.rating.selected {
+  background-color: #004fb6;
+  color: #ffffff;
+}
+.sriRiskRating .header,.sriRangeRiskRating .header {
+  font-size: 9pt;
+  font-family: "SourcesansproRegular";
+}
+.sriRiskRating .header th:first-of-type,.sriRangeRiskRating .header th:first-of-type {
+  text-align: left;
+  padding-left: 0.3cm;
+  padding-bottom: 0.1cm;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 0.2cm 0cm;
+  background-size: 20%;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+  font-family: "SourcesansproBold";
+}
+.sriRiskRating .header th:last-of-type,.sriRangeRiskRating .header th:last-of-type {
+  text-align: right;
+  font-family: "SourcesansproBold";
+  padding-right: 0.3cm;
+  padding-bottom: 0.1cm;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 7.3cm 0cm;
+  background-size: 20%;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+}
+.sriRiskRating .arrow,.sriRangeRiskRating .arrow {
+  background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23646464;stroke-miterlimit:10;%7D .st1%7Bfill:%23646464;%7D%0A%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A") no-repeat center/98% 3mm;
+  height: 4mm;
+  margin: 0 0.2cm;
+}
+
+.sriRiskRating,.sriRangeRiskRating {
+  width: 50%;
+  margin: 0 !important;
+}
+.sriRiskRating .ratings > td,.sriRangeRiskRating .ratings > td {
+  padding: 0.2cm 0;
+  background: none;
+}
+.sriRiskRating > tbody,.sriRangeRiskRating > tbody {
+  position: relative;
+}
+.sriRiskRating > tbody .ratings > td,.sriRangeRiskRating > tbody .ratings > td {
+  border: 0;
+}
+.sriRiskRating > tbody .arrow,.sriRangeRiskRating > tbody .arrow {
+  position: absolute;
+  top: 1.2cm;
+  left: 0;
+  right: 0;
+}
+
+p.Sri ,p.SriRange{
+  width: 0;
+  height: 0;
+  margin:0;
+  padding:0;
+  position: relative;
+  /*border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent #000000 transparent;
+  margin: 20px 12px 0 0;
+  float: left;*/
+}
+p.Sri::after,p.SriRange::after {
+  content: "!";
+  font-size: 18pt;
+  font-family: "SourcesansproRegular";
+  color: #ffffff;
+  position: relative;
+  left: -6px;
+  top: 9px;
+}
+
+/* Different types of project templates prps_monthperf/ubs_kid_base/prps_pastperf/priips_base/priips_kid_base */
+h2:empty {
+  border: 0;
+}
+
+.keyinformationdocument.contentSection h2 {
+  padding-top: 3.6cm;
+  margin-top: -33px;
+  padding-left: 1mm;
+  background: url(images/aviva_white_logo.svg);
+  background-repeat: no-repeat;
+  background-size: 2.5cm 1.8cm;
+  background-position: 16.88cm 1.5cm;
+}
+.keyinformationdocument.contentSection h2::before {
+  content: "Aviva Life";
+  font: 30pt "SourcesansproBold";
+  color: #004fb6;
+  line-height: 1;
+  display: block;
+}
+
+@page :-ro-nth(1) {
+  margin: 0cm 0cm 1cm 0cm;
+    @bottom-center {
+      content: element(pgfooterRight1);
+      margin-bottom: 1cm;
+      margin-left:0cm;
+      width: 20cm;
+      /* border:1px solid yellow; */
+    }
+    @bottom-right {
+      content: counter(page);
+      margin-right:0.8cm;
+      margin-top:-0.3cm;
+      font: 7pt "SourcesansproRegular";
+      color: #2c2a29;
+      }
+   
+}
+@page :-ro-nth(2) {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  @bottom-center {
+    content: element(pgfooterRight2);
+    margin-bottom: 1cm;
+    margin-left:0cm;
+    width: 20cm;
+    /* border:1px solid yellow; */
+  }
+  @bottom-right {
+    content: counter(page);
+    margin-right:0.8cm;
+    margin-top:-0.3cm;
+    font: 7pt "SourcesansproRegular";
+    color: #2c2a29;
+    }
+  /*border:1px solid red;*/
+}
+
+
+/*.pagenumbers .footer {
+  margin-right: 0.8cm;
+}*/
+
+.page {
+  padding: 1cm 0.6cm 0.1cm 0.6cm;
+  padding-top: 0;
+  /*border:1px solid;*/
+}
+
+.page1 {
+  background: url(images/aviva_banner.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 6cm;
+  background-position: 0px 0px;
+}
+
+.Product > h2 {
+  padding-top: 0.1cm;
+  line-height: 0.7;
+}
+
+.purpose > h2 {
+  padding-top: 0.5cm;
+  line-height: 0.7;
+}
+
+.page > .row1 > .composite1 > .compositebody > .row2 > .column2 {
+  /*footer width extended to full page width*/
+  width: 100%;
+}
+/*.page > .row1 > .composite1 > .compositebody > .row2 > .column1 {
+  width: 0;
+}*/
+
+.groupHeader1 table th {
+  border-bottom: 0.4pt solid #ffffff;
+}
+
+.groupRow1 table tbody tr td {
+  border-right: 0.4pt solid #ffffff;
+  color: #2c2a29;
+}
+.groupRow1 table tbody tr:nth-child(even) td {
+  background-color: #e5f5f9;
+}
+.groupRow1 table tbody tr:nth-child(odd) td {
+  background-color: #cdebf4;
+}
+
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1 {
+  width: 100%;
+  column-count: 1;
+  column-gap: 0.15cm;
+  column-fill: balance !important;
+}
+
+.page1 .row2 > .composite1 > .compositebody > .row2 > .column1 {
+  width: 100%;
+}
+.page1 .row6 > .composite1 > .compositebody > .row2 > .column1 h2 {
+  column-span: all;
+  margin-top: 0.2cm;
+}
+
+.oneofcosts th:last-of-type {
+  text-align: left;
+}
+
+.tableborderscenarios, .costOverTime > table, .costcomposition > table,
+.costComposition > table, .performanceScenario > table {
+  border-top: 0.4pt solid #ffffff;
+  border-left: 0.4pt solid #ffffff;
+  border-right: 0.4pt solid #ffffff;
+}
+
+.performanceScenario {
+  padding-bottom: 0.2cm;
+  padding-top: 0.2cm;
+}
+.performanceScenario th[class*=period] {
+  text-align: left;
+  width: 3cm;
+}
+.performanceScenario td[class*=period] {
+  text-align: center;
+  width: 3cm;
+}
+.performanceScenario .survival-scenario {
+  border-bottom: 4pt solid #FFF;
+}
+
+.costcomposition,
+.costComposition {
+  padding-bottom: 0.2cm;
+  padding-top: 0.2cm;
+}
+.costcomposition .groupRowDiv1 > table tr td:nth-last-child(1),
+.costComposition .groupRowDiv1 > table tr td:nth-last-child(1) {
+  text-align: center;
+}
+.costcomposition table .oneofcosts th:last-of-type,
+.costComposition table .oneofcosts th:last-of-type {
+  width: 3.15cm;
+}
+.costcomposition table td:last-of-type,
+.costComposition table td:last-of-type {
+  width: 3.15cm;
+}
+.costcomposition .oneofcosts th,
+.costComposition .oneofcosts th {
+  border-bottom: 4pt solid #FFF;
+}
+
+.costOverTime table th,
+.costOverTime table td {
+  /* width: auto; */
+}
+.costOverTime .scenarioheader th[class*=scenario] {
+  text-align: left;
+}
+.costOverTime table td[class*=totalcosts],
+.costOverTime table td[class*=riy] {
+  text-align: center;
+}
+.costOverTime table td[class*=riyheader],
+.costOverTime table td[class*=totalcostsheader] {
+  text-align: left;
+  background-color: #a3d8e7 !important;
+}
+.costOverTime .scenarioheader th {
+  border-bottom: 4pt solid #FFF;
+}
+
+/*.page3 .compositebody {
+    break-inside: avoid-page;
+    break-inside: avoid;
+}*/
+h1 {
+  position: running(pageheader);
+}
+
+.groupRow1 table .header th {
+  background-color: #004fb6;
+}
+.groupRow1 table .incidentalcosts th {
+  background-color: #004fb6;
+}
+.groupRow1 table .ongoingcosts th {
+  background-color: #004fb6;
+}
+
+/*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+		background : $grey;
+}*/
+.groupRow1 .stress-return .scenario,
+.groupRow1 .stress-return .description {
+  font-weight: normal;
+}
+
+.groupRow1 .averagereturn .scenario,
+.groupRow1 .averagereturn .description {
+  font-weight: normal;
+}
+
+.groupRow1 .unfavourable-return .scenario,
+.groupRow1 .unfavourable-return .description {
+  font-weight: normal;
+}
+
+.groupRow1 .moderate-return .scenario,
+.groupRow1 .moderate-return .description {
+  font-weight: normal;
+}
+
+.groupRow1 .invest .scenario,
+.groupRow1 .invest .description {
+  font-weight: normal;
+}
+
+.groupRow1 .favourable-return .scenario,
+.groupRow1 .favourable-return .description {
+  font-weight: normal;
+}
+
+.groupRow1 .stress-return td.scenario {
+  background-color: #a3d8e7;
+}
+
+.groupRow1 .averagereturn td.scenario {
+  background-color: #a3d8e7;
+}
+
+.groupRow1 .unfavourable-return td.scenario {
+  background-color: #a3d8e7;
+}
+
+.groupRow1 .moderate-return td.scenario {
+  background-color: #a3d8e7;
+}
+
+.groupRow1 .favourable-return td.scenario {
+  background-color: #a3d8e7;
+}
+
+table tr.entrycosts td:first-child {
+  background-color: #a3d8e7 !important;
+  font-family: "SourcesansproBold";
+}
+
+table tr.portfoliotrxcosts td:first-child {
+   background-color: #a3d8e7 !important; 
+   font-family: "SourcesansproBold"; 
+}
+
+table tr.managementfeesandothercosts td:first-child {
+  background-color: #a3d8e7 !important;
+  font-family: "SourcesansproBold";
+}
+
+table tr.transactioncosts td:first-child {
+  background-color: #a3d8e7 !important;
+  font-family: "SourcesansproBold";
+}
+
+table tr.performancefees td:first-child {
+  background-color: #a3d8e7 !important;
+  font-family: "SourcesansproBold";
+}
+
+/*.page1>.row6 {
+    break-after: always !important;
+}*/
+/*.page2>.row2>.composite1>.compositebody *,
+.page3>.row2>.composite1>.compositebody * {
+    break-before: avoid-page;
+}
+*/
+/*srirangerisk*/
+.sriRiskRating table,
+.sriRangeRiskRating table {
+  width: 100%;
+  margin: 0cm 0cm 0 0cm;
+  border-collapse: collapse;
+  border-spacing: 3pt 0pt;
+}
+.sriRiskRating table td.rating,
+.sriRangeRiskRating table td.rating {
+  border: 0.4pt solid #2c2a29;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 0cm 0.55cm;
+  font-size: 10pt;
+  font-family: "SourcesansproBold";
+  color: #646464;
+}
+.sriRiskRating table td.rating.active,
+.sriRangeRiskRating table td.rating.active {
+  background-color: #004fb6;
+  color: #ffffff;
+  border: 0.4pt solid #2c2a29;
+}
+.sriRiskRating table td.rating.selected,
+.sriRangeRiskRating table td.rating.selected {
+  background-color: #004fb6;
+  color: #ffffff;
+  border: 0.4pt solid #2c2a29;
+  border-left-color: #004fb6;
+  border-right-color: #004fb6;
+}
+.sriRiskRating table td.rating.start.selected,
+.sriRangeRiskRating table td.rating.start.selected {
+  border: 0.4pt solid #2c2a29;
+  border-left-color: #004fb6;
+  border-right-color: #004fb6;
+}
+.sriRiskRating table td.rating.end.selected,
+.sriRangeRiskRating table td.rating.end.selected {
+  border: 0.4pt solid #2c2a29;
+  border-left-color: #004fb6;
+  border-right-color: #004fb6;
+}
+.sriRiskRating .header,
+.sriRangeRiskRating .header {
+  font-size: 9pt;
+  font-family: "SourcesansproRegular";
+  position: absolute;
+  margin-top: -2cm;
+  width: 9.2cm;
+  /* border: 1pt solid;*/
+}
+.sriRiskRating .header th:first-of-type,
+.sriRangeRiskRating .header th:first-of-type {
+  text-align: left;
+  display: inline;
+  float: left;
+  width: 40%;
+  padding-left: 3px;
+  padding-bottom: 0cm;
+  /*border: 1pt solid;*/
+  color: #2c2a29;
+  padding-top: 0;
+  font-family: "SourcesansproBold";
+}
+.sriRiskRating .header th:last-of-type,
+.sriRangeRiskRating .header th:last-of-type {
+  display: inline;
+  text-align: right;
+  font-family: "SourcesansproBold";
+  padding-right: 0px;
+  float: right;
+  width: 40%;
+  padding-bottom: 0cm;
+  color: #2c2a29;
+  /*border: 1pt solid;*/
+  padding-top: 0;
+}
+.sriRiskRating .arrow,
+.sriRangeRiskRating .arrow {
+  background: url(images/aviva_arrow.svg);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 2mm;
+  width: 100.5%;
+  margin: -1.3cm 0.5cm 0px -0cm;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.sriRiskRating .arrow > td,
+.sriRangeRiskRating .arrow > td {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  height: 10px;
+}
+.sriRiskRating + p:empty,
+.sriRangeRiskRating + p:empty {
+  padding: 0;
+  margin: 0;
+}
+
+
+.WB_SRInarrative2_1, .WB_SRInarrative2_4{
+  background: url(images/Aviva_warning.svg);
+  background-size: 1.5cm 1.4cm;
+  background-position: 97% 0.2cm;
+  width: 76.5%;
+  min-height: 58px;
+  height: auto;
+  padding: 5px 69px 5px 8px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+p.Sri,p.SriRange {
+  border: none;
+  margin: 0;
+  float: none;
+  width: initial;
+  height: initial;
+}
+
+.sriRiskRating tbody > tr > td,
+.sriRangeRiskRating tbody > tr > td {
+  background: none;
+}
+.sriRiskRating .header th:last-of-type,
+.sriRiskRating .header th:first-of-type,
+.sriRangeRiskRating .header th:last-of-type,
+.sriRangeRiskRating .header th:first-of-type {
+  font: 9pt "SourcesansproBold";
+}
+.sriRiskRating table td.rating,
+.sriRangeRiskRating table td.rating {
+  width: 1.4cm;
+  height: 1cm;
+}
+
+table.sriRiskRating th:not(.groupHeader1),
+table.sriRangeRiskRating th:not(.groupHeader1) {
+  background: none;
+}
+
+.sriRiskRating,
+.sriRangeRiskRating {
+  break-inside: avoid;
+  margin-left: 0.2cm;
+  margin-top: 1cm;
+}
+
+.page2 .row2 .compositebody * {
+  break-before: auto;
+}
+
+.pf-list-style{
+  margin:0;
+  font:9pt "SourcesansproRegular";
+}
+.text > p:empty{
+  padding:0;
+  margin:0;
+}
+/*.WB_SRInarrative2_28 > span{
+  margin:0;
+  padding:0;
+  height:0;
+  color:#000 !important;
+}
+.WB_SRInarrative2_28 > span br{
+  display:none;
+}
+*/
+
+/*.page1>.row6>.composite1>.compositebody>.row2>.column1>.row5 {
+    break-before: avoid;
+}*/
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row4 {
+  width: 52%;
+  float: left;
+  margin-left: 0.35cm;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row5 {
+  width: 0%;
+  float: left;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row7 .narrative p:first-child {
+  float: right;
+  width: 37%;
+  border: 0.4pt solid #2c2a29;
+  margin-top: -2.5cm;
+}
+@page:-ro-nth(3) {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+
+  @bottom-center {
+    content: element(pgfooterRight3);
+    margin-bottom: 3cm;
+    margin-left: 0cm;
+    width: 20cm;
+    /* border:1px solid yellow; */
+  }
+  @bottom-right {
+    content: counter(page);
+    margin-right:0.8cm;
+    margin-top:-0.8cm;
+    font: 7pt "SourcesansproRegular";
+    color: #2c2a29;
+    }
+
+}
+.page3 > .row1,.page3 > .row1 *{
+  break-inside:avoid;
+}
+/*page 2 floating code*/
+/*
+  .performanceScenario.performancescenariotable {
+    page-break-inside:auto !important;
+}
+*/
+/* .page{
+  border:1px solid red;
+} */
+.page3 .pagenumbers .footer{
+  /* border:1px solid green; */
+  margin-right:0.5cm;
+}
+.pagenumbers .WB_Footer_3,.pagenumbers .WB_Footer_7,.pagenumbers .WB_Footer_11{
+ display:none;
+}
+.page .footer > p{
+  display:none;
+}
+body > div.section.page.page3::after {
+  content: "";
+  width: 2.2cm;
+  height: 1.8cm;
+  right: 1.2cm;
+  display: inline-block;
+  position: absolute;
+  bottom: 0cm;
+  background: url(images/Aviva_white_logo.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 0px;
+}
+/*duplicate footer commented as per 256736 nov 11 comment*/
+/*Theme name:AvivaUK_moptheme_202209_UK*/
+/*# sourceMappingURL=map/theme.css.map */

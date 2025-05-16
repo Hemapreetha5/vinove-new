@@ -1,0 +1,811 @@
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+:root {
+  --font-family: "ZurichSans";
+  --fw-light: 300;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --black: #000000;
+  --primary-blue: rgb(0, 23, 156);
+  --arrow-color: rgb(25, 133, 255);
+}
+
+body {
+  color: var(--primary-blue);
+}
+
+p {
+  font-family: var(--font-family);
+  font-weight: var(--fw-light);
+  color: inherit;
+}
+
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-size: 9pt;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  margin: 0cm 0 0.2cm 0;
+  padding: 0.19cm 0 0cm 0;
+}
+
+/*.sectiontitle{
+	 margin: 0.5cm 0 0 0;
+}*/
+p,
+.description {
+  font-size: 9pt;
+  font-family: var(--font-family);
+  color: inherit;
+  margin: 0 0 0 0;
+  padding: 0;
+  line-height: 1;
+  text-align: left;
+}
+
+.narrative p.WB_HowlongshouldIholdit_1,
+.narrative p.WB_HowlongshouldIholdit_2,
+.narrative p.WB_HowlongshouldIholdit_3,
+.narrative p.WB_HowlongshouldIholdit_4 {
+  background-color: #bebebe;
+  padding: 0.05cm;
+  color: #ffffff;
+  margin-bottom: 0.2cm;
+}
+
+p[class*=WB_HowlongshouldIholdit] b,
+.narrative p.WB_HowlongshouldIholdit_4 {
+  font-family: "frutigerbold";
+}
+
+.narrative p.WB_HowlongshouldIholdit_4,
+.narrative p.WB_HowlongshouldIholdit_1 {
+  padding: 0.15cm 0 0 0.1cm;
+}
+
+.subheader p,
+.subheader p[class*=WB_SRInarrative2_] b {
+  font-size: 9pt;
+  font-weight: var(--fw-medium);
+}
+
+.subheader p[class*=WB_SRInarrative2_] b,
+.narrative p[class*=WB_SRInarrative2_] b {
+  font-weight: bold;
+  display: inline;
+}
+
+.header1 p,
+.header2 p {
+  font: 9pt "frutigerbold";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 9pt "frutigerregular";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.complexitywarning > p {
+  font-weight: bold;
+}
+
+.narrative b,
+.whataretheriskscontinued p b {
+  width: 100%;
+  display: block;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-height: inherit !important;
+  text-align: left;
+}
+
+.HowlongshouldIholditandcanItakemoneyoutearly b {
+  display: block;
+  line-height: 1;
+  padding-bottom: 0.2cm;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+.page1 {
+  padding: 3.2cm 0 0 0;
+  background: url(images/ubs_semibold.jpg);
+  background-size: 2.9cm 1cm;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.contentSection h2 {
+  border-top: 0.8pt solid #000000;
+  font-size: 9pt;
+  font-family: var(--font-family);
+  font-weight: var(--fw-medium);
+}
+
+.contentSection h2:empty {
+  border-top: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.keyinformationdocument h2 {
+  font-size: 25pt;
+  font-family: var(--font-family);
+  margin: 1.4mm 0 0 0;
+  padding: 0cm 0;
+}
+
+.fundName h2 {
+  font: 25pt "frutigerbold";
+  color: slategray;
+  margin: 1.4mm 0 0 0;
+  padding: 0;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+@page {
+  margin: 1cm 1.5cm 0.8cm 1.5cm;
+  padding: 0cm;
+}
+@page :-ro-nth(1) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.5cm;
+    padding: 0 0 0cm;
+  }
+}
+@page :-ro-nth(2) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0 0cm;
+  }
+}
+@page :-ro-nth(3) {
+  padding: 0cm;
+  margin-bottom: 2cm;
+  @bottom-left {
+    background-color: transparent;
+    background-image: url(images/ubs_semibold.jpg);
+    background-size: 2.9cm 1cm;
+    width: 100%;
+    height: 1cm;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0cm;
+  }
+}
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+@page :-ro-last {}
+.Pagination {
+  display: none;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column1 {
+  width: 21% !important;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column1 .Product_SubHeader > p:empty,
+.page1 > .row4 > .composite > .compositebody > .row3 > .column2 .Product_Value p:empty {
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column1 .Product_SubHeader p {
+  height: 0.7cm;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column1 .Product_SubHeader > p {
+  margin-bottom: 0;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column2 .Product_Value p {
+  height: 0.7cm;
+  /* border: 1px solid; */
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column2 .Product_Value > p {
+  margin-bottom: 0;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row3 > .column2 {
+  width: 79% !important;
+}
+
+.page1 .row4 .compositebody > .row .column,
+.page1 .row5 .compositebody > .row .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+.page1 .row4 .compositebody > .row .column h2,
+.page1 .row5 .compositebody > .row .column h2 {
+  column-span: all;
+}
+
+.page1 > .row5 > .composite > .compositebody .column1 > .row1 > .sectiontitle > h2 {
+  margin-top: 0 !important;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.groupHeader1 table th {
+  padding: 1mm;
+  background: transparent;
+  text-align: left;
+  color: #000000;
+  border: 0.5pt solid #000000;
+  font-family: "frutigerbold";
+  font-weight: 400 !important;
+  page-break-inside: avoid;
+  border-right-color: transparent;
+  border-left-color: transparent;
+}
+
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+
+table tr.invest:last-of-type td,
+.costovertimetable table tr.row:last-of-type td,
+.costComposition table tr.performancefees td {
+  border-bottom: 0.5pt solid #000000;
+}
+
+.groupRow1 table td {
+  border: 0.5pt dotted #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  font-family: "frutigerregular";
+  text-align: left;
+  line-height: 1;
+  /*test*/
+  color: #231F20;
+  padding: 2mm 1mm 1mm 1mm;
+}
+
+.groupRow1 table .header {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.groupRow1 table .header th {
+  font-family: "frutigerbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+
+.groupRow1 table .incidentalcosts {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.groupRow1 table .incidentalcosts th {
+  font-family: "frutigerbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+
+.groupRow1 table .ongoingcosts {
+  border: 0.5pt solid #000000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.groupRow1 table .ongoingcosts th {
+  font-family: "frutigerbold";
+  font-weight: 400 !important;
+  text-align: left;
+  padding: 1mm;
+}
+
+.performanceScenario > table:first-of-type {
+  margin: 0.1cm 0 0.25cm 0;
+}
+
+.performanceScenario .survival-scenario th {
+  border-top: 0;
+}
+
+.performanceScenario th[class*=period] {
+  width: 3.05cm;
+}
+
+.performanceScenario td[class*=period] {
+  width: 3cm;
+}
+
+.costOverTime > table:first-of-type {
+  margin: 0.1cm 0 0.5cm 0;
+}
+
+.costOverTime table .tableheader {
+  display: none;
+}
+
+.costOverTime table th {
+  width: 4.75cm;
+}
+
+.costOverTime table td {
+  width: 4.75cm;
+}
+
+.costComposition > table:first-of-type {
+  margin: 0.1cm 0 0.25cm 0;
+}
+
+.costComposition table .tableHeader {
+  display: none;
+}
+
+.costComposition table .oneofcosts th {
+  width: 3.5cm;
+}
+
+.costComposition table .oneofcosts th:last-of-type {
+  /*width: 20%;*/
+  padding-right: 0;
+}
+
+.costComposition table td:last-of-type {
+  /*width: 3.15cm;*/
+  text-align: left;
+}
+
+.costComposition tr.oneofcosts th:first-of-type {
+  /*width:80%;*/
+}
+
+table .entrycosts td:last-of-type,
+table .exitcosts td:last-of-type,
+table .managementfeesandothercosts td:last-of-type,
+table .transactioncosts td:last-of-type,
+table .incidentalcosts td:last-of-type,
+table .performancefees td:last-of-type {
+  width: 3.15cm;
+  padding-left: 0;
+  padding-right: 0.3cm;
+}
+
+.sriRiskRating table {
+  width: calc(100% - 0.4cm);
+  margin: 0.6cm 0.2cm 0.05cm 0.2cm;
+}
+
+.sriRiskRating table td.rating {
+  border: 1pt solid #bebebe;
+  text-align: center;
+  padding: 0.1cm;
+  font-size: 16pt;
+  font-family: "frutigerbold";
+}
+
+.sriRiskRating table td.rating.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.sriRiskRating table td.rating.selected {
+  background-color: #bebebe;
+  color: #ffffff;
+}
+
+.sriRiskRating .header {
+  font-size: 9.5pt;
+  font-family: "frutigerbold";
+  margin-top: 0.5cm;
+}
+
+.sriRiskRating .header th:first-of-type {
+  text-align: left;
+  padding-left: 0.3cm;
+  line-height: 1.3;
+  padding-bottom: 0.3cm;
+  padding-top: 0.1cm;
+  font-weight: 700;
+}
+
+.sriRiskRating .header th:last-of-type {
+  text-align: right;
+  padding-right: 0.3cm;
+  line-height: 1.3;
+  padding-bottom: 0.3cm;
+  padding-top: 0.1cm;
+  font-weight: 700;
+}
+
+.sriRiskRating .arrow {
+  background: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23E95326;stroke-miterlimit:10;%7D .st1%7Bfill:%23E95326;%7D%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center/96% 3mm;
+  height: 4mm;
+  margin: 0 0.2cm;
+}
+
+.sriRiskRating > tbody {
+  position: relative;
+}
+
+.sriRiskRating > tbody .ratings > td {
+  padding-top: 0cm;
+}
+
+.sriRiskRating > tbody .arrow {
+  height: 0.25cm;
+  top: -2.1mm;
+  left: 0;
+  right: 0;
+}
+
+p.Sri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent #bebebe transparent;
+  margin: 20px 12px 0 0;
+  float: left;
+}
+
+p.Sri:after {
+  content: "!";
+  font-size: 25pt;
+  font-family: "frutigerregular";
+  color: #ffffff;
+  position: relative;
+  left: -6px;
+  top: 18px;
+}
+
+.SRIdescription:after {
+  content: "Risk indicator";
+  font-weight: 700;
+  font-family: "frutigerbold";
+}
+
+.page1 > .row1 > .column1 {
+  width: 100%;
+}
+
+.sriRiskRating {
+  width: 50%;
+  margin-bottom: 0mm;
+}
+
+.page3 .compositebody {
+  break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1 > .groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+  border-bottom: 0px;
+}
+
+/*.page3 > .row3 > .composite > .compositebody > .row2 > .sectiontitle > h2 {
+  border-top: 0px;
+}*/
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1 {
+  width: 100%;
+}
+
+.page1 > .row4 > .composite > .compositebody > .row4 > .text1 p[class*=WB_GeneralInformation_]:empty {
+  padding: 0;
+  margin: 0;
+}
+
+.subheader p[class*=WB_Whatisthisproduct_],
+.subheader p[class*=WB_SRInarrative2_] {
+  font: 9pt "frutigerregular";
+  line-height: 1;
+}
+
+.subheader p[class*=WB_WhatAreTheCosts_] {
+  font: 9pt "frutigerbold";
+  margin-bottom: 1mm;
+  line-height: 1;
+}
+
+/*.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader > p.WB_GeneralInformation_3,
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader > p.WB_GeneralInformation_5{
+	height:0.5cm;
+}
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value > p.WB_GeneralInformation_4,
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value > p.WB_GeneralInformation_6{
+	height:0.5cm;
+}*/
+.contentSection.purpose h2 {
+  border-top: 0.8pt solid #fff;
+}
+
+.section .contentSection.keyinformationdocument h2 {
+  border: none;
+  margin-bottom: 3mm;
+}
+
+.page2 .row2 .compositebody .row2 .sectiontitle h2,
+.costovertimetable h2,
+.costComposition h2 {
+  border: 0;
+  font-size: 9pt;
+  font-family: "frutigerbold" !important;
+  padding: 0 0 0.2cm;
+  margin: 0cm 0 0 0;
+}
+
+.page2 > .row2 > .composite1 > .compositebody *,
+.page3 > .row2 > .composite1 > .compositebody * {
+  break-before: avoid-page;
+}
+
+.performanceScenario table tr.header.holding-period th:first-child {
+  font-family: "frutigerregular" !important;
+  padding-top: 0.2cm;
+  padding-bottom: 0;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+  background-color: transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn + .invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td,
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+  background-color: transparent;
+  /* font-weight: 700 !important; */
+  font-family: "frutigerbold" !important;
+}
+
+.performanceScenario table td.description {
+  color: #000000;
+}
+
+table tr[class*=-return] td,
+tr.minimum .scenario {
+  font-family: "frutigerbold" !important;
+}
+
+.Whatisthisproduct > b,
+.subheader p[class*=WB_Whatisthisproduct_] {
+  font-size: 9pt;
+  font-weight: var(--fw-medium);
+  font-family: var(--font-family);
+  margin: 0 0 1mm 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5 {
+  font-weight: var(--fw-medium);
+}
+
+.Whatisthisproduct > br {
+  content: "";
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.costOverTime.costovertime_4columntable.contentSection {
+  /* costovertime table fullwidth css for 4column <<<<*/
+}
+
+.costOverTime.costovertime_4columntable.contentSection > table {
+  width: 100% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th:first-of-type {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table tbody td.totalcostsheader {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+  width: 25% !important;
+}
+
+.costComposition table .entrycosts td,
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts],
+.performanceScenario table tbody tr.minimum td {
+  border-top: 0.5pt solid #000000;
+}
+
+.costOverTime.costovertime_3columntable.contentSection {
+  /* costovertime table fullwidth css for 3column <<<<*/
+}
+
+.costOverTime.costovertime_3columntable.contentSection > table {
+  width: 98% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th:first-of-type {
+  width: 33.4% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table tbody td.totalcostsheader {
+  width: 33.4% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 33.3% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection table td[class*=totalcosts] {
+  width: 33.3% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection {
+  /* costovertime table fullwidth css for 2column <<<<*/
+}
+
+.costOverTime.costovertime_2columntable.contentSection > table {
+  width: 98% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th:first-of-type {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table tbody td.totalcostsheader {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario] {
+  width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table td[class*=totalcosts] {
+  width: 50% !important;
+}
+
+.subheader p.WB_Whataretherisks_1 {
+  font: 9pt "frutigerregular" !important;
+  line-height: 1;
+}
+
+@media only screen {
+  .page {
+    width: 18cm;
+  }
+}
+.performanceScenario table tr.header.holding-period th:last-child {
+  padding-top: 0.2cm;
+}
+
+.costComposition tr.oneofcosts th,
+.groupRow1 table .ongoingcosts th,
+.groupRow1 table .incidentalcosts th {
+  background: #B0B0B0;
+}
+
+.costComposition table .entrycosts td {
+  border-top-color: #ccc;
+}
+
+.narrative p:last-of-type,
+.page1 > .row4 > .composite > .compositebody > .row4 > .text1 p[class*=WB_GeneralInformation_]:last-of-type {
+  padding-bottom: 0.15cm;
+}
+
+/*# sourceMappingURL=map/theme.css.map */
+/*UBS_KID_publifund_standard_theme*/
+/*Zurich_K*/
+
+/*# sourceMappingURL=theme.css.map */

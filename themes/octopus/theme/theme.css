@@ -1,0 +1,531 @@
+:root {
+  --table-header-color: #00b5de;
+  --td-bg: #d0ecf6;
+  --table-border-color: #ffffff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  line-height: 12pt;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-size: 9.5pt;
+  color: #1B073A;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  margin: 0;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+table th {
+  font-weight: bold;
+  color: #1B073A;
+}
+
+h2 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+b {
+  font-weight: normal;
+}
+
+.clear {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/*PDF Reactor v11 migration changes<<<*/
+/*PDF Reactor v11 migration changes>>>*/
+@page {
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 8pt "Arial";
+    margin-right: 1cm;
+    margin-bottom: 0.5cm;
+  }
+}
+@page :first {
+  margin-top: 0;
+}
+/*page 1 starts*/
+.page1 {
+  position: relative;
+  padding: 3cm 1cm 0 1cm;
+  width: 19cm;
+  height: auto;
+}
+
+.page2,
+.page3 {
+  position: relative;
+  padding: 0 1cm 0 1cm;
+  width: 19cm;
+  height: auto;
+}
+
+/*.page2 > .row1, .page3 > .row1{
+	border-top: 1pt solid #888;
+	padding-top:0.5cm;
+}*/
+.contentSection h2 {
+  font-weight: normal;
+  margin-bottom: 0.2cm;
+  padding: 0px;
+  font-size: 12pt;
+  color: #1B073A;
+}
+
+.SRIMop b,
+.MOPText b {
+  font-weight: normal;
+}
+
+.contentSection,
+.composite {
+  margin: 0 0 0.4cm 0;
+  padding: 0.4cm;
+  background-color: #e9fbfe;
+}
+
+.contentSection ol {
+  margin-bottom: 0;
+}
+
+.composite .contentSection {
+  padding: 0;
+}
+
+.complexitywarning {
+  /*	background-color:#FF0000;*/
+  padding: 0.2cm;
+  margin-bottom: 0.4cm;
+  text-align: center;
+}
+
+.complexitywarning p {
+  font-weight: bold;
+  font-size: 12pt;
+  /*	color: #FFF;*/
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.compositeheader {
+  padding: 0;
+  margin: 0;
+}
+
+.page1 > .row1 > .column1 {
+  float: left;
+  width: 100%;
+}
+
+.section .contentSection.keyinformationdocument {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.page1 > .row1 > .column1 .keyinformationdocument h2 {
+  font-weight: normal;
+  font-size: 26pt;
+  color: #1B073A;
+  border-bottom: 1pt solid #1B073A;
+  line-height: 45pt;
+  padding: 0;
+  margin-bottom: 0.3cm;
+  position: relative;
+  top: -0.2cm;
+}
+
+.page1 > .row1 > .column1 .keyinformationdocument h2 + p {
+  font-size: 12pt;
+  line-height: 16pt;
+  font-weight: normal;
+}
+
+.IssuedOnDate {
+  padding: 0.2cm 0;
+  text-align: right;
+}
+
+.sriRangeRiskRating,
+.sriRiskRating {
+  width: 100%;
+}
+
+.sriRangeRiskRating .ratings > td,
+.sriRiskRating .ratings > td {
+  padding: 5px 0;
+}
+
+.sriRangeRiskRating .rating,
+.sriRiskRating .rating {
+  background-color: #bdf3fc;
+  border: 20pt solid #e9fbfe;
+  border-top: 0pt solid #000000;
+  border-bottom: 0pt solid #000000;
+  text-align: center;
+}
+
+.sriRangeRiskRating .rating.selected.start,
+.sriRiskRating .rating.selected.start {
+  border-left: 0.5pt solid #000000;
+}
+
+.sriRangeRiskRating .rating.selected.end,
+.sriRiskRating .rating.selected.end {
+  border-right: 0.5pt solid #000000;
+}
+
+.sriRangeRiskRating .rating.selected,
+.sriRiskRating .rating.selected {
+  background-color: #39dbf6;
+  border-top: 0pt solid #000000;
+  border-bottom: 0pt solid #000000;
+  color: #1B073A;
+  font-weight: bold;
+  height: 25px;
+  font-size: 18px;
+}
+
+.sriRiskRating .rating.selected {
+  border: 0pt solid #000000;
+}
+
+.sriRangeRiskRating .arrow td,
+.sriRiskRating .arrow td {
+  padding: 0;
+  height: 1cm;
+  background: url(images/arrow-high-tow.svg) no-repeat center center transparent;
+  background-size: 16.9cm auto;
+}
+
+.sriRangeRiskRating .header th:first-child,
+.sriRangeRiskRating .description td:first-child,
+.sriRiskRating .header th:first-child,
+.sriRiskRating .description td:first-child {
+  /*    text-align: center;
+  background-image:url(images/less_risk.svg);
+  background-repeat:no-repeat;
+  background-position:0 50%;
+  background-size:20%;*/
+  padding-left: 0.7cm;
+}
+
+.sriRangeRiskRating .header th:last-child,
+.sriRangeRiskRating .description td:last-child,
+.sriRiskRating .header th:last-child,
+.sriRiskRating .description td:last-child {
+  /*    text-align: center;
+  background-image:url(images/high_risk.svg);
+  background-repeat:no-repeat;
+  background-position:100% 50%;
+  background-size:20%;*/
+  padding-right: 0.7cm;
+}
+
+.costOverTime p b,
+.WhatAreTheCosts p b {
+  font-weight: normal;
+}
+
+.costovertimetable,
+.performanceScenario table {
+  text-align: right;
+  border-bottom: 0.5pt solid #ffffff;
+  margin-bottom: 0.3cm;
+}
+
+.costovertimetable th,
+.performanceScenario table th {
+  text-align: center;
+  border-left: 1px solid #ffffff;
+}
+
+.costovertimetable td {
+  background-color: #ffffff;
+}
+
+.costovertimetable .scenarioheader,
+.performanceScenario table .scenarios {
+  border-top: 0.5pt solid #ffffff;
+  border-bottom: 0.5pt solid #ffffff;
+  background-color: #00b5de;
+}
+
+.costovertimetable .investmentheader th:first-child,
+.costovertimetable .scenarios:first-child,
+.costovertimetable .totalcostsheader:first-child,
+.costovertimetable .riyheader:first-child,
+.performanceScenario table th:first-child {
+  text-align: left;
+}
+
+.costovertimetable .investmentheader th,
+.costComposition th {
+  padding: 5px 0;
+}
+
+.costComposition table td,
+.performanceScenario table td {
+  border-top: 0.5pt solid #ffffff;
+  background-color: #d0ecf6;
+}
+
+.costComposition table .groupRow1,
+.performanceScenario table .groupRow1 {
+  border-top: 0;
+}
+
+.performanceScenario table td,
+.costovertimetable td {
+  border-right: 0.5pt solid #ffffff;
+  border-bottom: 0.5pt solid #ffffff;
+}
+
+.performanceScenario table td:last-child,
+.costovertimetable td:last-child {
+  border-right: 0;
+}
+
+.performanceScenario table .scenario {
+  font-weight: normal;
+}
+
+.WhatarethecostscontComposite {
+  page-break-inside: avoid;
+}
+
+.costComposition .subcategory {
+  width: 20%;
+}
+
+.costComposition .category {
+  width: 12%;
+}
+
+.costComposition .costs {
+  width: 11%;
+}
+
+.costComposition table .category,
+.costComposition table .subcategory,
+.costComposition table .costs {
+  border-right: 0.5pt solid #ffffff;
+}
+
+.costComposition th,
+.costComposition .category,
+.costComposition .subcategory {
+  font-weight: normal;
+}
+
+.totalcostsheader,
+.riyheader,
+.category,
+.subcategory {
+  font-weight: normal;
+}
+
+.pagenumbers {
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  position: fixed;
+  right: 1cm;
+  bottom: 1cm;
+  display: none;
+}
+
+.performanceScenario table th span,
+.perfscenarios table th span {
+  display: block;
+}
+
+.performanceScenario .period1,
+.performanceScenario .period2,
+.performanceScenario .period3,
+.perfscenarios .period1,
+.perfscenarios .period2,
+.perfscenarios .period3 {
+  width: 15%;
+}
+
+.performanceScenario table td:empty,
+.perfscenarios table td:empty {
+  display: none;
+}
+
+.costovertimetable tr.row td {
+  background-color: #d0ecf6;
+}
+
+.costovertimetable tr.row:nth-of-type(2n) td {
+  background-color: #d0ecf6;
+}
+
+.groupRow1,
+.groupHeader1,
+.investment {
+  padding: 0;
+}
+
+.investment {
+  padding-bottom: 5px;
+}
+
+.groupRowDiv1 .row td {
+  border: 0.5pt solid var(--table-border-color);
+  background-color: var(--td-bg);
+}
+.groupRowDiv1 .row td:nth-of-type(1) {
+  border-left: 0;
+}
+.groupRowDiv1 .row td:last-of-type {
+  border-right: 0;
+}
+.groupRowDiv1 .row td:nth-of-type(n+2) {
+  text-align: right;
+}
+
+.WhatarethecostsCompositeheader,
+.WhatarethecostscontCompositeheader {
+  display: none;
+}
+
+.WhatarethecostscontHeader {
+  margin-bottom: 0;
+}
+
+.costOverTime > table th,
+.costOverTime > table td {
+  font-size: 9.5pt;
+}
+.costOverTime > table th:nth-of-type(n+2),
+.costOverTime > table td:nth-of-type(n+2) {
+  width: 26%;
+}
+
+.investment,
+.scenarios {
+  text-align: left;
+}
+
+.scenarioheader {
+  background-color: var(--table-header-color);
+}
+.scenarioheader th {
+  border: 0.5pt solid var(--table-border-color);
+  border-bottom: 0;
+}
+
+.generalinformation h2,
+.generalinformation p {
+  color: #1B073A;
+}
+
+.GeneralInfo,
+.Whatisthisproduct,
+.SRIdescription,
+.risktext .Sri,
+.narrative,
+.SRInarrative2,
+.InvestmentAmount-Rhp,
+p.item2,
+div.description,
+.Whathappensif,
+.compositionofcosts p,
+.HowlongshouldIholditandcanItakemoneyoutearly,
+.howcanicomplain,
+.otherrelevantinformation p,
+.RelInfo {
+  font-size: 11px;
+}
+
+.contentSection.text.text1 p,
+.contentSection.costOverTime div,
+.contentSection.costComposition p {
+  font-size: 11px;
+}
+
+.header.investment th {
+  border: 0 !important;
+  padding-left: 0;
+}
+
+b {
+  font-weight: bold;
+}
+
+div.ClientLogo {
+  position: absolute;
+  background-size: 21cm auto;
+  width: 21cm;
+  top: 0;
+  left: 0;
+}
+
+p.ClientLogo {
+  /* width: 7cm; */
+  /* height: 1.8cm; */
+  /* margin: 0 0 0 0.7cm; */
+  width: 100%;
+  background: #fff;
+  margin: -0.4cm;
+  padding: 0.4cm;
+  text-align: right;
+  position: relative;
+}
+
+p.ClientLogo img {
+  width: 4.5cm;
+  border: 0;
+  position: absolute;
+  right: 2cm;
+  top: 1cm;
+}
+
+/*OctopusPRIIP_II*/
+
+/*# sourceMappingURL=theme.css.map */

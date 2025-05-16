@@ -1,0 +1,95 @@
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    // display:contents;
+}
+
+.groupHeader1 table {
+    th {
+        padding: 1mm 1mm;
+        ;
+        background: $thBg;
+        color: $thColor;
+        border: 0.5pt solid $thBorder;
+        // font-family: $fontSemiBold;
+        page-break-inside: avoid;
+        font-size: map-get($font-size, 'small');
+        font-weight: map-get($font-weight, 'bold') !important;
+
+        &:first-of-type {
+            text-align: left;
+        }
+    }
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+    td {
+        border: 0.5pt solid $tdBorder;
+        // font-family: $fontRegular;
+    }
+
+    @each $item in $rowheader {
+        #{$item} {
+            border: 0.5pt solid $tdBorder;
+
+            th {
+                font-family: $fontSemiBold;
+                font-weight: map-get($font-weight, 'normal') !important;
+                text-align: left;
+            }
+        }
+    }
+}
+
+.with_performance_table {
+    height: 328px;
+}
+
+// performanceScenario 
+.performancetable {
+    table tr {
+        // .groupRowDiv1 table tbody tr:first-child {
+        //     td {
+        //         border: 0;
+        //     }
+        // }
+
+        th {
+            // width: 8%;
+            text-align: center;
+            vertical-align: middle;
+            // border-left-color: transparent;
+            // border-right-color: transparent;
+        }
+
+        td {
+            // width: 8%;
+            text-align: center;
+            vertical-align: middle;
+            // font-size: map-get($font-size, 'micro') !important;
+            // border-left-color: transparent;
+            // border-right-color: transparent;
+        }
+
+        // td.keycell {
+        //     width: 5%;
+        // }
+
+        // th.keycell {
+        //     width: 5%;
+        // }
+
+    }
+
+}

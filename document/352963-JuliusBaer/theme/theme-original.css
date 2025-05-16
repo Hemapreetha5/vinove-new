@@ -1,0 +1,757 @@
+/* @font-face {
+	font-family: Friends Life Dagny Bold;
+	src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+    src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"), 
+	url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+} */
+@font-face {
+  font-family: "Verlang Office";
+  src: url("./images/VerlagOffice-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Verlang Office";
+  src: url("./images/VerlagOffice-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root {
+  --Julius-Baer-Blue: #001489;
+  --Julius-Baer-Stone: #efeee5;
+  --Julius-Baer-Persian-Blue: #00c9b6;
+  --Julius-Baer-Mulberry-Purple: #560aa3;
+  --Julius-Baer-Forest-Green: #00d758;
+  --white: #fff;
+  --black: #000;
+  --FontFamilyRegular: "Verlang Office";
+  --FontFamilyBold: "Verlang Office";
+}
+
+.page {
+  position: relative;
+  width: 18cm;
+  /* height: 24.7cm; */
+  height: 27.7cm;
+  /* height: auto; */
+  /* padding:12.5mm 20mm 8mm; */
+}
+
+.page1 .row {
+  margin-bottom: 0.17cm;
+}
+
+.row {
+  /* margin-bottom: 0.1cm;  */
+  margin-bottom: 0.15cm;
+}
+
+.column > .section {
+  margin-left: 0.5cm;
+}
+
+.column:first-child > .section {
+  margin-left: 0;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.25cm;
+}
+
+p.ObjectiveText {
+  margin-bottom: 0;
+}
+
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+
+.cler {
+  font-size: 24pt;
+}
+
+.reportheader {
+  font-size: 34pt;
+  color: rgb(253, 226, 17);
+  padding-left: 0.5cm;
+}
+
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+
+.compositepadding {
+  padding-left: 1cm;
+  background-color: rgb(138, 216, 216);
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+  background-color: rgb(138, 216, 216);
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: 0.5cm;
+}
+
+.esgdata {
+  background-color: rgb(167, 179, 179);
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm;
+}
+
+.FooterCSS .column1 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column2 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column3 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column5 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column4 {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+
+footer {
+  position: running(footerIdentifier);
+}
+
+@page {
+  padding: 12.5mm 15mm 8mm;
+  position: relative;
+
+  @bottom-left {
+    content: element(footerIdentifier);
+  }
+}
+
+.compositefooter {
+  width: 20cm;
+  padding: 0;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 0;
+  z-index: 1;
+  font-size: 7.5pt;
+}
+
+.compositefooter .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.compositefooter .content:before {
+  content: "";
+  width: 1px;
+  height: 100px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: -3px;
+}
+
+/* @page:first {
+
+@bottom-left {
+content: "";
+}
+} */
+.FooterCSS {
+  width: 20cm;
+
+  padding: 0px 0px 0px 4px;
+
+  position: absolute;
+
+  bottom: 0.3cm;
+
+  left: 0;
+
+  z-index: 1;
+
+  border-top: 0.5px solid #909090;
+
+  font-size: 7.5pt;
+}
+
+.FooterCSS .content {
+  margin-right: 0cm;
+
+  position: relative;
+
+  overflow: visible;
+}
+
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+  height: 23px;
+}
+
+.FooterCSS .content:before {
+  content: "";
+
+  width: 1px;
+
+  height: 60px;
+
+  background-color: #a7a5a6;
+
+  position: absolute;
+
+  top: 0;
+
+  left: 1px;
+}
+
+.EsgCoverPageImage {
+  width: 100%;
+}
+
+.EsgCoverPage {
+  width: 100%;
+}
+
+h1 {
+  font: bold 13pt/14pt var(--FontFamilyBold);
+  text-transform: uppercase;
+}
+
+.titleheader h2 {
+  /* font: 300 13pt/14pt var(--FontFamilyBold); */
+  /* font:bold 30pt/13mm var(--FontFamilyBold); */
+  /* font:bold 24pt/13mm var(--FontFamilyBold); */
+  font: normal 23pt/25pt var(--FontFamilyRegular);
+  /* text-transform: uppercase; */
+  color: var(--Julius-Baer-Blue);
+}
+
+h3 {
+  font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+  text-transform: uppercase;
+  color: var(--Julius-Baer-Blue);
+}
+
+h4 {
+  font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+  color: var(--Julius-Baer-Blue);
+}
+
+h5 {
+  font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+  color: var(--black);
+}
+
+h2 {
+  /* font: bold 10pt/4mm var(--FontFamilyBold); */
+  /* font: normal 10pt/4mm var(--FontFamilyRegular); */
+  font: normal 9pt/4mm var(--FontFamilyRegular);
+  text-transform: none;
+  color: var(--Julius-Baer-Blue);
+  margin: 0 0 5px 0;
+}
+
+.fundoverview h2 {
+  font: normal 10pt/4mm var(--FontFamilyRegular);
+}
+
+.breakdown h2 {
+  margin: 0 0 -5px;
+}
+
+.breakdown {
+  margin: 0 0 10px 0;
+}
+
+.page2 > .row2,
+.page2 > .row2 .row,
+.page2 > .row3,
+.page2 > .row3 .row,
+.page2 > .row4,
+.page2 > .row4 .row {
+  margin-bottom: 0;
+}
+
+.pdfperformancechart {
+  /* margin-bottom: -14px; */
+}
+
+.objective .item2 {
+  color: var(--Julius-Baer-Blue);
+  margin-bottom: 0.1cm;
+}
+
+body {
+  font: 300 8.5pt/9.5pt var(--FontFamilyRegular);
+  color: var(--black);
+}
+
+.page1 {
+  background-image: url("./images/logo-image.png");
+  background-repeat: no-repeat;
+  background-size: 38mm auto;
+  background-position: top 9mm center;
+}
+
+/* .page2,.page3{
+    page-break-before: always;
+} */
+.page1 > .row1.row.section {
+  /* padding-top: 33.297mm;  */
+  padding-bottom: 10mm;
+}
+
+.logo {
+  height: auto !important;
+  width: auto !important;
+}
+
+.page > .row1.row.section .DocumentDate {
+  text-align: right;
+}
+
+.page > .row1 > .column1 {
+  width: 75% !important;
+}
+
+.page > .row1 > .column2 {
+  width: 25% !important;
+}
+
+.page > .row1 > .column1 .text1 p {
+  margin-bottom: 0.05cm;
+  font-size: 8pt;
+}
+
+.page1 > .row3.row.section .titleheader p.item3,
+.page1 > .row3.row.section .titleheader p.item4 {
+  width: 50%;
+  float: left;
+  /* margin-bottom:0.1cm; */
+  margin-bottom: 0.3cm;
+}
+
+.page1 > .row3.row.section .titleheader p.item4 {
+  text-align: right;
+  font-size: 11.5pt;
+}
+
+.page1 > .row3.row.section .titleheader p {
+  color: var(--Julius-Baer-Blue);
+  font-size: 10pt;
+}
+
+.page1 > .row3.row.section .titleheader p:empty {
+  margin-bottom: 0;
+}
+
+.page > .row1 p {
+  color: var(--Julius-Baer-Blue);
+  font-size: 11pt;
+}
+
+.titleheader h2 {
+  margin-bottom: 0.25cm;
+}
+
+.manager .Photo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  object-fit: cover;
+  position: absolute;
+  bottom: -6px;
+  right: 0;
+  z-index: 9;
+}
+
+.manager {
+  padding-right: 10px;
+  position: relative;
+  width: 33.3%;
+}
+
+.manager:nth-child(3n) {
+  padding-right: 0;
+}
+
+.manager .Photo {
+  width: 100%;
+  border-bottom: 0.25pt solid var(--Julius-Baer-Blue);
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+  min-height: 30px;
+}
+
+.row1 > .fundManagers > div {
+  display: flex;
+}
+
+.fundoverview h2 {
+  margin-bottom: 0.1cm;
+}
+
+.fundManagers h2 {
+  margin-bottom: 0.05cm;
+}
+
+.fundManagers .manager .Name {
+  color: var(--Julius-Baer-Blue);
+  padding-top: 3px;
+}
+
+.manager .StartDate {
+  padding-top: 0;
+}
+
+.ManagerType.field {
+  padding-top: 11px;
+}
+
+.ManagerType.field,
+.manager .StartDate {
+  font-size: 6.5pt;
+  line-height: 1mm;
+}
+
+.keyfacts > div,
+.statistics > div,
+.top10holdings table tbody tr,
+.characteristics > div,
+.currencyalloc table > tbody > tr {
+  border-top: 0.25pt solid var(--black);
+}
+
+.top10holdings table tbody tr.total,
+.currencyalloc table > tbody > tr.total {
+  border-bottom: 0.25pt solid var(--black);
+}
+
+.top10holdings table tbody tr th,
+.top10holdings table tbody tr td {
+  text-align: left;
+  padding: 0.5mm;
+}
+
+.keyfacts > div.clear {
+  /* border-top: none; */
+}
+
+/* .page1 .row4 > .column1 > .row3,.page1 .row4 > .column1 > .row4{
+    padding: 10px;
+    background-color: var(--Julius-Baer-Stone);  
+} */
+/* .pdfperformancechart {
+    padding: 10px;
+    background-color: var(--white);
+} */
+.pdfperformancechart .keyContainer .key-color {
+  width: 4mm;
+  height: 2mm;
+  margin-right: 3px;
+}
+
+.pdfperformancechart .keyContainer .label {
+  line-height: 2mm;
+  font-size: 7pt;
+}
+
+.pdfperformancechart .keyWrapper .keyContainer {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 10px;
+}
+
+.pdfperformancechart .keyWrapper {
+  text-align: center;
+  padding-top: 3px;
+}
+
+.page1 .pdfperformancechart .highcharts-container,
+.page1 .chart,
+.page1 .discreteChart {
+  /* height: 90px !important; */
+  /* height: 130px !important; */
+  height: 200px !important;
+}
+
+.performancetable td.rowheader {
+  /* background: var(--Julius-Baer-Stone); */
+  /* width: 2.3cm; */
+  width: 2cm;
+}
+
+.performancetable td,
+.performancetable th {
+  padding: 0.85mm 1mm;
+}
+
+/* .performancetable tbody tr:first-child{
+    border-bottom:none;
+} */
+.performancetable tbody tr:first-child {
+  /* border-top: 0.25pt solid var(--black); */
+}
+
+.performancetable tbody tr {
+  border-bottom: 0.25pt solid var(--black);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.horizontal-list span:first-child {
+  font-weight: normal;
+}
+
+.pgnumber {
+  position: absolute;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  z-index: 9;
+}
+
+.bottomcaveat {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  z-index: 9;
+}
+
+.bottomcaveat p {
+  /* font: 300 7pt/8pt var(--FontFamilyRegular); */
+  /* font: 300 8pt/9pt var(--FontFamilyRegular); */
+  /* font: 300 10pt/12pt var(--FontFamilyRegular); */
+  font: 300 10pt/10pt var(--FontFamilyRegular);
+  color: var(--black);
+  margin: 0;
+}
+
+.bottomcaveat p b {
+  font-weight: 700 !important;
+}
+
+.pgnumber p {
+  font: 300 8.5pt/9pt var(--FontFamilyRegular);
+  color: var(--black);
+  margin: 0;
+}
+
+.page1 > .row3.row.section {
+  margin-bottom: 0;
+}
+
+.pdfperformancechart1 h2,
+.performancetable1 h2 {
+  margin: 0 0 10px;
+  border-bottom: none;
+  /* padding-bottom: 5px; */
+  margin: 0 0 4px;
+}
+
+.highcharts-axis-labels text,
+.highcharts-axis-labels span,
+.highcharts-axis-labels text div,
+.highcharts-axis-labels span div {
+  /* font: 300 9pt/4mm var(--FontFamilyRegular) !important; */
+  font: 300 6.5pt/4mm var(--FontFamilyRegular) !important;
+  color: var(--black) !important;
+  font-size: 6.5pt !important;
+}
+
+table th {
+  font: bold 8pt/9pt var(--FontFamilyBold);
+}
+
+table td {
+  font: 300 8pt/9pt var(--FontFamilyRegular);
+}
+
+table td,
+table th,
+.characteristics > div > span,
+.statistics > div > span,
+.keyfacts > div > span {
+  /* padding: 1mm 0.5mm; */
+  padding: 0.85mm 0.5mm;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.cumperftable table th {
+  line-height: 9pt;
+}
+
+.performancetable1 table th,
+.performancetable1 table td {
+  color: var(--black);
+  text-align: center;
+}
+
+.performancetable1 table th {
+  font-weight: normal;
+  color: var(--Julius-Baer-Blue);
+}
+
+.top10holdings th {
+  font-weight: normal;
+}
+
+table,
+.horizontal-list div {
+  width: 100%;
+}
+
+.label {
+  margin-left: 0;
+}
+
+.top10holdings table tbody tr th:last-child,
+.top10holdings table tbody tr td:last-child,
+.currencyalloc tr td:last-child {
+  width: 75px;
+  text-align: right;
+}
+
+.horizontal-list1.characteristics {
+  margin-bottom: 0.25cm;
+  padding-right: 15px;
+}
+
+/* .top10holdings table tbody tr td:last-child,.currencyalloc tr td:last-child {
+    background: var(--Julius-Baer-Stone);
+} */
+.currencyalloc tr td:last-child {
+  background: var(--Julius-Baer-Stone);
+  /* color: var(--white); */
+}
+
+.highcharts-container text {
+  font-family: var(--FontFamilyRegular) !important;
+}
+
+.StartDate .label {
+  margin-right: 3px;
+}
+
+.page1 > .row4 > .column2 .horizontal-list span:last-child {
+  /* width: 75px; */
+  text-align: right;
+  width: 30%;
+  overflow-wrap: break-word;
+}
+
+.legalinfo p {
+  text-align: left;
+  width: 100%;
+  column-count: 2;
+  column-gap: 0.5cm;
+  height: 25cm;
+  column-fill: auto;
+}
+
+.breakdown .footer {
+  margin: -20px 0 0 0;
+}
+
+.page1 > .row3.row.section .titleheader p.ShareClassExtension {
+  text-align: right;
+  top: 25px;
+  position: relative;
+  margin: 0;
+  z-index: 9;
+  line-height: 10.8pt;
+  font-size: 12pt;
+}
+
+.page1 > .row4 > .column1 .fundoverview h2,
+.page1 > .row4 > .column2 .fundoverview h2,
+.top10holdings h2,
+.page2 h2,
+.page3 .legalinfo h2 {
+  font-size: 12pt;
+  line-height: 5mm;
+}
+
+.page1 > .row3.row.section .titleheader p.item5 + p {
+  width: 54%;
+}
+
+.page1 > .row3.row.section .titleheader p.MainFund {
+  margin-bottom: 0;
+}
+
+.pdfperformancechart {
+  padding: 8px;
+  background-color: var(--Julius-Baer-Stone);
+}
+
+.page1 > .row4 > .column2 > .row {
+  margin-bottom: 0.3cm;
+}
+
+.page1 > .row4 > .column2 > .row:last-child {
+  margin-bottom: 0.1cm;
+}
+
+.page2 > .row2,
+.page2 > .row3 {
+  margin-bottom: 0.3cm;
+}
+
+/* JuliusBaer */

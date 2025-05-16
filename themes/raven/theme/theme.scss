@@ -1,0 +1,789 @@
+// @font-face {
+//     font-family: Friends Life Dagny Bold;
+//     src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+//     src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"),
+//         url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+// }
+
+:root {
+    --primary-red: rgb(215, 38, 48);
+    --black: #000000;
+    --white: #ffffff;
+    --performance-th-bg: #f0c5b5;
+    --font-family: sans-serif;
+    --fw-light: 300;
+    --fw-book: 400;
+    --fw-semi-bold: 600;
+    // book bookitalic light medium semibold - StagSans
+    --table-cell-padding: 0.15cm 0.1cm;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--black);
+    font-size: 7pt;
+    font-weight: var(--fw-book);
+}
+
+.highcharts-axis-labels {
+    text {
+        font-size: 6pt !important;
+    }
+}
+
+.highcharts-yaxis-labels {
+    position: relative;
+    top: -2pt;
+}
+
+@page {
+    margin: 1cm 1.4cm 1cm 1.4cm;
+
+    @bottom-center {
+        content: element(FooterCompositebody);
+    }
+
+    @footnote {
+        border-top: 0;
+    }
+}
+
+
+
+.page {
+    position: relative;
+    width: 18.2cm; //21cm
+    height: 24.7; // 24.7cm;
+    padding: 0;
+
+    .FooterCompositebody {
+        position: running(FooterCompositebody);
+    }
+
+
+
+}
+
+.page1 {
+
+
+    >.row1 {
+        margin-bottom: 0;
+    }
+
+    >.row3,
+    >.row5 {
+        display: flex;
+        gap: 0.5cm;
+
+        >.clear {
+            display: none;
+        }
+
+        .column>.section {
+            margin-left: 0;
+        }
+    }
+
+    >.row5 {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+
+
+        >.column {
+            width: auto;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+    }
+
+    // display: none;
+    // page-break-inside: auto;
+    // break-inside: auto;
+    >.row6 {
+        margin-bottom: .2cm;
+    }
+}
+
+.page2 {
+    // page-break-before: avoid;
+
+    // display: flex;
+    // flex-direction: column;
+
+    // display: none;
+    // >.row1 {
+    //     flex: 1;
+
+
+    // }
+
+    >.row2 {
+        // float: footnote;
+        margin-bottom: 0;
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        >.column2 {
+            img {
+                max-width: 2cm;
+            }
+
+            .OtherStickerWB {
+
+
+                img {
+                    max-width: 1.5cm;
+                }
+            }
+
+            // >.row1 {
+            //     float: footnote;
+            //     width: 50%;
+            // }
+        }
+    }
+
+    >.row3 {
+        margin-bottom: 0;
+
+    }
+
+    h2 {
+        margin-bottom: .1cm;
+    }
+}
+
+.PlatformAvailabilityComposite {
+    background-color: #cccccc;
+    padding: 6pt 9pt;
+
+    h2 {
+        color: var(--black);
+        text-transform: capitalize;
+        border: 0;
+    }
+}
+
+.clientRating {
+    max-width: 150px;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.DynamicPlannerWB {
+    .clientRating {
+        width: 4cm;
+    }
+}
+
+.DefaqtoWB {
+    img {
+        width: 2cm;
+    }
+}
+
+.FinancialPromotionWarning {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: .1cm;
+}
+
+.Page2Compositebody {
+    float: footnote;
+
+
+
+    >.row2 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: .1cm;
+        place-items: center;
+
+
+        >.column2 {
+
+            .row,
+            p {
+                margin: 0;
+            }
+
+
+        }
+    }
+
+    >.row3 {
+        // display: none;
+
+        @extend .PlatformAvailabilityComposite;
+
+        >.row2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .1cm;
+
+            .row {
+                margin-left: auto;
+            }
+        }
+    }
+
+    >.row5 {
+        display: none;
+    }
+
+    &::footnote-call {
+        font-size: 0;
+    }
+
+    &::footnote-marker {
+        display: none;
+
+    }
+}
+
+.OtherStickerWB {
+    margin-bottom: 0;
+}
+
+
+
+.row {
+    margin-bottom: 0.2cm;
+}
+
+.column>.section {
+    margin-left: 0.5cm;
+}
+
+.column:first-child>.section {
+    margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    // color: #3399FF;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 0.1cm;
+}
+
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+// .page>.row1 h2 {
+// font-size: 24pt;
+// padding-left: 3cm;
+// min-height: 2cm;
+// background-image: url('./Images/logo.png');
+// background-repeat: no-repeat;
+// margin-bottom: 0.5cm;
+// }
+
+.page1>.row2>.column2>.section {
+    background-color: #efefef;
+    border-radius: 0.25cm;
+    padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+
+.tabs.breakdowns>.tabpanes {
+    border: none;
+}
+
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+    padding-bottom: 20px;
+}
+
+.tabs.breakdowns>.tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+
+.tabs.breakdowns>.tabbuttons>.tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+
+.cler {
+    font-size: 24pt;
+}
+
+.reportheader {
+    font-size: 34pt;
+    color: rgb(253, 226, 17);
+    padding-left: 0.5cm;
+}
+
+.headerbackground {
+    background-color: rgb(138, 216, 216);
+    height: 10cm;
+    background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bottomrightheaderpage {
+    margin-top: 10cm;
+}
+
+.compositepadding {
+    padding-left: 1cm;
+    background-color: rgb(138, 216, 216);
+    margin-left: 1cm;
+    margin-right: 1cm;
+    padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+    background-color: rgb(138, 216, 216);
+    padding-top: 7cm;
+    font-size: 34pt;
+    padding-bottom: .5cm;
+}
+
+.esgdata {
+    background-color: rgb(167, 179, 179);
+    padding-top: 4cm;
+    font-size: 34pt;
+    padding-bottom: 3cm
+}
+
+.HeaderCompositebody {
+    text-align: center;
+    border-top: 1px solid var(--primary-red);
+    padding-top: .25cm;
+
+    >.row {
+        margin-bottom: 0.2cm;
+    }
+
+    .RangeWB,
+    .NameWB {
+        font-weight: var(--fw-light);
+        margin-bottom: 0;
+    }
+
+    .RangeWB {
+        color: var(--primary-red);
+        font-size: 36px;
+    }
+
+    .NameWB {
+        font-size: 28pt;
+    }
+}
+
+
+
+.logo1 {
+    width: 365.67px;
+    display: inline-block;
+    background: url(./images/RAVENSCROFT_MASTER_LOGO_RGB_1795_BLACK_SEPTEMBER_2018.jpg) center center no-repeat;
+    background-size: contain;
+
+}
+
+h2 {
+    font-size: 10pt;
+    border-top: 1px solid var(--primary-red);
+    border-bottom: 1px solid var(--primary-red);
+    color: var(--primary-red);
+    padding: 0.05cm 0;
+
+    span {
+        font-size: 9pt;
+        font-weight: var(--fw-book);
+    }
+}
+
+.DiscretePerformanceTable {
+    >h2 {
+        display: none;
+    }
+}
+
+@mixin note {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+.AimsAndObjectives {
+    @include note();
+    padding: 6pt 9pt;
+
+    h2 {
+        color: inherit;
+        font-size: 13px;
+        font-weight: var(--fw-semi-bold);
+        padding: 0;
+    }
+
+    .ObjectiveText {
+        margin: .1cm 0;
+    }
+}
+
+.FinancialPromotionWarning {
+    p {
+        @include note();
+        font-size: 12px;
+        text-align: center;
+        padding: .2cm 0;
+    }
+}
+
+.page1>.row3>.column1> {
+    .row1>.breakdown1 .chart {
+        width: 157px;
+    }
+
+    .row2 {
+        // margin-bottom: 0;
+    }
+
+}
+
+.breakdown1 {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        align-self: stretch;
+    }
+
+
+
+    thead {
+        .Weight {
+            color: var(--black);
+        }
+    }
+
+    tbody {
+
+
+        tr {
+            position: relative;
+        }
+    }
+
+    .Key {
+        position: relative;
+        right: -26px;
+
+    }
+
+    .Weight {
+
+        width: 22px;
+        height: 22px;
+        z-index: 0;
+        position: relative;
+        text-align: center;
+        color: var(--white);
+        font-weight: var(--fw-semi-bold);
+    }
+
+    .Name {
+        text-align: left;
+        width: 110px;
+    }
+
+}
+
+.label {
+    line-height: 3mm;
+    margin-left: 0;
+}
+
+.DiscretePerformanceTableHeader {
+    h2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    p:empty {
+        display: none;
+    }
+}
+
+.PerformanceChart {
+    .chart {
+        height: 170px;
+    }
+
+    --label-dimension: 3mm;
+
+    .keyContainer {
+        height: var(--label-dimension);
+    }
+
+    .key-color {
+        width: var(--label-dimension);
+        height: var(--label-dimension);
+    }
+
+    .label {
+        line-height: var(--label-dimension);
+        margin-left: 3pt;
+    }
+
+}
+
+.CommentaryWB {
+    padding-bottom: .01cm;
+
+    ~p {
+        text-align: justify;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.performancetable1 {
+    >table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        color: var(--primary-red);
+    }
+
+    th,
+    .rowheader {
+        background-color: var(--performance-th-bg);
+
+    }
+
+    th,
+    td {
+        border: 1px solid var(--black);
+        font-size: 8pt;
+        line-height: 18px;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .rowheader {
+        text-align: left;
+        padding-left: 2pt;
+    }
+}
+
+.CumulativePerformanceTable {
+    h2 {
+        margin-bottom: 0.2cm;
+    }
+}
+
+@mixin page2table {
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    tr {
+        &:nth-child(odd) {
+            background-color: #e4e4e4;
+        }
+
+        border-bottom: 1px solid var(--black);
+    }
+
+    td {
+        font-size: 8pt;
+        padding: var(--table-cell-padding);
+
+        &:not(:first-child) {
+            text-align: center;
+
+        }
+    }
+}
+
+.AnnualCharge {
+    width: 50px;
+}
+
+.MinimumSingleInvestment {
+    width: 70px;
+}
+
+
+
+.Top10Holdings {
+    th {
+        height: 23px;
+    }
+
+    margin-bottom: .2cm
+}
+
+.Classesbody,
+.Top10Holdings {
+    @include page2table();
+
+    tr:first-child {
+        @include note();
+    }
+
+    th {
+        border: 1px solid var(--primary-red);
+
+    }
+
+    +.footer {
+        margin-top: 0.1cm;
+    }
+}
+
+.DividendSection {
+    @include page2table();
+    position: relative;
+    top: -0.1cm;
+
+    h2 {
+        display: none;
+    }
+
+    tr:first-child {
+        border-top: 1px solid var(--black);
+    }
+
+    th {
+        font-size: 8pt;
+    }
+
+    td {
+        padding: .15cm .1cm;
+
+
+    }
+}
+
+.DividendSectionHeader {
+    h2 {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+.DataAsAtDate {
+    display: flex;
+
+    &::after {
+        content: counter(page);
+        width: 2cm;
+        text-align: center;
+    }
+}
+
+.FooterCompositebody {
+    border-top: 1px solid var(--primary-red);
+    padding-top: 8pt;
+    text-transform: uppercase;
+    font-size: 8pt;
+
+    >.row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .clear {
+        display: none;
+    }
+
+    .NameWB {
+        span {
+            color: var(--primary-red);
+        }
+    }
+}
+
+
+
+
+
+.DisclaimerText {
+
+    // float: footnote;
+
+    // ::footnote-marker,
+    // ::footnote-call {
+    //     display: none
+    // }
+
+    p {
+        @include note();
+        padding: 6pt 9pt;
+        margin-top: .2cm;
+        margin-bottom: .2cm;
+    }
+}
+
+.DisclaimerCompositebody {
+    >.row {
+        margin-bottom: 0;
+    }
+}
+
+
+.FundDetails {
+    >div {
+        display: grid;
+        grid-template-columns: 2.5cm 1fr;
+
+        &:last-child {
+            margin-bottom: .1cm;
+        }
+    }
+}
+
+.KeyParties {
+    >div {
+        display: grid;
+        grid-template-columns: 2cm 1fr;
+    }
+}
+
+.KeyPartiesCaveat {
+    font-style: italic;
+}
+
+
+/*Theme name: Ravenscroft */

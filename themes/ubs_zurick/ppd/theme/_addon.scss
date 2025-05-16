@@ -1,0 +1,113 @@
+:root {
+	--font-family: 'ZurichSans';
+	--fw-light: 300;
+	//--fw-normal: 400;
+	--fw-medium: 500;
+	--fw-bold: 700;
+	--black: #000000;
+	--primary-blue: rgb(0, 23, 156);
+	//--h2-color: var(--primary-blue);
+	--arrow-color: rgb(25, 133, 255);
+	--table-border: .5pt solid var(--black);
+	--h2-border: 0.01cm solid var(--black);
+}
+
+
+body {
+	color: var(--primary-blue);
+}
+
+p,
+th {
+	font-family: var(--font-family);
+	font-weight: var(--fw-light);
+	color: inherit;
+	text-align: justify;
+}
+
+td {
+	font-weight: var(--fw-light);
+}
+
+p:empty {
+	display: none;
+}
+
+.page1 {
+
+	padding-top: 0;
+
+	>.row1 .contentSection h2 {
+		font-size: 25pt;
+		font-weight: var(--fw-medium);
+		border: none;
+		padding: 0;
+		margin-bottom: 2mm;
+		margin-top: 0;
+	}
+}
+
+.TextSection {
+	p {
+		&:last-of-type {
+			padding-bottom: 0.15cm;
+		}
+	}
+}
+
+.WB_Issuedondate {
+	padding-bottom: 0.15cm;
+}
+
+.contentSection h2 {
+	color: inherit;
+	font: var(--fw-medium) 9pt var(--font-family);
+	margin: 0cm 0 0.2cm 0;
+	padding: 0.19cm 0 0cm 0;
+}
+
+.SyntheticHistoryPerformanceCaveat {
+	margin-bottom: 7.5px;
+}
+
+.material-change-event-icon {
+	color: #7cb5ec;
+}
+
+.groupHeader1 {
+	table {
+		th {
+			color: var(--primary-blue);
+		}
+
+
+	}
+}
+
+.groupRow1 {
+	table {
+
+
+		td {
+			font-family: var(--font-family);
+			border: var(--table-border);
+		}
+	}
+}
+
+.groupHeader1,
+.groupRow1 {
+	table {
+
+		th,
+		td {
+			&:nth-of-type(n+1) {
+				width: 40px;
+			}
+		}
+	}
+}
+
+/* UBS_PPD_publifund_standard_theme */
+
+/* Theme name Zurich_P */

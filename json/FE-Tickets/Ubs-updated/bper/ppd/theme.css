@@ -1,0 +1,395 @@
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+/*NOt used for logo position in this template, please use $logoDirection*/
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+@font-face {
+  font-family: "frutigerlightregular";
+  src: url("images/Frutiger 45 Light Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutigerlightbold";
+  src: url("images/Frutiger 45 Light Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  font: 8.5pt "frutigerlightregular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h2:empty {
+  display: none;
+}
+
+ul li {
+  list-style: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font: 14pt "frutigerlightbold";
+  color: #1B1B1B;
+  margin: 1.4mm 0 0 0;
+  padding: 1.4mm 0 0.3cm 0;
+}
+
+/*p{
+   @include paraAlingments(true);
+ }
+ */
+p,
+.description {
+  font: 8pt "frutigerlightregular";
+  color: #231F20;
+  margin: 0 0 0.2cm 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.subheader p {
+  font: 8.5pt "frutigerlightbold";
+  color: #231F20;
+}
+
+.header1 p,
+.header2 p {
+  font: 14pt "frutigerlightbold";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 14pt "frutigerlightregular";
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+.page1 {
+  padding: 1.8cm 0 0 0;
+  background: url(images/ubs_bper.png);
+  background-size: 138.667px auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.contentSection h2 {
+  border-top: 0.01cm solid #000000;
+  font: 8.5pt "frutigerlightbold";
+}
+
+.page1 .row2 .contentSection .item3 {
+  text-align: left;
+}
+.page1 .row4 > .composite > .compositebody > .row2 .contentSection .item3 {
+  font-weight: 700 !important;
+  width: 95%;
+  text-align: left;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font: 25pt "frutigerlightregular";
+  color: #000000;
+  margin: 1.4mm 0 0 0;
+  border-top: 0px !important;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 {
+    width: 69%;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column2 {
+  width: 29% !important;
+  padding-left: 7px;
+}
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+@page {
+  /*border:1px solid;*/
+  margin: 1cm 1.6cm 0.8cm 1.6cm;
+  padding: 0cm;
+}
+@page :-ro-nth(1) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.5cm;
+    padding: 0 0 0cm;
+  }
+}
+@page :-ro-nth(2) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0 0cm;
+  }
+}
+@page :-ro-nth(3) {
+  padding: 0cm;
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0cm;
+  }
+}
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination {
+  display: none;
+}
+
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 {
+  width: 69% !important;
+  height: auto;
+}
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 .row2 {
+  margin-top: 0.4cm;
+}
+.page1 .row4 > .composite1 .compositebody > .row3 .column2 {
+  width: 25% !important;
+  background: #bebebe;
+  padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+  margin-left: 7px;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.groupHeader1 table th {
+  padding: 1mm 1mm;
+  background: transparent;
+  color: #000000;
+  border: 0.5pt solid #000000;
+  page-break-inside: avoid;
+  font-size: 9pt;
+  font-weight: 700 !important;
+}
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+
+.groupRow1 table td {
+  border: 0.5pt solid #000000;
+}
+.groupRow1 table .header {
+  border: 0.5pt solid #000000;
+}
+.groupRow1 table .header th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+}
+.groupRow1 table .incidentalcosts {
+  border: 0.5pt solid #000000;
+}
+.groupRow1 table .incidentalcosts th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+}
+.groupRow1 table .ongoingcosts {
+  border: 0.5pt solid #000000;
+}
+.groupRow1 table .ongoingcosts th {
+  font-family: "frutigerlightbold";
+  font-weight: 400 !important;
+  text-align: left;
+}
+
+.with_performance_table {
+  height: 328px;
+}
+
+.performancetable table tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+.performancetable table tr td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 8pt;
+}
+.performancetable > table tr> td.rowheader, .performancetable > table tr> th.rowheader {
+    padding-left: 3px;
+    text-align: left;
+    width: 7% !important;
+}
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+:root {
+  --fw-light: 300;
+  --fw-normal: 300;
+  --fw-bold: bold;
+  --h2-color: #5b504b;
+  --black: #000000;
+  --table-border: .5pt solid var(--black);
+  --h2-border: 0.01cm solid var(--black);
+  --ff-light-bold: "frutigerlightbold";
+  --ff-light-regular: "frutigerlightregular";
+}
+
+body {
+  font-size: 9pt;
+  font-family: var(--ff-light-regular);
+}
+
+h2 {
+  font-size: 9pt;
+  margin: 0cm 0 0.2cm 0;
+  padding: 0.19cm 0 0cm 0;
+  font-family: var(--ff-light-bold);
+}
+
+p {
+  text-align: justify;
+}
+p:empty {
+  display: none;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font-size: 24pt;
+  font-family: "UBSHeadline";
+}
+
+.contentSection h2 {
+  color: var(--h2-color);
+  font-size: 9pt;
+}
+
+.SyntheticHistoryPerformanceCaveat {
+  margin-bottom: 7.5px;
+}
+
+.material-change-event-icon {
+  color: #7cb5ec;
+}
+
+.groupRow1 table td {
+  font-family: var(--ff-light-regular);
+  border: var(--table-border);
+}
+
+.groupHeader1 table th:nth-of-type(n+1),
+.groupHeader1 table td:nth-of-type(n+1),
+.groupRow1 table th:nth-of-type(n+1),
+.groupRow1 table td:nth-of-type(n+1) {
+  width: 25px;
+}
+.groupHeader1 table tr:last-of-type th {
+    word-wrap: anywhere;
+}
+/* UBS_PPD_publifund_standard_theme */
+/* Theme name BPER_P */
+
+/*# sourceMappingURL=theme.css.map */

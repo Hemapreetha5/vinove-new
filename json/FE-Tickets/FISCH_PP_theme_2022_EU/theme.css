@@ -1,0 +1,380 @@
+:root{
+	--primary: #00ACE9;
+	--secondary: #083074;
+	--red: #E40038;
+	--black:#000000;
+	--white: #FFFFFF;
+	--header:var(--white);
+	--headerbg:rgb(8,48,116);
+	--parabg:rgb(241, 242, 242);
+	--border: #6F7072;
+	--tableborder: #b3abab;
+	--tableheaderborder:var(--white);
+	--tableheaderbg:rgb(237,237,237);
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: rgb(237,237,237);
+	--ratingborder: var(--white);
+	--ratingselected: var(--primary);
+	--bodycolor:var(--secondary);
+	--bodyfont:8pt;
+	--lineheight: 1.1;
+	--footerfont:6.5pt;
+	--footerlnheight:1;
+	--headerbottomspace:0.3cm;
+	--h2:14pt;
+	--h3:10pt;
+	--fontRegular:Calibri;
+	--fontLight:Calibri;
+	--fontBold:Calibri;
+	--fontSemiBold:Calibri;
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontLight);
+	font-size: var(--bodyfont);
+	font-weight:normal;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+table th {
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight: 100;
+	text-align: left;
+	page-break-inside: avoid;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+}
+table td {
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+}
+h2 {
+	background: var(--headerbg);
+    font-family: var(--fontBold);
+    font-weight: bold;
+    margin-bottom: 0.2cm;
+    padding: 1mm;
+    font-size: var(--bodyfont);
+    color: var(--header);
+    border-bottom: 0pt solid var(--primary);
+}
+p:empty, h2:empty {
+	margin: 0;
+	padding:0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+table th:empty {
+	padding: 0;
+}
+table th.tableheader {
+	border: 0;
+}
+p {
+	padding: 0 0 1mm;
+}
+b {
+	
+}
+h2 {
+  bookmark-level: 1;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.subheader p {
+  bookmark-level: 2;
+}
+/* page styles*/
+.page {
+	position: relative;
+	padding: 0cm 1.25cm 0 1.25cm;
+	width: 18.5cm;
+    height: auto;
+}
+.page1 {
+	background: url(Images/fisch_logo.svg);
+	background-size: 6.27cm 0.47cm;
+	background-position: 1.2cm 0.8cm;
+	background-repeat: no-repeat;
+	padding-top: 1.5cm;
+}
+
+.page > .row > .composite1 > .compositebody > .row > .column {
+	float: left;
+    width: 50%;
+}
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1, 
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 {
+	column-count: 2;
+	column-gap: 0.5cm;
+	column-fill: balance;
+	margin-bottom: 1mm;
+}
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1 > .row1,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row1 {
+	column-span: all;
+}
+.keyinformationdocument h2 {
+	background: none;
+	color: var(--secondary);
+	font-size: var(--h2);
+	padding: 0 0 1mm;
+}
+.contentSection > table {
+	margin: 0.2cm 0;
+}
+	/* .page1 > .row4 .compositebody > .row3,
+	.page1 > .row4 .compositebody > .row4,
+	p[class*='WB_GeneralInformation']:nth-child(2n+1),
+	p[class*='WB_GeneralInformation']:nth-child(2n+2) {
+		display: inline-block;
+		width: 21%;
+		margin-right: 1%;
+		vertical-align: top;
+	} */
+.page1 > .row4 .compositebody > .row4,
+p[class*='WB_GeneralInformation']:nth-child(2n+2) {
+    width: 78%;
+	margin-right: 0;
+}
+.WB_GeneralInformation_2, .WB_GeneralInformation_3, .WB_GeneralInformation_23 {
+	width: auto !important;
+}
+p[class*='WB_GeneralInformation'] {
+	padding-bottom: 1mm;
+	line-height: 1;
+}
+.WB_GeneralInformation_23 {
+	margin: 2mm 0;
+}
+.WB_GeneralInformation_3 {
+	font-weight: 700;
+}
+p[class*='WB_Whatisthisproduct'] {
+	padding-bottom: 0.5mm;
+}
+.sriRiskRating, .sriRangeRiskRating {
+	width: 100%;
+	margin-top: 0.2cm !important;
+	position: relative;
+}
+.sriRiskRating .ratings table, .sriRangeRiskRating .ratings table {
+	margin-top: 1cm;
+}
+.sriRiskRating .ratings td.rating, .sriRangeRiskRating .ratings td.rating {
+	background: var(--ratingbg);
+	width: 1.28cm;
+	height: 1cm;
+	border: 1pt solid var(--ratingborder);
+	font-size: 9pt;
+	font-weight: 700;
+	line-height: 19pt;
+	text-align: center;
+	padding-top: 0.2cm;
+}
+.sriRiskRating .ratings td.rating.selected, .sriRangeRiskRating .ratings td.rating.selected {
+	background: var(--ratingselected);
+	color: var(--white);
+}
+.sriRiskRating .header {
+	position: absolute;
+	top: -0.2cm;
+}
+.sriRiskRating .header th, .sriRangeRiskRating .header th {
+	background: none;
+	width: 5cm;
+	text-align: left;
+	font-family: var(--fontLight);
+	font-weight: 100;
+	font-size: 9pt;
+	border: 0;
+	padding: 1mm 4.5mm;
+}
+.sriRiskRating .header th:last-of-type, .sriRangeRiskRating .header th:last-of-type {
+	text-align: right;
+}
+.sriRiskRating .header th:after, .sriRangeRiskRating .header th:after {
+	content: "Typically lower rewards";
+	padding: 2mm 0mm;
+	display: block;
+}
+.sriRiskRating .header th:last-of-type:after, .sriRangeRiskRating .header th:last-of-type:after {
+	content: "Typically higher rewards";
+}
+.sriRiskRating .arrow, .sriRangeRiskRating .arrow {
+	background: url(images/arrow.svg) no-repeat center;
+	position: absolute;
+	top: 1mm;
+	width: 100%;
+	height: 4mm;
+}
+.page2 .row2 .compositebody .row2 .sectiontitle h2 {
+	background: none;
+    border: 0;
+    font-size: var(--bodyfont);
+    font-weight: bold;
+	color: var(--bodycolor);
+    padding: 0mm 0 2mm;
+    margin: 0cm 0 0 0;
+}
+table th.groupHeader1 {
+	padding: 0;
+	border: 0 !important;
+}
+.groupHeaderDiv1 th, .groupRowDiv1 td, .groupRowDiv1 th, .groupRowDiv1 tr.header th {
+	padding: 1mm;
+	border-bottom: 0.5pt solid var(--tableborder);
+	text-align: left;
+}
+.groupHeaderDiv1 th {
+	background: var(--tableheaderbg);
+}
+
+.groupHeaderDiv1 th:first-of-type, .groupRowDiv1 td:first-of-type, .groupRowDiv1 th:first-of-type, .groupRowDiv1 tr.header th:first-of-type {
+}
+table .groupRowDiv1 .groupHeaderDiv1 th {
+}
+.page2 > .row2 .compositebody, .page3 > .row .compositebody {
+	page-break-inside: avoid;
+}
+.performanceScenario table tr.header th:first-child, .performanceScenario table tr.survival-scenario th {
+    font-weight: 700;
+    /*color: var(--primary);*/
+}
+.performanceScenario .holding-period th, .performanceScenario .investment-amount th {
+	font-weight: 700;
+}
+.performanceScenario th[class*=period], .performanceScenario td[class*=period] {
+    width: 3cm;
+}
+.performanceScenario th[class*=period] {
+	font-weight: 700;
+}
+.performanceScenario .groupRowDiv1 td[rowspan],
+.performanceScenario td.description:nth-child(2) {
+	font-weight: 700;
+}
+.performanceScenario .groupRowDiv1 td[rowspan] {
+	width: 2.5cm;
+	vertical-align: top;
+}
+.costOverTime.costovertime_2columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_2columntable .groupRowDiv1 td {
+	width: 50%;
+}
+.costOverTime.costovertime_3columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_3columntable .groupRowDiv1 td {
+	width: 33.3%;
+}
+.costOverTime.costovertime_4columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_4columntable .groupRowDiv1 td {
+	width: 25%;
+}
+.costOverTime table td[class*=header] {
+	font-weight: 700;
+}
+.costComposition {
+	margin: 0 0 0cm;
+}
+.costComposition .oneofcosts th:last-of-type, .costComposition td:last-of-type {
+	width: 3cm;
+}
+.costComposition .entrycosts td:first-of-type, .costComposition .exitcosts td:first-of-type, .costComposition .managementfeesandothercosts td:first-of-type, .costComposition .transactioncosts td:first-of-type, .costComposition .performancefees td:first-of-type {
+    font-weight: 700;
+    width: 4cm;
+}
+.survival-scenario th, .header th, .ongoingcosts th, .incidentalcosts th, .oneofcosts th, .scenarioheader th {
+	font-weight: 700;
+}
+.ongoingcosts th, .incidentalcosts th, .oneofcosts th {
+	/*color: var(--primary);*/
+}
+.holding-period th, .scenarioheader th {
+	border-top: 0.5pt solid var(--tableborder);
+}
+.WB_WhatAreTheCosts_continued_2 {
+	font-weight: 700;
+}
+.WB_HowlongshouldIholdit_1, .WB_HowlongshouldIholdit_4 {
+	/*background: var(--secondary);
+	padding: 2mm;
+	font-family: var(--fontBold);
+	color: var(--white);*/
+}
+.pagenumbers .footer, .pagenumbers .Pagination {
+    margin: 0.1cm 0cm 0.1cm 0 !important;
+    float: right;
+    font-size: var(--footerfont);
+    position: relative;
+    z-index: 1;
+}
+.contentSection.pagenumbers .footer p, .contentSection.pagenumbers .Pagination p {
+  position: running(pageNum);
+  text-align: right;
+}
+.page4 {
+	page-break-before: always;
+}
+
+/* @page styles */
+@page {
+	margin: 1.2cm 0 1cm 0;
+	padding: 0;
+	@bottom-right {
+		content: "Page " counter(page) " of " counter(pages);
+		margin:0 1.2cm 0.5cm 0cm;
+		padding: 0.25cm 0 0cm;
+		border-top: 0.5pt solid var(--primary);
+		font-size: var(--footerfont);
+		font-family: var(--fontLight);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 18.5cm;
+	}
+}
+@page:-ro-nth(1) {
+	margin-top: 0.5cm;
+}
+.performancetable > table  tr> td,.performancetable > table  tr> th{
+	width: 8%;
+}
+.performancetable > table  tr> td.keycell,.performancetable > table  tr> th.keycell{
+	border-right-color: transparent;
+	width: 5% !important;
+}
+.performancetable > table  tr> td.rowheader,.performancetable > table  tr> th.rowheader{
+	padding-left: 0px;
+	text-align: left;
+	width: 10% !important;
+}
+/* theme name: Fisch_theme_2022_EU */

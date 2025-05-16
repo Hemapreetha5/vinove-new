@@ -1,0 +1,198 @@
+:root {
+  --primary-sand-color: #D5AC63;
+  --primary-green: #008000;
+  --text-color: #4D4D4F;
+  --footnote-text-color: #949698;
+  --font-primary: Muli;
+  --fw-bold: 600;
+  --white: #ffffff;
+}
+
+@font-face {
+  font-family: Muli;
+  src: url(./images/Muli-Regular.ttf);
+}
+@font-face {
+  font-family: Muli;
+  src: url(./images/Muli-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: Muli;
+  src: url(./images/Muli-LightItalic.ttf);
+  font-style: italic;
+}
+body {
+  font-family: var(--font-primary);
+  font-size: 8pt;
+  color: var(--text-color);
+}
+
+.page {
+  width: 18cm;
+  padding: 0.8cm 1.5cm;
+}
+
+h2 {
+  font-size: 12pt;
+  color: var(--primary-sand-color);
+  font-weight: var(--fw-bold);
+  margin-block: 0.6em;
+}
+h2 + h3 {
+  margin-top: -0.6em;
+}
+
+h3 {
+  font-size: 10pt;
+  color: var(--primary-green);
+}
+
+ul {
+  margin: 0;
+}
+
+.page1 > .row2,
+.page2 > .row2 {
+  display: grid;
+  gap: 0.8cm;
+  grid-template-columns: repeat(2, 325px);
+}
+.page1 > .row2 > .clear,
+.page2 > .row2 > .clear {
+  display: none;
+}
+
+.page1 {
+  padding-top: 0;
+  font-size: 7pt;
+}
+.page1 > .row1 {
+  position: relative;
+  padding-bottom: 8cm;
+}
+.page1 > .row1 > .composite1 {
+  background: #306b40 url(./images/Banner.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  width: calc(100% + 3cm);
+  left: -1.5cm;
+  top: -1px;
+  height: 7.9cm;
+}
+.page1 .logo1 {
+  position: absolute;
+  right: 1.5cm;
+  top: 2.5cm;
+  width: 164px;
+  height: 83px;
+  background: url(./images/hejaz-white.svg) no-repeat;
+  background-size: cover;
+}
+
+.page1 > .row1,
+.page2 > .row1 {
+  margin-bottom: 0.5cm;
+}
+.page1 > .row2 .column1,
+.page1 > .row2 .column2,
+.page2 > .row2 .column1,
+.page2 > .row2 .column2 {
+  width: 100%;
+}
+
+.page2 > .row1 {
+  display: flex;
+}
+.page2 .logo1 {
+  width: 2.48cm;
+  height: 1.27cm;
+  background: url(./images/hejaz-2.svg) no-repeat;
+  background-size: cover;
+  margin-left: auto;
+}
+
+.key-color {
+  width: 2.5mm;
+  height: 2.5mm;
+  border-radius: 50%;
+}
+
+.label {
+  line-height: 2.5mm;
+}
+
+.horizontal-list div {
+  width: 100%;
+}
+.horizontal-list > div {
+  display: grid;
+  grid-template-columns: 2.6cm 1fr;
+}
+.horizontal-list > div:first-of-type {
+  border-top: 1px solid var(--primary-sand-color);
+}
+.horizontal-list > div:nth-last-of-type(2) .label {
+  border-bottom: 1px solid var(--primary-sand-color);
+}
+.horizontal-list span {
+  padding: 0.1cm;
+  line-height: normal;
+  margin-left: 0;
+}
+.horizontal-list span:first-child {
+  font-weight: var(--fw-bold);
+  background-color: var(--primary-sand-color);
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+}
+.horizontal-list span:last-child {
+  border-bottom: 1px solid var(--primary-sand-color);
+}
+
+.performancetable1 table {
+  border-collapse: collapse;
+}
+.performancetable1 tr {
+  border-bottom: 1px solid var(--primary-sand-color);
+}
+.performancetable1 tr:nth-of-type(1) {
+  background-color: var(--primary-sand-color);
+  color: var(--white);
+  font-weight: var(--fw-bold);
+}
+.performancetable1 td {
+  text-align: center;
+}
+.performancetable1 .rowheader {
+  width: 2cm;
+  text-align: left;
+}
+
+.pdfperformancechart1 .chart {
+  position: relative;
+  left: -10px;
+  width: 350px;
+  height: 350px;
+}
+
+.breakdown th {
+  text-align: left;
+}
+.breakdown .chart {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.breakdown .highcharts-container {
+  width: auto !important;
+  height: auto !important;
+}
+.breakdown .highcharts-root {
+  width: 2.6cm;
+  height: 2.6cm;
+}
+
+/* Theme : HejazPDF */
+
+/*# sourceMappingURL=theme.css.map */

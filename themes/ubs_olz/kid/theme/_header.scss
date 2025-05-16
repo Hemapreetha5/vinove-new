@@ -1,0 +1,112 @@
+.keyinformationdocument h2{
+    font: $h1Size $h3boldType;
+    color: $primary;
+    margin:$headerMargin;
+    padding:0cm 0;
+}
+
+.fundName h2{
+    font: $h1Size $h1Type;
+    color: $h1Color;
+    margin:$headerMargin;
+    padding:0;
+}
+@mixin checkHeader{
+    @if $stickyHeader{
+        background-color:$lightgrey; 
+        border-bottom: 1pt solid $grey;
+        position: running(header); 
+    }
+}
+@if $needLogo{
+    .page1>.row1 .compositebody{
+        margin : $logomargin;
+        @include logo;
+        @include checkHeader;
+      }
+}
+
+@mixin LogoDirection($logoDirectionLeft){
+    @if $logoDirectionLeft{
+        @if $stickyHeader{
+            .keyinformationdocument h2,
+            .fundName h2{
+                text-indent:.3cm;
+            }
+        }
+       .keyinformationdocument h2,
+        .fundName h2{
+           text-align:left;
+        }
+    }
+    @else{
+        .keyinformationdocument h2,
+        .fundName h2{
+             
+            @if $stickyHeader{
+                padding-right: .3cm
+            }
+        }
+    }
+}
+
+@if($logoDirectionUP){
+       
+            .keyinformationdocument h2,
+            .fundName h2{
+                width:fit-content;
+                text-indent:0cm;
+                text-align:left;
+            }        
+}
+
+@include LogoDirection($logoDirectionLeft);
+
+
+
+@page{ 
+    @top-left{
+        content:element(header);
+    }
+}
+
+@if $stickyHeader{
+    @page{
+        padding: 1.5cm 1cm 1cm;
+    }
+} @else{
+    @page{
+	    /*border:1px solid;*/
+        margin: 1cm 1.6cm 0.8cm 1.6cm;
+        padding:0cm;
+        
+    }
+    @page:-ro-nth(1){
+        padding:0cm; 
+        @footnote{
+               border: none;
+               margin:0.30cm 0 0.5cm;
+               padding: 0 0 0cm;
+     }
+   
+   }
+   @page:-ro-nth(2){
+       padding:0cm;
+       @footnote{
+               border: none;
+               margin:0.3cm 0 0.9cm;
+               padding: 0 0 0 0cm;
+     }
+   
+   }
+   @page:-ro-nth(3){
+       padding:0cm;
+       @footnote{
+               border: none;
+               margin:0.3cm 0 0.9cm;
+               padding: 0 0 0cm;
+     }
+   
+   }
+    
+}

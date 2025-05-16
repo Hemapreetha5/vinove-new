@@ -1,0 +1,114 @@
+:root {
+	--font-family: 'ZurichSans';
+	--fw-light: 300;
+	//--fw-normal: 400;
+	--fw-medium: 500;
+	--fw-bold: 700;
+	--black: #000000;
+	--primary-blue: rgb(0, 23, 156);
+	//--h2-color: var(--primary-blue);
+	--arrow-color: rgb(25, 133, 255);
+	--table-border: .5pt solid var(--black);
+	--h2-border: 0.01cm solid var(--black);
+}
+
+body {
+	color: var(--primary-blue);
+	// font-size: 9pt;
+}
+
+p {
+	font-family: var(--font-family);
+	font-weight: var(--fw-light);
+	color: inherit;
+	text-align: justify;
+
+	&:empty {
+		display: none;
+	}
+}
+
+
+.page1 {
+	padding-top: 0cm;
+
+	>.row1 .contentSection h2 {
+		font-size: 25pt;
+		font-weight: var(--fw-medium);
+		border: none;
+		padding: 0;
+		margin-bottom: 2mm;
+		margin-top: 0;
+
+	}
+}
+
+.TextSection {
+	p {
+		&:last-of-type {
+			padding-bottom: 0.15cm;
+		}
+	}
+}
+
+.contentSection h2 {
+	color: inherit;
+	font: var(--fw-medium) 9pt var(--font-family);
+	margin: 0cm 0 0.2cm 0;
+	padding: 0.19cm 0 0cm 0;
+}
+
+.FooterCSS {
+	width: 20cm;
+	padding: 0px 0px 0px 4px;
+	position: absolute;
+	bottom: 0.3cm;
+	left: 0;
+	z-index: 1;
+	border-top: 0.5px solid #909090;
+	font-size: 7.5pt;
+
+	.content {
+		margin-right: 0cm;
+		position: relative;
+		overflow: visible;
+	}
+
+	.row {
+		margin-bottom: 0.05cm;
+	}
+
+	.iconSection {
+		height: 23px;
+	}
+
+	.content:before {
+		content: '';
+		width: 1px;
+		height: 60px;
+		background-color: #a7a5a6;
+		position: absolute;
+		top: 0;
+		left: 1px;
+
+	}
+}
+
+
+.monthlyperformancetable1 {
+	.SubheaderData {
+		th {
+			border: var(--table-border);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+/* UBS_MPD_publifund_standard_theme */
+/* Theme name Zurich_M */

@@ -1,0 +1,113 @@
+@import "./_colors.scss";
+@import "./_fonts.scss";
+
+// controls
+
+$needLogo:true;
+$stickyHeader:true;
+$logoDirectionLeft:false;
+$ratingType:3; 
+//1-rating,arrow,header
+//2-header,arrow,rating
+//3-arrow,header,rating
+//4-arrow,rating,header
+$ratingSpace:false;
+$arrowColor:$primary;
+$riskActive:$primary;
+// end of controls
+
+
+// page dimensions
+$pageWidth:19cm;
+$pageHeight:auto;
+//font-family specs
+// --body
+$h1Type:$fontSemiBold;
+$h2Type:$fontSemiBold;
+$h3Type:$fontSemiBold;
+$h4Type:$fontBold;
+$paraType:$fontRegular;
+$linkType:$fontRegular;
+$paraLineHeight:map-get( $line-height, 'normal' );
+//  -- table
+$thType:$fontSemiBold;
+$tdType:$fontRegular;
+
+
+//font-size specs
+$h1Size:map-get( $font-size, 'large' );
+$h2Size:map-get( $font-size,  'medium' );
+$h3Size:map-get( $font-size,  'normal' );
+$h4Size:map-get( $font-size,  'small' );
+$paraSize:map-get( $font-size,  'normal' );
+$linkSize:map-get( $font-size,  'normal' );
+//  -- table
+$thSize:map-get( $font-size, 'small' );
+$tdSize:map-get( $font-size, 'small' );
+
+//color specs
+$bodybg:$white;
+// --body
+$h1Color:$color1;
+$h2Color:$secondary;
+$h3Color:$primary;
+$h4Color:$primary;
+$paraColor:$darkgrey;
+$linkColor:$blue;
+// --table
+$thBg:$primary;
+$thBorder:$darkgrey;
+$thColor:$white;
+$tdBg:$lightgrey;
+$tdBorder:$grey;
+$tdColor:$darkgrey;
+
+//spacing
+$headerMargin:0;
+$headerPadding:0.2cm 0;
+$paraMargin:0 0 0.1cm;
+$paraPadding:0;
+
+//logo
+$logourl:url(images/logo.svg);
+$logoWidth:3.6cm;
+$logoHeight:1cm;
+
+@mixin logoPosition{
+    @if $logoDirectionLeft{
+          @if $stickyHeader{
+            background-position:calc( 20.7cm - $logoWidth ) center;
+          }
+          @else{
+            background-position:calc( 19cm - $logoWidth ) center;
+          }
+    }
+    @else{
+        @if $stickyHeader{
+            background-position:0.3cm center;
+          }
+          @else{
+            background-position:0 center;
+          }
+      }
+    
+}
+
+@mixin logo {
+    background-color: transparent;
+    background-image: $logourl;
+    background-size: $logoWidth $logoHeight;
+    @include logoPosition;
+    background-repeat: no-repeat;
+}
+
+//rating arrow
+$arrow1: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='UTF-8'?%3e%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 238.25 6.45'%3e%3cdefs%3e%3cstyle%3e.d%7bstroke-miterlimit:10;stroke-width:1.42px;%7d.d,.e%7bfill:"+$arrowColor+";stroke:"+$arrowColor+";%7d.f%7bfill:"+$arrowColor+";%7d.e%7bstroke-linecap:round;stroke-linejoin:round;stroke-width:.85px;%7d%3c/style%3e%3c/defs%3e%3cg id='a'/%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cline class='d' x1='3.23' y1='3.22' x2='232.83' y2='3.22'/%3e%3cpolyline class='f' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3e%3cpolyline class='e' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3e%3cpolyline class='f' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3e%3cpolyline class='e' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+$arrow2: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='utf-8'?%3e%3csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3e%3cstyle type='text/css'%3e .st0%7bfill:none;stroke:"+$arrowColor+";stroke-width:1.42;stroke-miterlimit:10;%7d .st1%7bfill:none;stroke:"+$arrowColor+";stroke-width:1.42;stroke-miterlimit:10;stroke-dasharray:4.0286,2.0143;%7d .st2%7bfill:"+$arrowColor+";%7d .st3%7bfill:none;stroke:"+$arrowColor+";stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;%7d %3c/style%3e%3cg id='a'%3e%3c/g%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cg%3e%3cg%3e%3cline class='st0' x1='3.2' y1='3.2' x2='5.2' y2='3.2'/%3e%3cline class='st1' x1='7.2' y1='3.2' x2='229.8' y2='3.2'/%3e%3cline class='st0' x1='230.8' y1='3.2' x2='232.8' y2='3.2'/%3e%3c/g%3e%3c/g%3e%3cpolyline class='st2' points='0.4,3.2 6.1,6 6.1,0.4 0.4,3.2 '/%3e%3cpolyline class='st3' points='0.4,3.2 6.1,6 6.1,0.4 0.4,3.2 '/%3e%3cpolyline class='st2' points='237.8,3.2 232.1,6 232.1,0.4 237.8,3.2 '/%3e%3cpolyline class='st3' points='237.8,3.2 232.1,6 232.1,0.4 237.8,3.2 '/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e ");
+$arrow3: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='utf-8'?%3e%3csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3e%3cstyle type='text/css'%3e .st0%7bfill:none;stroke:"+$arrowColor+";stroke-miterlimit:10;%7d .st1%7bfill:"+$arrowColor+";%7d %3c/style%3e%3cg id='a'%3e%3c/g%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cg%3e%3cg%3e%3cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3e%3cg%3e%3cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3e%3c/g%3e%3cg%3e%3cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e ");
+$arrow4: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='utf-8'?%3e%3csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3e%3cstyle type='text/css'%3e .st0%7bfill:none;stroke:"+$arrowColor+";stroke-miterlimit:10;%7d .st1%7bfill:"+$arrowColor+";%7d %3c/style%3e%3cg id='a'%3e%3c/g%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cg%3e%3cg%3e%3cline class='st0' x1='7.3' y1='3.2' x2='230.5' y2='3.2'/%3e%3cg%3e%3cpolygon class='st1' points='8.7,5.3 1.1,3.2 8.7,1.2 '/%3e%3c/g%3e%3cg%3e%3cpolygon class='st1' points='229.1,5.3 236.7,3.2 229.1,1.2 '/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e ");
+
+$arrowType:$arrow2;
+
+//footer
+$footerPath: ".contentSection.pagenumbers .footer";

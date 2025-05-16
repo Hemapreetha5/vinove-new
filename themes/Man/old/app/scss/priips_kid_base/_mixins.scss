@@ -1,0 +1,85 @@
+@mixin columnCount {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+@mixin pageSectionBorders($bottom: false, $top: false) {
+
+  border: 1px $blue solid;
+
+  @if $bottom {
+    border-bottom: 0;
+  }
+
+  @if $top {
+    border-top: 0;
+  }
+
+  padding: 1mm 2mm;
+
+}
+
+@mixin logoPosition {
+  @if $logo-direction-left {
+    @if $sticky-header {
+      background-position: calc(20.7cm - $logoWidth ) center;
+    }
+
+    @else {
+      background-position: calc(19cm - $logoWidth ) center;
+    }
+  }
+
+  @else {
+    @if $sticky-header {
+      background-position: 0.3cm center;
+    }
+
+    @else {
+      background-position: 0 center;
+    }
+  }
+
+}
+
+@mixin logo {
+  background-color: transparent;
+  background-image: $logo-url;
+  background-size: $logoWidth $logoHeight;
+  @include logoPosition;
+  background-repeat: no-repeat;
+}
+
+@mixin checkHeader {
+  @if $sticky-header {
+    background-color: $light-grey;
+    border-bottom: 1pt solid $grey;
+    position: running(header);
+  }
+}
+
+@mixin LogoDirection($logo-direction-left) {
+  @if $logo-direction-left {
+    @if $sticky-header {
+
+      .keyinformationdocument h2,
+      .fundName h2 {
+        text-indent: .3cm;
+      }
+    }
+  }
+
+  @else {
+
+    .keyinformationdocument h2,
+    .fundName h2 {
+      text-align: left;
+
+      @if $sticky-header {
+        padding-right: .3cm
+      }
+    }
+  }
+}

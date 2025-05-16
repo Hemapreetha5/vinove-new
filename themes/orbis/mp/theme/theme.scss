@@ -1,0 +1,239 @@
+:root {
+	--primary: #1a255b;
+	--secondary: #404040;
+	--header: var(--white);
+	--headerbg: var(--primary);
+	--parabg: #f2f2f2;
+	--black: #000000;
+	--white: #ffffff;
+	--red: #E60000;
+	--border: var(--primary);
+	--tableborder: #A7ABC9;
+	--tableheader: var(--white);
+	--tablerowheader: var(--white);
+	--tableheaderbg: var(--primary);
+	--tablesubheaderbg: rgba(0, 156, 166, 0.05);
+	--altrow: #E6EBED;
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: var(--white);
+	--ratingborder: var(--black);
+	--ratingselected: #005231;
+	--bodyfont: 8pt;
+	--bodycolor: var(--secondary);
+	--footerfont: 8pt;
+	--lineheight: 1.2;
+	--h2: 10pt;
+	--h3: 10pt;
+	--fontRegular: 'Arial';
+	--fontBold: 'Arial';
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+table th {
+	background: var(--tableheaderbg);
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	color: var(--tableheader);
+	padding: 1mm;
+	margin: 0;
+	font-family: var(--fontLightBold);
+	font-size: 6pt;
+	text-align: center;
+	page-break-inside: avoid;
+	vertical-align: middle;
+}
+
+table tr.headerData:first-child th {
+	border-top: 0.5pt solid var(--tableborder);
+
+}
+
+.headerData {
+	&:first-child {
+		th:first-child {
+			border-bottom-color: var(--tableheaderbg);
+		}
+	}
+}
+
+table td {
+	background: none;
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	padding: 1mm;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 6pt;
+	text-align: center;
+}
+
+table th:first-child,
+table td:first-child {
+	border-left: 0.5pt solid var(--tableborder);
+}
+
+h2 {
+	background: var(--headerbg);
+	font-family: var(--fontBold);
+	font-weight: 100;
+	font-size: var(--h2);
+	color: var(--header);
+	padding: 0.5mm;
+	margin-bottom: 0.3cm;
+	text-align: center;
+	border-top: 0.5pt solid var(--primary);
+}
+
+p:empty,
+h2:empty {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+
+table th:empty {
+	padding: 0;
+}
+
+table th.tableheader {
+	border: 0;
+}
+
+p {
+	padding: 0 0 2mm;
+}
+
+b {}
+
+h2 {
+	bookmark-level: 1;
+}
+
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+.subheader p {
+	bookmark-level: 2;
+}
+
+/* page styles*/
+.page {
+	width: 20cm;
+	height: auto;
+	padding: 0cm 0.5cm 0cm 0.5cm;
+	position: relative;
+}
+
+.page1 {
+	padding-top: 0.5cm;
+	background: url(./images/orbis_logo.jpeg);
+	background-size: 20% auto;
+	background-position: 16cm -0.2cm;
+	background-repeat: no-repeat;
+}
+
+.page1>.row1 .contentSection h2 {
+	font-size: 18pt;
+	background: none;
+	padding: 0;
+	margin-bottom: 0.8cm;
+	border: 0;
+	color: var(--primary);
+	text-align: left;
+}
+
+.page1>.row2>.contentSection .item3 {
+	font-weight: 700;
+}
+
+.monthlyperformancetable {
+	margin-bottom: 0.2cm;
+
+	>table {
+		table-layout: fixed;
+	}
+}
+
+.groupRowDiv1 td {
+	width: 53px;
+	text-align: center;
+}
+
+.pagenumbers .footer,
+.pagenumbers .Pagination {
+	margin: 0.1cm 0cm 0.1cm 0 !important;
+	float: right;
+	font-size: var(--footerfont);
+	position: relative;
+	z-index: 1;
+}
+
+.contentSection.pagenumbers .footer p,
+.contentSection.pagenumbers .Pagination p {
+	position: running(pageNum);
+	text-align: right;
+}
+
+/* @page styles */
+@page {
+	margin: 0.75cm 0cm 1cm 0cm;
+	padding: 0;
+
+	@bottom-right {
+		content: element(pageNum);
+		margin: 0 0.5cm 1cm;
+		padding: 0.15cm 0 0cm;
+		font-size: var(--footerfont);
+		font-family: var(--fontLight);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 20cm;
+	}
+}
+
+/* theme name: ORBISMP */

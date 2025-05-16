@@ -1,0 +1,278 @@
+@font-face {
+    font-family: 'NeoDisplaySJP';
+    src: url('images/noedisplay-bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Poppinsregular';
+    src: url('images/poppins-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Poppinssemibold';
+    src: url('images/poppins-semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+	--primary: #0A1428;
+	--secondary: #F3F3F4;
+	--tertiary: #3FDCC8;
+	--header: var(--primary);
+	--headerbg:rgb(241, 242, 242);
+	--parabg:#E7E1D8;
+	--black: #000000;
+	--white:#ffffff;
+	--red: #E60000;
+	--border: #606776;
+	--tableborder: var(--white);
+	--tableheader: var(--white);
+	--tablerowheader: var(--secondary);
+	--tableheaderbg: var(--primary);
+	--tablesubheaderbg:rgba(0,156,166,0.05);
+	--altrow: #DDDFE2;
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: var(--tertiary);
+	--ratingborder: var(--black);
+	--ratingselected: #475061;
+	--bodyfont: 8pt;
+	--bodycolor: var(--primary);
+	--footerfont: 7pt;
+	--lineheight: 11.5pt;
+	--h2:14pt;
+	--h3:12pt;
+	--fontRegular: 'Poppinsregular';
+	--fontBold: 'Poppinssemibold';
+	--fontNeoDisplaySJP: 'NeoDisplaySJP';
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight:normal;
+	color: var(--bodycolor);
+	line-height: var(--lineheight);
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	line-height: normal;
+	margin: 0 0 0 1cm;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+table th {
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight: 100;
+	text-align: left;
+	page-break-inside: avoid;
+	padding: 4px 2px;
+	margin: 0;
+	vertical-align: middle;
+	background: var(--primary);
+	color: var(--white);
+	font-family: var(--fontBold);
+	font-size: 6pt;
+	text-align: center;
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	word-break: break-word;
+}
+table th:first-child, table td:first-child {
+	border-left: 0.5pt solid var(--tableborder);
+}
+table td {
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 6pt;
+}
+h2 {
+  font-family: var(--fontNeoDisplaySJP);
+  font-size: var(--h2);
+  color: var(--primary);
+  margin-bottom: 3.5mm;
+}
+p:empty, h2:empty {
+	margin: 0;
+	padding:0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+table th:empty {
+	padding: 0;
+}
+table th.tableheader {
+	border: 0;
+}
+p {
+	margin-bottom: 3.5mm;
+}
+b {
+	font-family: var(--fontBold);
+}
+h2 {
+  bookmark-level: 1;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.subheader p {
+  bookmark-level: 2;
+}
+/* page styles*/
+.page {
+	width: 20cm;
+	height: 29.2cm;
+	padding: 0.5cm 0.5cm 0 0.5cm;
+	position: relative;
+}
+.page1 {
+	background:url(images/sjp_logo.svg) no-repeat 5mm 0;
+	background-size: 3.8cm 2.8cm;
+	padding-top: 3cm;
+}
+.page > .row > .contentSection, .page > .row .compositebody {
+	margin-bottom: 0.25cm;
+    padding-bottom: 0.3cm;
+    padding-left: 3mm;
+    padding-right: 3mm;
+    border-bottom: 0.75pt solid var(--border);
+}
+.groupRowDiv1 td {
+	background: var(--secondary);
+	padding: 4px 2px;
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0.5pt solid var(--tableborder);
+	text-align: left;
+}
+.groupRowDiv1 tr:nth-child(8n + 5) td,
+.groupRowDiv1 tr:nth-child(8n + 6) td,
+.groupRowDiv1 tr:nth-child(8n + 7) td,
+.groupRowDiv1 tr:nth-child(8n + 8) td {
+	background: var(--altrow);
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .Row td:first-child{
+	width: 6% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .Row td:nth-child(2){
+	width: 8% !important;
+	text-align: center;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(1){
+	width: 5% !important;
+	text-align: center;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2){
+	width: 10% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(3){
+	width: 8% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(4){
+	width: 10% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(5){
+	width: 8% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(6){
+	width: 10% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(7){
+	width: 8% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(8){
+	width: 10% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(11),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(9){
+	width: 8% !important;
+}
+.monthlyperformancetable1  .SubheaderData th:nth-child(12),.monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(10){
+	width: 9% !important;
+}
+/*NonDeathscenario*/
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:first-child{
+	width: 7% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:nth-child(2){
+	width: 7% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(1){
+	width: 5% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(2){
+	width: 14% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(3){
+	width: 8% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(4){
+	width: 14% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(5){
+	width: 8% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(6){
+	width: 14% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(7){
+	width: 8% !important;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(8){
+	width: 14% !important;
+}
+.monthlyperformancetable1  .NonDeathscenario .SubheaderData th:nth-child(11),.monthlyperformancetable1  .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(9){
+	width: 8% !important;
+}
+.pagenumbers.contentSection{
+	padding:0cm 0 0 ;
+	margin:0;
+	position: running(pgnum);
+	text-align: right;
+}
+.pagenumbers.contentSection p{
+	background: none;
+}
+.pagenumbers .footer{
+	margin: 0 0.8cm 1cm 0;
+}
+
+/* @page styles */
+@page {
+	margin: 0.25cm 0 0 0;
+	padding: 0;
+	@bottom-right {
+		content: element(pgnum);
+		margin:0 0.5cm 1cm;
+		padding: 0.15cm 0 0cm;
+		font-size: var(--footerfont);
+		font-family: var(--fontLight);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 20cm;
+		text-align: center;
+	}
+}
+
+
+/*theme name: SJPMonthlyPerf*/

@@ -1,0 +1,195 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+
+	th,
+	td {
+		margin: 0;
+		padding: 0;
+	}
+
+	th {
+		page-break-inside: avoid;
+
+		&:empty {
+			padding: 0;
+		}
+
+		&.tableheader {
+			border: 0;
+		}
+
+		/* is-fund-centre*/
+		&.groupHeader1 {
+			padding: 0;
+			border: 0;
+		}
+	}
+}
+
+.groupHeaderDiv1 {
+	th {
+		background: $table-header-bg;
+		color: $table-header-font;
+	}
+}
+
+.groupHeaderDiv1 th,
+.groupRowDiv1 td,
+.groupRowDiv1 th,
+.groupRowDiv1 tr.header th {
+	padding: 1mm;
+	border-bottom: 0.5pt solid $table-header-bg;
+
+	@if $is-column-border {
+		border-right: 0.5pt solid $table-header-bg;
+	}
+
+	text-align: left;
+
+	@if $is-column-border {
+		&:first-of-type {
+			border-left: 0.5pt solid $table-header-bg;
+			border-right: 0.5pt solid $table-header-bg;
+		}
+	}
+}
+
+/* condition to check is-fund-centre or is-MOP*/
+.performanceScenario {
+	page-break-inside: auto !important;
+
+	th[class*=period],
+	td[class*=period] {
+		width: 3cm;
+	}
+
+	/* if is-fund-centre starts*/
+	th[class*=period] {
+		font-family: $font-bold;
+	}
+
+	/* if is-fund-centre ends*/
+
+	.groupRowDiv1 td[rowspan],
+	.groupRowDiv1 td.description:nth-child(2) {
+		@if $is-custom-font {
+			font-weight: $font-normal;
+			font-family: $font-bold;
+		}
+
+		@else {
+			font-weight: $font-strong;
+		}
+	}
+
+	.groupRowDiv1 td[rowspan] {
+		width: 2.5cm;
+		vertical-align: top;
+	}
+
+	/* if is-fund-centre starts*/
+	.survival-scenario,
+	.header,
+	.ongoingcosts,
+	.incidentalcosts,
+	.oneofcosts,
+	.scenarioheader {
+		th {
+			@if $is-custom-font {
+				font-family: $font-bold;
+			}
+
+			@else {
+				font-weight: $font-strong;
+			}
+		}
+	}
+
+	.holding-period,
+	.scenarioheader {
+		th {
+			border-top: 0.5pt solid $table-header-bg;
+		}
+	}
+}
+
+.costOverTime {
+	&.costovertime_2columntable {
+
+		.groupHeaderDiv1 th,
+		.groupRowDiv1 td {
+			width: 50%;
+		}
+	}
+
+	&.costovertime_3columntable {
+
+		.groupHeaderDiv1 th,
+		.groupRowDiv1 td {
+			width: 33.3%;
+		}
+	}
+
+	&.costovertime_4columntable {
+
+		.groupHeaderDiv1 th,
+		.groupRowDiv1 td {
+			width: 25%;
+		}
+	}
+
+	tr.scenarioheader th {
+		border-top: 0.5pt solid var(--tableborder);
+	}
+
+	table td[class*=totalcosts] {
+		@if $is-custom-font {
+			font-family: $font-bold;
+		}
+
+		@else {
+			font-weight: $font-strong;
+		}
+	}
+}
+
+.costComposition {
+
+	.oneofcosts th:last-of-type,
+	td:last-of-type {
+		width: 3cm;
+	}
+
+	.entrycosts,
+	.exitcosts,
+	.managementfeesandothercosts,
+	.transactioncosts,
+	.performancefees {
+		td:first-of-type {
+			width: 4cm;
+
+			@if $is-custom-font {
+				font-family: $font-bold;
+				font-weight: $font-normal;
+			}
+
+			@else {
+				font-weight: $font-strong;
+			}
+		}
+	}
+
+	@if $is-ongoing-incidental-highlight {
+
+		.ongoingcosts,
+		.incidentalcosts {
+			th {
+				background: $table-header-bg;
+				color: $table-header-font;
+			}
+		}
+	}
+}

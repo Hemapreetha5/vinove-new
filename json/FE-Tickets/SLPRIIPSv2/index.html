@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>STIZERO Fund Guide</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=PFG;
+PublicationCountry=-;
+Language=en;
+RecordDate=2022-11-01;
+ShareClass=V942;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=V942;
+Productcode=STIZERO;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=;
+CalculationDate=2022-10-31;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row1>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row1>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row5>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row5>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+    <script>$(document).ready(function () { var pageComponents = $('.page'); var totalPageCount = 0; pageComponents.each(function (index, item) { var actualPageCount = 0; if (typeof ro !== 'undefined') { var boxDescription = ro.layout.getBoxDescriptions(item); if (!$(item).hasClass('excludeTemplatePage')) actualPageCount = boxDescription.length; } totalPageCount += actualPageCount; }); $('.pageTotal').html(totalPageCount); });</script>
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="page1 page section" data-pageorder="1" data-sectionid="605590" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionid="605591" data-sectiontype="2">
+            <div class="column1 column section" data-sectionid="605592">
+                <div class="row1 row section" data-roworder="1" data-sectionid="605593" data-sectiontype="2">
+                    <div class="text1 SLDocHead text contentSection section" data-sectionid="605594">
+                        <h2 class="item2">Supplementary Information Document</h2>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 row section" data-roworder="2" data-sectionid="605595" data-sectiontype="2">
+                    <div class="text1 SLIntro text contentSection section" data-sectionid="605596">
+                        <h2 class="item2">Purpose</h2>
+                        <p class="item3">This document provides you with Supplementary Information about this Insured
+                            Fund and should be read alongside the Product Key Information Document provided by Standard
+                            Life International dac.</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="column2 column section" data-sectionid="605597">
+                <div class="row1 row section" data-roworder="1" data-sectionid="605598" data-sectiontype="2">
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionid="605599" data-sectiontype="2">
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionid="636738" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionid="636739">
+                <div class="text1 generalinformation compositeheader text contentSection section"
+                    data-sectionid="636740">
+                    <h2 class="item2">Product</h2>
+                </div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionid="636742" data-sectiontype="2">
+                        <div class="column1 column section" data-sectionid="636743">
+                            <div class="row1 row section" data-roworder="1" data-sectionid="636744"
+                                data-sectiontype="2">
+                                <div class="text1 generalinformation text contentSection section"
+                                    data-sectionid="605600">
+                                    <p class="FundNameWB">Standard Life Property Fund</p>
+                                    <p class="IsinCode"></p>
+                                    <p class="IssuedOnDate">Date of Production: 01/01/2023</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="column2 column section" data-sectionid="636745">
+                            <div class="row1 row section" data-roworder="1" data-sectionid="636746"
+                                data-sectiontype="2">
+                                <div class="text1 generalinformation text contentSection section"
+                                    data-sectionid="636747">
+                                    <p class="PriipManufacturerwb">Insured Fund Provider:</p>
+                                    <div>Standard Life International dac</div>
+                                    <p></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row4 row section" data-roworder="4" data-sectionid="605601" data-sectiontype="2">
+            <div class="row1 row section" data-roworder="1" data-sectionid="605604" data-sectiontype="2">
+                <div class="text1  SLCW text contentSection section" data-sectionid="605605">
+                    <p class="item2">This Fund is not simple and may be difficult to understand.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row5 row section" data-roworder="5" data-sectionid="605608" data-sectiontype="2">
+            <div class="text1 whatisthisfund text contentSection section" data-sectionid="605609">
+                <h2 class="item2">What is this product?</h2>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row6 row section" data-roworder="6" data-sectionid="605667" data-sectiontype="2">
+            <div class="column1 column section" data-sectionid="605668">
+                <div class="row1 row section" data-roworder="1" data-sectionid="605669" data-sectiontype="2">
+                    <div class="text1 SLGen text contentSection section" data-sectionid="605672">
+                        <p class="item2"><b>Fund type description</b></p>
+                        <p class="Fundtypedescription">This is a Unit Linked Insured Fund. The mix of assets held in a
+                            unit-linked fund varies from fund to fund, and may include direct or indirect investments.
+                            Each fund you can choose to invest in may have a different mix of assets and different level
+                            of risk according to its objective.</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="column2 column section" data-sectionid="605670">
+                <div class="row1 row section" data-roworder="1" data-sectionid="605671" data-sectiontype="2">
+                    <div class="text1 SLGen text contentSection section" data-sectionid="605673">
+                        <p class="item2"><b>Intended retail investor</b></p>
+                        <p class="Intendedretailinvestor">The Fund is designed for retail investors and is accessed
+                            through an investment linked product. The fund has a recommended holding period of 5 years,
+                            this document however, is produced based on the product's 7 year recommended holding period.
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row7 row section" data-roworder="7" data-sectionid="618097" data-sectiontype="2">
+            <div class="text1 SLGen text contentSection section" data-sectionid="618098">
+                <p class="Objectives"><b>Objective</b><br>
+                    The fund aims to provide income and capital growth by investing predominantly in UK real commercial
+                    property, selected from across the retail, office, industrial and other sectors.&nbsp;The fund is
+                    actively managed and will typically invest in a mix of freehold and leasehold properties. The fund
+                    may also invest in other property related assets including shares, bonds and other property funds.
+                    The fund may also invest in cash, short term government bonds as well as gilts. Typically at least
+                    95% of the non euro assets will be hedged back to euro. Selling property can be a lengthy process so
+                    investors in the fund should be aware that they may not be able to sell their investment when they
+                    want to.&nbsp; <br><br>The value of investments within the fund can fall as well as rise and is not
+                    guaranteed – you may get back less than you pay in. The fund and its holdings may use derivatives
+                    for the purpose of efficient portfolio management, reduction of risk or to meet its respective
+                    investment objective if this is permitted and appropriate. The euro value of overseas assets not
+                    fully hedged back to euro held in the fund may rise and fall as a result of exchange rate
+                    fluctuations.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row8 row section" data-roworder="8" data-sectionid="605610" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionid="605611">
+                <div class="text1 whataretherisks compositeheader text contentSection section" data-sectionid="605612">
+                    <h2 class="item2">What are the risks and what could I get in return?</h2>
+                </div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionid="605613" data-sectiontype="2">
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionid="605615" data-sectiontype="2">
+                        <div class="text1 warning text contentSection section" data-sectionid="605616">
+                            <p class="Sri"></p>
+                            <table class="sriRiskRating">
+                                <tbody>
+                                    <tr class="ratings">
+                                        <td colspan="2">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="rating">1</td>
+                                                        <td class="rating selected">2</td>
+                                                        <td class="rating">3</td>
+                                                        <td class="rating">4</td>
+                                                        <td class="rating">5</td>
+                                                        <td class="rating">6</td>
+                                                        <td class="rating">7</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="arrow">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr class="header">
+                                        <th>Lower risk</th>
+                                        <th>Higher risk</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p></p>
+                            <p class="SRInarrative1">The summary risk indicator is a guide to the level of risk of this
+                                Fund compared to other Funds. It shows how likely it is that this Fund will lose money
+                                because of movements in the markets. This Fund has been classified as a 2 out of 7,
+                                which is a low risk class. This rates the potential losses from future performance at a
+                                low level, and poor market conditions are very unlikely to impact the capacity of the
+                                Fund to pay out. This Fund does not include any protection from future market
+                                performance so you could lose some or all of your investment.<br>The risk indicator
+                                assumes that you keep the Fund for 7 years.<br>Please see Your Investment Options guide
+                                (SYIO1) for details of risks.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row4 row section" data-roworder="4" data-sectionid="605617" data-sectiontype="2">
+                        <div class="row1 row section" data-roworder="1" data-sectionid="605679" data-sectiontype="2">
+                            <div class="text1 SLGen text contentSection section" data-sectionid="605691">
+                                <p class="item2">This Fund has been classified as a 2 out of 7, which is a low risk
+                                    class. This rates the potential losses from future performance at a low level, and
+                                    poor market conditions are very unlikely to impact the capacity of the Fund to pay
+                                    out.</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row5 row section" data-roworder="5" data-sectionid="605674" data-sectiontype="2">
+                        <div class="text1 SLGen text contentSection section" data-sectionid="605618">
+                            <p class="SRInarrative2">This table shows the money you could get back over the next 7
+                                years, under different scenarios, assuming you invest €1000 per year.<br>The scenarios
+                                shown are illustrations using the worst, average, and best performance of the
+                                fund.<br>The scenarios presented are an estimate of future performance based on evidence
+                                from the past, and are not an exact indicator.<br>It’s important you note that what you
+                                may get back could be more or less than what is shown, at times significantly. Your
+                                return depends on a number of factors including market performance and how long you keep
+                                the Fund. The stress scenario shows what you might get back in extreme market
+                                circumstances, and it does not take into account the situation where we are not able to
+                                pay you. The figures shown include all the costs of the fund itself, it does not include
+                                costs that you pay to your adviser. The figures do not take into account your personal
+                                tax situation, which may also affect how much you get back.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row9 row section" data-roworder="9" data-sectionid="605619" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionid="605620">
+                <p class="item2"></p>
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span> </p>
+                </div>
+                <p></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="page2 page section" data-pageorder="2" data-sectionid="605621" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionid="605622" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionid="605623">
+                <div class="text1  compositeheader text contentSection section" data-sectionid="605624"></div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionid="605625" data-sectiontype="2">
+                        <div class="text1 SLGen text contentSection section" data-sectionid="605626">
+                            <h2 class="item2">What are the risks and what could I get in return? (continued)</h2>
+                            <p class="InvestmentAmount-Rhp">This table shows the money you could get back over the next
+                                7 years, under different scenarios, assuming that you invest EUX1,000 per year. <br><br>
+                                The scenarios shown are illustrations using the worst, average, and best performance of
+                                the fund. <br><br>
+                                The scenarios presented are an estimate of future performance based on evidence from the
+                                past. And are not an exact indicator. What you will get from this fund depends on future
+                                market performance. Market developments in the future are uncertain and cannot be
+                                accurately predicted. The stress scenario shows what you might get back in extreme
+                                market circumstances.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionid="605627" data-sectiontype="2">
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row4 row section" data-roworder="4" data-sectionid="605634" data-sectiontype="2">
+                        <div class="text1 text contentSection section" data-sectionid="605635">
+                            <p class="item2">The figures shown include all the costs of the product itself, where
+                                applicable, but may not include all the costs that you pay to your adviser or
+                                distributor. The figures do not take into account your personal tax situation, which may
+                                also affect how much you get back. </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row5 row section" data-roworder="5" data-sectionid="605636" data-sectiontype="2">
+                        <div class="performanceScenario1 perfscenarios performanceScenario contentSection section performancescenariotable_4column"
+                            data-sectionid="605637" style="page-break-inside:avoid">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="header holding-period">
+                                                            <th colspan="2">Recommended holding period: </th>
+                                                            <th colspan="2">7 years</th>
+                                                        </tr>
+                                                        <tr class="header investment-amount">
+                                                            <th colspan="2">Example Investment: </th>
+                                                            <th colspan="2">0 EUX per year</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2"></th>
+                                                            <th class="period1">If you exit after 1 year</th>
+                                                            <th class="period2">If you exit after 7 years</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="groupHeader1" colspan="4">
+                                                                <div class="groupHeaderDiv1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr class="survival-scenario">
+                                                                                <th>Scenarios</th>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr class="minimum">
+                                                            <td class="scenario" rowspan="1">Minimum</td>
+                                                            <td class="description" colspan="3"></td>
+                                                        </tr>
+                                                        <tr class="stress-return">
+                                                            <td class="scenario" rowspan="2"> Stress</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1">0 EUX</td>
+                                                            <td class="period2">0 EUX</td>
+                                                        </tr>
+                                                        <tr class="stress averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1">-32.68%</td>
+                                                            <td class="period2">-9.03%</td>
+                                                        </tr>
+                                                        <tr class="unfavourable-return">
+                                                            <td class="scenario" rowspan="2"> Unfavourable</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1">0 EUX</td>
+                                                            <td class="period2">0 EUX</td>
+                                                        </tr>
+                                                        <tr class="unfavourable averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1">-11.23%</td>
+                                                            <td class="period2">-9.03%</td>
+                                                        </tr>
+                                                        <tr class="moderate-return">
+                                                            <td class="scenario" rowspan="2"> Moderate</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1">0 EUX</td>
+                                                            <td class="period2">1 EUX</td>
+                                                        </tr>
+                                                        <tr class="moderate averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1">5.44%</td>
+                                                            <td class="period2">2.77%</td>
+                                                        </tr>
+                                                        <tr class="favourable-return">
+                                                            <td class="scenario" rowspan="2"> Favourable </td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1">0 EUX</td>
+                                                            <td class="period2">1 EUX</td>
+                                                        </tr>
+                                                        <tr class="favourable averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1">15.59%</td>
+                                                            <td class="period2">5.26%</td>
+                                                        </tr>
+                                                        <tr class="invest">
+                                                            <td class="scenario" rowspan="1" colspan="2">Amount invested
+                                                                over time</td>
+                                                            <td class="period1">0 EUX</td>
+                                                            <td class="period2">1 EUX</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row6 row section" data-roworder="6" data-sectionid="605638" data-sectiontype="2">
+                        <div class="text1 perfscenariodate text contentSection section" data-sectionid="605639">
+                            <p
+                                class="FavourableRhpIntervalStart-FavourableRhpIntervalEnd-ModerateRhpIntervalStart-ModerateRhpIntervalEnd-UnfavourableRhpIntervalStart-UnfavourableRhpIntervalEnd">
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionid="605640" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionid="605641">
+                <div class="text1  compositeheader text contentSection section" data-sectionid="605642"></div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionid="605643" data-sectiontype="2">
+                        <div class="costOverTime1 costsovertime costOverTime contentSection section costovertime_3columntable"
+                            data-sectionid="605644" style="page-break-inside:avoid">
+                            <h2 class="">What are the costs?</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th colspan="3" class="tableheader"></th>
+                                                        </tr>
+                                                        <tr class="scenarioheader">
+                                                            <th colspan="3"></th>
+                                                            <th class="scenario1">If you exit after 1 year</th>
+                                                            <th class="scenario2">If you exit after 7 years</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="row">
+                                                            <td class="totalcostsheader">Total costs</td>
+                                                            <td class="totalcosts1">0 EUX</td>
+                                                            <td class="totalcosts2"> 0 EUX</td>
+                                                        </tr>
+                                                        <tr class="row">
+                                                            <td class="riyheader">Annual cost impact (*)</td>
+                                                            <td class="riy1">1.4%</td>
+                                                            <td class="riy2"> 1.4% each year</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionid="605645" data-sectiontype="2">
+                        <div class="text1 text contentSection section" data-sectionid="605646">
+                            <p class="item2">(*) This illustrates how costs reduce your return each year over the
+                                holding period. For example it shows that if you exit at the recommended holding period
+                                your average return per year is projected to be 2.8 % before costs and 2.8 % after
+                                costs.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionid="605647" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionid="605648">
+                <p class="item2"></p>
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span> </p>
+                </div>
+                <p></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="page3 page section" data-pageorder="3" data-sectionid="605649" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionid="605650" data-sectiontype="2">
+            <div class="composite composite1 composite section" data-sectionid="605651">
+                <div class="text1  compositeheader text contentSection section" data-sectionid="605652"></div>
+                <div class="compositebody">
+                    <div class="row2 row section" data-roworder="2" data-sectionid="605653" data-sectiontype="2">
+                        <div class="costComposition1 whatarethecosts costComposition contentSection section"
+                            data-sectionid="605654" style="page-break-inside:avoid">
+                            <h2 class="">What are the costs? (continued)</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="tableHeader">
+                                                            <th colspan="3">This table shows the impact on return per
+                                                                year</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="groupHeader1" colspan="3">
+                                                                <div class="groupHeaderDiv1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr class="oneofcosts">
+                                                                                <th colspan="2">One-off costs upon entry
+                                                                                    or exit</th>
+                                                                                <th>Annual cost impact if you exit after
+                                                                                    7 years</th>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr class="entrycosts">
+                                                            <td>Entry costs</td>
+                                                            <td>The impact of the costs paid when entering the Fund.
+                                                            </td>
+                                                            <td>0.0%</td>
+                                                        </tr>
+                                                        <tr class="exitcosts">
+                                                            <td>Exit costs</td>
+                                                            <td>The impact of the costs of exiting the Fund.</td>
+                                                            <td>0.0%</td>
+                                                        </tr>
+                                                        <tr class="ongoingcosts">
+                                                            <th colspan="3"> Ongoing costs taken each year</th>
+                                                        </tr>
+                                                        <tr class="managementfeesandothercosts">
+                                                            <td>Management fees and other administrative or operating
+                                                                costs</td>
+                                                            <td>The impact of the costs that are taken each year for
+                                                                managing the Fund.</td>
+                                                            <td>1.2%</td>
+                                                        </tr>
+                                                        <tr class="transactioncosts">
+                                                            <td>Transaction costs</td>
+                                                            <td>The impact of the costs of buying and selling underlying
+                                                                investments for the Fund.</td>
+                                                            <td>0.2%</td>
+                                                        </tr>
+                                                        <tr class="incidentalcosts">
+                                                            <th colspan="3">Incidental costs taken under specific
+                                                                conditions</th>
+                                                        </tr>
+                                                        <tr class="performancefees">
+                                                            <td>Performance fees</td>
+                                                            <td>The impact of the performance fee.</td>
+                                                            <td>0.0%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row3 row section" data-roworder="3" data-sectionid="605655" data-sectiontype="2">
+                        <div class="text1 costcaveat text contentSection section" data-sectionid="605656">
+                            <p class="CostsCaveat">The table below shows the impact each year of the different types of
+                                costs on the investment return you might get at the end of the recommended holding
+                                period and what the different cost categories mean.<br>The impact of the costs paid when
+                                entering the Fund.<br>The impact of the costs of exiting the Fund<br>The impact of the
+                                costs that are taken each year for managing the Fund. <br>The impact of the costs of
+                                buying and selling underlying investments for the Fund.<br>The impact of the performance
+                                fee.<br>This illustrates the effect of costs over a holding period of less than one
+                                year.<br><br></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row2 row section" data-roworder="2" data-sectionid="605657" data-sectiontype="2">
+            <div class="text1 otherrelevantinformation text contentSection section" data-sectionid="605658">
+                <h2 class="item2">Other relevant information</h2>
+                <p class="RelInfo">Please ensure you read the following documents which we are legally required to make
+                    available to you. These should be provided by your financial adviser.<br>- Synergy Investment Bond
+                    Policy Provisions (SYIB60)<br>You may also wish to read:<br>- your personal illustration, Synergy
+                    Investment bond Key Features Document (SYIBKF1) and Self-Directed Options guide (SYSDO1) which can
+                    be provided<br>by your financial adviser.</p>
+                <p class="item4">The following links are to access your Past performance &amp; Monthly scenarios
+                    documents.</p>
+                <p class="MonthlyPerformanceURL"></p>
+                <p class="MonthlyPerformanceURLPath"></p>
+                <p class="PastPerformanceURL"></p>
+                <p class="PastPerformanceURLPath"></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row3 row section" data-roworder="3" data-sectionid="605659" data-sectiontype="2">
+            <div class="text1 SLFooter text contentSection section" data-sectionid="637104">
+                <p class="item2">Standard Life International dac is regulated by the Central Bank of Ireland. Standard
+                    Life International dac is a designated activity company limited by shares and registered in Dublin,
+                    Ireland (408507) at 90 St Stephen’s Green, Dublin 2. Standard Life International dac is part of the
+                    Phoenix Group and uses the Standard Life brand under licence from the Standard life Aberdeen Group.
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row4 row section" data-roworder="4" data-sectionid="637101" data-sectiontype="2">
+            <div class="text1 SLFooterL text contentSection section" data-sectionid="637105">
+                <p class="item2"></p>
+                <div><a href="www.standardlife.co.uk">www.standardlife.co.uk</a></div>
+                <p></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row5 row section" data-roworder="5" data-sectionid="637102" data-sectiontype="2">
+            <div class="text1 SLFooterR text contentSection section" data-sectionid="637106">
+                <p class="item2">©2023 Standard Life Aberdeen, reproduced under licence. All rights reserved.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="row6 row section" data-roworder="6" data-sectionid="637103" data-sectiontype="2">
+            <div class="text1 pagenumbers text contentSection section" data-sectionid="605660">
+                <p class="item2"></p>
+                <div class="Pagination">
+                    <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span> </p>
+                </div>
+                <p></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="page4 page section excludeTemplatePage" data-excluded-page="true" data-pageorder="4"
+        data-sectionid="605661" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="row1 row section" data-roworder="1" data-sectionid="605662" data-sectiontype="2">
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+
+</html>

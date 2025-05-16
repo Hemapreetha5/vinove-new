@@ -1,0 +1,313 @@
+:root {
+
+    --fw-light: 300;
+    --fw-normal: 300;
+    --fw-bold: bold;
+    --h2-color: #000000;
+    --black: #000000;
+
+}
+
+
+// p {
+//     font-family: var(--font-regular);
+//     line-height: 1.1;
+// }
+
+.page:not(.page1) {
+    >.row {
+        margin-top: .46cm;
+    }
+}
+
+.page1 {
+    padding-top: 2.9cm;
+
+    >.row1>.column1 {
+        width: 100%;
+    }
+
+    >.row3,
+    >.row4 {
+        .contentSection h2 {
+            display: none;
+        }
+    }
+
+    >.row4 {
+        .column {
+            p {
+
+                font-size: 10pt;
+            }
+        }
+    }
+
+
+    >.row6 {
+
+        .compositebody>.row .column {
+            column-count: 2;
+        }
+    }
+
+    >.row6 {
+        .compositebody>.row .column h2 {
+            column-span: all;
+        }
+    }
+}
+
+.page2 {
+    >.row2 {
+
+        .compositebody>.row .column {
+            column-count: 2;
+            column-gap: 0.8cm;
+            column-fill: balance !important;
+        }
+    }
+}
+
+
+// .WB_SRInarrative2_4,
+.WB_SRInarrative2_1 {
+    // background: url(images/warning-icon.png);
+    background-size: 18%;
+    background-position: 0px -5px;
+    width: 79%;
+    height: 61px;
+    padding: 0px 0px 0px 63px;
+    display: block;
+    background-repeat: no-repeat;
+
+    position: relative;
+    --warning-color: #bebebe;
+    --triangle-width: 0.8cm;
+    --triangle-height: 0.7cm;
+
+    &::before,
+    &::after {
+        position: absolute;
+        top: 0;
+        left: calc(var(--triangle-width));
+    }
+
+    &::before {
+        content: "";
+        --border-width: calc(var(--triangle-width) / 2);
+        left: calc(var(--triangle-width));
+        width: 0;
+        height: 0;
+        border-left: var(--border-width) solid transparent;
+        border-right: var(--border-width) solid transparent;
+        border-bottom: var(--triangle-height) solid var(--warning-color);
+        display: flex;
+        justify-content: center;
+    }
+
+    &:after {
+        content: "!";
+        color: #ffffff;
+        font-size: 18pt;
+        text-align: center;
+        width: var(--triangle-width);
+        top: 1pt;
+    }
+
+}
+
+.Sri {
+    display: none;
+}
+
+
+.sriRiskRating {
+    break-inside: avoid;
+    position: relative;
+    margin-bottom: 2mm;
+
+
+    table {
+        margin-top: .2cm;
+
+        td.rating {
+            border-color: $sri-current;
+        }
+    }
+
+    .rating {
+        width: 1cm;
+        height: 1cm;
+    }
+
+
+
+    .header {
+        margin-top: .2cm;
+        font-size: 8pt;
+
+        th {
+            font-weight: 400;
+
+            &:first-of-type {
+                padding-left: .9cm;
+            }
+
+            &:last-of-type {
+                padding-right: .9cm;
+            }
+        }
+    }
+
+    >tbody {
+        .arrow {
+            // top: .3cm;
+        }
+
+        .ratings>td {
+            // padding-top: 0;
+        }
+    }
+}
+
+.page3 .compositebody {
+    break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1>.groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+    border-bottom: 0px;
+}
+
+.page3>.row3>.composite>.compositebody>.row2>.sectiontitle>h2 {
+    border-top: 0px;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+    width: 100%;
+}
+
+.contentSection {
+    h2 {
+        color: var(--h2-color);
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.contentSection.purpose h2 {
+    font: $h2Size $h2MediumType;
+}
+
+.keyinformationdocument {
+    h2 {
+        // font-family: $fontBoldregular;
+        font-size: 28pt;
+        color: var(--black);
+    }
+}
+
+.section .contentSection.keyinformationdocument h2 {
+    border: none;
+    margin-bottom: 2mm;
+}
+
+// .page2 .row2 .compositebody .row2 .sectiontitle h2 {
+//     border: 0;
+//     font-size: $h2microSize;
+//     font-family: $h2Type  !important;
+//     padding: 0mm 0 2mm;
+//     margin: 0cm 0 0 0;
+// }
+
+.page2>.row2>.composite1>.compositebody *,
+.page3>.row2>.composite1>.compositebody * {
+    break-before: avoid-page;
+}
+
+.performanceScenario table tr.header.holding-period th:first-child {
+    font-family: $tdType !important;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+    background-color: $transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+    background-color: $transparent;
+    font-weight: map-get($font-weight, 'bold') !important;
+    font-family: $thType !important;
+}
+
+.performanceScenario table td.description {
+    color: $black;
+}
+
+table tr[class*="-return"] td {
+    font-family: $fontBoldregular;
+}
+
+
+@media only screen {
+    .page {
+        width: $screenpageWidth;
+    }
+}
+
+.WB_Purpose_1 {
+    font-size: 10pt;
+    margin-bottom: .4cm;
+}
+
+.WB_GeneralInformation_1,
+.WB_GeneralInformation_3,
+.WB_GeneralInformation_5 {
+    display: none;
+}
+
+.WB_GeneralInformation_2,
+.WB_GeneralInformation_4 {
+
+    font-family: $fontBoldregular;
+    margin-bottom: 0;
+}
+
+.WB_GeneralInformation_4 {
+    margin-bottom: .1cm;
+}
+
+@page :-ro-nth(1) {
+    margin-top: .6cm;
+
+}
+
+@page :-ro-last {
+    margin-bottom: 3cm;
+
+    @bottom-left {
+
+        height: 2.2cm;
+
+    }
+}
+
+
+/* Theme name OLZ */

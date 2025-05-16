@@ -1,0 +1,241 @@
+@font-face {
+	font-family: "vontobel_sansregular";
+	src: url("images/vontobelsans-regular-webfont.woff2") format("woff2"),
+		 url("images/vontobelsans-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "vontobel_serifregular";
+	src: url("images/vontobelserif-regular-webfont.woff2") format("woff2"),
+	url("images/vontobelserif-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root{
+	--primary: #005231;
+	--secondary: #BEBEBE;
+	--header:#212121;
+	--headerbg:rgb(241, 242, 242);
+	--parabg:rgb(241, 242, 242);
+	--black: #000000;
+	--white:#ffffff;
+	--red: #E60000;
+	--border: var(--primary);
+	--tableborder: #b2b2b2;
+	--tableheader:#004e53;
+	--tablerowheader: var(--secondary);
+	--tableheaderbg:rgba(0,156,166,0.2);
+	--tablesubheaderbg:rgba(0,156,166,0.05);
+	--altrow: #E6EBED;
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: var(--white);
+	--ratingborder: var(--black);
+	--ratingselected: #005231;
+	--bodyfont:8pt;
+	--bodycolor: #373a36;
+	--footerfont: 8pt;
+	--lineheight: 1.1;
+	--h2:9pt;
+	--h3:8pt;
+	--fontRegular: 'vontobel_sansregular';
+	--fontRegularSerif: 'vontobel_serifregular';
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight:normal;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+table th {
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight: 100;
+	text-align: left;
+	page-break-inside: avoid;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	word-wrap: anywhere;
+}
+table td {
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 7pt;
+}
+table th.tableheader, table .tableHeader th {
+	border: 0 !important;
+}
+h2 {
+  font-family: var(--fontRegular);
+  font-weight: 700;
+  font-size: var(--h2);
+  color: var(--bodycolor);
+  margin-bottom: 0.05cm;
+}
+p:empty, h2:empty {
+	margin: 0;
+	padding:0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+
+p {
+	padding: 0 0 0.2cm;
+}
+p br {
+    display: block !important;
+    margin: 0 0 !important;
+    line-height: 0.2 !important;
+    padding: 0 !important;
+    content: "";
+}
+b {
+}
+h2 {
+  bookmark-level: 1;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.subheader p {
+  bookmark-level: 2;
+}
+/* page styles*/
+.page {
+	width: 19cm;
+	height: auto;
+	padding: 0cm 0.5cm 0cm 0.5cm;
+	position: relative;
+}
+.page1 {
+	background:url(images/zuger_kantonalbank_logo.svg) no-repeat;
+	background-size: 6cm 0.78cm;
+	background-position: 13.5cm 0;
+	padding-top: 1cm;
+}
+.page1 > .row1 .contentSection h2 {
+}
+.page1 .row2 .contentSection .item3 {
+	font-family: var(--fontBold);
+}
+.page1 > .row:last-child > .composite1 > .compositebody > .row:last-child {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.page1 > .row > .composite1 > .compositebody > .row > .column1 {
+	width: 60%;
+	margin-left: 1%;
+}
+.page1 > .row > .composite1 > .compositebody > .row > .column2 {
+	width: 39%;
+}
+.discreteChart {
+    height: 300px;
+}
+.highcharts-data-label {
+	display: none;
+}
+.keyWrapper {
+	margin: 0.2cm 0;
+	display: none;
+}
+.key-color {
+	width: 10px;
+	height: 10px;
+}
+.label {
+	line-height: var(--lineheight);
+}
+.performancetable {
+	margin-right: 0.15cm;
+}
+.performancetable h2 {
+	display: none;
+}
+.groupHeaderDiv1 th, .groupRowDiv1 td {
+	padding: 1mm 0.75mm;
+	border-right: 0pt solid var(--tableborder);
+	border-bottom: 0.5pt solid var(--tableborder);
+	width: 8.5%;
+	text-align: center;
+}
+.groupHeaderDiv1 tr:first-child th {
+	border-top: 0.5pt solid var(--tableborder);
+}
+.groupHeaderDiv1 table th:first-child, .groupRowDiv1 table td:first-child {
+	border-left: 0pt solid var(--tableborder);
+}
+.groupHeaderDiv1 th.keycell, .groupRowDiv1 td.keycell {
+	width: 4%;
+	text-align: left;
+}
+.groupHeaderDiv1 th.rowheader, .groupRowDiv1 td.rowheader {
+	text-align: left;
+	width: 9%;
+}
+
+.pagenumbers .footer, .pagenumbers .Pagination {
+    margin: 0.1cm 0cm 0.1cm 0 !important;
+    float: right;
+    font-size: var(--footerfont);
+    position: relative;
+    z-index: 1;
+}
+.contentSection.pagenumbers .footer p, .contentSection.pagenumbers .Pagination p {
+  position: running(pageNum);
+  text-align: right;
+}
+
+/* @page styles */
+@page {
+	margin: 1cm 0.5cm 1cm 0.5cm;
+	padding: 0;
+	@bottom-right {
+		content: element(pageNum);
+		margin:0 1cm 1cm;
+		padding: 0.15cm 0 0cm;
+		font-size: var(--footerfont);
+		font-family: var(--fontRegular);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 5cm;
+	}
+}
+.page1 > .row1 .contentSection h2 {
+    background: #E1DCCA;
+    padding: 2mm;
+    margin-bottom: 0.2cm;
+}
+
+/* theme name: vontobel_ZugerKB_pastperformancetheme_202211_EU */

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hema Reactjs questions</title>
+    <style>
+ body{
+            padding:15px 15px 15px 0;
+            margin:0;
+            background-color:#000;
+            color:#fff;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        p{
+            color:#fff;
+            font-size:14px;
+            margin-bottom:15px;
+        }
+        h4{
+            color:#8a2ae4;
+            font-size:20px;
+            margin-bottom:15px;
+        }
+        li{
+            font-size:14px;
+            color:#8a2ae4;
+        }
+        ul li{
+            color:#fff;
+            margin-bottom:15px;
+        }
+        code{
+            color:#f2490a;
+        }
+        code h2{
+            font-size:16px;
+            margin:0 0 5px 0;
+        }
+        table{
+            color:#fff;
+        }
+        table,tr,th,td{
+            border:1px solid #fff;
+            border-collapse: collapse;
+            padding:10px;
+        }
+    </style>
+</head>
+<!-- ReactJS Questions -->
+<body>
+<ol>
+  <li>
+    <h4>What is react js?</h4>
+    <div class="answer-block">
+        <p>The React. js library is an open-source code.</p>
+        <p>It follows the component based approach which helps in building reusable UI components.</p>
+        <p>It is used for developing complex and interactive web and mobile UI.</p>
+        <p>React is a declarative, efficient, and flexible</p>
+    </div>
+  </li>
+  <li>
+    <h4>Advantage of react js?</h4>
+    <div class="answer-block">
+        <p>Easy to Learn and Use.</p>
+        <p>Reusable Components.</p>
+        <p>Fast & efficient</p>
+        <p>Performance Enhancement.</p>
+        <p>Excellent cross-platform support</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is virtual DOM?</h4>
+    <div class="answer-block">
+        <p>A virtual DOM is a lightweight JavaScript object </p>
+        <p>It is just a copy of the real DOM.</p>
+        <ul>
+            <li>It updates faster.</li>
+            <li>Can’t directly update HTML.</li>
+            <li>Updates the JSX if element updates.</li>
+            <li>DOM manipulation is very easy.</li>
+            <li>No memory wastage.</li>
+        </ul>
+    </div>
+  </li>
+  <li>
+    <h4>Which data structure is used to maintain DOM in react js?</h4>
+    <div class="answer-block">
+        <p>It uses tree data structure. </p>
+        <p>It consists of the node for each UI element present in the web document.</p>
+    </div>
+  </li>
+  <li>
+    <h4>Life cycle method of react js?</h4>
+    <div class="answer-block">
+        <p>Initialization ,Mounting, Updating, and Unmounting.</p>
+        <ul>
+            <li><b>Initialization</b> During this phase, React component will prepare by setting up the default props and initial state </li>
+            <li><b>Mounting</b> Mounting refers to putting the elements into the browser DOM. Since React uses VirtualDOM, the entire browser DOM which has been currently rendered would not be refreshed. 
+                This phase includes the lifecycle methods <code>componentWillMount</code> and <code>componentDidMount.</code></li>
+            <li><b>Updating</b> In this phase, a component will be updated when there is a change in the state or props of a component. This phase will have lifecycle methods like <code>componentWillUpdate</code>, <code>shouldComponentUpdate</code>, <code>render</code>, and <code>componentDidUpdate</code>.</li>
+            <li><b>Unmounting</b>  In this last phase of the component lifecycle, the component will be removed from the DOM or will be unmounted from the browser DOM. This phase will have the lifecycle method named <code>componentWillUnmount</code></li>
+        </ul>
+    </div>
+  </li>
+  <li>
+    <h4>Is constructor mandatory in class component</h4>
+    <div class="answer-block">
+        <p>It is not necessary to have a constructor in every component.</p>
+        <p>It is necessary to call super() within the constructor.</p>
+        <p>To set property or use 'this' inside the constructor it is mandatory to call super().</p>
+    </div>
+  </li>
+  <li>
+    <h4></h4>
+    <div class="answer-block">
+        <table>
+            <tr>
+                <th>Functional Component</th>
+                <th>Class Component</th>
+            </tr>
+            <tr>
+                <td>A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).</td>
+                <td>A class component requires you to extend from React. Component and create a render function which returns a React element.</td>
+            </tr>
+            <tr>
+                <td>There is no render method used in functional components.</td>
+                <td>It must have the render() method returning JSX </td>
+            </tr>
+            <tr>
+                <td>Functional component run from top to bottom and once the function is returned it cant be kept alive.</td>
+                <td>Class component is instantiated and different life cycle method is kept alive and being run and invoked depending on phase of class component.</td>
+            </tr>
+        </table>
+    </div>
+  </li>
+  <li>
+    <h4>Is component WillMount call every time?</h4>
+    <div class="answer-block">
+        <p>No, componentWillMount is called only once. Also, componentDidMount is called only once. componentDidUpdate is called on every re-render. componentWillMount called once while component is mounting for the first time.</p>
+    </div>
+  </li>
+  <li>
+    <h4>How to avoid infinite rendering in reactjs?</h4>
+    <div class="answer-block">
+        <p>To prevent this, we have to pass setCount as a callback function like () => setCount(count + 1) .</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is stateless and stateful components in react</h4>
+    <div class="answer-block">
+        <p>A stateful component is a component that holds some state. Stateless components, by contrast, have no state. Note that both types of components can use props</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is dumb component?</h4>
+    <div class="answer-block">
+        <p>Dumb components are also called 'presentational' components because their only responsibility is to present something to the DOM.</p>
+        <p>There will be no logic at all inside this component therefore it is called a dumb component.</p>
+      </div>
+  </li>
+  <li>
+    <h4>What is higher order component?</h4>
+    <div class="answer-block">
+        <p>A higher-order component (HOC) is an advanced technique in React for reusing component logic.</p>
+        <p>The component transforms props into UI, and a higher-order component converts a component into another component. The examples of HOCs are <b>Redux's connect and Relay's createContainer.</b></p>
+    </div>
+  </li>
+  <li>
+    <h4>Which algorithm is use to compare virtual DOM?</h4>
+    <div class="answer-block">
+        <p>React uses a method called the diffing algorithm to compare the old DOM to the new. Diffing is a heuristic algorithm based on two assumptions: Two elements of different types will produce different trees.</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is hooks? Tell me some hooks name?</h4>
+    <div class="answer-block">
+        <p>A Hook is a JavaScript functions that we can use to isolate the reusable part from a functional component.</p>
+        <p> Hooks can be stateful and can manage side-effects.</p>
+        <p>For example, useState is a Hook that lets you add React state to function components.</p>
+        <p>Effect Hook => useEffect</p>
+        <p>Context Hook.</p>
+    </div>
+  </li>
+
+  <li>
+    <h4>What is useEffect and uses?</h4>
+    <div class="answer-block">
+        <p>The useEffect Hook allows you to perform side effects in your components. Some examples of side effects are: fetching data, directly updating the DOM, and timers. useEffect accepts two arguments. The second argument is optional. useEffect(<function>, <dependency>)</p>
+        <p>By using this Hook, you tell React that your component needs to do something after render.</p>
+    </div>
+  </li>
+  <h3>Redux</h3>
+  <li>
+    <h4>What is redux? Why we use Redux?</h4>
+    <div class="answer-block">
+        <p>Redux is a predictable state container designed to help you write JavaScript apps that behave consistently across client, server, and native environments, and are easy to test.</p>
+        <p>Uses of Redux: With the help of redux it is easy to manage state and data.</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is action, reducer and dispatch?</h4>
+    <div class="answer-block">
+        <p>Action => Actions are plain JavaScript object that contains information. Action is one of the building blocks of Redux.</p>
+        <p>Reducer => Describes how your action transfers state into the next state. It checks which action took place and based on the action it updates the store.</p>
+        <p>Dispatch => Way how we execute the action. </p>
+        <p>For example : Dispatch the action to the reducer. Then reducer will check what to do and the store gets updated.</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is action creator in redux?</h4>
+    <div class="answer-block">
+        <p>Action creators are exactly that—functions that create actions.</p>
+        <p>Actions are plain JavaScript objects.</p>
+        <p>Actions must have a type property.</p>
+    </div>
+  </li>
+  <li>
+    <h4>What is redux thunk?</h4>
+    <div class="answer-block">
+        <p>Thunk allows us to dispatch actions manually, which gives us the power to incorporate some logic or run some asynchronous code before dispatching an action.</p>
+    </div>
+  </li>
+  <li>
+    <h4>How to create store?</h4>
+    <div class="answer-block">
+        <p>reates a Redux store that holds the complete state tree of your app. There should only be a single store in your app.</p>
+    </div>
+  </li>
+
+  <li>
+    <h4>Tell redux flow?</h4>
+    <div class="answer-block">
+        <p>The flow of data in a React-Redux application begins at the component level when the user interacts with the application UI. This interaction leads to the action creators dispatching an action. When an action is dispatched, it is received by the root reducer of the application and is passed on to all the reducers.</p>
+    </div>
+  </li>
+</ol>
+</body>
+</html>

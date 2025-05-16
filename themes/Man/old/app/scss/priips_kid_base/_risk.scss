@@ -1,0 +1,222 @@
+//Base
+.sriRiskRating {
+
+    table {
+        width: calc(100% - 0.4cm);
+        margin: 0.2cm;
+
+        @if $rating-space {
+            border-collapse: separate;
+            border-spacing: 10pt 0pt;
+        }
+
+        td.rating {
+            border: $risk-rating-border;
+            background-color: $risk-normal-color;
+            text-align: center;
+            padding: 0.1cm;
+            font-size: $td-rating-fontsize;
+            font-family: $font-regular;
+
+            &.active {
+                background-color: $risk-active;
+                color: $white;
+            }
+
+            &.selected {
+                background-color: $risk-active;
+                color: $white;
+            }
+
+        }
+
+    }
+
+    .header {
+        font-size: map-get($font-size, 'small');
+        font-family: $font-regular;
+        font-weight: map-get($font-weight, 'base');
+
+        th:first-of-type {
+            text-align: left;
+            padding-left: 0.3cm;
+            padding-bottom: 0.1cm;
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: 0.2cm 0cm;
+            background-size: 20%;
+            background-color: transparent;
+            border: 0;
+            padding-top: $sri-padding-header;
+            font-family: $td-scenario-header-font;
+            color: $black;
+        }
+
+        th:last-of-type {
+            text-align: right;
+            font-family: $td-scenario-header-font;
+            padding-right: 0.3cm;
+            padding-bottom: 0.1cm;
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: 7.3cm 0cm;
+            background-size: 20%;
+            background-color: transparent;
+            border: 0;
+            padding-top: $sri-padding-header;
+            color: $black;
+        }
+    }
+
+    .arrow {
+        background: $arrow-type no-repeat center/$sri-background-size;
+        height: 4mm;
+        margin: 0 0.2cm;
+    }
+}
+
+
+
+@if $rating-type==2 {
+    .sriRiskRating {
+        >tbody {
+            position: relative;
+
+            .ratings>td {
+                padding-top: 1cm;
+            }
+
+            .arrow {
+                position: absolute;
+                top: 0.7cm;
+                left: 0;
+                right: 0;
+            }
+
+            .header {
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                top: 0.2cm;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+}
+
+@if $rating-type==3 {
+    .sriRiskRating {
+        >tbody {
+            position: relative;
+
+            .ratings>td {
+                padding-top: 1cm;
+            }
+
+            .arrow {
+                position: absolute;
+                top: 0.2cm;
+                left: 0;
+                right: 0;
+            }
+
+            .header {
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                top: 0.7cm;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+}
+
+@if $rating-type==4 {
+    .sriRiskRating {
+        width: $sri-risk-rating-tab-width;
+        margin: 0 !important;
+
+        .ratings>td {
+            padding: 0.2cm 0;
+            background: none;
+        }
+
+        >tbody {
+            position: relative;
+
+            .ratings>td {
+                border: 0;
+            }
+
+            .arrow {
+                display: none;
+            }
+
+        }
+
+    }
+}
+
+@if $rating-type==5 {
+    .sriRiskRating {
+        width: $sri-risk-rating-tab-width;
+        margin: 0 !important;
+
+        .ratings>td {
+            padding: 0.2cm 0;
+            background: none;
+        }
+
+        >tbody {
+            position: relative;
+
+            .ratings>td {
+                border: 0;
+            }
+
+            .arrow {
+                position: absolute;
+                top: 1.2cm;
+                left: 0;
+                right: 0;
+            }
+
+        }
+
+    }
+}
+
+
+@if $risk-warning-icon {
+    p.Sri {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 25px 43.3px 25px;
+        border-color: transparent transparent $warning-color transparent;
+        margin: 20px 12px 0 0;
+        float: left;
+
+        ::after {
+            content: '!';
+            font-size: map-get($font-size, 'large');
+            font-family: $font-light;
+            color: $white;
+            position: relative;
+            left: -6px;
+            top: 9px;
+        }
+    }
+}
+
+@if $risk-indicator-heading {
+
+    p.Sri:before {
+        content: 'Risk indicator';
+        font-weight: map-get($font-weight, 'bold');
+        font-family: $font-bold;
+    }
+
+}

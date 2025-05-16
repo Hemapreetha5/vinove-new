@@ -1,0 +1,1188 @@
+
+
+@font-face {
+  font-family: "Avenir LT Com 55 Roman";
+  src: url("images/AvenirLTCom-Heavy.woff2") format("woff2"), url("images/AvenirLTCom-Heavy.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avenir LT Com 45";
+  src: url("images/AvenirLTCom-Book.woff2") format("woff2"), url("images/AvenirLTCom-Book.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+--font-book: "Avenir LT Com 45";
+--font-heavy: "Avenir LT Com 55 Roman";
+--black: #000000;
+--white: #ffffff;
+--primary-blue: #166793;
+--td-padding: 1.03mm;
+--td-border: 0.25pt solid #000000;
+--th-padding-left: 2.2mm;
+}
+
+body {
+text-align: justify;
+}
+
+b {
+font-family: var(--font-heavy);
+}
+
+/*outer border for page row sections groups*/
+/* logo visible in pdf page margin  */
+/*show /hide logo in all pages*/
+/*show /hide logo in Ist page*/
+/*$logoWidth:100%;
+$logoHeight:1cm;*/
+/*$pagination-path:".pagenumbers";*/
+/*Common shared files of same template projects*/
+.triangle-1 {
+position: relative;
+overflow: hidden;
+transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+pointer-events: none;
+border-radius: 20%;
+}
+
+.triangle-1,
+.triangle-1::before,
+.triangle-1::after {
+width: 20rem;
+height: 20rem;
+}
+
+.triangle-1::before,
+.triangle-1::after {
+content: "";
+position: absolute;
+background: yellow;
+pointer-events: auto;
+}
+
+.triangle-1::before {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-1::after {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-1::before {
+border-radius: 20% 20% 20% 55%;
+}
+
+.triangle-1::after {
+border-radius: 20% 20% 55% 20%;
+}
+
+.triangle-2 {
+position: relative;
+overflow: hidden;
+transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+pointer-events: none;
+}
+
+.triangle-2,
+.triangle-2::before,
+.triangle-2::after {
+width: 10rem;
+height: 10rem;
+}
+
+.triangle-2::before,
+.triangle-2::after {
+content: "";
+position: absolute;
+background: #000000;
+pointer-events: auto;
+}
+
+.triangle-2::before {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-2::after {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-3 {
+position: relative;
+overflow: hidden;
+transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+pointer-events: none;
+border-radius: 20%;
+}
+
+.triangle-3,
+.triangle-3::before,
+.triangle-3::after {
+width: 15rem;
+height: 15rem;
+}
+
+.triangle-3::before,
+.triangle-3::after {
+content: "";
+position: absolute;
+background: gray;
+pointer-events: auto;
+}
+
+.triangle-3::before {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-3::after {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+.triangle-3::before {
+border-radius: 20% 20% 20% 55%;
+}
+
+.triangle-3::after {
+border-radius: 20% 20% 55% 20%;
+}
+
+.triangle-4 {
+position: relative;
+overflow: hidden;
+transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866);
+pointer-events: none;
+}
+
+.triangle-4,
+.triangle-4::before,
+.triangle-4::after {
+width: 17.5rem;
+height: 17.5rem;
+}
+
+.triangle-4::before,
+.triangle-4::after {
+content: "";
+position: absolute;
+background: linear-gradient(to right, orange 0%, red 100%);
+pointer-events: auto;
+}
+
+.triangle-4::before {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%);
+}
+
+.triangle-4::after {
+transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%);
+}
+
+body {
+text-rendering: optimizeLegibility !important;
+-webkit-font-smoothing: antialiased !important;
+padding: 0;
+margin: 0;
+}
+
+h2 {
+font-size: 14pt ;
+color: #176894;
+margin: 0 0 0.3cm 0;
+padding: 0;
+}
+
+p,
+.description {
+font-size: 12pt;
+font-family: var(--font-book);
+color: var(--black);
+margin: 0 0 0mm;
+padding: 0 0 1mm 0;
+line-height: 1.2;
+text-align: justify;
+}
+
+.contentSection h2 {
+font-size: 12pt;
+color: #176894;
+margin: 7mm 0 4.5mm 0;
+padding: 0;
+border-bottom: 0pt;
+font-family: var(--font-heavy);
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+text-align: left;
+}
+
+.keyinformationdocument.contentSection h2 {
+font-size: 16pt;
+color: #176894;
+margin: 0.7cm 0 0 0;
+padding: 0 0 0.85cm 0mm;
+line-height: 1;
+border-bottom: 0.25pt solid black;
+font-family: var(--font-heavy);
+}
+
+p.IssuedOnDate {
+border-bottom: 0px #187aba solid;
+text-align: left;
+}
+
+.header1 p,
+.header2 p {
+font: 14pt "Avenir LT Com 45";
+color: #176894;
+margin: 0;
+padding: 0;
+}
+
+.header3 p,
+.header4 p {
+font: 14pt "Avenir LT Com 45";
+color: #176894;
+margin: 0;
+padding: 0;
+}
+
+.page {
+width: 19.4cm;
+height: auto;
+padding: 0cm;
+}
+
+.page1 {
+  padding-top: 1.2cm;
+  background: url(images/VG_logo.png);
+  background-size: 50mm auto;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+p br {
+display: block !important;
+margin: 0 0 !important;
+line-height: 0.2 !important;
+padding: 0 !important;
+content: "";
+}
+
+.fundName h2 {
+font: 18pt "Avenir LT Com 45";
+color: #176894;
+margin: 0 0 0.3cm 0;
+padding: 0;
+}
+.page1 > .row1 > .composite1 > .compositebody > .row2 > .column {
+width: auto;
+float: none;
+}
+.page1 > .row1 .column1 {
+text-align: left;
+position: running(fundname);
+}
+.page > .row1 .column2 {
+  position: running(pageNum);
+  text-align: right;
+}
+.page > .row1 * {
+font-size: 16pt !important;
+line-height: 9pt;
+font-family:var(--font-heavy) ;
+margin: 0cm 0 0.3cm 0;
+}
+
+.page1 .row4 .compositebody > .row .column,
+.page1 .row5 .compositebody > .row .column {
+width: 100% !important;
+column-count: 1;
+column-gap: 0.5cm;
+column-fill: balance !important;
+}
+
+.page1 .row4 .compositebody > .row .column h2,
+.page1 .row5 .compositebody > .row .column h2 {
+/* column-span: all !important; */
+}
+
+.page2 .row2 .compositebody .row3 {
+width: 100% !important;
+column-count: 1;
+column-gap: 0.5cm;
+column-fill: balance !important;
+}
+
+.page2 .row2 .compositebody .row3 h2 {
+column-span: all;
+}
+
+.page2 .row2 .compositebody .row5 .column {
+width: 100% !important;
+column-count: 1;
+column-gap: 0.5cm;
+column-fill: balance !important;
+}
+
+h2 {
+bookmark-level: 1;
+}
+
+.subheader p {
+bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+padding: 0;
+}
+
+.costovertimetable .groupRow1 {
+border: 0;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+border: 0pt solid transparent;
+}
+
+table th:not(.groupHeader1) {
+color: black;
+background: #f2f2f2;
+}
+
+table th:last-of-type {
+border-bottom: 0pt solid #b9b9b9;
+}
+
+table td:not(.rating):last-of-type {
+/*border-bottom: $td-bottom-border-size solid $th-border;*/
+border-right: 0pt;
+}
+
+table td {
+vertical-align: middle;
+/* border: var(--td-border); */
+/*border-bottom: $td-bottom-border-size solid $td-border;*/
+padding: var(--td-padding);
+margin: 0;
+background: #ffffff;
+}
+
+table th {
+vertical-align: middle;
+margin: 0;
+padding: var(--td-padding);
+}
+
+.groupHeader1 table th {
+padding: var(--td-padding);
+background: #f5faf9;
+color: black;
+font-family: var(--font-heavy);
+font-size: 7pt;
+border-bottom: 0.25pt solid #000000;
+}
+
+.groupHeader1 table th:first-of-type {
+text-align: left;
+padding-left: var(--th-padding-left);
+}
+
+.groupHeader1 table tr:last-of-type th {
+word-wrap: anywhere;
+width: 1cm;
+text-align: center;
+height: 5mm;
+}
+
+.groupRow1 table td {
+border-right: 0.25pt solid #000000;
+border-bottom: 0.25pt solid #000000;
+font-family: "Avenir LT Com 45";
+font-size: 7.5pt;
+}
+
+.groupRow1 table .header th {
+font-family: "Avenir LT Com 45";
+font-weight: 400 !important;
+text-align: left;
+border-bottom: 0.25pt solid #000000;
+}
+
+.groupRow1 table .incidentalcosts th {
+font-family: "Avenir LT Com 45";
+font-weight: 400 !important;
+text-align: left;
+border-bottom: 0.25pt solid #000000;
+}
+
+.groupRow1 table .ongoingcosts th {
+font-family: "Avenir LT Com 45";
+font-weight: 400 !important;
+text-align: left;
+border-bottom: 0.25pt solid #000000;
+}
+
+.WB_Performancescenariosnarrative_1,
+.WB_Performancescenariosnarrative_2 {
+font-family: var(--font-heavy);
+}
+
+.performanceScenario table tr .holding-period th:last-child,
+.performanceScenario table tr .investment-amount th:last-child,
+.performanceScenario table tr .insurance-premium th:last-child {
+text-align: left;
+}
+
+.performanceScenario > table {
+border-top: 0pt solid #176894;
+}
+.performanceScenario th[class*=period],
+.performanceScenario td[class*=period] {
+text-align: left;
+}
+.performanceScenario table td.scenario {
+font-family: var(--font-heavy);
+}
+.performanceScenario .survival-scenario {
+border-top: 0pt;
+border-bottom: 0pt;
+border-left: var(--td-border);
+position: relative;
+}
+.performanceScenario .survival-scenario th {
+border-top: 0pt;
+color: var(--primary-blue);
+font-family: var(--font-heavy);
+position: absolute;
+bottom: 3px;
+left: 1px;
+padding: 0;
+}
+
+.performancescenariotable_5column th[class*=period],
+.performancescenariotable_5column td[class*=period] {
+width: 3.3cm;
+}
+
+.performancescenariotable_4column .groupHeaderDiv1 > table .header th:last-of-type {
+width: 44mm;
+}
+.performancescenariotable_4column .investment-amount + tr th:nth-of-type(1) {
+width: 99mm;
+}
+.performancescenariotable_4column .investment-amount + tr .period1 {
+width: 43.1mm;
+}
+.performancescenariotable_4column .investment-amount + tr .period2 {
+width: 47.3mm;
+}
+.performancescenariotable_4column .scenario {
+width: 33mm;
+padding-left: var(--th-padding-left);
+}
+.performancescenariotable_4column .description {
+width: 66mm;
+}
+.performancescenariotable_4column .period1 {
+width: 45.5mm;
+}
+.performancescenariotable_4column .period2 {
+width: 49.5mm;
+}
+
+.costOverTime {
+padding-bottom: 0.2cm;
+}
+
+.costOverTime > table {
+border-top: 0pt solid #176894;
+width: 100%;
+}
+
+.costOverTime table .tableheader {
+display: none;
+}
+
+.costOverTime table td.totalcostsheader,
+.costOverTime table td.riyheader {
+font-family: var(--font-heavy);
+}
+
+.costOverTime table td[class*=totalcosts],
+.costOverTime table td[class*=riy] {
+text-align: left;
+}
+
+.costOverTime table td.riyheader,
+.costOverTime table td.totalcostsheader {
+text-align: left;
+}
+
+.costOverTime table th[class*=scenario] {
+text-align: left;
+}
+
+.costOverTime {
+padding: 0.15cm 0 0.2cm;
+}
+
+.costOverTime.costovertime_4columntable.contentSection {
+/* costovertime table fullwidth css for 4column <<<<*/
+}
+
+.costOverTime.costovertime_4columntable.contentSection > table {
+width: 100% !important;
+margin: 0;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th:first-of-type {
+width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table tbody td.totalcostsheader {
+width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection .scenarioheader th[class*=scenario] {
+width: 25% !important;
+}
+
+.costOverTime.costovertime_4columntable.contentSection table td[class*=totalcosts] {
+width: 25% !important;
+}
+
+.costOverTime.costovertime_3columntable.contentSection {
+/* costovertime table fullwidth css for 3column <<<<*/
+}
+
+.costovertime_3columntable .totalcostsheader {
+width: 53mm;
+}
+.costovertime_3columntable .scenario1,
+.costovertime_3columntable .scenario2 {
+width: 68.1mm;
+}
+.costovertime_3columntable .totalcosts1,
+.costovertime_3columntable .totalcosts2 {
+width: 70.5mm;
+}
+.costovertime_3columntable .scenarioheader th:nth-of-type(1) {
+width: 53mm;
+}
+
+.costOverTime.costovertime_2columntable.contentSection {
+/* costovertime table fullwidth css for 2column <<<<*/
+}
+
+.costOverTime.costovertime_2columntable.contentSection > table {
+width: 98% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th:first-of-type {
+width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table tbody td.totalcostsheader {
+width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection .scenarioheader th[class*=scenario] {
+width: 50% !important;
+}
+
+.costOverTime.costovertime_2columntable.contentSection table td[class*=totalcosts] {
+width: 50% !important;
+}
+
+.scenarioheader th {
+border: var(--td-border);
+}
+
+.costComposition {
+padding-bottom: 0.2cm;
+}
+.costComposition .groupRow1 {
+border-left: 0;
+}
+.costComposition .oneofcosts,
+.costComposition .ongoingcosts,
+.costComposition .incidentalcosts {
+border-left: var(--td-border);
+}
+.costComposition .entrycosts td:nth-of-type(1) {
+width: 53mm;
+}
+.costComposition .entrycosts td:nth-of-type(3) {
+width: 36mm;
+}
+
+.costComposition > table {
+border-top: 0pt solid #176894;
+}
+
+.costComposition > table table .tableHeader > th {
+text-align: center;
+}
+
+.costComposition table .tableHeader {
+display: none;
+}
+
+.costComposition table .oneofcosts th:last-of-type {
+width: 36mm;
+border-left: var(--td-border);
+}
+
+.costComposition table td:last-of-type {
+width: 3.1cm;
+}
+
+.WB_SRInarrative2_4 {
+font-family: var(--font-heavy);
+}
+
+.sriRiskRating .ratings > td {
+padding-left: 0;
+padding-right: 0;
+border: 0;
+}
+
+.sriRiskRating table td.rating {
+border: 0pt solid #000000;
+background-color: #dce8ef;
+text-align: center;
+padding: 0.1cm;
+font-size: 10pt;
+font-family: "Avenir LT Com 45";
+color: #000000;
+}
+
+.sriRiskRating table td.rating.active {
+background-color: #176894;
+color: #ffffff;
+}
+
+.sriRiskRating table td.rating.selected {
+background-color: #176894;
+color: #ffffff;
+font-family: var(--font-heavy);
+}
+
+.sriRiskRating .header {
+font-size: 9pt;
+font-family: "Avenir LT Com 45";
+}
+
+.sriRiskRating .header th:first-of-type {
+text-align: left;
+padding-left: 0;
+padding-bottom: 0.1cm;
+background-image: none;
+background-repeat: no-repeat;
+background-position: 0.2cm 0cm;
+background-size: 20%;
+background-color: transparent;
+border: 0;
+padding-top: 0;
+font-family: var(--font-heavy);
+}
+
+.sriRiskRating .header th:last-of-type {
+text-align: right;
+font-family: var(--font-heavy);
+padding-right: 0;
+padding-bottom: 0.1cm;
+background-image: none;
+background-repeat: no-repeat;
+background-position: 7.3cm 0cm;
+background-size: 20%;
+background-color: transparent;
+border: 0;
+padding-top: 0;
+}
+
+.sriRiskRating .arrow {
+background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:%23000000;stroke-miterlimit:10;%7D .st1%7Bfill:%23000000;%7D%0A%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A") no-repeat center/100% 2.5mm;
+height: 4mm;
+}
+
+.sriRiskRating > tbody {
+position: relative;
+}
+
+.sriRiskRating > tbody .ratings > td {
+padding-top: 1cm;
+}
+
+.sriRiskRating > tbody .arrow {
+position: absolute;
+top: 0.5cm;
+left: 0;
+right: 0;
+}
+
+.sriRiskRating > tbody .header {
+position: absolute;
+display: flex;
+justify-content: space-between;
+top: 0.2cm;
+left: 0;
+right: 0;
+}
+
+p.Sri {
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 25px 43.3px 25px;
+border-color: transparent transparent #000000 transparent;
+margin: 20px 12px 0 0;
+float: left;
+}
+
+p.Sri::after {
+content: "!";
+font-size: 18pt;
+font-family: "Avenir LT Com 45";
+color: #ffffff;
+position: relative;
+left: -6px;
+top: 9px;
+}
+
+/* Different types of project templates prps_monthperf/ubs_kid_base/prps_pastperf/priips_base/priips_kid_base */
+.page > .row1 {
+/*hiding all footers*/
+
+}
+
+.excludeTemplatePage > .row1 {
+position: static;
+display: block;
+text-align: left;
+}
+.excludeTemplatePage > .row1 .compositebody {
+page-break-before: always;
+}
+
+@page {
+  margin: 1.3cm 0.8cm 1.1cm 0.8cm;
+  margin-top: 7.5mm;
+
+  @top-left {
+    content: element(header);
+  }
+  @bottom-left {
+    content: element(footer_all);
+    margin: 0.05cm 0cm 0.7cm;
+    font-size: var(--footerfont);
+    font-family: var(--fontRegular);
+    line-height: var(--footerlineheight);
+    font-weight: 100;
+    color: var(--bodycolor);
+    width: 17cm;
+  }
+  @bottom-center {
+    content: element(footer_description);
+    margin-bottom: 0.1cm;
+    left: -1cm;
+    position: relative;
+    text-align: left;
+    z-index: 2;
+    border-top: 0.25pt solid black;
+    font-size: var(--footerfont);
+    font-family: var(--fontRegular);
+    line-height: var(--footerlineheight);
+    font-weight: 100;
+    color: var(--bodycolor);
+    width: 17.4cm;
+  }
+  @bottom-right {
+    content: element(pageNum);
+    margin-bottom: 0.25cm;
+    border-top: 0.25pt solid black;
+    font-size: var(--footerfont);
+    font-family: var(--fontRegular);
+    line-height: var(--footerlineheight);
+    font-weight: 100;
+    color: var(--bodycolor);
+    width: 2cm;
+    z-index: 3;
+  }
+}
+@page :first {
+  margin-top: 0.45cm;
+  @top-right {
+    content: "";
+    background: none;
+    border: none;
+  }
+}
+.page > .row1 > .composite1 > .compositebody > .row2 > .column2 {
+/*footer width extended to full page width*/
+width: 100%;
+}
+
+.page1 > .row2 {
+margin-top: 0cm !important;
+}
+
+.subheader p {
+color: black;
+}
+
+.description {
+padding: var(--td-padding);
+}
+
+
+.purpose h2 {
+margin-top: 0.375cm;
+}
+
+.ratings tr {
+display: flex;
+gap: 5px;
+}
+
+ul {
+margin: 0;
+padding-left: 0px;
+}
+
+ul li {
+font: 7.5pt "Avenir LT Com 45";
+list-style: none;
+}
+
+.groupHeader1 table th {
+border-bottom: 0 solid #b9b9b9;
+}
+.groupHeader1 table .header th:last-of-type {
+font-family: var(--font-book);
+font-weight: normal;
+}
+
+.groupRow1 table tbody tr td {
+border-right: 0.25pt solid #000000;
+color: black;
+width: 1cm;
+text-align: center;
+}
+
+.groupRow1 td:first-child, .groupHeader1 th:first-child{
+  text-align: left;
+  width: 0.5cm !important;
+  border-left: 0pt;
+}
+
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 {
+width: 100%;
+column-count: 2;
+column-gap: 0.7cm;
+column-fill: balance !important;
+}
+
+.page1 .row2 > .composite1 > .compositebody > .row2 > .column1 {
+width: 100%;
+}
+
+.page1 .row6 > .composite1 > .compositebody > .row2 > .column1 h2 {
+column-span: all;
+}
+
+/*table td:not(.rating):last-of-type{
+  border-right:0.4pt solid $black !important;
+}
+.groupRowDiv1>table td,.performancescenariotable table .survival-scenario th,.groupRow1 table .header th,table .ongoingcosts th, table .incidentalcosts th {
+  border: 0.4pt solid $black;
+}*/
+.oneofcosts th:last-of-type {
+text-align: left;
+}
+
+.performanceScenario,
+.costcomposition {
+padding-bottom: 0.2cm;
+padding-top: 0.2cm;
+}
+
+.performanceScenario {
+page-break-inside: always !important;
+}
+
+h1 {
+position: running(pageheader);
+}
+
+.totalcostsheader,
+.riyheader,
+.entrycosts td:first-child,
+.exitcosts td:first-child,
+.managementfeesandothercosts td:first-child,
+.transactioncosts td:first-child,
+.performancefees td:first-child {
+font-family: var(--font-heavy);
+}
+
+.groupRow1 table tr th:not(.groupHeader1) {
+background: #dce8ef;
+font-family: var(--font-heavy);
+border-bottom: 0;
+}
+
+h2:empty,
+.contentSection:empty {
+display: none;
+}
+
+.groupRow1 table .header th {
+color: #000000;
+}
+
+.groupRow1 table .incidentalcosts th {
+color: #000000;
+}
+
+.groupRow1 table .ongoingcosts th {
+color: #000000;
+}
+
+/*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+    background : $grey;
+}*/
+.stress-return .scenario,
+.stress-return .description,
+.stress-return [class*=period],
+.unfavourable-return .scenario,
+.unfavourable-return .description,
+.unfavourable-return [class*=period],
+.moderate-return .scenario,
+.moderate-return .description,
+.moderate-return [class*=period],
+.invest .scenario,
+.invest .description,
+.invest [class*=period],
+.favourable-return .scenario,
+.favourable-return .description,
+.favourable-return [class*=period] {
+font-family: var(--font-heavy);
+}
+
+.arrow > td {
+border: none;
+background: transparent;
+margin: 0;
+padding: 0;
+}
+
+.WB_SRInarrative2_1 {
+background: url(images/warning-icon.png);
+background-size: 18%;
+background-position: 0px -5px;
+width: 79%;
+height: 61px;
+padding: 7px 0px 0px 63px;
+display: block;
+background-repeat: no-repeat;
+}
+
+p.Sri {
+border: none;
+margin: 0;
+float: none;
+width: initial;
+height: initial;
+display: none;
+/*&:before {
+  position: absolute;
+  top: -2.3cm;
+  left: -0.7cm;
+  width: max-content;
+}*/
+/*&:after {
+
+}*/
+}
+
+.sriRiskRating .header th:last-of-type,
+.sriRiskRating .header th:first-of-type {
+font-size: 7pt;
+font-weight: normal;
+font-family: var(--font-book);
+}
+
+.sriRiskRating table td.rating {
+width: 100%;
+height: 0.65cm;
+padding: 0;
+line-height: 0.76cm;
+}
+
+.sriRiskRating table td.rating.selected {
+font-family: var(--font-heavy);
+}
+
+table.sriRiskRating th:not(.groupHeader1) {
+background: none;
+}
+
+.sriRiskRating {
+break-inside: avoid;
+}
+
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row5 {
+break-before: avoid;
+}
+
+/*>>>>>>costovertime table fullwidth css for 3column*/
+/*page 2 floating code*/
+/*
+
+.performanceScenario.performancescenariotable {
+  page-break-inside:auto !important;
+}
+*/
+.performancescenariotable .groupRow1 {
+border-left: 0;
+}
+.performancescenariotable .header {
+border: 0.1pt solid #b9b9b9;
+}
+.performancescenariotable .groupHeader1 table th {
+background-color: var(--white);
+}
+.performancescenariotable .investment-amount + tr th {
+background-color: #dce8ef;
+border: var(--td-border);
+border-bottom: 0;
+}
+
+p[class*=WB_Otherrelevantinformation]:last-of-type {
+font-family: var(--font-heavy);
+}
+.page3 > .row2 .compositebody {
+  break-inside: avoid-page;
+}
+.page1 > .row4 > .composite1 > .compositebody > .row4 > .column1{
+  width: 65% !important;
+  height: auto;
+}
+.page1 > .row4 > .composite1 > .compositebody > .row4 > .column2{
+  width: 29% !important;
+  background: #f5faf9;
+  padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+  min-height: 368px;
+  margin-left: 7px;
+}
+/* .discreteChart, .pdfperformancechart, .page1 .column1 .row1{
+  height: 310px;
+} */
+
+/* .page1 .column1 .row1{
+  padding-bottom: 35px;
+} */
+.page1 .row2 .compositebody{
+  background: #dce9ef;
+}
+.page1 .row2 .compositebody > .row2 .item2{
+  padding:3mm 3mm 2mm 3mm;
+  margin-bottom: 0;
+}
+.page1 .row2 .compositebody .row3 .item2{
+  font-weight: bold;
+  padding: 0mm 3mm 3mm 3mm;
+  /* margin-bottom: 7mm; */
+  font-family: 'Avenir LT Com 55 Roman';
+}
+p:empty {
+  display: none;
+}
+.with_performance_table p {
+  font-size: 7.5pt;
+  padding-bottom: 2.5mm;
+}
+.with_performance_table .item2, 
+p.WB_PastPerformancenarrative_5,
+.shareclasscustominfo .item2{
+  font-family: 'Avenir LT Com 55 Roman';
+}
+.groupHeaderDiv1 tr {
+  border-top: var(--td-border);
+  border-bottom: var(--td-border);
+}
+.odd .keycell .keycolour, 
+.column1 .row1 .keyContainer:nth-of-type(1) .key-color{
+  background-color: rgb(0,32,96) !important;
+}
+.highcharts-series-group .highcharts-series-0 rect {
+  fill: rgb(0,32,96) !important;
+}
+.even .keycell .keycolour, 
+.column1 .row1 .keyContainer:nth-of-type(2) .key-color {
+  background-color: rgb(192,0,0) !important;
+}
+.highcharts-series-group .highcharts-series-1 rect {
+  fill: rgb(192,0,0) !important;
+}
+.bar-ylabel, .bar-xlabel {
+  font-size: 7pt;
+  font-family: var(--font-book);
+}
+.page1 > .row3 .compositebody {
+  margin-top: 7mm;
+}
+
+.Pagination {
+  position: running(pageNum);
+  text-align: right;
+}
+.Pagination p {
+text-align: right;
+}
+.page1 > .row5 .column1 .contentSection ,
+.page2 > .row5 .column1 .contentSection ,
+.page3 > .row5 .column1 .contentSection  {
+text-align: left;
+position: running(footer_all);
+font-size: 7pt !important;
+line-height: 9pt;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.page > .row5 * {
+font-size: 7pt !important;
+line-height: 9pt;
+}
+.page p.WB_PastPerformancenarrative_30 {
+position: running(footer_description);
+text-align: left;
+padding-top: 0.3cm;
+}
+.WB_PastPerformancenarrative_5{
+padding-bottom: 0;
+}
+.shareclasscustominfo .item2{
+padding-bottom: 4.5mm;
+}
+.keyWrapper,.performancetable.performancetable1.PastPerformanceTable h2 {
+  display: none;
+}
+p.WB_PastPerformancenarrative_1 {
+  font-size: 16pt;
+  font-family: var(--font-heavy);
+  color: #176894;
+}
+/* EricSturdza_theme_pp */
+/*# sourceMappingURL=map/theme.css.map */
+
+/*# sourceMappingURL=theme.css.map */

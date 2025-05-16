@@ -1,0 +1,465 @@
+/* ---------- General classes --------------- */
+
+
+@font-face {
+	font-family: "Klarheit Grotesk";
+	src: url("./fe_img/KlarheitGroteskRegular.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Klarheit Grotesk";
+	src: url("./fe_img/KlarheitGroteskBold.ttf") format("truetype");
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: "Klarheit Grotesk";
+	src: url("./fe_img/KlarheitGroteskBoldItalic.ttf") format("truetype");
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Klarheit Grotesk";
+	src: url("./fe_img/KlarheitGroteskItalic.ttf") format("truetype");
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Klarheit Grotesk";
+	src: url("./fe_img/KlarheitGroteskLight.ttf") format("truetype");
+	font-weight: 300;
+}
+
+:root {
+	/* Primary Colors */
+	--primary-blue: #051f30;
+	--primary-green: #88f469;
+	--primary-white: #ebf2ed;
+	--white: #ffffff;
+	/* Secondary Colors */
+	// --C01M36Y87K00: #f6ae2d;
+	// --C00M40Y60K00: #ffab6b;
+	// --C32M03Y41K00: #bcd6ab;
+	// --C85M36Y35K19: #006f82;
+	// --C00M70Y94K00: #f26419;
+	// --C12M77Y25K01: #d65780;
+	// --headingFont: "Klarheit Grotesk Bold";
+	// --subheadingFont: "Klarheit Grotesk Bold";
+	// --headingMediumFont: "Klarheit Grotesk Medium";
+	// --bodyFont: "Klarheit Grotesk Light";
+	--font-family: "Klarheit Grotesk";
+}
+
+body {
+	font-family: var(--font-family);
+	font-weight: 300;
+	margin: 0px;
+	padding: 0px;
+	background-color: var(--primary-blue);
+	color: var(--primary-white);
+}
+
+.ui-widget {
+	font-size: 1em;
+	font-family: var(--font-family);
+}
+
+.ui-widget-content {
+	background-color: var(--primary-blue);
+	border-color: var(--primary-white);
+
+	a {
+		color: var(--primary-white);
+	}
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	background-color: var(--primary-blue);
+}
+
+.ui-tabs.ui-widget.ui-widget-content {
+	border: 1px solid var(--primary-white);
+}
+
+
+#searchform-1 {
+	&::before {
+		content: "";
+		display: block;
+		width: 4cm;
+		height: 1cm;
+		background: no-repeat url(fe_img/MRBH-green.svg);
+		background-size: contain;
+		margin-bottom: .2cm;
+	}
+}
+
+// p{
+//     padding: 0 0 15px;
+//     margin: 0;
+// }
+// a{
+// 	color: #505050;
+// 	text-decoration: underline;
+// }
+// a:hover{
+// 	text-decoration: none;
+// }
+// li { list-style-type:none; list-style-image:none;}
+// a:focus, li:focus, span:focus, button:focus, select:focus, input:focus, *:focus {
+// 	outline: none !important;
+// }
+// .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{font:14px "Franklin-Gothic-Regular", Arial, Helvetica, sans-serif !important;}
+// .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-widget-header {background: none transparent; border: 0 none;}
+// .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background: none;}
+// .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: inherit; text-decoration: inherit;}
+// .ui-button-text-only .ui-button-text, .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text{ padding:0; line-height:20px; }
+// .page {
+// 	padding: 0px;
+// 	min-height: 100px;
+// 	max-height: 600px;
+// 	position:relative;
+// }
+// .ui-page-content-panel {
+//     margin: 0;
+// }
+// .ui-logo-container{
+// 	height: auto;
+// 	display: block;
+// 	background:url(fe_img/logo1_html.png) no-repeat left 7px;
+// 	border-bottom: 0;
+// 	margin: 0;
+// }
+// .ui-logo-container img{
+// 	display:none;
+// }
+// .ui-tabs .ui-tabs-panel{
+// 	padding:0
+// }
+// .fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+//     padding: 0;
+// }
+// .fe-asatdate-containers{
+// 	margin-bottom:5px;
+// 	font-size:13px;
+// }
+// .fe-tabs-container.ui-tabs /*Content Main section /*ie 7 8 fix for tabs*/ {
+// 	position:relative;
+// 	z-index:50;	
+// 	margin-top:2px;
+// 	background:transparent;
+// 	border:0;
+// }
+// /* Charting tool menu */
+// .fe-chart-body .fe-tabs.ui-tabs-nav /* UL background */{
+// 	display: none !important;
+// }
+// /* ============================ Charting tool ======================= */
+// /*Performance & Scatter chart section */
+// .fe-chart-tabs-container.ui-tabs/*Chart Main section /*ie 7 8 fix for tabs*/{
+// 	position:relative;
+// 	z-index:40;	
+// 	background:none !important;
+// }
+// .fe-chart-tabs-innerContainer{
+// 	width: 100%;
+// }
+// .fe-chart-chartingOptions-container{
+//     margin: 0;
+//     right: 0;
+//     width: auto;	
+// }
+// .fe-chart-PanelToggleButton {
+//     margin-top: 9px;
+// }
+// @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+// 	#eventsPanelToggle { margin-top: 0; }
+// }
+// .ie9 #eventsPanelToggle, .ie8 #eventsPanelToggle, .ie7 #eventsPanelToggle {
+// 	margin-top: 0;
+// }
+// #eventsPanelToggle .fe-events-button .ui-button-text .fe-button-text{
+// 	font-size:0;
+// 	height: 17px;
+//     display: block;
+// 	width:60px;
+// 	position:relative;
+// }
+// #eventsPanelToggle .fe-events-button .ui-button-text .fe-button-text:before{
+// 	content:'Dividends';
+// 	position:absolute;
+// 	top:0;
+// 	left:0;
+// 	line-height: 20px;
+// 	font: normal 14px "Franklin-Gothic-Regular", Arial, Helvetica, sans-seriff;
+//     color: #0aa047;
+// }
+// .fe-chart-events .fe-panel-text{
+// 	font-size: 0;
+// }
+// .fe-chart-currency{
+// 	margin:0 0 5px;
+// }
+// .fe-chart-PanelToggleButton .fe-button.ui-state-default /* chart buttons */{
+// 	font:normal 15px "Franklin-Gothic-Regular", Arial, Helvetica, sans-seriff;
+// 	color: #0aa047;
+// 	text-decoration: none;	
+// 	width: auto !important;	
+// 	height:auto;
+// 	margin: 0 4px 0 0;
+// 	padding: 2px 18px 3px 10px;
+// 	background: url(fe_img/icon_btn.png) no-repeat right center #fff;
+// 	border:0;
+// 	border-radius:0;
+// 	cursor:pointer
+// }
+// .fe-chart-PanelToggleButton .fe-button.ui-state-hover, .fe-chart-PanelToggleButton .fe-button.ui-state-focus /* chart buttons hover */{
+// 	color: #1e1e1e !important;	
+// 	text-decoration: none;	
+// }
+// #performanceChartTab > div {
+// 	margin:0 auto;
+// }
+// /* chart basis popup */
+// .shownOption {
+// 	top: 32px;
+// 	right: 0px;
+// 	font:normal 15px "Franklin-Gothic-Regular", Arial, Helvetica, sans-seriff;
+// 	color: #444;
+// 	padding: 10px;
+// 	border: 1px solid #bbb;
+// 	background: #f1f1f1 none;
+// 	z-index:1010;
+// }
+// .fe-panel-text{
+// 	float:none;
+// 	display:inline-block;
+// 	margin-bottom:8px;
+// 	min-width:110px;
+// }
+// .fe-chart-togglePanel .fe-button.ui-state-default {
+// 	color: #0aa047;
+// 	padding: 1px 7px !important;
+// 	margin:0 0 4px 0;
+// 	text-decoration: none;
+// 	font:normal 15px "Franklin-Gothic-Regular", Arial, Helvetica, sans-seriff;
+// 	width:inherit !important;
+// 	background: #fff;
+// 	border:1px solid #0aa047;
+// 	border-radius: 3px;
+// 	-webkit-border-radius:3px;
+// 	-moz-border-radius:3px;
+// 	height:25px;
+// }
+// .fe-chart-togglePanel .fe-button.ui-state-highlight, .fe-chart-togglePanel .fe-button.ui-state-hover,  .fe-chart-togglePanel .fe-button.ui-state-active {
+//     color: #fff !important;
+// 	margin:0 0 4px 0;
+// 	padding: 1px 7px !important;
+// 	background: #0aa047;
+// 	border:1px solid #0aa047;
+// 	border-radius: 3px;
+// 	-webkit-border-radius:3px;
+// 	-moz-border-radius:3px;	
+// 	height:25px;	
+// }
+// .fe-basis-toglebutton.ui-state-default.fe-chart-currency-return {
+// 	width:100% !important;
+// }
+// #returnOverride.fe-chart-return-textbox {
+// 	float: left;
+//     font-size: 13px !important;
+//     height: 15px;
+//     left: 2px;
+//     position: relative;
+//     top: 3px;
+//     width: 50px;
+//     top: 2px\9;				
+// }
+// .fe-closebutton-container /* Close dialog container */{
+// 	position:absolute;
+// 	top:7px;
+// 	right:5px;
+// 	float:none;
+// 	display:block;
+// 	width:16px;
+// 	height:16px;
+// }
+// .fe-closebutton-container .fe-button.ui-state-default /* Close dialog icon */ {
+//     text-indent: -1000em;
+//     background: url(fe_img/icon_close1.png) no-repeat 2px 4px;
+//     height:14px;
+//     margin: 0;
+// 	padding: 0 9px;
+//     width: 10px;
+// 	border:0;
+// }
+// .fe-calendar-container{ margin-top:2px;}
+// #income{
+// 	width:auto;
+// }
+// .fe-chart-returnbasis-input{
+// 	position:relative;
+// }
+// .fe-chart-return-text{
+// 	right:10px;
+// }
+// .fe-event-icon {
+// 	display:none;
+// }
+// .fe-chart-OrLabel {
+// 	margin-top:6px;
+// }
+// .SummaryChartWindow {
+//     background-color: #bbb !important;
+//     border-left: 3px solid #3e3e3e !important;
+//     border-right: 3px solid #3e3e3e !important;
+// }
+// .chartKey{	
+// 	border-radius: 14px;
+// 	color: #FFFFFF;
+// 	padding: 2px;
+// }
+// /* ============== Date Picker =========================== */ 
+// .ui-datepicker {
+//     background: none repeat scroll 0 0 #e5dec1;
+//     border: 1px solid #b3a76b;
+// 	width: 222px;
+// 	z-index: 99999 !important;
+// 	border-radius:3px;
+// 	-webkit-border-radius:3px;
+// 	-moz-border-radius:3px;
+// }
+// .ui-datepicker th{
+// 	color:#1e1e1e;
+// }
+// .ui-datepicker td span, .ui-datepicker td a{
+// 	 background: none repeat scroll 0 0 transparent !important;
+// 	 border: 1px solid #b3a76b !important;
+// 	 color: #000 !important;
+// 	 text-align: center;
+// 	 padding:3px;
+// }
+// .ui-datepicker td a.ui-state-active, .ui-datepicker td a:hover {
+//     background: none repeat scroll 0 0 #fff !important;
+//     color: #000 !important;
+//     font-weight: bold !important;
+// }
+// .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+//     margin: 0 5px;
+//     width: 43%;
+// }
+
+// .fe-innerEvent-container{margin: 0 16px 0 0; width:100px;}
+// .fe-innerEvent-container input{
+// 	display:none;
+// }
+// .fe-innerEvent-container .fe-button.ui-state-default .ui-button-text{
+// 	font-size:0;
+// 	display:block;
+// }
+// .fe-innerEvent-container .fe-button.ui-state-default .ui-button-text:before{
+// 	content:'Show Dividends';
+// 	position:absolute;
+// 	top: 5px;
+//     left: 8px;
+// 	line-height: 20px;
+// 	font: normal 14px "Franklin-Gothic-Regular", Arial, Helvetica, sans-seriff;
+//     color: #0aa047;
+// }
+// .fe-chart-togglePanel .fe-button.ui-state-hover .ui-button-text:before, .fe-chart-togglePanel .fe-button.ui-state-focus .ui-button-text:before, .fe-chart-togglePanel .fe-button.ui-state-active .ui-button-text:before{
+// 	color: #fff;
+// }
+
+// .fe-chart-performanceTabs-container { border: 0 none;}
+// .fe-chart-performanceTabs-container .InstrumentName {
+//     text-align: left;
+//     text-indent: 5px;
+// }
+// .fe-chart-perfTableBody td{ background-color:#ffffff; border-bottom:0;}
+// /*Charting tool responsive*/
+// @media screen and (min-width:0px) and (max-width:800px){
+// 	.page {width:97% !important; min-height:auto; max-height:530px}
+// }
+// @media screen and (min-width:0px) and (max-width:625px){
+//         .page {width:97% !important; min-height:auto; max-height:500px}
+// 	.fe-chart-PanelToggleButton .fe-button.ui-state-default {
+// 		padding:2px 13px 3px 5px;
+// 		font-size:12px !important;
+// 	}
+// 	.shownOption {
+// 		top:74px;
+// 	}
+// 	.fe-calendar-container{
+// 		float:none;
+// 	}
+// }
+// @media screen and (min-width: 625px) and (max-width:2000px){
+// 	.fe-tabs-container-responsive/*Desktop - hide responsive top menu*/{ 
+// 		display:none !important;
+// 	}
+// 	.fe-tabs.ui-tabs-nav /*Desktop - show secondary menu*/{
+// 		display:block !important;
+// 	}
+
+// }
+/* Theme: marlborough --- Fundcentre */
+
+/* .page1 {
+  padding: 3.2cm 0 0 0;
+  background: url();
+  background-size: 2.9cm 1cm;
+  background-position: top left;
+  background-repeat: no-repeat;
+}  */
+
+/* .mfs-container a.mfs-selected-option {
+  background: #f6f6f6;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  float: left;
+  padding: 1em 7em;
+  text-decoration: none;
+}
+
+.ui-tabs .ui-tabs-nav {
+  margin: 0;
+  padding: 0.2em 0.2em 0.2em;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 0;
+  font-weight: bolder;
+}
+
+.even {
+  background: #f6f6f6;
+}
+
+.ui-widget-header {
+  background: transparent;
+}
+
+.mfs-container {
+  position: relative;
+  width: 250px;
+  color: #666;
+  font-family:var(--headingMediumFont);
+  font-size: 12px;
+}
+
+.fe-search-fileters-container {
+  width: 250px;
+  height: 40px;
+  float: left;
+  margin: 10px 13px 10px 13px;
+} */

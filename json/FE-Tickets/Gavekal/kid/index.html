@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="it-IT" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> PRIIP KID</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=PRP;
+PublicationCountry=IT;
+Language=it;
+RecordDate=2023-01-01;
+ShareClass=IE00B0MTTV84;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=J5Z6;
+Productcode=;
+PublicationDate=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=2023-02-09 14:53:19;
+CalculationDate=2023-01-31;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row1>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row1>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/template.common.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="section page page1" data-pageorder="1" data-sectionId="4805392" data-sectiontype="1">
+        <script>var monthNames = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre',]; var monthNamesAbv = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805393" data-sectiontype="2">
+            <div class="section column column1" data-sectionId="4805394">
+                <div class="section row row1" data-roworder="1" data-sectionId="4805395" data-sectiontype="2">
+                    <div class="section contentSection text text1 keyinformationdocument" data-sectionId="4805396">
+                        <h2 class="item2">Documento contenente le informazioni chiave</h2>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="section row row2" data-roworder="2" data-sectionId="4805397" data-sectiontype="2">
+                    <div class="section contentSection text text1" data-sectionId="4805398">
+                        <h2 class="item2">Scopo</h2>
+                        <div class="WB_Purpose_1">Il presente documento fornisce le informazioni chiave relative a
+                            questo prodotto di investimento. Non si tratta di un documento promozionale. Le
+                            informazioni, prescritte per legge, hanno lo scopo di aiutarvi a capire le caratteristiche,
+                            i rischi, i costi e i guadagni e le perdite potenziali di questo prodotto e di aiutarvi a
+                            fare un raffronto con altri prodotti d’investimento.</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section column column2" data-sectionId="4805399">
+                <div class="section row row1" data-roworder="1" data-sectionId="4805400" data-sectiontype="2">
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805401" data-sectiontype="2">
+            <div class="section contentSection text text1 generalinformation" data-sectionId="4805402">
+                <h2 class="item2">Prodotto</h2>
+                <div class="WB_FundName">GAVEKAL ASIAN OPP UCITS FUND A EUR</div>
+                <div class="WB_IsinCode"></div>
+                <div class="WB_GeneralInformation_1">
+                    <div>GaveKal Asian Opportunities UCITS Fund (“Fondo”) Un comparto di GaveKal UCITS Fund
+                        (“Società”)<br>Azioni di Categoria A EUR (IE00B0MTTV84)<br>Ideatore: Gavekal Capital
+                        Limited<br>La Central Bank of Ireland è responsabile della vigilanza di GaveKal UCITS Fund in
+                        relazione al presente documento contenente le informazioni chiave.<br>Questo PRIIP è autorizzato
+                        come OICVM dalla Central Bank of Ireland.<br>MJ Hudson Fund Management (Ireland) Limited,
+                        società di gestione di OICVM per il PRIIP, è autorizzata in Irlanda e regolamentata dalla
+                        Central Bank of Ireland.<br>Per ulteriori informazioni su questo prodotto, inviate un’email a
+                        gk-sales@gavekal.com<br>[Segnalazione relativa alla comprensibilità: State per acquistare un
+                        prodotto che non è semplice e può essere di difficile comprensione.&nbsp;&nbsp;</div>
+                </div>
+                <div class="WB_Issuedondate">Data di realizzazione 01/01/2023</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805403" data-sectiontype="2">
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805410" data-sectiontype="2">
+            <div class="section contentSection text text1 whatisthisproduct" data-sectionId="4805411">
+                <h2 class="item2">Cos’è questo prodotto?</h2>
+                <div class="WB_Whatisthisproduct_1">
+                    <div><b>Tipo</b>:<br>Questo prodotto è un fondo OICVM.<br><b>Termine</b>:<br>Questo Fondo è un OICVM
+                        di tipo aperto e ha una durata indefinita. Il Fondo può essere chiuso in qualsiasi momento
+                        conformemente agli atti costitutivi della Società. Per informazioni complete sugli obiettivi e
+                        sulla politica di investimento, si rimanda agli Obiettivi e alla Politica di investimento
+                        illustrati nel Supplemento al Prospetto del Fondo, disponibile all’indirizzo
+                        https://web.gavekal-capital.com.<br><b>Obiettivo</b>:<br>Il Comparto mira a ottenere una
+                        crescita del vostro investimento nel lungo periodo.<br><b>Politica di investimento</b>:<br>Il
+                        Comparto cercherà di ottenere una rivalutazione del capitale attraverso un’asset allocation
+                        tattica tra valute, titoli di Stato, obbligazioni societarie, obbligazioni convertibili e azioni
+                        della regione Asia-Pacifico.<br>Gli investimenti del Comparto consistono principalmente in
+                        azioni, obbligazioni e altri strumenti a reddito fisso emessi da società con sede e governi di
+                        paesi della regione Asia-Pacifico, nonché in depositi in valute di tale regione. Gli
+                        investimenti possono includere anche titoli di emittenti dell’Asia e dell’Australasia, ma
+                        negoziati altrove.<br>Il Comparto può investire e avere accesso diretto alle Azioni A cinesi
+                        quotate alla Borsa di Shanghai tramite lo Shanghai-Hong Kong Stock Connect Scheme o lo
+                        Shenzhen-Hong Kong Stock Connect Scheme (“Stock Connect”) e ai titoli di debito e correlati
+                        negoziati nel China Interbank Bond Market (“CIBM”) tramite il China Hong Kong Mutual Access
+                        Program (“Bond Connect”).<br>Il Comparto è un fondo long-only e può utilizzare contratti futures
+                        negoziati su una borsa valori riconosciuta solo a scopo di copertura o in alternativa
+                        all’acquisto o alla vendita di titoli equivalenti.<br>Il Comparto può detenere o mantenere
+                        attività liquide accessorie. Il Comparto può utilizzare tecniche e strumenti quali futures,
+                        opzioni, pronti contro termine/pronti contro termine in acquisto e contratti a termine su
+                        valuta, nel rispetto delle condizioni e dei limiti stabiliti nelle Comunicazioni
+                        dell’OICVM.<br>Il Comparto è considerato gestito attivamente in riferimento all’indice MSCI AC
+                        Asia Pacific (l’“Indice”) in virtù del fatto che utilizza l’Indice ai fini del confronto delle
+                        performance. Alcuni titoli del Comparto possono essere componenti dell’Indice e avere
+                        ponderazioni simili. Tuttavia, l’Indice non viene impiegato per definire la composizione del
+                        portafoglio del Comparto né come obiettivo di performance e il Fondo può essere interamente
+                        investito in titoli che non sono compresi nell’Indice.”<br><b>Negoziazione</b>:<br>È possibile
+                        acquistare, vendere e convertire quote giornalmente, inoltrandone richiesta all’amministratore
+                        del Comparto entro le 17.00 (ora irlandese) del giorno che cade 2 giorni lavorativi prima della
+                        relativa data di valutazione.<br><b>Investitori cui si intende commercializzare il
+                            prodotto</b>:<br>Questo Comparto è adatto agli investitori con un orizzonte d’investimento
+                        di lungo periodo. Il Gestore degli investimenti raccomanda un investimento di 3 anni nel
+                        Fondo.<br>Gli ultimi prezzi pubblicati delle azioni di ciascuna categoria di azioni del Comparto
+                        sono disponibili su web.gavekal-capital.com e/o su Bloomberg.<br> <br> &nbsp;</div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4805412" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805413">
+                <div class="section contentSection text text1 whataretherisks compositeheader" data-sectionId="4805414">
+                    <h2 class="item2">Quali sono i rischi e qual è il potenziale rendimento?</h2>
+                </div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805415" data-sectiontype="2">
+                        <div class="section contentSection text text1 SRIdescription" data-sectionId="4805416">
+                            <div class="WB_Whataretherisks_3"></div>
+                            <div class="WB_Whataretherisks_1"><b>Indicatore di rischio</b><br>L’indicatore sintetico di
+                                rischio è un’indicazione orientativa del livello di rischio di questo prodotto rispetto
+                                ad altri prodotti. Esso esprime la probabilità che il prodotto subisca perdite monetarie
+                                a causa di movimenti sul mercato o a causa della nostra incapacità di pagarvi quanto
+                                dovuto.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805417" data-sectiontype="2">
+                        <div class="section contentSection text text1 warning" data-sectionId="4805418">
+                            <div class="Sri">
+                                <table class="sriRiskRating">
+                                    <tr class="ratings">
+                                        <td colspan="2">
+                                            <table>
+                                                <tr>
+                                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                                <tr>
+                                                    <td class="rating">1</td>
+                                                    <td class="rating">2</td>
+                                                    <td class="rating">3</td>
+                                                    <td class="selected rating">4</td>
+                                                    <td class="rating">5</td>
+                                                    <td class="rating">6</td>
+                                                    <td class="rating">7</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="arrow">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr class="header">
+                                        <th>Rischio più basso</th>
+                                        <th>Rischio più alto</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="WB_SRInarrative1">L’indicatore di rischio presuppone che l’investitore detenga
+                                il prodotto per 5 anni.<br>Il rischio effettivo può variare in misura significativa in
+                                caso di disinvestimento in una fase iniziale e la somma rimborsata potrebbe essere
+                                inferiore a quella investita.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805419" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionId="4805420">
+                            <div class="WB_SRInarrative2_1">
+                                <div>Abbiamo classificato questo prodotto al livello 4 su 7, che corrisponde alla classe
+                                    di rischio “media”. Ciò significa che le perdite potenziali dovute alla performance
+                                    futura del prodotto sono classificate nel livello medio e che le cattive condizioni
+                                    di mercato potrebbero influenzare la nostra capacità di conseguire un rendimento
+                                    positivo sull’investimento. Attenzione al rischio di cambio. Riceverete pagamenti in
+                                    una valuta straniera, quindi il rendimento finale che otterrete dipenderà dal tasso
+                                    di cambio tra le due valute. Questo rischio non è contemplato nell’indicatore sopra
+                                    riportato. Altri rischi particolarmente rilevanti per il prodotto non compresi
+                                    nell’indicatore sintetico di rischio sono illustrati nella Relazione annuale o nel
+                                    Prospetto del prodotto disponibili all’indirizzo https://web.gavekal-capital.com.
+                                    Questo prodotto non comprende alcuna protezione dalla performance futura del
+                                    mercato; pertanto potreste perdere il vostro intero investimento o parte di esso.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row6" data-roworder="6" data-sectionId="4805421" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805422">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Pag. <span class="pageNumber"></span> di <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page2" data-pageorder="2" data-sectionId="4805423" data-sectiontype="1">
+        <script>var monthNames = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre',]; var monthNamesAbv = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805424" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805425">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805426"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805427" data-sectiontype="2">
+                        <div class="section contentSection text text1 whataretheriskscontinued"
+                            data-sectionId="4805428">
+                            <div class="WB_WhatAreTheRisks_continued_1"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805429" data-sectiontype="2">
+                        <div class="section row row1" data-roworder="1" data-sectionId="4805432" data-sectiontype="2">
+                            <div class="section contentSection text text1" data-sectionId="4805433">
+                                <div class="WB_Performancescenariosnarrative_6"></div>
+                                <div class="WB_Performancescenariosnarrative_1"><b>Scenari di performance</b><br>Le
+                                    cifre riportate comprendono tutti i costi del prodotto in quanto tale, ma possono
+                                    non comprendere tutti i costi da voi pagati al consulente o al distributore. Le
+                                    cifre non tengono conto della vostra situazione fiscale personale, che può incidere
+                                    anch’essa sull’importo del rimborso. Il possibile rimborso dipenderà dall’andamento
+                                    futuro dei mercati, che è incerto e non può essere previsto con esattezza.</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805436" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805437">
+                            <div class="WB_Performancescenariosnarrative_2">Lo scenario sfavorevole, lo scenario
+                                moderato e lo scenario favorevole riportati sono illustrazioni basate sulla performance
+                                peggiore, la performance media e la performance migliore del prodotto negli ultimi 5
+                                anni. In futuro i mercati potrebbero avere un andamento molto diverso.<br>Lo scenario di
+                                stress indica quale potrebbe essere l’importo rimborsato in circostanze di mercato
+                                estreme.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805438" data-sectiontype="2">
+                        <div class="performancescenariotable_4column section contentSection performanceScenario performanceScenario1 perfscenarios"
+                            data-sectionId="4805439" style="page-break-inside:avoid">
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr class='header holding-period'>
+                                                    <th colspan=2>Periodo di detenzione raccomandato: </th>
+                                                    <th colspan='2'>3 anni</th>
+                                                </tr>
+                                                <tr class='header investment-amount'>
+                                                    <th colspan=2>Esempio di investimento: </th>
+                                                    <th colspan='2'>&#8364;10.000</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan=2></th>
+                                                    <th class='period1'>In caso di uscita dopo 1 anno</th>
+                                                    <th class='period2'>In caso di uscita dopo 3 anni</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr>
+                                                        <th class="groupHeader1" colspan="4">
+                                                            <div class="groupHeaderDiv1">
+                                                                <table>
+                                                                    <tr class='survival-scenario'>
+                                                                        <th>Scenari</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <thead></thead>
+                                                    <tr class='minimum'>
+                                                        <td class='scenario' rowspan='1'>Minimo</td>
+                                                        <td class='description' colspan='3'>Non esiste un rendimento
+                                                            minimo garantito in caso di uscita prima di 3 anni. Potreste
+                                                            perdere il vostro intero investimento o parte di esso.</td>
+                                                    </tr>
+                                                    <tr class='stress-return'>
+                                                        <td class='scenario' rowspan='2'>Stress</td>
+                                                        <td class='description'>Possibile rimborso al netto dei costi
+                                                        </td>
+                                                        <td class='period1'>&#8364;3.410</td>
+                                                        <td class='period2'>&#8364;3.970</td>
+                                                    </tr>
+                                                    <tr class='stress averagereturn'>
+                                                        <td class='description'>Rendimento medio per ciascun anno</td>
+                                                        <td class='period1'>-65,94%</td>
+                                                        <td class='period2'>-26,48%</td>
+                                                    </tr>
+                                                    <tr class='unfavourable-return'>
+                                                        <td class='scenario' rowspan='2'>Sfavorevole</td>
+                                                        <td class='description'>Possibile rimborso al netto dei costi
+                                                        </td>
+                                                        <td class='period1'>&#8364;8.000</td>
+                                                        <td class='period2'>&#8364;6.550</td>
+                                                    </tr>
+                                                    <tr class='unfavourable averagereturn'>
+                                                        <td class='description'>Rendimento medio per ciascun anno</td>
+                                                        <td class='period1'>-19,98%</td>
+                                                        <td class='period2'>-13,17%</td>
+                                                    </tr>
+                                                    <tr class='moderate-return'>
+                                                        <td class='scenario' rowspan='2'>Moderato</td>
+                                                        <td class='description'>Possibile rimborso al netto dei costi
+                                                        </td>
+                                                        <td class='period1'>&#8364;10.540</td>
+                                                        <td class='period2'>&#8364;11.460</td>
+                                                    </tr>
+                                                    <tr class='moderate averagereturn'>
+                                                        <td class='description'>Rendimento medio per ciascun anno</td>
+                                                        <td class='period1'>5,38%</td>
+                                                        <td class='period2'>4,65%</td>
+                                                    </tr>
+                                                    <tr class='favourable-return'>
+                                                        <td class='scenario' rowspan='2'>Favorevole </td>
+                                                        <td class='description'>Possibile rimborso al netto dei costi
+                                                        </td>
+                                                        <td class='period1'>&#8364;15.300</td>
+                                                        <td class='period2'>&#8364;14.720</td>
+                                                    </tr>
+                                                    <tr class='favourable averagereturn'>
+                                                        <td class='description'>Rendimento medio per ciascun anno</td>
+                                                        <td class='period1'>52,98%</td>
+                                                        <td class='period2'>13,77%</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row6" data-roworder="6" data-sectionId="4805440" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805441">
+                            <div class="WB_Performancescenariosnarrative_3"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805442" data-sectiontype="2">
+            <div class="section contentSection text text1 unabletopay" data-sectionId="4805443">
+                <h2 class="item2">Cosa accade se Gavekal non è in grado di corrispondere quanto dovuto?</h2>
+                <div class="WB_Unabletopayout_1">Qualora l’Ideatore (Gavekal Capital Limited) non adempia ai propri
+                    obblighi, potete subire una perdita finanziaria. <br>Non è disponibile alcun sistema di indennizzo o
+                    garanzia che possa compensare, in tutto o in parte, tale perdita.</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805444" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805445">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805446"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805447" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805448">
+                            <h2 class="item2">Quali sono i costi?</h2>
+                            <div class="WB_WhatAreTheCosts_1"><b>Andamento dei costi nel tempo</b><br>La persona che
+                                fornisce consulenza sul PRIIP o che lo vende potrebbe addebitare altri costi, nel qual
+                                caso fornirà informazioni su tali costi, illustrandone l’impatto sull’investimento.
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805449" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805450">
+                            <div class="WB_WhatAreTheCosts_2">
+                                <div>Le tabelle mostrano gli importi prelevati dall’investimento per coprire diversi
+                                    tipi di costi. Tali importi dipendono dall’entità dell’investimento e dalla durata
+                                    della detenzione del prodotto. Gli importi sono qui riportati a fini illustrativi e
+                                    si basano su un importo esemplificativo dell’investimento e su diversi possibili
+                                    periodi di investimento. Si è ipotizzato che il prodotto abbia la performance
+                                    indicata nello scenario moderato ed EUR 10.000 di investimento.</div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805451" data-sectiontype="2">
+                        <div class="costovertime_3columntable section contentSection costOverTime costOverTime1 composite"
+                            data-sectionId="4805452" style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr>
+                                                    <th colspan='3' class=tableheader></th>
+                                                </tr>
+                                                <tr class='scenarioheader'>
+                                                    <th colspan=3></th>
+                                                    <th class='scenario1'>In caso di uscita dopo 1 anno</th>
+                                                    <th class='scenario2'>In caso di uscita dopo 3 anni</th>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr class='row'>
+                                                        <td class='totalcostsheader'>Costi totali</td>
+                                                        <td class='totalcosts1'>&#8364;321</td>
+                                                        <td class='totalcosts2'> &#8364;1.087</td>
+                                                    </tr>
+                                                    <tr class='row'>
+                                                        <td class='riyheader'>Incidenza annuale dei costi (*)</td>
+                                                        <td class='riy1'>3,2%</td>
+                                                        <td class='riy2'> 3,2% ogni anno</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805453" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805454">
+                            <div class="item2">(*) Dimostra come i costi riducano ogni anno il rendimento nel corso del
+                                periodo di detenzione. Ad esempio, se l’uscita avviene nel periodo di detenzione
+                                raccomandato, si prevede che il rendimento medio annuo sarà pari al 7,9% prima dei costi
+                                e al 4,6% al netto dei costi.</div>
+                            <div class="WB_WhatAreTheCosts_3"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805455" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805456">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Pag. <span class="pageNumber"></span> di <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page3" data-pageorder="3" data-sectionId="4805457" data-sectiontype="1">
+        <script>var monthNames = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre',]; var monthNamesAbv = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4805458" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4805459">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4805460"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4805461" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805462">
+                            <div class="WB_WhatAreTheCosts_continued_1"><b>Composizione dei costi</b></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4805463" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805464">
+                            <div class="WB_WhatAreTheCosts_continued_2"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4805465" data-sectiontype="2">
+                        <div class="section contentSection costComposition costComposition1 compositionofcosts"
+                            data-sectionId="4805466" style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tr>
+                                    <th class="groupHeader1">
+                                        <div class="groupHeaderDiv1">
+                                            <table>
+                                                <tr class="tableHeader">
+                                                    <th colspan=3></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tr>
+                                                        <th class="groupHeader1" colspan="3">
+                                                            <div class="groupHeaderDiv1">
+                                                                <table>
+                                                                    <tr class="oneofcosts">
+                                                                        <th colspan=2>Costi una tantum di ingresso o di
+                                                                            uscita</th>
+                                                                        <th>In caso di uscita dopo 1 anno</th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <thead></thead>
+                                                    <tr class="entrycosts">
+                                                        <td>Costi di ingresso</td>
+                                                        <td>Fino al 2% Percentuale massima che può essere detratta dalla
+                                                            vostra sottoscrizione nel Comparto. In alcuni casi, potreste
+                                                            pagare meno. L’investitore può informarsi circa l’importo
+                                                            effettivo delle spese di sottoscrizione e di rimborso presso
+                                                            il suo consulente finanziario o distributore. Gli oneri di
+                                                            ingresso vengono detratti prima dell’investimento del
+                                                            capitale.</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                    <tr class="exitcosts">
+                                                        <td>Costi di uscita</td>
+                                                        <td>Non applicabile</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                    <tr class="ongoingcosts">
+                                                        <th colspan=3>Costi correnti registrati ogni anno</th>
+                                                    </tr>
+                                                    <tr class="managementfeesandothercosts">
+                                                        <td>Commissioni di gestione e altri costi amministrativi o di
+                                                            esercizio</td>
+                                                        <td>Tale cifra può variare da un anno all’altro. L’importo
+                                                            relativo alle spese correnti qui riportato non comprende i
+                                                            costi di transazione sostenuti quando il Comparto acquista o
+                                                            vende attività.</td>
+                                                        <td>&#8364;168</td>
+                                                    </tr>
+                                                    <tr class="transactioncosts">
+                                                        <td>Costi di transazione</td>
+                                                        <td>L’impatto dei costi delle nostre attività di acquisto e
+                                                            vendita di investimenti sottostanti per il prodotto.</td>
+                                                        <td>&#8364;156</td>
+                                                    </tr>
+                                                    <tr class="incidentalcosts">
+                                                        <th colspan=3>Oneri accessori sostenuti in determinate
+                                                            condizioni</th>
+                                                    </tr>
+                                                    <tr class="performancefees">
+                                                        <td>Commissioni di performance</td>
+                                                        <td>Non applicabile</td>
+                                                        <td>&#8364;0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionId="4805467" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4805468">
+                            <div class="WB_WhatAreTheCosts_continued_3"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4805469" data-sectiontype="2">
+            <div class="section contentSection text text1 howlong" data-sectionId="4805470">
+                <h2 class="item2">Per quanto tempo devo detenerlo? Posso ritirare il capitale prematuramente? </h2>
+                <div class="WB_HowlongshouldIholdit_1">Periodo di detenzione raccomandato: 3 anni.<br>Il Fondo presenta
+                    una liquidità giornaliera. Il Fondo non prevede un periodo minimo di detenzione raccomandato; il
+                    periodo di detenzione raccomandato presuppone che il fondo sia l’unica o la principale
+                    partecipazione dell’investitore. Il periodo di detenzione raccomandato si basa principalmente sulla
+                    volatilità storica degli investimenti sottostanti e non è direttamente applicabile se utilizzato in
+                    un portafoglio basato sul profilo di rischio dell’investitore. Il fondo non è destinato a fini
+                    speculativi di breve periodo.</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4805471" data-sectiontype="2">
+            <div class="section contentSection text text1 howcanicomplain" data-sectionId="4805472">
+                <h2 class="item2">Come presentare reclami?</h2>
+                <div class="WB_HowcanIcomplain_1">In qualità di azionisti del Fondo, avete il diritto di presentare
+                    gratuitamente un reclamo. Ogni reclamo deve essere elaborato dalla società di gestione in modo
+                    tempestivo ed efficace. Se, dopo aver seguito la procedura di reclamo del Fondo, non siete ancora
+                    soddisfatti della risposta ricevuta, avete anche il diritto di inviare il vostro reclamo al
+                    Financial Services and Pensions Ombudsman. Ulteriori informazioni sulla politica di reclamo relativa
+                    al Fondo sono disponibili scrivendo all’e-mail: marco@gavekal.com</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4805473" data-sectiontype="2">
+            <div class="section contentSection text text1 otherrelevantinformation" data-sectionId="4805474">
+                <h2 class="item2">Altre informazioni pertinenti</h2>
+                <div class="WB_Otherrelevantinformation_1">Siamo tenuti a fornirvi ulteriore documentazione, ad esempio
+                    l’ultimo Prospetto del prodotto, le Performance passate e le Relazioni annuali e semestrali,
+                    disponibili gratuitamente in inglese presso Société Générale Securities Services, SGSS (Ireland)
+                    Limited at 3rd Floor, IFSC House, IFSC, Dublin 1 (l’“Amministratore”).<br>I calcoli dei costi, delle
+                    performance e dei rischi inclusi nel presente KID seguono la metodologia prescritta dalla normativa
+                    UE. Le performance passate negli ultimi 10 anni e gli scenari di performance storici sono
+                    disponibili ai link seguenti.<br>Lo Stato di origine del Fondo è l’Irlanda. In Svizzera, il presente
+                    documento può essere fornito solo a investitori qualificati ai sensi dell’art. 10 comma 3 e 3ter
+                    CISA. In Svizzera, il rappresentante è ACOLIN Fund Services AG, Leutschenbachstrasse 50, 8050
+                    Zurigo, Svizzera, mentre l’agente pagatore è Swissquote Bank SA, Chemin de la Crétaux 33, 1196
+                    Gland, Svizzera.<br>I documenti di base del fondo e la relazione annuale e, se del caso, semestrale
+                    possono essere richiesti gratuitamente al rappresentante.</div>
+                <div class="WB_PastPerformanceURL"><a
+                        href="https://docs.fundconnect.com/GetDocument.aspx?clientid=eudoetn6-ahvi-eyfi-n60i-tj1i5qyvyx9p&Isin=IE00B0MTTV84&lang=it-IT&type=KPP">https://docs.fundconnect.com/GetDocument.aspx?clientid=eudoetn6-ahvi-eyfi-n60i-tj1i5qyvyx9p&Isin=IE00B0MTTV84lang=it-IT&type=KPP</a>
+                </div>
+                <div class="WB_MonthlyPerformanceURL"><a
+                        href="https://documents.feprecisionplus.com/MJ2ZERO_J5Z6_IT_it-it_4600688_GavekalKID.pdf">https://documents.feprecisionplus.com/MJ2ZERO_J5Z6_IT_it-it_4600688_GavekalKID.pdf</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4805475" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4805476">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Pag. <span class="pageNumber"></span> di <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script type="text/javascript">Awesomizr.applyAdaptivePageBreaks(".page1 > .row5", 70);</script>
+</body>
+
+</html>

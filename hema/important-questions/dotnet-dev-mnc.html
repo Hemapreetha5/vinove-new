@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.net questions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ol>li,
+        p {
+            color: #fff;
+            line-height: 24px;
+        }
+
+        h4 {
+            color: cyan;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 24px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        li ol {
+            padding-left: 0px;
+            list-style-position: inside;
+        }
+
+        ::marker {
+            color: cyan;
+        }
+
+        .blue-text {
+            color: #2db2ff;
+        }
+
+        strong.blue-text {
+            text-decoration: underline;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ff6ecd;
+        }
+
+        body {
+            background-color: #000;
+            line-height: 24px;
+            margin:0;
+            padding:0 0 0 0;
+        }
+
+        .margin {
+            background: #f1f1f1;
+            padding: 30px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border: 2px dashed #bbb;
+            transition: all .25s ease-in-out;
+            color: black;
+        }
+
+        .margin:before {
+            content: "Margin";
+            font-size: 14px;
+            position: absolute;
+            left: 0;
+            top: 1.8%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .border {
+            padding: 30px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .border:before {
+            content: "Border";
+            font-size: 14px;
+            color: black;
+            position: absolute;
+            left: 0;
+            top: 2.5%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .padding {
+            color: black;
+            padding: 40px 25px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #f1f1f1;
+        }
+
+        .padding:before {
+            content: "Padding";
+            font-size: 14px;
+            position: absolute;
+            left: 0;
+            top: 3.7%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+            border: 2px dashed #bbb;
+        }
+
+        .content:before {
+            content: "Content";
+            font-size: 14px;
+            display: block;
+            text-align: center;
+            line-height: 3.5;
+        }
+
+        .w3-theme {
+            color: #fff;
+            background-color: #04AA6D;
+        }
+
+        .no-bullet {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="markdown prose w-full break-words dark:prose-invert light">
+        <ol>
+            <li>
+                <h4>Building a web app to satisfy some requirements.</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>WCF security, dip,ioc?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Basic OOPS and SQL quires, stored procedure?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>DI, SQL triggers, Index?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to prevent a class from inherting?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Is mutiple inheritance is availalble in .net core? why?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is JIT</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>BCL and FCL?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between function and stored proceure</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Value type and reference type?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Custom exceptions</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>dataset.copy and dataset.clone difference?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Is and as operators in c# </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Error methods in c# </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Object pooling </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between response.redirect and data.url?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between union and union all </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between readonly and constant in c# </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>using of wait for in sql reason?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>quickly empty the table. easy way. </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>duplicate a table structure and data to another table in single query </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>garbage collection </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>using nullable values in c# </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>MVC supporting languages </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Front end validaion and server side validation </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between dll and exe</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How can you take common records from two tables</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What are console applications</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is CIL (Common Intermediate Language)?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is gac</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Microservices</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How do you handle bulk data in front end </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Solid principles</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Delegates</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What design pattern does WPF implement</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>MVC?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>difference between clustered, non clustered index. which one is faster and why.</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to enhance store procedure?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is view?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>diff between store proc & function</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>diff between delete & truncate & drop</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>how will you create table structure for doctor and patient in health care sector</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Are you aware of Asynchronous coding</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is Multi threading in .Net?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>serialization/deserialization</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>dependency injection</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>optimizing stored procedure</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>how to set starting page in application</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between abstraction and interface with examples</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>what are the types of ASP.NET MVC filters</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Explain about Routing and What is attribute base routing?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Boxing and unboxing examples</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Exception Handling (try, catch and finally ) block</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Managed and unmanaged code difference</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>WCF and WEAPI would be added advantage if would you have worked on it</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>ADO.NET examples</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Explain asynchronous vs synchronous programming.</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How session is maintained in MVC?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is 3 tier architecture?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>copy array and clone array difference</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Html element vs tag</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is SQL profiler</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is middleware in .Net core</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>static class,</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>.net assembly types, </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>CLR</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to connect WebAPI to your application & syntax of webapi security definition</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Web services security</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Data set vs data reader</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Encapsulation</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Why wouldn't you use a hash table.</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is string and string builder?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is ref and out parameter?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is output caching?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is action result type and assembly use by action result? ---Output cach with syntax ,error
+                    ,Authorize?
+                </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is remote validation?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is Form Authentication?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Different between partial and render partial in Mvc?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is razor in MVC?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is web.config?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What parameter does Map route carries---Name, Url, Defaults</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Where the route mapping code written asp.net MVC? RouteConfig.cs</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>If table we are not able to insert any value, then what was the problem ----Ans ---Storage problem or space issue?
+                </h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is cluster and non-Cluster index?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is bundling and minification?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is temp data, view data and view bag?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between view and partial view?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between HAVING and WHERE condition?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Can be unique key null?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>repository, dependency injection</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Join query</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Dispatcher keyword in WPF?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Majic tables and Limitations of CTE?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Default access of Interface?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>static constructor uses in c#?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>how to prevent cross site scripting in asp.net c#</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>WPF Bindings?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>how to escape from SQL injections?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Libraries in WPF?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Async & Await?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>WPF resources?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What are the freezable objects in wpf?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is LINQ?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is IQueryble ?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Difference between IQueryble and IEnumerable?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to override method in derived class?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is runtime polymorphism?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Method Overloading and method Overriding.</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to synchronize two threads?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What is authentication and explain token based authentication?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>State Management techniques in ASP.NET</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>What are different types of connections in ADF</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>How to get database values in Javascript?</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>Whats is Tempdata?How TempData it stores values?</h4>
+                <p></p>
+            </li>
+            <!-- <li>
+                <h4></h4>
+                <p></p>
+            </li>
+            <li>
+                <h4></h4>
+                <p></p>
+            </li>
+            <li>
+                <h4></h4>
+                <p></p>
+            </li>
+            <li>
+                <h4></h4>
+                <p></p>
+            </li> -->
+           
+        </ol>
+    </div>
+</body>
+
+</html>

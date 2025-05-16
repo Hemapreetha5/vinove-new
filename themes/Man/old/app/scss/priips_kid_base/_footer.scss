@@ -1,0 +1,54 @@
+@if $show-running-footer {
+    #{$footer-path} {
+        position: running(footerRight);
+        text-align: right;
+    }
+
+    @page {
+        @bottom-right {
+            content: element(footerRight);
+            margin-bottom: 1cm;
+            margin-right: 1cm;
+            width: 19cm;
+            border-top: 1px solid $secondary;
+        }
+    }
+}
+
+@if $show-page-numbers {
+    #{$pagination-path} {
+        text-align: $pg-num-position;
+        position: running(pgfooterRight);
+
+    }
+
+    #{$pagination-path} * {
+        font-size: $page-number-font-size;
+    }
+
+    @page {
+        @if $show-custom-running-text {
+            @bottom-right {
+                content: $custom-running-text counter(page);
+                margin-bottom: 1cm;
+                width: 19cm;
+    
+            }
+        }
+        @else {
+            @bottom-right {
+                content: element(pgfooterRight);
+                margin-bottom: 1cm;
+                width: 19cm;
+    
+            }
+        }
+        
+    }
+}
+
+@else {
+    .pagenumbers {
+        display: none;
+    }
+}

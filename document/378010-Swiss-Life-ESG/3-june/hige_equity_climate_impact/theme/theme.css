@@ -1,0 +1,1982 @@
+/* @font-face {
+    font-family: Friends Life Dagny Bold;
+    src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+    src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"),
+        url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+} */
+@font-face {
+  font-family: "FontAwesome";
+
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.eot")
+      format("embedded-opentype"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.ttf")
+      format("truetype"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.svg")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gill_sans_mtregular";
+  src: url("images/gil_____-webfont.woff2") format("woff2"),
+    url("images/gil_____-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary: #607e46;
+  --secondary: #231f20;
+  --accent: #15847b;
+  --accent-2: #9dbcbb;
+  --font-regular: "gill_sans_mtregular";
+  --fontRegular: "itc_legacy_sansbook";
+  --fontBold: "itc_legacy_sansbook";
+  --fontItalic: "itc_legacy_sansbook";
+  --fontBoldItalic: "itc_legacy_sansbook";
+}
+
+body {
+  /* font-family: Georgia, serif; */
+  font-family: var(--fontRegular);
+  /* font-size: 9pt; */
+  font-size: 8pt;
+  line-height: 1.1;
+  color: var(--secondary);
+}
+
+.page {
+  position: relative;
+  width: 21cm;
+  /* height: 24.7cm; */
+  height: 29.7cm;
+  padding: 0.5cm;
+  box-sizing: border-box;
+}
+
+.page1 {
+  padding-bottom: 4.5cm;
+}
+
+.row {
+  margin-bottom: 0.2cm;
+}
+
+.column > .section {
+  margin-left: 0.5cm;
+}
+
+.column:first-child > .section {
+  margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--accent);
+  /* font-weight: 400; */
+}
+
+h2 {
+  font-size: 15pt;
+}
+
+p {
+  margin: 0.1cm 0 0.25cm;
+}
+
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+  color: #3399ff;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page > .row1 .Header h2 {
+  font-size: 18pt;
+  /* padding-left: 3cm;  */
+  /* min-height: 2cm;  */
+  /* background-image: url('./Images/logo.png'); 
+    background-repeat: no-repeat;  */
+  font-weight: bold;
+  margin-bottom: 0.2cm;
+  color: var(--primary);
+}
+
+.page1 > .row2 > .column2 > .section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+
+.cler {
+  font-size: 24pt;
+}
+
+.reportheader {
+  font-size: 34pt;
+  color: rgb(253, 226, 17);
+  padding-left: 0.5cm;
+}
+
+.headerbackground {
+  background-color: rgb(138, 216, 216);
+  height: 10cm;
+  background-image: url("ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+
+.compositepadding {
+  padding-left: 1cm;
+  background-color: rgb(138, 216, 216);
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+  background-color: rgb(138, 216, 216);
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: 0.5cm;
+}
+
+.esgdata {
+  background-color: rgb(167, 179, 179);
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm;
+}
+
+.FooterCSS .column1 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column2 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column3 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column5 {
+  width: 15%;
+  float: left;
+}
+
+.FooterCSS .column4 {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+
+footer {
+  position: running(footerIdentifier);
+}
+
+@page {
+  padding-top: 0.5cm;
+
+  @bottom-left {
+    content: element(footerIdentifier);
+  }
+}
+
+.compositefooter {
+  width: 20cm;
+  padding: 0;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 0;
+  z-index: 1;
+  font-size: 7.5pt;
+}
+
+.compositefooter .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.compositefooter .content:before {
+  content: "";
+  width: 1px;
+  height: 100px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: -3px;
+}
+
+@page: first {
+  @bottom-left {
+    content: "";
+  }
+}
+
+.FooterCSS {
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+  height: 23px;
+}
+
+.FooterCSS .content:before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+.EsgCoverPageImage {
+  width: 100%;
+}
+
+.EsgCoverPage {
+  width: 100%;
+}
+
+.page1 {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+}
+
+.page1 > .row1 {
+  justify-self: start;
+  margin-bottom: auto;
+}
+.clientRating {
+  height: 3cm;
+  float: right;
+  width: auto;
+}
+.page1 > .row1 > .logo1{
+  background: url(images/Swiss_logo.jpg) no-repeat center;
+  float: right;
+  background-size: contain;
+  height: 3cm;
+}
+
+.page1 > .row2 {
+  margin-bottom: 1.5cm;
+}
+
+.page1 > .row2 .SwissLife > h2 {
+  font-size: 40pt;
+  color: var(--primary);
+  font-weight: 400;
+  font-family: var(--font-regular);
+}
+
+.page1 > .row3 {
+  margin-bottom: 2.5cm;
+}
+
+.page1 > .row3 .FundName > .item2 {
+  font-size: 18pt;
+}
+
+.page1 > .row3 .FundName .DocumentDate {
+  font-size: 18pt;
+}
+
+.page2 > .row3,
+.page2 > .row6,
+.page2 > .row8 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.page2 > .row3 > img {
+  width: 50%;
+}
+
+.page2 > .row6 > img {
+  width: 70%;
+}
+
+.page2 > .row8 > img {
+  width: 70%;
+}
+
+.page .row .TextSection > h2.item2 {
+  color: var(--accent);
+}
+
+.horizontal-list.SummaryTable > div:not(.clear),
+.page3
+  > .row3
+  .compositebody
+  > .row2
+  > .column2
+  > .row1
+  > .horizontal-list
+  > div:not(.clear) {
+  padding: 8px 5px 8px 40px;
+  border-bottom: 1px solid var(--secondary);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background-size: 30px !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+}
+
+.horizontal-list.SummaryTable > div:first-child:not(.clear),
+.page3
+  > .row3
+  .compositebody
+  > .row2
+  > .column2
+  > .row1
+  > .horizontal-list
+  > div:first-child:not(.clear),
+.page18 > .row5 .row2 .text,
+.page18 > .row5 .row3 .text,
+.page18 > .row5 .row4 .text {
+  border-top: 1px solid var(--secondary);
+}
+
+.horizontal-list.SummaryTable > div:not(.clear) > span.label,
+.page3
+  > .row3
+  .compositebody
+  > .row2
+  > .column2
+  > .row1
+  > .horizontal-list
+  > div:not(.clear)
+  > span.label {
+  width: 50%;
+}
+
+.horizontal-list.SummaryTable div:nth-child(1) {
+  background: url(images/icon1.jpg);
+  background-repeat: no-repeat;
+}
+
+.horizontal-list.SummaryTable div:nth-child(2) {
+  background: url(images/icon2.jpg);
+}
+
+.horizontal-list.SummaryTable .AssetClassClassification {
+  background: url(images/icon3.jpg);
+}
+
+.horizontal-list.SummaryTable .Label {
+  background: url(images/icon4.jpg);
+}
+
+.horizontal-list.SummaryTable .SwissLifeAMClassification {
+  background: url(images/icon5.jpg);
+}
+
+.horizontal-list.SummaryTable .Universe {
+  background: url(images/icon6.jpg);
+}
+
+.page3 .row3 .column2 .horizontal-list .SFDRDisclosure {
+  background: url(images/icon7.jpg);
+}
+
+.page3 .row3 .column2 .horizontal-list .ConsidersPAIs {
+  background: url(images/icon8.jpg);
+}
+
+.page3 .row3 .column2 .horizontal-list .AddressesEUTaxonomy {
+  background: url(images/icon9.jpg);
+}
+
+.page3 .row3 .column2 .horizontal-list .AddressesSustainableInvestments {
+  background: url(images/icon10.jpg);
+}
+
+.standardtable table {
+  width: 100%;
+  border-spacing: 0px;
+}
+.page11 .standardtable table {
+  margin-top: -15px;
+}
+.standardtable table thead th {
+  border-bottom: 1px solid var(--secondary);
+  padding: 5px;
+}
+
+.standardtable table tbody td {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  text-align: center;
+}
+
+.standardtable table thead th:first-child,
+.standardtable table tbody td:first-child {
+  text-align: left;
+  width: 80%;
+}
+.page9 .row7 .standardtable table td:first-child,
+.page9 .row7 .standardtable table th:first-child {
+  width: auto !important;
+}
+
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row,
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column2 > .row {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row1,
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column2 > .row1 {
+  border-top: 1px solid var(--secondary);
+}
+
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row *,
+.page3 > .row6 > .composite1 > .compositebody > .row2 > .column2 > .row * {
+  margin-bottom: 0;
+}
+
+.page5 > .row6 {
+  border-bottom: 1px dotted var(--secondary);
+}
+
+.DonutChart text.highcharts-title {
+  font-size: 10pt !important;
+  font-family: var(--font-regular) !important;
+}
+.DonutChart .highcharts-container {
+  height: 200px !important;
+}
+
+.DonutChart .highcharts-container .highcharts-root {
+  height: 100% !important;
+}
+
+.Temperature > p {
+  font-size: 10pt;
+}
+.page18>.row4>.column2 .row2 .text p.Portfolio\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value,
+.page18>.row4>.column1>.row>.column1>.row2>.section p.Portfolio\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value {
+  color:#000;
+  font-size: 8pt;
+}
+p.Portfolio\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CoalExposurePct5\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.FossilFuelOtherPct5\.Value,
+p.Portfolio\.Overall\.MSCI\.Carbon\.Target\.SBTITarget\.Value {
+  color: var(--primary);
+  font-size: 25pt;
+}
+
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Others\.CoalExposurePct5\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Others\.FossilFuelOtherPct5\.Value,
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Carbon\.Target\.SBTITarget\.Value {
+  color: var(--accent-2);
+  font-size: 25pt;
+}
+
+.section.contentSection.text.Text {
+  /* font-size: 10pt; */
+}
+
+.horizontal-list span:first-child {
+  font-weight: 400;
+}
+
+.horizontal-list span:last-child {
+  float: left;
+  margin-left: 5px;
+}
+
+.page16
+  > .row3
+  > .composite1
+  > .compositebody
+  > .row2
+  > .column2
+  > .row2
+  > .column1 {
+  float: left;
+  width: 65%;
+}
+
+.page16
+  > .row3
+  > .composite1
+  > .compositebody
+  > .row2
+  > .column2
+  > .row2
+  > .column2 {
+  float: left;
+  width: 35%;
+}
+
+.reductionpathincl3,
+.reductionpathexcl3 {
+  font-size: 25pt;
+  color: var(--primary);
+}
+
+.page16 > .row6 > .column2 .contentSection p.item3 {
+  font-size: 10pt;
+}
+.value a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 0 !important;
+}
+.value a,
+.horizontal-list.Table > div:not(.clear) {
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-list.Table > div:first-child {
+  border-top: 1px solid var(--secondary);
+}
+
+.horizontal-list.Table > div:not(.clear) span.label {
+  width: 80%;
+}
+
+.horizontal-list.Table > div:not(.clear) span.value {
+  width: 20%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.page > .row1 .PAIs h2 {
+  font-size: 15pt;
+  color: var(--accent);
+}
+
+.contentSection.text.Description p {
+  font-size: 10pt;
+}
+
+.page11 > .row5 > .row2 .column1 {
+  /* background-image: url(images/E_SDG_PRINT-09.jpg),
+    url(images/E_SDG_PRINT-11.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 2cm 0cm, 5cm;
+  height: 2.1cm; */
+}
+
+.page11 > .row5 {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: flex-end; */
+}
+
+.page11 > .row5 > .row1 {
+  /* margin-right: 30px; */
+  margin-right: 0;
+  width: 100%;
+}
+
+.page11 > .row5 > .row2 {
+  /* margin-right: 90px; */
+  margin-right: 25px;
+  margin-top: 35px;
+}
+
+.page11 > .row5 > .row3 {
+  /* width: 60%; */
+  margin-right: 25px;
+  margin-top: 35px;
+}
+.page11 > .row5 > .row4 {
+  margin-top: 35px;
+}
+.page11 > .row5 .standardtable1.standardtable.contentSection.section {
+  width: 420px;
+  margin-left: 25px;
+  margin-top: -20px;
+}
+img[class*="E_SDG_Print"] {
+  height: 2.1cm;
+}
+
+img[class*="-solid"] {
+  height: 2.1cm;
+}
+.iconSection {
+  width: 2.1cm;
+  height: 2.1cm;
+}
+.column2 .logo {
+  background-image: url(images/isr-logo.jpg);
+  float: right;
+  background-size: contain;
+  width: 2.5cm;
+  height: 2.5cm;
+  background-repeat: no-repeat;
+}
+
+.page19 > .row2 .item2, .page19 > .row2 .item3, .page19 > .row1,
+.page19 .row3 .text1 p:last-child,  .page19 .row3 .text1 p:nth-last-child(2) {
+  border-bottom: 0 !important;
+}
+.page19 .row3 .text1 p:last-child {
+  word-wrap: break-word;
+}
+.page19 .row {
+  border-bottom: 1px solid #000; /* Add border-bottom to each row */
+}
+.page19 .text1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.page19 .text1 p {
+  width: 50%; /* Each paragraph takes 50% width of the container */
+  box-sizing: border-box; /* Include padding and border in the width */
+  padding-bottom: 10px; /* Add padding at the bottom */
+}
+/* Set odd numbered items to float left */
+.page19 .text1 p:nth-child(odd) {
+  float: left;
+}
+/* Set even numbered items to float right */
+.page19 .text1 p:nth-child(even) {
+  float: right;
+}
+/* Add border-bottom to left items */
+.page19 .text1 p:nth-child(odd) {
+  border-bottom: 1px solid #000;
+}
+/* Add border-bottom to right items */
+.page19 .text1 p:nth-child(even) {
+  border-bottom: 1px solid #000;
+}
+/* Clear the floats after every second item to prevent overlapping */
+.page19 .text1 p:nth-child(2n) {
+  clear: both;
+}
+.page8>.row6>.column1>.row1>.column1 {
+  float: left;
+  width: 50%;
+  margin-left: 40px;
+}
+.page8>.row8>.column1>.row1>.column1 {
+  float: left;
+  width: 50%;
+  margin-left: 40px;
+}
+img.venus-dark-green, img.venus-light-green,
+img.landmark-dark-green, img.landmark-light-green {
+  height: 3.2cm;
+}
+.page8>.row6>.column1>.row1>.column2 {
+  float: left;
+  width: 30%;
+  margin-left: -1.5cm;
+}
+.page8>.row8>.column1>.row1>.column2 {
+  float: left;
+  width: 30%;
+  margin-left: -1.5cm;
+}
+.page8>.row6>.column1>.row2>.column1 p.Portfolio\.Overall\.MSCI\.Governance\.WomenDiversity\.Value {
+  font-size: 12pt;
+  color: var(--primary);
+  margin-left: 15px;
+  margin-top: -58px;
+  margin-bottom: 40px;
+}
+.page8>.row6>.column1>.row2>.column1 p.item3 {
+  margin-left: 15px;
+}
+.page8>.row6>.column1>.row2>.column2 p.item3 {
+  margin-left: -8px;
+}
+.page8 .row8 .column1 .column1 p:first-child {
+  font-size: 12pt;
+  color: var(--primary);
+  margin-left: -50px;
+  margin-top: -66px;
+  margin-bottom: 45px;
+  text-align: center;
+}
+.page8 .row6 .column1 .column2 p:first-child {
+  font-size: 12pt;
+  color: var(--accent-2);
+  margin-left: 0px;
+  margin-top: -58px;
+  margin-bottom: 40px;
+}
+.page8 .row8 .column1 .column2 p:first-child {
+  font-size: 12pt;
+  color: var(--accent-2);
+  margin-left: 47px;
+  margin-top: -66px;
+  margin-bottom: 45px;
+  text-align: center;
+}
+.page8>.row6>.column1>.row2>.column1 {
+  /* margin-left: 78px; */
+  width: 50%;
+  font-size: 10pt;
+  margin-top: -20px;
+  float: left;
+  text-align: center;
+}
+.page8>.row6>.column1>.row2>.column2 {
+  margin-left: 78px;
+  width: 40%;
+  font-size: 10pt;
+  margin-top: -20px;
+  float: right;
+}
+.page8>.row6>.column1>.row2>.column2 {
+  margin-left: 10px !important;
+}
+.page8>.row8>.column1>.row1 .item3 {
+  margin-left: 50px;
+  width: 35%;
+  font-size: 10pt;
+  margin-top: -6px;
+}
+.page8>.row8>.column1>.row1 .column2 .item3 {
+  margin-left: 48px !important;
+}
+.page19 > .row2 p.item3 {
+  font-weight: bold;
+}
+.page3 > .row1, .page3 > .row1 .row1 {
+  margin-bottom: 0;
+  margin-top: -10px;
+}
+.page3 > .row3 {
+  margin-top: -40px;
+}
+.page3 > .row3 > .composite1 > .compositebody > .row2 > .column1 {
+  float: left;
+  width: 50%;
+  position: relative;
+  /* top: -90px; */
+}
+.ISR {
+  width: 2.5cm;
+}
+
+.page3 > .row1 {
+  float: right;
+}
+
+.page7 > .row7 .column1 .highcharts-data-labels,
+.page7 > .row7 .column1 .highcharts-data-labels text,
+.page7 > .row7 .column1 .highcharts-text-outline,
+.page7 > .row7 .column1 .highcharts-text-outline tspan {
+  font-size: 35px !important;
+}
+
+.page18 > .row5 .row2 .text,
+.page18 > .row5 .row3 .text,
+.page18 > .row5 .row4 .text {
+  display: flex;
+}
+.page18 > .row5 .row2 .text .item2,
+.page18 > .row5 .row3 .text .item2,
+.page18 > .row5 .row4 .text .item2 {
+  width: 35%;
+}
+
+.page18 > .row5 .row2,
+.page18 > .row5 .row3,
+.page18 > .row5 .row4 {
+  margin-bottom: 0 !important;
+}
+
+.page18 > .row5 .row4 {
+  border-bottom: 1px solid black;
+}
+
+/* page 4 css */
+.page4 > .row6 .column1 .row1 .contentSection,
+.page4 > .row8 .column1 .row1 .contentSection,
+.page14 .row4 .contentSection {
+  display: flex;
+  gap: 60px;
+}
+
+.page4 .row6 .column1 .row1 p:first-child,
+.page4 .row8 .column1 .row1 p:first-child,
+p.Portfolio\.Overall\.ProprietaryData\.\[x\]\.Values\.\[y\]\.Value,
+.page9>.row5>.column1 p {
+  height: 47px;
+  font-size: 70px;
+  margin-top: 0px;
+  color: var(--primary);
+  font-family: var(--fontRegular);
+  margin-bottom: 40px;
+}
+
+p.Benchmarks\.\[x\]\.Overall\.MSCI\.Controversies\.GlobalNorms\.UnitedNationsGlobalCompact\.Fail\.Value,
+.page4 .row8 .column1 .row1 p:nth-child(3),
+.page14 .row4 .contentSection p.item4,
+p.Benchmarks\.\[z\]\.Overall\.ProprietaryData\.\[x\]\.Values\.\[y\]\.Value {
+  height: 47px;
+  font-size: 70px;
+  margin-top: 0px;
+  color: var(--accent-2);
+  font-family: var(--fontRegular);
+}
+.page4 .row6 .column1 .row1 p:nth-child(2) {
+  position: absolute;
+  top: 14.5cm;
+  left: .8cm;
+}
+.page4 .row6 .column1 .row2 p:nth-child(2) {
+  position: absolute;
+  top: 14.5cm;
+  left: 5cm;
+}
+.page4 .row8 .column1 .row1 p:nth-child(2) {
+  position: absolute;
+  top: 19cm;
+  left: .8cm;
+}
+.page4 .row8 .column1 .row2 p:nth-child(2) {
+  left: 5cm;
+}
+.page4 .row8 .column1 .row1 p:nth-child(4) {
+  position: absolute;
+  top: 19cm;
+  left: 5cm
+}
+.page4 > .row6 > .column2,
+.page4 > .row8 > .column2 {
+  margin-top: 10px;
+}
+.page4 > .row9 .item2,
+.page13> .row6 .item3 {
+  position: fixed;
+  bottom: 0;
+}
+.page13> .row6 .item2 {
+  position: fixed;
+  bottom: 30px;
+}
+.page4>.row6>.column1,
+.page4>.row8>.column1 {
+  display: flex;
+}
+.page4>.row6>.column1 > .row1,
+.page4>.row8>.column1 > .row1 {
+  margin-right: 20px;
+}
+/* page 4 ends here  */
+
+
+/* page 14 */
+.page14>.row1>.row2,
+.page14>.row2>.row2 .text {
+  display: flex;
+  flex-direction: row;
+}
+.page14>.row2>.row2 .text .item3,
+.page14>.row2>.row2 .text .item5 {
+  position: relative;
+  top: 2cm;
+  right: 4.5cm;
+}
+.page14 .row4 .contentSection p.item3::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: rgb(96, 126, 70);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page14 .row4 .contentSection p.item3 {
+  position: absolute;
+  top: 12.5cm;
+  left: 1cm;
+  font-size: 10pt;
+}
+.page14 .row4 .contentSection p.item5::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: rgb(175, 190, 162);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page14 .row4 .contentSection p.item5 {
+  position: absolute;
+  top: 12.5cm;
+  left: 7.1cm;
+  font-size: 10pt;
+}
+/* page 14 ends here */
+
+.page18 > .row5 > .column1 > .row2 > .contentSection.text.text1 > p.item2,
+.horizontal-list.SummaryTable div:nth-child(3) {
+  padding: 8px 5px 8px 40px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  background: url(images/dollar.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.page18 > .row5 > .column1 > .row3 > .contentSection.text.text1 > p.item2 {
+  padding: 8px 5px 8px 40px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  background: url(images/icon2.jpg);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.page18 > .row5 > .column1 > .row4 > .contentSection.text.text1 > p.item2 {
+  padding: 8px 5px 8px 40px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  background: url(images/dataProvider.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.page18 > .row5 > .column1 > .row2 > .contentSection.text.text1 > p,
+.page18 > .row5 > .column1 > .row3 > .contentSection.text.text1 > p,
+.page18 > .row5 > .column1 > .row4 > .contentSection.text.text1 > p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column1 {
+  float: left;
+  width: 48%;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column>.row>.column p {
+  margin: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column>.row>.column .row1 {
+  margin-bottom: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column1, 
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column2 {
+  width: 20%;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column3, 
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column4 {
+  width: 15% !important;
+  /* font-weight: bold; */
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row1 .column {
+  font-weight: bold;
+}
+.page3>.row7>.composite1>.compositebody>.row2>.column > .row2 > .row .column5 {
+  width: 30% !important;
+}
+.page3>.row7>.composite1>.compositebody>.row2>.column .horizontal-list span:last-child {
+  margin-left: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row1 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: auto !important;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row1 .text1 {
+  display: flex;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row1 .text1 .item2 {
+  left: 15px;
+  position: relative;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row1 .text1 .item3 {
+  left: 50px;
+  position: relative;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column1 > .row,
+.page3>.row8>.composite1>.compositebody>.row2>.column2 > .row {
+  border-bottom: 1px solid var(--secondary);
+  /* height: 215px; */
+  margin-bottom: 0.1cm;
+  /* align-items: center; */
+  display: flex;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column2 {
+  float: left;
+  width: 50%;
+  margin-left: 15px;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column2>.row1>.column2 {
+  float: left;
+  width: 25%;
+  margin-top: 0.2cm;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 {
+  display: flex;
+  flex-direction: column !important;
+  width: 100%;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row {
+  display: flex;
+  border-bottom: 1px solid var(--secondary);
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row3 {
+  border-bottom: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column1 > .row2 > .row1 .column3 .row1 p {
+  margin: 0;
+  padding: 0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column {
+  align-items: center;
+  display: flex;
+  height: inherit;
+  height: 55px;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column5 {
+  width: 30%;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2 > .row .column .row {
+  margin-bottom: 0;
+}
+.page3 .row8 b {
+  /* font-weight: normal; */
+}
+.page3 > .row2 .item2 {
+  margin-bottom: 105px;
+}
+.legend-arrow-right {
+  border-left: 15px solid #687C44 !important;
+}
+.gwp-chart .arrow {
+  border-right: 20px solid #687C44 !important
+}
+.gwp-chart .arrowk {
+  border-right: 20px solid rgb(175, 190, 162) !important
+}
+div.gwp-chart-legend > span:nth-child(2) > span {
+  border-left: 15px solid rgb(175, 190, 162) !important;
+}
+.gwp-chart-wrapper.gwp-chart-container > div:nth-child(2) {
+  border-top: 2px solid #687C44;
+}
+.page16>.row3>.composite1>.compositebody>.row2>.column1 .row2 .item2 {
+  position: absolute;
+  color: #687C44;
+  font-size: 8pt;
+  top: 185px;
+  left: 264px;
+  width: 115px;
+}
+.page7>.row7>.column1>.row1>.column2 .row2 .item2 {
+  text-align: center;
+  font-size: 10pt;
+  margin-top: -15px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 .item2,
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 .item2 {
+  position: absolute;
+  margin-left: 92px;
+  margin-top: -15px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 .item3,
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 .item3 {
+  position: absolute;
+  margin-left: 148px;
+  margin-top: -15px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row1 {
+  margin-left: 0.7cm;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row1 .highcharts-title,
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row1 .highcharts-title {
+  font-size: 14px !important;
+  font-family: var(--fontRegular) !important;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(3)::before, 
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(3)::before,
+.page15>.row4>.composite1>.compositebody>.row2>.column .row2 p:nth-child(2)::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(96, 126, 70);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column .row2 p:nth-child(2)::before {
+  background-color: rgb(175, 190, 162);
+}
+.page10>.row4>.column1 .item3::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(138, 216, 216);
+  margin-right: 5px;
+  display: inline-flex;
+}
+.page10>.row4>.column1 .item2::before,
+.page10>.row6>.column1 .row2 p::before,
+.page10>.row8>.column1 .row2 p::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(175, 190, 162);
+  margin-right: 5px;
+  display: inline-flex;
+}
+.page10>.row6>.column1 .row2 p.item2::before,
+.page10>.row8>.column1 .row2 p.item2::before{
+  background-color: rgb(96, 126, 70);
+}
+.page10>.row6>.column1 .row2 p.item3::before
+.page10>.row8>.column1 .row2 p.item3::before {
+  background-color: rgb(175, 190, 162)
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(4)::before, 
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(4)::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(175, 190, 162);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(5)::before, 
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(5)::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(157, 189, 188);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(6)::before, 
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(6)::before {
+  content: "";
+  width: 14px;
+  height: 9px;
+  background-color: rgb(206, 222, 222);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(3),
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(3) {
+  padding-top: 25px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column .row2 p:nth-child(2),
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(3),
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(3),
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(4),
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(4),
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(5),
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(5),
+.page15>.row4>.composite1>.compositebody>.row2>.column1 .row2 p:nth-child(6),
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 p:nth-child(6) {
+  margin-left: 50px;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column2 .row2 {
+  background-image: url(images/medium_estimation_uncertainity.png);
+  background-size: 110px 52px;
+  background-position: 232px 25px;
+  background-repeat: no-repeat;
+}
+.page15>.row6>.composite1>.compositebody>.row2>.column2 {
+  background-image: url(images/Low_Estimatiion_Uncertainity.png);
+  background-size: 110px 50px;
+  background-position: 244px 80px;
+  background-repeat: no-repeat;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column .row1 .chart,
+.page8>.row2>.column1 .chart, .page8>.row4>.column1 .chart,
+.page7>.row5>.column1 .chart,
+.page12>.row4>.column1 .chart,
+.page12>.row6>.column1 .chart {
+  width: 65% !important;
+  align-items: center;
+  display: flex;
+  height: 180px !important;
+}
+.page12>.row6>.column1>.row1>.column2 {
+  float: left;
+  width: 50%;
+  position: relative;
+  top: -14px;
+}
+.page8>.row6>.column1 .row2, .page8>.row8>.column1 .row2 {
+  margin-bottom: 0;
+}
+.page15>.row4>.composite1>.compositebody>.row2>.column .row1 .chart .highcharts-container span {
+  margin-left: -5px !important;
+}
+.page5 .row7 .chart .highcharts-subtitle, 
+.page5 .row6 .chart .highcharts-subtitle {
+  font-size: 10px !important;
+  position: relative;
+}
+.page5 .row7 .chart .highcharts-subtitle .donutInnerTextValue {
+  position: absolute;
+  bottom: 15px;
+  left: -10px;
+  font-size: 14px;
+  color: #000;
+}
+.page5 .row6 .chart .highcharts-subtitle .donutInnerTextValue {
+  position: absolute;
+  bottom: 20px;
+  left: -13px;
+  font-size: 14px;
+  color: #000;
+}
+.page5 .row7 .chart .highcharts-subtitle .donutInnerText,
+.page5 .row6 .chart .highcharts-subtitle .donutInnerText  {
+  white-space: normal; /* Allow text to wrap */
+  width: 100%; /* Ensure text wraps within the available space */
+  align-items: center;
+  display: flex;
+}
+.page5>.row7>.row2 {
+  position: relative;
+}
+.page5>.row7>.row2>.column1 {
+  position: absolute;
+  left: 17cm;
+  top: -5cm;
+}
+.page5>.row7>.row2>.column2 {
+  position: absolute;
+  left: 18cm;
+  top: -5cm;
+}
+.page5>.row7 .row2 .text {
+  display: flex;
+  flex-direction: column;
+}
+.page5 .row7 .chart .highcharts-subtitle .donutInnerText {
+  position: absolute;
+  bottom: -5px;
+  left: -9px;
+  font-size: 9px;
+  text-align: center;
+  color: #000;
+}
+.page5 .row7 .column2 .chart .highcharts-subtitle .donutInnerText {
+  font-size: 11px;
+}
+.page5 .row6 .chart .highcharts-subtitle .donutInnerText {
+  position: absolute;
+  bottom: -10px;
+  left: -30px;
+  font-size: 9px;
+  text-align: center;
+  color: #000;
+}
+.page6 > .row3 .column .highcharts-label text tspan:last-child {
+  font-size: 22px;
+}
+.LowEstimation {
+  visibility: hidden;
+}
+.page5>.row6>.row4 p::before,
+.page5>.row6>.row3 p::before {
+  content: "";
+  width: 12px;
+  height: 8px;
+  /* background-color: rgb(96, 126, 70); */
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page5>.row6>.row4 p.item2::before,
+.page5>.row6>.row3 p.item2::before {
+  background-color: rgb(128, 128, 128);
+}
+.page5>.row6>.row4 p.item3::before,
+.page5>.row6>.row3 p.item3::before {
+  background-color: rgb(191, 191, 191);
+}
+.page5>.row6>.row4 p.item4::before,
+.page5>.row6>.row3 p.item4::before {
+  background-color: rgb(223, 223, 223);
+}
+.page5>.row6>.row4 p.item5::before,
+.page5>.row6>.row3 p.item5::before {
+  background-color: rgb(204, 212, 87);
+}
+.page5>.row6>.row4 p.item6::before {
+  background-color: rgb(238, 255, 237);
+}
+.page5>.row7>.row1>.column2 {
+  float: left;
+  width: auto;
+}
+.page5>.row7>.row1>.column1 {
+  width: 20%;
+}
+.page5>.row7>.row1>.column3 .row {
+  margin-left: 1cm;
+}
+.page5>.row7>.row1>.column2 .row {
+  margin-left: 0;
+}
+.page5 .row7 .chart,
+.page5 .row7 .chart .highcharts-container {
+  width: 228px !important;
+  align-items: center;
+  display: flex;
+  height: 200px !important;
+}
+.page5 .row6 .chart,
+.page5 .row6 .chart .highcharts-container {
+  width: 100% !important;
+  align-items: center;
+  display: flex;
+  height: 200px !important;
+}
+.page5>.row6>.row2,
+.page5>.row6>.row3 {
+  width: 36%;
+}
+.page5>.row6>.row2 .donutchart,
+.page5>.row6>.row3 .donutchart {
+  width: 100%;
+}
+.page6>.row3>.column .chart .highcharts-container {
+  width: 49% !important;
+  align-items: center;
+  display: flex;
+  height: 200px !important;
+}
+.page6>.row3>.column .item2 {
+  margin-left: 75px;
+}
+.page6>.row3>.column .row3 .text {
+  display: flex;
+}
+.page6>.row3>.column .row3 p {
+  margin-left: 15px;
+}
+.page6>.row3>.column .row3 .text p::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  /* background-color: rgb(96, 126, 70); */
+  background-color: #EEFFED;
+  display: inline-flex;
+  margin-right: 5px;
+  top: 2px;
+  position: relative;
+  border-radius: 50px;
+}
+.page6>.row3>.column .row3 .text p.item2::before {
+  background-color: rgb(136, 132, 132);
+}
+.page6>.row3>.column .row3 .text p.item3::before {
+  background-color: rgb(232, 228, 228);
+}
+.page6>.row3>.column .row3 .text p.item4::before {
+  background-color: rgb(208, 212, 84);
+}
+.page7>.row7>.column1>.row1>.column.chart,
+.page7>.row7>.column1>.row1>.column.chart .highcharts-container,
+.page7>.row7>.column1>.row1>.column .DonutChart .highcharts-container {
+  width: 90% !important;
+  align-items: center;
+  display: flex;
+  height: 150px !important;
+}
+.page7>.row7>.column1>.row1>.column2 .DonutChart .highcharts-container {
+  height: 170px !important;
+  position: relative;
+  top: -13px; 
+}
+.page16>.row3>.composite1>.compositebody>.row2>.column2 {
+  background-image: url(images/High_Estimation_Uncertainity.png);
+  background-size: 110px 50px;
+  background-position: 244px 105px;
+  background-repeat: no-repeat;
+}
+.page16>.row4>.column1>.row3>.column2 {
+  background-image: url(images/Low_Estimatiion_Uncertainity.png);
+  background-size: 110px 50px;
+  background-position: 15px 90px;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 145px;
+}
+.page18>.row4>.column2 .row .column1,
+.page18>.row4>.column2 .row6,
+.page18 > .row4 > .column1 > .row > .column1 {
+  display: flex;
+  /* align-items: center; */
+  /* gap: 10px; */
+  border-bottom: 1px solid #000;
+  width: 100%;
+}
+.page18 > .row4 > .column1 > .row > .column1>.row2{
+width: 100%;
+margin-bottom: 0;
+}
+.page18>.row4>.column2 .row2 .text,
+.page18>.row4>.column2 .row6 .row3 .text,
+.page18 > .row4 > .column1 > .row > .column1>.row2>.section,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.page18 > .row4 > .column2 .row6 .row3 .text {
+  width: 33.5vw !important;
+  margin-left: 8px;
+}
+.page18 > .row4 > .column2 > .row6 .row3,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 {
+  margin-bottom: 0;
+}
+.page18 > .row4 > .column2 > .row > .column2,
+.page18 > .row4 > .column1 > .row > .column2,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column1 {
+  width: 0;
+}
+.page18>.row4>.column2 .row2 .text p,
+.page18>.row4>.column2 .row6 .row3 .text p,
+.page18 > .row4 > .column1 > .row > .column1>.row2>.section p,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text p {
+  padding: 0.1cm 0;
+  margin: 0;
+}
+.page18 > .row4 > .column2 > .row1 .item2, 
+.page18 > .row4 > .column1 > .row1 .item2 {
+  margin-bottom: 0.5cm;
+}
+.page18 > .row4 > .column1 > .row5 > .column1 > .row2 .contentSection p:nth-child(1),
+.page18 > .row4 > .column1 > .row5 > .column1 > .row2 .contentSection p:nth-child(2),
+.page18 > .row4 > .column1 > .row5 > .column1 > .row1 {
+  border-top: 1px solid #000 !important;
+}
+.page18 > .row4 > .column1 > .row5 > .column1 > .row2 .contentSection p:nth-child(1),
+.page18 > .row4 > .column1 > .row5 > .column1 > .row2 .contentSection p:nth-child(2) {
+  padding-top: 0.3cm;
+}
+.page18>.row4>.column2 .row2 .text p:nth-child(odd),
+.page18>.row4>.column2 .row6 .row3 .text p:nth-child(odd),
+.page18 > .row4 > .column1 > .row > .column1>.row2>.section p:nth-child(odd),
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text p:nth-child(odd) {
+  width: 75%;
+  border-top: 1px solid #000;
+}
+.page18>.row4>.column2 .row2 .text p:nth-child(even),
+.page18>.row4>.column2 .row6 .row3 .text p:nth-child(even),
+.page18 > .row4 > .column1 > .row > .column1>.row2>.section p:nth-child(even),
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text p:nth-child(even) {
+  width: 25%;
+  border-top: 1px solid #000;
+}
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row1 {
+  width: 50px !important;
+}
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 {
+  width: 75% !important;
+}
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 {
+  float: left;
+  width: 48vw !important;
+}
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 p.Portfolio\.Overall\.MSCI\.Carbon\.CarbonEmissions\.CorporateEmissions\.CorporateCarbonFootprintScope123\.Value {
+  /* width: 55px !important; */
+}
+.page18>.row4>.column2 .row .column1 > .row1 .item2,
+.page18>.row4>.column2 .row6 .row1 .text .item2,
+.page18>.row4>.column1 > .row .row1 .text .item2
+ {
+  width: min-content;
+  max-width: min-content;
+  margin-bottom: 0.1cm;
+}
+.page18>.row4>.column2 .row .column1 > .row2 {
+  width: 100%;
+  margin: 0;
+  align-self: center;
+}
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 p:first-child {
+  max-width: 100%;
+}
+.page18>.row4>.column2 > .row,
+.page18>.row4>.column1 > .row,
+.page18>.row4>.column1 > .row4 .row1,
+.page18>.row4>.column1 > .row4 > .row2
+ {
+  margin: 0;
+}
+.page18>.row4>.column1 > .row4,
+.page18>.row4>.column2 > .row6 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page18>.row4>.column1 > .row4 .row1,
+.page18>.row4>.column2 > .row6 .row1 {
+  width: 85px;
+}
+.page18>.row4>.column1 > .row4 .row2 .item2 {
+  width: 205px !important;
+}
+.page18>.row4>.column2 > .row6 .row2 .item2 {
+  width: 173px !important;
+  margin-left: 27px;
+}
+.page18>.row4>.column2 > .row > .row1 {
+  width: 100% !important;
+}
+.page18>.row4>.column2 > .row > .row2 .item2 {
+  /* margin-left: 27px; */
+}
+.page18 > .row4 > .column2 > .row6 .row3 {
+  width: 74%;
+}
+.page18>.row4>.column2 > .row > .row1,
+.page18>.row4>.column2 > .row > .column1 > .row1,
+.page18 > .row4 > .column1 > .row > .column1 > .row1,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2,
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row1 {
+  padding-right: 10px;
+  align-items: center;
+  display: flex;
+  margin: 0;
+  width: 115px;
+}
+.page18>.row4>.column2 > .row > .column2 .row p:nth-child(1),
+.page18>.row4>.column2 > .row > .column2 .row p:nth-child(2),
+.page18>.row4>.column2 > .row > .column1 > .row2 p:nth-child(1), 
+.page18>.row4>.column2 > .row > .column1 > .row2 p:nth-child(2),
+.page18>.row4>.column2 > .row > .row > .contentSection p:nth-child(1), 
+.page18>.row4>.column2 > .row > .row > .contentSection p:nth-child(2),
+.page18 > .row4 > .column1 > .row > .column1 > .row2 .contentSection p:nth-child(1),
+.page18 > .row4 > .column1 > .row > .column1 > .row2 .contentSection p:nth-child(2),
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text p:nth-child(1),
+.page18 > .row4 > .column1 > .row4 > .row1 > .column2 .row3 .text p:nth-child(2)
+{
+  border-top: 0;
+} 
+.page18 > .row4 > .column1 {
+  padding-right: 0.5cm;
+  box-sizing: border-box;
+}
+.page18 > .row4 > .column2{
+  box-sizing: border-box;
+}
+
+/* Imapct KPI Section changes */
+.page11 > .row8 {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  /* position: absolute; */
+  width: 50%;
+    margin: 0 auto;
+    position: relative;
+}
+.page11 > .row8 > .row1,
+.page11 > .row8 > .row2,
+.page11 > .row8 > .row3,
+.page11 > .row8 > .row4,
+.page11 > .row8 > .row5,
+.page11 > .row8 > .row6,
+.page11 > .row8 > .row7,
+.page11 > .row8 > .row8
+{
+  width: 180px;
+  text-align: center;
+}
+.page11 > .row8 > .row3,
+.page11 > .row8 > .row4,
+.page11 > .row8 > .row5,
+.page11 > .row8 > .row6,
+.page11 > .row8 > .row7,
+.page11 > .row8 > .row8{
+  position: absolute;
+}
+.page11 > .row8 > .row3 {
+  left: 180px;
+  top: 0px;
+}
+.page11 > .row8 > .row4 {
+  /* left: 135px;
+  top: 58px; */
+  left: 180px;
+  top: 77px;
+}
+.page11 > .row8 > .row5 {
+  left: 0;
+  top: 113px;
+}
+.page11 > .row8 > .row6 {
+  left: 0;
+  top: 192px;
+}
+.page11 > .row8 > .row7 {
+  /* left: 125px;
+  top: 100px; */
+  left: 180px;
+    top: 113px;
+}
+.page11 > .row8 > .row8 {
+  /* left: 128px;
+  top: 160px; */
+  left: 180px;
+  top: 192px;
+}
+/* ImpactS2 */
+.page11 > .row8 > .row1 > .column1{
+  width: 180px;
+}
+.page11 > .row8 > .row1 > .column2{
+  width: 180px;
+  position: absolute;
+  top: 0;
+  left: 180px;
+}
+.page11 > .row8 > .row1 > .column > .row{
+  margin-left: 0;
+  text-align: center;
+  width: 180px;
+  font-size: 10pt;
+}
+.page11 > .row8  > .row1 > .column2 > .row2 {
+  margin-bottom: 20px;
+}
+.page11 > .row8 > .row1 > .column2 > .row3{
+  /* width: 180px; */
+  left: -100%;
+  position: absolute;
+}
+.page11 > .row8 > .row1 > .column2 > .row4{
+  /* width: 180px; */
+  left: -100%;
+  bottom: -8px;
+  position: absolute;
+}
+/* ImpactS2 */
+.S3LitresOfRecycledWater, .S3TonesOfRecycledWaste,
+.S3DrinkingWaterConsumptionOfSwiss, .S3EqualsTheWasteProducedOfSwiss {
+  font-size: 10pt;
+  /* color: #ffd43b; */
+  color: var(--secondary);
+}
+.page9>.row5>.column1 {
+  width: 50%;
+  text-align: right;
+}
+.page1 .SLFundName {
+  font-size: 18pt;
+  font-weight: bold;
+}
+p.Portfolio\.Metadata\.AsOfDate {
+  font-size: 18pt; 
+}
+.page2 > .row6 > img {
+  width: 75%;
+  height: auto;
+}
+.page11 > .row8 .iconSection {
+  width: 4.5cm;
+  height: 4.5cm;
+}
+.page11 > .row8 .column .iconSection,
+.page11 > .row8 .row7 .iconSection, .page11 > .row8 .row5 .iconSection{
+  width: 1.8cm;
+  height: 1.8cm;
+}
+[data-sectionid="955010"] .iconSection, 
+[data-sectionid="955069"] .iconSection {
+  width: 1.8cm !important;
+  height: 1.8cm !important;
+}
+.page11 > .row8 .row3 .iconSection {
+  width: 5.2cm;
+  margin-left: 20px;
+}
+.page11 > .row8 .column .row3 .iconSection {
+  width: 1.8cm;
+}
+.page11 > .row8 .row2 {
+  /* position: absolute;
+  top: 19.8cm;
+  left: 1.4cm;
+  font-size: 11pt;
+  color: var(--primary); */
+}
+.S2Turbines {
+  position: relative;
+  left: 6.6cm;
+  width: 85px;
+  top: -0.8cm;
+  font-size: 9pt;
+}
+.S2MWh {
+  position: absolute;
+  left: 1.5cm;
+  top: 2.5cm;
+  font-size: 9pt;
+}
+.page11 > .row8 .row4 .item2 {
+  position: absolute;
+  right: 4.1cm;
+  top: 0cm;
+  font-size: 9pt;
+}
+.page3 .row3 .horizontal-list .value {
+  width: 50%;
+}
+.page7 .row5 .column1 .contentSection,
+.page7 .row7 .column1 .row2 .contentSection,
+.page8 > .row2 > .column1 .contentSection,
+.page8 .row4 .column1 .contentSection {
+  display: flex;
+}
+.page7 .row5 .column1 .contentSection .item2,
+.page7 .row5 .column1 .contentSection .item3,
+.page7 .row7 .column1 .contentSection .item2,
+.page7 .row7 .column1 .contentSection .item3,
+.page8 > .row2 > .column1 .contentSection .item2,
+.page8 > .row2 > .column1 .contentSection > .item3,
+.page8 .row4 .column1 .contentSection .item2,
+.page8 .row4 .column1 .contentSection .item3 {
+  font-size: 10pt;
+}
+.page7 .row5 .column1 .contentSection .item2::before,
+.page7 .row5 .column1 .contentSection .item3::before,
+.page7 .row7 .column1 .contentSection .item2::before,
+.page7 .row7 .column1 .contentSection .item3::before,
+.page8 > .row2 > .column1 .contentSection .item2::before,
+.page8 > .row2 > .column1 .contentSection > .item3::before,
+.page8 .row4 .column1 .contentSection .item2::before,
+.page8 .row4 .column1 .contentSection .item3::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: rgb(96, 126, 70);
+  display: inline-flex;
+  margin-right: 5px;
+}
+.page7 .row5 .column1 .contentSection .item3::before,
+.page7 .row7 .column1 .contentSection .item3::before,
+.page8 > .row2 > .column1 .contentSection > .item3::before,
+.page8 .row4 .column1 .contentSection .item3::before {
+  background-color: rgb(175, 190, 162) !important;
+}
+.page7 .row5 .column1 .contentSection .item3,
+.page7 .row7 .column1 .contentSection .item3,
+.page8 > .row2 > .column1 .contentSection > .item3,
+.page8 .row4 .column1 .contentSection .item3 {
+  margin-left: 10px;
+}
+.page5 > .row6,
+.page5 > .row7 > .row1,
+.page5>.row7 .row2 .text,
+.page5>.row7 .row3 .text {
+  display: flex;
+}
+
+.page5>.row7 .row2 .text p,
+.page5>.row7 .row3 .text p {
+  margin-right: 10px;
+}
+.page5>.row6>.row1 {
+  float: left;
+  width: 20%;
+}
+
+.page5>.row7>.row1>.column3 .row2,
+.page5>.row7>.row1>.column3 .row3 {
+  position: relative;
+  left: -3cm;
+}
+.page5>.row7>.row1>.column3 .row3 {
+  left: -2cm;
+}
+.page5>.row7>.row2>.column1 .row1 p::before,
+.page5>.row7>.row2>.column2 .row1 p::before {
+  content: "";
+  width: 12px;
+  height: 8px;
+  /* background-color: rgb(96, 126, 70); */
+  display: inline-flex;
+  margin-right: 5px;
+  top: 2px;
+  position: relative;
+}
+.page5>.row7>.row2>.column1 .row1 p.item2::before {
+  background-color: rgb(128, 128, 128);
+}
+.page5>.row7>.row2>.column1 .row1 p.item3::before {
+  background-color: rgb(191, 191, 191);
+}
+.page5>.row7>.row2>.column1 .row1 p.item4::before {
+  background-color: rgb(223, 223, 223);
+}
+.page5>.row7>.row2>.column1 .row1 p.item5::before {
+  background-color: rgb(157, 189, 188);
+}
+.page5>.row7>.row2>.column1 .row1 p.item6::before {
+  background-color: rgb(204, 212, 87);
+}
+.page5>.row7>.row2>.column2 .row1 p.item2::before {
+  background-color: rgb(96, 126, 70);
+}
+.page5>.row7>.row2>.column2 .row1 p.item3::before {
+  background-color: rgb(175, 190, 162);
+}
+.page5>.row7>.row2>.column2 .row1 p.item4::before {
+  background-color: rgb(24, 132, 124);
+}
+.page5>.row7>.row2>.column2 .row1 p.item5::before {
+  background-color: rgb(238, 255, 237);
+}
+.page5>.row7>.row1>.column1 .item2 {
+  font-size: 15pt;
+  color: var(--accent);
+  font-weight: bold;
+}
+.page3 > .row6 .item3,
+.page3 > .row7 .item2 {
+  display: inline;
+}
+.page3 > .row6, .page3 > .row7, .page3 > .row6 *, .page3 > .row7 * {
+  width: auto;
+  display: inline;
+}
+.page3 > .row6 h2 {
+  display: block;
+}
+.page3 > .row8 {
+  margin-top: 12px;
+}
+
+/* Significant Section Conditional css - targetting section-id's */
+
+[data-sectionid="878825"] {
+  width: 48% !important;
+}
+
+[data-sectionid="878827"] {
+  /* float: unset !important; */
+}
+
+[data-sectionid="972693"],
+[data-sectionid="972804"],
+[data-sectionid="972803"],
+[data-sectionid="972805"] {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  width: 48%;
+}
+
+[data-sectionid="972693"] .row {
+  /* border-bottom: 0 !important; */
+}
+[data-sectionid="972804"]{
+  flex-wrap: wrap;
+}
+
+[data-sectionid="972804"] p,
+[data-sectionid="972804"] p{
+  margin:0;
+  padding:10px 0;
+  width: 50%;
+}
+[data-sectionid="972804"] p:first-child,
+[data-sectionid="972804"] p:nth-child(2) {
+  border-bottom: 1px solid black;
+  padding-top:0;
+}
+.page3>.row8>.composite1>.compositebody>.row2>.column > .row2,
+.page3>.row8>.composite1>.compositebody>.row2>.column2 > .row{
+  border-bottom:none;
+}
+/* 
+Theme: SL_Corporate_strategy2
+*/

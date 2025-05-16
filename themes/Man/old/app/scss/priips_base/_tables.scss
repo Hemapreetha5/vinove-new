@@ -1,0 +1,88 @@
+.groupRow1,.groupRowDiv1,
+.groupHeader1,.groupHeaderDiv1{
+    padding:0;
+}
+table{
+    border-collapse: collapse;
+    width:100%;
+    // display:contents;
+}
+.groupHeader1  table {
+    th{
+        padding:0;
+        background:$thBg;
+        color:$thColor;
+        border:0.5pt solid $thBorder;
+        font-family: $fontSemiBold;
+        font-weight: map-get($font-weight,'normal') !important;
+        &:first-of-type{
+            text-align:left;
+        }
+    }
+}
+
+$rowheader : ".header", ".incidentalcosts",".ongoingcosts";
+
+.groupRow1 table {
+    td{
+        border:0.5pt solid $tdBorder;
+        font-family: $fontRegular;
+    }
+    @each $item in $rowheader {
+         #{$item} {
+            border:0.5pt solid $tdBorder;
+            th{
+                font-family: $fontSemiBold;
+                font-weight: map-get($font-weight,'normal') !important;
+                text-align:left;
+            }
+        }
+    }
+}
+// performanceScenario 
+.performanceScenario {
+    .survival-scenario th{
+        border-top: 0;
+    }
+    th[class*="period"]{
+        width: 3.05cm;
+    }
+    td[class*="period"]{
+        width: 3cm;
+    }
+}
+
+// costOverTime
+
+.costOverTime {
+    table{
+        .tableheader {
+            display: none;
+        }
+        th{
+            width: 4.75cm;
+        }
+        td{
+            width: 4.75cm;
+             
+        }
+    }
+}
+
+// costComposition 
+
+.costComposition {
+    table{
+        .tableHeader{
+            display:none;
+        }
+        .oneofcosts{
+            th:last-of-type{
+                width: 3.15cm;
+            }
+        }
+        td:last-of-type{
+            width: 3.1cm;
+        }
+    }
+}

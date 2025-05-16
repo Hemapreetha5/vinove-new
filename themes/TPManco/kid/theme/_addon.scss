@@ -1,0 +1,289 @@
+:root {
+
+    --fw-light: 300;
+    --fw-normal: 300;
+    --fw-bold: bold;
+    --h2-color: #000000;
+    --black: #000000;
+
+}
+
+
+// p {
+//     font-family: var(--font-regular);
+//     line-height: 1.1;
+// }
+
+h2 {
+    //  font: $h2Size $h2Type;
+    font-size: 9pt;
+    margin: 0cm 0 0.2cm 0;
+    padding: 0.19cm 0 0cm 0;
+}
+
+// .page:not(.page1) {
+//     >.row {
+//         margin-top: .46cm;
+//     }
+// }
+
+.page1 {
+    >.row1>.column1 {
+        width: 100%;
+    }
+
+
+}
+
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 {
+    width: 21%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 {
+    width: 79%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader p:not(:empty) {
+    height: .8cm;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader>p {
+    margin-bottom: 0;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value p:not(:empty) {
+    height: .8cm;
+    /* border: 1px solid; */
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value>p {
+    margin-bottom: 0;
+}
+
+.page1>.row5>.composite1>.compositebody>.row2>.column1 {
+    width: 100%;
+}
+
+// .page2 {
+//     >.row2 {
+
+//         .compositebody>.row .column {
+//             column-count: 2;
+//             column-gap: 0.8cm;
+//             column-fill: balance !important;
+//         }
+//     }
+// }
+
+
+
+
+
+
+
+.sriRiskRating {
+    break-inside: avoid;
+    position: relative;
+    margin-bottom: 2mm;
+    width: 50%;
+
+    table {
+        margin-top: .2cm;
+
+        td.rating {
+            border-color: $sri-current;
+        }
+    }
+
+    .rating {
+        width: 1cm;
+        height: 1cm;
+    }
+
+
+
+    .header {
+        margin-top: .2cm;
+        font-size: 8pt;
+
+        th {
+            font-weight: 400;
+
+            &:first-of-type {
+                padding-left: .9cm;
+            }
+
+            &:last-of-type {
+                padding-right: .9cm;
+            }
+        }
+    }
+
+    >tbody {
+        .arrow {
+            // top: .3cm;
+        }
+
+        .ratings>td {
+            // padding-top: 0;
+        }
+    }
+}
+
+.page3 .compositebody {
+    break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1>.groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+    border-bottom: 0px;
+}
+
+// .page3>.row3>.composite>.compositebody>.row2>.sectiontitle>h2 {
+//     border-top: 0px;
+// }
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+    width: 100%;
+}
+
+.contentSection {
+    h2 {
+        color: var(--h2-color);
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.contentSection.purpose h2 {
+    border-top: none;
+}
+
+.keyinformationdocument {
+    h2 {
+        // font-family: $fontBoldregular;
+        font-size: 25pt;
+        color: var(--black);
+    }
+}
+
+.section .contentSection.keyinformationdocument h2 {
+    border: none;
+    margin-bottom: 2mm;
+}
+
+// .page2 .row2 .compositebody .row2 .sectiontitle h2 {
+//     border: 0;
+//     font-size: $h2microSize;
+//     font-family: $h2Type  !important;
+//     padding: 0mm 0 2mm;
+//     margin: 0cm 0 0 0;
+// }
+
+// .page2>.row2>.composite1>.compositebody *,
+// .page3>.row2>.composite1>.compositebody * {
+//     break-before: avoid-page;
+// }
+
+.performanceScenario table tr.header.holding-period th:first-child {
+    font-family: $tdType !important;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+    background-color: $transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+    background-color: $transparent;
+    font-weight: map-get($font-weight, 'bold') !important;
+    font-family: $thType !important;
+}
+
+.performanceScenario table td.description {
+    color: $black;
+}
+
+.performanceScenario {
+    page-break-inside: auto !important;
+}
+
+table tr[class*="-return"] td {
+    font-family: $fontBoldregular;
+}
+
+
+@media only screen {
+    .page {
+        width: $screenpageWidth;
+    }
+}
+
+// .WB_Purpose_1 {
+//     font-size: 10pt;
+//     margin-bottom: .4cm;
+// }
+
+// .WB_GeneralInformation_1,
+// .WB_GeneralInformation_3,
+// .WB_GeneralInformation_5 {
+//     display: none;
+// }
+
+// .WB_GeneralInformation_2,
+// .WB_GeneralInformation_4 {
+
+//     font-weight: 700;
+//     font-family: "frutigerlightbold";
+//     margin-bottom: 0;
+// }
+
+// .WB_GeneralInformation_4 {
+//     margin-bottom: .1cm;
+// }
+
+
+.page1>.row5 .compositebody .subheader p,
+.WB_Whatisthisproduct_1,
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5 {
+    font-weight: 700;
+    font-family: "frutigerlightbold";
+    margin-bottom: 0;
+}
+
+.WB_WhatAreTheCosts_3,
+.WB_WhatAreTheCosts_continued_2 {
+    font-weight: 700;
+    font-family: "frutigerlightbold";
+}
+
+@page :-ro-last {
+    margin-bottom: 3cm;
+
+    @bottom-left {
+
+        height: 2.2cm;
+
+    }
+}
+
+
+/* Theme name TPManco */

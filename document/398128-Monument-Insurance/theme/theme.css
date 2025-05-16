@@ -1,0 +1,422 @@
+
+body { font-family: 'Times New Roman', serif; font-size: 10pt; }
+.page1{
+  background: url('Images/MonumentLogo.jpg') no-repeat 13cm 0cm/4cm;
+}
+.page  { 
+  position: relative;
+  width: 17cm; 
+  height: 28.7cm;
+/*   padding: 0.5cm 0.2cm 0.5cm 1cm;  
+  margin: 0.5cm 0 ; */
+/*   box-decoration-break: clone; */
+ 
+ }
+@page {
+	size: A4;
+	 
+	padding:  0.5cm 0.2cm 0.5cm 1cm;
+
+}
+/*.page>.row1:after,.page>.row5:after,.page>.row6:after{
+  content: "";
+  position: absolute;
+  right: -3cm;
+  display: block;
+  background: #ffdd00;
+  width: 2.78cm;
+  top:-0.5cm;
+  bottom: 0;
+  height: 30cm;
+  z-index: 10;
+}*/
+.page2,.page3{
+  page-break-before: always;
+}
+
+.row { margin-bottom: 0.2cm; }
+.column > .section {  margin-left: 0.5cm; }
+.column:first-child > .section { margin-left: 0; }
+h1, h2, h3 { margin:0; color: #3399FF; }
+p { margin: 0; margin-bottom: 0.25cm; }
+p:empty{
+  display: none;
+}
+
+.vertical-list div { margin-bottom: 0.25cm; }
+.vertical-list div span:first-child { color: #3399FF; }
+
+.page > .row1 { border-bottom: 0px solid #3399FF; }
+.page > .row1 h2 { font-size: 24pt; padding-left: 3cm; min-height: 2cm; background-image: url('./Images/logo.png'); background-repeat: no-repeat; margin-bottom: 0.5cm; }
+.page1 > .row2 > .column2 > .section { background-color: #efefef; border-radius: 0.25cm; padding: 0.25cm; }
+
+.tabs.breakdowns { border: none; margin: 10px; }
+.tabs.breakdowns > .tabpanes { border: none; }
+.tabs.breakdowns > .tabpanes > .slider > .tab  { padding-bottom: 1px; }
+.tabs.breakdowns > .tabbuttons { position: absolute; bottom: 5px; z-index: 10000; }
+.tabs.breakdowns > .tabbuttons > .tab { border: none; background-color: #000; height: 10px; width: 10px; border-radius: 10px; overflow: hidden; margin-right: 10px; text-indent: -10000px; }
+
+.page>.row{
+  width: 17cm !important;
+}
+.page>.row{
+}
+.page1 > .row1 > .column2 {
+  padding-top: 1cm;
+  float: right;
+  width: 3.6cm;
+}
+.PHSAsAtDate .label{
+  font-weight: normal !important;
+}
+.page1>.row2 ul{
+  padding: 0;
+}
+.page1>.row2 ul b{
+  display: list-item;
+  margin-left: 0.5cm;
+}
+.ClientFundName .label{
+  display: none;
+}
+.ClientFundName .value{
+  display: block;
+  float: none;
+  text-align: center;
+  width: 100%;
+  font:bold 13pt Arial;
+
+}
+.page1>.row3{
+  margin-bottom: 0.2cm;
+}
+/*.page1>.row4{
+  display: flex;
+ }*/
+.BasicInformation.contentSection>div {
+  /*! display: table; */
+  width: 100%;
+  float: none;
+  display: flex;
+  /*! height: 50px; */
+  flex-grow: 1;
+  flex: 1;
+}
+ 
+.page1 > .row4 > .column{
+  float: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  width: auto;
+  flex-grow: 1;
+}
+table.BasicInformation{
+  border-collapse : collapse;
+  width:100%;
+}
+table.BasicInformation tr td{
+  border:0.5pt solid #231F20;
+  padding: 2px;
+  width: 4.5cm;
+  min-height: 50px;
+  vertical-align: top;
+}
+table.BasicInformation tbody>tr td.label{
+	font-weight: bold;
+}
+table.BasicInformation tbody>tr td.label:first-child{
+  width: 4.2cm;
+  background: #E8E7E5;
+}
+table.BasicInformation tbody>tr td.label:nth-child(3){
+  width: 2cm;
+  background: #E8E7E5;
+  height: 50px;
+  /*! min-height: 30px; */
+}
+.column2 .BasicInformation.contentSection>div span.value{
+  border-right: 0.5pt solid #231F20;
+}
+.page1>.row .row,
+.page2 > .row .row,
+.page3 > .row .row{
+  margin: 0;
+}
+.page1>.row4 .horizontal-list{
+  /*! height: 60px; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+}
+.ProductType span,.LaunchDate span,.UnderlyingFundManager span,.Custodian span{
+  /*! height: 60px; */
+}
+.DealingFrequency span,.CapitalGuaranteed span{
+  height: 50px;
+}
+.UnderlyingFund span,.ShareClass span,
+.BasicInformation.contentSection>div:nth-last-of-type(2) span.label,
+.BasicInformation.contentSection>div:nth-last-of-type(2) span.value{
+  border-bottom: 0.5pt solid #231F20;
+  height: 66px;
+}
+.UnderlyingFund span.value:after{
+  content:"adding more content";}
+.page1>.row5,
+.page1>.row6,
+.page2>.row1{ 
+    border: 0.5pt solid #231F20;
+  display: table;
+  /*! box-decoration-break: clone; */
+}
+.page2>.row1{
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.page2>.row2,
+.page2>.row3,
+.page2>.row4,
+.page2>.row5,
+.page2>.row6{
+  border: 0.5pt solid #231F20;
+  display: table;
+  /*! box-decoration-break: clone; */
+  margin: 0;
+  border-bottom:0;
+ }
+.page2>.row:last-of-type{
+  border-bottom: 0.5pt solid #231F20;
+}
+.page1>.row6{
+  /*! max-height: 180px; */
+}
+.page3>.row{
+  border: 0.5pt solid #231F20;
+  border-bottom: 0;
+  border-top:0;
+  margin: 0;
+  /*! min-height: 0.5cm */
+}
+.page3>.row>.row{
+  border-bottom: 0.5pt solid #231F20;
+}
+.page3>.row16{
+  border-bottom: 0.5pt solid #231F20;
+}
+.page3>.row1,
+.page3>.row2,
+.page3>.row3{
+  border: 0.5pt solid #231F20;
+}
+
+.page3>.row3{
+  page-break-before: always;
+}
+.page1>.row5>.column1{
+  min-height: 5cm;
+}
+.page1>.row5>.column1,
+.page1>.row6>.column1,
+.page2>.row1>.column1,
+.page2>.row2>.column1,
+.page2>.row3>.column1,
+.page2>.row4>.column1,
+.page2>.row5>.column1,
+.page3>.row1>.column1,
+.page3>.row2>.column1,
+.page3>.row3>.column1{
+  border-right:  0.5pt solid #231F20;
+  width: 12.65cm;
+
+  border-left: oldlace;
+}
+.page3>.row5 .column1,
+.page3>.row6 .column1,
+.page3>.row7 .column1,
+.page3>.row8 .column1,
+.page3>.row9 .column1,
+.page3>.row10 .column1,
+.page3>.row11 .column1,
+.page3>.row12 .column1,
+.page3>.row13 .column1,
+.page3>.row14 .column1,
+.page3>.row15 .column1,
+.page3>.row16 .column1{
+  width: 4.273cm !important;
+  padding: 0.1cm;
+}
+.page3>.row5 .column2,
+.page3>.row6 .column2,
+.page3>.row7 .column2,
+.page3>.row8 .column2,
+.page3>.row9 .column2,
+.page3>.row10 .column2,
+.page3>.row11 .column2,
+.page3>.row12 .column2,
+.page3>.row13 .column2,
+.page3>.row14 .column2,
+.page3>.row15 .column2,
+.page3>.row16 .column2{
+  width: 12.273cm !important;
+  border-left:  0.5pt solid #231F20;
+  padding: 0.1cm;
+  box-decoration-break: clone;
+}
+.page2>.row6 .contentSection{
+  border-right:  0.5pt solid #231F20;
+  width: 74.5%
+}
+
+.page2>.row4 ul{
+  /*! padding: 0; */
+  /*! margin:0 0 0; */
+}
+.MarketRisks{
+  margin: 0;
+}
+.Dark ul,.Light ul{
+  padding: 0;
+  margin:0.1cm 0 0cm 0.5cm;
+  padding-bottom: 0.1cm;
+  /*! display: list-item; */
+}
+.column2 .Dark u{
+  display: block;
+}
+.Dark h2,.Light h2{
+  padding: 0.1cm !important;
+  text-align: center;
+  font-size: 10pt !important;
+  width: 16.8cm;
+  background-image: none !important;
+  min-height: unset !important;
+  margin: 0 !important;
+  border-bottom:  0.5pt solid #231F20;
+}
+.column2 .Dark,
+.page2 .column2 .contentSection{
+  padding-top: 0.6cm;
+  padding-left: 0.1cm;
+}
+.page3>.row1 .column2 .contentSection,
+.page3>.row2 .column2 .contentSection,
+.page3>.row3 .column2 .contentSection{
+  padding-top: 0.7cm;
+}
+.page1.page>.row.row7{
+  /*! position: absolute; */
+  /*! bottom: 0.5cm; */
+  width: 15cm !important;
+}
+.page1>.row7 .Caveat{
+
+  width: 17cm;
+  height: 2cm;
+  position: absolute;
+  /* bottom: 0cm; */
+  bottom: 1.8cm;
+}
+.page1>.row7 .Caveat p {
+  font-size: 8pt;
+}
+
+@page{
+  
+  @right-middle{ 
+    text-transform: uppercase;
+    transform: rotate(90deg);
+    font-family: Arial;
+    content: "Product highlights sheet";
+    width:30cm;
+	height:2.78cm;
+    text-align: center;
+    position: relative;
+	/*border:1px solid blue;*/
+	background: #ffdd00;
+    z-index: 100;
+    right:16.4cm;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  @footnote{
+
+  }
+}
+.Dark h2{
+  background: #282A73;
+  color: #fff;
+}
+.Dark h4,.Dark p,.page3 .row1 p,
+.Light h4,.Light p{
+  margin: 0 0.1cm;
+}
+  
+.Dark br,.Light br{
+  display: none;
+}
+.Light h2{
+  background:#A0C9EC;
+  color: #000;
+}
+.row4 .Light p{
+ 
+  
+}
+.Light h4{
+  margin: 0;
+}
+.PartiesInvolved b,.page2>.row3 .item3 b{
+  display: block;
+}
+.page3 .horizontal-list {
+  width: 98%;
+  margin:0.1cm auto 0.1cm;
+  border:  0.5pt solid #231F20;
+  border-bottom: 0;
+}
+.page3 .horizontal-list.Dark{
+  margin: 0;
+  width: 16.96cm;
+}
+.page3 .horizontal-list div{
+  float: none;
+  display: table;
+  width: 100%;
+}
+.page3 .horizontal-list .label {
+  border-right:  0.5pt solid #231F20;
+
+  min-height: 0.9cm
+}
+.page3 .horizontal-list span{
+  width: 50%;
+  display: table-cell;
+  font-weight: normal;
+  padding: 0.1cm;
+  float: none;
+  border-bottom:  0.5pt solid #231F20;
+}
+
+.ProductSpecificRisks b{
+  display: block;
+}
+.page3 p.item2{
+  margin-bottom: 0
+}
+/*as per pbi 209493*/
+/*.page3 .AgencyAndServicesFee,.page3 .CustodyFees,.page3 .DepositaryFees,.page3 .DistributionFee,.page3 .ManagementCompanyFees,.page3 .MaximumFlatFee,.page3 .OtherFees,.page3 .PerformanceFees,.page3 .RegistrarFee,.page3 .ServicingAgentFee,.page3 .ShareholderServicesFee,.page3 .TaxeDabonnement,.page3 .EmergingMarketCustodyFee,.page3 .AccountingAndValuationFee,.page3 .SafekeepingFees,.page3 .SecuritiesFees,.page3 .OtherFees,.page3 .AdminAndDepositary,.page3 .DepositaryAndAdminFee,.page3 .ShareClassCharge,.page3 .MaximumInvestmentFee,.page3 .FeesForDepositary,.page3 .OtherAnnualExpenses{
+  display:none !important;
+}*/
+@page { 
+  padding-bottom:0.8cm;
+  @bottom-left {
+	z-index:1000;	
+    content: "Page " counter(page) " of " counter(pages);
+	margin-left:36px;
+	margin-bottom:32px;
+  }
+}
+/* Monument */

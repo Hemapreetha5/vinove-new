@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.net mvc important questions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ol>li>p:first-child {
+            color: cyan;
+            line-height: 24px;
+        }
+
+        ol>li,
+        p {
+            color: #fff;
+            line-height: 24px;
+        }
+
+        h4 {
+            color: cyan;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 24px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        li ol {
+            padding-left: 0px;
+            list-style-position: inside;
+        }
+
+        ::marker {
+            color: cyan;
+        }
+
+        .blue-text {
+            color: #2db2ff;
+        }
+
+        strong.blue-text {
+            text-decoration: underline;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ff6ecd;
+        }
+
+        body {
+            background-color: #000;
+            line-height: 24px;
+            margin: 0;
+            padding: 0 0 0 0;
+        }
+
+        .margin {
+            background: #f1f1f1;
+            padding: 30px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border: 2px dashed #bbb;
+            transition: all .25s ease-in-out;
+            color: black;
+        }
+
+        .margin:before {
+            content: "Margin";
+            font-size: 14px;
+            position: absolute;
+            left: 0;
+            top: 1.8%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .border {
+            padding: 30px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .border:before {
+            content: "Border";
+            font-size: 14px;
+            color: black;
+            position: absolute;
+            left: 0;
+            top: 2.5%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .padding {
+            color: black;
+            padding: 40px 25px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #f1f1f1;
+        }
+
+        .padding:before {
+            content: "Padding";
+            font-size: 14px;
+            position: absolute;
+            left: 0;
+            top: 3.7%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: white;
+            border: 2px dashed #bbb;
+        }
+
+        .content:before {
+            content: "Content";
+            font-size: 14px;
+            display: block;
+            text-align: center;
+            line-height: 3.5;
+        }
+
+        .w3-theme {
+            color: #fff;
+            background-color: #04AA6D;
+        }
+
+        .no-bullet {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        span[data-state="closed"] {
+            display: none;
+        }
+
+        .hljs-doctag,
+        .hljs-formula,
+        .hljs-keyword,
+        .hljs-literal {
+            color: #009fff;
+        }
+
+        .flex.items-center.relative.text-token-text-secondary.bg-token-main-surface-secondary.px-4.py-2.text-xs.font-sans.justify-between.rounded-t-md {
+            display: none;
+        }
+
+        ol>li ul {
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="markdown prose w-full break-words dark:prose-invert light">
+        <ol>
+            <li>
+                <p><strong>What is ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>ASP.NET MVC is a framework for building web applications using the Model-View-Controller
+                        architectural pattern.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the MVC architectural pattern.</strong></p>
+                <ul>
+                    <li>MVC separates an application into three main components: Model (data), View (UI), and Controller
+                        (logic). The Model represents data, the View renders the UI, and the Controller handles user
+                        interactions and updates the Model accordingly.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What are the advantages of using ASP.NET MVC over Web Forms?</strong></p>
+                <ul>
+                    <li>ASP.NET MVC provides better control over HTML, supports test-driven development, and enables
+                        clean separation of concerns.</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How is routing implemented in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Routing in ASP.NET MVC is handled by the <code>RouteConfig</code> class, which maps URLs to
+                        controller actions based on predefined routes. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">routes.MapRoute(
+    name: <span class="hljs-string">"Default"</span>,
+    url: <span class="hljs-string">"{controller}/{action}/{id}"</span>,
+    defaults: <span class="hljs-keyword">new</span> { controller = <span class="hljs-string">"Home"</span>, action = <span class="hljs-string">"Index"</span>, id = UrlParameter.Optional }
+);
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain ViewData, ViewBag, and TempData.</strong></p>
+                <ul>
+                    <li><code>ViewData</code> and <code>ViewBag</code> are used to pass data from controller to view,
+                        while <code>TempData</code> is used to pass data between controller actions. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-comment">// Controller</span>
+ViewBag.Message = <span class="hljs-string">"Hello, world!"</span>;
+
+<span class="hljs-comment">// View</span>
+&lt;p&gt;@ViewBag.Message&lt;/p&gt;
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is a partial view?</strong></p>
+                <ul>
+                    <li>A partial view is a reusable view that can be rendered within other views. It enables code
+                        reusability and simplifies maintenance. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">@Html.Partial(<span class="hljs-string">"_PartialViewName"</span>)
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the concept of model binding.</strong></p>
+                <ul>
+                    <li>Model binding maps HTTP request data to controller action method parameters or model properties.
+                        Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Edit</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> id</span>)</span>
+{
+    <span class="hljs-keyword">var</span> item = _repository.GetItem(id);
+    <span class="hljs-keyword">return</span> View(item);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is a ViewModel?</strong></p>
+                <ul>
+                    <li>A ViewModel is a class that contains properties required by a view. It consolidates data from
+                        multiple models to simplify view creation. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyViewModel</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain attribute routing.</strong></p>
+                <ul>
+                    <li>Attribute routing allows defining routes directly on controller actions or controllers using
+                        attributes. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">Route(<span class="hljs-string">"products/{id}"</span>)</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Details</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> id</span>)</span>
+{
+    <span class="hljs-keyword">var</span> product = _repository.GetProduct(id);
+    <span class="hljs-keyword">return</span> View(product);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the role of filters in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Filters in ASP.NET MVC perform cross-cutting concerns such as logging, authentication, and
+                        exception handling. They can be applied globally or selectively to controller actions. Example
+                        syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LogActionFilter</span> : <span class="hljs-title">ActionFilterAttribute</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnActionExecuting</span>(<span class="hljs-params">ActionExecutingContext filterContext</span>)</span>
+    {
+        <span class="hljs-comment">// Log action execution</span>
+    }
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you enable attribute-based validation in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Attribute-based validation in ASP.NET MVC is enabled by adding validation attributes like
+                        <code>[Required]</code>, <code>[StringLength]</code>, etc., to model properties. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>
+{
+    [<span class="hljs-meta">Required</span>]
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    [<span class="hljs-meta">Range(18, 100)</span>]
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the difference between <code>Html.RenderPartial</code> and
+                        <code>Html.RenderAction</code>.</strong></p>
+                <ul>
+                    <li><code>Html.RenderPartial</code> renders a partial view directly within the current view
+                        synchronously, while <code>Html.RenderAction</code> invokes a controller action to render a
+                        partial view asynchronously. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">@Html.RenderPartial(<span class="hljs-string">"_PartialViewName"</span>)
+</code></div></div></pre>
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">@Html.RenderAction(<span class="hljs-string">"ActionName"</span>, <span class="hljs-string">"ControllerName"</span>)
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>ValidateAntiForgeryToken</code> attribute?</strong></p>
+                <ul>
+                    <li>The <code>ValidateAntiForgeryToken</code> attribute prevents CSRF (Cross-Site Request Forgery)
+                        attacks by validating the anti-forgery token sent with form submissions. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">HttpPost</span>]
+[<span class="hljs-meta">ValidateAntiForgeryToken</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SubmitForm</span>(<span class="hljs-params">FormViewModel model</span>)</span>
+{
+    <span class="hljs-comment">// Process form submission</span>
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you implement authentication and authorization in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Authentication and authorization can be implemented using ASP.NET Identity, Forms
+                        Authentication, Windows Authentication, or third-party authentication providers like OAuth.
+                        Example syntax using ASP.NET Identity:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">Authorize</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SecurePage</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the purpose of the <code>Web.config</code> file in an ASP.NET MVC
+                        application.</strong></p>
+                <ul>
+                    <li>The <code>Web.config</code> file contains configuration settings for an ASP.NET MVC application,
+                        including database connections, custom error pages, authentication settings, and
+                        application-level settings. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>xml</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">connectionStrings</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">add</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"DefaultConnection"</span> <span class="hljs-attr">connectionString</span>=<span class="hljs-string">"..."</span> <span class="hljs-attr">providerName</span>=<span class="hljs-string">"System.Data.SqlClient"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">connectionStrings</span>&gt;</span>
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is bundling and minification in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Bundling and minification combine and compress multiple CSS or JavaScript files into a single
+                        file to reduce the number of HTTP requests and improve page load performance. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">bundles.Add(<span class="hljs-keyword">new</span> ScriptBundle(<span class="hljs-string">"~/bundles/scripts"</span>).Include(
+            <span class="hljs-string">"~/Scripts/jquery.js"</span>,
+            <span class="hljs-string">"~/Scripts/bootstrap.js"</span>));
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you implement logging in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Logging in ASP.NET MVC can be implemented using logging frameworks like log4net, NLog, or
+                        Serilog. Example syntax with log4net:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> ILog log = LogManager.GetLogger(<span class="hljs-keyword">typeof</span>(MyController));
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Index</span>()</span>
+{
+    log.Info(<span class="hljs-string">"Index action executed."</span>);
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is dependency injection, and how can it be implemented in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Dependency injection is a design pattern that allows the removal of hard-coded dependencies and
+                        makes classes more modular and testable. It can be implemented in ASP.NET MVC using built-in
+                        features like constructor injection or using third-party containers like Autofac or Ninject.
+                        Example syntax using constructor injection:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> : <span class="hljs-title">Controller</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IService _service;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyController</span>(<span class="hljs-params">IService service</span>)</span>
+    {
+        _service = service;
+    }
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain how to implement AJAX in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li>AJAX in ASP.NET MVC can be implemented using jQuery's AJAX functions or the
+                        <code>Ajax.BeginForm</code> helper. Example syntax using jQuery AJAX:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">$.ajax({
+    url: <span class="hljs-string">"/Controller/Action"</span>,
+    type: <span class="hljs-string">"POST"</span>,
+    data: { param1: value1, param2: value2 },
+    success: function(result) {
+        <span class="hljs-comment">// Handle success</span>
+    },
+    error: function(xhr, status, error) {
+        <span class="hljs-comment">// Handle error</span>
+    }
+});
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>ActionResult</code> class in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>ActionResult</code> class represents the result of an action method and can return
+                        various types of responses, such as views, JSON, redirects, or content. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Index</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the concept of areas in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li>Areas in ASP.NET MVC allow partitioning large web applications into smaller functional groupings
+                        to manage code more effectively. Each area can have its own controllers, views, and models.
+                        Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>lua</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-lua">/Areas
+|<span class="hljs-comment">-- Admin</span>
+|   |<span class="hljs-comment">-- Controllers</span>
+|   |<span class="hljs-comment">-- Views</span>
+|   |<span class="hljs-comment">-- Models</span>
+|<span class="hljs-comment">-- Customer</span>
+|   |<span class="hljs-comment">-- Controllers</span>
+|   |<span class="hljs-comment">-- Views</span>
+|   |<span class="hljs-comment">-- Models</span>
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you handle errors in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Errors in ASP.NET MVC can be handled using custom error pages, global error handling filters, or
+                        the <code>HandleError</code> attribute. Example syntax using custom error pages:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">&lt;customErrors mode=<span class="hljs-string">"On"</span> defaultRedirect=<span class="hljs-string">"~/Error"</span>&gt;
+    &lt;error statusCode=<span class="hljs-string">"404"</span> redirect=<span class="hljs-string">"~/NotFound"</span>/&gt;
+&lt;/customErrors&gt;
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the difference between <code>AddTransient</code>, <code>AddScoped</code>, and
+                        <code>AddSingleton</code> in ASP.NET Core dependency injection?</strong></p>
+                <ul>
+                    <li><code>AddTransient</code> creates a new instance of the specified type every time it's
+                        requested, <code>AddScoped</code> creates a single instance per scope (usually per HTTP
+                        request), and <code>AddSingleton</code> creates a single instance throughout the application's
+                        lifetime. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">services.AddTransient&lt;IService, MyService&gt;();
+services.AddScoped&lt;IService, MyService&gt;();
+services.AddSingleton&lt;IService, MyService&gt;();
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain how to handle form submissions in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li>Form submissions in ASP.NET MVC are handled by controller action methods decorated with
+                        <code>[HttpPost]</code> attribute. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">HttpPost</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SubmitForm</span>(<span class="hljs-params">FormViewModel model</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (ModelState.IsValid)
+    {
+        <span class="hljs-comment">// Process valid form submission</span>
+    }
+    <span class="hljs-keyword">return</span> View(model);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the role of the <code>ActionResult</code> class in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>ActionResult</code> class represents the result of an action method and can return
+                        various types of responses, such as views, JSON, redirects, or content. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Index</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the concept of scaffolding in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li>Scaffolding in ASP.NET MVC is a code generation technique that generates CRUD (Create, Read,
+                        Update, Delete) views and controller actions based on model classes. It speeds up the
+                        development process by providing boilerplate code. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>bash</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-bash">Scaffold-DbContext <span class="hljs-string">"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;"</span> Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you customize routes in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Routes in ASP.NET MVC can be customized by defining custom routes in the
+                        <code>RouteConfig.cs</code> file or by using attribute routing. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">routes.MapRoute(
+    name: <span class="hljs-string">"CustomRoute"</span>,
+    url: <span class="hljs-string">"custom/{controller}/{action}/{id}"</span>,
+    defaults: <span class="hljs-keyword">new</span> { controller = <span class="hljs-string">"Home"</span>, action = <span class="hljs-string">"Index"</span>, id = UrlParameter.Optional }
+);
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the difference between <code>Redirect</code> and <code>RedirectToAction</code> in
+                        ASP.NET MVC.</strong></p>
+                <ul>
+                    <li><code>Redirect</code> sends an HTTP redirect response to the client, while
+                        <code>RedirectToAction</code> redirects to another action method within the same controller or a
+                        different controller. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">return</span> Redirect(<span class="hljs-string">"/Controller/Action"</span>);
+</code></div></div></pre>
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">return</span> RedirectToAction(<span class="hljs-string">"Action"</span>, <span class="hljs-string">"Controller"</span>);
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>@Html.EditorFor</code> helper in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>@Html.EditorFor</code> helper generates an HTML input element based on the data type
+                        and validation attributes of the specified model property. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">@Html.EditorFor(model =&gt; model.Property)
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the concept of async and await in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li><code>async</code> and <code>await</code> are used to perform asynchronous operations in ASP.NET
+                        MVC, allowing the server to handle multiple requests concurrently without blocking threads.
+                        Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;ActionResult&gt; <span class="hljs-title">Index</span>()</span>
+{
+    <span class="hljs-keyword">var</span> data = <span class="hljs-keyword">await</span> _repository.GetDataAsync();
+    <span class="hljs-keyword">return</span> View(data);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>TempData</code> dictionary in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>TempData</code> dictionary is used to pass data between controller actions during the
+                        current and subsequent requests. It is often used for one-time messages like confirmation
+                        messages after a form submission. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">TempData[<span class="hljs-string">"Message"</span>] = <span class="hljs-string">"Data saved successfully."</span>;
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the purpose of the <code>ChildActionOnly</code> attribute in ASP.NET MVC.</strong>
+                </p>
+                <ul>
+                    <li>The <code>ChildActionOnly</code> attribute restricts an action method so that it can only be
+                        invoked as a child action within a view using the <code>Html.Action</code> or
+                        <code>Html.RenderAction</code> helpers. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">ChildActionOnly</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SomeAction</span>()</span>
+{
+    <span class="hljs-keyword">return</span> PartialView(<span class="hljs-string">"_PartialView"</span>);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>HttpGet</code> and <code>HttpPost</code> attributes in
+                        ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>HttpGet</code> and <code>HttpPost</code> attributes specify the HTTP methods that an
+                        action method will respond to. <code>HttpGet</code> is used for handling GET requests, while
+                        <code>HttpPost</code> is used for handling POST requests. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">HttpGet</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Index</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the role of <code>@section</code> in ASP.NET MVC layouts.</strong></p>
+                <ul>
+                    <li><code>@section</code> is used to define content blocks in layout files that can be overridden by
+                        views. It allows views to inject content into specific sections of the layout. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>html</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-html">@section Scripts {
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"~/Scripts/myscript.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you implement caching in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Caching in ASP.NET MVC can be implemented using output caching, data caching, or HTTP caching.
+                        Output caching caches the generated HTML output of an action method, while data caching caches
+                        data retrieved from the database or other sources. Example syntax for output caching:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">OutputCache(Duration = 3600)</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">Index</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>What is the purpose of the <code>Authorize</code> attribute in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>The <code>Authorize</code> attribute restricts access to controller actions to authenticated
+                        users only. It can be applied globally or selectively to controller actions. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">Authorize</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SecureAction</span>()</span>
+{
+    <span class="hljs-keyword">return</span> View();
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the role of <code>ViewModel</code> in ASP.NET MVC.</strong></p>
+                <ul>
+                    <li>ViewModels in ASP.NET MVC are used to pass data from controllers to views in a structured
+                        manner. They encapsulate the data required for a specific view, preventing under- or
+                        over-fetching of data. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyViewModel</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you implement globalization and localization in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>Globalization and localization in ASP.NET MVC can be implemented by using resource files for
+                        different languages and cultures, and by setting the <code>CurrentCulture</code> and
+                        <code>CurrentUICulture</code> properties. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp"><span class="hljs-built_in">string</span> message = Resources.ResourceFile.KeyName;
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Explain the purpose of the <code>ValidateAntiForgeryToken</code> attribute in ASP.NET
+                        MVC.</strong></p>
+                <ul>
+                    <li>The <code>ValidateAntiForgeryToken</code> attribute helps prevent CSRF (Cross-Site Request
+                        Forgery) attacks by validating tokens generated in forms submitted to the server. It ensures
+                        that the form was submitted from the same application and not from a malicious site. Example
+                        syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">HttpPost</span>]
+[<span class="hljs-meta">ValidateAntiForgeryToken</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">SubmitForm</span>(<span class="hljs-params">FormViewModel model</span>)</span>
+{
+    <span class="hljs-comment">// Process form submission</span>
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>How can you implement file uploading in ASP.NET MVC?</strong></p>
+                <ul>
+                    <li>File uploading in ASP.NET MVC can be implemented using the <code>HttpPostedFileBase</code> class
+                        to handle file uploads in controller actions and HTML forms with
+                        <code>enctype="multipart/form-data"</code>. Example syntax:
+                        <pre><div class="dark bg-gray-950 rounded-md"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>csharp</span><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.5C10.8954 3.5 10 4.39543 10 5.5H14C14 4.39543 13.1046 3.5 12 3.5ZM8.53513 3.5C9.22675 2.3044 10.5194 1.5 12 1.5C13.4806 1.5 14.7733 2.3044 15.4649 3.5H17.25C18.9069 3.5 20.25 4.84315 20.25 6.5V18.5C20.25 20.1569 19.1569 21.5 17.25 21.5H6.75C5.09315 21.5 3.75 20.1569 3.75 18.5V6.5C3.75 4.84315 5.09315 3.5 6.75 3.5H8.53513ZM8 5.5H6.75C6.19772 5.5 5.75 5.94772 5.75 6.5V18.5C5.75 19.0523 6.19772 19.5 6.75 19.5H17.25C18.0523 19.5 18.25 19.0523 18.25 18.5V6.5C18.25 5.94772 17.8023 5.5 17.25 5.5H16C16 6.60457 15.1046 7.5 14 7.5H10C8.89543 7.5 8 6.60457 8 5.5Z" fill="currentColor"></path></svg>Copy code</button></span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-csharp">[<span class="hljs-meta">HttpPost</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> ActionResult <span class="hljs-title">UploadFile</span>(<span class="hljs-params">HttpPostedFileBase file</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (file != <span class="hljs-literal">null</span> &amp;&amp; file.ContentLength &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">var</span> fileName = Path.GetFileName(file.FileName);
+        <span class="hljs-keyword">var</span> path = Path.Combine(Server.MapPath(<span class="hljs-string">"~/Uploads"</span>), fileName);
+        file.SaveAs(path);
+    }
+    <span class="hljs-keyword">return</span> RedirectToAction(<span class="hljs-string">"Index"</span>);
+}
+</code></div></div></pre>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</body>
+
+</html>

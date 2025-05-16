@@ -1,0 +1,1292 @@
+@font-face {
+    font-family: 'noto_sansbold';
+    src: url('images/notosans-bold-webfont.woff2') format('woff2'),
+         url('images/notosans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'noto_sanslight';
+    src: url('images/notosans-light-webfont.woff2') format('woff2'),
+         url('images/notosans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'noto_sansregular';
+    src: url('images/notosans-regular-webfont.woff2') format('woff2'),
+         url('images/notosans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'noto_sanssemibold';
+    src: url('images/notosans-semibold-webfont.woff2') format('woff2'),
+         url('images/notosans-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Arial';
+	src: url('images/arial.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'Arial bold';
+	src: url('images/arialbd.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+*{
+	box-sizing: border-box;
+}
+:root{
+	 /* --primary: #009CA6; */
+/*	--lightBlue:rgb(0,116,183); */
+	--black:rgb(0,0,0);
+	--darkGrey:rgb(27,27,27);
+	--lightGrey:rgb(217,217,217);
+	--medGrey:rgb(127,127,127);
+	--header:#212121;
+	--headerbg:rgb(241, 242, 242);
+	--parabg:rgb(241, 242, 242);
+	/* --tableborder:var(--primary); */
+	--tableborder:transparent;
+	--primaryBlue:var(--grayNew);
+	--grayNew:rgb(218,218,218);
+	--tableheader:#004e53;
+	--tableheaderbg:var(--primary);
+	--tablesubheaderbg:var(--lightGrey);
+	--altrow:var(--lightGrey);
+	--white:rgb(255,255,255);
+	--gold:rgb(194,165,127);
+	/* --gray:rgb(166,166,166); */
+	--gray:rgb(218,218,218);
+	--tableGray:rgb(218,218,218);
+	--bodyfont:8pt;
+	--footerfont:6.5pt;
+	--footerlnheight:1;
+	--headerbottomspace:0.3cm;
+	--h2:15pt;
+	--h3:10pt;
+	/* --fontRegular:noto_sansregular;
+	--fontLight:noto_sanslight;
+	--fontBold:noto_sansbold;
+	--fontSemiBold:noto_sanssemibold; */
+	--font-family:Arial;
+	--fontBold:Arial bold;
+}
+
+/**/
+@font-face {
+    font-family: 'Arial';
+	src: url('images/arial.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'Arial bold';
+	src: url('images/arialbd.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+body {
+	/* font-family: var(--fontLight); */
+	font-family: var(--font-family);
+	font-weight:normal;
+	/* line-height: 1.2; */
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	color:#000;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+ul li::before {
+  content: "\2022";
+  color: var(--primary);
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  /*margin-left: -1em;*/
+}
+.pf-list-style li::before {
+	content: "-";
+	font-weight: normal;
+}
+.contentSection>table{
+	margin: 0.2cm 0;
+}
+table {
+	/* 	width: 100%; */
+	border-collapse: collapse;
+	border: 0pt solid #000;
+}
+table th{
+	margin: 0;
+	vertical-align: middle;
+	padding: 0;
+	text-align: left;
+	padding: 1mm 1mm;
+	font-size: var(--bodyfont);
+	border: 0;
+	background: #fff;
+}
+table td {
+	margin: 0;
+	vertical-align: middle;
+	padding: 0;
+	text-align: left;
+	/* padding: 1mm 1mm; */
+	/* padding: 0.25mm 1.5mm; */
+	padding: 0.5mm 1.5mm;
+	font-size: var(--bodyfont);
+	background: #fff;
+	font-family: var(--fontLight);
+}
+.groupRowDiv1>table td{
+		border: 0.5pt solid var(--tableborder);
+}
+table td[class*="period"]{
+	/*! text-align: right; */
+}
+table th {
+	font-family: var(--fontBold) ;
+	font-weight: normal;
+	font-size: var(--bodyfont) !important;
+	/*! background: var(--tableheaderbg); */
+	page-break-inside: avoid;
+}
+h2 {
+	font-weight: bold;
+	margin: 0;
+	font-family: var(--fontSemiBold) !important;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+b{
+	/* font-weight:bold; */
+	font-family: var(--fontBold);
+}
+p.WB_WhatAreTheCosts_1 b{
+    font-weight: normal;
+    font-family: var(--font-family);
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+/*page 1 starts*/
+.page1 {
+	position: relative;
+    height: auto;
+	background-color: transparent;
+	background: url(Images/logo-image.png);
+	/* background-size: 1.2cm auto; */
+	background-size:190px auto;
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding-top:40px;
+}
+.page2, .page3,.page4 {
+	position: relative;
+	height:26.2cm;
+  	/*page-break-before: always;*/
+	height: auto;
+}
+.page {
+ 	width: 18.2cm;
+}
+.page2>.row2>.composite1>.compositebody  *,.page3>.row2>.composite1>.compositebody  * {
+	break-before : avoid-page;
+}
+@media screen {
+.page1>.row1>.composite>.compositebody>.row2 ,
+.page2>.row1>.composite>.compositebody>.row2,
+.page3>.row1>.composite>.compositebody>.row2{
+	display:none;
+	}
+}
+.page2 > .row1, .page3 > .row1{
+	/*! border-top: 1pt solid #8E3193; */
+	/*! padding-top:0.5cm; */
+}
+.contentSection h2 {
+	font-family:var(--fontSemiBold);
+	font-weight: 700;
+	margin-bottom:0;
+	padding: 0px;
+	font-size: var(--h2);
+	color: #212121;
+}
+.contentSection h3{
+		font-size: var(--h2);
+	font-weight: 600;
+}
+.SRIMop b, .MOPText b{
+	font-family: var(--fontSemiBold);
+	font-weight: normal;
+}
+.contentSection, .composite {
+	margin: 0 0 0cm 0;
+	padding:0;
+}
+.subheader p{
+	font-family: var(--fontSemiBold);
+}
+.subheader p.WB_WhatAreTheCosts_2{
+	font-family: inherit;
+}
+/*.narrative p.WB_WhatAreTheCosts_3{
+	font-family: var(--fontSemiBold);
+}*/
+.page1 .composite,.page2 .compositebody{
+
+}
+.contentSection ol{
+	margin-bottom:0;
+}
+.contentSection p,.contentSection p.description,div.description{
+	padding: 0;
+	/* font-size: var(--bodyfont); */
+	font-size: 8pt;
+	/* line-height: 10.5pt; */
+	margin-bottom: 2mm;
+}
+.purpose2 p{
+	color: var(--medGrey);
+	font-family: var(--fontRegular);
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+}
+.purpose2 p:first-child{
+	padding-top: var(--headerbottomspace);
+}
+.purpose2 p:last-child{
+	padding-bottom: 3mm;
+}
+p:empty,h2:empty{
+	display: none;
+}
+.contentSection h2{
+	margin-top:0.2cm;
+	padding: 2mm 0 var(--headerbottomspace) 0;
+/* 	string-set: chaptertitle self; */
+    font-weight: normal;
+	border-top: 0.1pt solid var(--gold);
+	font-family: var(--fontLight) !important;
+	font-size: var(--h2);
+	color: var(--darkGrey);
+}
+.contentSection.purpose h2{
+	border: 0;
+	font-weight: normal; 
+	margin: 0 0;
+	padding:0 0 0;
+	font-size: 12pt;
+	color: var(--white);
+	font-weight: bold !important;
+    font-family: var(--fontBold) !important;
+}
+.contentSection.Product{
+	border-top: none;
+}
+.contentSection.Product h2{
+	/* display:block !important; */
+	border-top: none !important;
+	margin-top: 0;
+}
+.contentSection.Product{
+	padding-top:0.4cm !important;
+}
+.contentSection.Product h2, .page1 > .row5 > .composite1 > .compositebody > .row2 > .column1 h2,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 h2,
+.page2 .row3 .contentSection h2,.page2 .row4 .contentSection h2,
+.page3 .contentSection h2 {
+    font-size: 14pt;
+    font-weight: bold !important;
+	font-family: var(--fontBold) !important;
+    background-color: var(--gold);
+    text-align: center;
+    color: var(--white);
+	padding: 0  !important;
+}
+.page3 .contentSection h2{
+	margin-bottom: 0.1cm;
+}
+.page2 .row2 .compositebody .row2 .sectiontitle h2{
+  border: 0;
+  font-family: var(--fontBold) !important;
+  padding: 0mm 0 2mm;
+  margin: 0cm 0 0 0;
+  color: var(--gold);
+  font-size: 9pt;
+  font-weight: bold;
+ }
+.page3>.row2>.composite1>.compositebody>.row3>.subheader>p {
+  border: 0;
+  font-size: 9pt;
+  /* font-family: var(--fontSemiBold) !important; */
+  font-family: var(--fontBold) !important;
+  padding: 0mm 0mm 0.5mm 0mm !important;
+  margin: 0cm 0 0 0 !important;
+ }
+.page2 .row2 .compositebody .row2 .sectiontitle,.page3 > .row2,.page3 > .row2 *{
+	page-break-before: avoid !important;
+}
+.page3 > .row1, .page3 > .row1 *, .page2 > .row1, .page2 > .row1 *{
+	page-break-after:avoid !important;
+	/*border:0.5px solid blue;*/
+	margin:0 !important;
+	padding:0 !important;
+	height: auto !important;
+	
+}
+.page2 > .row1 .composite,.page3 > .row1  .composite{
+		height: 0 !important ;	
+}
+
+
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1{
+	width: 100%;
+	column-count: 2;
+	column-gap: 0.5cm;
+	column-fill: balance !important;
+}
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1{
+	width: 100%;
+	column-count:1;
+	column-gap: 0;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1{
+	column-gap: 1.3cm;
+}
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1 h2{
+	column-span: all;
+	margin-top: 0;
+	padding: 2mm 0 var(--headerbottomspace);
+	margin-bottom: 5px;
+}
+
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 h2{
+    column-span: all;
+	margin-top: 0.2cm;
+	padding: 2mm 0 var(--headerbottomspace);
+}
+.page1 > .row6{
+	margin-bottom: 0.05cm;
+	page-break-inside: avoid;
+}
+.contentSection h2 b{
+ 	margin-top:0.2cm;
+	padding: 1mm 0mm 0;
+	color:var(--header);
+/* 	string-set: chaptertitle self; */
+  font-weight: bold;
+}
+.page1 .row2 .row2>.contentSection>*{
+	background:none !important;
+	padding-left: 0;
+	padding-right: 0;
+}
+.whatisthisproduct{
+ }
+.contentSection p,.contentSection h2+.description,div.description{
+	
+	width: auto;
+	text-align: justify;
+}
+.header1 p{
+	font-size: 22pt;
+	font-family: var(--fontSemiBold);
+	font-weight: normal;
+	padding-top: var(--headerbottomspace);
+	color: var(--primary);
+	line-height: 16pt;
+}
+.header2 p{
+	font-size: 15pt;
+	font-family: var(--fontLight);
+	font-weight: normal;
+	line-height: 14pt;
+	color: var(--medGrey);
+}
+.header3 p{
+	font-size: 15pt;
+	font-family: var(--fontSemiBold);
+	font-weight: normal;
+		color: var(--lightBlue);
+	line-height: 14pt;
+}
+
+
+/*.page3>.section.row2 .composite .narrative p:first-of-type{
+ font-family: var(--fontSemiBold);
+}*/
+.composite .contentSection{
+	padding:0;
+ }
+.unabletopay {
+	/*! margin-bottom: 0.4cm; */
+	background-color: var(--parabg);
+}
+.contentSection.costOverTime>table{
+	margin: 0 0 0;
+
+	width: 100%;
+}
+.contentSection.costOverTime{
+	padding-bottom: 0;
+
+}
+.contentSection.costOverTime>table{
+	margin-bottom: 0.2cm;
+}
+/*.contentSection.costOverTime br{
+	display: none;
+}*/
+.complexitywarning{
+	background-color:#FF0000;
+	padding:0.2cm 0.2cm 0.4cm 0.2cm;
+	margin-bottom:0.4cm;
+	text-align:center;
+}
+.complexitywarning p{
+	font-size: 12pt;
+	color: #FFF;
+}
+.compositeheader{
+	padding:0;
+	margin:0;
+}
+.page1 > .row1 > .column1 {
+	float: left;
+	width: 100%;
+}
+
+p[class*='WB_Otherrelevantinformation']:last-child{/*Extra page issue fix*/
+	margin-bottom:0;
+}
+.page1>.row6>.composite>.compositebody>.row2>.column1>.row4,.page1>.row6>.composite>.compositebody>.row2>.column1>.row4 *,
+.page1>.row6>.composite>.compositebody>.row2>.column1>.row3,.page1>.row6>.composite>.compositebody>.row2>.column1>.row3 */* sririsktable break in b/w page issue fix*/
+{
+	break-after: avoid-page !important;
+	break-before:avoid-page !important;
+	break-inside: avoid-page !important;
+
+}
+.section .contentSection.keyinformationdocument {
+	padding: 0;
+	border: 0;
+
+}
+.page1 > .row1 > .column1 .keyinformationdocument h2 {
+	/*     font-family: 'Arial';
+	font-weight: normal;
+	font-size: 24pt;
+	color: #009ca6;
+	border-bottom: 1pt solid #009ca6;
+	line-height: 1.5;
+	padding: 0; */
+	/*! margin-bottom: 0.3cm; */
+	/*! position:relative; */
+	/*! top:-0.2cm; */
+	/*! background: url(Images/FEfundinfo.png); */
+	/*! text-align: right; */
+	/*! background-size: 5cm auto; */
+	/*! background-position: 1.3cm 0.5cm; */
+	/*! background-repeat: no-repeat; */
+	/*! text-transform: uppercase; */
+}
+.section .contentSection.keyinformationdocument h2{
+	background: none;
+	border: none;
+	text-align: center;
+	padding: 0;
+	/* font-family: var(--fontSemiBold) !important; */
+	font-size: 20pt;
+	color: var(--white);
+	margin: 0 0 -1px 0;
+}
+
+.page1 > .row1 > .column1 .keyinformationdocument h2 + p {
+	line-height:1.2;
+	font-weight:normal;
+}
+.contentSection p.IssuedOnDate{
+	text-align:right;
+ }
+.sriRangeRiskRating, .sriRiskRating  {
+	width: 100%;
+	margin: 0mm 0 0 !important;
+	padding: 0 0 !important;
+	position: relative;
+	border: none;
+}
+.sriRangeRiskRating>tbody>tr>td, 
+.sriRiskRating>tbody>tr>td{
+ }
+.sriRangeRiskRating>tbody>tr>td>table,
+.sriRiskRating>tbody>tr>td>table{
+	width: calc( 100% - 4mm ) !important;
+	margin: 0 0 0 !important;
+}
+.sriRangeRiskRating .ratings > td, .sriRiskRating .ratings > td{
+	padding:0.2cm 0 !important;
+	background: none;
+}
+.sriRangeRiskRating .rating, table.sriRiskRating tbody td.rating {
+	border: 0pt solid var(--tableborder);
+	font-weight: normal;
+	color: var(--black);
+	font-size: 16pt;
+	position: relative;
+	text-align: center;
+	padding: 0;
+	height: 1.1cm;
+	background: none;
+	width: 1.3cm;
+	font-weight: bold;
+	border-left: 8px solid var(--white);
+	background-color: var(--gray);
+}
+.sriRiskRating .rating.active{
+	/*background: var(--lightBlue);*/
+	border: none !important;
+	color: #fff;
+}
+/* .sriRiskRating .rating:before{
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0.4cm;
+	background: #ddd;
+	
+	top: 0.4cm;
+	position: absolute;
+	z-index: -1;
+} */
+table.sriRiskRating td.rating:last-of-type{
+	border-right: 0pt solid var(--tableborder) !important;
+}
+.sriRiskRating table th{
+	background: none;
+}
+
+.sriRangeRiskRating .rating.selected.start, .sriRiskRating .rating.selected.start {
+	border-left: 0.5pt solid #000000;
+}
+.sriRangeRiskRating .rating.selected.end, .sriRiskRating .rating.selected.end {
+	border-right: 0.5pt solid #000000;
+}
+.sriRangeRiskRating .rating.selected, .sriRiskRating .rating.selected {
+	/*background-color: rgba(0,156,166,1);*/
+	background-color: var(--black);
+	color:var(--white);
+}
+.sriRiskRating .rating.selected {
+}
+
+.sriRangeRiskRating .arrow td, .sriRiskRating .arrow td{
+	padding:0;
+	height:0;
+}
+table tr.arrow td{
+	border: none !important;
+}
+.sriRiskRating tbody>tr.ratings>td {
+	border: none;
+}
+.sriRangeRiskRating .header th:first-child, .sriRangeRiskRating .description td:first-child, 
+.sriRiskRating .header th:first-child, .sriRiskRating .description td:first-child {
+	text-align: left;
+	/*background-image:url(images/less_risk.svg);
+	background-repeat:no-repeat;
+	background-position:top left;
+	background-size:20%;*/
+	background-color: transparent;
+	border: 0;
+	padding: 0cm;
+	font-weight: normal;
+	color: var(--gold);
+	font-family: var(--fontLight);
+	width: 5cm;
+	font-size: 9pt !important;
+}
+.sriRangeRiskRating .header th:last-child, .sriRangeRiskRating .description td:last-child, 
+.sriRiskRating .header th:last-child, .sriRiskRating .description td:last-child {
+	text-align: right;
+	/*background-image:url(images/high_risk.svg);
+	background-repeat:no-repeat;
+	background-position:top right;
+	background-size:20%;*/
+	background-color: transparent;
+	border: 0;
+	padding: 0cm;
+	font-weight: normal;
+	color: var(--gold);
+	font-family: var(--fontLight);
+	width: 5cm;
+	font-size: 9pt !important;
+}
+.sriRangeRiskRating .header,
+.sriRiskRating .header{
+	position: absolute;
+	width:calc( 100% - 4mm ) !important;
+	top: auto;
+    bottom: -35px;
+	left: 2mm;
+}
+.sriRangeRiskRating .arrow,
+.sriRiskRating .arrow{
+	position: absolute;
+	width: calc( 100% - 4mm ) !important;
+	top:auto;
+	bottom: -20px;
+	background: url(images/arrow.png) no-repeat top left;
+	background-size: contain;
+	height: 4mm;
+	left: 2mm;
+}
+.row7 .narrative p[class*="WB_SRInarrative2_"]:first-child {
+    background: url(images/warning-icon.png);
+    background-size: 18%;
+    background-position: 0 10px;
+    width: 100%;
+    margin: 0 0px 3px 0;
+    height: 62px;
+    padding: 3px 4px 6px 66px;
+    display: block;
+    background-repeat: no-repeat;
+	font-weight: bold;
+	font-family: var(--fontBold);
+}
+.row7 .narrative p[class*="WB_SRInarrative2_5"] {
+    width: 77.2%;
+    min-height: 26px;
+    padding: 0 0 0 2mm;
+    margin: -40px 0 15px 58px;
+    display: block;
+}
+.page1>.row6>.composite>.compositebody>.row2>.column1>.row4{
+	padding-bottom: 33px;
+}
+.costOverTime p b, .WhatAreTheCosts p b{
+	font-weight:normal;
+}
+.costovertimetable, .performanceScenario table{
+	/*! text-align:right; */
+	margin:0 0cm;
+	width: 100%;
+}
+.performanceScenario>table{
+	margin-bottom: 0.2cm;
+}
+.performanceScenario table .stress td,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td
+{
+	background: transparent;
+ }
+ .performanceScenario table .stress-return td,
+ .performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td{
+	background: transparent;
+}
+.performanceScenario table .invest:nth-last-of-type(1) td{
+	font-family: var(--fontBold);	
+}
+.performanceScenario table .moderate.averagereturn td,.performanceScenario table .stress.averagereturn td{
+	background: transparent;	
+	color: var(--black);
+}
+.performanceScenario table table{
+	margin-bottom: 0;
+	width: 100% !important;
+}
+table table{
+	margin: 0 !important;
+	width: 100% !important;
+}
+/*.costovertimetable th, .performanceScenario table th{
+	text-align:center;
+}*/
+
+.costOverTime th.tableheader[colspan="3"]{
+	display: none;
+}
+table>tbody>tr>th[class*="group"],
+table>tbody>tr>td[class*="group"]{
+	padding: 0 !important;
+	border: 0 !important;
+}
+.survival-scenario th{
+	padding: 1mm 1mm;
+	font-size: 10pt;
+	font-weight: bold;
+	background-color: var(--tablesubheaderbg);
+}
+
+.groupHeader1 table th{
+	background: var(--tableGray);
+	padding: 1mm 1mm;
+	border: 1pt solid var(--tableGray);
+} 
+.performanceScenario .groupHeader1 table th {
+    background: transparent;
+    border: 1pt solid var(--primaryBlue);
+}
+.performanceScenario .groupHeader1 table th:not(.groupHeader1){
+	border-right-color:var(--primaryBlue);
+}
+.performanceScenario .groupRowDiv1>table td{
+    border: 1pt solid var(--primaryBlue);
+}
+.groupRowDiv1>table td{
+    /* border: 1pt solid var(--tableborder); */
+    border: 1pt solid var(--primaryBlue);
+}
+.groupHeader1 table .tableHeader,.groupHeader1 table .tableHeader th{
+		/* border: 2pt solid var(--primary); */
+
+}
+table th:not(.groupHeader1){
+	color: var(--black);
+	border-right: 0.5pt solid var(--tableGray);
+}
+table .ongoingcosts th,
+table .incidentalcosts th,
+.costovertimetable .groupHeader1 table tr:last-of-type th{
+	color: var(--black);
+	/* border-bottom: 1pt solid var(--black) !important; */
+	border-bottom: 1pt solid var(--primaryBlue) !important;
+	background: var(--tableGray);
+}
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type{
+	font-family: var(--fontSemiBold);
+	width: 4cm;
+}
+table .entrycosts td:last-of-type,
+table .exitcosts td:last-of-type,
+table .managementfeesandothercosts td:last-of-type,
+table .transactioncosts td:last-of-type,
+table .performancefees td:last-of-type{
+	width: 3cm;
+}
+.performancescenariotable table .survival-scenario th{
+	color: var(--black) ;
+	/* background: var(--white); */
+	background: var(--grayNew);
+	/* border:0.5pt solid var(--primaryBlue); */
+	border-bottom: 0;
+	border-top: 0;
+	/* font-family: var(--font-family); */
+	font-family: var(--fontBold);
+}
+.groupHeader1 table tr:last-of-type th {
+	/*! border-bottom: none; */
+	word-wrap: anywhere;
+	font-weight: normal;
+}
+.costovertimetable .groupHeader1 table tr:last-of-type th {
+	text-align:left;
+}
+.costOverTime th:last-of-type[colspan="4"]{
+	display: none;
+}
+.costovertimetable .scenarioheader, .performanceScenario table .scenarios {
+	background-color:var(--tablesubheaderbg);
+}
+.costOverTime .groupHeader1 .groupHeaderDiv1 > table tbody tr:first-child .tableheader{
+	display:none;
+}
+ /* costovertime table fullwidth css for 4column <<<<*/
+.costovertime_4columntable.contentSection.costOverTime>table{
+	width: 100% !important;
+}
+.costovertime_4columntable .scenarioheader th:first-of-type,.costovertime_4columntable table tbody td.totalcostsheader{
+	width: 25% !important;
+}
+
+.costovertime_4columntable .scenarioheader th[class*='scenario'],.costovertime_4columntable table td[class*='totalcosts']{
+	width: 25% !important;
+}/*>>>>>>costovertime table fullwidth css for 4column*/
+
+/* costovertime table fullwidth css for 2column <<<<*/
+.costovertime_2columntable.contentSection.costOverTime>table{
+	width: 100% !important;
+}
+.costovertime_2columntable .scenarioheader th:first-of-type,.costovertime_2columntable table tbody td.totalcostsheader{
+	width: 50% !important;
+}
+
+.costovertime_2columntable .scenarioheader th[class*='scenario'],.costovertime_2columntable table td[class*='totalcosts']{
+	width: 50% !important;
+}/*>>>>>>costovertime table fullwidth css for 2column*/
+
+/* costovertime table fullwidth css for 3column <<<<*/
+.costovertime_3columntable.contentSection.costOverTime>table{
+	width: 98% !important;
+}
+.costovertime_3columntable .scenarioheader th:first-of-type,.costovertime_3columntable table tbody td.totalcostsheader{
+	width: 33.4% !important;
+}
+
+.costovertime_3columntable .scenarioheader th[class*='scenario'],.costovertime_3columntable table td[class*='totalcosts']{
+	width: 33.3% !important;
+}/*>>>>>>costovertime table fullwidth css for 3column*/
+/*.costOverTime table td.totalcostsheader,
+.costOverTime table td.riyheader{
+	text-decoration: underline;
+}*/
+.costOverTime table td[class*='totalcosts']{
+ background: transparent !important;	
+}
+.costOverTime table td[class*='riy'],.costOverTime table td[class*='totalcosts']{
+    /* font-family: var(--fontBold); */
+    font-family: var(--font-family);
+}
+.costOverTime table th,
+.costOverTime table td{
+	width: 4cm;
+	max-width: 4cm !important;
+ }
+.costOverTime table th:first-of-type{
+	
+}
+.costOverTime table td:first-of-type{
+ width: 6.5cm;
+}
+.scenarioheader th[class*='scenario'],table td[class*='totalcosts']{
+	/*! width: 4.05cm; */
+	/*! max-width: 4.05cm; */
+	/*! min-width: 4.05cm; */
+}
+.costovertimetable td{
+	/* 	background-color:#ffffff; */
+}
+ .costovertimetable .scenarioheader, .performanceScenario table .scenarios,.costOverTime table table .tableheader,.costOverTime table table tr:first-of-type {
+	border:0.5pt solid var(--tableborder);
+ }
+.incidentalcosts th,.oneofcosts th{
+ }
+.oneofcosts th{
+	width: 3cm;
+}
+.costovertimetable .investmentheader th:first-child, 
+.costovertimetable .scenarios:first-child, 
+.costovertimetable .totalcostsheader:first-child, 
+.costovertimetable .riyheader:first-child, 
+.performanceScenario table th:first-child{
+	text-align:left;
+}
+.performanceScenario table tr.header.holding-period th:first-child {
+	font-family: var(--fontRegular)
+}
+/*.performanceScenario table tr.header.holding-period th:last-child,.performanceScenario table tr.header.investment-amount th:last-child,.performanceScenario table tr.header.insurance-premium th:last-child{
+	padding-left:17%;
+}*/
+.costovertimetable .investmentheader {
+	background: var(--tableheaderbg);
+} .costComposition th{
+	/*! padding:0; */
+}
+.costComposition table{
+	margin:0;
+	width: 100% !important;
+	/* background: var(--primary) !important; */
+}
+.costComposition>table > tbody,.costComposition>table > tbody> tr,.costComposition>table > tbody>tr>th.groupHeader1 *{
+	background: var(--primary) !important;
+}
+.costComposition>table > tbody>tr>th.groupHeader1 *{
+	background: transparent !important;
+	border: 0 solid transparent !important;
+}
+.costComposition>table > tbody>tr>th.groupHeader1 th {
+    padding: 0;
+}
+.costComposition >table>tbody:nth-of-type(2) tr>td>div.groupRowDiv1>table>tbody:nth-of-type(1) *{
+	/* border:1pt solid var(--tableGray) !important;
+	background: var(--tableGray) !important; */
+}
+.costComposition >table>tbody:nth-of-type(2) tr>td>div.groupRowDiv1>table>tbody tr.oneofcosts th,
+.ongoingcosts th,
+.incidentalcosts th{
+	/* border-bottom:1pt solid var(--black) !important; */
+	border-bottom:1pt solid var(--primaryBlue) !important;
+} 
+.costComposition>table> tbody>tr>th>div>table{
+	width: 100% !important;
+	margin-left: 0cm !important;
+	border: 1pt solid var(--primary) !important;
+
+}
+.costComposition table th table{
+	width: 100.1% !important;
+	margin-left: -0.01cm !important;
+}
+.costComposition{
+ 	/* padding-bottom: 0.2cm !important; */
+ 	margin-bottom: 1mm !important;
+}
+.page2>.row2>.composite1>.compositebody>.row5{
+ 	margin-bottom: 2mm !important;
+
+}
+.performanceScenario table td.description {
+ color: var(--black);
+}
+table td:not(.ratings):last-of-type,
+table th:last-of-type{
+}
+.header.scenarios.survival th{
+	color: var(--black);
+	font-weight: normal
+;
+}
+.performanceScenario table td, .costovertimetable td{
+	/*! border-right:0; */
+}
+td.description {
+  /* width: 5.5cm; */
+  /* width: 12.5cm; */
+  width: 6.5cm;
+}
+table tr[class*="-return"] td{
+	/* 	border-bottom: 0; */
+	font-family: var(--fontBold);
+	/*! padding-bottom: 0; */
+}
+table tr.averagereturn td{
+	/*! border-top:0; */
+}
+.performanceScenario table td:last-child, .costovertimetable td:last-child{
+	/*! border-right:0; */
+}
+.performanceScenario table .scenario{
+	font-family: var(--font-family);
+	font-weight: normal;
+}
+.performanceScenario table div.groupRowDiv1 tbody+thead+tbody  {
+	
+}
+.performancescenariotable>table>tbody>tr>td.groupRow1>div>table>tbody>tr>th>.groupHeaderDiv1{
+	width: 100.1%;
+    margin: 0 -0.01cm -0.03cm;
+	border-bottom: 0.5pt solid var(--tableborder);
+}
+.costComposition .subcategory {
+	width: 20%;
+}
+.costComposition .category{
+	width:12%;
+}
+.costComposition .costs{
+	width:11%;
+}
+.costComposition table .category, .costComposition table .subcategory, .costComposition table .costs{
+	border-right:0.5pt solid var(--tableborder);
+}
+.costComposition th, .costComposition .category, .costComposition .subcategory{
+}
+.totalcostsheader, .riyheader, .category, .subcategory{
+	font-family: var(--fontRegular);
+	font-weight: normal;
+}
+.compositionofcosts table table .tableHeader>th,
+.costComposition table table .tableHeader>th{
+	text-align: center !important;
+}
+.page1>.row1>.composite>.compositebody>.row2 .pagenumbers > p:first-child,
+.page2>.row1>.composite>.compositebody>.row2 .pagenumbers > p:first-child,
+.page3>.row1>.composite>.compositebody>.row2 .pagenumbers > p:first-child{
+	margin-top:0.1cm !important;
+}
+.page>.row1>.composite>.compositebody>.row2 p{
+	margin-top:0.1cm !important;
+
+}
+.page1>.row1>.composite>.compositebody>.row2{
+	/*position: running(firstfoot);*/
+	border-top:1pt solid var(--gold);
+	float:footnote;
+    /*padding-top: 0.1cm;*/
+}
+/*.page1>.row1>.composite>.compositebody>.row2::before{
+	background:rgb(000,042,094) url(images/logo_white.svg) no-repeat center   14.7cm/ 4.5cm 0.8cm;
+	content:'';
+	width:19.4cm;
+	height:1cm;
+	display:inline-block;
+}*/
+.page1>.row1>.composite>.compositebody>.row2::footnote-marker{
+	display:none;
+}
+.page1>.row1>.composite>.compositebody>.row2::footnote-call{
+	display:none;
+}
+.page2>.row1>.composite>.compositebody>.row2{
+/* 	position: running(secondfoot); */
+	float:footnote;
+	border-top:0.5pt solid var(--primary);
+	/* padding-top:0.2cm; */
+}
+.page2>.row1>.composite>.compositebody>.row2::footnote-marker{
+	display:none;
+}
+.page2>.row1>.composite>.compositebody>.row2::footnote-call{
+	display:none;
+}
+.page3>.row1>.composite>.compositebody>.row2{
+	/*position: running(thirdfoot);*/
+	float:footnote;
+	border-top:0.5pt solid var(--primary);
+}
+.page3>.row1>.composite>.compositebody>.row2::footnote-marker{
+	display:none;
+}
+.page3>.row1>.composite>.compositebody>.row2::footnote-call{
+	display:none;
+}
+.page1>.row1>.composite>.compositebody>.row2 p{
+	font-size:var(--footerfont) !important;
+	line-height: var(--footerlnheight) !important;
+	margin-bottom:1.5mm !important;
+}
+.page2>.row1>.composite>.compositebody>.row2 p{
+	font-size:var(--footerfont) !important;
+	line-height: var(--footerlnheight) !important;
+	margin-bottom:1.5mm !important;
+}
+.page3>.row1>.composite>.compositebody>.row2 p{
+	font-size:var(--footerfont) !important;
+	line-height: var(--footerlnheight) !important;
+	margin-bottom:1.5mm !important;
+}
+.page3>.row2>.composite1>.compositebody{
+	page-break-inside:avoid !important;
+}
+
+.page1>.row1>.composite>.compositebody>.row2 .column1,
+.page2>.row1>.composite>.compositebody>.row2 .column1,
+.page3>.row1>.composite>.compositebody>.row2 .column1{
+	width:48.4% !important;
+}
+.page1>.row1>.composite>.compositebody>.row2 .column2,
+.page2>.row1>.composite>.compositebody>.row2 .column2,
+.page3>.row1>.composite>.compositebody>.row2 .column2{
+	padding-left: 0% !important;
+	margin-left: 3% !important;
+	float: right !important;
+	width: auto !important;
+	display: inline-block;
+	}
+
+
+.pagenumbers.contentSection p{
+	background: none;
+}
+.page1 > .row1 .pagenumbers .footer,.page2 > .row1 .pagenumbers .footer,.page3 > .row1 .pagenumbers .footer{
+	margin: 0.10cm 0 0cm 0 !important;
+	right:0;
+	float:right;
+}
+.performanceScenario table th span, .perfscenarios table th span {
+	display:block;
+}
+.performanceScenario .period1, .performanceScenario .period2, .performanceScenario .period3, .perfscenarios .period1, .perfscenarios .period2, .perfscenarios .period3{
+	width:3cm;
+
+}
+/*.performanceScenario table th:empty,.performanceScenario table td:empty*/, .perfscenarios table td:empty{
+	display:none;
+}
+.costOverTime.costovertimetable > table .groupHeaderDiv1 table{
+    background: var(--primary);
+}
+.generalinformation  h2{
+	margin: 0;
+}
+.generalinformation{
+	margin-top: 0.2cm;
+}
+.page1 > .row1 > .column1 .keyinformationdocument h2{
+	padding: 0;
+	font-size: 18pt;
+	text-align: right;
+	border: 0;
+}
+.row2 .column1 .row1 .pagenumbers> p[class*="item"],.row2 .column2 .row1 .pagenumbers> p[class*="item"]{
+	margin-bottom:0 !important;
+}
+.page1 .row2 .column1 .row1 .pagenumbers> p, .page1 .row2 .column2 .row1 .pagenumbers> p,
+.page2 .row2 .column1 .row1 .pagenumbers> p, .page2 .row2 .column2 .row1 .pagenumbers> p,
+.page3 .row2 .column1 .row1 .pagenumbers> p, .page3 .row2 .column2 .row1 .pagenumbers> p{
+	margin-bottom:0.5mm !important;
+}
+@page{
+	/* margin: 1.4cm 1.4cm 1cm 1.4cm; */
+	margin: 1.4cm 1.4cm 0.5cm 1.4cm;
+	padding:0;
+}
+@page:-ro-nth(1){
+	 @footnote{
+			border: none;
+  }
+
+}
+@page:-ro-nth(2){
+    @footnote{
+			border: none;
+ 			/* margin:0.3cm 0 0.9cm;
+			padding: 0 0 0 0cm; */
+  }
+
+}
+@page:-ro-nth(3){
+	@footnote{
+			border: none;
+ 			/* margin:0.3cm 0 0.9cm;
+			padding: 0 0 0cm; */
+  }
+
+}
+
+.performancescenariotable .minimum .description{
+	word-break:break-all;
+}
+ .page4 > .row1{
+  position: static;
+  display: block;
+}
+.page4 > .row1 .compositebody{
+  page-break-before: always;
+}
+.page1 > .row3 .compositebody,.page1 > .row2{
+	background-color: var(--gold);
+}
+.page1 > .row2 > .composite1 > .compositebody > .row2 > .column1{
+	width:100% !important;
+}
+.page1 > .row3 .row3 p {
+    font-size: 10pt;
+    color: var(--white);
+}
+.page1 > .row3 .row3 p:last-child{
+	margin-bottom: 0;
+}
+.page1 > .row3 .compositebody,
+p.WB_GeneralInformation_1,
+p.WB_GeneralInformation_3,
+p.WB_GeneralInformation_5{
+	padding-left: 6px;
+	padding-right: 6px;
+}
+p.WB_GeneralInformation_1, p.WB_GeneralInformation_3,p.WB_GeneralInformation_5 {
+    background-color: var(--gray);
+    margin: 0;
+	font-weight: bold;
+	font-size: 10pt;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-family: var(--fontBold);
+	margin-bottom:-1px;
+}
+p.WB_GeneralInformation_1{
+	margin-top:0.4cm;
+}
+.page1 > .row4 .compositebody .row5 p.WB_GeneralInformation_5{
+	margin-bottom:0.5cm;
+}
+p.WB_Whatisthisproduct_1, p.WB_Whatisthisproduct_8, p.WB_Whatisthisproduct_18 {
+	font-weight: bold;
+	margin-bottom: 0.1cm;
+	font-family: var(--fontBold);
+}
+.page1 > .row4 .compositebody .row5 p{
+	margin-bottom:3px;
+}
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 h2{
+	margin-bottom:10px;
+}
+.page1 .row2 .row2>.contentSection>p.WB_Whataretherisks_1 {
+    padding-left: 2mm;
+    margin-bottom: 2px;
+    color: var(--gold);
+    font-size: 9pt;
+    font-weight: bold;
+}
+tr.minimum td.description {
+	font-family: var(--fontBold);
+}
+.page3>.row2>.composite1>.compositebody td.groupRow1 td {
+    text-align: justify;
+}
+.page>.row1>.composite>.compositebody>.row2{
+	border-top:1pt solid var(--gold);
+}
+.contentSection.Product h2{
+    margin-bottom: -2px;
+}
+.section .contentSection.keyinformationdocument h2 {
+    margin-bottom: -4px;
+}
+p.WB_GeneralInformation_2 {
+    font-weight: bold;
+    font-size: 10pt;
+    padding-top: 10px;
+    font-family: var(--fontBold);
+}
+p.WB_Whatisthisproduct_31 {
+    font-weight: bold;
+    padding-top: 3px;
+    font-family: var(--fontBold);
+	margin-bottom: 0.2cm;
+}
+p.WB_HowcanIcomplain_4 {
+    padding-top: 5px;
+}
+.page3>.row2>.composite1>.compositebody .row5,
+.page2 .compositebody .row5 {
+    margin-bottom: 5px;
+}
+ul.pf-list-style {
+    font-size: 8pt;
+	text-align: justify;
+}
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1 .row11 .contentSection p{
+	margin-bottom: 1mm;
+}
+.page2 > .row2 .row5 .contentSection p,
+.page2 > .row3 .contentSection p,
+.page2 > .row4 .contentSection p{
+	margin-bottom: 1.1mm;
+}
+.pf-list-style + br {
+    display: none;
+}
+.pf-list-style li{
+	margin-bottom: 0.6mm;
+}
+/* priipskid_BLI_theme_logo_EU */

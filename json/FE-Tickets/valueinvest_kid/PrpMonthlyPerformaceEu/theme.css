@@ -1,0 +1,252 @@
+/*@font-face {
+  font-family: "ArialMTRegular";
+  src: url("images/arialmt.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ARIALBOLDMT";
+  src: url("images/ARIALBOLDMT.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}*/
+
+:root{
+	--primary: #1857a5;
+	--secondary: #414b4b;
+	--header: var(--white);
+	--headerbg: var(--primary);
+	--parabg: #f2f2f2;
+	--black: #000000;
+	--white:#ffffff;
+	--red: #E60000;
+	--transparent: transparent;
+	--blue: #0d1941;
+	--mintgreen: #76bbaf;
+	--border: var(--primary);
+	--tableborder: var(--black);
+	--tableheader: var(--white);
+	--tablerowheader: var(--white);
+	--tableheaderbg: var(--secondary);
+	--tablesubheaderbg:rgba(0,156,166,0.05);
+	--altrow: #E6EBED;
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: var(--white);
+	--ratingborder: var(--black);
+	--ratingselected: #005231;
+	--bodyfont:8pt;
+	--bodycolor: var(--black);
+	--footerfont: 8pt;
+	--lineheight: 1.2;
+	--h2:11pt;
+	--h3:10pt;
+	--fontRegular: 'Arial';
+	--fontBold: 'Arial';
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight:normal;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+table th {
+	background: var(--white);
+	border-bottom: 0pt solid var(--tableborder);
+	border-right: 0pt solid var(--tableborder);
+	color: var(--black);
+	padding: 1mm;
+	margin: 0;
+	font-family: var(--fontLightBold);
+	font-size: 6pt;
+	text-align: center;
+	page-break-inside: avoid;
+	vertical-align: middle;
+}
+table tr.headerData:first-child th {
+	border-top: 0.5pt solid var(--tableborder);
+	
+}
+table td {
+	background: var(--tableheaderbg);
+	border-bottom: 0.5pt solid var(--tableborder);
+	border-right: 0pt solid var(--tableborder);
+	padding: 1mm;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 6pt;
+}
+table th:first-child, table td:first-child {
+	border-left: 0pt solid var(--tableborder);
+}
+table .headerData th {
+    background: var(--blue);
+  	color: var(--white);
+}
+h2 {
+  background: var(--transparent);
+  font-family: var(--fontBold);
+  font-weight: 100;
+  font-size: var(--h2);
+  color: var(--blue);
+  padding: 1mm;
+  margin-bottom: 0.3cm;
+  border-top: 0.5pt solid var(--mintgreen);
+  font-weight: bold;
+}
+p:empty, h2:empty {
+	margin: 0;
+	padding:0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+table th:empty {
+	padding: 0;
+}
+table th.tableheader {
+	border: 0;
+}
+p {
+	font-size: var(--bodyfont);
+	padding: 0 0 0.4cm;
+}
+b {
+	font-family: var(--fontRegular);
+}
+h2 {
+  bookmark-level: 1;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.subheader p {
+  bookmark-level: 2;
+}
+/* page styles*/
+.page {
+	width: 19.4cm;
+	height: auto;
+	padding: 0cm .8cm 0cm 0.8cm;
+	position: relative;
+}
+.page1 {
+	padding-top: 1.5cm;
+    background: url(images/valueinvest.png);
+	background-size: 4cm auto;
+    background-position: 95% 0;
+    background-repeat: no-repeat;
+}
+.page1 > .row1 .contentSection h2 {
+ 
+}
+.page1 > .row2 > .contentSection .item3 {
+	font-family: var(--fontBold);
+}
+.monthlyperformancetable1 .SubheaderData th:first-child, .monthlyperformancetable1 .groupRowDiv1 .Row td:first-child, .monthlyperformancetable1 .groupRowDiv1 .Row td:last-child {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(2), .monthlyperformancetable1 .groupRowDiv1 tr:not(.Row) td:nth-child(2) {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(3), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(1) {
+	width: 6%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(4), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(2) {
+	width: 7.5%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(5), .monthlyperformancetable1 .groupRowDiv1 td:nth-child(3) {
+	width: 8%;
+}
+.monthlyperformancetable1 .SubheaderData th:nth-child(5) ~ th, .monthlyperformancetable1 .groupRowDiv1 td:nth-child(3) ~ td {
+	width: 8%;
+}
+/*NonDeathscenario*/
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(1),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:first-child{
+	width: 7%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(2),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario .Row td:nth-child(2){
+	width: 7%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(3),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(1){
+	width: 5%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(4),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(2){
+	width: 14%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(5),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(3){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(6),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(4){
+	width: 14%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(7),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(5){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(8),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(6){
+	width: 14%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(9),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(7){
+	width: 8%;
+}
+.monthlyperformancetable1 .NonDeathscenario .SubheaderData th:nth-child(10),.monthlyperformancetable1 .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(8){
+	width: 14%;
+}
+.monthlyperformancetable1  .NonDeathscenario .SubheaderData th:nth-child(11),.monthlyperformancetable1  .groupRowDiv1 .NonDeathscenario tr:not(.Row) td:nth-child(9){
+	width: 8%;
+}
+
+.pagenumbers .footer, .pagenumbers .Pagination {
+    margin: 0.1cm 0cm 0.1cm 0 !important;
+    float: right;
+    font-size: var(--footerfont);
+    position: relative;
+    z-index: 1;
+}
+.contentSection.pagenumbers .footer p, .contentSection.pagenumbers .Pagination p {
+  position: running(pageNum);
+  text-align: right;
+}
+
+/* @page styles */
+@page {
+	margin: 0.75cm 0cm 1cm 0cm;
+	padding: 0;
+	@bottom-right {
+		content: element(pageNum);
+		margin:0 1cm 1cm;
+		padding: 0.15cm 0 0cm;
+		font-size: var(--footerfont);
+		font-family: var(--fontLight);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 5cm;
+	}
+}
+/*Theme name:valueinvest_mpd*/

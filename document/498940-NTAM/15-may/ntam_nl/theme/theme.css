@@ -1,0 +1,1246 @@
+@font-face {
+    font-family: 'Equip';
+    src: url('images/Equip-ExtraLight.woff2') format('woff2'),
+        url('images/Equip-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Equip';
+    src: url('images/Equip-Light.woff2') format('woff2'),
+        url('images/Equip-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Equip';
+    src: url('images/Equip-Regular.woff2') format('woff2'),
+        url('images/Equip-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Equip';
+    src: url('images/Equip-Medium.woff2') format('woff2'),
+        url('images/Equip-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Equip';
+    src: url('images/Equip-Bold.woff2') format('woff2'),
+        url('images/Equip-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EquipCondensed';
+    src: url('images/EquipCondensed-Light.woff2') format('woff2'),
+        url('images/EquipCondensed-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EquipCondensed';
+    src: url('EquipCondensed-Medium.woff2') format('woff2'),
+        url('EquipCondensed-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EquipCondensed';
+    src: url('images/EquipCondensed-Bold.woff2') format('woff2'),
+        url('images/EquipCondensed-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EquipSlab';
+    src: url('images/EquipSlab-Light.woff2') format('woff2'),
+        url('images/EquipSlab-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --nt-green1: rgb(24, 86, 62);
+    --nt-green2: rgb(13, 86, 64);
+
+    --NT-Grey1: rgb(83, 88, 90);
+    --NT-Grey2: rgb(81, 85, 87);
+    --NT-Grey3: rgb(78, 83, 90);
+
+    --Equip: 'Equip';
+    --Equip-Condensed: 'EquipCondensed';
+    --EquipSlab: 'EquipSlab';
+}
+
+body {
+    /* font-family: Arial, Helvetica, sans-serif, serif; */
+    font-family: var(--Equip);
+    font-weight: 200;
+    font-size: 7.5pt;
+    line-height: 1.2;
+    color: var(--NT-Grey2);
+}
+
+.page {
+    position: relative;
+    width: 21cm;
+    height: 29.7cm;
+    padding: 0.9cm 0.7cm 0.5cm 0.8cm;
+    /* padding-bottom: 4.5cm */
+}
+
+.row {
+    margin-bottom: 0.2cm;
+}
+
+.column>.section {
+    margin-left: 0.5cm;
+}
+
+.column:first-child>.section {
+    margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 0.2cm;
+    color: var(--NT-Grey1);
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page1>.row1 h2 {
+    font-size: 13pt;
+    font-weight: 200;
+    color: var(--nt-green1);
+}
+
+.page1>.row1 .FundName,
+.page1>.row1 .OFST010110 {
+    font-size: 22pt;
+    color: var(--nt-green1);
+    text-transform: uppercase;
+}
+
+.page1>.row2>.column2>.section {
+    /* background-color: #efefef; */
+    border-radius: 0.25cm;
+    /* padding: 0cm 0 0 0.25cm; */
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.page1>.row2>.column2>.row1>.contentSection {
+    padding: 15px 0 0;
+    position: relative;
+    width: 100%;
+}
+
+.page1>.row2>.column2>.row1>.contentSection::before,
+.page1>.row2>.column2>.row1>.contentSection::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+}
+
+.page1>.row2>.column2>.row1>.contentSection::before {
+    /* background: url(images/sri-1.png) no-repeat; */
+    /* background-size: auto 100%;
+    height: 55px;
+    top: -14px; */
+}
+
+.page1>.row2>.column2>.row1>.contentSection::after {
+    /* background: url(images/sri-2.png) no-repeat; */
+    /* background-size: auto 100%;
+    height: 50px;
+    bottom: 1px; */
+}
+
+.page1>.row2>.column2 table.sriRiskRating {
+    position: relative;
+    width: 100%;
+}
+
+table.sriRiskRating table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.sriRiskRating table .rating {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #A9A9A9;
+    font-weight: 500;
+    color: #000000;
+}
+
+table.sriRiskRating table .rating.selected {
+    background-color: #A9A9A9;
+}
+
+table.sriRiskRating tr.arrow {
+    position: absolute;
+    top: -8px;
+    width: 100%;
+}
+
+table.sriRiskRating tr.arrow td {
+    background: url(images/arrow.png) no-repeat center;
+    background-size: 100% auto;
+    display: block;
+    height: 10px;
+}
+
+table.sriRiskRating tr.header {
+    position: absolute;
+    top: -20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+table.sriRiskRating tr.header th {
+    font-weight: normal;
+    font-size: 8px;
+}
+
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+
+.tabs.breakdowns>.tabpanes {
+    border: none;
+}
+
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+    padding-bottom: 20px;
+}
+
+.tabs.breakdowns>.tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+
+.tabs.breakdowns>.tabbuttons>.tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+
+.cler {
+    font-size: 24pt;
+}
+
+.reportheader {
+    font-size: 34pt;
+    color: rgb(253, 226, 17);
+    padding-left: 0.5cm;
+}
+
+.headerbackground {
+    background-color: rgb(138, 216, 216);
+    height: 10cm;
+    /* background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png'); */
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bottomrightheaderpage {
+    margin-top: 10cm;
+}
+
+.compositepadding {
+    padding-left: 1cm;
+    background-color: rgb(138, 216, 216);
+    margin-left: 1cm;
+    margin-right: 1cm;
+    padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+    background-color: rgb(138, 216, 216);
+    padding-top: 7cm;
+    font-size: 34pt;
+    padding-bottom: .5cm;
+}
+
+.esgdata {
+    background-color: rgb(167, 179, 179);
+    padding-top: 4cm;
+    font-size: 34pt;
+    padding-bottom: 3cm
+}
+
+.FooterCSS .column1 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column2 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column3 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column5 {
+    width: 15%;
+    float: left;
+}
+
+
+.FooterCSS .column4 {
+    width: 40%;
+    float: left;
+    text-align: center;
+}
+
+
+footer {
+    position: running(footerIdentifier)
+}
+
+@page {
+
+    @bottom-left {
+        content: element(footerIdentifier)
+    }
+}
+
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+
+.compositefooter .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+
+.compositefooter .content:before {
+    content: '';
+    width: 1px;
+    height: 100px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: -3px;
+}
+
+
+@page: first {
+
+    @bottom-left {
+        content: "";
+    }
+}
+
+.FooterCSS {
+
+    width: 20cm;
+    padding: 0px 0px 0px 4px;
+    position: absolute;
+    bottom: 0.3cm;
+    left: 0;
+    z-index: 1;
+    border-top: 0.5px solid #909090;
+    font-size: 7.5pt;
+}
+
+.FooterCSS .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+
+.FooterCSS .row {
+    margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+    height: 23px;
+}
+
+.FooterCSS .content:before {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: 1px;
+}
+
+.EsgCoverPageImage {
+    width: 100%;
+}
+
+
+.EsgCoverPage {
+    width: 100%
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page1>.row3>.column table {
+    width: 100%;
+}
+
+.page1>.row3>.column1 {
+    width: 90% !important;
+}
+
+.page1>.row3>.column2 {
+    width: 10% !important;
+    padding-top: 27px;
+    margin-left: -1pt;
+}
+
+.page1>.row3>.column1 h2 {
+    margin-bottom: 12px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.page1>.row3>.column2 .performancetable th:first-child,
+.page1>.row3>.column2 .performancetable td:first-child {
+    display: none;
+}
+
+.page1>.row3>.column2>.section {
+    margin-left: 0;
+}
+
+.page1>.row3>.column1 th:first-child {
+    border-left-color: #18563E;
+}
+
+.page1>.row3>.column2 th:last-child {
+    border-right-color: #18563E;
+}
+
+.page1>.row3>.column th {
+    background-color: #18563E;
+    color: #fff;
+}
+
+.page1>.row3>.column table,
+.page1>.row3>.column th,
+.page1>.row3>.column td {
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1pt solid #fff;
+}
+
+.page1>.row3>.column td {
+    border: 1pt solid #B8BBBC;
+    color: #000;
+}
+
+.page1>.row3>.column tr.odd td {
+    color: #357BAA;
+}
+
+.page1>.row3>.column th,
+.page1>.row3>.column td {
+    padding: 1.5mm 0.2mm;
+    font-size: 6.5pt;
+    text-align: center;
+}
+
+.page1>.row3>.column td:first-child {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+    display: table-cell;
+    text-align: left;
+}
+
+.page1>.row3>.column table tr td {
+    height: 23px;
+}
+
+.page1>.row1>.column2 .row1 p {
+    text-align: right;
+    font-size: 14pt;
+    float: right;
+    display: block;
+    color: var(--nt-green1);
+}
+
+.page1>.row1>.column2 .row1 p.item2 {
+    font-size: 13pt;
+    font-weight: 200;
+}
+
+.page1>.row1>.column2 .row1 p.item3,
+.InvestmentMethodAssetClass {
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+.page1>.row1>.column2 p.DataAsAtDate,
+.page1>.row1>.column2 .DataAsAtDate-UnitCurrencyCode-Class {
+    font-size: 8pt !important;
+    text-align: left !important;
+    background-color: var(--nt-green1);
+    padding: 5px;
+    color: #ffffff !important;
+    width: auto;
+    display: inline-block;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.discreteChart {
+    height: 230px;
+}
+
+.bar-xlabel {
+    font-size: 5pt;
+    color: var(--NT-Grey3);
+    font-weight: normal;
+    /* word-break: break-word !important; */
+}
+
+.keyContainer .label {
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--NT-Grey1);
+    width: 90%;
+    line-height: 1;
+    padding-top: 5px;
+}
+
+.performancetable table {
+    border-spacing: 0px;
+}
+
+.performancetable table th {
+    background-color: var(--nt-green1);
+    color: #ffffff;
+    font-size: 6pt;
+    font-weight: 200;
+    padding: 3px 5px;
+    border-right: 1px solid #ffffff;
+
+}
+
+.performancetable table th.PaSinceLaunch {
+    word-break: break-word;
+}
+
+.performancetable table th.rowheader {
+    width: 70px;
+}
+
+.performancetable table td {
+    border-right: 1px solid #cccccc;
+    text-align: center;
+    padding: 3px 5px;
+    color: var(--NT-Grey2);
+    font-size: 8pt;
+    font-weight: 300;
+}
+
+.performancetable table td:first-child {
+    text-align: left;
+    font-family: var(--Equip-Condensed);
+}
+
+.performancetable table tr.unitWorkbook td {
+    color: var(--nt-green1);
+}
+
+.performancetable p.footer {
+    font-size: 7pt;
+    margin-top: 5px;
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    color: var(--NT-Grey2);
+}
+
+.pdfperformancechart .footer {
+    font-size: 8.5pt;
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    color: #000000;
+}
+
+.breakdown h2,
+.horizontal-list h2 {
+    font-size: 9pt;
+    color: var(--NT-Grey1);
+    font-weight: 500;
+    margin-bottom: 0cm;
+}
+
+.breakdown table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.breakdown table th {
+    border-bottom: 1px solid var(--NT-Grey1);
+    padding: 3px;
+    font-size: 7.5pt;
+    color: var(--NT-Grey1);
+    font-weight: 500;
+}
+
+.breakdown table th:first-child {
+    text-align: left;
+    width: 7cm;
+}
+
+.breakdown table td {
+    border-bottom: 0.5px solid var(--NT-Grey1);
+    padding: 3px;
+    text-align: center;
+    font-size: 7.5pt;
+    color: var(--NT-Grey1);
+}
+
+.breakdown table td.Name {
+    text-align: left;
+    font-weight: 500;
+}
+
+.breakdown table td.Weight,
+.breakdown table th.Weight {
+    color: var(--nt-green1);
+    width: 40px;
+}
+
+.breakdown table td.Benchmark,
+.breakdown table th.Benchmark {
+    /* color: var(--nt-green1); */
+    width: 65px;
+}
+
+.horizontal-list span:first-child {
+    font-weight: 500;
+}
+
+.horizontal-list span:last-child {
+    font-size: 8pt;
+    color: var(--nt-green1);
+    text-align: right;
+    padding-right: 1mm;
+    display: flex;
+    align-items: center;
+}
+
+.page>.row1>.contentSection {
+    padding: 10px 0 0;
+    border-bottom: 5px solid var(--nt-green1);
+    margin-bottom: 0.2cm;
+}
+
+.page>.row1>.contentSection p {
+    text-align: right;
+    font-size: 10pt;
+    color: var(--nt-green1);
+}
+
+.page>.row1>.contentSection p.FundName,
+.page>.row1 .FundName .OFST010110 {
+    font-size: 13pt;
+    text-transform: uppercase;
+}
+
+.page>.row:last-child .FundName,
+.page>.row:last-child .DataAsAtDate {
+    font-size: 7pt;
+    position: running(pgfooterLeft);
+    padding: 10px;
+    color: var(--NT-Grey2);
+    font-family: var(--EquipSlab);
+    font-weight: 300;
+}
+
+.page>.row:last-child .FundName {
+    position: running(pgfooterLeft);
+}
+
+.page>.row:last-child .DataAsAtDate {
+    position: running(pgfooterRight);
+    text-align: right;
+}
+
+@page {
+    @bottom-left {
+        content: element(pgfooterLeft);
+        margin-bottom: 1cm;
+        margin-left: 0.5cm;
+        width: 10cm;
+        border-top: 1px solid var(--nt-green1);
+    }
+
+    @bottom-right {
+        content: element(pgfooterRight);
+        margin-bottom: 1cm;
+        margin-right: 0.5cm;
+        width: 10cm;
+        border-top: 1px solid var(--nt-green1);
+    }
+}
+
+.page1>.row4 h2 {
+    border-top: 5px solid var(--nt-green1);
+    padding-top: 0.2cm;
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    color: #000000;
+}
+
+text.highcharts-credits {
+    display: none;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3 {
+    display: flex;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column1 {
+    width: 94%;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2 {
+    width: 6%;
+    padding-top: 0.58cm;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2 h2 {
+    display: none;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2>.row1 {
+    margin-left: 0;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2>.row1 .performancetable table .rowheader {
+    display: none;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2>.row1 .performancetable table td {
+    height: 18px;
+}
+
+.horizontal-list div {
+    border-bottom: 0.5px solid var(--NT-Grey1);
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.horizontal-list div:nth-last-child(2),
+/* .horizontal-list div + .clear, */
+.horizontal-list div.clear {
+    border-bottom: none;
+}
+
+.horizontal-list div.UnitForSaleIn span.value {
+    display: inline-block;
+    width: 200px;
+    padding: 1mm;
+}
+
+.page3>.row>.logo,
+.page4>.row>.logo {
+    /* background: url(images/ntam-logo.png) no-repeat left center;
+    background-size: auto 100%;
+    width: 5cm;
+    height: 1.1cm; */
+    height: 0;
+}
+
+.page3,
+.page4 {
+    background: url(images/ntam-logo.png) no-repeat 0.8cm 94%;
+    background-size: auto 1.1cm;
+}
+
+.highcharts-axis-labels.highcharts-xaxis-labels span {
+    transform: none !important;
+    text-align: center;
+    transform-origin: unset !important;
+}
+
+.highcharts-axis-labels.highcharts-xaxis-labels span:last-child {
+    white-space: unset !important;
+}
+
+.page4>.row4>.horizontal-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+}
+
+.page4>.row4>.horizontal-list>div {
+    width: 50%;
+    display: flex;
+}
+
+.page4>.row4>.horizontal-list>.clear {
+    display: none;
+}
+
+.page4>.row4>.horizontal-list>.item1 {
+    order: 1;
+}
+
+.page4>.row4>.horizontal-list>.item2 {
+    order: 3;
+}
+
+.page4>.row4>.horizontal-list>.item3 {
+    order: 5;
+}
+
+.page4>.row4>.horizontal-list>.item4 {
+    order: 2;
+}
+
+.page4>.row4>.horizontal-list>.item5 {
+    order: 4;
+}
+
+.page4>.row4>.horizontal-list>div span {
+    line-height: 1.2 !important;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.page4>.row4>.horizontal-list>div span.label {
+    background-color: var(--nt-green1);
+    color: #fff;
+    padding: 10px;
+    width: 70px;
+    border-bottom: 1px solid #fff;
+    font-size: 8pt;
+}
+
+.page4>.row4>.horizontal-list>div span.value {
+    width: calc(100% - 70px);
+    font-size: 8pt;
+    color: var(--NT-Grey1);
+}
+
+.page3>.row .contentSection p,
+.page4>.row3,
+.page4>.row2 .contentSection p {
+    margin: 0;
+}
+
+.page3 p,
+.page4 p {
+    margin-bottom: 0.2cm;
+    /* font-size: 8pt; */
+    color: var(--NT-Grey1);
+}
+
+.page:not(.page3) p:empty {
+    display: none;
+}
+
+.page1>.row3 .column1 .pdfperformancechart h2 {
+    /* font-size: 8.04pt; */
+}
+
+.page1>.row3 .column2 .performancetable h2 {
+    font-size: 8pt;
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    color: #000000;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3 .performancetable h2 {
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+.page4>.row2>.contentSection>h2,
+.page4>.row5>.contentSection>h2 {
+    font-size: 9pt;
+    color: var(--NT-Grey1);
+    font-weight: 500;
+}
+
+.page4>.row2>.contentSection>p,
+.page4>.row5>.contentSection>p {
+    /* font-size: 8pt; */
+    /* font-family: var(--Equip-Condensed); */
+    font-weight: 300;
+}
+
+.page4>.row3>.contentSection>p.item2 {
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+.page1>.row1>.column1 {
+    width: 12cm;
+}
+
+.page1>.row1>.column2 {
+    width: calc(100% - 12cm);
+}
+
+.page1>.row2 {
+    display: flex;
+    align-items: flex-start;
+}
+
+.page1>.row2>.column1 {
+    /* width: 15cm; */
+    width: calc(100% - 3.5cm);
+    padding-right: 0.25cm;
+}
+
+.page1>.row2>.column2 {
+    /* width: calc(100% - 15cm); */
+    width: 3.5cm;
+    height: 3.5cm;
+    background: url(images/SRRI_Equity_1_Dutch.jpg) no-repeat;
+    background-size: contain;
+
+}
+
+.bar-ylabel {
+    font-family: var(--Equip) !important;
+    font-weight: normal !important;
+    font-size: 7pt !important;
+    color: var(--NT-Grey3) !important;
+}
+
+.page3>.row>.column1>.row1 .compositebody .contentSection p.item3,
+.page3>.row>.column2>.row .compositebody .contentSection h2 {
+    font-size: 7.5pt;
+    font-weight: 500;
+}
+
+.page3>.row>.column2 {
+    padding-top: 20px;
+}
+
+.page3>.row3,
+.page3>.row4 {
+    padding-top: 10px;
+    border-top: 2px solid var(--nt-green1);
+}
+
+.page2>.row2>.column2>.row2 {
+    padding-top: 0px;
+}
+
+.page3>.row2>.column>.row1>.composite1>.compositebody>.row3>.column:not(.column1)>.row1>.contentSection p,
+.page3>.row3>.column>.row>.composite1>.compositebody>.row3>.column:not(.column1)>.row1>.contentSection p {
+    color: var(--nt-green1);
+    font-weight: 500;
+    text-align: center;
+}
+
+.page3>.row2>.column2>.row1>.composite1>.compositebody>.row3>.column>.row {
+    margin-left: 0;
+    /* text-align: center; */
+}
+
+.page3>.row2>.column2>.row1>.composite1>.compositebody>.row3>.column>.row:not(.row1),
+.page3>.row2>.column>.row1>.composite1>.compositebody>.row3>.column>.row:not(.row1),
+.page3>.row3>.column>.row1>.composite1>.compositebody>.row3>.column>.row:not(.row1),
+.page3>.row3>.column2>.row2>.composite1>.compositebody>.row3>.column1>.row,
+.page3>.row3>.column2>.row2>.composite1>.compositebody>.row3>.column:not(.column1)>.row:not(.row1) {
+    min-height: 16px;
+    border-bottom: 0.1px solid var(--NT-Grey2);
+    margin-left: 0;
+}
+
+.page3>.row2>.column1>.row1>.composite1>.compositebody>.row3>.column>.row4 {
+    min-height: 27px !important;
+}
+
+.page3>.row2>.column>.row1>.composite1>.compositebody>.row3>.column>.row1,
+.page3>.row3>.column>.row>.composite1>.compositebody>.row3>.column>.row1 {
+    min-height: 30px !important;
+}
+
+.page3>.row3>.column2>.row2>.composite1>.compositebody>.row3>.column:not(.column1)>.row {
+    margin-left: 0;
+}
+
+.page3>.row>.column>.row1>.composite1>.compositebody>.row3>.column>.row:last-child {
+    border-bottom: none;
+}
+
+.page3>.row2>.column2>.row1>.composite1>.compositebody>.row3>.column2 {
+    text-align: center;
+}
+
+.page3>.row2>.column1>.row1>.composite1>.compositebody>.row3>.column>.row1 {
+    min-height: 36px !important;
+    margin-left: 0;
+}
+
+.page3>.row3>.column2>.row1>.composite1>.compositebody>.row3>.column>.row1 {
+    min-height: 16px;
+}
+
+.page3>.row3>.column>.row>.composite1>.compositebody>.row3>.column>.row1 {
+    font-weight: 500;
+    border-bottom: none !important;
+    margin-left: 0;
+}
+
+.page3>.row>.column>.row>.composite1 .column:not(.column1) .contentSection p {
+    text-align: center;
+}
+
+.page3>.row2>.column1>.row1>.composite1>.compositebody>.row3 {
+    display: flex;
+}
+
+.page3>.row2>.column1>.row1>.composite1>.compositebody>.row3>.column1 {
+    width: 29%;
+}
+
+.page1>.row3>.composite1>.compositebody>.row2 {
+    display: flex;
+    align-items: center;
+}
+
+.page2>.row2>.column2>.row3>.column1>.row p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.page2>.row2>.column2>.row3>.column>.row1 {
+    font-weight: 500;
+    min-height: 30px !important;
+    border-bottom: 0.5px solid var(--NT-Grey2);
+    position: relative;
+}
+
+.page2>.row2>.column2>.row3>.column:not(.column1)>.row1 {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 0;
+    justify-content: flex-end;
+}
+
+.page2>.row2>.column2>.row3>.column:not(.column1)>.row p {
+    margin: 0;
+    text-align: right;
+    display: block;
+    min-height: 18px;
+}
+
+.page2>.row2>.column2>.row3>.column:not(.column1)>.row:not(.row1),
+.page2>.row2>.column2>.row3>.column1>.row:not(.row1) {
+    /* min-height: 16px; */
+    border-bottom: 0.5px solid var(--NT-Grey2);
+    margin-left: 0;
+}
+
+.page2>.row2>.column2>.row2>.column>.row3 {
+    /* min-height: 28px !important; */
+}
+
+.page2>.row2>.column2>.row3>.column2>.row p {
+    color: var(--nt-green1);
+}
+
+.page2>.row2>.column2>.row3>.column1 h2 {
+    margin: 0;
+}
+
+.InsufficientPerfHeader {
+    font-size: 8pt;
+    color: var(--NT-Grey2);
+    font-family: var(--Equip-Medium);
+    font-weight: 500;
+    padding: 10px 10px 0;
+    margin: 0;
+    background-color: #f6f3ed;
+    text-align: center;
+}
+
+.InsufficientPerfSubheader {
+    font-size: 9pt;
+    color: var(--NT-Grey2);
+    font-weight: 500;
+    padding: 10px 10px 0;
+    margin: 0;
+    background-color: #f6f3ed;
+}
+
+.InsufficientPerfBody {
+    font-size: 8pt;
+    padding: 10px 10px 0;
+    margin: 0;
+    background-color: #f6f3ed;
+}
+
+.InsufficientPerfKey {
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    font-size: 7pt;
+    padding: 10px;
+    margin: 0;
+    background-color: #f6f3ed;
+}
+
+p.InsufficientPerfHeader:before,
+.InsufficientPerfKey::after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 19cm;
+    background-color: var(--nt-green1);
+    ;
+    left: 0;
+    top: -7px;
+}
+
+.InsufficientPerfKey::after {
+    top: auto;
+    bottom: -7px;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column2>.row1>.performancetable1>table>tbody>tr>th.Pc1Y {
+    border: none;
+    padding: 3px 5px;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3>.column1>.row1>.performancetable1>.footer {
+    margin-bottom: .1cm;
+}
+
+.page1>.row3>.composite1>.compositebody>.row3 {
+    margin: 0;
+}
+
+.page3>.row3>.column2>.row2>.composite>.compositebody>.row3>.column2>.row2,
+.page3>.row3>.column2>.row2>.composite>.compositebody>.row3>.column3>.row2 {
+    min-height: 28.5px !important;
+}
+
+.page2>.row2>.column2>.row2 p {
+    padding: 3px;
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+.page2>.row2>.column2>.row3 p {
+    padding: 3px;
+}
+
+.page3>.row3>.column2>.row2>.composite>.compositebody>.row3 p {
+    padding: 0 0 3px 0;
+}
+
+.page1>.row3 {
+    margin: 0px;
+}
+
+.page2>.row2>.column2>.row3>.column1>.row , .page2>.row2>.column2>.row3>.column2>.row , .page2>.row2>.column2>.row3>.column3>.row {
+    margin: 0;
+}
+
+.page3>.row1>.text1>p {
+    margin-bottom: 0.25cm;
+}
+
+.page1 .BenchmarkWB , .page1 .UnitCurrencyCode{
+    font-family: var(--Equip-Condensed);
+    font-weight: bold;
+    color: var(--NT-Grey2);
+}
+
+.page3 > .row3 > .column2 > .row1 > .composite1 > .compositebody > .row3 > .column > .row:last-child{
+    border-bottom: 0.1px solid var(--NT-Grey2) !important;
+    min-height: 30px !important;
+}
+
+.page1 > .row2 > .column1 > .row1 > .text1 > .InvestmentObjective {
+    margin: 0; 
+}
+
+
+.breakdown table thead tr th:not(:first-child) , .breakdown table tbody tr td:not(:first-child){
+    text-align: right; 
+} 
+
+.page2 > .row2 > .column2 > .row3 > .row1 table thead tr th:not(:first-child) , .page2 > .row2 > .column2 > .row3 > .row1 table tbody tr td:not(:first-child){
+    text-align: right !important;
+}
+.page3 > .row6 > .column1 > .row1 > .text1 > .displayname-tooltip, .page4 > .row7 > .column1 > .row1 > .FundName > .displayname-tooltip {
+    /* font-size: 7pt !important; */
+} 
+/* NTAM_NL */

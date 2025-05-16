@@ -1,0 +1,1074 @@
+/* @font-face {
+  font-family: "Friends Life Dagny Bold";
+  src: url("Fonts/friends_life_dagny-bold-webfont.eot");
+  src: local("Friends Life Dagny-Bold"),
+    url("Fonts/friends_life_dagny-bold-webfont.woff") format("woff"),
+    url("Fonts/friends_life_dagny-bold-webfont.ttf") format("truetype");
+} */
+@font-face {
+	font-family: 'FuturaStd-Light';
+	src: url('Images/FuturaStd-Light.eot');
+	src: url('Images/FuturaStd-Light.eot?#iefix') format('embedded-opentype'), url('Images/FuturaStd-Light.woff2') format('woff2'), url('Images/FuturaStd-Light.woff') format('woff'), url('Images/FuturaStd-Light.ttf') format('truetype'), url('Images/FuturaStd-Light.svg#Helvetica') format('svg');
+	font-weight: 400;
+	font-style: normal
+}
+@font-face {
+	font-family: 'FuturaStd-Bold';
+	src: url('Images/FuturaStd-Bold.eot');
+	src: url('Images/FuturaStd-Bold.eot?#iefix') format('embedded-opentype'), url('Images/FuturaStd-Bold.woff2') format('woff2'), url('Images/FuturaStd-Bold.woff') format('woff'), url('Images/FuturaStd-Bold.ttf') format('truetype'), url('Images/FuturaStd-Bold.svg#Helvetica') format('svg');
+	font-weight: 400;
+	font-style: normal
+}
+@font-face {
+	font-family: "UniversLT-Light";
+	src: url('Images/UniversLT-Light.eot?#iefix') format('embedded-opentype'), url('Images/UniversLT-Light.woff') format('woff'), url('Images/UniversLT-Light.ttf') format('truetype'), url('Images/UniversLT-Light.svg#UniversLT-Light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "UniversLT-Bold";
+	src: url('Images/UniversLT-Bold.eot?#iefix') format('embedded-opentype'), url('Images/UniversLT-Bold.woff') format('woff'), url('Images/UniversLT-Bold.ttf') format('truetype'), url('Images/UniversLT-Bold.svg#UniversLT-Bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+:root {
+  --whiteColor: #ffffff;
+  --blackColor:#000000;
+  --pinkColor:#C90062;
+  --yellowColor:#FFEC9A;
+  --purpleColor:#662046;
+  --pinkLightColor:#F1BFD8;
+  --grayColor:#D9C7D1;
+  --lightGreenColor:#E3E4BF;
+  --lightOrange:#F1B182;
+  --darkYellowColor:#D9B87E;
+  --darkGreenColor:#E3D373;
+  --brownColor:#661D2A;
+  --lightGreen:#8E9300;
+  --darkGreen:#404A29;
+  --darkBrownColor:#4E2E2D;
+  --lightGray:#AA9695;
+  --grayBorder:#cdcdcd;
+  --lightYellow:#F9EA96;
+  --borderSpacing:1pt 5pt;
+  --borderRadius:20pt;
+  --fontSizeMedium:18pt;
+  --fontSizeSmall:13pt;
+  --fontSizeNormal:12pt;
+}
+body {
+  font-family: 'UniversLT-Light', Arial, Helvetica, sans-serif;
+  font-size: 9pt;
+}
+.page.page1 {
+  width: 21cm;
+  height: 29.7cm;
+  padding: 0;
+}
+.page {
+    position: relative;
+    width: 17cm;
+    height: 27.7cm;
+    padding: 1cm 2cm;
+}
+.row {
+  margin-bottom: 0.5cm;
+}
+.column > .section {
+  margin-left: 0.5cm;
+}
+.column:first-child > .section {
+  margin-left: 0;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--pinkColor);
+}
+p {
+  margin: 0;
+  margin-bottom: 0.25cm;
+}
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+  color: #3399ff;
+}
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page > .row1 h2 {
+  font-size: 24pt;
+  padding-left: 3cm;
+  min-height: 2cm;
+  /* background-image: url("./Images/logo.png");
+  background-repeat: no-repeat;
+  margin-bottom: 0.5cm; */
+}
+.page1 > .row2 > .column2 > .section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+.cler {
+  font-size: 24pt;
+}
+.reportheader {
+  font-size: 34pt;
+  color: rgb(253, 226, 17);
+  padding-left: 0.5cm;
+}
+.headerbackground {
+  background-color: rgb(138, 216, 216);
+  height: 10cm;
+  /* background-image: url("ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png");
+  background-repeat: no-repeat;
+  background-size: 100%; */
+}
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+.compositepadding {
+  padding-left: 1cm;
+  background-color: rgb(138, 216, 216);
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+.securityaccount {
+  background-color: rgb(138, 216, 216);
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: 0.5cm;
+}
+.esgdata {
+  background-color: rgb(167, 179, 179);
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm;
+}
+.FooterCSS .column1 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column2 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column3 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column5 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column4 {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+/* footer {
+  position: running(footerIdentifier);
+} */
+/* @page {
+  @bottom-left {
+    content: element(footerIdentifier);
+  }
+} */
+.compositefooter {
+  width: 20cm;
+  padding: 0;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 0;
+  z-index: 1;
+  font-size: 7.5pt;
+}
+.compositefooter .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+.compositefooter .content:before {
+  content: "";
+  width: 1px;
+  height: 100px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: -3px;
+}
+/* @page:first{
+  @bottom-left {
+    content: "";
+  }
+}; */
+.FooterCSS {
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection {
+  height: 23px;
+}
+.FooterCSS .content:before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+.EsgCoverPageImage {
+  width: 100%;
+}
+.EsgCoverPage {
+  width: 100%;
+}
+
+/* New PhoenixESG Theme changes */
+.page1 .row1.row.section {
+    padding: 25pt 0 43pt 30pt;
+}
+.logo{
+    background-image: url("./Images/PhoenixESG_logo.png");
+    background-repeat: no-repeat;
+    margin: 0 0 20pt 0;
+    width:155px;
+    height:70px; 
+}
+.page1 .logo{
+    background-image: url("./Images/PhoenixESG_logo.png");
+    background-repeat: no-repeat;
+    margin: 0;
+    width:275px;
+    height:125px; 
+}
+.page1 .text1.text.contentSection.FundName {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 0 0 70pt;
+}
+.row1 .column2 .row1 .text1.text.contentSection {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  min-height: 60px;
+  margin-bottom: 0;
+}
+.page1 h2.FundName{
+    /* background-color: var(--yellowColor); */
+    font-size: 35pt;
+    font-weight: 400;
+    text-transform: uppercase;
+    /* border-radius:var(--borderRadius); */
+    width: auto;
+    display: inline-flex;
+    padding:var(--borderSpacing);
+    margin:0;
+    font-family: 'FuturaStd-Light';
+}
+.page1 .DocumentDate {
+    /* background-color: var(--yellowColor); */
+    width: auto;
+    display: inline-flex;
+    padding:var(--borderSpacing);
+    /* border-radius:var(--borderRadius); */
+    margin:15pt 0 25pt 0;
+    font-weight: 600;
+    color:var(--blackColor);
+    font-size:14pt;
+    line-height: 26px;
+}
+.page1 .row3.section {
+    height: 375px;
+    background: url("./Images/banner-image.png") no-repeat;
+    background-size: 100% auto;
+    background-position: left bottom -3px;
+    width: 100%;
+    margin:0;
+}
+.page1.page.section {
+    background-color: var(--blackColor);
+    color:var(--whiteColor);
+}
+.page1 > .row1.row.section,.page1 .row2.row.section,.page1 > .row3.row.section {
+    background-color: var(--whiteColor);
+    color: var(--blackColor);
+    margin:0;
+}
+.page1 .row4.row.section {
+    margin: 0;
+    background-color: var(--blackColor);
+    color: var(--whiteColor);
+    padding: 45pt 55pt;
+    position: relative;
+}
+.page1 .text1.FirstPageCaveat{
+    position: relative;
+    padding:10pt 25pt;
+}
+.page1 .text1.FirstPageCaveat::before,.page1 .text1.FirstPageCaveat::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: var(--whiteColor);
+    z-index: 1;
+    top:0;
+}
+.page1 .text1.FirstPageCaveat::after {
+    left: 0;
+}
+.page1 .text1.FirstPageCaveat::before {
+    right:0;
+}
+.page1 .text1.FirstPageCaveat p {
+    line-height: 14pt;
+    margin:0;
+    font-size: 8pt;
+}
+p.FundName {
+    /* background-color: var(--yellowColor); */
+    width: auto;
+    padding: var(--borderSpacing);
+    /* border-radius: var(--borderRadius); */
+    margin: 0;
+    font-weight: 600;
+    color: var(--blackColor);
+    font-size: 12pt;
+    line-height: 26px;
+    display: inline-flex;
+}
+/* .page5 p.FundName, .page6 p.FundName, .page7 p.FundName {
+  background-color: transparent;
+  padding:0;
+} */
+.page > .row2 .text1.contentSection h2.item2,.FindOutMoreOnYourFund h2.item2  {
+    font-weight: 400;
+    font-size: var(--fontSizeMedium);
+    text-transform: uppercase;
+    margin-bottom:10pt;
+    font-family: 'FuturaStd-Light';
+}
+.HowYouInvestCould p.item3,.TheAssetsYouInvestInProdCarbonFootprint p.item2,.OfTheAssetsYoureInvested p.item3,
+.page4 .text1.contentSection p.item3,.FundManagersVotingOnYourBehalf p.item3,
+.AssetsManagedByFundManagersSingedUpToTheCode  p.item2,.AssetsManagedNotSignedUp p.item2,
+.FundManagersEvenIfPreviouslyApproved p.item2,.FindOutMoreOnYourFund p.item3   {
+    font-size: var(--fontSizeNormal);
+    font-weight: 600;
+    color:var(--blackColor);
+    letter-spacing: 0.3px;
+}
+.FindOutMoreOnYourFund p.item3{
+  /* background-color: var(--yellowColor); */
+    width: auto;
+    padding: var(--borderSpacing);
+    /* border-radius: var(--borderRadius); */
+    margin: 0;
+    font-weight: 600;
+    color: var(--blackColor);
+    font-size: 12pt;
+    line-height: 23.5px;
+    display: inline;
+}
+.AssetsManagedByFundManagersSingedUpToTheCode  p.item2,.AssetsManagedNotSignedUp p.item2{
+  font-family: "UniversLT-Bold";
+}
+.HaveALook p.item2 {
+    color: var(--purpleColor);
+    font-weight: 600;
+    font-size: var(--fontSizeSmall);
+    font-family: "UniversLT-Bold";
+    margin: 2pt 0;
+    float: left;
+}
+.page2 .row4.row.section {
+    background-color: var(--pinkLightColor);
+    padding: 10pt;
+    width: 100%;
+    position: relative;
+    left: -10pt;
+}
+.page2>.row4>.column1 .row.section {
+  padding-right: 15pt;
+}
+.page2 .row6.row.section{
+  position: relative;
+  left: -10pt;
+  width: calc(100% + 20pt);
+}
+.TheFundsCarbonFootprint h2.item2,.TheFundsCarbonReservesIntensity h2.item2 {
+    color: var(--blackColor);
+    font-size: var(--fontSizeSmall);
+    font-family: "UniversLT-Bold";
+}
+.TheFundsCarbonFootprint p,.TheFundsCarbonReservesIntensity p {
+    color: var(--blackColor);
+    font-size: var(--fontSizeNormal);
+    font-weight: 600;
+}
+.TheCarbonFootprintIsBasedOnADataCoverage p {
+    margin: 0;
+    font-weight: 600;
+}
+.row4 .row2.row.section {
+    margin-bottom: 0;
+}
+.page2>.row4>.column2 {
+    position: relative;
+    min-height: 253px;
+}
+.page2>.row4>.column2:before {
+    position: absolute;
+    content: "";
+    top: -25px;
+    right: -10px;
+    height: 290px;
+    background: url("./Images/impact-background.png") no-repeat right top;
+    background-size: 100% auto;
+    margin: 0;
+    z-index: 1;
+    width: calc(100% + 10px);
+}
+.KgOfCarbonPer1000 {
+  position: absolute;
+  top: 60px;
+  right: 45px;
+  z-index: 9;
+  width: 135px;
+  text-align: center;
+}
+.KgOfCarbonPer1000 h2.item2 {
+    /* position: absolute;
+    top: 53px;
+    right: 60px; */
+    z-index: 9;
+    /* background-color: var(--yellowColor); */
+    font-size: 35pt;
+    text-transform: uppercase;
+    /* border-radius: 17pt; */
+    width: auto;
+    margin: 0;
+    font-family: "UniversLT-Bold";
+    font-weight: 600;
+    line-height: 29pt;
+    display:block;
+    text-align: center;
+}
+.KgOfCarbonPer1000 p.item3 {
+    /* position: absolute;
+    top: 95px;
+    right: 48px; */
+    font-family: "UniversLT-Bold";
+    font-weight: 600;
+    z-index: 10;
+    font-size: 10pt;
+    display:block;
+    text-align: center;
+    margin: 0;
+}
+.ToHelpYouUnderstandThis p.item2 {
+    color: var(--blackColor);
+    font-size: var(--fontSizeNormal);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 0 0 5pt;
+}
+.page2 .row5.row.section {
+    margin-bottom: 0;
+}
+.page2 .row6 .text.contentSection.section {
+    text-align: center;
+}
+.page2 .row6 h2 {
+    display: block;
+    text-align: center;
+    font-size: 30pt;
+    text-transform: uppercase;
+    border-radius: var(--borderRadius);
+    padding: var(--borderSpacing);
+    font-weight: 600;
+    font-family: "UniversLT-Bold";
+}
+.page2 .row6 p {
+    display: block;
+    text-align: center;
+    font-family: "UniversLT-Bold";
+    border-radius: var(--borderRadius);
+    padding: var(--borderSpacing);
+}
+.page2>.row6>.column .row1.row.section {
+  margin-left: 0;
+}
+/* .page2>.row6>.column1 h2,.page2>.row6>.column1 p{
+    background-color:var(--lightOrange);
+}
+.page2>.row6>.column2 h2,.page2>.row6>.column2 p{
+    background-color:var(--darkYellowColor);
+}
+.page2>.row6>.column3 h2,.page2>.row6>.column3 p{
+    background-color:var(--lightOrange);
+}
+.page2>.row6>.column4 h2,.page2>.row6>.column4 p{
+    background-color:var(--darkGreenColor);
+} */
+.page2>.row6>.column {
+    width: 24.55%;
+    height: 184pt;
+    margin-right: 0.6%;
+    position: relative;
+}
+.page2>.row6>.column1::before {
+    background:  url('./Images/car-image.png') no-repeat left bottom;
+}
+.page2>.row6>.column2::before {
+    background: url('./Images/flight-image.png') no-repeat left bottom;
+}
+.page2>.row6>.column3::before {
+    background: url('./Images/home-image.png') no-repeat left bottom;
+}
+.page2>.row6>.column4::before {
+    background: url('./Images/tree-image.png') no-repeat left bottom;
+}
+.page2>.row6>.column1 {
+    background-color:  var(--pinkLightColor);
+}
+.page2>.row6>.column2 {
+    background-color:  var(--grayColor);
+}
+.page2>.row6>.column3 {
+    background-color:  var(--pinkLightColor);
+}
+.page2>.row6>.column4 {
+    background-color:  var(--lightGreenColor);
+}
+.page2>.row6>.column::before {
+    content: "";
+    background-size: 100% auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+.page2>.row6>.column:nth-child(4) {
+    margin-right: 0;
+}
+.page2>.row6>.column .text1 {
+    padding: 4pt 5pt;
+}
+.page3 > .row3.row.section {
+    background-color: var(--grayColor);
+    padding: 10pt 10pt 5pt 10pt;
+    width: 100%;
+    position: relative;
+    left: -10pt;
+}
+.page4 > .row3.row.section{
+  background-color: var(--grayColor);
+  padding: 10pt 10pt 5pt 10pt;
+  width: 100%;
+  position: relative;
+  left: -10pt;
+  min-height:255px;
+}
+.page3>.row3>.column2 {
+    position: relative;
+    min-height: 218px;
+}
+.page3>.row3>.column2:before {
+    position: absolute;
+    content: "";
+    top: -40px;
+    left: 0;
+    height: 263px;
+    background: url("./Images/invest-image.png") no-repeat right top;
+    background-size: auto 100%;
+    margin: 0;
+    z-index: 1;
+    width: 100%;
+}
+.page3>.row3>.column1 .row.section {
+  margin-bottom: 0;
+}
+.TheCarbonReservesIntensity p{
+    margin: 0;
+    font-weight: 600;
+    font-size: 8pt;
+}
+.KgOfCarbonPer1000Invested {
+  position: absolute;
+  top: -18px;
+  left: 110px;
+  z-index: 9;
+  width: 125px;
+  text-align: center;
+}
+.KgOfCarbonPer1000Invested h2.item2 {
+    /* position: absolute;
+    top: -18px;
+    left: 135px;
+    z-index: 9; */
+    /* background-color: var(--yellowColor); */
+    font-size: 30pt;
+    text-transform: uppercase;
+    /* border-radius: 17pt; */
+    width: auto;
+    display: block;
+    padding: var(--borderSpacing);
+    margin: 0;
+    font-family: "UniversLT-Bold";
+    font-weight: 600;
+    line-height: 29pt;
+    color:var(--brownColor);
+    text-align: center;
+}
+.KgOfCarbonPer1000Invested p.item3 {
+    /* position: absolute;
+    top: 17px;
+     z-index: 10;
+    left: 120px; */
+    font-family: "UniversLT-Bold";
+    font-weight: 600;   
+    font-size: 10pt;
+    text-align: center;
+    display: block;
+    margin: 0;
+}
+.TheMetricsInThisSectionHaveBeenCalculated p.item2,.WeEvaluateAlignmentWithScieneBased p.item2,
+.BasedOnDataSuppliedByTheFRC p.item2{
+    position: relative;
+    padding:5pt 25pt;
+    font-weight: 600;
+    font-size:8pt;
+}
+.TheMetricsInThisSectionHaveBeenCalculated p.item2::before,.TheMetricsInThisSectionHaveBeenCalculated p.item2::after,
+.WeEvaluateAlignmentWithScieneBased p.item2::before,.WeEvaluateAlignmentWithScieneBased p.item2::after,
+.BasedOnDataSuppliedByTheFRC p.item2::before,.BasedOnDataSuppliedByTheFRC p.item2::after{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: var(--blackColor);
+    z-index: 1;
+    top:0;
+}
+.TheMetricsInThisSectionHaveBeenCalculated p.item2::after,.WeEvaluateAlignmentWithScieneBased p.item2::after,
+.BasedOnDataSuppliedByTheFRC p.item2::after {
+    left: 0;
+}
+.TheMetricsInThisSectionHaveBeenCalculated p.item2::before,.WeEvaluateAlignmentWithScieneBased p.item2::before,
+.BasedOnDataSuppliedByTheFRC p.item2::before {
+    right:0;
+}
+.text1.TheMetricsInThisSectionHaveBeenCalculated,.text1.WeEvaluateAlignmentWithScieneBased,.text1.BasedOnDataSuppliedByTheFRC {
+    position: relative;
+    padding: 0;
+}
+.page3 .row3.row.section .row2.row.section {
+    margin-bottom: 0;
+}
+.page4 .text1.contentSection {
+  display: block;
+}
+.page4 .ApprovedTargets h2.item2,.page4 .CommittedTargets h2.item2,
+.page4 .NoTargets h2.item2,.page4 .NotInScopeMeans h2.item2 {
+  display: inline;
+  padding: 0 4px;
+  color: var(--whiteColor);
+  letter-spacing: 1px;
+}
+.page4 .ApprovedTargets p.item3,.page4 .CommittedTargets p.item3,
+.page4 .NoTargets p.item3,.page4 .NotInScopeMeans p.item3 {
+  display: inline;
+}
+.ApprovedTargets h2.item2 {
+  background: var(--lightGreen);
+}
+.CommittedTargets h2.item2 {
+  background: var(--darkGreen);
+}
+.NoTargets h2.item2 {
+  background: var(--darkBrownColor);
+}
+.NotInScopeMeans h2.item2 {
+  background: var(--lightGray);
+}
+.page4>.row3>.column1{
+  width:58%;
+  position: relative;
+  min-height: 255px;
+}
+.page4>.row3>.column3 {
+  width: 42%;
+  min-height: 250px;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.page4>.row3>.column3 .row4.row.section:nth-child(4){
+  margin-bottom: 0;
+}
+.page4>.row3>.column3 p.item2 {
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--blackColor);
+  padding-left: 23pt;
+  position: relative;
+}
+.page4>.row3>.column3 p.item2:before {
+  width: 10pt;
+  height: 10pt;
+  content: "";
+  position: absolute;
+  top: 1pt;
+  left: 0;
+  z-index: 1;
+}
+.page4>.row3>.column3 .ApprovedScienceBasedTargets p.item2:before {
+  background-color: var(--lightGreen);
+}
+.page4>.row3>.column3 .CommittedScienceBasedTargets p.item2:before {
+  background-color: var(--darkGreen);
+}
+.page4>.row3>.column3 .NoScienceBasedTargets p.item2:before {
+  background-color: var(--darkBrownColor);
+}
+.page4>.row3>.column3 .NotInScope p.item2:before {
+  background-color: var(--lightGray);
+}
+
+
+.page4>.row3>.column2 {
+  /* position: absolute;
+  width: 0;
+  min-height: 255px;
+  left: 10pt;
+  z-index: 9; */
+  width:0;
+}
+.page4>.row3>.column1::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 15px;
+  height: 260px;
+  background: url("./Images/invest-chart.png") no-repeat left top;
+  background-size: auto 100%;
+  margin: 0;
+  z-index: 1;
+  width: 100%;
+}
+.page4>.row3>.column2 .row h2.item2 {
+  position: absolute;
+  width: auto;
+  /* display: inline-block; */
+  z-index: 10;
+  /* background-color: var(--darkYellowColor); */
+  padding: var(--borderSpacing);
+  border-radius: var(--borderRadius);
+  margin: 0;
+  font-weight: normal;
+  color: var(--lightYellow);
+  font-size: var(--fontSizeMedium);
+}
+.page4>.row3>.column2 .row1.row h2.item2 {
+  left: 60px;
+  top: 8px;
+}
+.page4>.row3>.column2 .row2.row h2.item2 {
+  left: 250px;
+  top: 76px;
+}
+.page4>.row3>.column2 .row3.row h2.item2 {
+  left: 30px;
+  top: 148px;
+}
+.page4>.row3>.column2 .row4.row h2.item2 {
+  left: 260px;
+  top: 205px;
+}
+.page4 > .row2.row.section,.page4 > .row4.row.section, .page4 > .row5.row.section,.page4 > .row6.row.section {
+  margin-bottom: 0.05cm;
+}
+.page5 > .row3,.page5 > .row4 {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--lightGreenColor);
+  padding:10pt 0;
+  position: relative;
+  left: -10pt;
+  width: calc(100% + 20pt);
+  margin-bottom: 0.2cm;
+}
+.page5 > .row4 {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--grayColor);
+}
+.page5>.row3>.column1,.page5>.row3>.column2,.page5>.row3>.column3,
+.page5>.row4>.column1,.page5>.row4>.column2,.page5>.row4>.column3{
+  display: inline-flex;
+  align-items: center;
+}
+.page5>.row3>.column1 .row1.row.section,.page5>.row3>.column2 .row1.row.section,.page5>.row3>.column3 .row1.row.section,
+.page5>.row4>.column1 .row1.row.section,.page5>.row4>.column2 .row1.row.section,.page5>.row4>.column3 .row1.row.section{
+  margin:0;
+  padding: 5pt;
+  width: 100%;
+}
+.page5>.row3>.column3 .row1.row.section,
+.page5>.row4>.column3 .row1.row.section{
+  padding: 5pt 15pt 5pt 12pt;
+}
+.page5>.row3>.column1,.page5>.row4>.column1{
+  border-right:2pt solid rgba(255,255,255,0.5);
+  width:19%;
+}
+.page5>.row3>.column2,.page5>.row4>.column2{
+  border-right:2pt solid rgba(255,255,255,0.5);
+  width:24%;
+}
+.page5>.row3>.column3,.page5>.row4>.column3{
+  width:56%;
+}
+.page5>.row3>.column2 h2.item2 ,.page5>.row4>.column2 h2.item2 {
+  width: auto;
+  padding: var(--borderSpacing);
+  border-radius: var(--borderRadius);
+  margin: 0;
+  font-weight: normal;
+  font-size: 35pt;
+  text-align: center;
+}
+.page5>.row3>.column2 h2.item2{
+  color:var(--lightGreen);
+  /* background-color: var(--darkGreenColor); */
+}
+.page5>.row4>.column2 h2.item2{
+  color:var(--purpleColor);
+  /* background-color: var(--darkYellowColor); */
+}
+.page5>.row3>.column1 .row1.row.section{
+  background: url("./Images/hand-image.png") no-repeat center center;
+}
+.page5>.row4>.column1 .row1.row.section{
+  background: url("./Images/close-image.png") no-repeat center center;
+}
+.page5>.row3>.column1 .row1.row.section,.page5>.row4>.column1 .row1.row.section{
+  height: 80px;
+  max-height:80px;
+  width:100%;
+  background-size: 95px auto;
+  margin: 0;
+}
+.page5 > .row2.row.section {
+  margin-bottom: 0.25cm;
+}
+.text1.CarbonFootprint h2.item2,.text1.CarbonFootprint p.item3,.EVIC h2.item2,.EVIC p.item3,.ParisAlignment  h2.item2,.ParisAlignment  p.item3,.SBT h2.item2,.SBT p.item3,.SBTi h2.item2,.SBTi p.item3{
+  display: inline;
+}
+.page > .row2 .text1.CarbonFootprint h2.item2,.EVIC h2.item2,.ParisAlignment  h2.item2,.SBT h2.item2,.SBTi h2.item2,.CarEmissions h2.item2,.FlightEmissions h2.item2,.HouseholdEnergyConsumption h2.item2,.TreesCapturing h2.item2{
+  font-family: "UniversLT-Bold";
+  color:var(--blackColor);
+  font-weight:600;
+  font-size: var(--fontSizeNormal);
+  text-transform: none;
+  margin-bottom: 0;
+}
+.text1.CarbonFootprint p.item3,.Scope1Covers p.item2,.Scope2Covers p.item2,.MetricWeHaveCalculated p.item2,.Scope3Emissions p.item2,
+.EVIC p.item3,.ParisAlignment  p.item3,.SBT p.item3,.SBTi p.item3,.DataSource p.item3,.CarEmissions p.item3,.FlightEmissions p.item3,.HouseholdEnergyConsumption p.item3,.TreesCapturing p.item3{
+  color: var(--blackColor);
+  font-weight: 600;
+  font-size: var(--fontSizeNormal);
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+}
+.page6>.row.row2>.column1,.page6>.row.row3>.column1,.page6>.row.row4>.column1,.page6>.row.row5>.column1,.page6>.row.row6>.column1,.page6>.row.row7>.column1{
+  width:86%;
+}
+.page6>.row.row2>.column2,.page6>.row.row3>.column2,.page6>.row.row4>.column2,.page6>.row.row5>.column2,.page6>.row.row6>.column2,.page6>.row.row7>.column2{
+  width:14%;
+}
+.page7>.row.row3>.column1,.page7>.row.row4>.column1,.page7>.row.row5>.column1,.page7>.row.row6>.column1{
+  width:18%;
+}
+.page7>.row.row3>.column2,.page7>.row.row4>.column2,.page7>.row.row5>.column2,.page7>.row.row6>.column2{
+  width:78%;
+}
+.page6>.row.row2>.column2 {
+  background: url("./Images/co2-search.png") no-repeat;
+  height: 130px;
+  background-size: auto 75px;
+  background-position: top 60px right;
+  margin: 0;
+}
+.page6>.row.row3>.column2 {
+  background: url("./Images/co2-image.png") no-repeat;
+  height: 253px;
+  background-size: auto 265px;
+  background-position: top 5px right;
+  margin: 0;
+}
+.page6>.row.row4>.column2 {
+  background: url("./Images/graph-image.png") no-repeat;
+  height: 85px;
+  background-size: auto 52px;
+  background-position: top 30px right;
+  margin: 0;
+}
+.page6>.row.row5>.column2 {
+  background: url("./Images/temperature-image.png") no-repeat;
+  height: 75px;
+  background-size: auto 75px;
+  background-position: top 10px right 15px;
+  margin: 0;
+}
+.page6>.row.row6>.column2 {
+  background: url("./Images/target-image.png") no-repeat;
+  height: 55px;
+  background-size: auto 60px;
+  background-position: top 10px right;
+  margin: 0;
+}
+.page6>.row.row7>.column2 {
+  background: url("./Images/path-image.png") no-repeat;
+  height: 80px;
+  background-size: auto 55px;
+  background-position: top 10px right;
+  margin: 0;
+}
+.page7>.row.row3>.column1 {
+  background: url("./Images/car-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom -1px left;
+  margin: 0;
+}
+.page7>.row.row4>.column1 {
+  background: url("./Images/flight-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page7>.row.row5>.column1 {
+  background: url("./Images/home-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page7>.row.row6>.column1 {
+  background: url("./Images/tree-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page6>.row.row2>.column1 > .row2.row.section,.page7>.row.row3>.column2 > .row1.row.section,.page7>.row.row4>.column2 > .row1.row.section,.page7>.row.row5>.column2 > .row1.row.section,.page7>.row.row6>.column2 > .row1.row.section {
+  margin-bottom: 0;
+}
+.page6 > .row2.row.section,.page6 > .row3.row.section,.page6 > .row4.row.section,.page6 > .row5.row.section,.page6 > .row6.row.section,.page6 > .row7.row.section{
+  margin-bottom: 0;
+  padding-bottom: 10pt;
+  border-bottom: 1pt solid var(--grayBorder);
+  padding-right: 10pt;
+}
+.page7 > .row3.row.section,.page7 > .row4.row.section,.page7 > .row5.row.section,.page7 > .row6.row.section {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 1pt solid var(--grayBorder);
+  padding-right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.page6 > .row7.row.section {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.page6 > .row.section .column1,.page6 > .row.section .column2{
+  padding-top: 10pt;
+}
+.page7 > .row.section .column1{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.page7 > .row.section .column2 {
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+.page6 > .row.section .column1 .row,.page7 > .row.section .column1 .row{
+  margin-bottom: 5px;
+}
+.page6 > .row.section .column1 .row:last-child,.page7 > .row.section .column1 .row:last-child {
+  margin-bottom: 0;
+}
+.Scope1Covers p.item2,.Scope2Covers p.item2,.Scope3Emissions p.item2 {
+  list-style-type: initial;
+  display: list-item;
+  list-style-position: inside;
+}
+.PhoenixLifeLimitedCaveat p.item2 {
+  font-size: 8pt;
+  color: var(--grayBorder);
+  font-family: "UniversLT-Bold";
+}
+.page7 > .row6.row.section{
+  margin-bottom:60px;
+}
+.page7 > .row7 {
+  position: absolute;
+  bottom:55px;
+  z-index: 9;
+  left: 0;
+  width: calc(100% - 4cm);
+  padding-left: 2cm;
+  margin: 0;
+}
+/*Theme Name - PhoenixESG */

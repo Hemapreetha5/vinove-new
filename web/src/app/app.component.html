@@ -1,0 +1,50 @@
+  
+<div class="container-fluid">
+  <div class="" id="divHeader" style="height: 10vh;">
+    <div class="row">
+      <div class="col">
+        <div class="row divHeaderPadding">
+          <div class="col text-end">
+            <div [hidden] = "isLogin">
+              <img [src]="isDashboard===true?imgSignOut:isBack===true?imgBack:''" (click)="onDashboardClick();" />
+            </div>
+          </div>
+          <div class="col text-right" style="white-space: nowrap;">
+            <span class="header">Student App</span>
+          </div>
+        </div>
+      </div>
+      <div class="col text-end">
+        <div [hidden] = "isLogin">
+          <img height="80" width="100" src="appLogo.png" style="padding: 5px;" />
+        </div>
+      </div>
+    </div>
+    <div class="row divHeaderPaddingHome">
+      <h6>{{title}}</h6>
+    </div>
+</div>
+ <div class="divBody" id="divBody" style="height:83vh;">
+  <router-outlet></router-outlet>
+  
+ </div>
+ <div class="divFooter" id="divFooter" *ngIf="!isLogin" style="height:7vh;box-shadow: 0px 4px 4px -3px rgba(0, 0, 0, 0.25) inset;padding: 10px 0px 0px 0px;">
+  <div class="row">
+    <div class="col text-center">
+      <button style="border: none;background: none;" (click)="onHomeClick();"><img src="/featherIcons/home.svg" /></button>
+    </div>
+    <div class="col text-center" *ngIf="isProfile">
+      <button style="border: none;background: none;"><img src="/featherIcons/calendar.svg" /></button>
+    </div>
+    <div class="col text-center" *ngIf="isProfile">
+      <button style="border: none;background: none;"><img src="/featherIcons/book-open.svg" /></button>
+    </div>
+    <div class="col text-center">
+      <button style="border: none;background: none;"><img src="/featherIcons/bell.svg" /></button>
+    </div>
+    <div class="col text-center">
+      <button style="border: none;background: none;" (click)="activeLinkClick();"><img src="/featherIcons/menu.svg" /></button>
+    </div>
+  </div>
+ </div>
+</div> 

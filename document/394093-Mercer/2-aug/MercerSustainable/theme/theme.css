@@ -1,0 +1,782 @@
+@font-face {
+    font-family: 'mmc_displaybold';
+    src: url('images/mmcdisplay_bd-webfont.woff2') format('woff2'),
+         url('images/mmcdisplay_bd-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+	font-family: "noto_sansbold";
+	src: url("images/notosans-bold-webfont.woff2") format("woff2"),
+	  url("images/notosans-bold-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }
+    
+  @font-face {
+	font-family: "noto_sansregular";
+	src: url("images/notosans-regular-webfont.woff2") format("woff2"),
+	  url("images/notosans-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }  
+
+:root{
+	--base-blue: #002c77;
+	--blue: #009de0;
+	--green: #00aa53;
+	--dark-gray: #565656;
+	--medium-gray: #949494;
+	--light-gray: #dadada;
+	--font-regular: "noto_sansregular";
+	--font-bold: "noto_sansbold";
+	--font-mmc: "mmc_displaybold";
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	zoom: 1
+}
+body {
+	font-family: var(--font-regular);
+	font-weight: 400;
+	font-size: 9pt;
+	line-height: 1.15;
+	color: var(--base-blue);
+	background-color: #fff;
+	text-rendering: optimizeLegibility!important;
+	-webkit-font-smoothing: antialiased!important
+}
+.page {
+	position: relative;
+	padding: 1cm 1.2cm 1.5cm 1.66cm;
+	margin-bottom: 0.4cm;
+	/* margin-bottom: 0cm; */
+	width: 18cm;
+	/* height: 26.7cm; */
+	height: 27.5cm;
+	background: url(images/SustainableBorder-left.png) no-repeat;
+	/* background-position: left top; */
+	background-size: 8mm 100%;
+}
+
+.page1>.row4>.column2>.row1 .compositebody .row3 p, .page1>.row4>.column2>.row1 .compositebody .row5 p {
+        font-size: 7pt;    
+        line-height: 7pt;
+}
+
+h2.Fund_name {
+font-size: 27pt;
+font-family: var(--font-mmc);
+color: #00ac41;
+margin-bottom: 0;
+line-height: 1;
+}
+
+h1, h2, h3 {
+	margin: 0 0 0.1cm;
+	font-family: var(--font-bold);
+	font-size: 12pt;
+	color: var(--base-blue);
+}
+
+a {
+	text-decoration: none
+}
+ul {
+	padding: 0 0 0 .3cm
+}
+b{
+	/* font-weight: 400; */
+	font-family: var(--font-bold);
+}
+.topheader, .topname {
+	padding: 0;
+	height: 1.5cm;
+	background-image: url(images/logo.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 160px auto;
+	text-align: right;
+}
+.topheader p.item2, .topname p.item2 {
+	padding-top: .2cm;
+	font-size: 9.5pt;
+	color: #8797ac
+}
+.keyinfo {
+	border-bottom: .5pt solid #d9d9d9;
+	margin-bottom: .2cm;
+}
+.keyinfo .keyinfo {
+	margin: 0
+}
+.keyinfoheader h2 {
+	margin: 0;
+	font-size: 16pt;
+	color: #197ac0;
+	padding-bottom: .12cm;
+	border-bottom: 1pt solid #10293e
+}
+.FundOverview{
+	/* width: 96%!important */
+}
+
+.FundOverview>div {
+	width: 100%;
+	padding: .1cm 0.1cm;
+	border-bottom: .25pt solid var(--base-blue);
+}
+.horizontal-list>div span {
+	margin: 0;
+	float: left
+}
+.FundOverview>div .label {
+	width: 40%;
+	font-family: var(--font-bold);
+}
+
+.page1 .keyinfo .row3 .text.text1{
+  margin: 0.2cm 0;
+}
+.horizontal-list>div.item1 {
+	background: rgba(222, 222, 222, 0.5)!important;
+}	
+
+.FundOverview>div .value {
+	/* font-size: 7pt; */
+	width: 50%;
+}
+
+.horizontal-list .clear {
+	border: 0;
+	padding: 0
+}
+.horizontal-list .item5 {
+	border: 0;
+	padding-bottom: 0
+}
+.page1>.row3{
+	margin-bottom: 7mm;
+}
+.page1>.row3>.column1 {
+	float: left;
+	width: 57%;
+	/* padding-right: 3mm; */
+	/* margin-right: 4mm; */
+	box-sizing: border-box;
+}
+.page1>.row3>.column2 {
+	float: right;
+	width: 40%
+}
+.breakdown {
+	width: 95%;
+	position: relative;
+	margin-bottom: 65px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.breakdown table td {
+    vertical-align: top;
+}
+.breakdown .chart {
+	width: 40% !important
+}
+.breakdown table {
+	/* width: 50%!important; */
+	float: right!important;
+margin-top: 0px;
+}
+.breakdown .footer {
+	position: absolute;
+	top: 4px;
+	right: 0;
+	font-size: 7pt
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0
+}
+table th {
+	font-weight: 400;
+	color: #5c676f
+}
+table td {
+	padding: .53mm;
+	/* font-size: 7pt */
+}
+table .Weight {
+	text-align: right;
+	font-family: var(--font-bold);
+	font-size: 10pt;
+}
+.key-color {
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px
+}
+.designed, .objective, .strategy {
+	margin-bottom: .2cm;
+	border-bottom: .5pt solid #d9d9d9;
+	padding-bottom: .10cm;
+	line-height: 10pt;
+}
+.designed {
+	border: 0;
+	margin: 0
+}
+.holding,.Top10Holdings {
+	width: 95%;
+	margin-bottom: 20px;
+}
+.Top10Holdings h2,
+.holding h2 {
+	/* padding-bottom: .15cm;
+	border-bottom: 1pt solid #10293e; */
+	margin: 0;
+	background-color: var(--blue);
+	color: #fff;
+	padding: 6px;
+	font-size: 9pt;
+	width: 100%;
+    box-sizing: border-box;
+}
+.Top10Holdings table tr,
+.holding table tr {
+	border-bottom: .25pt solid var(--base-blue)
+}
+.Top10Holdings table tr th,
+.holding table tr th {
+	/* background-color: #fbfbfa; */
+	/* padding: 1mm 3mm; */
+	/* color: #5c676f; */
+	color: #ffffff;
+	/* background-color: var(--blue); */
+	font-size: 10pt;
+	font-weight: bold;
+}
+.Top10Holdings table tr .Name,
+.holding table tr .Name {
+	text-align: left
+}
+.Top10Holdings table tr td,
+.holding table tr td {
+	padding: 1mm 3mm;
+}
+.performancetable {
+	margin-bottom: -9px;
+}
+.performancetable h2 {
+	padding-bottom: .2cm;
+	/* border-bottom: 1pt solid #10293e; */
+	margin: 0
+}
+.performancetable table {
+	/* font-size: 7pt; */
+	margin-bottom: .25cm
+}
+.performancetable table tr:not(:first-child) {
+	border-bottom: .5pt solid var(--base-blue)
+}
+.performancetable table tr:first-child th{
+	border: 0;
+}
+.performancetable table tr th {
+	padding: 1.5mm;
+	text-align: center;
+	background-color: var(--blue);
+	color: #ffffff;
+	font-family: var(--font-bold);
+	word-spacing: 11px;
+}
+.performancetable table tr td {
+	padding: 1.5mm;
+	text-align: center;
+	border: 0;
+	color: var(--base-blue) !important;
+}
+.performancetable table tr .rowheader {
+	text-align: left;
+}
+.AARangeTable {
+	margin-bottom: .2cm;
+}
+.AARangeTable  h2 {
+	padding-bottom: .2cm;
+	border-bottom: 1pt solid #10293e;
+	margin: 0
+}
+.AARangeTable  table {
+	font-size: 7pt;
+	margin-bottom: .25cm
+}
+.AARangeTable  table tr {
+	border-bottom: .5pt solid #d9d9d9
+}
+.AARangeTable  table tr th {
+	background-color: #fbfbfa;
+	padding: 1.5mm 3mm;
+	text-align: left;
+	color: #5c676f
+}
+.AARangeTable table tr td {
+	padding: 1.5mm 3mm;
+	text-align: left
+}
+.AARangeTable  table tr .rowheader {
+	text-align: left
+}
+.caveat, .disclaimer {
+	font-size: 6pt;
+	color: #b4b6b9
+}
+.disclaimer {
+	position: absolute;
+	left: 1.5cm;
+	bottom: 0.50cm;
+	width: 18cm;
+	line-height: 8px !important;
+}
+.caveat ol {
+	margin: 0;
+	padding: 0 0 0 4mm
+}
+.caveat ol li {
+	padding-left: .5mm
+}
+.pno {
+	position: absolute;
+	bottom: 0;
+	left: 1.5cm;
+}
+.pno p {
+	margin: 0;
+	color: #000
+}
+.p {
+	margin: 0;
+}
+.date {
+	clear: both;
+	position: absolute;
+	bottom: 0;
+	right: 1.5cm
+}
+.date .DataAsAtDate {
+	margin: 0;
+	font-size: 9.5pt;
+	color: #8797ac
+}
+.date ul {
+	float: right;
+	margin: 0;
+	padding: 0
+}
+.date ul li {
+	float: left;
+	list-style-type: none;
+	font-size: 9.5pt;
+	color: #8797ac;
+	padding: 0 2mm;
+	line-height: 9.5pt;
+	border-left: .5pt solid #e3e3e3
+}
+.date ul li:first-child {
+	border: 0;
+}
+.date ul li:last-child {
+	padding-right: 0
+}
+.page2>.row4>.column1 {
+	float: left;
+	width: 65%;
+}
+.page2>.row4>.column2 {
+	float: right;
+	width: 35%;
+}
+.pdfperformancechart {
+	border-bottom: .5pt solid #d9d9d9;
+	padding-bottom: .15cm;
+	margin-bottom: .2cm;
+}
+.pdfperformancechart .chart {
+	height: 5cm;
+}
+.keyWrapper {
+	margin-top: .2cm;
+}
+.keyWrapper .keyContainer {
+	height: 4mm;
+}
+.keyWrapper .keyContainer .label {
+	line-height: 3mm;
+	margin-left: 2mm;
+}
+.investment, .philosophy {
+	margin-bottom: .2cm;
+	border-bottom: .5pt solid #d9d9d9;
+	padding-bottom: .15cm;
+	line-height: 10pt;
+}
+.philosophy {
+	border: 0;
+	margin: 0;
+	width: 95%
+}
+.philosophy ul {
+	padding: 0 0 0 3.5mm
+}
+.manager {
+	position: relative;
+}
+.manager .managerphoto {
+	float: right !important;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+display: inline;
+}
+.img .photo {
+position: right;
+}
+.manager .managerphoto img {
+	max-width: 100%;
+	float: right !important;
+	height: auto;
+}
+.manager .FundManagersStartDates {
+	font-weight: 400;
+	color: #10293e;
+}
+.manager .Commentary {
+	line-height: 10pt;
+}
+.manager img{
+	width:auto;
+	max-width:100%;
+}
+.compositeManager .fundManagers1 h2, .compositeManager .fundManagers1 .Name {
+    display: none;
+}
+.compositeManagerbody .column1 {
+    width: 75% !important;
+}
+.compositeManagerbody .column2 {
+    width: 100% !important;
+}
+.compositeManager p.FundManagers {
+    font-size: 10pt;
+    color: #197ac0;
+margin: 0px;
+}
+.compositeManager p.ManagerJobTitle {
+    font-size: 8pt;
+    font-weight: 500;
+    color: #000;
+margin-top:0px;
+}
+.Biography {
+    margin-top: 2px;
+	line-height: 10pt;
+    font-weight: normal;
+}
+.page1 > .row1 > .column1 {
+	width:100%;
+}
+.topheader .FundNameFull, .topname .FundNameFull {
+    text-align: right;
+    color: #909fb2;
+    font-size: 10pt;
+    font-weight: bold;
+	padding-top: 5px;
+}
+.span.small { 
+	font-size: 6pt; 
+	align: left;
+}
+.benchmark table td.Weight { display: none; }
+.benchmark table td.Name { padding-left: 10px; padding-right: 0px !important; }
+.benchmark h2 {
+    font-weight: 400;
+    font-size: 7pt;
+    line-height: normal;
+    width: 42%;
+color: #707070 !important;
+padding-left: 6px;
+display: inline;
+}
+.benchmark .label { color: #707070 !important; }
+.benchmark { color: #707070 !important;}
+.sector h2, .objective h2, .strategy h2, .designed h2, .holding h2, .investment h2, .pdfperformancechart h2, .philosophy h2, .performancetable h2 {/*color: #197ac0;*/}
+.feeslabel { 
+    font-weight: 400;
+    font-size: 7pt;
+	padding: 10px 19px 0 14px;
+}
+.narrowcostslist>div .label {
+	font-weight: normal;
+	width: 55%;
+	line-height: normal;
+}
+.narrowcostslist>div  {
+	font-size: 7pt;
+	padding: .1cm 0 0.1cm;
+    border-bottom: .5pt solid #d9d9d9;
+}
+.narrowcostslist>div .value {
+	width: 30%;
+}
+.narrowcostslist {
+	margin-left: 3px;
+}
+.supersymbolnumbers {
+ font-size:4px;
+}
+.page2>.row1>.column2>.row1 .compositebody .column1 .contentSection p{
+	text-align: center;
+}
+.page2>.row1>.column2>.row1 .compositebody .contentSection p .clientRating{
+	width: 45px;
+}
+.page1>.row1>.column1,
+.page1>.row1>.column2{
+	float: left;
+	width: 50%;
+}
+.page1>.row1>.column2{
+	text-align: right;
+}
+.page1>.row1>.column2 p.DocumentDate,
+.page1>.row1>.column2 p.DataAsAtDate {
+	font-size: 12pt;
+	margin: 0;
+}
+
+.FundOverview>.FundFactsOverview{
+	background-color: var(--blue);
+	color: #fff;
+	padding-block: 6px;
+	width: 100% !important;
+  box-sizing: border-box;
+	border-bottom: 0;
+	font-family: var(--font-bold);
+}
+.page1>.row4{
+/* display: flex; */
+position: absolute;
+width: 100%;
+}
+.page1>.row4>.column1 {
+    width: 32%;
+box-sizing: border-box;
+position: relative;
+}
+.page1>.row4>.column2 {
+    width: 50%;
+    padding-left: 9.76mm;
+    padding-top: 5.826mm;
+	position: relative;
+	/* box-sizing: border-box; */
+}
+.page1>.row4>.column2::before {
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+    width: calc(100% + 2.5cm);
+	height: 24cm;
+    border-top: 1pt solid var(--base-blue);
+    border-left: 1pt solid var(--base-blue);
+    border-top-left-radius: 35px;
+	z-index: -1;
+}
+.page1>.row4>.column1 h2{
+	color: var(--blue);
+	margin-bottom: 0;
+}
+.page1>.row4>.column2>.row1 .compositebody .row3 p, 
+.page1>.row4>.column2>.row1 .compositebody .row5 p {
+    font-size: 7.5pt;
+    line-height: 1;
+    margin: 0px;
+}
+.page1>.row4>.column2>.row1 .compositebody .row3 p:first-child, .page1>.row4>.column2>.row1 .compositebody .row5 p:first-child {
+    margin-top: 3px;
+}
+.holding h2{
+	
+}
+.holding tr:first-child{
+	border: 0;
+}
+
+.holding th:empty{
+	/* display: none; */
+}
+.page2>.row1>.column1 {
+	width: 45%;
+}
+
+.page2>.row1>.column2 > .row1 .compositebody > .row:not(:last-child){
+	border-bottom: 0.5pt solid var(--dark-gray);
+	margin-bottom: 10px;
+}
+.page2>.row1>.column2 {
+	padding-left: 9.76mm;
+    padding-bottom: 5.826mm;
+	position: relative;
+	box-sizing: border-box;
+}
+.page2>.row1>.column2::before {
+	content: '';
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+    width: calc(100% + 2.5cm);
+	height: calc(100% + 1.5cm);
+    border-bottom: 1pt solid var(--base-blue);
+    border-left: 1pt solid var(--base-blue);
+    border-bottom-left-radius: 35px;
+	z-index: -1;
+}
+.page2>.row2{
+	padding: 15px 0px 15px 35px;
+	margin-block: 20px;
+	position: relative;
+	/* background-color: var(--base-blue); */
+}
+.page2>.row2::before{
+	content: '';
+	width: calc(100% + 2.5cm);
+	height: 100%;
+	top:0;
+	left: 0;
+	z-index: -1;
+	position: absolute;
+	background-color: var(--base-blue);
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+.page2>.row2 .compositebody>.row2 p.item2{
+	color: #ffffff;
+	margin: 0px 0px 20px;
+}
+.page2>.row2 .compositebody>.row2 p.item2 b{
+	color: var(--blue);
+}
+.page2>.row2 .compositebody>.row3 p.iMacIconColour-LetterIconColour-SupportIconColour {
+	display: flex;
+	align-items: center;
+	font-family: var(--font-bold);
+	color: #fff;
+	margin: 0;
+}
+.page2>.row2 .compositebody>.row3 p.iMacIconColour-LetterIconColour-SupportIconColour>img{
+	width: 40px;
+	margin-right: 8px;
+}
+.page2>.row2 .compositebody>.row3 p.iMacIconColour-LetterIconColour-SupportIconColour >a{
+	color: #fff;
+	margin-right: 30px;
+}
+.page2>.row1>.column2 .row1 .compositebody a {
+	font-family: var(--font-bold);
+	color: var(--base-blue);
+}
+.page2>.row4 p {
+	color: var(--dark-gray);
+	font-size: 7.5pt;
+line-height: 1;
+}
+tr.workbookUnitGrossTotal {
+    background-color: #e4e4e4;
+}
+.performancetable table tr:last-child{
+    /* background-color: #cfcfcf; */
+	/* font-weight: bold; */
+}
+.page1>.row1{
+	margin-bottom: 10.368mm;
+	display: flex;
+	align-items: flex-end;
+}
+.page1>.row1 .logo {
+    width: 44.945mm;
+    height: 7mm;
+	background: url(images/logo.png) no-repeat;
+	background-size: contain;
+}
+.page1>.row2{
+	margin-bottom: 7mm;
+}
+.page1>.row4>.column1>.row1>.composite1>.compositebody>.row2>.row1>.breakdown1 .chart {
+    /* width: 31mm;
+    float: left; */
+}
+.page1>.row4 table td.Name{
+font-size: 8pt;
+}
+.page1>.row4 .SectorBreakdown table td.Name{
+font-size: 8pt; text-transform: lowercase;
+} 
+.page1>.row4 .SectorBreakdown table td.Name::first-letter{
+text-transform: capitalize;
+}
+.page1>.row4>.column2>.row1 .compositebody > .row3{
+	margin-bottom: 20px;
+}
+p.InvestmentStrategy,
+p.ObjectiveText {
+    margin: 0 0px 0px;
+	font-size: 8.5pt;
+}
+.FundOverview > .item2 {
+    background-color: var(--blue);
+    color: #fff;
+    border-bottom: none !important;
+}
+.Top10Holdings table thead tr, .holding table thead tr {
+    border-bottom: none;
+}
+.ManagerComposite p{
+font-size: 8pt;
+text-align: justify;
+margin-right: 16px;
+}
+.page2>.row1>.column1>.row2 .compositebody .Top10Holdings{
+	margin-bottom: 0;
+}
+.page1>.row4>.column2 > .row1 .row4 .row table tr td:first-child {
+    text-align: left;
+    width: 107px;
+    min-width: 107px;
+    max-width: 107px;
+}
+.page1>.row4>.column2 > .row1 .row4 .row table tr td {
+    padding: 1.5mm 0.5mm;
+	width: 40px;
+	max-width: 40px;
+	min-width: 40px;
+	text-align: center;
+}
+.page1>.row4>.column2 > .row1 .row4 .row * {
+    box-sizing: border-box;
+}
+.page1>.row4>.column2 > .row1 .row4 .row .WorkbookPerformance tr {
+    border-bottom: 0.5pt solid var(--base-blue);
+}
+.page1>.row4>.column2 > .row1 .row4 .row .table{
+	width:100%;
+}
+.WorkbookPerformance > p {
+    margin: 0;
+}
+/*  MercerSustainable */

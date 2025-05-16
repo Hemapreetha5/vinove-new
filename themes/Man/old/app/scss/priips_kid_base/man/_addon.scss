@@ -1,0 +1,226 @@
+.page>.row1 {
+	/*hiding all footers*/
+	display: none;
+}
+.WB_HowlongshouldIholdit_1 b{
+	font-size: $h4-size ;
+	color: $color3;
+}
+.keyinformationdocument.contentSection h2 {
+	border-bottom:0pt;
+}
+.Product>h2 {
+	padding-top: 0.1cm ;
+}
+.page>.row1>.composite1>.compositebody>.row2{
+	>.column2 {/*footer width extended to full page width*/
+		width: 100% ;
+	}
+	
+	>.column1 {
+		width: 0;
+	}
+}
+
+.groupHeader1 table th{
+	border: 0.5pt solid $th-border;
+	border-left: 0;
+}
+.groupRow1 table {
+	tbody tr {
+	    td {
+        border-right: 0.5pt solid $td-border;
+		color:$color4;
+		font-size: $para-size;
+	}
+	}
+}
+
+.page1 > .row5 > .composite1 > .compositebody > .row2 > .column1,
+.page1 > .row6 > .composite1 > .compositebody > .row2 > .column1,
+.page2 > .row2 > .composite1 > .compositebody > .row5 > .column1{
+	width: 100%;
+	column-count: 2;
+	column-gap: 0.5cm;
+	column-fill: balance !important;
+}
+
+.page1{
+	.row2>.composite1>.compositebody>.row2>.column1{
+		width:100%;
+	}
+	.row6 > .composite1 > .compositebody > .row2 > .column1 h2 {
+		column-span: all;
+		margin-top: 0.2cm;
+		
+	}
+}
+/*table td:not(.rating):last-of-type{
+	border-right:0.4pt solid $black !important;
+}
+.groupRowDiv1>table td,.performancescenariotable table .survival-scenario th,.groupRow1 table .header th,table .ongoingcosts th, table .incidentalcosts th {
+    border: 0.4pt solid $black;
+}*/
+
+.oneofcosts th:last-of-type {
+	text-align: left;
+}
+
+.performanceScenario,
+.costcomposition {
+	padding-bottom: 0.2cm;
+	padding-top: 0.2cm;
+}
+
+
+.page3 .compositebody {
+	break-inside: avoid-page;
+	break-inside: avoid;
+}
+
+h1{
+    
+	position: running(pageheader);
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+    @each $item in $rowheader {
+        #{$item} {
+            th {
+			color: $black;
+            }
+        }
+    }
+}
+/*.performanceScenario .averagereturn td, .costOverTime table td[class*=riy]{
+		background : $grey;
+}*/
+
+$scenariosheader : ".stress-return",
+".averagereturn",
+".unfavourable-return",
+".moderate-return",
+".invest",
+".favourable-return";
+@each $item in $scenariosheader {
+	#{$item} {
+		.scenario,.description {
+		font-weight: bold;
+		}
+	}
+}
+
+.page1 >.row6  {
+	break-after: always !important;
+}
+.page2>.row2>.composite1>.compositebody  *,.page3>.row2>.composite1>.compositebody  * {
+	break-before : avoid-page;
+}
+.arrow>td {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+.WB_SRInarrative2_1 {
+	background: url(images/warning-icon.png);
+    background-size: 18%;
+    background-position: 0px -5px;
+    width: 79%;
+    height: 61px;
+    padding: 7px 0px 0px 63px;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+p.Sri {
+	//position: absolute;
+	//padding: 0;
+	//margin: 75px 3px 22px 8px;
+	border:none;
+	margin:0;
+	float:none;
+	width:initial;
+	height:initial;
+	/*&:before {
+		position: absolute;
+		top: -2.3cm;
+		left: -0.7cm;
+		width: max-content;
+	}*/
+
+	/*&:after {
+	
+	}*/
+
+
+}
+.sriRiskRating {
+	.header {
+	th:last-of-type,th:first-of-type{
+		font-size: map-get($font-size, 'micro');
+		color: $black;
+	}
+	}
+
+	table td.rating{
+		width:0.78cm;
+		height:0.78cm;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&.selected{
+			width:0.96cm;
+			height:0.96cm;
+			font-size: 17pt;
+		}
+	}
+}
+table {
+
+
+    // display:contents;
+    th:not(.groupHeader1) {
+        background: $white;
+    }
+}
+table.sriRiskRating  th:not(.groupHeader1) {
+	background:none;
+  }
+  .sriRiskRating{
+	break-inside:avoid;
+	.ratings{
+		table{
+			tbody{
+				tr{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+			}
+		}
+	}
+  }
+  .page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 > .row5{
+	  break-before:avoid;
+  }
+
+
+/*>>>>>>costovertime table fullwidth css for 3column*/
+
+
+/*page 2 floating code*/
+/*
+
+  .performanceScenario.performancescenariotable {
+    page-break-inside:auto !important;
+}
+*/
+
+
+/*Theme name:Vanguard_theme_202208_EU*/

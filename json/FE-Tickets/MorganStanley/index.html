@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>_WB_FundNameFull_ PRIIP KID</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('./theme/common/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('./theme/common/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row1>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row1>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row2>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 75%;
+        }
+
+        .page1>.row2>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 25%;
+        }
+
+        .page1>.row5>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row5>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row6>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page1>.row6>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page2>.row1>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page2>.row1>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page2>.row2>.composite1>.compositebody>.row5>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page2>.row2>.composite1>.compositebody>.row5>.column2 {
+            float: left;
+            width: 50%;
+        }
+
+        .page3>.row1>.composite1>.compositebody>.row2>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .page3>.row1>.composite1>.compositebody>.row2>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="./script/jquery.1.8.2.min.js"></script>
+    <script src="./script/jquery-ui.1.11.0.min.js"></script>
+    <script src="./script/highcharts.9.3.0.js"></script>
+    <script src="./script/highcharts-3d.9.3.0.js"></script>
+    <script src="./script/custom-barchart.js"></script>
+    <script src="./script/awesomizr.js"></script>
+    <script src="./script/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="section page page1" data-pageorder="1" data-sectionid="4973519" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionid="4973520" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973521">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973522"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973523" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973524">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973525"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973526">
+                                    <p class="WB_Footer_1">test</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973527">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973528"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973529">
+                                    <p class="item4"></p>
+                                    <div class="Pagination">
+                                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span>
+                                        </p>
+                                    </div>
+                                    <p></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionid="4973530" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973531">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973532"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973533" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973534">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973535"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 keyinformationdocument"
+                                    data-sectionid="4973536">
+                                    <h2 class="item2">Key Information Document</h2>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973537">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973538"
+                                data-sectiontype="2">
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionid="4973539" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973540">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973541"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973542" data-sectiontype="2">
+                        <div class="section contentSection text text1 purpose" data-sectionid="4973543">
+                            <h2 class="item2">Purpose</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973544" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973545">
+                            <p class="WB_Purpose_1">test</p>
+                            <p class="WB_Purpose_2">This document provides you with key information about this
+                                investment product. It is not marketing material. The information is required by law to
+                                help you understand the nature, risks, costs, potential gains and losses of this product
+                                and to help you compare it with other products.</p>
+                            <p class="WB_Purpose_3">test</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973546" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973547"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionid="4973548" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973549">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973550"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973551" data-sectiontype="2">
+                        <div class="section contentSection text text1 Product" data-sectionid="4973552">
+                            <h2 class="item2">Product</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973553" data-sectiontype="2">
+                        <div class="section contentSection text text1 header" data-sectionid="4973554">
+                            <p class="WB_GeneralInformation_1">Schroder {subfundName}</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973555" data-sectiontype="2">
+                        <div class="section contentSection text text1 header" data-sectionid="4973556">
+                            <p class="WB_GeneralInformation_3">(GB0008022849)</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionid="4973557" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973558">
+                            <p class="WB_GeneralInformation_5">a subfund of Fund</p>
+                            <p class="WB_GeneralInformation_7">This product is listed on the London Stock Exchange, and
+                                governed by its Board of Directors. The Board has appointed Schroder Unit Trusts Limited
+                                as its investment manager, and to prepare this Key Information Document. Schroder Unit
+                                Trusts Limited is a member of the Schroders Group and is authorised and regulated by the
+                                Financial Conduct Authority (FCA). For more information on this product, please refer to
+                                www.schroders.co.uk/satric or call 0800 182 2399. This PRIIP is authorised in United
+                                Kingdom</p>
+                            <p class="WB_GeneralInformation_11">This document was published on 23 March 2022.</p>
+                            <p class="WB_GeneralInformation_15">You are about to purchase a product that is not simple
+                                and may be difficult to understand.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row6" data-roworder="6" data-sectionid="4973559" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973560"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionid="4973561" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973562">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973563"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973564" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973565">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973566"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 sectiontitle" data-sectionid="4973567">
+                                    <h2 class="item2">What is this product?</h2>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row2" data-roworder="2" data-sectionid="4973568"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973569">
+                                    <p class="WB_Whatisthisproduct_1">Type</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row3" data-roworder="3" data-sectionid="4973570"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973571">
+                                    <p class="WB_Whatisthisproduct_2">This is an closed ended investment trust.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row4" data-roworder="4" data-sectionid="4973573"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973574">
+                                    <p class="WB_Whatisthisproduct_8">Term</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row5" data-roworder="5" data-sectionid="4973575"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973576">
+                                    <p class="WB_Whatisthisproduct_9">There is no maturity date of the fund</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row6" data-roworder="6" data-sectionid="4973579"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973580">
+                                    <p class="WB_Whatisthisproduct_18">Investment objective</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row7" data-roworder="7" data-sectionid="4973581"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973582">
+                                    <p class="WB_Whatisthisproduct_23">The Company seeks to provide a high rate of total
+                                        return through investment in equities and equity-related securities of companies
+                                        trading in the Asia Pacific region (excluding Japan). The Company seeks to offer
+                                        a degree of capital preservation through tactical use of derivative instruments.
+                                    </p>
+                                    <p class="WB_Whatisthisproduct_24">The Company invests principally in a diversified
+                                        portfolio of 40-70 companies operating primarily in Asia, including Australasia
+                                        but excluding Japan. It is intended that the Company will have a bias to
+                                        investing in small and mid cap companies. Investments may be made in companies
+                                        listed on the stock markets of countries located in the region and/or listed
+                                        elsewhere but controlled from within the region and/or with a material exposure
+                                        to the region. The Company will focus on investing in companies with sound
+                                        balance sheets, professional management and capital allocation policies that are
+                                        aligned with the interests of minority shareholders.</p>
+                                    <p class="WB_Whatisthisproduct_25">The use of derivatives to protect the capital
+                                        value of the portfolio or for efficient portfolio management is fundamental to
+                                        the strategy of the Company's Portfolio Managers. Such derivatives may include
+                                        listed futures, call options, long puts, OTC instruments and instruments to
+                                        hedge currency exposure with Board approval. The Board will monitor the
+                                        effectiveness of the underlying process and the use of derivatives.</p>
+                                    <p class="WB_Whatisthisproduct_26">In order to obtain further exposure to equity
+                                        indices or individual stocks, the Company may enter into contracts for
+                                        difference where the underlying investments are not delivered and settlement is
+                                        made in cash. In extreme circumstances, and subject to Board approval, the
+                                        majority, or even all, of the Company's assets could be held in cash or near
+                                        cash instruments, with appropriate diversification of cash held on deposit.</p>
+                                    <p class="WB_Whatisthisproduct_27">The Company may use gearing to enhance
+                                        performance but net gearing will not exceed 30% of net asset value. The Company
+                                        does not tie its portfolio construction to the constituents of any benchmark;
+                                        instead, the size of stock positions are set on an absolute basis reflecting
+                                        where the best potential risk adjusted returns are to be found.</p>
+                                    <p class="WB_Whatisthisproduct_28">Recommendation: Investors should seek independent
+                                        advice or satisfy themselves that they have an understanding of the strategies
+                                        and techniques employed by the manager.</p>
+                                    <p class="WB_Whatisthisproduct_29">The fund may use derivatives with the aim of
+                                        achieving investment gains, reducing risk or managing the fund more efficiently.
+                                        The fund may use leverage and take short positions.</p>
+                                    <p class="WB_Whatisthisproduct_30">The fund is valued with reference to the net
+                                        asset value of the underlying assets.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row8" data-roworder="8" data-sectionid="4973584"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973585">
+                                    <p class="WB_Whatisthisproduct_31">Intended retail investor</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row9" data-roworder="9" data-sectionid="4973586"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973587">
+                                    <p class="WB_Whatisthisproduct_32">The fund is intended for retail and institutional
+                                        investors.</p>
+                                    <p class="WB_Whatisthisproduct_38">Benchmark: The Company does not tie its portfolio
+                                        construction to the constituents of any benchmark; instead, the size of stock
+                                        positions are set on an absolute basis reflecting where the best potential risk
+                                        adjusted returns are to be found.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row10" data-roworder="10" data-sectionid="4973588"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973589"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row11" data-roworder="11" data-sectionid="4973590"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973591"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row12" data-roworder="12" data-sectionid="4973592"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973593">
+                                    <p class="WB_Whatisthisproduct_51">Depositary</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row13" data-roworder="13" data-sectionid="4973594"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973595">
+                                    <p class="WB_Whatisthisproduct_52">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Cras bibendum porttitor justo. Cras egestas vestibulum turpis,
+                                        eu efficitur augue venenatis sed. Mauris eros enim, pharetra quis orci a, porta
+                                        viverra purus.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row14" data-roworder="14" data-sectionid="4973596"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973597">
+                                    <p class="WB_Whatisthisproduct_53">More Information</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row15" data-roworder="15" data-sectionid="4973598"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973599">
+                                    <p class="WB_Whatisthisproduct_54">Donec eget arcu at velit tincidunt tempus nec at
+                                        leo. Etiam volutpat ipsum ut felis bibendum, et mattis mi pellentesque. Quisque
+                                        nibh enim, commodo et felis id, pulvinar faucibus lacus. Morbi in vehicula
+                                        justo. Nunc lacinia neque lectus, eget sagittis felis tempus quis. Vivamus dui
+                                        nibh, pulvinar at dignissim at, egestas id metus.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973600">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973601"
+                                data-sectiontype="2">
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row6" data-roworder="6" data-sectionid="4973602" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973603">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973604"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973605" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973606">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973607"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 sectiontitle" data-sectionid="4973608">
+                                    <h2 class="item2">What are the risks and what could I get in return?</h2>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row2" data-roworder="2" data-sectionid="4973609"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973610">
+                                    <p class="WB_Whataretherisks_1">Risks</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row3" data-roworder="3" data-sectionid="4973611"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973612"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row4" data-roworder="4" data-sectionid="4973613"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1" data-sectionid="4973614">
+                                    <p class="Sri"></p>
+                                    <table class="sriRiskRating">
+                                        <tbody>
+                                            <tr class="ratings">
+                                                <td colspan="2">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th colspan="7" style="height: 0px; padding: 0 0 0; ">
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rating">1</td>
+                                                                <td class="rating">2</td>
+                                                                <td class="rating">3</td>
+                                                                <td class="rating">4</td>
+                                                                <td class="rating">5</td>
+                                                                <td class="rating">6</td>
+                                                                <td class="rating">7</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr class="arrow">
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr class="header">
+                                                <th>Lower risk</th>
+                                                <th>Higher risk</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row5" data-roworder="5" data-sectionid="4973615"
+                                data-sectiontype="2">
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row6" data-roworder="6" data-sectionid="4973631"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973632"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row7" data-roworder="7" data-sectionid="4973633"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973634">
+                                    <p class="WB_SRInarrative2_4">The risk indicator assumes you keep the product for
+                                        {rhp} years.</p>
+                                    <p class="WB_SRInarrative2_9">You may not be able to sell your product easily or you
+                                        may have to sell at a price that significantly impacts on how much you get back.
+                                    </p>
+                                    <p class="WB_SRInarrative2_20">The product is in this category because it seeks to
+                                        provide rewards whilst limiting price volatility.</p>
+                                    <p class="WB_SRInarrative2_22">The following factors serve to increase risk and may
+                                        lead to higher volatility in the Company's share price: it invests in assets
+                                        which are exposed to foreign currencies; it invests in emerging markets and the
+                                        Far East; it may invest in unregulated collective investment schemes; it has
+                                        borrowed (or "geared") to purchase assets; and it uses derivatives for specific
+                                        investment purposes.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row8" data-roworder="8" data-sectionid="4973638"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973639"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row9" data-roworder="9" data-sectionid="4973641"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973642"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row10" data-roworder="10" data-sectionid="4973645"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973646">
+                                    <p class="WB_SRInarrative2_46"></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row11" data-roworder="11" data-sectionid="4973647"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973648">
+                                    <p class="WB_SRInarrative2_47">You can find more information about the other risks
+                                        in the prospectus at: {bold}www.schroders.co.uk/satric{/bold}.</p>
+                                    <p class="WB_SRInarrative2_59">Liquidity risk: In difficult market conditions, the
+                                        fund may not be able to sell a security for full value or at all. This could
+                                        affect performance and could cause the fund to defer or suspend redemptions of
+                                        its shares.</p>
+                                    <p class="WB_SRInarrative2_60">The Company has no significant exposure to credit
+                                        risk. None of the Company's investments represent more than 10% of its net asset
+                                        value.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row12" data-roworder="12" data-sectionid="4973652"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 subheader" data-sectionid="4973653"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row13" data-roworder="13" data-sectionid="4973654"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973655"></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973656">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973657"
+                                data-sectiontype="2">
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page2" data-pageorder="2" data-sectionid="4973658" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionid="4973659" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973660">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973661"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973662" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973663">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973664"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973665">
+                                    <p class="WB_Footer_5">test</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973666">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973667"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973668">
+                                    <p class="item4"></p>
+                                    <div class="Pagination">
+                                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span>
+                                        </p>
+                                    </div>
+                                    <p></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionid="4973669" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973670">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973671"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973672" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973673">
+                            <h2 class="item2">Performance Scenarios</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973674" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973675"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973676" data-sectiontype="2">
+                        <div class="performancescenariotable_3column section contentSection performanceScenario performanceScenario1 performancescenariotable"
+                            data-sectionid="4973677" style="page-break-inside:avoid">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="header holding-period">
+                                                            <th colspan="2">Recommended holding period: </th>
+                                                            <th colspan="1"></th>
+                                                        </tr>
+                                                        <tr class="header investment-amount">
+                                                            <th colspan="2">Example Investment: </th>
+                                                            <th colspan="1">€10000</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2"></th>
+                                                            <th class="period1">If you exit after 0 year</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="groupHeader1" colspan="3">
+                                                                <div class="groupHeaderDiv1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr class="survival-scenario">
+                                                                                <th>Scenarios</th>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr class="minimum">
+                                                            <td class="scenario" rowspan="1">Minimum</td>
+                                                            <td class="description" colspan="2">There is no minimum
+                                                                guaranteed return if you exit before years. You could
+                                                                lose some or all of your investment.</td>
+                                                        </tr>
+                                                        <tr class="stress-return">
+                                                            <td class="scenario" rowspan="2"> Stress</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="stress averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="unfavourable-return">
+                                                            <td class="scenario" rowspan="2"> Unfavourable</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="unfavourable averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="moderate-return">
+                                                            <td class="scenario" rowspan="2"> Moderate</td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="moderate averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="favourable-return">
+                                                            <td class="scenario" rowspan="2"> Favourable </td>
+                                                            <td class="description">What you might get back after costs
+                                                            </td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                        <tr class="favourable averagereturn">
+                                                            <td class="description">Average return each year</td>
+                                                            <td class="period1"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionid="4973678" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973679">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973680"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 narrative" data-sectionid="4973681">
+                                    <p class="WB_Performancescenariosnarrative_4">Note that the figures shown also
+                                        reflect the maximum redemption fee of {redemptionfee}. This fee may be
+                                        applicable at the discretion of the Directors from time to time, in the event
+                                        that the Fund would need to make asset sales in the secondary market at a spread
+                                        to meet redemption requests.</p>
+                                    <p class="WB_Performancescenariosnarrative_5">The scenarios presented are an
+                                        estimate of future performance based on evidence from the past, and are not an
+                                        exact indicator. What you get will vary depending on how the market performs and
+                                        how long you keep the investment/product.</p>
+                                    <p class="WB_Performancescenariosnarrative_6">The scenarios shown illustrate how
+                                        your investment could perform. You can compare them with the scenarios of other
+                                        products.</p>
+                                    <p class="WB_Performancescenariosnarrative_7">The stress scenario shows what you
+                                        might get back in extreme market circumstances, and it does not take into
+                                        account the situation where we are not able to pay you.</p>
+                                    <p class="WB_Performancescenariosnarrative_8">The figures shown include all the
+                                        costs of the product itself, including performance fees when these are applied,
+                                        but may not include all the costs that you pay to your advisor or distributor.
+                                        The figures do not take into account your personal tax situation, which may also
+                                        affect how much you get back.</p>
+                                    <p class="WB_Performancescenariosnarrative_9">This table shows the money you could
+                                        get back over the next {RHP} years, under different scenarios, assuming that you
+                                        invest {scCurrency} {investmentAmount}.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973682">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973683"
+                                data-sectiontype="2">
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionid="4973684" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973685">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973686"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973687" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973688">
+                            <h2 class="item2">What happens if #^ManufacturerName^# is unable to pay out? </h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973689" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973690">
+                            <p class="WB_Unabletopayout_6">You may sell your shares at any time on the London Stock
+                                Exchange using your broker. Your shares are sold to another buyer in the market without
+                                recourse to the Company. If the Company goes into liquidation the investments will be
+                                sold and you will receive your pro rata share of the proceeds after settlement of any
+                                liabilities. You would not be entitled to compensation from the Financial Services
+                                Compensation Scheme.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionid="4973691" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973692">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973693"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973694" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973695">
+                            <h2 class="item2">What are the costs?</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973696" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973697"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973698" data-sectiontype="2">
+                        <div class="section contentSection text text1 subheader" data-sectionid="4973699">
+                            <p class="WB_WhatAreTheCosts_3">Costs over time</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionid="4973700" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973701">
+                            <p class="WB_WhatAreTheCosts_4">The Reduction in Yield (RIY) shows what impact the total
+                                costs you pay will have on the investment return you might get. The total costs take
+                                into account one-off, ongoing and incidental costs.</p>
+                            <p class="WB_WhatAreTheCosts_5">This illustrates how costs reduce your return each year over
+                                the holding period. For example it shows that if you exit at the recommended holding
+                                period your average return per year is projected to be {AverageReturnBeforeCosts} %
+                                before costs and {AverageReturnAfterCosts} % after costs.</p>
+                            <p class="WB_WhatAreTheCosts_6">The person selling or advising you about this product may
+                                charge you other costs. If so, this person will provide you with information about these
+                                costs, and show you the impact that all costs will have on your investment over time.
+                            </p>
+                            <p class="WB_WhatAreTheCosts_7">The amounts shown here are the cumulative costs of the
+                                product itself, for three different holding periods and are based on an investment of
+                                {scCurrency} {investmentAmount}. The figures are estimates and may change in the future.
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row6" data-roworder="6" data-sectionid="4973702" data-sectiontype="2">
+                        <div class="section contentSection text text1 subheader" data-sectionid="4973703"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row7" data-roworder="7" data-sectionid="4973704" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionid="4973705">
+                            <p class="WB_WhatAreTheCosts_21"></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row8" data-roworder="8" data-sectionid="4973706" data-sectiontype="2">
+                        <div class="costovertime_2columntable section contentSection costOverTime costOverTime1 costovertimetable"
+                            data-sectionid="4973707" style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th colspan="2" class="tableheader"></th>
+                                                        </tr>
+                                                        <tr class="scenarioheader">
+                                                            <th colspan="3"></th>
+                                                            <th class="scenario1">If you exit after 0 year</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="row">
+                                                            <td class="totalcostsheader">Total costs</td>
+                                                            <td class="totalcosts1"></td>
+                                                        </tr>
+                                                        <tr class="row">
+                                                            <td class="riyheader">Cost impact</td>
+                                                            <td class="riy1"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row9" data-roworder="9" data-sectionid="4973708" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973709"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section page page3" data-pageorder="3" data-sectionid="4973710" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionid="4973711" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973712">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973713"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973714" data-sectiontype="2">
+                        <div class="section column column1" data-sectionid="4973715">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973716"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973717">
+                                    <p class="WB_Footer_10">test</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionid="4973718">
+                            <div class="section row row1" data-roworder="1" data-sectionid="4973719"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 pagenumbers" data-sectionid="4973720">
+                                    <p class="item8"></p>
+                                    <div class="Pagination">
+                                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal">0</span>
+                                        </p>
+                                    </div>
+                                    <p></p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionid="4973721" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973722">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973723"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973724" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973725"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973726" data-sectiontype="2">
+                        <div class="section contentSection text text1 subheader" data-sectionid="4973727">
+                            <p class="WB_WhatAreTheCosts_continued_2">Composition of costs</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973728" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973729">
+                            <p class="WB_WhatAreTheCosts_continued_5">The table below shows:{break}- the impact each
+                                year of the different types of costs on the investment return you might get at the end
+                                of Recommended Holding Period;{break}- the meaning of the different cost categories.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionid="4973730" data-sectiontype="2">
+                        <div class="section contentSection costComposition costComposition1" data-sectionid="4973731"
+                            style="page-break-inside:avoid">
+                            <h2 class=""></h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th class="groupHeader1">
+                                            <div class="groupHeaderDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr class="tableHeader">
+                                                            <th colspan="3"></th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="groupRow1">
+                                            <div class="groupRowDiv1">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="groupHeader1" colspan="3">
+                                                                <div class="groupHeaderDiv1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr class="oneofcosts">
+                                                                                <th colspan="2">One-off costs upon entry
+                                                                                    or exit</th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr class="entrycosts">
+                                                            <td>Entry costs</td>
+                                                            <td>
+                                                                <div>
+                                                                    These costs are already included in the price you
+                                                                    pay when entering this investment. This is the most
+                                                                    you will be charged. The person selling you the
+                                                                    product will inform you of the actual charge.
+
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="exitcosts">
+                                                            <td>Exit costs</td>
+                                                            <td>
+                                                                <div>
+                                                                    These costs are charged as a % of your investment
+                                                                    before it is paid out to you.
+
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="ongoingcosts">
+                                                            <th colspan="3"> Ongoing costs taken each year</th>
+                                                        </tr>
+                                                        <tr class="managementfeesandothercosts">
+                                                            <td>Management fees and other administrative or operating
+                                                                costs</td>
+                                                            <td>
+                                                                <div>
+
+                                                                    These costs are an estimate based on actual costs
+                                                                    over the last year that we take each year for
+                                                                    managing your investments.
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="transactioncosts">
+                                                            <td>Transaction costs</td>
+                                                            <td>
+                                                                <div>
+                                                                    This is an estimate of the costs incurred when we
+                                                                    buy and sell the underlying investments for the
+                                                                    product. The actual amount will vary depending on
+                                                                    how much we buy and sell
+
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="incidentalcosts">
+                                                            <th colspan="3">Incidental costs taken under specific
+                                                                conditions</th>
+                                                        </tr>
+                                                        <tr class="performancefees">
+                                                            <td>Performance fees</td>
+                                                            <td>
+                                                                <div>
+                                                                    There is no performance fee charged on the fund
+
+
+
+
+
+
+
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row6" data-roworder="6" data-sectionid="4973732" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973733"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row7" data-roworder="7" data-sectionid="4973734" data-sectiontype="2">
+                        <div class="section contentSection text text1 subheader" data-sectionid="4973735"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row8" data-roworder="8" data-sectionid="4973736" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973737"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionid="4973738" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973739">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973740"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973741" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973742">
+                            <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973743" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973744">
+                            <p class="WB_HowlongshouldIholdit_2">In order to seek to minimise the effect of shorter term
+                                cyclical fluctuations in the market, the recommended minimum holding period for the
+                                Company's shares is at least 5 years. Shares in the Company may be bought and sold at
+                                any time on the London Stock Exchange using your broker.</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionid="4973745" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973746"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row5" data-roworder="5" data-sectionid="4973747" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973748"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionid="4973750" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973751">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973752"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973753" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973754">
+                            <h2 class="item2">How can I complain?</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973755" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973756">
+                            <p class="WB_HowcanIcomplain_2">Should you wish to complain about your investment in the
+                                Company or any aspect of the service provided to you by Schroders, please write to the
+                                Board c/o the Company Secretary at 1 London Wall Place, London EC2Y 5AU, or send an
+                                email to: investorservices@schroders.com</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionid="4973758" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionid="4973759">
+                <div class="section contentSection text text1  compositeheader" data-sectionid="4973760"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionid="4973761" data-sectiontype="2">
+                        <div class="section contentSection text text1 sectiontitle" data-sectionid="4973762">
+                            <h2 class="item2">Other relevant information</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionid="4973763" data-sectiontype="2">
+                        <div class="section contentSection text text1 narrative" data-sectionid="4973764">
+                            <p class="WB_Otherrelevantinformation_1">Depending on how you buy these shares you may incur
+                                other costs, including broker commission, platform fees and Stamp Duty. The distributor
+                                will provide you with additional documents where necessary.</p>
+                            <p class="WB_Otherrelevantinformation_3">This Key Information Document is updated at least
+                                every 12 months, unless there are any ad-hoc changes.</p>
+                            <p class="WB_Otherrelevantinformation_4">Tax legislation:{/bold} The Company is subject to
+                                UK tax legislation which may have an impact on your personal tax position.</p>
+                            <p class="WB_Otherrelevantinformation_5">Distribution Policy: This share class pays an
+                                annual distribution at a variable rate based on gross investment income.</p>
+                            <p class="WB_Otherrelevantinformation_6">Depository: HSBC Bank plc</p>
+                            <p class="WB_Otherrelevantinformation_7">The cost, performance and risk calculations
+                                included in this Key Information Document follow the methodology prescribed by EU rules.
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+
+</html>

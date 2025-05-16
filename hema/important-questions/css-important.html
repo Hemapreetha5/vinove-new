@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hema CSS Tutorial</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        ol > li,p {
+    color: #fff;
+    line-height: 24px;
+}
+h4 {
+    color: #8a2ae4;
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 24px;
+}
+pre {
+    white-space: pre-wrap;
+}
+li ol {
+    padding-left:0px;
+    list-style-position: inside;
+}
+::marker{
+    color: #8a2ae4;
+}
+.blue-text{
+    color: #2db2ff;
+}
+strong.blue-text{
+    text-decoration: underline;
+}
+code{
+    background: rgba(255,255,255,0.08);
+    color: #ff6ecd;
+}
+body{
+    background-color: #000;
+    line-height: 24px;
+}
+.margin{
+    background: #f1f1f1;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 2px dashed #bbb;
+    transition: all .25s ease-in-out;
+    color: black;
+}
+.margin:before {
+    content: "Margin";
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 1.8%;
+    width: 100%;
+    text-align: center;
+}
+.border {
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.border:before {
+    content: "Border";
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    left: 0;
+    top: 2.5%;
+    width: 100%;
+    text-align: center;
+}
+.padding {
+    color: black;
+    padding: 40px 25px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #f1f1f1;
+}
+.padding:before {
+    content: "Padding";
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 3.7%;
+    width: 100%;
+    text-align: center;
+}
+.content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+    border: 2px dashed #bbb;
+}
+.content:before {
+    content: "Content";
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    line-height: 3.5;
+}
+.w3-theme {
+    color: #fff;
+    background-color: #04AA6D;
+}
+.no-bullet{
+    list-style-type: none;
+    padding-left:0;
+}
+        </style>
+</head>
+<body>
+    <div class="markdown prose w-full break-words dark:prose-invert light">
+        <ol>
+        <li>
+            <h4>What is CSS and what is it used for?</h4>
+            <p>CSS stands for Cascading Style Sheets  is used to format the layout of a webpage</p>
+            <p>With CSS, you can control the color, font, the size of text, the spacing between elements, 
+                how elements are positioned and laid out, what background images or background colors are to be used, 
+                different displays for different devices and screen sizes, and much more!</p>
+        </li>
+        <li>
+            <h4>CSS TYPES?</h4>
+            <ol>
+                <li><strong class="blue-text">Inline</strong> - by using the style attribute inside HTML elements
+                    <p>Example:</p>
+                    <p><code class="!whitespace-pre hljs language-css">&lt;<span class="hljs-selector-tag">p</span> style="<span class="hljs-attribute">color</span>: red; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">font-weight</span>: bold;"&gt;This is <span class="hljs-selector-tag">a</span> paragraph with inline CSS styles&lt;/<span class="hljs-selector-tag">p</span>&gt;
+                    </code></p>
+                </li>
+                <li><strong class="blue-text">Internal</strong> - by using a <span><</span><span>style</span><span>></span> element in the <span><</span><span>head</span><span>></span> section
+                <p>Example:</p>
+<pre>
+<code class="!whitespace-pre hljs language-php-template"><span class="xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+        <span class="hljs-selector-tag">p</span> {
+        <span class="hljs-attribute">color</span>: blue;
+        <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+        }
+        <span class="hljs-selector-class">.important</span> {
+        <span class="hljs-attribute">font-weight</span>: bold;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a paragraph of text with blue color and 18px font size.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"important"</span>&gt;</span>This is an important paragraph with bold font weight.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</span></code>
+</pre>
+                </li>
+                <li><strong class="blue-text">External</strong> - by using a <link> element to link to an external CSS file
+                <p>Example:</p>
+                <p><code><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"style.css"</span>&gt;</span></code></p>
+            </li>
+            </ol>
+
+        </li>
+        <li>
+            <h4>How do you select elements in CSS</h4>
+            <div><p>In CSS, you can select elements using selectors.</p>
+                <ol><li><strong class="blue-text">Element selectors:</strong> Element selectors select elements based on their tag name. For example, <code>p</code> selects all <code>p</code> elements on the page.</li></ol>
+                <p>Example:</p>
+<pre><code>p {
+    color: red;
+}
+</code></pre>
+              <ol start="2"><li><strong class="blue-text">Class selectors:</strong> Class selectors select elements based on the value of their <code>class</code> attribute. To create a class selector, use a period (.) followed by the class name.</li></ol><p>Example:</p>
+<pre><code>.highlight {
+    background-color: yellow;
+}
+</code></pre>
+            <ol start="3"><li><strong class="blue-text">ID selectors:</strong> ID selectors select elements based on the value of their <code>id</code> attribute. To create an ID selector, use a hash (#) followed by the ID name.</li></ol><p>Example:</p>
+<pre><code>#header {
+    font-size: 24px;
+}
+</code></pre>
+            <ol start="4"><li><strong class="blue-text">Attribute selectors:</strong> Attribute selectors select elements based on the value of their attributes. To create an attribute selector, use square brackets ([attribute=value]).</li></ol><p>Example:</p>
+<pre><code>input[type="text"] {
+    border: 1px solid black;
+}
+</code></pre>
+            <ol start="5"><li><strong class="blue-text">Combination selectors:</strong> Combination selectors select elements based on a combination of selectors. For example, <code>p.highlight</code> selects all <code>p</code> elements with the class name <code>highlight</code>.</li></ol><p>Example:</p>
+<pre><code>p.highlight {
+    color: blue;
+}
+</code></pre>
+        </div>
+        </li>
+        <li>
+            <h4>What is the box model in CSS?</h4>
+            <p>The box model is a fundamental concept in CSS that describes how elements are structured and displayed on a web page.</p>
+            <ol><li><strong class="blue-text">Content:</strong> The actual content of the element, such as text, images, or other HTML elements.</li><li><strong class="blue-text">Padding:</strong> The space between the content and the element's border.</li><li><strong class="blue-text">Border:</strong> A border that surrounds the element's padding and content.</li><li><strong class="blue-text">Margin:</strong> The space between the element's border and other elements on the page.</li></ol>
+            <p>Example:</p>
+            <div class="margin">
+                <div class="border w3-theme">
+                  <div class="padding">
+                    <div class="content"></div>
+                   </div>
+                </div>
+              </div>
+        </li>
+        <li>
+            <h4>What is the difference between margin and padding in CSS?</h4>
+            <p>Padding is the space between an element's content and its border. It affects the size of the element's content area, but not its overall size. </p>
+            <p>Margin, on the other hand, is the space outside an element's border, between the element and other elements on the page. It affects the layout of the element on the page, but not the size of the element's content area. </p>
+        </li>
+        <li>
+            <h4>CSS Flexbox?</h4>
+            <p>CSS Flexbox is a layout model used to create flexible and responsive layouts for web pages.</p>
+            <p><strong class="blue-text">flex-direction:</strong> The direction in which the flex items are laid out in the flex container.</p>
+            <p><strong class="blue-text">justify-content:</strong> Determines how the flex items are distributed along the main axis.</p>                
+            <p><strong class="blue-text">align-items:</strong> Determines how the flex items are aligned along the cross axis.</p>                
+            <p><strong class="blue-text">align content:</strong> Determines how the rows are aligned along the cross axis.</p>
+            <ul class="no-bullet">
+                <li><code>flex-start</code>: The default value, aligns flex items to the start of the container.</li>
+                <li><code>flex-end</code>: Aligns flex items to the end of the container.</li>
+                <li><code>center</code>: Centers the flex items within the container.</li>
+                <li><code>space-between</code>: Distributes the flex items evenly along the main axis with space between the items.</li>
+                <li><code>space-around</code>: Distributes the flex items evenly along the main axis with space around the items.</li>
+                <li><code>space-evenly</code>: Distributes the flex items evenly along the main axis with equal space between and around the items.</li>
+            </ul>
+        </li>
+        <li>
+            <h4>What are the different units of measurement in CSS?</h4>
+            <ol>
+                <li><strong class="blue-text">Pixels (px):</strong> A pixel is a unit of measurement that is relative to the resolution of the screen or device. It is a fixed size, and one pixel is equal to one dot on a screen.</li>
+                <li><strong class="blue-text">Percentages (%):</strong> Percentages are relative units of measurement that are based on the size of the element's parent. For example, setting <code>width: 50%;</code> on an element would make it half the width of its parent.</li>
+                <li><strong class="blue-text">Em (em):</strong> An em is a unit of measurement that is relative to the font size of the element. One em is equal to the font size of the element, so setting <code>font-size: 2em;</code> would make the text twice as large as the default font size.</li>
+                <li><strong class="blue-text">Rem (rem):</strong> A rem is similar to an em, but it is relative to the root element's font size (usually the <code>html</code> element). This makes it more predictable than em units, which can be affected by nested elements.</li>
+                <li><strong class="blue-text">Viewport units (vw, vh, vmin, vmax):</strong> Viewport units are relative to the size of the viewport (i.e., the browser window). <code>1vw</code> is equal to 1% of the viewport width, <code>1vh</code> is equal to 1% of the viewport height, <code>1vmin</code> is equal to the smaller of the two, and <code>1vmax</code> is equal to the larger of the two.</li>
+                <li><strong class="blue-text">Absolute units (in, cm, mm, pt, pc):</strong> Absolute units are fixed units of measurement that are not relative to anything else. For example, <code>1in</code> is equal to one inch, <code>1cm</code> is equal to one centimeter, <code>1mm</code> is equal to one millimeter, <code>1pt</code> is equal to 1/72 of an inch, and <code>1pc</code> is equal to 12 points.</li>
+            </ol>
+        </li>
+        <li>
+            <h4>How do you center an element horizontally and vertically in CSS flex?</h4>
+            <p>In CSS flexbox, we can center an element both horizontally and vertically by using the <code>display: flex</code> and <code>align-items:center</code> and <code>justify-content:center</code> properties.</p>
+            <p>
+<code>
+<pre>
+.container {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+</pre>
+</code>
+            </p>
+        </li>
+        <li>
+            <h4>What is a CSS pseudo-class and give an example?</h4>
+            <p>A pseudo-class is used to define a special state of an element.</p>
+            <ol>
+                <li><code>:hover</code> - apply a style when the link is being hovered over by the mouse.
+                <p>Example:</p>
+<pre>
+<code>
+a:hover {
+    color: red;
+}
+</code>
+</pre>
+            </li>
+                <li><code>:active</code> - applies a style when the element is being clicked.
+                    <p>Example:</p>
+<pre>
+<code>
+a:active {
+    color: green;
+}
+</code>
+</pre>
+                </li>
+                <li><code>:focus</code> - applies a style when the element has focus (i.e., is currently selected)
+                    <p>Example:</p>
+<pre>
+<code>
+a:focus {
+    color: yellow;
+}
+</code>
+</pre>
+</li>
+                <li><code>:first-child</code> - applies a style to the first child element of the parent element
+<p>Example:</p>
+<pre>
+<code>
+a:first-child {
+    color: orange;
+}
+</code>
+</pre>
+</li>
+                <li><code>:last-child</code> - applies a style to the first child element of the parent element.
+                <p>Example:</p>
+<pre>
+<code>
+a:last-child {
+    color: pink;
+}
+</code>
+</pre>
+                </li>
+                <li><code>:nth-child()</code> - applies a style to an element that is the nth child of its parent element, where n is a number or formula.
+<p>Example:</p>
+<pre>
+<code>
+a:last-child {
+    color: pink;
+}
+</code>
+</pre>
+</li>
+            </ol>
+   
+        </li>
+        <li>
+            <h4>What is a CSS pseudo-element and give an example?</h4>
+            <p>A CSS pseudo-element is used to style specified parts of an element.</p>
+            <pre>
+<code>
+p::first-line {
+    color: #ff0000;
+    font-variant: small-caps;
+}
+p::first-letter {
+    color: #ff0000;
+    font-size: xx-large;
+}
+h1::before {
+    content: url(smiley.gif);
+}
+h1::after {
+    content: url(smiley.gif);
+}
+::marker {
+    color: red;
+    font-size: 23px;
+}
+::selection {
+    color: red;
+    background: yellow;
+}
+</code>
+</pre>
+        </li>
+        <li>
+            <h4>What is the difference between display: none and visibility: hidden in CSS?</h4>
+            <p><code>display: none</code> removes the element from the normal flow of the document and hides it completely. This means that the element takes up no space on the page and cannot be interacted with<code>display: none</code>, it is as if the element doesn't exist at all.</p>
+            <p><code>visibility: hidden</code> hides the element from view but still takes up space on the page. This means that the layout of the page is not affected.</p>
+   
+        </li>
+        <li>
+            <h4>What is the difference between position:relative , absolute, fixed, sticky , static?</h4>
+            <ul class="no-bullet">
+                <li><code>position: static</code> - HTML elements are positioned static by default.Element is positioned in the normal flow of the document, with no special positioning like we cant assigned top,left,right,bottom values.</li>
+                <li><code>position: relative</code> - Element is positioned relative to its normal position in the document flow.We can assign special posiion values like top,left,right,bottom values.</li>
+                <li><code>position: absolute</code> - Element is positioned relative to its first nearest positioned ancestor element, or the initial containing block if no positioned ancestor exists.</li>
+                <li><code>position: fixed</code> - Element is positioned relative to the viewport, and stays in the same position even if the page is scrolled.</li>
+                <li><code>position: sticky</code> - Element is positioned like <code>position: relative</code> until a certain point, at which point it becomes <code>position: fixed</code>.</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Naming convention and give an example?</h4>
+            <ul class="no-bullet">
+                <li><strong class="blue-text">Naming convention:</strong> A class is denoted with a period (<code>.</code>) followed by the class name, while an ID is denoted with a hash (<code>#</code>) followed by the ID name. For example:
+<code>
+<pre>
+.my-class {
+    /* Styles for elements with the class "my-class" */
+}
+#my-id {
+    /* Styles for the element with the ID "my-id" */
+}
+</pre>
+</code>
+            </li>
+            <li>
+                <strong class="blue-text">Usage: </strong> A class can be used multiple times in a single HTML document, while an ID must be unique within the document.
+            </li>
+            <li>
+                <strong class="blue-text">Specificity: </strong> In terms of CSS specificity, an ID has a higher specificity than a class. This means that styles applied with an ID selector will override styles applied with a class selector.
+            </li>
+            </ul>
+        </li>
+        <li>
+            <h4>Media queries for different devices?</h4>
+            <ul class="no-bullet">
+                <li>Mobile Devices              
+<code>
+<pre>
+/* Styles for screens with a maximum width of 480px */
+@media only screen and (max-width: 480px) {
+  /* Styles for mobile devices */
+}
+</pre>
+                    </code>
+                </li>
+                <li>Tablets          
+<code>
+<pre>
+/* Styles for screens with a minimum width of 768px and a maximum width of 1024px */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Styles for tablets */
+}
+</pre>
+                    </code>
+                </li>
+                <li>Desktops         
+<code>
+<pre>
+/* Styles for screens with a minimum width of 1024px */
+@media only screen and (min-width: 1024px) {
+    /* Styles for desktops */
+}
+</pre>
+                    </code>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h4>How do you optimize CSS for better website performance?</h4>
+            <ol>
+                <li>Minify CSS</li>
+                <li>Combine CSS files</li>
+                <li>Use CSS preprocessors: CSS preprocessors like Sass or Less for reusable code</li>
+                <li>Avoid using inline styles</li>
+                <li>Avoid using too many selectors</li>
+            </ol>
+   
+        </li>
+     
+        <li>
+            <h4>CSS Grid Layout Module?</h4>
+            <p> with rows and columns, making it easier to design web pages without having to use floats and positioning.</p>
+            <code>
+<pre>
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+</pre>
+            </code>
+<code>
+<div class="CodeMirror-code" style=""><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"grid-container"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml"> &nbsp;</span><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"item1"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml">Header</span><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml"> &nbsp;</span><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"item2"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml">Menu</span><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml"> &nbsp;</span><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"item3"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml">Main</span><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml"> &nbsp;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml"> &nbsp;</span><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"item4"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml">Right</span><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml"> &nbsp;</span><span class="cm-m-xml cm-tag cm-bracket">&lt;</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml"> </span><span class="cm-m-xml cm-attribute">class</span><span class="cm-m-xml">=</span><span class="cm-m-xml cm-string">"item5"</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span><span class="cm-m-xml">Footer</span><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-m-xml cm-tag cm-bracket">&lt;/</span><span class="cm-m-xml cm-tag">div</span><span class="cm-m-xml cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">&ZeroWidthSpace;</span></span></pre></div>
+</code>
+        </li>
+        <li>
+            <h4>Mixin in sass?</h4>
+            <p>In Sass, a mixin is a reusable set of CSS declarations that can be included in multiple selectors</p>
+            <code>
+<pre>
+@mixin box-shadow($x, $y, $blur, $color) {
+    box-shadow: $x $y $blur $color;
+}
+.example1 {
+    @include box-shadow(2px, 2px, 10px, #333);
+}
+.example2 {
+    @include box-shadow(10px, 10px, 10px, red);
+}
+</pre>
+            </code>
+        </li>
+        <li>
+            <h4>What is z-index in CSS?</h4>
+            <p>The z-index property specifies the stack order of an element.</p>
+            <p>It can overlap with other element</p>
+            <p>z-index only works on positioned elements(position: absolute, position: relative, position: fixed, or position: sticky)</p>
+        </li>
+        <li>
+            <h4>CSS Combinators?</h4>
+            <ul class="no-bullet">
+                <li><strong class="blue-text">selector (space)</strong> 
+<p>Example</p>
+<code>
+<pre>
+div p {
+    background-color: yellow;
+}
+</pre>
+</code>
+                </li>
+                <li><strong class="blue-text">child selector (>)</strong>
+                    <p>Example</p>
+<code>
+<pre>
+div > p {
+    background-color: yellow;
+}
+</pre>
+</code>
+                </li>
+                <li><strong class="blue-text">adjacent sibling selector (+)</strong> => It select only adjacent elements
+<code>
+<pre>
+div + p {
+    background-color: yellow;
+}
+</pre>
+</code>
+                </li>
+                <li><strong class="blue-text">general sibling selector (~)</strong>
+<code>
+<pre>
+div ~ p {
+    background-color: yellow;
+}
+</pre>
+</code>
+                </li>
+
+            </ul>
+        </li>
+
+
+            </ul>
+        </li>
+        <li>
+            <h4>2D array</h4>
+            <p>2D array using various techniques, such as CSS Grid or Flexbox</p>
+<pre>
+<code class="!whitespace-pre hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-container"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid-item"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code>
+</pre>
+<code class="!whitespace-pre hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">100px</span>); <span class="hljs-comment">/* Adjust column size as needed */</span>
+    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>; <span class="hljs-comment">/* Adjust gap between grid items */</span>
+  }
+</code>
+         </li>
+    </ol>
+    </div>
+</body>
+</html>

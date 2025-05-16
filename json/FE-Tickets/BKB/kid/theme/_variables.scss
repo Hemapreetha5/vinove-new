@@ -1,0 +1,145 @@
+@import "./_colors.scss";
+@import "./_fonts.scss";
+
+// controls
+$needLogo: false;
+$logomargin: 0.80cm 0cm 1.25cm 0cm;
+$stickyHeader: false;
+$logoDirectionLeft: false;
+$logoDirection: top right;
+$logoDirectionUP: true;
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+$ratingType: 1;
+$riskselected: $sri-current;
+//1-rating,arrow,header
+//2-header,arrow,rating
+//3-arrow,header,rating
+//4-arrow,rating,header
+$ratingSpace: false;
+$arrowColor: 'rgb(230, 0, 0)'; //red
+$riskActive: $primary;
+$riskindicatorheading: true;
+$riskwarningicon: true;
+// end of controls
+//$color: rgb(230, 0, 0);
+
+
+// page dimensions
+$pageWidth: 100%;
+$screenpageWidth: 18cm;
+$pageHeight: auto;
+//font-family specs
+// --body
+$h1Type: $fontSemiBold;
+$h2Type: $fontSemiBold;
+$h2lightType: $fontBold;
+$h2MediumType: $fontBold;
+$h3Type: $fontSemiBold;
+$h3boldType: $fontLight;
+$h4Type: $fontBold;
+$paraType: $fontLight;
+$linkType: $fontRegular;
+$paraLineHeight: 1.2;
+$columncount: 1;
+$columngap: 0.8cm;
+$allparaAlignment: left;
+//  -- table
+$thType: $fontBold;
+$tdType: $fontRegular;
+
+
+//font-size specs
+$h1Size: 24pt;
+$h2Size: 12pt;
+$h2microSize: map-get($font-size, 'micro');
+$h3Size: map-get($font-size, 'micro');
+$h4Size: map-get($font-size, 'small');
+$paraSize: 9pt;
+$linkSize: map-get($font-size, 'normal');
+//  -- table
+$thSize: map-get($font-size, 'small');
+$tdSize: map-get($font-size, 'small');
+
+//color specs
+$bodybg: $white;
+// --body
+$h1Color: $color1;
+$purposeh2: $medgrey;
+$h2Color: $secondary;
+$h3Color: $basecolor;
+$h4Color: $primary;
+$paraColor: $basecolor;
+$linkColor: $blue;
+// --table
+$thBg: $transparent;
+$td-left-border-color: $transparent;
+$td-right-border-color: $transparent;
+$th-left-border-color: $transparent;
+$th-right-border-color: $transparent;
+$thBorder: $primary;
+$thColor: $black;
+$tdBg: $lightgrey;
+$tdBorder: $primary;
+$tdColor: $basecolor;
+$tablemargin: 0 0 0.30cm 0;
+//spacing
+$headerMargin: 0.46cm 0 0.05cm 0; //.46cm for row
+$headerPadding: 1.4mm 0 .1cm 0;
+$paraMargin: 0 0 0.2cm 0;
+$paraPadding: 0;
+
+//logo
+$logourl: url(images/Basler_Kantonalbank.jpg);
+$logobgWidth: auto;
+$logobgHeight: 1cm;
+$logoWidth: 100%;
+$logoHeight: 1cm;
+
+@mixin logoPosition {
+  @if $logoDirectionLeft {
+    @if $stickyHeader {
+      background-position: calc(20.7cm - $logoWidth ) center;
+    }
+
+    @else {
+      background-position: calc(19cm - $logoWidth ) center;
+    }
+  }
+
+  @else {
+    @if $stickyHeader {
+      background-position: 0.3cm center;
+    }
+
+    @else {
+      background-position: 0 center;
+    }
+  }
+
+}
+
+@mixin logo {
+  background-color: transparent;
+  background-image: $logourl;
+  background-size: $logobgWidth $logobgHeight;
+  width: $logoWidth;
+  height: $logoHeight;
+  @include logoPosition;
+  background-repeat: no-repeat;
+}
+
+//rating arrow
+$arrow1: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='UTF-8'?%3e%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 238.25 6.45'%3e%3cdefs%3e%3cstyle%3e.d%7bstroke-miterlimit:10;stroke-width:1.42px;%7d.d,.e%7bfill:" +$arrowColor+";stroke:" +$arrowColor+";%7d.f%7bfill:" +$arrowColor+";%7d.e%7bstroke-linecap:round;stroke-linejoin:round;stroke-width:.85px;%7d%3c/style%3e%3c/defs%3e%3cg id='a'/%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cline class='d' x1='3.23' y1='3.22' x2='232.83' y2='3.22'/%3e%3cpolyline class='f' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3e%3cpolyline class='e' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3e%3cpolyline class='f' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3e%3cpolyline class='e' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+$arrow2: url("data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' encoding='utf-8'?%3e%3csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3e%3cstyle type='text/css'%3e .st0%7bfill:none;stroke:" +$arrowColor+";stroke-width:1.42;stroke-miterlimit:10;%7d .st1%7bfill:none;stroke:" +$arrowColor+";stroke-width:1.42;stroke-miterlimit:10;stroke-dasharray:4.0286,2.0143;%7d .st2%7bfill:" +$arrowColor+";%7d .st3%7bfill:none;stroke:" +$arrowColor+";stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;%7d %3c/style%3e%3cg id='a'%3e%3c/g%3e%3cg id='b'%3e%3cg id='c'%3e%3cg%3e%3cg%3e%3cg%3e%3cline class='st0' x1='3.2' y1='3.2' x2='5.2' y2='3.2'/%3e%3cline class='st1' x1='7.2' y1='3.2' x2='229.8' y2='3.2'/%3e%3cline class='st0' x1='230.8' y1='3.2' x2='232.8' y2='3.2'/%3e%3c/g%3e%3c/g%3e%3cpolyline class='st2' points='0.4,3.2 6.1,6 6.1,0.4 0.4,3.2 '/%3e%3cpolyline class='st3' points='0.4,3.2 6.1,6 6.1,0.4 0.4,3.2 '/%3e%3cpolyline class='st2' points='237.8,3.2 232.1,6 232.1,0.4 237.8,3.2 '/%3e%3cpolyline class='st3' points='237.8,3.2 232.1,6 232.1,0.4 237.8,3.2 '/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e ");
+$arrow3: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 238.2 6.4' style='enable-background:new 0 0 238.2 6.4;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;stroke:" +$arrowColor+";stroke-miterlimit:10;%7D .st1%7Bfill:" +$arrowColor+";%7D%3C/style%3E%3Cg id='a'%3E%3C/g%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cline class='st0' x1='1.9' y1='3.2' x2='236' y2='3.2'/%3E%3Cg%3E%3Cpolygon class='st1' points='4.3,6.1 4.7,5.6 2.2,3.2 4.7,0.8 4.3,0.3 1.1,3.2 '/%3E%3C/g%3E%3Cg%3E%3Cpolygon class='st1' points='233.6,6.1 233.1,5.6 235.7,3.2 233.1,0.8 233.6,0.3 236.7,3.2 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+$arrow4: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 238.25 6.45'%3E%3Cdefs%3E%3Cstyle%3E.d%7Bstroke-miterlimit:10;stroke-width:1.42px;%7D.d,.e%7Bfill:none;stroke:%23002a5e;%7D.f%7Bfill:%23002a5e;%7D.e%7Bstroke-linecap:round;stroke-linejoin:round;stroke-width:.85px;%7D%3C/style%3E%3C/defs%3E%3Cg id='a'/%3E%3Cg id='b'%3E%3Cg id='c'%3E%3Cg%3E%3Cline class='d' x1='3.23' y1='3.22' x2='232.83' y2='3.22'/%3E%3Cpolyline class='f' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3E%3Cpolyline class='e' points='.43 3.22 6.13 6.03 6.13 .43 .43 3.22'/%3E%3Cpolyline class='f' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3E%3Cpolyline class='e' points='237.83 3.22 232.12 6.03 232.12 .43 237.83 3.22'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+$arrow33: url("data:image/svg+xml;charset=UTF-8,%3csvg width='239' height='7' viewBox='0 0 239 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_125_2)'%3e%3cpath d='M1.89999 3.20001H236' stroke='%23E60000' stroke-width='0.5' stroke-miterlimit='10'/%3e%3cpath d='M4.30001 6.09999L4.70001 5.59999L2.20001 3.19999L4.70001 0.799988L4.30001 0.299988L1.10001 3.19999L4.30001 6.09999Z' fill='%23E60000'/%3e%3cpath d='M233.6 6.09999L233.1 5.59999L235.7 3.19999L233.1 0.799988L233.6 0.299988L236.7 3.19999L233.6 6.09999Z' fill='%23E60000'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_125_2'%3e%3crect width='238.2' height='6.4' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e ");
+
+$arrowType: $arrow33;
+
+//footer
+$footerPath: ".contentSection.pagenumbers .footer";
+$footershow: false;
+$footerlogo: true;
+$hidepagination : true;

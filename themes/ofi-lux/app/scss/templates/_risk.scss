@@ -1,0 +1,160 @@
+@if $is-show-warning {
+
+	p.SriRange,
+	p.Sri {
+		width: 1px;
+		height: 0;
+		border-style: solid;
+		border-width: 0 25px 43.3px 25px;
+		border-color: transparent transparent $alert transparent;
+
+		@if $is-warning-inline {
+			position: relative;
+			padding-top: 0.5cm;
+			margin-right: 1cm;
+			margin-top: 0cm;
+			float: left;
+		}
+
+		@else {
+			position: absolute;
+			padding: 0;
+			padding-top: 2.45cm;
+			top: cm;
+		}
+	}
+
+	// p.SriRange:before,
+	// p.Sri:before {
+	// 	content: "Risk indicator";
+	// 	position: absolute;
+	// 	top: 8px;
+	// 	left: -0.7cm;
+	// 	font-weight: 700;
+	// 	font-family: $font-bold;
+	// 	width: max-content;
+	// }
+
+	p.SriRange:after,
+	p.Sri:after {
+		content: "!";
+		font-family: $font-regular;
+		font-size: 18pt;
+		color: $white;
+		position: relative;
+		left: -3px;
+		top: 0.3cm;
+	}
+}
+
+
+.sriRiskRating,
+.sriRangeRiskRating {
+	@if $is-two-column {
+		width: 100%;
+	}
+
+	@else {
+		width: 48%;
+	}
+
+	margin-top: 0 !important;
+	position: relative;
+
+	.ratings {
+		@if $is-SRI-header-top {
+			table {
+				margin-top: 1cm;
+			}
+		}
+
+		table {
+			margin-top: 0.2cm;
+			margin-bottom: 0.2cm;
+		}
+
+		td {
+			&.rating {
+				background: $SRI-rating-bg;
+				width: $SRI-column-width;
+				height: $SRI-column-height;
+				// border: 1pt solid $SRI-rating-border;
+				font-family: $font-bold;
+				font-size: 8pt;
+				// line-height: 19pt;
+				text-align: center;
+			}
+
+			&.selected {
+				background: $SRI-rating-selected-bg;
+				color: $SRI-rating-selected-color;
+			}
+		}
+	}
+}
+
+.rating+.rating {
+	border-left: 5px solid white;
+}
+
+.sriRiskRating,
+.sriRangeRiskRating {
+	.header {
+		display: block;
+		margin-top: .2cm;
+		margin-bottom: .2cm;
+
+		@if $is-SRI-header-top {
+			position: absolute;
+			top: -0.2cm;
+		}
+
+		th {
+			background: $SRI-header-bg;
+			width: 2cm;
+			text-align: left;
+			// font-family: var(--fontLight);
+			// font-weight: 100;
+			color: white;
+			border: 0;
+			padding: 1.2mm 4.5mm;
+
+
+			&:last-of-type {
+				text-align: right;
+				border-left: 5cm solid white;
+			}
+
+			@if $is-dual-risk-text {
+				&:after {
+					content: $SRI-header-risk-lower;
+					padding: 2mm 0mm;
+					display: block;
+				}
+
+				&:last-of-type:after {
+					content: $SRI-header-risk-higher;
+				}
+			}
+		}
+	}
+
+	.arrow {
+		background: $arrow-style no-repeat;
+
+		height: 4mm;
+		width: 100%;
+
+		@if $is-SRI-arrow-top {
+			position: absolute;
+			top: 0.2cm;
+		}
+	}
+}
+
+.page1>.row6 .compositebody .column1 .row7 .narrative:before {
+	content: "";
+	width: 1.75cm;
+	height: 1.2cm;
+	float: left;
+}

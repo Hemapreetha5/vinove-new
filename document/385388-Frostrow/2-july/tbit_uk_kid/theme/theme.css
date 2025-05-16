@@ -1,0 +1,473 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+
+:root{
+	--headerText:Poppins;
+	--headerColor:rgb(72,131,163);
+	--bodyText:Poppins;
+	--bodyTextColor:rgb(0,0,0);
+	--topBorderColor:rgb(53,98,123);
+}
+/**/
+body {
+	font-family:  var(--bodyText), sans-serif;
+	font-weight: 200;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	font-size: 9pt;
+	line-height: 1.15;
+	color: var(--bodyTextColor);
+}
+h1, h2, h3, h4, h5, h6{
+	margin: 0;
+	padding: 0;
+	font-family: var(--headerText);
+	font-weight: bold;
+	color: var(--headerColor);
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+table th, table td {
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+table th {
+	font-family: var(--bodyText);
+	font-weight: 600;
+	color: var(--headerColor);
+}
+h2 {
+	margin: 0 0 10px 0;
+}
+p {
+	margin: 0;
+	padding: 0;
+	line-height:1.1;
+}
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+th { color:var(--bodyTextColor); }
+/*page 1 starts*/
+.page{
+	max-width: 21cm;
+}
+.page.page1 {
+	background: none;
+	position: relative;
+	padding: 0cm;
+	width: auto;
+	height: auto;
+	 
+  }
+.page2, .page3, .page4 {
+	position: relative;
+	padding: 0cm;
+	width: auto;
+	height: auto;
+	page-break-after:auto;
+ }
+.contentSection h2 ,.PositiveReturn p:first-of-type b,.NegativeReturn p:first-of-type b{
+	font-family: var(--headerText);
+	font-weight: bold;
+	color: var(--headerColor);
+ 	padding: 0px;
+	margin-bottom:0.1cm;
+	font-size: 14pt;
+	display: block;
+}
+.SubHeader.contentSection h2{
+	display: none ;
+	background: red;
+}
+.PositiveReturn p:first-of-type ,.NegativeReturn p:first-of-type{
+	margin-top: 0.2cm;
+}
+.generalinformation.contentSection {
+	background-color: var(--headerColor);
+	padding:0.2cm;
+	margin-top: 0.4cm !important;
+}
+.generalinformation.contentSection *{
+	color: #ffffff;
+}
+.generalinformation.contentSection p{
+	font-weight: 500;
+}
+.generalinformation.contentSection .IssuedOnDate{
+	text-align: right;
+	margin-top: 0.2cm;
+}
+.keyinformationdocument h2 {
+	font-size: 22pt;
+ }
+.horizontal-list h2 {
+	color: #ffffff;
+	font-size: 10pt;
+	background-color: #d62b3a;
+	padding: 3px;
+	margin: 0;
+}
+.page1 > .row1 > .column1 {
+	float: left;
+	width: 72%;
+}
+.WhatAreTheCosts h2 {
+	color: #1A9CE3;
+	font-size: 21pt;
+	padding: 0.2cm 0 0 0;
+}
+.page2 .row1 .MOPText h2 {
+	color: #1A9CE3;
+	font-size: 21pt;
+	padding: 0.2cm 0 0 0;
+}
+.sriRangeRiskRating {
+	margin: 0.3cm 0 0;
+	width: 100%;
+}
+.sriRangeRiskRating .rating {
+	background-color: #1a9ce3;
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	width: 14%;
+	padding: 5px 0;
+}
+ 
+.sriRangeRiskRating .rating.selected.start { border-left: 0px solid #ffcc66; }
+.sriRangeRiskRating .rating.selected {
+	background-color:var(--bodyTextColor);
+	border-bottom: 0px solid #ffcc66;
+	border-top: 0px solid #ffcc66;
+}
+.sriRangeRiskRating .rating.selected.end { border-right: 0px solid #ffcc66; }
+.sriRangeRiskRating .arrow td { height: 1px; }
+.sriRiskRating {
+	width: 100%;
+	border-top: 0;
+	margin: 0 0 0.3cm 0;
+}
+.WhatAreTheCosts td, .WhatAreTheCosts th, .perfscenarios th, 
+.perfscenarios td, .costovertimetable th, .costovertimetable td, .compositionofcosts th, .compositionofcosts td {
+	border-bottom: 0.5pt solid rgb(30,41,72);
+	padding: 2px 5px 4px 5px;
+}
+.WhatAreTheCosts th, .costovertimetable th, .category, .subcategory, .perfscenarios th, .compositionofcosts th {
+	font-family: var(--bodyText);
+	font-weight: 700;
+	text-align: left;
+}
+.header.investment th{
+	text-align: left;
+}
+b {
+	 
+	font-weight: 400;
+}
+.costovertimetable th { border-bottom: 0; }
+.costovertimetable .scenarioheader {
+	border-top: 0.5pt solid rgb(30,41,72);
+	border-bottom: 0.5pt solid rgb(30,41,72);
+}
+table table { border-top: 0.5pt solid var(--headerColor); }
+.sriRiskRating table{
+	margin-top:0.3cm;
+}
+.sriRiskRating,.sriRiskRating table{
+	border: none;
+}
+.compositionofcosts table { margin: 0.2cm 0 0 0; }
+.costovertimetable, .WhatAreTheCosts table { margin: 0.5cm 0 0 0; }
+.costovertimetable th, .costovertimetable td { text-align: left; }
+.costComposition .category, .costComposition .subcategory, 
+.costComposition .costs { 
+	width: auto; 
+	border-bottom:0.5pt solid var(--headerColor); 
+ 	padding: 0.1cm;
+}
+.costComposition .subcategory,.costComposition .category{
+	font-weight: 400;
+}
+.costComposition .description {
+ 	width: 10cm;
+	border-bottom:0.5pt solid var(--headerColor);
+	padding: 0.1cm;
+}
+.costComposition .costs{
+	width: 1.5cm;
+}
+.page2.page .contentSection.pagenumbers {
+	padding: 0;
+	margin: 0;
+}
+.footer {
+	background-color: var(--headerColor);
+ 	bottom: 1cm;
+	color: #ffffff;
+	font-size: 11px;
+	left: 1cm;
+	margin: 0;
+	padding:0.2cm;
+	position: absolute;
+	width: 18.8cm;
+	position: running(footer);
+}
+.sriRiskRating .header th{
+	color: var(--headerColor);
+}
+.sriRiskRating .rating {
+	background-color: var(--headerColor);
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	padding: 7px;
+	text-align: center;
+	vertical-align: middle;
+	width: 14%;
+}
+.sriRiskRating .rating.selected {
+	background-color: #ffffff;
+	border: 2px solid var(--headerColor);
+	color:var(--headerColor);
+}
+.scenarioheader th { border-top: 0.5pt solid var(--headerColor); }
+table.costovertimetable { border-top: 0; }
+.composite, .unabletopay, .costovertime, .howlong, .howcanicomplain, .otherrelevantinformation, .whatisthisproduct2 {
+	border: 0pt solid rgb(30,41,72);
+	padding: 0cm;
+}
+.contentSection, .composite {  margin: 0;  }
+.page2 .contentSection,
+.page2 .composite , .WhatarethecostscontComposite{
+	page-break-inside: avoid;
+}
+.page>.row>.contentSection,.page>.row>.composite{
+	padding: 0.2cm 0.2cm 0.3cm;
+	border:1pt solid var(--headerColor);
+	margin: 0 0 0.4cm 0;
+}
+.contentSection.pagenumbers { border: 0 !important; }
+div:empty { border: 0 !important; }
+.complexitywarning p {
+	background-color: rgba(72, 131, 163, 0.2);
+	border: 0 none !important;
+	color: var(--bodyTextColor);
+	text-align: center;
+	padding: 0.2cm;
+	margin:0 0 0.4cm 0;
+	
+}
+
+.risktext { position: relative; padding-bottom: 0.3cm;}
+.risktext .Sri {
+    padding-left: 0;
+    margin-top: 0.4cm;
+}
+/* .risktext .Sri:before {
+	position: absolute;
+    top: -16px;
+    left: 0;
+    content: " ";
+    background: url(images/information.svg);
+    background-size: 100% 100%;
+    width: 55px;
+    height: 55px;
+    margin: 2px;
+} */
+
+.sriRiskRating .arrow td {
+	background:  no-repeat left center transparent;
+	background-size: auto;
+}
+.disclaimer h2 { font-size: 22pt; }
+div.whatisthisproduct {
+ 
+}
+.whatisthisproduct h2, .whatisthisproduct p {  }
+.whatisthisproduct p.IssuedOnDate {
+	padding: 0.3cm 0 0;
+	text-align: right;
+}
+.period1 > span {
+    padding-left: 4px;
+}
+th.period1, th.period2, th.period3 {text-align: right; width: 60px;}
+td.period1, td.period2, td.period3 {text-align: right;}
+.CostOverTimeTable,.CompositionOfCostTable {
+	margin-top: 0.3cm;
+}
+.CostOverTimeTable th.scenario1, .CostOverTimeTable th.scenario2, .CostOverTimeTable th.scenario3,.CostOverTimeTable .investment{
+	padding: 0.1cm;
+	text-align: left;
+}
+.costovertimetable th.scenario1, .costovertimetable th.scenario2, .costovertimetable th.scenario3, 
+.costovertimetable td.totalcosts1, .costovertimetable td.totalcosts2, .costovertimetable td.totalcosts3, 
+.costovertimetable td.riy1, .costovertimetable td.riy2, .costovertimetable td.riy3 {text-align: right;}
+.CostOverTimeTable table table td{
+	border-bottom: 0.5pt solid var(--headerColor);	
+	padding: 0.1cm;
+}
+.CompositionOfCostTable table table th{
+	padding: 0.1cm;
+}
+th.period1 span, th.period2 span, th.period3 span {display: inline-block;}
+
+.howlong p, .howcanicomplain p, .otherrelevantinformation p {border: 0; padding-left: 0;}
+
+/* div.ClientLogo{
+	position: running(clientLogo);
+}
+div.ClientLogo img{
+	width: 100%;
+	max-height: 100px;
+	object-fit: contain;
+	margin-left: 0.5cm;
+
+ } */
+ p.ClientLogo {
+	width: 100%;
+	background: #fff;
+	margin: -0.4cm;
+	padding: 0.4cm;
+	text-align: right;
+	position: relative;
+	font-size: 0 !important;
+  }
+  
+  p.ClientLogo img {
+	/* width: 6cm; */
+	width: 3.2cm;
+	border: 0;
+	position: absolute;
+	/* left: 0.8cm; */
+	/* top: 0cm; */
+	top: 0.3cm;
+	right:0.47cm;
+	height:90px;
+	object-fit: contain;
+  }
+ .CostOverTimeTable table table th.scenarios{
+	text-align: left !important;
+	padding: 0.1cm;
+  }
+  .CostOverTimeTable table table th:nth-of-type(n+2),
+  .CostOverTimeTable table table td:nth-of-type(n+2) {
+	 width: 4cm;
+	text-align: center;
+  } 
+
+ 
+@page{
+	size:A4;
+	margin:1.5cm 1cm 1cm ;
+	@top-left{
+		content:'';
+		display: block;
+		width: 100%;
+		height: 0.4cm;
+		background: var(--topBorderColor);
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+	}
+	@bottom-left{
+		content:element(footer);
+		position: relative;
+		width: 100%;
+		margin-bottom: 1.2cm;
+		margin-left:0cm;
+	}
+}
+@page:first{
+	size:A4;
+ 	margin:1.5cm 1cm 0;
+	@top-right{
+		content: element(clientLogo);
+		position: relative;
+		width:5.5cm;
+		margin-top:1.5cm;
+		z-index: 1;
+  	}
+	
+}
+
+.sriRiskRating .header th:first-child,
+.sriRiskRating .description td:first-child,
+.sriRiskRating .header th:first-child,
+.sriRiskRating .description td:first-child {
+  text-align: left;
+  background-image: url(images/less_risk.svg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 2cm;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0.4cm;
+}
+
+.sriRiskRating .header th:last-child,
+.sriRiskRating .description td:last-child,
+.sriRiskRating .header th:last-child,
+.sriRiskRating .description td:last-child {
+  text-align: right;
+  background-image: url(images/high_risk.svg);
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 2cm;
+  background-color: transparent;
+  border: 0;
+  padding-top: 0.4cm;
+}
+
+.SRInarrative1:before {
+    background: url(images/warning_icon.svg);
+    background-size: 90% 94%;
+    /* background-position: 3px 0px; */
+    width: 50px;
+    content: "";
+    /* height: auto; */
+    min-height:1.4cm;
+    padding: 0px 14px 0px 0px;
+    display: inline;
+    float: left;
+    background-repeat: no-repeat;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    left: 0;
+}
+  .PositiveReturn p:first-of-type b, .NegativeReturn p:first-of-type b {
+    font-size: 10pt;
+}
+p.SRInarrative1 {
+    position: relative;
+    min-height: 1.2cm;
+    padding-left: 2cm;
+    height: auto;
+    display: flex;
+	/* flex-direction: column; */
+	justify-content: flex-start;
+    vertical-align: middle;
+    align-items: center;
+}
+p.SRInarrative1 br{
+display: none;
+}
+.page1>.row1>.column2 {
+    float: left;
+    width: 26%;
+}
+/* FrostrowLight_UK */

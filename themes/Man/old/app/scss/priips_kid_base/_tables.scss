@@ -1,0 +1,297 @@
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0pt solid transparent;
+
+    // display:contents;
+    th:not(.groupHeader1) {
+        color: $th-color;
+        background: $light-grey;
+    }
+
+    th:last-of-type {
+        border-right: 0 !important;
+        border-bottom: $th-last-bottom-border solid $th-border;
+    }
+
+    td:not(.rating):last-of-type {
+        border-right: 0 !important;
+        /*border-bottom: $td-bottom-border-size solid $th-border;*/
+    }
+
+    td {
+        vertical-align: middle;
+        border-top: $td-top-border-size solid $td-border;
+        border-right: $td-right-border-size solid $td-border;
+        /*border-bottom: $td-bottom-border-size solid $td-border;*/
+        padding: 1mm 1mm;
+        margin: 0;
+        background: $td-bg;
+    }
+
+    th {
+        vertical-align: middle;
+        margin: 0;
+        padding: 1mm 1mm;
+    }
+
+}
+.groupHeader1 table {
+    th {
+        padding: 1mm 1mm;
+        background: $th-bg;
+        color: $th-color;
+        font-family: $th-font;
+        font-weight: $groupheader-th-fontwt; 
+        font-size: $groupheader-th-fontsz; 
+        border-right: $th-right-border-size solid $th-border;
+        border-bottom: 0.5pt solid $th-border;
+
+        &:first-of-type {
+            text-align: left;
+        }
+    }
+
+    tr:last-of-type th {
+        word-wrap: anywhere;
+    }
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+    td {
+        border-right: $td-right-border-size solid $td-border;
+        border-bottom: 0.5pt solid $td-border;
+        font-family: $font-regular;
+        font-size: $groupheader-th-fontsz;
+    }
+
+    @each $item in $rowheader {
+        #{$item} {
+            th {
+                font-family: $font-semi-bold;
+                font-weight: map-get($font-weight, 'normal') !important;
+                text-align: left;
+                border-bottom: 0.5pt solid $th-border;
+            }
+        }
+    }
+}
+
+// performanceScenario 
+.performanceScenario {
+    >table {
+        border-top: $tab-highlight-border;
+        width: $perf-table-width;
+        margin: 0 0.2cm;
+    }
+
+    table {
+        tr {
+
+            .holding-period,
+            .investment-amount,
+            .insurance-premium {
+                th:last-child {
+                    text-align: left;
+                }
+
+            }
+        }
+
+        td.scenario {
+            font-weight: $td-scenario-headers;
+            font-family: $td-scenario-header-font;
+        }
+    }
+
+    .survival-scenario {
+        border-top: 0pt;
+        border-bottom: 0pt;
+
+        th {
+            border-top: 0pt;
+            border-bottom: 0.5pt solid $th-border;
+        }
+    }
+
+
+    th[class*="period"] {
+        width: 3.05cm;
+        text-align: $period-text-align;
+    }
+
+    td[class*="period"] {
+        width: 3cm;
+        text-align: $period-text-align;
+    }
+}
+
+// costOverTime
+
+.costOverTime {
+    padding-bottom: 0.2cm;
+
+    >table {
+        border-top: $tab-highlight-border;
+        width: $cost-over-table-width;
+        margin: 0 0.2cm;
+    }
+
+    table {
+        .tableheader {
+            display: none;
+        }
+
+        th {
+            width: 4.75cm;
+        }
+
+        td {
+            width: 4.75cm;
+
+        }
+
+        td.totalcostsheader,
+        td.riyheader {
+            font-weight: $td-cost-headers;
+            font-family: $td-costs-header-font;
+        }
+
+        td[class*=totalcosts],
+        td[class*=riy] {
+            text-align: $tot-costs-text-align;
+        }
+
+        td.riyheader,
+        td.totalcostsheader {
+            text-align: left;
+        }
+
+        th[class*=scenario] {
+            text-align: $tot-costs-text-align;
+        }
+    }
+}
+
+.costOverTime {
+	padding: 0 0.25cm 0.2cm 0.2cm;
+
+	&.costovertime_4columntable.contentSection {/* costovertime table fullwidth css for 4column <<<<*/
+
+		>table {
+			width: 100% !important;
+			margin: 0;
+		}
+
+		.scenarioheader th:first-of-type {
+			width: 25% !important;
+		}
+
+		table tbody td.totalcostsheader {
+			width: 25% !important;
+		}
+
+		.scenarioheader th[class*='scenario'] {
+			width: 25% !important;
+		}
+
+		table td[class*='totalcosts'] {
+			width: 25% !important;
+		}
+	}
+
+	&.costovertime_3columntable.contentSection {/* costovertime table fullwidth css for 3column <<<<*/
+
+		>table {
+			width: 98% !important;
+		}
+
+		.scenarioheader th:first-of-type {
+			width: 33.4% !important;
+		}
+
+		table tbody td.totalcostsheader {
+			width: 33.4% !important;
+		}
+
+		.scenarioheader th[class*='scenario'] {
+			width: 33.3% !important;
+		}
+
+		table td[class*='totalcosts'] {
+			width: 33.3% !important;
+		}
+	}
+
+	&.costovertime_2columntable.contentSection {/* costovertime table fullwidth css for 2column <<<<*/
+
+		>table {
+			width: 98% !important;
+		}
+
+		.scenarioheader th:first-of-type {
+			width: 50% !important;
+		}
+
+		table tbody td.totalcostsheader {
+			width: 50% !important;
+		}
+
+		.scenarioheader th[class*='scenario'] {
+			width: 50% !important;
+		}
+
+		table td[class*='totalcosts'] {
+			width: 50% !important;
+		}
+	}
+
+}
+
+
+
+
+
+// costComposition 
+
+.costComposition {
+    padding-bottom: 0.2cm;
+
+    >table {
+        border-top: $tab-highlight-border;
+        width: $cost-comp-table-width;
+        margin: 0 0.2cm;
+
+        table .tableHeader>th {
+            text-align: center;
+        }
+    }
+
+    table {
+        .tableHeader {
+            display: none;
+        }
+
+        .oneofcosts {
+            th:last-of-type {
+                width: 3.15cm;
+            }
+        }
+
+        td:last-of-type {
+            width: 3.1cm;
+        }
+
+    }
+}

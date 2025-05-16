@@ -1,0 +1,187 @@
+.contentSection {
+	&.keyinformationdocument h2 {
+		font-size: $h1-size;
+		font-weight: bold;
+		color: $black;
+		text-align: right;
+	}
+	h2 {
+		font-size: 10pt;
+		font-weight: bold;
+		color: $blue;
+		border: 0;
+	}
+}
+p, .description {
+	font-size: $para-size !important;
+}
+.Product>h2 {
+	padding-top: 0.1cm ;
+}
+.page1 {
+	padding: 0cm 1cm 0 1cm;
+	> .row2 > .composite1 > .compositebody > .row2 > .column1 {
+		float: none;
+		width: auto;
+	}
+} 
+.page1 {
+	> .row3 {
+		border-top: 0.5pt solid $blue;
+	}
+}
+.page>.row1>.composite1>.compositebody>.row2{
+	>.column2 {/*footer width extended to full page width*/
+		width: 100% ;
+	}
+	
+	>.column1 {
+		width: 0;
+	}
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+	width: 100% ;
+}
+.oneofcosts th:last-of-type {
+	text-align: left;
+}
+
+.performanceScenario,
+.costcomposition {
+	padding-bottom: 0.2cm;
+	padding-top: 0.2cm;
+}
+
+
+.page3 .compositebody {
+	break-inside: avoid-page;
+	break-inside: avoid;
+}
+
+h1{
+    
+	position: running(pageheader);
+}
+
+$rowheader : ".header",
+".incidentalcosts",
+".ongoingcosts";
+
+.groupRow1 table {
+    @each $item in $rowheader {
+        #{$item} {
+            th {
+			color: $black;
+            }
+        }
+    }
+}
+.groupRow1 table td {
+	font-size: $para-size !important;
+}
+table {
+	th {
+		&:not(.groupHeader1) {
+			background: none;
+			color: $white;
+		}
+	}
+	td {
+		background: none;
+	}
+}
+.groupHeader1 table {
+	th {
+		background-color: $blue;
+		border-color: $white;
+		&[class*=period] {
+			text-align: left;
+		}
+	}
+	.survival-scenario {
+		th {
+			border-color: $white;
+		}
+	}
+}
+.sriRiskRating table {
+	border-collapse: separate;
+}
+$scenariosheader : ".stress-return",
+
+".unfavourable-return",
+".moderate-return",
+".invest",
+".favourable-return";
+@each $item in $scenariosheader {
+	#{$item} {
+		.scenario,.description {
+		font-weight: bold;
+		}
+	}
+}
+
+@page {
+    @top-center {
+		width: 100%;
+        height: 5cm;
+        content: element(pageheader);
+    }
+}
+@page :first {
+    @top-center {
+        height: 6cm;
+    }
+}
+/******************/
+
+.arrow>td {
+	border: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+p.Sri {
+	position: inherit;
+	padding: 0;
+	margin: 10px 10px 0;
+	border: none;
+	float: none;
+	width: auto;
+	:before {
+		position: absolute;
+		top: -2.3cm;
+		left: -0.7cm;
+		width: max-content;
+	}
+
+	:after {
+		left: -3px;
+	}
+
+	:empty {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+
+
+/*>>>>>>costovertime table fullwidth css for 3column*/
+
+
+/*page 2 floating code*/
+/*
+.page2 .row2 .compositebody * {
+	break-before: auto !important;
+}
+  .performanceScenario.performancescenariotable {
+    page-break-inside:auto !important;
+}
+*/
+
+
+/*Theme name:wellington_theme_202208_EU*/

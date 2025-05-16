@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> Past Performance</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=KPP;
+PublicationCountry=GB;
+Language=en;
+RecordDate=2023-02-10;
+ShareClass=IE00B1DS1042;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=106E;
+Productcode=;
+PublicationDate=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=2023-02-10 18:52:19;
+CalculationDate=2023-01-31;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row4>.composite1>.compositebody>.row3>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .key-color {
+            display: block;
+            width: 5mm;
+            height: 5mm;
+        }
+
+        .label {
+            line-height: 5mm;
+            margin-left: 1mm;
+        }
+
+        .keyContainer {
+            height: 5mm;
+        }
+
+        .keyWrapper {
+            clear: both;
+        }
+
+        .page1>.row4>.composite1>.compositebody>.row3>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/template.common.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="section page page1" data-pageorder="1" data-sectionId="4937063" data-sectiontype="1">
+        <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4937064" data-sectiontype="2">
+            <div class="section contentSection text text1 TextSection" data-sectionId="4937065">
+                <h2 class="item2">Past Performance</h2>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4937066" data-sectiontype="2">
+            <div class="section contentSection text text1 TextSection" data-sectionId="4937067">
+                <div class="item2">
+                    This document provides you with information on past performance.
+
+                </div>
+                <div class="item3">Past performance is not a reliable indicator of future performance. Markets could
+                    develop very differently in the future. It can help you to assess how the fund has been managed in
+                    the past and compare it to its benchmark.
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4937068" data-sectiontype="2">
+            <div class="section contentSection text text1 TextSection" data-sectionId="4937069">
+                <div class="WB_FundName">GAVEKAL GLOBAL EQUITIES UCITS FUND A USD</div>
+                <div class="WB_IsinCode"></div>
+                <div class="WB_GeneralInformation_2">
+                    <div>GaveKal Global Equities UCITS Fund (“Fund”) A sub-fund of GaveKal Multi-Fund Plc
+                        (“Company”)&nbsp;</div>
+                    <div>ISIN IE00B1DS1042 - Class A USD Shares&nbsp;</div>
+                    <div>Manufacturer: Gavekal Capital Limited The Central Bank of Ireland is responsible for
+                        supervising GaveKal Multi-Fund Plc. in relation to this Key Information Document. <br>This PRIIP
+                        is authorised as a UCITS by the Central Bank of Ireland. <br>MJ Hudson Fund Management (Ireland)
+                        Limited, the UCITS Manager of the PRIIP, is authorised in Ireland and regulated by the Central
+                        Bank of Ireland. <br>For more information on this product, please e-mail: gk-sales@gavekal.com
+                    </div>
+                </div>
+                <div class="WB_Issuedondate">Date of Production 10/02/2023</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4937070" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4937071">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4937072"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4937073" data-sectiontype="2">
+                        <div class="section contentSection text text1 TextSection" data-sectionId="4937074">
+                            <h2 class="item2">Past Performance
+
+                            </h2>
+                            <div class="item3">This chart shows the fund’s performance as the percentage loss or gain
+                                per year over the last 10 years against its benchmark.
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4937075" data-sectiontype="2">
+                        <div class="section column column1" data-sectionId="4937076">
+                            <div class="section row row1" data-roworder="1" data-sectionId="4937077"
+                                data-sectiontype="2">
+                                <div class="section contentSection pdfperformancechart pdfperformancechart1 PastPerformanceChart"
+                                    data-sectionId="4937078">
+                                    <h2 class=""></h2>
+                                    <div class="discreteChart"></div>
+                                    <script>$(function () { Highcharts.setOptions({ lang: { decimalPoint: '.' } }); $('div[data-sectionId="4937078"] .discreteChart').highcharts({ chart: { type: 'column', events: { load: function () { var chart = this, points = chart.series[0].points; points.forEach(function (point) { if (point.y == 0) { point.y.update = null; } }); chart.redraw(); } }, zoomType: '', animation: false, backgroundColor: null, style: { fontFamily: 'Arial', fontSize: '10pt', color: '#000000' } }, title: { text: '', style: { display: 'none' } }, subtitle: { text: '', style: { display: 'none' } }, credits: { enabled: true, href: '', text: '' }, xAxis: { type: 'category', lineWidth: 1, lineColor: '#404040', tickWidth: 1, tickLength: 3, tickColor: '#404040', categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'], showLastLabel: true, endOnTick: true, labels: { useHTML: true, format: '<div class="bar-xlabel">{value}</div>', staggerLines: 1, padding: 0, style: { color: '#000000', textOverflow: 'ellipsis' }, } }, yAxis: { lineWidth: 1, softMax: 28.20000000, softMin: -18.14158000, allowDecimals: true, tickInterval: 5, lineColor: '#404040', tickWidth: 1, tickLength: 3, tickColor: '#404040', gridLineWidth: 0, title: { text: null }, labels: { useHTML: true, format: '<div class="bar-ylabel">{value}%</div>', style: { color: '#000000' } }, plotLines: [{ value: 0, width: 1, color: '#CDCCCB' }] }, plotOptions: { column: { borderWidth: 0 }, series: { minPointLength: 2, lineWidth: 1, animation: false, pointWidth: 10, states: { hover: { enabled: false, }, }, dataLabels: [{ enabled: true, verticalAlign: 'below', format: '{point.b}' }] }, line: { animation: false }, }, legend: { enabled: false }, tooltip: { enabled: false }, series: [{ 'name': 'Fund', 'color': '#FFC4CE', 'data': [18.40000000, 4.20000000, 5.20000000, -0.80000000, 28.20000000, -2.90000000, 19.20000000, 13.40000000, 6.50000000, 4.39359500] }, { 'name': 'Index  *', 'color': '#FF638D', 'data': [26.70000000, 4.90000000, 0.90000000, 7.50000000, 22.40000000, -8.70000000, 27.70000000, 15.90000000, 21.80000000, -18.14158000] }, { name: 'Scatter', type: 'scatter', lineWidth: 0, marker: { symbol: 'triangle' }, data: [null, null, null, null, null, null, null, null, null, null] }], }); });</script>
+                                    <div class="keyWrapper"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row2" data-roworder="2" data-sectionId="4937079"
+                                data-sectiontype="2">
+                                <div class="section contentSection performancetable performancetable1 PastPerformanceTable"
+                                    data-sectionId="4937080" style="page-break-inside:avoid">
+                                    <h2 class=""></h2>
+                                    <table>
+                                        <tr>
+                                            <th class="groupHeader1">
+                                                <div class="groupHeaderDiv1">
+                                                    <table>
+                                                        <tr>
+                                                            <th class="keycell"></th>
+                                                            <th class="rowheader"></th>
+                                                            <th class="P108To120M">2013</th>
+                                                            <th class="P96To108M">2014</th>
+                                                            <th class="P84To96M">2015</th>
+                                                            <th class="P72To84M">2016</th>
+                                                            <th class="P60To72M">2017</th>
+                                                            <th class="P48To60M">2018</th>
+                                                            <th class="P36To48M">2019</th>
+                                                            <th class="P24To36M">2020</th>
+                                                            <th class="P12To24M">2021</th>
+                                                            <th class="P0To12M">2022</th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <thead></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="groupRow1">
+                                                    <div class="groupRowDiv1">
+                                                        <table>
+                                                            <tr class="odd unitWorkbook">
+                                                                <td class="keycell">
+                                                                    <div class="keycolour"
+                                                                        style="background-color:#FFC4CE;display: inline-block;width: 10px;height: 10px;">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="rowheader">Fund</td>
+                                                                <td class="P108To120M">18.4%</td>
+                                                                <td class="P96To108M">4.2%</td>
+                                                                <td class="P84To96M">5.2%</td>
+                                                                <td class="P72To84M">-0.8%</td>
+                                                                <td class="P60To72M">28.2%</td>
+                                                                <td class="P48To60M">-2.9%</td>
+                                                                <td class="P36To48M">19.2%</td>
+                                                                <td class="P24To36M">13.4%</td>
+                                                                <td class="P12To24M">6.5%</td>
+                                                                <td class="P0To12M">4.4%</td>
+                                                            </tr>
+                                                            <tr class="even benchmark">
+                                                                <td class="keycell">
+                                                                    <div class="keycolour"
+                                                                        style="background-color:#FF638D;display: inline-block;width: 10px;height: 10px;">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="rowheader">Index *</td>
+                                                                <td class="P108To120M">26.7%</td>
+                                                                <td class="P96To108M">4.9%</td>
+                                                                <td class="P84To96M">0.9%</td>
+                                                                <td class="P72To84M">7.5%</td>
+                                                                <td class="P60To72M">22.4%</td>
+                                                                <td class="P48To60M">-8.7%</td>
+                                                                <td class="P36To48M">27.7%</td>
+                                                                <td class="P24To36M">15.9%</td>
+                                                                <td class="P12To24M">21.8%</td>
+                                                                <td class="P0To12M">-18.1%</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionId="4937081">
+                            <div class="section row row1" data-roworder="1" data-sectionId="4937082"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 TextSection with_performance_table"
+                                    data-sectionId="4937083">
+                                    <div class="item2">You should be aware that past performance is not a guide to
+                                        future performance.</div>
+                                    <div class="WB_FundLaunchDate">Fund launch date: 2006-09-01T00:00:00
+                                    </div>
+                                    <div class="WB_UnitLaunchDate">Share/unit class launch date: 2006-09-01</div>
+                                    <div class="item5">Performance is calculated in USD</div>
+                                    <div class="item6">The chart shows how much the Fund increased or decreased in value
+                                        as a percentage in each year, net of charges (excluding entry charge), and net
+                                        of tax.</div>
+                                    <div class="SyntheticHistoryPerformanceCaveat">
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                    <div class="BenchmarkNames">
+                                        <div id='priipPastPerfChartBenchmarks'>
+                                            <ul>
+                                                <li>* Index - MSCI World Index</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="WB_PastPerformancenarrative_3"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4969819" data-sectiontype="2">
+                        <div class="section contentSection text text1" data-sectionId="4969820">
+                            <div class="WB_PastPerformancenarrative_1"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4937084" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4937085">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+
+</html>

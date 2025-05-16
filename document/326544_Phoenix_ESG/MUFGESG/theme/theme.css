@@ -1,0 +1,1928 @@
+/* @font-face {
+  font-family: "Friends Life Dagny Bold";
+  src: url("Fonts/friends_life_dagny-bold-webfont.eot");
+  src: local("Friends Life Dagny-Bold"),
+    url("Fonts/friends_life_dagny-bold-webfont.woff") format("woff"),
+    url("Fonts/friends_life_dagny-bold-webfont.ttf") format("truetype");
+} */
+@font-face {
+  font-family: "Futura Std";
+  src: url("images/FuturaStd-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Futura Std";
+  src: url("images/FuturaStd-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Minion Pro";
+  src: url("images/MinionPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Univers LT Std";
+  src: url("images/UniversLTStd.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Univers LT Std";
+  src: url("images/UniversLTStd-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Univers LT Std";
+  src: url("images/UniversLTStd-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Univers LT Std";
+  src: url("images/UniversLTStd-Obl.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+:root {
+  --whiteColor: #ffffff;
+  --blackColor: #000000;
+  --pinkColor: #c90062;
+  --yellowColor: #ffec9a;
+  --darkpurpleColor: #6f1847;
+  --purpleColor: #662046;
+  --pinkLightColor: #f1bfd8;
+  --grayColor: #d9c7d1;
+  --lightGreenColor: #e3e4bf;
+  --lightOrange: #f1b182;
+  --darkYellowColor: #d9b87e;
+  --darkGreenColor: #e3d373;
+  --brownColor: #661d2a;
+  --lightGreen: #8e9300;
+  --darkGreen: #404a29;
+  --darkBrownColor: #4e2e2d;
+  --lightBrownColor: #a99595;
+  --lightGray: #aa9695;
+  --grayBorder: #cdcdcd;
+  --lightYellow: #f9ea96;
+  --greenMedium: #8c9200;
+  --chocolateLight: #a99595;
+  --greenDark: #3d4a24;
+  --darkPinkColor: #dc0062;
+  --darkPurple: #6f1947;
+  --borderSpacing: 1pt 5pt;
+  --borderRadius: 20pt;
+  --fontSizeMedium: 18pt;
+  --fontSizeSmall: 13pt;
+  --fontSizeNormal: 11pt;
+  --futuraStdLight: "Futura Std";
+  --futuraStdBook: "Futura Std";
+  --minionProRegular: "Minion Pro";
+  --universLTStd: "Univers LT Std";
+  --universLTStdBold: "Univers LT Std";
+  --universLTStdLight: "Univers LT Std";
+  --universLTStdObl: "Univers LT Std";
+}
+
+body {
+  font-family: var(--universLTStdLight);
+  font-size: 9pt;
+}
+.page.page1 {
+  width: 21cm;
+  height: 29.7cm;
+  padding: 0;
+}
+.page {
+  position: relative;
+  width: 17cm;
+  /* width: 21cm; */
+  height: 27.7cm;
+  padding: 1cm 2cm;
+}
+.row {
+  margin-bottom: 0.4cm;
+}
+.column > .section {
+  margin-left: 0.5cm;
+}
+.column:first-child > .section {
+  margin-left: 0;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--pinkColor);
+}
+p {
+  margin: 0;
+  margin-bottom: 0.25cm;
+}
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+  color: #3399ff;
+}
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page > .row1 h2 {
+  font-size: 24pt;
+  padding-left: 3cm;
+  min-height: 2cm;
+  /* background-image: url("./Images/logo.png");
+  background-repeat: no-repeat;
+  margin-bottom: 0.5cm; */
+}
+.page1 > .row2 > .column2 > .section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+.cler {
+  font-size: 24pt;
+}
+.reportheader {
+  font-size: 34pt;
+  color: #fde211;
+  padding-left: 0.5cm;
+}
+.headerbackground {
+  background-color: #8ad8d8;
+  height: 10cm;
+  /* background-image: url("ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png");
+  background-repeat: no-repeat;
+  background-size: 100%; */
+}
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+.compositepadding {
+  padding-left: 1cm;
+  background-color: #8ad8d8;
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+.securityaccount {
+  background-color: #8ad8d8;
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: 0.5cm;
+}
+.esgdata {
+  background-color: #a7b3b3;
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm;
+}
+.FooterCSS .column1 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column2 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column3 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column5 {
+  width: 15%;
+  float: left;
+}
+.FooterCSS .column4 {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+/* footer {
+  position: running(footerIdentifier);
+} */
+/* @page {
+  @bottom-left {
+    content: element(footerIdentifier);
+  }
+} */
+.compositefooter {
+  width: 20cm;
+  padding: 0;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 0;
+  z-index: 1;
+  font-size: 7.5pt;
+}
+.compositefooter .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+.compositefooter .content:before {
+  content: "";
+  width: 1px;
+  height: 100px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: -3px;
+}
+/* @page:first{
+  @bottom-left {
+    content: "";
+  }
+}; */
+.FooterCSS {
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection {
+  height: 23px;
+}
+.FooterCSS .content:before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+.EsgCoverPageImage {
+  width: 100%;
+}
+.EsgCoverPage {
+  width: 100%;
+}
+
+/* New PhoenixESG Theme changes */
+.page1 > .row1.row.section,
+.page1 .row2.row.section {
+  background-color: var(--whiteColor);
+  color: var(--blackColor);
+  margin: 0;
+}
+.page1 >.row1.row.section{
+  padding: 25pt 0 15pt 30pt;
+  position: relative;
+  margin-bottom:-1px;
+}
+.page1 .row3 .row1.row.section{
+  position: relative;
+}
+/* .page1 .row3 .row1.row.section {
+    padding: 25pt 0 43pt 30pt;
+    position: relative;
+} */
+.page>.row1>.column1 {
+  float: left;
+  width: 200px;
+}
+.page>.row1>.column2 {
+  width: 40%;
+  text-align: center;
+}
+.page > .row1 > .column2 > .section{
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+
+}
+
+.page:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 0;
+  z-index: 9;
+  background-image: url("./Images/phoenix_logo.jpg");
+  background-repeat: no-repeat;
+  margin: 0 0 10pt 0;
+  width: 300px;
+  height: 90px;
+  background-position: top right 30px;
+  background-size: contain;
+}
+.logo {
+  background-image: url("./Images/logo.jpg");
+  background-repeat: no-repeat;
+  margin: 0 0 10pt 0;
+  width: 155px;
+  height: 70px;
+}
+.page1 .logo {
+  margin: 0;
+  width: 275px;
+  height: 125px;
+}
+.page1 .text1.text.contentSection.FundName {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 0 0 70pt;
+}
+.page > .row1 .column2 .row1 .text1.text.contentSection {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: flex-end;
+  /* min-height: 60px; */
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.page1 .FundName h2,.page1 .FundName .ClientName {
+  /* background-color: var(--yellowColor); */
+  font-size: 30pt;
+/* font-weight: 300; */
+font-weight: bold;
+  text-transform: uppercase;
+  /* border-radius:var(--borderRadius); */
+  width: auto;
+  display: inline-flex;
+  padding: var(--borderSpacing);
+  margin: 0;
+  font-family: var(--futuraStdLight);
+  color: var(--pinkColor);
+  line-height: 1;
+}
+.page1 .FundName p.FundNameWB {
+  color: var(--pinkColor);
+}
+.page1 .FundName p {
+  /* background-color: var(--yellowColor); */
+  width: auto;
+  display: inline-flex;
+  padding: var(--borderSpacing);
+  /* border-radius:var(--borderRadius); */
+  margin: 2pt 0 0.5pt 0;
+  /* font-weight: 600; */
+  color: var(--blackColor);
+  font-size: 14pt;
+  line-height: 26px;
+}
+.page1 .row3.section {
+  /* min-height: 375px; */
+  background: url("./Images/banner-image.jpg") no-repeat;
+  background-size: 100% auto;
+  background-position: left top;
+  width: 100%;
+  margin: 0;
+  padding-top: 390px;
+}
+.page1 .row3.section::before {
+  /* content: url("./Images/banner-image.jpg");
+    position: absolute;
+    width: 100%;
+    margin: 0; */
+}
+.page1.page.section {
+  background-color: var(--blackColor);
+  color: var(--whiteColor);
+}
+/* .page1 .row4.row.section {
+    margin: 0;
+    background-color: var(--blackColor);
+    color: var(--whiteColor);
+    padding: 45pt 55pt;
+    position: relative;
+} */
+.page1 .row3 .row1.row.section > * {
+  box-sizing: border-box;
+}
+.page1>.row3 .text1.FirstPageCaveat,
+.page1 > .row4 .FirstPageCaveat{
+  position: relative;
+  padding: 0 25pt 15px;
+  /* top: 405px; */
+  left: 2cm;
+  z-index: 9;
+  width: calc(100% - 4cm);
+  box-sizing: border-box;
+}
+.page1 > .row4 .FirstPageCaveat {
+  /* top: 210px; */
+  padding-bottom: 2px;
+}
+.page1 .text1.FirstPageCaveat::before,.page1 .text1.FirstPageCaveat::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: var(--whiteColor);
+  z-index: 1;
+  top: 0;
+}
+.page1 .text1.FirstPageCaveat::after {
+  left: 0;
+}
+.page1 .text1.FirstPageCaveat::before {
+  right: 0;
+}
+.page1 .text1.FirstPageCaveat p {
+  line-height: 15pt;
+  margin: 0;
+  font-size: var(--fontSizeNormal);
+  color: var(--whiteColor);
+  /* font-weight:300; */
+}
+.page1 .text1.FirstPageCaveat p br {
+  display: block;
+  margin: 3px 0;
+  content: "";
+  height:6px;
+}
+p.FundName {
+  /* background-color: var(--yellowColor); */
+  width: auto;
+  /* padding: var(--borderSpacing); */
+  /* border-radius: var(--borderRadius); */
+  margin: 0;
+  /* font-weight: 600; */
+  color: var(--blackColor);
+  font-size: 12pt;
+  line-height: 26px;
+  display: inline-flex;
+}
+/* .page5 p.FundName, .page8 p.FundName, .page9 p.FundName {
+  background-color: transparent;
+  padding:0;
+} */
+.page > .row2 > .text1.contentSection h2.item2,
+.FindOutMoreOnYourFund h2.item2,
+.UnitedNationsText h2,
+.MoreInfo h2,
+.page > .row2 .text1.contentSection.DataSource h2.item2,
+h2.IndustryApprovedDecarbonisationTargets,
+.FundManagersVotingOnYourBehalf h2.SCSignedUp,
+.HumanRightsText h2,
+.StrategyHeader h2,h2.Portfolio\.Overall\.ISS\.Carbon\.IndustryApproved\.Value {
+  font-weight: 300;
+  font-size: var(--fontSizeMedium);
+  text-transform: uppercase;
+  margin-bottom: 8pt;
+  font-family: var(--futuraStdLight);
+  color: var(--pinkColor);
+}
+.HowYouInvestCould p.item3,
+.TheAssetsYouInvestInProdCarbonFootprint p.item2,
+.OfTheAssetsYoureInvested p.item3,
+.page4 .text1.contentSection p.item3,
+.FundManagersVotingOnYourBehalf p.item3,
+.AssetsManagedByFundManagersSingedUpToTheCode p.item2,
+.AssetsManagedNotSignedUp p.item2,
+.FundManagersEvenIfPreviouslyApproved p.item2,
+.FindOutMoreOnYourFund p.item3,
+.StrategyHeader p,
+.HumanRightsText p,
+.UnitedNationsText p,
+.MoreInfo p,
+.UNBreachtext p.item2 {
+  font-size: var(--fontSizeNormal);
+  font-weight: 400;
+  color: var(--blackColor);
+  letter-spacing: 0.3px;
+}
+.OfTheAssetsYoureInvested p.item3 a,
+.FundManagersEvenIfPreviouslyApproved p.item2 a,
+.UnitedNationsText p a,
+.page8 > .row p a,
+.page9 > .row p a,
+.FactsheetHyperlink a,
+.FundManagersVotingOnYourBehalf a,
+.text a {
+  color: var(--blackColor);
+  text-decoration: underline;
+}
+.HumanRightsText p {
+  margin-bottom: 0;
+}
+.FindOutMoreOnYourFund p.item3 {
+  /* background-color: var(--yellowColor); */
+  width: auto;
+  padding: var(--borderSpacing);
+  /* border-radius: var(--borderRadius); */
+  margin: 0;
+  font-weight: 600;
+  color: var(--blackColor);
+  font-size: 12pt;
+  line-height: 23.5px;
+  display: inline;
+}
+.AssetsManagedByFundManagersSingedUpToTheCode p.item2,
+.AssetsManagedNotSignedUp p.item2,
+.UNBreachtext p.item2,
+.HumanRightsCaveat .item2 {
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+  margin-bottom: 0;
+  color: var(--blackColor);
+  font-size: var(--fontSizeNormal);
+}
+.HaveALook p.item2 {
+  color: var(--purpleColor);
+  font-weight: 600;
+  font-size: var(--fontSizeSmall);
+  font-family: var(--universLTStdBold);
+  margin: 2pt 0;
+  float: left;
+}
+.page2 .row4.row.section {
+  background-color: var(--pinkLightColor);
+  padding: 10pt;
+  width: 100%;
+  position: relative;
+  left: -10pt;
+}
+.page2 > .row4 > .column1 .row.section {
+  padding-right: 15pt;
+}
+.page2 .row6.row.section {
+  position: relative;
+  left: -10pt;
+  width: calc(100% + 20pt);
+}
+.TheFundsCarbonFootprint h2.item2,
+.TheFundsCarbonReservesIntensity h2.item2,
+.directorstext h2.item2 {
+  color: var(--blackColor);
+  font-size: var(--fontSizeSmall);
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+}
+.TheFundsCarbonFootprint p,
+.TheFundsCarbonReservesIntensity p,
+.directorstext p,
+.GenderDiversityText p {
+  color: var(--blackColor);
+  font-size: var(--fontSizeNormal);
+  /* font-weight: 600; */
+}
+.TheCarbonFootprintIsBasedOnADataCoverage p {
+  margin: 0;
+  /* font-weight: 600; */
+  font-size: 8pt;
+}
+.row4 .row2.row.section {
+  margin-bottom: 0;
+}
+.page2 > .row4 > .column2 {
+  position: relative;
+  min-height: 253px;
+}
+.page2 > .row4 > .column2:before {
+  position: absolute;
+  content: "";
+  top: -25px;
+  right: -10px;
+  height: 290px;
+  background: url("./Images/impact-background.png") no-repeat right top;
+  background-size: 100% auto;
+  margin: 0;
+  z-index: 1;
+  width: calc(100% + 10px);
+}
+.KgOfCarbonPer1000 {
+  position: absolute;
+  top: 60px;
+  right: 45px;
+  z-index: 9;
+  width: 135px;
+  text-align: center;
+}
+.KgOfCarbonPer1000 h2 {
+  /* position: absolute;
+    top: 53px;
+    right: 60px; */
+  z-index: 9;
+  /* background-color: var(--yellowColor); */
+  font-size: 30pt;
+  text-transform: uppercase;
+  /* border-radius: 17pt; */
+  width: auto;
+  margin: 0;
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+  line-height: 29pt;
+  display: block;
+  text-align: center;
+}
+.KgOfCarbonPer1000 p {
+  /* position: absolute;
+    top: 95px;
+    right: 48px; */
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+  z-index: 10;
+  font-size: 10pt;
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+.ToHelpYouUnderstandThis p.item2 {
+  color: var(--blackColor);
+  font-size: var(--fontSizeNormal);
+  /* font-weight: 600; */
+  letter-spacing: 0.5px;
+  padding: 0 0 5pt;
+}
+.page2 .row5.row.section {
+  margin-bottom: 0;
+}
+.page2 .row6 .text.contentSection.section {
+  text-align: center;
+}
+.page2 .row6 h2 {
+  display: block;
+  text-align: center;
+  font-size: 28pt;
+  padding: var(--borderSpacing);
+  font-weight: 600;
+  font-family: var(--universLTStdBold);
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+.page2 .row6 p {
+  display: block;
+  text-align: center;
+  font-family: var(--universLTStdBold);
+  border-radius: var(--borderRadius);
+  padding: 0;
+  font-weight: 600;
+  font-size: 8pt;
+}
+.page2 > .row6 > .column .row1.row.section {
+  margin-left: 0;
+}
+/* .page2>.row6>.column1 h2,.page2>.row6>.column1 p{
+    background-color:var(--lightOrange);
+}
+.page2>.row6>.column2 h2,.page2>.row6>.column2 p{
+    background-color:var(--darkYellowColor);
+}
+.page2>.row6>.column3 h2,.page2>.row6>.column3 p{
+    background-color:var(--lightOrange);
+}
+.page2>.row6>.column4 h2,.page2>.row6>.column4 p{
+    background-color:var(--darkGreenColor);
+} */
+.page2 > .row6 > .column {
+  width: 24.55%;
+  height: 180pt;
+  margin-right: 0.6%;
+  position: relative;
+}
+.page2 > .row6 > .column1::before {
+  background: url("./Images/car-image.png") no-repeat left bottom;
+}
+.page2 > .row6 > .column2::before {
+  background: url("./Images/flight-image.png") no-repeat left bottom;
+}
+.page2 > .row6 > .column3::before {
+  background: url("./Images/home-image.png") no-repeat left bottom;
+}
+.page2 > .row6 > .column4::before {
+  background: url("./Images/tree-image.png") no-repeat left bottom;
+}
+.page2 > .row6 > .column1 {
+  background-color: var(--pinkLightColor);
+}
+.page2 > .row6 > .column2 {
+  background-color: var(--grayColor);
+}
+.page2 > .row6 > .column3 {
+  background-color: var(--pinkLightColor);
+}
+.page2 > .row6 > .column4 {
+  background-color: var(--lightGreenColor);
+}
+.page2 > .row6 > .column::before {
+  content: "";
+  background-size: 100% auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.page2 > .row6 > .column:nth-child(4) {
+  margin-right: 0;
+}
+.page2 > .row6 > .column .text1 {
+  padding: 7pt 5pt;
+}
+.page3 > .row2 > .row2 {
+  background-color: var(--grayColor);
+  padding: 10pt 10pt 5pt 10pt;
+  width: 100%;
+  position: relative;
+  left: -10pt;
+}
+.page4 > .row3.row.section {
+  background-color: var(--grayColor);
+  padding: 10pt 10pt 0pt 10pt;
+  width: 100%;
+  position: relative;
+  left: -10pt;
+  min-height: 255px;
+}
+.page3 > .row2 > .row2 > .column2 {
+  position: relative;
+  min-height: 218px;
+}
+.page3 > .row2 > .row2 > .column2:before {
+  position: absolute;
+  content: "";
+  top: -40px;
+  left: 0;
+  height: 263px;
+  background: url("./Images/invest-image.png") no-repeat right top;
+  background-size: auto 100%;
+  margin: 0;
+  z-index: 1;
+  width: 100%;
+}
+.page3 > .row2 > .row2 > .column1 .row.section {
+  margin-bottom: 0;
+}
+.TheCarbonReservesIntensity p {
+  margin: 0;
+  /* font-weight: 600; */
+  font-size: 8pt;
+}
+.KgOfCarbonPer1000Invested {
+  position: absolute;
+  top: -30px;
+  left: 117px;
+  z-index: 9;
+  width: 125px;
+  text-align: center;
+}
+.KgOfCarbonPer1000Invested h2.item2 {
+  /* position: absolute;
+    top: -18px;
+    left: 135px;
+    z-index: 9; */
+  /* background-color: var(--yellowColor); */
+  font-size: 30pt;
+  text-transform: uppercase;
+  /* border-radius: 17pt; */
+  width: auto;
+  display: block;
+  padding: var(--borderSpacing);
+  margin: 0;
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+  line-height: 29pt;
+  color: var(--brownColor);
+  text-align: center;
+}
+.KgOfCarbonPer1000Invested p.item3 {
+  /* position: absolute;
+    top: 17px;
+     z-index: 10;
+    left: 120px; */
+  font-family: var(--universLTStdBold);
+  font-weight: 600;
+  font-size: 10pt;
+  text-align: center;
+  display: block;
+  margin: 0;
+  padding: 0 6px;
+}
+.TheMetricsInThisSectionHaveBeenCalculated>p,.WeEvaluateAlignmentWithScieneBased p.item2,
+.BasedOnDataSuppliedByTheFRC p.item2,
+.text.BODCaveat, .HRcaveat,.FullPortfolioHoldingsdate-Scope1and2emissionsdate{
+  position: relative;
+  padding: 5pt 20pt;
+  font-weight: 400;
+  font-size: 8pt !important;
+}
+.TheMetricsInThisSectionHaveBeenCalculated>p::before,.TheMetricsInThisSectionHaveBeenCalculated >p::after,
+.WeEvaluateAlignmentWithScieneBased p.item2::before,.WeEvaluateAlignmentWithScieneBased p.item2::after,
+.BasedOnDataSuppliedByTheFRC p.item2::before,.BasedOnDataSuppliedByTheFRC p.item2::after,
+.text.BODCaveat::before,
+.HRcaveat::before,
+.text.BODCaveat::after,
+.HRcaveat::after,.FullPortfolioHoldingsdate-Scope1and2emissionsdate::before,.FullPortfolioHoldingsdate-Scope1and2emissionsdate::after{
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: var(--blackColor);
+  z-index: 1;
+  top: 0;
+}
+.TheMetricsInThisSectionHaveBeenCalculated> p::after,
+.WeEvaluateAlignmentWithScieneBased p.item2::after,
+.BasedOnDataSuppliedByTheFRC p.SCSignedUpDate::after,
+.text.BODCaveat::after,
+.HRcaveat::after,.FullPortfolioHoldingsdate-Scope1and2emissionsdate::after {
+  left: 0;
+}
+.TheMetricsInThisSectionHaveBeenCalculated p::before,
+.WeEvaluateAlignmentWithScieneBased p.item2::before,
+.BasedOnDataSuppliedByTheFRC p.SCSignedUpDate::before,
+.text.BODCaveat::before,
+.HRcaveat::before,.FullPortfolioHoldingsdate-Scope1and2emissionsdate::before {
+  right: 0;
+}
+.text1.TheMetricsInThisSectionHaveBeenCalculated,
+.text1.WeEvaluateAlignmentWithScieneBased,
+.text1.BasedOnDataSuppliedByTheFRC {
+  position: relative;
+  padding: 0;
+}
+.page3 .row3.row.section .row2.row.section {
+  margin-bottom: 0;
+}
+.page4 .text1.contentSection {
+  display: block;
+}
+.page4 .ApprovedTargets h2.item2,
+.page4 .CommittedTargets h2.item2,
+.page4 .NoTargets h2.item2,
+.page4 .NotInScopeMeans h2.item2 {
+  display: inline;
+  padding: 1px 4px 0;
+  color: var(--whiteColor);
+  letter-spacing: 1px;
+      line-height: normal;
+}
+.page4 .ApprovedTargets p.item3,
+.page4 .CommittedTargets p.item3,
+.page4 .NoTargets p.item3,
+.page4 .NotInScopeMeans p.item3 {
+  display: inline;
+}
+.ApprovedTargets h2.item2 {
+  background: var(--lightGreen);
+}
+.CommittedTargets h2.item2 {
+  background: var(--darkGreen);
+}
+.NoTargets h2.item2 {
+  background: var(--darkBrownColor);
+}
+.NotInScopeMeans h2.item2 {
+  background: var(--lightGray);
+}
+.page4 > .row3 > .column1 {
+  width: 55%;
+  position: relative;
+  /* min-height: 265px; */
+  min-height: 290px;
+}
+.page4 > .row3 > .column1 > .row1 {
+  margin-bottom: 0;
+}
+.page4 > .row3 > .column3 {
+  width: 42%;
+  min-height: 250px;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.page4 > .row3 > .column3 .row4.row.section:nth-child(4) {
+  margin-bottom: 0;
+}
+.page4 > .row3 > .column3 p.item2 {
+  font-size: 9pt;
+  /* font-weight: 600; */
+  color: var(--blackColor);
+  padding-left: 23pt;
+  position: relative;
+}
+.page4 > .row3 > .column3 p.item2:before {
+  width: 10pt;
+  height: 10pt;
+  content: "";
+  position: absolute;
+  top: 1pt;
+  left: 0;
+  z-index: 1;
+}
+.page4 > .row3 > .column3 .ApprovedScienceBasedTargets p.item2:before {
+  background-color: var(--lightGreen);
+}
+.page4 > .row3 > .column3 .CommittedScienceBasedTargets p.item2:before {
+  background-color: var(--darkGreen);
+}
+.page4 > .row3 > .column3 .NoScienceBasedTargets p.item2:before {
+  background-color: var(--darkBrownColor);
+}
+.page4 > .row3 > .column3 .NotInScope p.item2:before {
+  background-color: var(--lightGray);
+}
+
+.page4 > .row3 > .column2 {
+  /* position: absolute;
+  width: 0;
+  min-height: 255px;
+  left: 10pt;
+  z-index: 9; */
+  /* width:0; */
+  width: 45%;
+}
+.page4 > .row3 > .column1::before {
+  position: absolute;
+  content: "";
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 130px;
+  background: url(./Images/invest-chart.png) no-repeat;
+  background-position: center;
+  background-size: 100%;
+  margin: 0;
+  z-index: 1;
+  width: 130px;
+}
+.page4 > .row3 > .column2 .row h2.item2 {
+  position: absolute;
+  width: auto;
+  /* display: inline-block; */
+  z-index: 10;
+  /* background-color: var(--darkYellowColor); */
+  padding: var(--borderSpacing);
+  border-radius: var(--borderRadius);
+  margin: 0;
+  font-weight: normal;
+  color: var(--whiteColor);
+  font-size: var(--fontSizeMedium);
+}
+.page4 > .row3 > .column2 .row1.row h2.item2 {
+  /* left: 60px;
+  top: 10px; */
+  left: 237px;
+  top: 113px;
+}
+.page4 > .row3 > .column2 .row2.row h2.item2 {
+  /* left: 250px;
+  top: 78px; */
+  left: 140px;
+  top: 274px;
+}
+.page4 > .row3 > .column2 .row3.row h2.item2 {
+  /* left: 30px;
+  top: 150px; */
+  left: 32px;
+  top: 140px;
+}
+.page4 > .row3 > .column2 .row4.row h2.item2 {
+  /* left: 260px;
+  top: 207px; */
+  left: 253px;
+  top: 212px;
+}
+.page4 > .row2.row.section,
+.page4 > .row4.row.section,
+.page4 > .row5.row.section,
+.page4 > .row6.row.section {
+  margin-bottom: 0.05cm;
+}
+.page5 > .row3,
+.page5 > .row4 {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--lightGreenColor);
+  padding: 10pt 0;
+  position: relative;
+  left: -10pt;
+  width: calc(100% + 20pt);
+  margin-bottom: 0.2cm;
+}
+.page5 > .row4 {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--grayColor);
+}
+.page5 > .row3 > .column1,
+.page5 > .row3 > .column2,
+.page5 > .row3 > .column3,
+.page5 > .row4 > .column1,
+.page5 > .row4 > .column2,
+.page5 > .row4 > .column3 {
+  display: inline-flex;
+  align-items: center;
+}
+.page5 > .row3 > .column1 .row1.row.section,
+.page5 > .row3 > .column2 .row1.row.section,
+.page5 > .row3 > .column3 .row1.row.section,
+.page5 > .row4 > .column1 .row1.row.section,
+.page5 > .row4 > .column2 .row1.row.section,
+.page5 > .row4 > .column3 .row1.row.section {
+  margin: 0;
+  padding: 5pt;
+  width: 100%;
+}
+.page5 > .row3 > .column3 .row1.row.section,
+.page5 > .row4 > .column3 .row1.row.section {
+  padding: 5pt 15pt 5pt 12pt;
+}
+.page5 > .row3 > .column1,
+.page5 > .row4 > .column1 {
+  border-right: 2pt solid #f2f2f2;
+  width: 19%;
+}
+.page5 > .row3 > .column2,
+.page5 > .row4 > .column2 {
+  border-right: 2pt solid #f2f2f2;
+  width: 24%;
+}
+.page5 > .row3 > .column3,
+.page5 > .row4 > .column3 {
+  width: 56%;
+}
+.page5 > .row3 > .column2 h2.item2,
+.page5 > .row4 > .column2 h2.item2 {
+  width: auto;
+  padding: var(--borderSpacing);
+  border-radius: var(--borderRadius);
+  margin: 0;
+  font-weight: normal;
+  font-size: 35pt;
+  text-align: center;
+}
+.page5 > .row3 > .column2 h2.item2 {
+  color: var(--lightGreen);
+  /* background-color: var(--darkGreenColor); */
+}
+.page5 > .row4 > .column2 h2.item2 {
+  color: var(--purpleColor);
+  /* background-color: var(--darkYellowColor); */
+}
+.page5 > .row3 > .column1 .row1.row.section {
+  background: url("./Images/hand-image.png") no-repeat center center;
+}
+.page5 > .row4 > .column1 .row1.row.section {
+  background: url("./Images/close-image.png") no-repeat center center;
+}
+.page5 > .row3 > .column1 .row1.row.section,
+.page5 > .row4 > .column1 .row1.row.section {
+  height: 80px;
+  max-height: 80px;
+  width: 100%;
+  background-size: 80px auto;
+  margin: 0;
+}
+.page5 > .row2.row.section {
+  margin-bottom: 0.25cm;
+}
+.text1.CarbonFootprint h2.item2,
+.text1.CarbonFootprint p.item3,
+.EVIC h2.item2,
+.EVIC p.item3,
+.ParisAlignment h2.item2,
+.ParisAlignment p.item3,
+.SBT h2.item2,
+.SBT p.item3,
+.SBTi h2.item2,
+.SBTi p.item3 {
+  display: inline;
+}
+.page8 > .row h2.item2,
+.page8 > .row b,
+.page9 > .row h2.item2 {
+  font-family: var(--universLTStdBold);
+  color: var(--blackColor);
+  font-weight: 600;
+  font-size: var(--fontSizeNormal);
+  text-transform: none;
+  margin-bottom: 0;
+}
+.page8 > .row p,
+.page9 > .row p {
+  color: var(--blackColor);
+  font-size: var(--fontSizeNormal);
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+}
+.page8 > .row.row2 > .column1 .row p {
+  margin-bottom: 0.2cm;
+}
+.page8 > .row.row3 > .column1,
+.page8 > .row.row4 > .column1,
+.page8 > .row.row5 > .column1,
+.page8 > .row.row6 > .column1,
+.page8 > .row.row7 > .column1,
+.page8 > .row.row8 > .column1,
+.page8 > .row.row9 > .column1 {
+  width: 86%;
+}
+.page8 > .row.row3 > .column2,
+.page8 > .row.row4 > .column2,
+.page8 > .row.row5 > .column2,
+.page8 > .row.row6 > .column2,
+.page8 > .row.row7 > .column2,
+.page8 > .row.row8 > .column2,
+.page8 > .row.row9 > .column2 {
+  width: 14%;
+}
+.page9 > .row3.row.section > .row1 > .column1,
+.page9 > .row3.row.section > .row2 > .column1,
+.page9 > .row3.row.section > .row3 > .column1,
+.page9 > .row3.row.section > .row4 > .column1 {
+  width: 18%;
+}
+.page9 > .row3.row.section > .row1 > .column2,
+.page9 > .row3.row.section > .row2 > .column2,
+.page9 > .row3.row.section > .row3 > .column2,
+.page9 > .row3.row.section > .row4 > .column2 {
+  width: 82%;
+}
+.page8 > .row.row3 > .column2 {
+  background: url("./Images/co2-search.png") no-repeat;
+  height: 90px;
+  background-size: auto 70px;
+  background-position: top 20px right;
+  margin: 0;
+}
+.page8 > .row.row4 > .column2 {
+  background: url("./Images/co2-image-v2.png") no-repeat;
+  height: 215px;
+  background-size: auto 170px;
+  background-position: top 5px right;
+  margin: 0;
+}
+.page8 > .row.row5 > .column2 {
+  background: url("./Images/data-coverage.png") no-repeat;
+  height: 85px;
+  background-size: auto 30px;
+  background-position: top 57px right;
+  margin: 0;
+}
+.page8 > .row.row6 > .column2 {
+  background: url("./Images/graph-image.png") no-repeat;
+  height: 67px;
+  background-size: auto 55px;
+  background-position: top 25px right 4px;
+  margin: 0;
+}
+.page8 > .row.row7 > .column2 {
+  background: url("./Images/temperature-image.png") no-repeat;
+  height: 72px;
+  background-size: auto 72px;
+  background-position: top 10px right 23px;
+  margin: 0;
+}
+.page8 > .row.row8 > .column2 {
+  background: url("./Images/target-image.png") no-repeat;
+  height: 55px;
+  background-size: auto 60px;
+  background-position: top 10px right 10px;
+  margin: 0;
+}
+.page8 > .row.row9 > .column2 {
+  background: url("./Images/path-image.png") no-repeat;
+  height: 65px;
+  background-size: auto 55px;
+  background-position: top 10px right;
+  margin: 0;
+}
+.page9 > .row3.row.section > .row1 > .column1 {
+  background: url("./Images/car-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom -1px left;
+  margin: 0;
+}
+.page9 > .row3.row.section > .row2 > .column1 {
+  background: url("./Images/flight-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page9 > .row3.row.section > .row3 > .column1 {
+  background: url("./Images/home-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page9 > .row3.row.section > .row4 > .column1 {
+  background: url("./Images/tree-image.png") no-repeat;
+  height: 80px;
+  background-size: 100% auto;
+  background-position: bottom 0 left;
+  margin: 0;
+}
+.page9 > .row3.row.section > .row1 .column2 > .row1,
+.page9 > .row3.row.section > .row2 .column2 > .row1,
+.page9 > .row3.row.section > .row3 .column2 > .row1,
+.page9 > .row3.row.section > .row4 .column2 > .row1 {
+  margin-bottom: 0;
+}
+.page8 > .row3.row.section,
+.page8 > .row4.row.section,
+.page8 > .row5.row.section,
+.page8 > .row6.row.section,
+.page8 > .row7.row.section,
+.page8 > .row8.row.section,
+.page8 > .row9.row.section {
+  margin-bottom: 0;
+  padding-bottom: 9pt;
+  border-bottom: 1pt solid var(--grayBorder);
+  padding-right: 10pt;
+}
+.page9 > .row3.row.section > .row1,
+.page9 > .row3.row.section > .row2,
+.page9 > .row3.row.section > .row3,
+.page9 > .row3.row.section > .row4 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 1pt solid var(--grayBorder);
+  padding-right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.page8 > .row9.row.section {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.page8 > .row9.row.section:not(:empty) {
+  margin: 0;
+}
+.page8 > .row.section .column1,
+.page8 > .row.section .column2 {
+  padding-top: 9pt;
+}
+.page9 > .row3.row.section > .row1 .column1 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.page9 > .row3.row.section > .row > .column2 {
+  padding-top: 9pt;
+  padding-bottom: 9pt;
+}
+.page8 > .row.section .column1 .row,
+.page9 > .row3.row.section > .row1 .column1 .row {
+  margin-bottom: 5px;
+}
+.page8 > .row.section .column1 .row:last-child,
+.page9 > .row3.row.section > .row1 .column1 .row:last-child {
+  margin-bottom: 0;
+}
+.Scope1Covers p.item2,
+.Scope2Covers p.item2,
+.Scope3Emissions p.item2 {
+  list-style-type: initial;
+  display: list-item;
+  list-style-position: inside;
+}
+.PhoenixLifeLimitedCaveat p.item2 {
+  font-size: 8pt;
+  /* color: var(--grayBorder); */
+  color: #9fa494;
+  font-family: var(--universLTStdBold);
+  /* font-weight:600; */
+}
+.page9 > .row6.row.section {
+  /* margin-bottom:60px; */
+}
+.page9 > .row7 {
+  /* position: absolute;
+  bottom:1.8cm;
+  z-index: 9;
+  left: 0;
+  width: calc(100% - 4cm); */
+  /* padding-left: 2cm; */
+  margin: 10px 0 0;
+}
+.page6 > .row3.row.section,
+.page7 > .row3.row.section {
+  /* background-color: var(--pinkLightColor); */
+}
+.page6 > .row4.row.section {
+  /* background-color: var(--lightGreenColor); */
+}
+.page6 > .row3.row.section,
+.page6 > .row4.row.section,
+.page7 > .row3.row.section {
+  padding: 0;
+  width: 100%;
+  position: relative;
+  left: 0pt;
+  margin-bottom: 8px;
+}
+.page7 > .row3.row.section {
+  padding-top: 0;
+}
+
+.greatfemreptext p,
+.lowfemreptext p,
+.notinscopefemreptext p {
+  padding-top: 20px;
+}
+.greatfemreptext p:before,
+.lowfemreptext p:before,
+.notinscopefemreptext p:before {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  content: "";
+  width: 13px;
+  height: 13px;
+}
+.greatfemreptext p:before {
+  /* background-color: var(--greenDark); */
+}
+.lowfemreptext p:before {
+  background-color: var(--greenMedium);
+}
+.notinscopefemreptext p:before {
+  background-color: var(--chocolateLight);
+}
+.page6 > .row4 > .column1 > .row2 > .column .row1.row.section,
+.page6 > .row4 > .column1 > .row2 > .column .row1.row.section p.item2 {
+  margin-bottom: 0;
+}
+.page7 .row5.row.section {
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: var(--pinkLightColor); */
+  padding: 10pt 10pt 5pt;
+  /* position: relative; */
+  left: -10pt;
+  width: 100%;
+  margin-bottom: 0;
+}
+.UNBreachAmount p,
+.HumanRightsValue p {
+  border-radius: var(--borderRadius);
+  margin: 0;
+  color: var(--purpleColor);
+}
+.page6 > .row3,
+.page6 > .row5,
+.page7 > .row4 {
+  margin: 0;
+}
+.page7 > .row5.row.section .row1.row.section {
+  margin-bottom: 0;
+}
+.page6 > .row3 > .column2 {
+  height: 310px;
+  background: url("./Images/bar-chart.png") no-repeat left top;
+  background-size: auto 100%;
+  margin: 0;
+  position: relative;
+}
+.page6 > .row3 > .column2 > .row1,
+.page6 > .row3 > .column2 > .row2,
+.page6 > .row3 > .column2 > .row3 {
+  /* position: absolute;
+  margin: 0;
+  z-index: 9;
+  width: 90px; */
+}
+.page6 > .row3 > .column2 > .row1 {
+  /* left: 28px; */
+  /* top: 187px; */
+}
+.page6 > .row3 > .column2 > .row2 {
+  top: 45px;
+  left: 126px;
+}
+.page6 > .row3 > .column2 > .row3 {
+  top: 247px;
+  left: 225px;
+}
+.page6 > .row3 > .column2 > .row p {
+  font-size: 18pt;
+  color: var(--whiteColor);
+  text-align: center;
+  /* font-weight: 300; */
+}
+.text1.directorstext {
+  padding-right: 0px;
+}
+.page6 > .row4 > .column2 {
+  /* height: 280px; */
+  /* background: url("./Images/pie-chart.png") no-repeat; */
+  background-position: left top 50px;
+  background-size: auto 180px;
+  margin: 0;
+  position: relative;
+}
+.page6>.row4>.column1{
+  width: 53%;
+}
+.page6>.row5>.column2{
+  width: 56%;
+}
+
+.UNBreachtext p.item2,
+.HumanRightsCaveat .item2 {
+  line-height: 21px;
+}
+.page7 > .row5 > .column2 .row1.row.section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.GenderDiversityText {
+  /* padding-right: 115px;
+  min-height:230px; */
+}
+.page6 > .row4 > .column2 .row1.row.section,
+.page6 > .row4 > .column2 .row2.row.section,
+.page6 > .row4 > .column2 .row3.row.section {
+  position: absolute;
+  margin: 0;
+  z-index: 9;
+}
+.page6 > .row4 > .column2 .row1.row.section {
+  /* top: 152px;
+  left: 110px; */
+}
+.page6 > .row4 > .column2 .row2.row.section {
+  top: 125px;
+  left: 20px;
+}
+.page6 > .row4 > .column2 .row3.row.section {
+  top: 82px;
+  left: 107px;
+}
+.page6 > .row4 > .column2 > .row p {
+  /* font-size: 18pt; */
+  /* color: var(--whiteColor); */
+  /* font-weight: 300; */
+}
+.page7 > .row3 > .column2 {
+  /* height: 170px; */
+  /* background: url("./Images/pie-chart1.png") no-repeat left top; */
+  background-size: auto 100%;
+  margin: 0;
+  position: relative;
+}
+.page7 > .row3 > .column2 .row p {
+  font-size: 18pt;
+  color: var(--whiteColor);
+  /* font-weight: 300; */
+}
+.page7 > .row3 > .column2 .row1.row.section,
+.page7 > .row3 > .column2 .row2.row.section,
+.page7 > .row3 > .column2 .row3.row.section {
+  position: absolute;
+  margin: 0;
+  z-index: 9;
+}
+.page7 > .row3 > .column2 .row1.row.section {
+  /* top: 110px; */
+  /* left: 70px; */
+  position: unset;
+}
+.page7 > .row3 > .column2 .row2.row.section {
+  top: 15px;
+  left: 45px;
+}
+.page7 > .row3 > .column2 .row3.row.section {
+  top: 30px;
+  left: 107px;
+}
+.page7 > .row3.row.section .column1 > .row p {
+  color: var(--blackColor);
+  /* font-size: 8pt; */
+  font-weight: 400;
+  position: relative;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+}
+.yeshumanrightstext p,
+.nohumanrightstext p,
+.notinscopeHRtext p {
+  padding-left: 25px;
+}
+.yeshumanrightstext p:before,
+.nohumanrightstext p:before,
+.notinscopeHRtext p:before {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 13px;
+  height: 13px;
+}
+.yeshumanrightstext p:before {
+  background-color: var(--darkPinkColor);
+}
+.nohumanrightstext p:before {
+  background-color: var(--darkPurple);
+}
+.notinscopeHRtext p:before {
+  background-color: var(--chocolateLight);
+}
+.page7 > .row3 > .column1 > .row.section {
+  /* width: 35%; */
+  /* padding: 20px 0 0 0; */
+  margin-bottom: 0.3cm;
+}
+.pagenumbers p.item2 {
+  color: var(--purpleColor);
+  font-weight: 600;
+  font-size: var(--fontSizeSmall);
+  font-family: var(--universLTStdBold);
+  position: absolute;
+  bottom: 1cm;
+  right: 1.93cm;
+  z-index: 10;
+}
+/* [20-06-2023] */
+.page4 > .row3 {
+  display: flex;
+  align-items: center;
+}
+.donutchart1 svg rect.highcharts-background {
+  fill: none !important;
+}
+.donutchart1 .highcharts-container {
+  /* width: 250px !important;
+  height: 250px !important; */
+}
+.page4 > .row3 > .column1 > .row1 .donutchart1 .highcharts-container {
+  /* margin-top: 75px; */
+  /* margin-left: 50px; */
+  margin-inline: auto;
+}
+.page7 > .row3 .donutchart1 .highcharts-container {
+  width: 300px !important;
+  height: 300px !important;
+}
+.page7
+  > .row3
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline,
+.page7
+  > .row3
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline
+  + tspan {
+  font-size: unset;
+  stroke-width: 2px !important;
+  fill: #000000;
+  font-weight: unset !important;
+}
+.page7
+  > .row3
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline {
+  stroke: none !important;
+  font-size: 17px !important;
+}
+.donutchart1 .highcharts-container svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+.donutchart1 .highcharts-container svg tspan.highcharts-text-outline,
+.donutchart1 .highcharts-container svg tspan.highcharts-text-outline + tspan {
+  font-size: 16px;
+  stroke: none !important;
+  stroke-width: 0px !important;
+  fill: #ffffff;
+  font-weight: 300 !important;
+}
+.page4 > .row3 > .column1 > .row1 .donutchart1 .highcharts-container svg {
+  /* width: 110% !important;
+  height: 110% !important; */
+  /* left: 50%;
+  position: absolute;
+  transform: translateX(-50%); */
+}
+.page4
+  > .row3
+  > .column1
+  > .row1
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline,
+.page4
+  > .row3
+  > .column1
+  > .row1
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline
+  + tspan {
+  font-size: 20px;
+}
+.page4 > .row3 .column2 .row1 .ApprovedScienceBasedTargets p,
+.page4 > .row3 .column2 .row2 .CommittedScienceBasedTargets p,
+.page4 > .row3 .column2 .row3 .NoScienceBasedTargets p,
+.page4 > .row3 .column2 .row4 .NotInScope p {
+  color: var(--blackColor);
+  position: relative;
+  padding-left: 25px;
+}
+.page4 > .row3 .column2 .row1 .ApprovedScienceBasedTargets p::before,
+.page4 > .row3 .column2 .row2 .CommittedScienceBasedTargets p::before,
+.page4 > .row3 .column2 .row3 .NoScienceBasedTargets p::before,
+.page4 > .row3 .column2 .row4 .NotInScope p::before {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 13px;
+  height: 13px;
+}
+.page4 > .row3 .column2 .row1 .ApprovedScienceBasedTargets p::before {
+  background-color: var(--greenMedium);
+}
+.page4 > .row3 .column2 .row2 .CommittedScienceBasedTargets p::before {
+  background-color: var(--greenDark);
+}
+.page4 > .row3 .column2 .row3 .NoScienceBasedTargets p::before {
+  background-color: var(--darkBrownColor);
+}
+.page4 > .row3 .column2 .row4 .NotInScope p::before {
+  background-color: var(--lightBrownColor);
+}
+.ValueOfAssetsWhoHaveSignedUp h2.SCSignedUp,
+.ValueOfAssetsWhoHaveNotSignedUp h2.SCNOTSignedUp,
+.UNBreachAmount p,
+.HumanRightsValue p {
+  font-size: 40pt;
+  /* font-size: 32pt; */
+  font-weight: 300;
+  text-align: center;
+}
+.ValueOfAssetsWhoHaveSignedUp h2.SCSignedUp {
+  color: var(--lightGreen);
+}
+.ValueOfAssetsWhoHaveNotSignedUp h2.SCNOTSignedUp {
+  color: var(--darkpurpleColor);
+}
+.text {
+  font-size: var(--fontSizeNormal);
+}
+h2.CarbonPerTree {
+  color: var(--lightGreen);
+}
+h2.CarbonPerFlight {
+  color: var(--purpleColor);
+}
+h2.CarbonReservesMetric,
+.KgOfCarbonPer1000Invested
+  p.Portfolio\.Overall\.ISS\.Carbon\.CarbonReserves\.Value {
+  font-size: 30pt;
+  color: var(--purpleColor);
+}
+.text.BODCaveat,
+.HRcaveat {
+  /* font-size: 8pt; */
+}
+.page7 > .row3 > .row2,
+.page7 > .row2 > .row3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: var(--grayColor);
+  height: 100px;
+  padding-inline: 90px 20px;
+  position: relative;
+}
+.page7 > .row2 > .row3 {
+  background-color: var(--lightGreenColor);
+}
+.page7 > .row3 > .row2::before,
+.page7 > .row2 > .row3::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  background: url(./Images/globe.png) no-repeat;
+  background-size: 60px;
+  background-position: center;
+}
+.page7 > .row2 > .row3::before {
+  background-image: url(./Images/hand-man.png);
+}
+.page7 > .row3 > .row2 .column .row,
+.page7 > .row2 > .row3 .column .row {
+  margin: 0;
+}
+.page6 > .row3 > .column1 > .row {
+  margin-bottom: 0;
+}
+.page6 > .row4 .column1 .row2 {
+  /* display: none; */
+}
+.page6
+  > .row4
+  .donutchart1
+  .highcharts-container
+  svg
+  .highcharts-legend
+  > g
+  > g {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: flex-start;
+}
+.page6
+  > .row4
+  .donutchart1
+  .highcharts-container
+  svg
+  .highcharts-legend
+  .highcharts-legend-item {
+  flex-basis: 30% !important;
+  width: 100px !important;
+}
+.page7 > .row3 > .row2 > .column1,
+.page7 > .row2 > .row3 > .column1 {
+  width: 30%;
+  margin-right: 10px;
+}
+.page7 > .row3 > .row2 > .column2,
+.page7 > .row2 > .row3 > .column2 {
+  width: 62%;
+}
+.page7 > .row3 > .row2 > .column1 > .row .UNBreachAmount p,
+.page7 > .row2 > .row3 > .column1 .HumanRightsValue p {
+  color: var(--purpleColor);
+  border-left: 1px solid var(--whiteColor);
+  border-right: 1px solid var(--whiteColor);
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 10px; */
+}
+.page7 > .row2 > .row3 > .column1 .HumanRightsValue p {
+  color: var(--lightGreen);
+}
+/* [/20-06-2023] */
+
+/* [18-07-2023] */
+.page6 > .row4 > .column2 > .row .BODValue {
+  background: url("./Images/70-percent.png") no-repeat left center;
+  height: 90px;
+  background-size: contain;
+  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page6 > .row4 > .column2 > .row .BODValue p.MajorityIndependentDirectors,
+.Portfolio\.Overall\.ISS\.ESG\.Governance\.IndependentDirectors\.Value {
+  display: block;
+  text-align: center;
+  color: var(--lightGreen);
+  font-size: 50px;
+  font-weight: 300;
+  margin: 0;
+}
+.page6 > .row4 > .column2 {
+  background-color: var(--lightGreenColor);
+  padding: 10px;
+  width: 40%;
+  margin-left: 0.5cm;
+}
+.page6 > .row4 > .column2 .row1.row.section,
+.page6 > .row4 > .column2 .row2.row.section {
+  position: unset;
+}
+.page6 > .row4 > .column2 .row2.row.section,
+.page6 > .row5 > .column1 .row2.row.section {
+  text-align: center;
+  border-top: 1px solid #ffffff;
+  margin-top: 20px;
+  padding: 10px 10px 0;
+}
+.page6 > .row4 > .column2 .row2.row.section .BODText h2,
+.page6 > .row5 > .column1 .row2.row.section .greatfemreptext h2 {
+  color: var(--blackColor);
+  font-size: 11pt;
+}
+.page6 > .row5 > .column1 {
+  background-color: var(--grayColor);
+  padding: 10px;
+  width: 40%;
+}
+.page6 > .row5 > .column1 > .row .femrepvalue {
+  background: url("./Images/10-percent.png") no-repeat left center;
+  height: 90px;
+  background-size: contain;
+  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page6 > .row5 > .column1 > .row .femrepvalue p.Over30FemaleRep,
+.femrepvalue
+  .Portfolio\.Overall\.ISS\.ESG\.Governance\.WomenRepresentation\.Value {
+  display: block;
+  text-align: center;
+  color: var(--purpleColor);
+  font-size: 50px;
+  font-weight: 300;
+  margin: 0;
+}
+.page6 > .row4 > .column2 .row2.row.section .BODText p,
+.page6 > .row5 > .column1 .row2.row.section .greatfemreptext p,
+.HumanRightsCaveat p.item3,p.Portfolio\.Overall\.ISS\.ESG\.Hrpolicy\.Coverage {
+  padding-top: 10px;
+  font-size: 8pt;
+  letter-spacing: 0.5pt;
+}
+.page7
+  .highcharts-legend.highcharts-no-tooltip
+  g.highcharts-legend-item.highcharts-pie-series
+  text {
+  font-size: 14px !important;
+}
+.page7
+  > .row3
+  .donutchart1
+  .highcharts-container
+  svg
+  tspan.highcharts-text-outline
+  + tspan {
+  font-size: 17px !important;
+  fill: #ffffff;
+}
+.page9 .DataSource {
+  position: relative;
+}
+.page > .row2 .text1.contentSection.DataSource h2.item2 {
+  margin-bottom: 12pt;
+}
+.page8 > .row2.row.section,
+.page8 > .row2.row.section .text h2 {
+  margin: 0;
+}
+.page9 .DataSource:after {
+  content: "";
+  background-image: url("./Images/iss-esg-logo.svg");
+  position: absolute;
+  left: auto;
+  top: -8px;
+  z-index: 9;
+  background-repeat: no-repeat;
+  margin: 0;
+  width: 155px;
+  height: 40px;
+  right: -10px;
+}
+/* [/18-07-2023] */
+/*Theme Name - MUFGESG */

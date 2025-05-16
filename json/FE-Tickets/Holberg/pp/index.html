@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="sv-SE" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> Past Performance</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="Version=3.2;
+DocumentType=KPP;
+PublicationCountry=SE;
+Language=sv;
+RecordDate=2023-02-08;
+ShareClass=NO0010774409;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=*;
+Productcode=;
+PublicationDate=;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=2023-02-08 08:56:27;
+CalculationDate=2023-01-31;
+" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 9pt;
+        }
+
+        h2 {
+            font-size: 10pt;
+        }
+
+        @page {
+            size: 21cm 29.7cm;
+            margin: 0;
+            counter-increment: page 1;
+        }
+
+        .page {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        .pageNumber::after {
+            content: counter(page);
+        }
+
+        .pageTotal::after {
+            content: counter(pages);
+        }
+
+        html {
+            -ro-rounding-mode: floor;
+        }
+
+        .clientRating {
+            width: 250px;
+        }
+
+        .rating {
+            max-width: 100px;
+        }
+
+        .kiiRiskRating {
+            width: 250px
+        }
+
+        .kiiRiskRating .header th:first-child,
+        .kiiRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .kiiRiskRating .header th:last-child,
+        .kiiRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .kiiRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 13px;
+        }
+
+        .kiiRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .kiiRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .kiiRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating {
+            width: 250px
+        }
+
+        .sriRangeRiskRating .header th:first-child,
+        .sriRangeRiskRating .description td:first-child {
+            text-align: left;
+        }
+
+        .sriRangeRiskRating .header th:last-child,
+        .sriRangeRiskRating .description td:last-child {
+            text-align: right;
+        }
+
+        .sriRangeRiskRating .arrow td {
+            background-image: url('https://documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+            background-size: 246px 15px;
+            height: 16px;
+        }
+
+        .sriRangeRiskRating table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .sriRangeRiskRating .rating {
+            width: 14%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #cccccc;
+            border: 1px solid #ffffff;
+        }
+
+        .sriRangeRiskRating .rating.selected {
+            background-color: #ffffcc;
+            border-top: 2px solid #ffcc66;
+            border-bottom: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.start {
+            border-left: 2px solid #ffcc66;
+        }
+
+        .sriRangeRiskRating .rating.selected.end {
+            border-right: 2px solid #ffcc66;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .page1>.row4>.composite1>.compositebody>.row4>.column1 {
+            float: left;
+            width: 50%;
+        }
+
+        .key-color {
+            display: block;
+            width: 5mm;
+            height: 5mm;
+        }
+
+        .label {
+            line-height: 5mm;
+            margin-left: 1mm;
+        }
+
+        .keyContainer {
+            height: 5mm;
+        }
+
+        .keyWrapper {
+            clear: both;
+        }
+
+        .page1>.row4>.composite1>.compositebody>.row4>.column2 {
+            float: left;
+            width: 50%;
+        }
+    </style>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery.1.8.2.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/jquery-ui.1.11.0.min.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/highcharts-3d.9.3.0.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/custom-barchart.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/template.common.js"></script>
+    <script src="https://documentscdn.feprecisionplus.com/fileaccess/scripts/1/awesomizr.js"></script>
+    <link rel="stylesheet" href="theme.css">
+</head>
+
+<body>
+    <h1 style="position: absolute"></h1>
+    <div class="section page page1" data-pageorder="1" data-sectionId="4936517" data-sectiontype="1">
+        <script>var monthNames = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december',]; var monthNamesAbv = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec',];</script>
+        <div class="section row row1" data-roworder="1" data-sectionId="4956948" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4956949">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4956950"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4956951" data-sectiontype="2">
+                        <div class="section contentSection text text1 TextSection" data-sectionId="4936519">
+                            <h2 class="item2">Tidigare resultat</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4956952" data-sectiontype="2">
+                        <div class="section row row1" data-roworder="1" data-sectionId="4956955" data-sectiontype="2">
+                            <div class="section contentSection text text1" data-sectionId="4956956">
+                                <div class="item2">Tidigare resultat utgör inte någon tillförlitlig indikation på
+                                    framtida resultat. Marknaderna kan utvecklas helt annorlunda i framtiden. Det kan
+                                    hjälpa dig att bedöma hur fonden har förvaltats tidigare och jämföra det med
+                                    jämförelseindex.</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row2" data-roworder="2" data-sectionId="4936520" data-sectiontype="2">
+            <div class="section contentSection text text1 TextSection" data-sectionId="4936521">
+                <div class="item2">
+                    Detta dokument förser dig med information om tidigare resultat.
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row3" data-roworder="3" data-sectionId="4936522" data-sectiontype="2">
+            <div class="section contentSection text text1 TextSection" data-sectionId="4936523">
+                <div class="WB_PastPerformancenarrative_1"></div>
+                <div class="WB_Issuedondate">Utfärdandedatum 08/02/2023</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row4" data-roworder="4" data-sectionId="4936524" data-sectiontype="2">
+            <div class="section composite composite1 composite" data-sectionId="4936525">
+                <div class="section contentSection text text1  compositeheader" data-sectionId="4936526"></div>
+                <div class="compositebody">
+                    <div class="section row row2" data-roworder="2" data-sectionId="4936527" data-sectiontype="2">
+                        <div class="section contentSection text text1 TextSection" data-sectionId="4936528">
+                            <h2 class="item2">Tidigare resultat
+
+                            </h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row3" data-roworder="3" data-sectionId="4936531" data-sectiontype="2">
+                        <div class="section row row1" data-roworder="1" data-sectionId="4956979" data-sectiontype="2">
+                            <div class="section contentSection text text1 shareclasscustominfo"
+                                data-sectionId="4956980">
+                                <div class="item2">Detta diagram visar fondens resultat som förlust eller vinst i
+                                    procent per år för de senaste 7 åren.</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section row row4" data-roworder="4" data-sectionId="4956967" data-sectiontype="2">
+                        <div class="section column column1" data-sectionId="4956970">
+                            <div class="section row row1" data-roworder="1" data-sectionId="4956971"
+                                data-sectiontype="2">
+                                <div class="section contentSection pdfperformancechart pdfperformancechart1 PastPerformanceChart"
+                                    data-sectionId="4936532">
+                                    <h2 class=""></h2>
+                                    <div class="discreteChart"></div>
+                                    <script>$(function () { Highcharts.setOptions({ lang: { decimalPoint: ',' } }); $('div[data-sectionId="4936532"] .discreteChart').highcharts({ chart: { type: 'column', events: { load: function () { var chart = this, points = chart.series[0].points; points.forEach(function (point) { if (point.y == 0) { point.y.update = null; } }); chart.redraw(); } }, zoomType: '', animation: false, backgroundColor: null, style: { fontFamily: 'Arial', fontSize: '10pt', color: '#000000' } }, title: { text: '', style: { display: 'none' } }, subtitle: { text: '', style: { display: 'none' } }, credits: { enabled: true, href: '', text: '' }, xAxis: { type: 'category', lineWidth: 1, lineColor: '#404040', tickWidth: 1, tickLength: 3, tickColor: '#404040', categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'], showLastLabel: true, endOnTick: true, labels: { useHTML: true, format: '<div class="bar-xlabel">{value}</div>', staggerLines: 1, padding: 0, style: { color: '#000000', textOverflow: 'ellipsis' }, } }, yAxis: { lineWidth: 1, allowDecimals: true, tickInterval: 5, lineColor: '#404040', tickWidth: 1, tickLength: 3, tickColor: '#404040', gridLineWidth: 0, title: { text: null }, labels: { useHTML: true, format: '<div class="bar-ylabel">{value}%</div>', style: { color: '#000000' } }, plotLines: [{ value: 0, width: 1, color: '#CDCCCB' }] }, plotOptions: { column: { borderWidth: 0 }, series: { minPointLength: 2, lineWidth: 1, animation: false, pointWidth: 10, states: { hover: { enabled: false, }, }, dataLabels: [{ enabled: true, verticalAlign: 'below', format: '{point.b}' }] }, line: { animation: false }, }, legend: { enabled: false }, tooltip: { enabled: false }, series: [{ 'name': 'Fonden', 'color': '#FFC4CE', 'data': [null, null, null, 26.46700000, 0.05763300, 13.07029900, 2.91143500, 4.16674200, 11.87274400, 0.96066000] }, { name: 'Scatter', type: 'scatter', lineWidth: 0, marker: { symbol: 'triangle' }, data: [null, null, null, null, null, null, null, null, null, null] }], }); });</script>
+                                    <div class="keyWrapper"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="section row row2" data-roworder="2" data-sectionId="4956976"
+                                data-sectiontype="2">
+                                <div class="section contentSection performancetable performancetable1 PastPerformanceTable"
+                                    data-sectionId="4936534" style="page-break-inside:avoid">
+                                    <h2 class=""></h2>
+                                    <table>
+                                        <tr>
+                                            <th class="groupHeader1">
+                                                <div class="groupHeaderDiv1">
+                                                    <table>
+                                                        <tr>
+                                                            <th class="keycell"></th>
+                                                            <th class="rowheader"></th>
+                                                            <th class="P108To120M">2013</th>
+                                                            <th class="P96To108M">2014</th>
+                                                            <th class="P84To96M">2015</th>
+                                                            <th class="P72To84M">2016</th>
+                                                            <th class="P60To72M">2017</th>
+                                                            <th class="P48To60M">2018</th>
+                                                            <th class="P36To48M">2019</th>
+                                                            <th class="P24To36M">2020</th>
+                                                            <th class="P12To24M">2021</th>
+                                                            <th class="P0To12M">2022</th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <thead></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="groupRow1">
+                                                    <div class="groupRowDiv1">
+                                                        <table>
+                                                            <tr class="odd unitWorkbook">
+                                                                <td class="keycell">
+                                                                    <div class="keycolour"
+                                                                        style="background-color:#FFC4CE;display: inline-block;width: 10px;height: 10px;">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="rowheader">Fonden</td>
+                                                                <td class="P108To120M"></td>
+                                                                <td class="P96To108M"></td>
+                                                                <td class="P84To96M"></td>
+                                                                <td class="P72To84M">26,5</td>
+                                                                <td class="P60To72M">0,1</td>
+                                                                <td class="P48To60M">13,1</td>
+                                                                <td class="P36To48M">2,9</td>
+                                                                <td class="P24To36M">4,2</td>
+                                                                <td class="P12To24M">11,9</td>
+                                                                <td class="P0To12M">1,0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="section column column2" data-sectionId="4956972">
+                            <div class="section row row1" data-roworder="1" data-sectionId="4956973"
+                                data-sectiontype="2">
+                                <div class="section contentSection text text1 TextSection with_performance_table"
+                                    data-sectionId="4936537">
+                                    <div class="item2">Du bör vara medveten om att tidigare resultat inte är vägledande
+                                        för framtida resultat.</div>
+                                    <div class="WB_FundLaunchDate"></div>
+                                    <div class="WB_UnitLaunchDate">Lanseringsdatum för andels/enhetsklass: 2015-02-27
+                                    </div>
+                                    <div class="item5">Resultat beräknas i NOK</div>
+                                    <div class="item6">Diagrammet visar hur mycket fondens värde har ökat eller minskat
+                                        som ett procenttal för varje år, efter avdrag av avgifter (exklusive
+                                        teckningsavgift) och efter avdrag av skatt.</div>
+                                    <div class="SyntheticHistoryPerformanceCaveat">
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                    <div class="BenchmarkNames"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section row row5" data-roworder="5" data-sectionId="4936538" data-sectiontype="2">
+            <div class="section contentSection text text1 pagenumbers" data-sectionId="4936539">
+                <div class="item2">
+                    <div class="Pagination">
+                        <p>Sida <span class="pageNumber"></span> på <span class="pageTotal"></span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script
+        type="text/javascript">  $(document).ready(function () { if ($('.discreteChart').length == 0) $('.shareclasscustominfo').hide(); });</script>
+</body>
+
+</html>
