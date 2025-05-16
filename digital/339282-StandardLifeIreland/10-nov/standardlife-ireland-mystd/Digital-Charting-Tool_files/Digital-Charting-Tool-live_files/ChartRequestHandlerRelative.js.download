@@ -1,0 +1,3370 @@
+﻿//NOTE: If you are writting any shared code then please write the funtion in
+//Dependency:
+//jquery,
+//#endregion
+$.fn.showChartLoading = function (chart) {
+    if (chart.Options.ShowLoadding || chart.IsTriggeredByWindowInteraction) {
+        $(this).showLoading();
+    }
+
+    return $(this);
+};
+$.fn.hideChartLoading = function (chart) {
+    if (chart.Options.ShowLoadding || chart.IsTriggeredByWindowInteraction) {
+        $(this).hideLoading();
+    }
+
+    return $(this);
+};
+
+var ChartRequestType = {
+    LoadInitialStructure: 1,
+    LoadSummaryChart: 2,
+    LoadDetailChart: 3,
+    LoadDetailChartScriptData: 5,
+    LoadSummaryChartScriptData: 6
+};
+
+function ChartInitializationParameters() {
+    this.TemplateURL = null;
+    this.TemplateXml = null;
+    this.ContainerId = null;
+    this.ChartsFinishLoadingCallBack = null;
+    this.EmptyChartsFinishLoadingCallBack = null;
+    this.InitializationCallBack = null;
+    this.ShowLoadding = false;
+    this.ShowScrollingOverlay = true;
+    this.ShowChartSummaryDatesOnDrag = false;
+    this.SummaryDateFormat = "";
+    this.OverMaxIntrumentError = "At most 10 instruments are supported";
+    this.UseGlobalizationPlugin = false;
+    this.UseAdaptiveDesign = false;
+    this.UsePercentageWidth = false;
+    this.Width = -1;
+    return this;
+}
+
+var OriginalDetailWidth, AdaptiveScaleRatio = 1;
+
+function SendChartInitialization(ChartInitializationParameters, requstHandlerUrl) {
+    SendChartInitializationRequest(ChartInitializationParameters, requstHandlerUrl, null);
+}
+
+function SendChartInitializationRequest(ChartInitializationParameters, requstHandlerUrl, request) {
+
+    if (requstHandlerUrl.indexOf("//") == 0) {
+        if (window.location.protocol == "https:") {
+            requstHandlerUrl = "https:" + requstHandlerUrl;
+        }
+        else if (window.location.protocol == "http:") {
+            requstHandlerUrl = "http:" + requstHandlerUrl;
+        }
+    }
+    var requestUrl = requstHandlerUrl.substr(0, requstHandlerUrl.lastIndexOf("/") + 1);
+    if (ChartInitializationParameters.UsePercentageWidth == true) {
+        ////get width as a percentage from screen
+        if (ChartInitializationParameters.Width == null || ChartInitializationParameters.Width == undefined || ChartInitializationParameters.Width <= 0) {
+            ChartInitializationParameters.Width = chartHelper.FloatToInt($(window).width() * 0.8);
+        }
+        else {
+            ChartInitializationParameters.Width = chartHelper.FloatToInt($(window).width() * ChartInitializationParameters.Width);
+        }
+
+
+        window.log("new width is:" + ChartInitializationParameters.Width);
+    }
+
+    requstHandlerUrl = requstHandlerUrl + "?callback=?&ChartRequestType=" + ChartRequestType.LoadInitialStructure;
+    requstHandlerUrl = requstHandlerUrl + "&ContainerId=" + ChartInitializationParameters.ContainerId;
+    var templateXmlObj = null;
+    if (ChartInitializationParameters.TemplateURL != null && ChartInitializationParameters.TemplateURL != "")
+        requstHandlerUrl = requstHandlerUrl + "&TemplateURL=" + ChartInitializationParameters.TemplateURL;
+    else
+        templateXmlObj = { "TemplateXml": ChartInitializationParameters.TemplateXml };
+
+    if (ChartInitializationParameters.Width != -1 && ChartInitializationParameters.Width != undefined) {
+        requstHandlerUrl = requstHandlerUrl + "&w=" + ChartInitializationParameters.Width;
+    }
+    $.post(requstHandlerUrl, templateXmlObj, function (result) {
+        if (result.IsSuccessful) {
+            var container = $("#" + result.ContainerId);
+            DetailChartHelper.padEvents(result.ContainerId);
+            var InitialStructure = result.InitialStructure;
+            InitialStructure.DetailDataKey = result.DetailDataKey;
+            InitialStructure.SummaryDataKey = result.SummaryDataKey;
+            container.append(InitialStructure.HtmlElements);
+            OnChartInitializationComplete(result, request);
+
+            var setting = new ChartDefaults();
+            setting.id = result.ContainerId;
+            setting.DetailChartCultureName = InitialStructure.DetailChartCultureName;
+            setting.UseGlobalizationPlugin = ChartInitializationParameters.UseGlobalizationPlugin;
+            setting.UseAdaptiveDesign = ChartInitializationParameters.UseAdaptiveDesign;
+            setting.UsePercentageWidth = ChartInitializationParameters.UsePercentageWidth;
+            setting.DecimalPointSeparator = InitialStructure.DecimalPointSeparator;
+            setting.Width = ChartInitializationParameters.Width;
+            setting.Height = result.InitialStructure.DetailHeight;
+            setting.SummaryHeight = result.InitialStructure.SummaryHeight;
+
+            setting.ShowLoadding = ChartInitializationParameters.ShowLoadding;
+            setting.ShowScrollingOverlay = InitialStructure.ShowScrollingOverlay;
+            setting.ShowHoverOver = InitialStructure.ShowHoverOver;
+            setting.Translations = result.InitialStructure.Translations;
+            setting.InstrumentEventImages = result.InitialStructure.InstrumentEventImages;
+            setting.ShowChartSummaryDatesOnDrag = ChartInitializationParameters.ShowChartSummaryDatesOnDrag;
+            setting.SummaryDatesOnDragCallBack = ChartInitializationParameters.SummaryDatesOnDragCallBack;
+            if (ChartInitializationParameters.SummaryDateFormat != null && ChartInitializationParameters.SummaryDateFormat != undefined) {
+                setting.SummaryDateFormat = ChartInitializationParameters.SummaryDateFormat;
+            }
+            setting.RequstHandlerUrl = requestUrl;
+            var struct = GetChartDataStruct(result.ContainerId);
+            var chart = GetChartDataStruct(result.ContainerId);
+            var DetailChartContainer = chart.DetailChartJqueryElem;
+            DetailChartContainer.parent().css({ "position": "relative" });
+            struct.MouseClickDetailDivJqueryElem.insertBefore(DetailChartContainer);
+            struct.MouseClickDetailDivJqueryElem.css({ "position": "absolute" });
+            struct.MouseClickDetailDivJqueryElem1.insertBefore(DetailChartContainer);
+            struct.MouseClickDetailDivJqueryElem1.css({ "position": "absolute" });
+            struct.MouseClickDetailDivJqueryElem2.insertBefore(DetailChartContainer);
+            struct.MouseClickDetailDivJqueryElem2.css({ "position": "absolute" });
+
+            struct.spotJqueryElem.insertBefore(DetailChartContainer);
+            struct.spotJqueryElem.css({ "position": "absolute" });
+            struct.spotJqueryElem1.insertBefore(DetailChartContainer);
+            struct.spotJqueryElem1.css({ "position": "absolute" });
+            struct.spotJqueryElem2.insertBefore(DetailChartContainer);
+            struct.spotJqueryElem2.css({ "position": "absolute" });
+
+            struct.SummaryChartStartDateElem.insertBefore(DetailChartContainer);
+            struct.SummaryChartStartDateElem.css({ "position": "absolute" });
+            struct.SummaryChartEndDateElem.insertBefore(DetailChartContainer);
+            struct.SummaryChartEndDateElem.css({ "position": "absolute" });
+
+            struct.DateFormat = result.DateFormat;
+            setting.TemplateURL = ChartInitializationParameters.TemplateURL;
+            setting.TemplateXml = ChartInitializationParameters.TemplateXml;
+            setting.OverMaxIntrumentError = ChartInitializationParameters.OverMaxIntrumentError;
+            setting.ChartFinishCallBack = ChartInitializationParameters.ChartsFinishLoadingCallBack;
+            setting.EmptyChartFinishCallBack = ChartInitializationParameters.EmptyChartsFinishLoadingCallBack;
+            DetailChartHelper.ChartSettings(setting);
+
+            if (struct.DetailHeight != undefined && struct.DetailHeight != -1 && struct.DetailHeight != null) {
+                chart.DetailChartJqueryElem.parent().css('min-height', struct.DetailHeight + 'px');
+                chart.DetailChartJqueryElem.css('min-height', struct.DetailHeight + 'px');
+                chart.DetailChartJqueryElem.parent().css('height', struct.DetailHeight + 'px');
+                chart.DetailChartJqueryElem.parent().parent().css('min-height', struct.DetailHeight + 'px');
+            }
+
+            if (struct.SummaryHeight != undefined && struct.SummaryHeight != -1 && struct.SummaryHeight != null) {
+                chart.SummaryChartJqueryElem.parent().css('min-height', struct.SummaryHeight + 'px');
+                chart.SummaryChartJqueryElem.parent().css('height', struct.SummaryHeight + 'px');
+                chart.SummaryChartJqueryElem.parent().parent().css('min-height', struct.SummaryHeight + 'px');
+            }
+
+            if (ChartInitializationParameters.InitializationCallBack != null)
+                ChartInitializationParameters.InitializationCallBack(struct);
+        }
+        else {
+            alert(result.ResponseMessage);
+        }
+    }, "json").fail(function (d, textStatus, error) {
+        window.log("SendChartInitializationRequest: JSON Post failed. Status: " + textStatus + ", Error: " + error);
+    });
+}
+
+function OnChartInitializationComplete(result, request) {
+    var struct = GetChartDataStruct(result.ContainerId);
+    var InitialStructure = result.InitialStructure;
+    struct.DetailChartDataServiceUrl = InitialStructure.DetailChartDataServiceUrl;
+    struct.SummaryChartDataServiceUrl = InitialStructure.SummaryChartDataServiceUrl;
+    struct.ChartDetailImageServiceURL = InitialStructure.ChartDetailImageServiceURL;
+    struct.ChartDetailSVGServiceURL = InitialStructure.ChartDetailSVGServiceURL;
+    struct.ChartSummaryImageServiceURL = InitialStructure.ChartSummaryImageServiceURL;
+    struct.DetailChartLeft = InitialStructure.InitialLeft;
+    struct.DetailChartRight = InitialStructure.InitialRight;
+    struct.DetailDataKey = InitialStructure.DetailDataKey;
+    struct.SummaryDataKey = InitialStructure.SummaryDataKey;
+    struct.DetailWidth = InitialStructure.DetailWidth;
+    struct.SummaryWidth = InitialStructure.SummaryWidth;
+    struct.ServerSideWidth = InitialStructure.SummaryWidth;
+    struct.DetailHeight = InitialStructure.DetailHeight;
+    struct.SummaryHeight = InitialStructure.SummaryHeight;
+
+    if (request != null && request != undefined) {
+        SummaryChartHelper.FELoadSummaryChart(result.containerId, request);
+        ////now 
+    }
+}
+
+////###############################################
+////scrolling chart.js
+////NOTE: If you are writting any shared code then please write the funtion in
+//Dependency:
+//constructors.js
+// Dates.js
+//jquery,
+//jqueryUI, resizable, widgets,
+//jquery.showloading.js
+//json.js
+//#endregion
+
+//this contains the chart data 
+var DataHolders = [];
+//a common place for consts
+$.extend({
+    ajaxTypes: { post: "POST", get: "GET", put: "PUT", del: "Delete" },
+    ajaxConent: { contentType: "application/json; charset=utf-8", json: "json" }
+});
+
+//by doing this way, visual studio intelligence will work, above won't
+var FEChartConstHelper = {
+    FEChartConsts: {
+        object: "object",
+        click: "click",
+        mousemove: "mousemove",
+        mouseenter: "mouseenter",
+        mouseleave: "mouseleave",
+        touchstart: "touchstart",
+        touchend: "touchend",
+        src: "src",
+        data: "Data",
+        error: "Error",
+        undefined: "undefined",
+        ScrollSpacing: 4,
+        DetailChartDiv: "_DetailChartDiv",
+        SummaryChartDiv: "_SummaryChartDiv",
+        EmptyChart: "Empty"
+    },
+    PositionConsts: {
+        top: "top",
+        left: "left",
+        right: "right",
+        opacity: "opacity",
+        position: "position",
+        relative: "relative",
+        px: "px",
+        zeropx: "0px"
+    },
+    ScrollConsts: {
+        x: "x",
+        ew: "e,w",
+        dragstop: "dragstop",
+        drag: "drag",
+        resize: "resize",
+        resizestop: "resizestop"
+    },
+    FEChartDataConsts: {
+        first: "first",
+        last: "last",
+        series: "series"
+    },
+    FELayerConsts: {
+        events: "events",
+        dividend: "dividend"
+    },
+    SummaryWindowResizedWithoutUserInteraction: false
+};
+
+//this is to map event type to css class
+var eventMappingHelper = {
+    defaultClass: "dividends",
+    TER: "TER",
+    TEF: "TER",
+    MCD: "mcd",
+    MCN: "mcn",
+    MLN: "managerApp",
+    MLR: "managerApp",
+    MSN: "managerApp",
+    MSR: "managerApp",
+    FGA: "sec",
+    FGC: "sec",
+    FGR: "fgr",
+    FNC: "fnc",
+    FPF: "fpf",
+    FPR: "fpr",
+    FSC: "sec",
+    CRD: "crd",
+    CRP: "crp",
+    QTD: "qtd",
+    QTP: "qtp",
+    UNC: "TER"
+};
+//a log function for firefox
+window.log = function (string) {
+    if (typeof console == FEChartConstHelper.FEChartConsts.object) {
+        var currentTime = new Date();
+        var mill = currentTime.getMilliseconds();
+        console.log(currentTime.toTimeString() + " " + mill + " content:" + string);
+    }
+};
+
+//this chartHelper provides general methods for both summary and detail charts
+var chartHelper = {
+    getStartEndDate: function (containerId, left, right) {
+        var chart = GetChartDataStruct(containerId);
+        var SummaryChart = chart.SummaryChartJqueryElem;
+
+        var returnObject = new Object();
+        returnObject.StartDate = dates.AddPercent(chart.MinDate, chart.MaxDate, left);
+        returnObject.EndDate = dates.AddPercent(chart.MinDate, chart.MaxDate, right);
+        return returnObject;
+    },
+    FloatToInt: function(number){
+        return ~~number;
+    },
+    ConvertDate: function (request) {
+
+        if (request.StartDate != null) {
+            request.StartDate = dates.ParseDDMMYYYYString(request.StartDate);
+        }
+        if (request.EndDate != null) {
+            request.EndDate = dates.ParseDDMMYYYYString(request.EndDate);
+        }
+    },
+
+    SetWidthHeight: function (chart, strRequest, isSummary) {
+        if (!isSummary) {
+            if (chart.Options.Width != undefined && chart.Options.Width != -1) {
+                strRequest = strRequest + "&w=" + chart.Options.Width;
+            }
+
+            if (chart.Options.Height != undefined && chart.Options.Height != -1) {
+                strRequest = strRequest + "&h=" + chart.Options.Height;
+            }
+        }
+        else {
+            if (chart.Options.Width != undefined && chart.Options.Width != -1) {
+                strRequest = strRequest + "&w=" + chart.Options.Width;
+            }
+
+            if (chart.Options.Height != undefined && chart.Options.Height != -1) {
+                strRequest = strRequest + "&h=" + chart.Options.SummaryHeight;
+            }
+        }
+
+        return strRequest;
+    }
+};
+
+//this chartHelper provides methods for both summary chart
+var SummaryChartHelper = {
+    AreInstrumentsSame: function (instruments1, instruments2) {
+        if (instruments1 == null && instruments2 == null) {
+            return true;
+        }
+
+        if (instruments1 != null && instruments2 == null) {
+            return false;
+        }
+
+        if (instruments2 != null && instruments1 == null) {
+            return false;
+        }
+
+        if (instruments2.length != instruments1.length) {
+            return false;
+        }
+        var tmpInstruments = [];
+        for (var i = 0; i < instruments1.length; i++) {
+            tmpInstruments.push(instruments1[i].IT + instruments1[i].UC);
+        }
+
+        var isSame = true;
+        for (var i = 0; i < instruments2.length; i++) {
+            if ($.inArray(instruments1[i].IT + instruments1[i].UC, tmpInstruments) == -1) {
+                ////found different one
+                isSame = false;
+                break;
+            }
+        }
+
+        return isSame;
+    },
+
+    AddCustomEvents: function (containerId, customEvents) {
+        var chart = GetChartDataStruct(containerId);
+        chart.CustomEvents = $.extend(true, {}, customEvents);
+    },
+    SetHoverStatus: function (containerId, status) {
+        var chart = GetChartDataStruct(containerId);
+        chart.Options.ShowHoverOver = status;
+    },
+    SetDisplaySummaryStartEndDateStatus: function (containerId, status) {
+        var chart = GetChartDataStruct(containerId);
+
+        if (chart != null && chart != undefined && chart.Options != null && chart.Options != undefined)
+            chart.Options.ShowChartSummaryDatesOnDrag = status;
+    }
+    ,
+    SetSummaryDateFormat: function (containerId, dateFormat) {
+        var chart = GetChartDataStruct(containerId);
+
+        if (chart != null && chart != undefined && chart.Options != null && chart.Options != undefined)
+            chart.Options.SummaryDateFormat = dateFormat;
+
+    }
+   ,
+    SetSummaryDatesOnDragCallBack: function (containerId, callbackMethod) {
+        var chart = GetChartDataStruct(containerId);
+
+        if (chart != null && chart != undefined && chart.Options != null && chart.Options != undefined)
+            chart.Options.SummaryDatesOnDragCallBack = callbackMethod;
+    },
+    //load chart
+    //first to load the data we need
+    FELoadSummaryChart: function (containerId, request, customEvents, customEventDateFormat) {
+
+        ////in old projects, it uses MethodType other than MT
+        if (request.MethodType != undefined && request.MethodType != null && request.MethodType != "") {
+            request.MT = request.MethodType;
+            request.MethodType = null;
+        }
+
+        var chart = GetChartDataStruct(containerId);
+
+        this.AddCustomEvents(containerId, customEvents);
+
+        window.log("load summary chart");
+        //sort out date
+        chartHelper.ConvertDate(request);
+
+        var loadDetailChart = true;
+
+        var SummaryChart = chart.SummaryChartJqueryElem;
+
+        SummaryChart.show();
+
+        chart.SummaryTriggerDetail = loadDetailChart;
+        chart.SummaryChartRequest = request;
+        chart.IsTriggeredByWindowInteraction = false;
+
+        if (loadDetailChart == true) {
+            //create a deep copy for detail request
+            chart.DetailChartRequest = $.extend(true, {}, request);
+        }
+
+        //// overlay means hide summary chart now.
+        if (!chart.Options.ShowScrollingOverlay) {
+            chart.SummaryChartJqueryElem.hide();
+            DetailChartHelper.FELoadDetailChart(containerId, chart.DetailChartRequest, true, this.customEvents);
+            return;
+        }
+
+        //shortcuts
+        var chartContainer = chart.ChartContainerJqueryElem;
+        var webMethod = chart.ChartSummaryImageServiceURL;
+
+        request.ScriptKey = chart.SummaryDataKey;
+        request.TemplateURL = chart.Options.TemplateURL;
+
+        //give a request timestamp
+        request.TimeStamp = "";
+        FERemoveEmptyProperties(request);
+
+        var strRequest = JSON.stringify(request);
+
+        strRequest = chart.SummaryChartRequestString = chartHelper.SetWidthHeight(chart, strRequest, true);
+
+        var key = chart.SummaryDataKey;
+        var url = webMethod + strRequest + "&id=" + key;
+
+        var oldurl = SummaryChart.attr(FEChartConstHelper.FEChartConsts.src);
+
+        //// detetect if the summarychart is showing the same instruments, if yes
+        //// we don't need to redraw summary chart, as summary chart only show 
+        //// 1 instrument
+        var isSame = this.AreInstrumentsSame(chart.PreviousInstruments, request.Instruments);
+        chart.PreviousInstruments = request.Instruments;
+
+        if (oldurl == url || isSame) {
+            window.log("use same summary chart");
+            ////the request is same as before
+            //// it means that we could use a cached verion of the data
+            //// need to implement the cache though
+            SummaryChart.parent().show()
+            .showChartLoading(chart)
+            .unbind(FEChartConstHelper.FEChartConsts.click)
+            .unbind(FEChartConstHelper.FEChartConsts.mousemove);
+            this.FEChartSummaryChartImageLoadData(chart, containerId, oldurl == url, isSame, url);
+        }
+        else {
+            window.log("use new summary chart");
+            //// lets load the data
+            this.FEChartSummaryChartImageLoadData(chart, containerId, oldurl == url, isSame, url);
+        }
+    },
+    FEChartSummaryChartImageLoad: function (chart, containerId, isSameRequest, isSameInstrument, url) {
+
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        window.log("before change summary chart");
+        if (isSameRequest || isSameInstrument) {
+            window.log("same request or instrument");
+            SummaryChart.parent().show()
+            .showChartLoading(chart)
+            .unbind(FEChartConstHelper.FEChartConsts.click)
+            .unbind(FEChartConstHelper.FEChartConsts.mousemove);
+            this.FEChartSummaryChartImageLoaded(containerId);
+        }
+        else {
+            window.log("not the same");
+            SummaryChart.parent().show()
+            .showChartLoading(chart)
+            .unbind(FEChartConstHelper.FEChartConsts.click)
+            .unbind(FEChartConstHelper.FEChartConsts.mousemove);
+
+            ////remove the image and readd the image, as somehow in ie10 the onload isn't working at all after some click
+            chart.SummaryChartJqueryElem.remove();
+
+            var appendToDivID = "#" + containerId + FEChartConstHelper.FEChartConsts.SummaryChartDiv;
+            var summaryChartcontainer = $(appendToDivID);
+
+            var img = new Image();
+            summaryChartcontainer.prepend(img);
+
+            img.onload = function () {
+                SummaryChartHelper.FEChartSummaryChartImageLoaded(containerId);
+            };
+
+            if (chart.Options.TemplateXml != null) {
+                var templateXmlObj = null;
+                templateXmlObj = { "TemplateXml": chart.Options.TemplateXml }
+                $.post(url, templateXmlObj, function (result) {
+                    img.src = "data:image/png;base64, " + result;
+                }).fail(function (d, textStatus, error) {
+                    window.log("FEChartSummaryChartImageLoad: JSON Post failed. Status: " + textStatus + ", Error: " + error);
+                });
+            }
+            else {
+                img.src = url;
+            }
+
+            SummaryChart = chart.SummaryChartJqueryElem = $(img);
+        }
+    },
+    //called when the image loaded
+    FEChartSummaryChartImageLoaded: function (containerId) {
+
+        window.log("loaded summary chart");
+        var currentTime = new Date();
+
+        //image loaded now, need to get the data for start and end date of this chart
+        var chart = GetChartDataStruct(containerId);
+
+        var currentHeight = chart.SummaryChartJqueryElem.height();
+        var heightRequiredFromServer = chart.ServerSideHeight;
+        if (currentHeight < heightRequiredFromServer) {
+            currentHeight = heightRequiredFromServer;
+        }
+
+        var chartParent = chart.SummaryChartJqueryElem.parent();
+        var originalVisible = true;
+        if (!chartParent.is(":visible")) {
+            originalVisible = false;
+        }
+
+        var currentWidth = chart.SummaryChartJqueryElem.width();
+        var widthRequiredFromServer = chart.ServerSideWidth;
+
+        window.log("current width is " + currentWidth);
+        window.log("widthRequiredFromServer is " + widthRequiredFromServer);
+        if (currentWidth < widthRequiredFromServer) {
+            currentWidth = widthRequiredFromServer;
+            chartParent.parent().width(currentWidth);
+            chartParent.width(currentWidth);
+            chart.ChartContainerJqueryElem.width(currentWidth);
+            chart.SummaryChartJqueryElem.width(currentWidth);
+            window.log("set width to " + currentWidth);
+        }
+        else {
+            currentWidth = widthRequiredFromServer;
+        }
+
+        if (originalVisible) {
+            ////only do this when it is available
+            chartParent.parent().width(currentWidth);
+            chartParent.width(currentWidth);
+            ////set it to be the size of the summary chart
+            chart.SummaryChartJqueryElem.height(currentHeight);
+            chartParent.height(currentHeight);
+            chartParent.parent().width(currentWidth);
+        }
+
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        if (!SummaryChart.is(":visible")) {
+            if (chart.SummaryHeight == null || chart.SummaryHeight == 0) {
+                chart.SummaryHeight = SummaryChart.parent().height();
+                chart.SummaryWidth = SummaryChart.parent().width();
+            }
+        }
+        else {
+            chart.SummaryHeight = SummaryChart.height();
+            chart.SummaryWidth = currentWidth;
+            chart.SummaryChartJqueryElem.parent().height(chart.SummaryHeight);
+
+            var SummaryChart = $(chart.SummaryChartJqueryElem);
+            if (SummaryChart.length > 0) {
+                var SummaryChartHeight = chart.SummaryHeight;
+                ////seems IE 9 doesn't like setting height use the normal way
+                ////so we are doing a horrible method 
+                SummaryChart.parent().css("height", "");
+                var style = SummaryChart.parent().attr("style");
+                style = style + "height:" + SummaryChartHeight + FEChartConstHelper.PositionConsts.px;
+                SummaryChart.parent().attr("style", style);
+            }
+        }
+
+        //set teh summary window's position
+        if (!chart.Options.IsEmptyChart) {
+            SummaryChartHelper.setSummaryWindow(containerId);
+        }
+
+        if (chart.Options.UseAdaptiveDesign) {
+            ////set width to 100%
+            var maxWdith = chart.SummaryWidth + "px";
+            SummaryChart.css("width", "100%");
+            SummaryChart.css("min-height", chart.Options.SummaryHeight + "px");
+            SummaryChart.css("max-width", maxWdith);
+            SummaryChart.parent().css("width", "100%");
+            SummaryChart.parent().css("max-width", maxWdith);
+            SummaryChart.parent().parent().css("width", "100%");
+            SummaryChart.parent().parent().css("max-width", maxWdith);
+            SummaryChart.parent().parent().parent().css("width", "100%");
+            SummaryChart.parent().parent().parent().css("max-width", maxWdith);
+        }
+    },
+    //called when the image loaded
+    FEChartSummaryChartImageLoadData: function (chart, containerId, isSameRequest, isSameInstrument, url) {
+
+        window.log("FEChartSummaryChartImageLoadData");
+        var currentTime = new Date();
+
+        //image loaded now, need to get the data for start and end date of this chart
+        var requestStr = chart.SummaryChartRequestString;
+        var chartParent = chart.SummaryChartJqueryElem.parent();
+        var originalVisible = true;
+        if (!chartParent.is(":visible")) {
+            originalVisible = false;
+        }
+        if (originalVisible) {
+            ////only do this when it is available
+            chartParent.width(chart.SummaryChartJqueryElem.width());
+            chartParent.height(chart.SummaryChartJqueryElem.height());
+            chartParent.parent().width(chart.SummaryChartJqueryElem.width());
+        }
+
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        if (!SummaryChart.is(":visible")) {
+            if (chart.SummaryHeight == null || chart.SummaryHeight == 0) {
+                chart.SummaryHeight = SummaryChart.parent().height();
+                chart.SummaryWidth = SummaryChart.parent().width();
+            }
+        }
+        else {
+            chart.SummaryHeight = SummaryChart.height();
+            chart.SummaryWidth = SummaryChart.width();
+            chart.SummaryChartJqueryElem.parent().height(chart.SummaryHeight);
+
+            var SummaryChart = $(chart.SummaryChartJqueryElem);
+            if (SummaryChart.length > 0) {
+                var SummaryChartHeight = chart.SummaryHeight;
+                ////seems IE 9 doesn't like setting height use the normal way
+                ////so we are doing a horrible method 
+                SummaryChart.parent().css("height", "");
+                var style = SummaryChart.parent().attr("style");
+                style = style + "height:" + SummaryChartHeight + FEChartConstHelper.PositionConsts.px;
+                SummaryChart.parent().attr("style", style);
+            }
+        }
+
+        this.FEChartGetSummaryChartData(chart, isSameRequest, isSameInstrument, chart.SummaryChartJqueryElem, containerId, requestStr, url);
+    },
+
+    FEChartGetSummaryChartData: function (chart, isSameRequest, isSameInstrument, chartElm, containerId, requestStr, imgUrl) {
+        window.log("load summary chart data");
+        //now need to call the webservice to get the data, which we have key
+        //calculatePoints(containerId);
+
+        var chartContainer = chart.ChartContainerJqueryElem;
+        var url = chart.SummaryChartDataServiceUrl;
+        var key = chart.SummaryDataKey;
+        if ($.trim(url).length && $.trim(key).length) {
+            result = chart.SummaryChartJqueryElem.data("SummaryChartData");
+            //var parameters = new DataRequestConstructor();
+            //parameters.id = key;
+            if ((isSameRequest || isSameInstrument) && result) {
+                //// doesn't need to do a json request again, just use existing one
+                window.log("use cached summary chart data");
+
+                SummaryChartHelper.FEChartAnalyseSummaryChartData(chart, result, containerId, isSameRequest, isSameInstrument, imgUrl, requestStr);
+            }
+            else {
+                url = url + key + " &chartRequest=" + requestStr + "&callback=?";
+
+                var templateXmlObj = null;
+                if (chart.Options.TemplateXml != null) {
+                    templateXmlObj = { "TemplateXml": chart.Options.TemplateXml }
+                }
+
+                $.post(url, templateXmlObj, function (result) {
+                    window.log("summary chart data received");
+                    chart.SummaryChartJqueryElem.data("SummaryChartData", result);
+                    SummaryChartHelper.FEChartAnalyseSummaryChartData(chart, result, containerId, isSameRequest, isSameInstrument, imgUrl, requestStr);
+                }, "json").fail(function (d, textStatus, error) {
+                    window.log("FEChartGetSummaryChartData: JSON Post failed. Status: " + textStatus + ", Error: " + error);
+                });
+            }
+        }
+    },
+    FEChartAnalyseSummaryChartData: function (chart, result, containerId, isSameRequest, isSameInstrument, imgUrl, requestSt) {
+        if (result.IsSuccessful) {
+            if (result.IsEmpty) {
+                ////set 1 day dummy data as there is no data in the history
+                chart.IsEmptyChart = true;
+                chart.SummaryChartWindowJqueryElem.hide();
+                var yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+
+                var theDayBefore = new Date();
+                theDayBefore.setDate(theDayBefore.getDate() - 2);
+
+                chart.MinDate = yesterday;
+                chart.MaxDate = theDayBefore;
+
+                chart.ServerSideWidth = result.Width;
+                chart.SummaryHeight = chart.ServerSideHeight = result.Height;
+
+                //// now load summary image
+                SummaryChartHelper.FEChartSummaryChartImageLoad(chart, containerId, isSameRequest, isSameInstrument, imgUrl);
+                if (chart.SummaryTriggerDetail == true) {
+                    if (chart.DetailChartRequest.StartDate != null
+                                && chart.DetailChartRequest.EndDate != null)
+                        DetailChartHelper.FELoadDetailChart(containerId, chart.DetailChartRequest, true);
+                    else
+                        DetailChartHelper.FELoadDetailChart(containerId, chart.DetailChartRequest, false);
+                }
+                else {
+                    chartElm.parent().ToggleClass();
+                }
+            }
+            else {
+                var msg = JSON.parse(result.Text);
+                if (msg.ObjectType == FEChartConstHelper.FEChartConsts.data) {
+                    //the date comming here will be in oa format
+                    chart.MinDate = new Date(parseInt(msg.StartDate));
+                    chart.MaxDate = new Date(parseInt(msg.EndDate));
+                    chart.Options.ShowScrollingOverlay = msg.ShowScrollingOverlay;
+                    chart.Options.ShowHoverOver = msg.ShowHoverOver;
+                    chart.IsEmptyChart = false;
+                    window.log("chart height received from server is:" + msg.Height);
+                    chart.ServerSideWidth = result.Width;
+                    chart.SummaryHeight = chart.ServerSideHeight = result.Height;
+
+                    //set teh summary window's position
+                    if (!chart.Options.IsEmptyChart) {
+                        SummaryChartHelper.setSummaryWindow(containerId);
+                    }
+
+                    //// now load summary image
+                    SummaryChartHelper.FEChartSummaryChartImageLoad(chart, containerId, isSameRequest, isSameInstrument, imgUrl);
+
+                    //if this call needs to refresh the detail chart redraw
+                    if (chart.SummaryTriggerDetail == true) {
+                        if (chart.DetailChartRequest.StartDate != null
+                                && chart.DetailChartRequest.EndDate != null)
+                            DetailChartHelper.FELoadDetailChart(containerId, chart.DetailChartRequest, true);
+                        else
+                            DetailChartHelper.FELoadDetailChart(containerId, chart.DetailChartRequest, false);
+                    }
+                    else {
+                        chartElm.parent().ToggleClass();
+                    }
+                }
+                else {
+                    alert("data wrong");
+                }
+            }
+        }
+        else {
+            alert(result.ResponseMessage);
+        }
+    },
+    //this function sets the summary windows's position
+    setSummaryWindow: function (containerId) {
+
+        // Create shortcut variable for our page elements
+
+        var chart = GetChartDataStruct(containerId);
+        var chartContainer = chart.ChartContainerJqueryElem;
+
+        var SummaryChartWindow = chart.SummaryChartWindowJqueryElem;
+        var SummaryChartWindowContent = chart.SummaryChartWindowContentJqueryElem;
+        var SummaryChartWindowLeftBorder = chart.SummaryChartWindowLeftBorderJqueryElem;
+        var SummaryChartWindowRightBorder = chart.SummaryChartWindowRightBorderJqueryElem;
+        var SummaryChartStartDate = chart.SummaryChartStartDateElem;
+        var SummaryChartEndDate = chart.SummaryChartEndDateElem;
+        var SummaryChartDiv = chart.SummaryChartDivJqueryElem;
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        var hdSummaryValue = chart.hdSummaryValueJqueryElem;
+
+        var InitialLeft = (chart.SummaryLeftPercentage) ? chart.SummaryLeftPercentage : chart.DetailChartLeft;
+        var InitialRight = (chart.SummaryLeftPercentage) ? chart.SummaryRightPercentage : chart.DetailChartRight;
+
+        // Flag to determine if mouse is being held down
+        var IsSummaryChartWindowContentMouseDown = false;
+        var IsSummaryChartWindowLeftBorderMouseDown = false;
+        var IsSummaryChartWindowRightBorderMouseDown = false;
+
+        // Keep track of the x-position where mouse was clicked
+        var OldX = 0;
+        var OldXMemory = 0;
+        // Keep track of DetailChart's image offset
+        var DetailChartImageOffsetX = 0;
+
+        // Position the Summary chart's window over the Summary chart
+        //3 is the width of the border
+        var DetailChartHeight = chart.hdDetailChartHeightJqueryElem.val();
+        var DetailChartWidth = chart.hdDetailChartWidthJqueryElem.val();
+
+        var SummaryChartHeight = chart.SummaryHeight;
+        var SummaryChartWidth = chart.SummaryWidth;
+        SummaryChartWindow.height(SummaryChartHeight);
+
+        var windowLeft = parseFloat(InitialLeft);
+        var left = windowLeft * SummaryChartWidth;
+
+        ////calculate window witdh
+        var windowWidth = (1 - windowLeft) * SummaryChartWidth - FEChartConstHelper.FEChartConsts.ScrollSpacing;
+        if (windowWidth <= 0)
+            windowWidth = 1;
+        FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = true;
+        SummaryChartWindow.width(windowWidth);
+
+        //set window position
+        if (SummaryChartWindow.position().top >= 0) {
+            SummaryChartWindow
+            .css({
+                "top": -SummaryChartHeight + FEChartConstHelper.PositionConsts.px,
+                "left": left + FEChartConstHelper.PositionConsts.px,
+                "opacity": 0.50,
+                "position": "relative"
+            })
+            .show();
+        }
+        else {
+            SummaryChartWindow
+            .css({
+                "top": -SummaryChartHeight + FEChartConstHelper.PositionConsts.px,
+                "left": left + FEChartConstHelper.PositionConsts.px,
+                "opacity": 0.50,
+                "position": "relative"
+            })
+            .show();
+        }
+        SummaryChart.parent().css({
+            "height": SummaryChartHeight + FEChartConstHelper.PositionConsts.px + " !important"
+        });
+
+        SummaryChartWindow
+        .draggable({
+            axis: FEChartConstHelper.ScrollConsts.x,
+            containment: "#" + SummaryChartDiv.attr("id"),
+            scroll: false
+        })
+        .resizable({
+            handles: FEChartConstHelper.ScrollConsts.ew
+        });
+        //unbind and bind them again for memory leak safe
+        SummaryChartWindow
+        .unbind(FEChartConstHelper.ScrollConsts.dragstop)
+        .unbind(FEChartConstHelper.ScrollConsts.drag)
+        .unbind(FEChartConstHelper.ScrollConsts.resize)
+        .unbind(FEChartConstHelper.ScrollConsts.resizestop)
+        .bind(FEChartConstHelper.ScrollConsts.dragstop, function (event, ui) {
+            if (FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction == true) {
+                FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = false;
+                return;
+            }
+            //force chart update
+            var left = SummaryChartWindow.position().left;
+            //3 is the right border's width, 7 is ui-resizable-handle ui-resizable-e's width, -5 is the right css for ui-resizable-handle ui-resizable-e
+            //3+7-5 =5, which is the extra space compensation
+            var right = (left + SummaryChartWindow.width() + 2) / (SummaryChart.width());
+            if (right > 1) right = 1;
+            if (right > 0.99) right = 1;
+            if (left < 0) left = 0;
+            left = left / SummaryChart.width();
+
+            chart.DetailChartLeft = left;
+            chart.DetailChartRight = right;
+
+            if (chart.Options.UseAdaptiveDesign) {
+                width = SummaryChartWindow.width() / SummaryChart.width() * 100;
+                DetailChartHelper.resetSummaryWindowLeft(SummaryChartWindow, left * 100, width);
+            }
+            DetailChartHelper.FELoadDetailChartFromUserinteraction(containerId);
+        });
+
+        SummaryChartWindow.bind(FEChartConstHelper.ScrollConsts.drag, function (event, ui) {
+            if (FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction == true) {
+                FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = false;
+                return;
+            }
+            var left;
+            var right;
+            if (ui == null) {
+                left = SummaryChartWindow.offset().left;
+                right = left + SummaryChartWindow.width();
+            }
+            else {
+                left = ui.position.left;
+                right = left + SummaryChartWindow.width();
+            }
+            if (left < 0) {
+                //over, do not allow
+                SummaryChartWindow.css({
+                    "left": FEChartConstHelper.PositionConsts.zeropx
+                });
+                return false;
+            }
+
+            if (SummaryChart.width() + SummaryChart.offset().left < right) {
+                //over, do not allow
+                SummaryChartWindow.css({
+                    "left": SummaryChart.width() - SummaryChartWindow.width() - FEChartConstHelper.FEChartConsts.ScrollSpacing + FEChartConstHelper.PositionConsts.px
+                });
+                return false;
+            }
+            DetailChartHelper.ShowChartSummaryStartEndDate(containerId);
+        });
+
+        SummaryChartWindow.bind(FEChartConstHelper.ScrollConsts.resize, function (event, ui) {
+            if (FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction == true) {
+                FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = false;
+                return;
+            }
+            var left;
+            var right;
+            var SummaryChartRight = SummaryChart.width();
+            var currentWidth = SummaryChartWindow.width();
+
+            left = SummaryChartWindow.position().left;
+            right = left + currentWidth;
+
+            window.log("currentWidth + left in bind:" + left);
+            window.log("right:" + right);
+            window.log("SummaryChartRight : " + SummaryChartRight);
+            window.log("SummaryChartRight : " + SummaryChartRight);
+            if (left < 0) {
+                //over, do not allow, instead set left to be 0 and shrink the width;
+                window.log("left < 0");
+
+                SummaryChartWindow.width(currentWidth + left);
+                SummaryChartWindow.css({
+                    "left": FEChartConstHelper.PositionConsts.zeropx
+                });
+                return false;
+            };
+
+            if (right + SummaryChartWindowRightBorder.width() >= SummaryChartRight - FEChartConstHelper.FEChartConsts.ScrollSpacing) {
+                window.log("right bigger than summary chart");
+                //over, do not allow, instead shrink the width;
+                SummaryChartWindow.width(SummaryChart.width() - SummaryChartWindowRightBorder.width() - left - FEChartConstHelper.FEChartConsts.ScrollSpacing);
+                //return false;
+            };
+            DetailChartHelper.ShowChartSummaryStartEndDate(containerId);
+        });
+
+        SummaryChartWindow.bind(FEChartConstHelper.ScrollConsts.resizestop, function (event, ui) {
+            if (FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction == true) {
+                FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = false;
+                return;
+            }
+            var left;
+            var right;
+            var SummaryChartRight = SummaryChart.width();
+            var currentWidth = SummaryChartWindow.width();
+
+            left = SummaryChartWindow.position().left;
+            right = left + currentWidth;
+            if (left < 0) {
+                //over, do not allow
+                SummaryChartWindow.width(currentWidth + left);
+                SummaryChartWindow.css({
+                    "left": FEChartConstHelper.PositionConsts.zeropx
+                });
+            }
+            if (right + SummaryChartWindowRightBorder.width() >= SummaryChartRight - FEChartConstHelper.FEChartConsts.ScrollSpacing) {
+                //over, do not allow, instead shrink the width;
+                SummaryChartWindow.width(SummaryChart.width() - SummaryChartWindowRightBorder.width() - left - FEChartConstHelper.FEChartConsts.ScrollSpacing);
+                //return false;
+            };
+
+            /*
+            SummaryChartWindow.css({
+            "left": left + "px"
+            });
+            */
+            var right = (left + SummaryChartWindow.width()) / (SummaryChart.width());
+            left = left / SummaryChart.width();
+
+            chart.DetailChartLeft = left < 0 ? 0 : left;
+            chart.DetailChartRight = right < 0.99 ? right : 1;
+
+            if (chart.Options.UseAdaptiveDesign) {
+                width = SummaryChartWindow.width() / SummaryChart.width() * 100;
+                DetailChartHelper.resetSummaryWindowLeft(SummaryChartWindow, chart.DetailChartLeft * 100, width);
+            }
+
+            DetailChartHelper.FELoadDetailChartFromUserinteraction(containerId);
+        });
+
+    }
+};
+//this function is for detail charts
+var DetailChartHelper = {
+
+    GetChartSource: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        var DetailChart = chart.DetailChartJqueryElem;
+        return DetailChart.attr(FEChartConstHelper.FEChartConsts.src);
+    },
+    GetChartSourceForPrinting: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        var DetailChart = chart.DetailChartJqueryElem;
+        return DetailChart.attr(FEChartConstHelper.FEChartConsts.src) + "&print=1";
+    },
+    FormatSummaryDate: function (date, format, culture) {
+        var FormattedDate = "";
+        try {
+            var UseGlobalize = !(typeof (Globalize) == "undefined" || Globalize == undefined || Globalize == null || culture == undefined || culture == null || culture == "");
+            var UseFormatString = !(typeof (format) == "undefined" || format == undefined || format == "" || format == null);
+            if (UseGlobalize) {
+                var OriginalCulture = Globalize.culture().name;
+                Globalize.culture(culture);
+                if (UseFormatString)
+                    FormattedDate = Globalize.format(date, format);
+                else
+                    FormattedDate = Globalize.format(date, Globalize.culture().calendar.patterns.d);
+                Globalize.culture(OriginalCulture);
+            }
+            else {
+                if (UseFormatString)
+                    FormattedDate = $.datepicker.formatDate(format, date);
+                else
+                    FormattedDate = dates.BuildDDMMYYYYString(date);
+            }
+        }
+        catch (e) {
+            FormattedDate = dates.BuildDDMMYYYYString(date);
+        }
+        return FormattedDate;
+    },
+    ShowChartSummaryStartEndDate: function (containerId) {
+        if (FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction == true) {
+            FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = false;
+            return;
+        }
+        var chart = GetChartDataStruct(containerId);
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        var SummaryChartWidth = SummaryChart.width();
+        var SummaryChartWindow = chart.SummaryChartWindowJqueryElem;
+        var left = SummaryChartWindow.position().left;
+        var right = (left + SummaryChartWindow.width() + 2) / (SummaryChart.width());
+        if (right > 1) right = 1;
+        if (right > 0.99) right = 1;
+        if (left < 0) left = 0;
+        left = left / SummaryChart.width();
+
+        var result = chartHelper.getStartEndDate(containerId, left, right);
+        var ChartCulture = chart.Options.DetailChartCultureName;
+        var SummaryDateFormat = chart.Options.SummaryDateFormat;
+        var FormattedStartDate = DetailChartHelper.FormatSummaryDate(result.StartDate, SummaryDateFormat, ChartCulture);
+        var FormattedEndDate = DetailChartHelper.FormatSummaryDate(result.EndDate, SummaryDateFormat, ChartCulture)
+        if (typeof chart.Options.SummaryDatesOnDragCallBack == 'function') {
+            var eventArg = [];
+            eventArg.StartDate = result.StartDate;
+            eventArg.EndDate = result.EndDate;
+            eventArg.FormattedStartDate = FormattedStartDate;
+            eventArg.FormattedEndDate = FormattedEndDate;
+            try {
+                chart.Options.SummaryDatesOnDragCallBack(eventArg);
+            }
+            catch (e) { }
+
+        }
+
+        if (chart.Options.ShowChartSummaryDatesOnDrag == false) {
+            chart.SummaryChartStartDateElem.hide();
+            chart.SummaryChartEndDateElem.hide();
+            return;
+        }
+        if (chart.IsEmptyChart || chart.DetailChartRequest.Instruments.length == 0) {
+            return;
+        }
+
+        var heightOffset = 0;
+        var EndDateOffset = 0;
+
+        chart.SummaryChartStartDateElem.html(FormattedStartDate);
+        chart.SummaryChartEndDateElem.html(FormattedEndDate);
+        heightOffset = SummaryChartWindow.offset().top - chart.DetailChartJqueryElem.offset().top - (1.5 * chart.SummaryChartStartDateElem.height());
+        if ((chart.SummaryChartWindowLeftBorderJqueryElem.width() + SummaryChartWindow.width() + chart.SummaryChartWindowRightBorderJqueryElem.width()) <= (chart.SummaryChartEndDateElem.width() + chart.SummaryChartStartDateElem.width()))
+            EndDateOffset = chart.SummaryChartEndDateElem.height() / 2;
+
+        var StartDateLeftPos = SummaryChartWindow.position().left;
+        var StartDateTopPos = (heightOffset - EndDateOffset);
+        var EndDateTopPos = (heightOffset + EndDateOffset);
+        var EndDateLeftPos = (SummaryChartWindow.position().left + SummaryChartWindow.width() - chart.SummaryChartEndDateElem.width());
+        var SummaryChartDiv = chart.SummaryChartDivJqueryElem;
+
+        if (EndDateLeftPos < 1)
+            EndDateLeftPos += chart.SummaryChartEndDateElem.width();
+
+        if (StartDateLeftPos + chart.SummaryChartStartDateElem.width() > SummaryChartDiv.width())
+            StartDateLeftPos -= chart.SummaryChartStartDateElem.width();
+
+        chart.SummaryChartStartDateElem.show().css({
+            "left": StartDateLeftPos + 'px',
+            "top": StartDateTopPos + 'px'
+        }).hide().show();
+
+        chart.SummaryChartEndDateElem.show().css({
+            "left": EndDateLeftPos + 'px',
+            "top": EndDateTopPos + 'px'
+        }).hide().show();
+
+
+    },
+    ChartSettings: function (opts) {
+        var defaults = new ChartDefaults();
+
+        for (var item in opts) {
+            if (opts) {
+                defaults[item] = opts[item];
+            }
+        }
+
+        if (!defaults.id) {
+            throw new Error("Id is needed to identify chart");
+        };
+
+        var chart = GetChartDataStruct(defaults.id);
+        chart.Options = defaults;
+    },
+    //there are chances that redraw is needed from smallchartwindow chanage etc
+    //in that case, the web page won't send down a request, so we use the saved request
+    FELoadDetailChartFromUserinteraction: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        request = chart.DetailChartRequest;
+        chart.IsTriggeredByWindowInteraction = true;
+        ////ignore monthspan setting now
+        request.DetailChartMonthSpan = null;
+        if (request) {
+            this.FELoadDetailChart(containerId, request, false);
+        }
+    },
+    FEHideHover: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        chart.MouseClickDetailDivJqueryElem.hide();
+        chart.spotJqueryElem.hide();
+        chart.spotJqueryElem1.hide();
+        chart.spotJqueryElem2.hide();
+        //        if (chart.ExtraLayers) {
+        //            $.each(chart.ExtraLayers, function () {
+        //                if (this.is("div")) {
+        //                    if (this.is(":visible")) {
+        //                        this.attr("wasVisible", "1");
+        //                    }
+        //                    else {
+        //                        this.attr("wasVisible", "0");
+        //                    }
+        //                    this.hide();
+        //                }
+        //            });
+        //        }
+    },
+    FEShowHover: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        if (chart.Options.ShowHoverOver && !chart.Options.IsEmptyChart) {
+            var hoverStatus = chart.HoverStatus;
+            ////"" means show hover-default
+            if (hoverStatus == 1 || hoverStatus == 2) {
+                chart.spotJqueryElem1.hide();
+                chart.spotJqueryElem2.hide();
+            }
+        }
+        else {
+            chart.spotJqueryElem.hide();
+            chart.spotJqueryElem1.hide();
+            chart.spotJqueryElem2.hide();
+        }
+        DetailChartHelper.reCalculatePoints(containerId);
+        //        if (chart.ExtraLayers) {
+        //            $.each(chart.ExtraLayers, function () {
+        //                if (this.is("a")) {
+        //                    this.show();
+        //                }
+        //                else if (this.is("div")) {
+        //                    if (this.attr("wasVisible") == "1") {
+        //                        this.show();
+        //                    }
+        //                }
+        //            });
+        //        }
+    },
+    //load the detail chart
+    FELoadDetailChart: function (containerId, request, resetSummaryWindow, customEvents) {
+
+        window.log("load detail chart");
+        var chart = GetChartDataStruct(containerId);
+        var DetailChart = chart.DetailChartJqueryElem;
+        chart.DetailChartDataReceived = false;
+        chart.ResetSummaryWindow = resetSummaryWindow;
+        DetailChart.show();
+        ////remove extra layers, e.g. dividends
+        if (chart.ExtraLayers) {
+            $.each(chart.ExtraLayers, function () {
+                this.remove();
+            });
+        }
+
+        var chartContainer = chart.ChartContainerJqueryElem;
+
+        if (chart.Options.ShowScrollingOverlay) {
+            if (!resetSummaryWindow) {
+
+                request.Left = chart.DetailChartLeft;
+                request.Right = chart.DetailChartRight;
+                request.StartDate = null;
+                request.EndDate == null;
+
+                var result = chartHelper.getStartEndDate(containerId, chart.DetailChartLeft, chart.DetailChartRight);
+
+                request.StartDate = result.StartDate;
+                request.EndDate = result.EndDate;
+                request.DetailChartMonthSpan = null;
+            }
+            else {
+                chartHelper.ConvertDate(request);
+
+                //set left and right of the Summary chart window
+                var newLeftRight = this.resetSummaryWindowPosition(containerId, request.StartDate, request.EndDate);
+
+                request.Left = newLeftRight.Left;
+                request.Right = newLeftRight.Right;
+            }
+        }
+
+        var webMethod = chart.ChartDetailImageServiceURL;
+        var scriptKey = chart.DetailDataKey;
+        request.TemplateURL = chart.Options.TemplateURL;
+        request.ScriptKey = scriptKey;
+        if (chart.Options.UseAdaptiveDesign || chart.Options.UsePercentageWidth) {
+            ////do not show events when it is UseAdaptiveDesign or width
+            request.PlotDividendOnChartImage = null;
+            request.PlotEventOnChartImage = null;
+        }
+        chart.DetailChartRequest = request;
+
+        var timeZondDiff = request.StartDate.getTimezoneOffset();
+        request.StartDate.setMinutes(request.StartDate.getMinutes() - timeZondDiff);
+
+
+        var timeZondDiff = request.EndDate.getTimezoneOffset();
+        request.EndDate.setMinutes(request.EndDate.getMinutes() - timeZondDiff);
+
+        FERemoveEmptyProperties(request);
+        var strRequest = JSON.stringify(request);
+
+        strRequest = chart.DetailChartRequestString = chartHelper.SetWidthHeight(chart, strRequest, false); ;
+
+        var url = webMethod + strRequest;
+        var MouseClickDetailDiv123 = $().add(chart.MouseClickDetailDivJqueryElem1).add(chart.MouseClickDetailDivJqueryElem2).add(chart.MouseClickDetailDivJqueryElem);
+        var spot123 = $().add(chart.spotJqueryElem1).add(chart.spotJqueryElem2).add(chart.spotJqueryElem);
+
+        MouseClickDetailDiv123.hide();
+        spot123.hide();
+        if (DetailChart.attr(FEChartConstHelper.FEChartConsts.src) != url) {
+            DetailChart.parent().showChartLoading(chart)
+        .unbind(FEChartConstHelper.FEChartConsts.click)
+        .unbind(FEChartConstHelper.FEChartConsts.mousemove);
+            var SummaryChartStartEndDate = $().add(chart.SummaryChartStartDateDivJqueryElem).add(chart.SummaryChartEndDateDivJqueryElem).add(chart.SummaryChartStartDateElem).add(chart.SummaryChartEndDateElem);
+            SummaryChartStartEndDate.hide();
+
+            ////remove the image and readd the image, as somehow in ie10 the onload isn't working at all after some click
+            chart.DetailChartJqueryElem.remove();
+
+            var appendToDivID = "#" + containerId + FEChartConstHelper.FEChartConsts.DetailChartDiv;
+            var DetailChartcontainer = $(appendToDivID);
+
+            var img = new Image();
+            DetailChartcontainer.prepend(img);
+
+            img.onload = function () {
+                DetailChartHelper.FEChartDetailChartImageLoaded(containerId);
+            };
+
+
+            if (chart.Options.TemplateXml != null) {
+                var templateXmlObj = { "TemplateXml": chart.Options.TemplateXml }
+
+                $.post(url, templateXmlObj, function (result) {
+                    img.src = "data:image/png;base64, " + result;
+                }).fail(function (d, textStatus, error) {
+                    window.log("FELoadDetailChart: JSON Post failed. Status: " + textStatus + ", Error: " + error);
+                });
+            }
+            else {
+                img.src = url;
+            }
+
+            DetailChart = chart.DetailChartJqueryElem = $(img);
+
+        }
+        else {
+            DetailChart.parent().showChartLoading(chart)
+            .unbind(FEChartConstHelper.FEChartConsts.click)
+            .unbind(FEChartConstHelper.FEChartConsts.mousemove);
+            this.FEChartDetailChartImageLoaded(containerId);
+        }
+    },
+    //this function is called when the detail chart is loaded
+    FEChartDetailChartImageLoaded: function (containerId) {
+
+        window.log("loaded detail chart");
+        var chart = GetChartDataStruct(containerId);
+        chart.HoverStatus = 0;
+        if (chart.IsEmptyChart || chart.DetailChartRequest.Instruments.length == 0) {
+            chart.SummaryChartJqueryElem.parent().hideChartLoading(chart);
+            chart.DetailChartJqueryElem.parent().hideChartLoading(chart);
+
+            if (chart.Options != null && chart.Options.EmptyChartFinishCallBack)
+                chart.Options.EmptyChartFinishCallBack();
+            return;
+        }
+
+        var chartRequest = chart.DetailChartRequestString;
+        chart.SummaryChartJqueryElem.parent().hideChartLoading(chart);
+
+        var currentWidth = chart.DetailChartJqueryElem.width();
+        var widthRequiredFromServer = chart.DetailWidth;
+
+        window.log("detail chart width from server:" + widthRequiredFromServer);
+        if (currentWidth < widthRequiredFromServer) {
+            currentWidth = widthRequiredFromServer;
+            chart.ChartContainerJqueryElem.width(currentWidth);
+            chart.DetailChartJqueryElem.width(currentWidth);
+        }
+
+        var chartParent = chart.DetailChartJqueryElem.parent();
+        var originalVisible = true;
+        if (!chartParent.is(":visible")) {
+            originalVisible = false;
+        }
+        if (originalVisible) {
+
+            chartParent.parent().width(currentWidth)
+        .height(chart.DetailChartJqueryElem.height());
+
+            chartParent
+        .width(currentWidth)
+        .height(chart.DetailChartJqueryElem.height());
+
+            var SummaryChart = $(chart.SummaryChartJqueryElem);
+            if (SummaryChart.length > 0) {
+                var SummaryChartHeight = chart.SummaryHeight;
+                ////seems IE 9 doesn't like setting height use the normal way
+                ////so we are doing a horrible method 
+                SummaryChart.parent().css("height", "");
+                var style = SummaryChart.parent().attr("style");
+                style = style + ";height:" + SummaryChartHeight + FEChartConstHelper.PositionConsts.px;
+                SummaryChart.parent().attr("style", style);
+            }
+        }
+
+        var DetailChart = chart.DetailChartJqueryElem;
+        if (chart.Options.UseAdaptiveDesign) {
+            ////set width to 100%
+            var maxWdith = chart.SummaryWidth + "px";
+            DetailChart.css("width", "100%");
+            DetailChart.css("max-width", chart.DetailWidth + "px");
+            DetailChart.css("min-height", chart.Options.Height + "px");
+            DetailChart.parent().css("width", "100%");
+            DetailChart.parent().css("max-width", chart.DetailWidth + "px");
+            DetailChart.parent().parent().css("width", "100%");
+            DetailChart.parent().parent().css("max-width", chart.DetailWidth + "px");
+            DetailChart.parent().parent().parent().css("width", "100%");
+            DetailChart.parent().parent().parent().css("max-width", maxWdith);
+        }
+
+        ////load data when it is not UseAdaptiveDesign, as overlay is difficult to get position right
+        ////
+        this.FEDetailChartImageLoadData(containerId, chart.DetailChartJqueryElem, chartRequest);
+    },
+
+    AddFEChartData: function (_id, data) {
+        //here we do a loop through to make mouse move calculation quicker
+        var chart = GetChartDataStruct(_id);
+        var dataObject = new Object();
+
+        dataObject.OriginalData = data;
+
+        var seriesArray = new Array();
+
+        for (var i = 0; i < data.DataSeries.length; i++) {
+            var tempseries = data.DataSeries[i];
+            var series = jQuery.extend(true, {}, tempseries);
+            var name = series.Name;
+            var dataPoint = new Object();
+
+            seriesArray[name] = new Array();
+            seriesArray[name][FEChartConstHelper.FEChartDataConsts.first] = null;
+            seriesArray[name][FEChartConstHelper.FEChartDataConsts.last] = null;
+
+            for (var j = 0; j < series.DataPoints.length; j++) {
+                
+                // This will recaluate the hover points
+                if (chart.Options.UseAdaptiveDesign) {
+                    series.DataPoints[j].X = Math.round(series.DataPoints[j].X * AdaptiveScaleRatio);
+                    series.DataPoints[j].Y0 = Math.round(series.DataPoints[j].Y0 * AdaptiveScaleRatio);
+                }
+                var x = series.DataPoints[j].X;
+                seriesArray[name][x] = series.DataPoints[j];
+            }
+
+            if (series.DataPoints.length > 0) {
+                seriesArray[name][FEChartConstHelper.FEChartDataConsts.first] = series.DataPoints[0].X;
+                seriesArray[name][FEChartConstHelper.FEChartDataConsts.last] = series.DataPoints[series.DataPoints.length - 1].X;
+            }
+        }
+        dataObject.SeriesArray = seriesArray;
+        chart.ChartData = dataObject;
+    },
+
+    RetrieveFEChartData: function (_id) {
+        var chart = GetChartDataStruct(_id);
+        return chart.ChartData;
+    },
+
+    FEChartImageClick: function (containerId, e) {
+
+        var chart = GetChartDataStruct(containerId);
+        var DetailChart = chart.DetailChartJqueryElem;
+        if (!chart.Options.ShowHoverOver || chart.Options.IsEmptyChart) {
+            chart.spotJqueryElem.hide();
+            chart.spotJqueryElem1.hide();
+            chart.spotJqueryElem2.hide();
+            return;
+        }
+
+        var y = (e.pageY - DetailChart.offset().top);
+
+        var dataObject = this.RetrieveFEChartData(containerId);
+        if (y > dataObject.OriginalData.XAxisPosition) {
+            return;
+        }
+
+        var MouseClickDetailDiv12 = $().add(chart.MouseClickDetailDivJqueryElem1).add(chart.MouseClickDetailDivJqueryElem2);
+        var spot12 = $().add(chart.spotJqueryElem1).add(chart.spotJqueryElem2);
+        var hoverStatus = chart.HoverStatus;
+
+        if (hoverStatus == 0) {
+            //move to 1 which shows two hover div
+            hoverStatus = 1;
+            chart.MouseClickDetailDivJqueryElem.hide();
+            MouseClickDetailDiv12.show();
+
+            chart.spotJqueryElem.hide();
+            spot12.show();
+        }
+        else if (hoverStatus == 1) {
+            //move to 2 which freezes the two hover div
+            hoverStatus = 2;
+            chart.MouseClickDetailDivJqueryElem.hide();
+            MouseClickDetailDiv12.show();
+
+            chart.spotJqueryElem.hide();
+            spot12.show();
+        }
+        else if (hoverStatus == 2) {
+            //moves to 0 which shows one hover div
+            hoverStatus = 0;
+            chart.MouseClickDetailDivJqueryElem.show();
+            MouseClickDetailDiv12.hide();
+
+            chart.spotJqueryElem.show();
+            spot12.hide();
+        }
+        //set status back
+        chart.HoverStatus = hoverStatus;
+    },
+
+    // This function will initiate recalculate on every resize
+    AdaptiveResize: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+        chart.NeedRecalculatePoints = true;
+        DetailChartHelper.reCalculatePoints(containerId);
+    },
+
+    FEDetailChartImageLoadData: function (containerId, chartElem, chartRequest) {
+        window.log("load detail chart data");
+        var chart = GetChartDataStruct(containerId);
+        var chartContainer = chart.ChartContainerJqueryElem;
+        var url = chart.DetailChartDataServiceUrl;
+        var key = chart.DetailDataKey;
+        var request = chart.DetailChartRequest;
+        var showHover = chart.Options.ShowHoverOver;
+        
+        // Assigning chart orginal width
+        OriginalDetailWidth = chart.DetailWidth;
+
+
+        if ($.trim(url).length && $.trim(key).length) {
+            url = url + key + "&chartRequest=" + chartRequest + "&callback=?";
+            var templateXmlObj = null;
+            if (chart.Options.TemplateXml != null) {
+                templateXmlObj = { "TemplateXml": chart.Options.TemplateXml }
+            }
+
+            $.post(url, templateXmlObj, function (result) {
+                if (result.IsSuccessful) {
+                    window.log("detail chart data received");
+                    msg = JSON.parse(result.Text);
+                    if (msg.ObjectType == FEChartConstHelper.FEChartConsts.data) {
+
+                        chart.DetailChartDataReceived = true;
+                        if (chart.Options.ShowScrollingOverlay) {
+                            if (chart.ResetSummaryWindow) {
+
+                                chartHelper.ConvertDate(request);
+
+                                //set left and right of the Summary chart window
+                                var newLeftRight = DetailChartHelper.resetSummaryWindowPosition(containerId, msg.StartDate, msg.EndDate);
+
+                                request.Left = newLeftRight.Left;
+                                request.Right = newLeftRight.Right;
+                            }
+                        }
+
+                        chart.IsEmptyChart = false;
+                        chart.DetailDataKey = msg.DataKey;
+                        chartElem.parent().hideChartLoading(chart);
+
+                        DetailChartHelper.calculatePoints(containerId, msg);
+
+                        // Binding the resize events, so that it will be called when the chart resized
+                        var AdaptiveResizeFunction = function (e) {
+                            DetailChartHelper.AdaptiveResize(containerId, e);
+                        };
+
+                        if (chart.Options.UseAdaptiveDesign) {
+                            $(window).bind('resize', AdaptiveResizeFunction);
+                            AdaptiveResizeFunction();
+                        }
+
+                        window.log("data points calculated");
+
+                        if (msg.StartDate != undefined && msg.StartDate != null && msg.StartDate != "") {
+                            chart.DetailChartRequest.StartDate = dates.ParseDDMMYYYYString(msg.StartDate);
+                        }
+
+                        if (msg.EndDate != undefined && msg.EndDate != null && msg.EndDate != "") {
+                            chart.DetailChartRequest.EndDate = dates.ParseDDMMYYYYString(msg.EndDate);
+                        }
+
+                        if (chart.Options != null && chart.Options.ChartFinishCallBack)
+                            chart.Options.ChartFinishCallBack(chart);
+
+                        var DetailChart = $(chartElem);
+                        var MouseClickDetailDiv = chart.MouseClickDetailDivJqueryElem;
+                        var MouseClickDetailDiv1 = chart.MouseClickDetailDivJqueryElem1;
+                        var MouseClickDetailDiv2 = chart.MouseClickDetailDivJqueryElem2;
+
+                        var spot = chart.spotJqueryElem;
+                        var spot1 = chart.spotJqueryElem1;
+                        var spot2 = chart.spotJqueryElem2;
+
+                        ////var requiredElements = $().add(chartElem.parent()).add(MouseClickDetailDiv).add(MouseClickDetailDiv1).add(MouseClickDetailDiv2).add(spot).add(spot1).add(spot2);
+                        chartElem.parent().unbind("click");
+
+                        var clickFunction = function (e) {
+                            DetailChartHelper.FEChartImageClick(containerId, e);
+                        };
+
+                        chartElem.parent().unbind("click");
+                        chartElem.parent().bind("click", clickFunction);
+
+                        chartElem.parent().unbind("mousemove");
+                        chartElem.parent().mousemove(function (e) {
+                            if (chart.Options.ShowHoverOver) {
+                                var currentTime = new Date();
+                                var hoverStatus = chart.HoverStatus;
+                                ////"" means show hover-default
+                                if (hoverStatus == 0) DetailChartHelper.FEChartImageHover(containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+                                else if (hoverStatus == 1) DetailChartHelper.FEChartImageHoverWithTwo(containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+                                else if (hoverStatus == 2) DetailChartHelper.FEChartImageHoverWithFreeze(containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+                                var finishTime = new Date();
+                            }
+                        });
+
+                        chartElem.parent().unbind("mouseleave");
+                        chartElem.parent().mouseleave(function (e) {
+                            window.log("LEAVE");
+
+                            MouseClickDetailDiv.hide();
+                            spot.hide();
+                        });
+                    } else if (msg.ObjectType == FEChartConstHelper.FEChartConsts.EmptyChart) {
+                        ////set 1 day dummy data as there is no data in the history
+                        if (chart.Options != null && chart.Options.EmptyChartFinishCallBack)
+                            chart.Options.EmptyChartFinishCallBack();
+                    }
+                    else {
+                        alert("data wrong");
+                    }
+                }
+                else {
+                    alert(result.ResponseMessage);
+                }
+            }, "json").fail(function (d, textStatus, error) {
+                window.log("FEDetailChartImageLoadData: JSON Post failed. Status: " + textStatus + ", Error: " + error);
+            });
+        }
+    },
+
+    //this function creates event layer overlay
+    createEventsExtraLayerDisplay: function (lkID, divId, jsObj, detailCSS, appendToDivID, x, y, containerId) {
+        var $newDiv = $("<div/>", {
+            id: divId,
+            "class": 'displayNone'
+        }).click(function (e) {
+            e.stopPropagation();
+            showEvents(divId, lkID);
+            showLink(lkID);
+        });
+
+        var $h2 = $("<h2/>")
+                        .text(jsObj.Key)
+                        .appendTo($newDiv);
+
+        var $innerDiv = $("<div/>", {
+            "class": detailCSS
+        });
+
+        var $innerDivChild = $("<div/>", {
+            "class": 'eventDetails'
+        });
+
+        var $pDate = $("<p>Date:</p>");
+
+        var $pDateSpan = $("<span>", {
+            "class": "dynamicData"
+        }).text(jsObj.FormattedDate)
+                        .appendTo($pDate);
+
+        $pDate.appendTo($innerDivChild);
+
+        var $pSummary = $("<p>" + this.getTranslatedText("Summary", containerId) + ":</p>");
+
+        if (jsObj.Link == "" || jsObj.Link == null) {
+            var $pDateSpan = $("<span/>", {
+                "class": "dynamicData"
+            })
+                            .text(jsObj.Summary)
+                            .appendTo($pSummary);
+        }
+        else {
+            var $pSummarySpan = $("<span/>", {
+                "class": "dynamicData"
+            });
+
+            var $pSummaryLink = $("<a/>", {
+                target: "_blank",
+                href: jsObj.Link
+            })
+                                .text(jsObj.Summary);
+            $pSummaryLink.appendTo($pDateSpan);
+            $pDateSpan.appendTo($pSummary);
+        }
+        $pSummary.appendTo($innerDivChild);
+        $innerDivChild.appendTo($innerDiv);
+
+        $innerDiv.appendTo($newDiv);
+        $newDiv.appendTo("#" + containerId);
+        ////$newDiv.appendTo(appendToDivID);
+
+        $newDiv.css({ 'position': 'absolute', 'left': x, 'top': y });
+        $newDiv.attr("displayClassName", detailCSS);
+        return $newDiv;
+    },
+    getTranslatedText: function (token, containerId) {
+        var chart = GetChartDataStruct(containerId);
+        var translations = chart.Options.Translations;
+        var strToken = translations[$.trim(token).toLowerCase()];
+        if (strToken == undefined || strToken == "") {
+            strToken = token;
+        }
+        return strToken;
+    },
+    //this function creates dividends layer overlay
+    createDivExtraLayerDisplay: function (lkID, id, jsObj, detailCSS, appendToDivID, x, y, containerId) {
+        var $newDiv = $("<div/>", {
+            id: id,
+            "class": 'displayNone'
+        }).click(function (e) {
+            e.stopPropagation();
+            showEvents(id, lkID);
+            showLink(lkID);
+        });
+
+        var $h2 = $("<h2/>")
+                        .text(jsObj.Key)
+                        .appendTo($newDiv);
+
+        var $innerDiv = $("<div/>", {
+            "class": detailCSS
+        });
+
+        var $innerDivChild = $("<div/>", {
+            "class": 'eventDetails'
+        });
+
+        var $pDate = $("<p>" + this.getTranslatedText("Date", containerId) + ":</p>");
+
+        var $pDateSpan = $("<span>", {
+            "class": "dynamicData"
+        }).text(jsObj.FormattedDate)
+                        .appendTo($pDate);
+
+        $pDate.appendTo($innerDivChild);
+
+        var $pSummary = $("<p>" + this.getTranslatedText("Type", containerId) + ":</p>");
+
+        var $pSummarySpan = $("<span>", {
+            "class": "dynamicData"
+        }).text(jsObj.DivType)
+                            .appendTo($pSummary);
+
+        if (jsObj.Amount != "") {
+
+            var $pAmount = $("<p>Amount:</p>");
+            var $pAmountSpan = $("<span>", {
+                "class": "dynamicData"
+            }).text(jsObj.Amount)
+                            .appendTo($pAmount);
+            $pAmount.appendTo($innerDivChild);
+        }
+
+        $pSummary.appendTo($innerDivChild);
+        $innerDivChild.appendTo($innerDiv);
+        $innerDiv.appendTo($newDiv);
+        $newDiv.appendTo("#" + containerId);
+        ////$newDiv.appendTo(appendToDivID);
+
+        $newDiv.attr("displayClassName", detailCSS);
+        return $newDiv;
+    },
+
+    //this function calculate data points 
+    reCalculatePoints: function (containerId) {
+        var chart = GetChartDataStruct(containerId);
+
+        // Calculate the scale ratio based on the new width
+        AdaptiveScaleRatio = chart.DetailChartJqueryElem.width() / OriginalDetailWidth;
+
+        if (chart.NeedRecalculatePoints && chart.DataObject != null && chart.DataObject != undefined) {
+            DetailChartHelper.calculatePoints(containerId, chart.DataObject);
+        }
+
+    },
+
+    //this function calculate data points after they are received from ajax
+    calculatePoints: function (containerId, dataObject) {
+
+        var container = $('#' + containerId);
+
+        var appendToDivID = "#" + containerId + FEChartConstHelper.FEChartConsts.DetailChartDiv;
+        var chart = GetChartDataStruct(containerId);
+        chart.DataObject = dataObject;
+        this.AddFEChartData(containerId, dataObject);
+
+        var chartParent = chart.SummaryChartJqueryElem.parent();
+        var originalVisible = true;
+        if (!chartParent.is(":visible")) {
+            chart.NeedRecalculatePoints = true;
+        }
+        else {
+            chart.NeedRecalculatePoints = false;
+        }
+
+        var DetailChart = chart.DetailChartJqueryElem;
+        var chartContainer = chart.ChartContainerJqueryElem;
+        var DetailChartContainer = chart.DetailChartJqueryElem.parent();
+        var SummaryChartContainer = chart.SummaryChartJqueryElem.parent();
+
+        var extraLayerIds = chart.ExtraLayers;
+
+        if (chart.ExtraLayers) {
+            $.each(chart.ExtraLayers, function () {
+                this.remove();
+            });
+        }
+
+        var layers = [];
+        var totalHeight = DetailChartContainer.height() + SummaryChartContainer.height();
+
+        $('#chartExtraLayerContainer').remove();
+        var chartExtraLayerContainer = $("<div id='chartExtraLayerContainer' />").insertBefore(DetailChartContainer);
+        $(chartExtraLayerContainer).css({ "position": "relative" });
+
+        if (dataObject.OptionalLayers != undefined && dataObject.OptionalLayers.length > 0) {
+            for (var i = 0; i < dataObject.OptionalLayers.length; i++) {
+                var layerType = dataObject.OptionalLayers[i].Name.toLowerCase();
+                if (layerType == FEChartConstHelper.FELayerConsts.events || layerType == FEChartConstHelper.FELayerConsts.dividend) {
+                    for (var j = 0; j < dataObject.OptionalLayers[i].LayerPoints.length; j++) {
+                        var id = containerId + "_" + layerType + "_" + dataObject.OptionalLayers[i].SeriesName + "_" + j;
+                        var lkID = 'lk_' + id;
+
+                        jsObj = jQuery.extend(true, {}, dataObject.OptionalLayers[i].LayerPoints[j]);
+
+                        var css = eventMappingHelper.defaultClass;
+                        if (jsObj.Key != null) {
+                            css = eventMappingHelper[jsObj.Key];
+                            if (css == undefined || css == null || css == "")
+                                css = eventMappingHelper.defaultClass;
+                        }
+                        var detailCSS = css + "Details";
+                        var $link = $('<a/>', {
+                            "class": css,
+                            id: lkID,
+                            divID: id
+                        })
+                        .appendTo(chartExtraLayerContainer);
+                        $link.css({ "position": "absolute" });
+
+                        if (chart.Options.InstrumentEventImages != null && chart.Options.InstrumentEventImages != undefined) {
+                            $link.attr('instrumentIndex', dataObject.OptionalLayers[i].InstrumentIndex);
+                            $link.attr('eventCode', jsObj.Key);
+
+                            $link.css('background-image', 'url(' +
+                            chart.Options.RequstHandlerUrl +
+                            chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageLocation + ')'
+                            );
+
+                            $link.hover(function (e) {
+                                var index = $(this).attr('instrumentIndex');
+                                var code = $(this).attr('eventCode');
+                                $(this).css('background-image', 'url(' +
+                                chart.Options.RequstHandlerUrl +
+                                chart.Options.InstrumentEventImages[index][code].HoverImageLocation + ')'
+                                );
+                            },
+                            function (e) {
+                                var index = $(this).attr('instrumentIndex');
+                                var code = $(this).attr('eventCode');
+                                $(this).css('background-image', 'url(' +
+                                chart.Options.RequstHandlerUrl +
+                                chart.Options.InstrumentEventImages[index][code].ImageLocation + ')'
+                                );
+                            }
+                            )
+                        }
+
+                        layers.push($link);
+
+                        // Adjusting the event points to the scale ratio
+                        if (chart.Options.UseAdaptiveDesign) {
+                            jsObj.X = jsObj.X * AdaptiveScaleRatio;
+                            jsObj.Y0 = jsObj.Y0 * AdaptiveScaleRatio;
+                        }
+
+                        //16 is the size of image, so make it half way
+                        var x = DetailChart.offset().left + parseInt(jsObj.X) - 9;
+                        var y = DetailChart.offset().top + parseInt(jsObj.Y0) - 25;
+                        //$("#" + lkID).css({ 'margin-left': parseInt(jsObj.X), 'margin-top': parseInt(jsObj.Y0) });
+
+                        window.log(layerType + " x " + x + " y " + y);
+
+
+                        if (chart.Options.InstrumentEventImages != null && chart.Options.InstrumentEventImages != undefined) {
+
+
+                            x = jsObj.X - chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageWidth / 2;
+                            y = jsObj.Y0 - chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageHeight;
+
+                            x = parseInt(x) - chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageXSpacing;
+                            y = parseInt(y) - chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageYSpacing;
+
+
+                            $($link).offset({ 'left': x, 'top': y });
+                            $($link).offset({ 'left': x, 'top': y });
+                        }
+                        else {
+                            $($link).offset({ 'left': x, 'top': y });
+                            $($link).offset({ 'left': x, 'top': y });
+                            x = parseInt(x) - 8;
+                            y = parseInt(y) - 8;
+                        }
+
+                        var layerDetail;
+                        if (layerType == FEChartConstHelper.FELayerConsts.events) {
+                            layerDetail = this.createEventsExtraLayerDisplay(lkID, id, jsObj, detailCSS, appendToDivID, x, y, containerId);
+                            layers.push(layerDetail);
+                        }
+                        else if (layerType == FEChartConstHelper.FELayerConsts.dividend) {
+                            layerDetail = this.createDivExtraLayerDisplay(lkID, id, jsObj, detailCSS, appendToDivID, x, y, containerId);
+                            layers.push(layerDetail);
+                        }
+
+                        if (chart.Options.InstrumentEventImages != null && chart.Options.InstrumentEventImages != undefined) {
+                            layerDetail.children("h2").css('background-image', 'url(' +
+                            chart.Options.RequstHandlerUrl +
+                            chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].ImageLocation + ')'
+                            );
+
+                            layerDetail.children("h2").css('background-color',
+                            chart.Options.InstrumentEventImages[dataObject.OptionalLayers[i].InstrumentIndex][jsObj.Key].HeaderCssBackgroundColour
+                            );
+                        }
+
+                        $link.click(function (e) {
+                            showEvents($(this).attr('divID'), $(this).attr('id'), chart);
+                            showLink($(this).attr('id'));
+                        });
+                    }
+                }
+            }
+
+            chart.ExtraLayers = layers;
+        }
+        DetailChartHelper.drawCustomEventArray(containerId, dataObject);
+    },
+
+    drawCustomEventArray: function (containerId, dataObject) {
+        var chart = GetChartDataStruct(containerId);
+        if (!chart.CustomEvents) return;
+
+        var DetailChartContainer = chart.DetailChartJqueryElem;
+        $('#chartCustomEventsContainer').remove();
+        var eventContainerDiv = $("<div id=\"chartCustomEventsContainer\"/>").insertBefore(DetailChartContainer);
+        $(eventContainerDiv).css({ "position": "relative" });
+
+        for (var i in chart.CustomEvents) {
+            DetailChartHelper.drawCustomEvent(chart.CustomEvents[i], chart, eventContainerDiv, i);
+        }
+    },
+
+    toggleCustomEvent: function (eventId, speed) {
+        if (!eventId) return;
+        $(".CustomEvent_" + eventId).toggle(speed);
+    },
+
+    hideCustomEvent: function (eventId, speed) {
+        if (!eventId) return;
+        $(".CustomEvent_" + eventId).hide(speed);
+    },
+
+    showCustomEvent: function (eventId, speed) {
+        if (!eventId) return;
+        $(".CustomEvent_" + eventId).show(speed);
+    },
+
+    drawCustomEvent: function (ev, chart, eventContainerDiv, eventId) {
+        if (!this.validateCustomEvent(ev, chart)) return;
+        if (ev.EventPoints.length == 0) return;
+
+        for (var i in ev.EventPoints) {
+            var point = ev.EventPoints[i];
+            var chartPixelPosition = this.dataPoint2Pixel(chart, point.Date, ev.IsTimelineEvent, ev.InstrumentIndex, chart.DateFormat);
+            if (!chartPixelPosition) continue;
+
+            this.mergePointAndEventOptions(point, ev);
+            var eventDiv = this.createMarkerDiv(eventContainerDiv, point, eventId);
+            this.applyMarkerCss(eventDiv, point);
+            this.applySpriteOffset(eventDiv, point);
+            this.positionMarkerDiv(eventDiv, point, chartPixelPosition);
+            this.bindMarkerEvents(eventDiv, point, this.isPad());
+        }
+    },
+
+    isPad: function () {
+        var ua = navigator.userAgent;
+        var isPad = (ua.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i));
+        return isPad;
+    },
+
+    padEvents: function (containerId) {
+        if (this.isPad()) {
+            var supportsOrientationChange = "onorientationchange" in window,
+            orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+            window.log("event is:" + orientationEvent);
+            window.addEventListener(orientationEvent, function () {
+                var chart = this.GetChartDataStruct(containerId);
+                if (chart.DetailChartDataReceived && (chart.SummaryChartRequest.ShowDividend || chart.SummaryChartRequest.ShowEvent)
+                 && (chart.DetailChartRequest.ShowDividend || chart.DetailChartRequest.ShowEvent)) {
+                    ////redraw events and points
+                    window.log("redraw points");
+                    chart.NeedRecalculatePoints = true;
+                    DetailChartHelper.reCalculatePoints(containerId);
+                }
+            }, true);
+        }
+    },
+
+    mergePointAndEventOptions: function (eventDataPoint, eventOptions) {
+        var marker = {};
+        $.extend(true, marker, eventOptions.Marker, eventDataPoint.Marker);
+        eventDataPoint.Marker = marker;
+    },
+
+    positionMarkerDiv: function (markerDiv, eventDataPoint, chartPixelPosition) {
+        var markerOpt = eventDataPoint.Marker;
+        var anchorCorrection = markerOpt.AnchorPoint ? markerOpt.AnchorPoint : this.anchorCorrection(markerOpt.Width, markerOpt.Height, markerOpt.AnchorLocation);
+        chartPixelPosition.x += anchorCorrection.x;
+        chartPixelPosition.y += anchorCorrection.y;
+        markerDiv.css({ "left": chartPixelPosition.x + 'px', "top": chartPixelPosition.y + 'px' });
+    },
+
+    applySpriteOffset: function (markerDiv, eventDataPoint) {
+        var markerOpt = eventDataPoint.Marker;
+
+        if (markerOpt.SpritePosition) {
+            markerDiv.css({ "background-position": (-markerOpt.SpritePosition.X) + 'px ' + (-markerOpt.SpritePosition.Y) + 'px' });
+            return;
+        }
+
+        if (markerOpt.SpriteRowCol) {
+            markerDiv.css({ "background-position": -((markerOpt.SpriteRowCol.X - 1) * markerOpt.Width) + 'px ' + (-(markerOpt.SpriteRowCol.Y - 1) * markerOpt.Height) + 'px' });
+        }
+    },
+
+    applyMarkerCss: function (markerDiv, eventDataPoint) {
+        var markerOpt = eventDataPoint.Marker;
+        var css = {};
+        var def = this.baseEventDivCSS(markerOpt.Width, markerOpt.Height, markerOpt.MarkerUrl);
+        $.extend(true, css, def, markerOpt.ClientSideOptions.Css ? markerOpt.ClientSideOptions.Css : {});
+        markerDiv.css(css);
+    },
+
+    createMarkerDiv: function (container, eventDataPoint, eventId) {
+        var markerDiv = $("<div/>");
+        markerDiv.addClass("CustomEvent_" + eventId);
+        container.append(markerDiv);
+        var rend = eventDataPoint.Marker.ClientSideOptions.MarkerRenderer;
+        if (rend) {
+            if ($.type(rend) === "string")
+                eval("rend = " + rend);
+            markerDiv.append(rend(eventDataPoint.Date, eventDataPoint.Data));
+        }
+        return markerDiv;
+    },
+
+    bindMarkerEvents: function (eventDiv, point, isPad) {
+        var events = [
+            {
+                "event": FEChartConstHelper.FEChartConsts.click,
+                "option": "OnClickCallback"
+            },
+            {
+                "event": FEChartConstHelper.FEChartConsts.mouseenter,
+                "option": "MouseEnterCallback"
+            },
+            {
+                "event": FEChartConstHelper.FEChartConsts.mouseleave,
+                "option": "MouseLeaveCallback"
+            }
+        ];
+
+        if (isPad) {
+            events = [
+            {
+                "event": FEChartConstHelper.FEChartConsts.touchstart,
+                "option": "OnTouchstartCallback"
+            },
+            {
+                "event": FEChartConstHelper.FEChartConsts.touchend,
+                "option": "OnTouchendCallback"
+            }
+        ];
+        }
+
+        var opts = point.Marker.ClientSideOptions;
+        for (var i in events) {
+            var e = events[i];
+            if (!opts[e.option]) return;
+            if ($.type(opts[e.option]) === "string")
+                eval("opts[e.option] = " + opts[e.option] + ";");
+            eventDiv.bind(e.event, point, opts[e.option]);
+        }
+    },
+
+    baseEventDivCSS: function (width, height, markerUrl) {
+        return {
+            "width": width + 'px',
+            "height": height + 'px', "position": "absolute",
+            "background-image": markerUrl ? "url(" + markerUrl + ")" : "",
+            "background-repeat": "no-repeat",
+            "cursor": "pointer"
+        }
+    },
+
+    dataPoint2Pixel: function (chart, date, isTimelineEvent, instrumentIndex, format) {
+        date = this.parseSimpleDate(date, format).getTime();
+        if (date < chart.MinDate.getTime() || date > chart.MaxDate.getTime()) return;
+        instrumentIndex = isTimelineEvent ? 0 : instrumentIndex;
+
+        var tempdp = jQuery.extend(true, {}, chart.ChartData.OriginalData.DataSeries[instrumentIndex]);
+        var dp = tempdp.DataPoints;
+        var timeAxisY = chart.ChartData.OriginalData.XAxisPosition;
+        if (chart.Options.UseAdaptiveDesign) {
+            timeAxisY = timeAxisY * AdaptiveScaleRatio;
+        }
+        var i = 0;
+        var pointdate;
+        for (i = 0; i < dp.length; i++) {
+            if (chart.Options.UseAdaptiveDesign) {
+                dp[i].X = dp[i].X * AdaptiveScaleRatio;
+                dp[i].Y0 = dp[i].Y0 * AdaptiveScaleRatio;
+            }
+            pointDate = this.parseSimpleDate(dp[i].Date, format).getTime();
+            if (pointDate == date) {
+                return { "x": dp[i].X, "y": isTimelineEvent ? timeAxisY : dp[i].Y0 }
+            } else if (pointDate > date) {
+                break;
+            }
+        }
+        if (i == 0 || i == dp.length) return;
+        var lastPointDate = this.parseSimpleDate(dp[i - 1].Date, format).getTime();
+        var midpointRatio = (date - lastPointDate) / (pointDate - lastPointDate);
+        var x = this.midpoint(dp[i - 1].X, dp[i].X, midpointRatio);
+        var y = this.midpoint(dp[i - 1].Y0, dp[i].Y0, midpointRatio);
+        return { "x": x, "y": isTimelineEvent ? timeAxisY : y };
+    },
+
+    midpoint: function (p1, p2, midpointRatio) {
+        return (p1 - p2) * midpointRatio + p1;
+    },
+
+    anchorCorrection: function (width, height, anchorType) {
+        var hw = width / 2;
+        var hh = height / 2
+        switch (anchorType) {
+            case "TopLeft":
+                return { "x": 0, "y": 0 };
+            case "TopMiddle":
+                return { "x": -hw, "y": 0 };
+            case "TopRight":
+                return { "x": -width, "y": 0 };
+            case "BottomLeft":
+                return { "x": 0, "y": -height };
+            case "BottomMiddle":
+                return { "x": -hw, "y": -height };
+            case "BottomRight":
+                return { "x": -width, "y": -height };
+            case "Left":
+                return { "x": 0, "y": -hh };
+            case "Right":
+                return { "x": -width, "y": -hh };
+        }
+        return { "x": 0, "y": 0 };
+    },
+
+    parseSimpleDate: function (dateString, format) {
+        if (format == undefined || format == "" || format == null) {
+            format = "dd/MM/yyyy";
+        }
+
+        var date = getDateFromFormat(dateString, format);
+
+        var timeZondDiff = date.getTimezoneOffset();
+        date.setMinutes(date.getMinutes() - timeZondDiff);
+        return date;
+    },
+
+    validateCustomEvent: function (customEvent, chart) {
+        if (!customEvent) {
+            DetailChartHelper.logCustomEventError("Empty Custom Event.");
+            return false;
+        }
+        var requiredProperties = ["Name", "EventPoints"]
+        var valid = true;
+        for (var i in requiredProperties) {
+            var prop = requiredProperties[i];
+            if ($.type(customEvent[prop]) === "undefined") {
+                DetailChartHelper.logCustomEventError("Required property '" + prop + "' is missing in custom event definition.", customEvent);
+                valid = false;
+            }
+        }
+        if (!customEvent.InstrumentIndex && !customEvent.InstrumentIndex === 0 && !customEvent.IsTimelineEvent) {
+            DetailChartHelper.logCustomEventError("Either 'IsTimelineEvent' has to be set to 'true' or the 'InstrumentIndex' has to be specified.", customEvent);
+            valid = false;
+        }
+        if (customEvent.InstrumentIndex < 0 || customEvent.InstrumentIndex > chart.ChartData.OriginalData.DataSeries.length - 1) {
+            DetailChartHelper.logCustomEventError("'InstrumentIndex' was out of range.", customEvent);
+            valid = false;
+        }
+        if (!$.isArray(customEvent.EventPoints)) {
+            DetailChartHelper.logCustomEventError("'LayerPoints' is required to be an array of objects", customEvent);
+            valid = false;
+        }
+        return valid;
+    },
+
+    logCustomEventError: function (message, event) {
+        if (window.console) {
+            console.log("Custom Event Error: " + message);
+            if (event)
+                console.log(event);
+        } else {
+            alert("Custom Event Error:\n" + message);
+        }
+    },
+
+    FEChartHoverCommon: function (containerId, currentSeries, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2) {
+        var x = (e.pageX - DetailChart.offset().left);
+        var y = (e.pageY - DetailChart.offset().top);
+
+        x = parseInt(x);
+        adjustedX = x;
+
+        var adjustedY = y;
+        var dataObject = this.RetrieveFEChartData(containerId);
+        var toDisplay = "";
+
+        if (dataObject != null && dataObject != undefined) {
+            var maxDistance = 9999;
+
+            for (series in dataObject.SeriesArray) {
+
+                if (currentSeries != null && currentSeries != series) continue;
+
+                if (dataObject.SeriesArray[series][x] != undefined && dataObject.SeriesArray[series][x] != null) {
+                    //found one
+                    var currentDistance = Math.abs(y - dataObject.SeriesArray[series][x].Y0);
+
+                    if (currentDistance < maxDistance) {
+                        maxDistance = currentDistance;
+                        toDisplay = series;
+                        adjustedY = dataObject.SeriesArray[series][x].Y0;
+                    }
+                }
+                else {
+                    //if current position is further left to the first point, or further right to the last point, we use that one
+
+                    if (dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.first] != null && dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.first] > x) {
+                        //use the first point
+                        var tmpAdjustedX = dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.first];
+
+                        var currentDistance = Math.abs(y - dataObject.SeriesArray[series][tmpAdjustedX].Y0);
+                        if (currentDistance < maxDistance) {
+                            maxDistance = currentDistance;
+                            adjustedX = tmpAdjustedX;
+                            toDisplay = series;
+                            adjustedY = dataObject.SeriesArray[series][adjustedX].Y0;
+                        }
+                    }
+                    else if (dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.last] != null && dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.last] < x) {
+                        //use the first point
+                        var tmpAdjustedX = dataObject.SeriesArray[series][FEChartConstHelper.FEChartDataConsts.last];
+
+                        var currentDistance = Math.abs(y - dataObject.SeriesArray[series][tmpAdjustedX].Y0);
+                        if (currentDistance < maxDistance) {
+                            maxDistance = currentDistance;
+                            adjustedX = tmpAdjustedX;
+                            toDisplay = series;
+                            adjustedY = dataObject.SeriesArray[series][adjustedX].Y0;
+                        }
+                    }
+                    else {
+                        //// we look for 10 pixels up and down, and choose the closest one
+                        var downX = null;
+                        var upX = null;
+                        for (var i = 1; i <= 10; i++) {
+                            if (dataObject.SeriesArray[series][x - i] != undefined && dataObject.SeriesArray[series][x - i] != null) {
+                                downX = i;
+                                break;
+                            }
+                        }
+
+                        for (var i = 1; i <= 10; i++) {
+                            if (dataObject.SeriesArray[series][x + i] != undefined && dataObject.SeriesArray[series][x + i] != null) {
+                                upX = i;
+                                break;
+                            }
+                        }
+                        if (downX != null || upX != null) {
+                            if (downX == null) {
+                                var currentDistance = Math.abs(y - dataObject.SeriesArray[series][x + upX].Y0);
+
+                                if (currentDistance < maxDistance) {
+                                    maxDistance = currentDistance;
+                                    toDisplay = series;
+                                    adjustedX = x + upX;
+                                    adjustedY = dataObject.SeriesArray[series][x + upX].Y0;
+                                }
+                            }
+                            else if (upX == null) {
+                                var currentDistance = Math.abs(y - dataObject.SeriesArray[series][x - downX].Y0);
+
+                                if (currentDistance < maxDistance) {
+                                    maxDistance = currentDistance;
+                                    toDisplay = series;
+                                    adjustedX = x - downX;
+                                    adjustedY = dataObject.SeriesArray[series][x - downX].Y0;
+                                }
+                            }
+                            else if (downX <= upX) {
+                                var currentDistance = Math.abs(y - dataObject.SeriesArray[series][x - downX].Y0);
+
+                                if (currentDistance < maxDistance) {
+                                    maxDistance = currentDistance;
+                                    toDisplay = series;
+                                    adjustedX = x - downX;
+                                    adjustedY = dataObject.SeriesArray[series][x - downX].Y0;
+                                }
+                            }
+                            else {
+                                var currentDistance = Math.abs(y - dataObject.SeriesArray[series][x + upX].Y0);
+
+                                if (currentDistance < maxDistance) {
+                                    maxDistance = currentDistance;
+                                    toDisplay = series;
+                                    adjustedX = x + upX;
+                                    adjustedY = dataObject.SeriesArray[series][x + upX].Y0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return { toDisplay: toDisplay, adjustedY: adjustedY, dataObject: dataObject, adjustedX: adjustedX };
+    },
+    FEChartImageHoverWithFreeze: function (containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2) {
+
+    },
+    FEChartImageHoverWithTwo: function (containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2) {
+        this.FEChartImageHoverCommon(1, containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+    },
+
+    FEChartImageHoverCommon: function (hoverStatus, containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2) {
+
+        var currentSeries = null;
+
+        if (hoverStatus == 1) {
+            //need to find out which series it is on
+            var currentSeries = MouseClickDetailDiv1.attr(FEChartConstHelper.FEChartDataConsts.series);
+        }
+
+        var chart = GetChartDataStruct(containerId);
+
+        var useGlobalizationPlugin = chart.Options.UseGlobalizationPlugin;
+        var detailChartCultureName = chart.Options.DetailChartCultureName;
+
+        if (chart.Options.DecimalPointSeparator == null || chart.Options.DecimalPointSeparator == "") {
+            ////  no DecimalPointSeparator set, so use the normal way
+        }
+        else {
+            ////
+            useGlobalizationPlugin = false;
+        }
+
+
+        // Get coordinates in chart space
+        var x = (e.pageX - DetailChart.offset().left);
+        var y = (e.pageY - DetailChart.offset().top);
+        x = parseInt(x);
+        var dataObject = this.RetrieveFEChartData(containerId);
+        if (y > dataObject.OriginalData.XAxisPosition) {
+            return;
+        }
+
+        var data = this.FEChartHoverCommon(containerId, currentSeries, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+        var adjustedX = data.adjustedX;
+        var chart = GetChartDataStruct(containerId);
+
+        if (hoverStatus == 0) {
+            MouseClickDetailDiv1.hide();
+            MouseClickDetailDiv2.hide();
+            spot1.hide();
+            spot2.hide();
+            MouseClickDetailDiv.show();
+            spot.show();
+        }
+
+        var adjustedY = y;
+        // Find out which datapoint the mouse is over
+
+        //need to find out which line the user is closest to
+        //if no data point is at that x position, use previous one
+
+        var startValue = data.dataObject.OriginalData.StartPointValue;
+
+        if (data.toDisplay != "") {
+
+            var dataObject = data.dataObject;
+            var toDisplay = data.toDisplay;
+
+            MouseClickDetailDiv
+            .attr(FEChartConstHelper.FEChartDataConsts.series, data.toDisplay)
+            .attr(FEChartConstHelper.ScrollConsts.x, x);
+
+            if (hoverStatus == 0) {
+                MouseClickDetailDiv.data("series", data);
+            }
+
+            MouseClickDetailDiv1
+            .attr(FEChartConstHelper.FEChartDataConsts.series, data.toDisplay)
+            .attr(FEChartConstHelper.ScrollConsts.x, x);
+
+            MouseClickDetailDiv2
+            .attr(FEChartConstHelper.FEChartDataConsts.series, data.toDisplay)
+            .attr(FEChartConstHelper.ScrollConsts.x, x);
+
+            adjustedY = data.adjustedY;
+
+            var compareText;
+            if (dataObject.SeriesArray[toDisplay][adjustedX] == undefined) {
+                return;
+            }
+
+            if (startValue == 0) {
+                //now format data
+                var firstIndex = dataObject.SeriesArray[toDisplay].first;
+                var percentValue = parseFloat(dataObject.SeriesArray[toDisplay][adjustedX].RawData) - parseFloat(dataObject.SeriesArray[toDisplay][firstIndex].RawData);
+                percentValue = percentValue / parseFloat(dataObject.SeriesArray[toDisplay][firstIndex].RawData) * 100;
+                percentValue = percentValue.toFixed(2);
+
+                percentValue = this.FEChartDecimalPointFormat(percentValue, chart, useGlobalizationPlugin, detailChartCultureName);
+
+                compareText = dataObject.SeriesArray[toDisplay][adjustedX].FormattedDate + "  " + dataObject.SeriesArray[toDisplay][adjustedX].DisplayRawData + " (" + percentValue + ")";
+            }
+            else {
+                var percentValue = ((-startValue + parseFloat(dataObject.SeriesArray[toDisplay][adjustedX].Value)) / startValue * 100).toFixed(2);
+
+                percentValue = this.FEChartDecimalPointFormat(percentValue, chart, useGlobalizationPlugin, detailChartCultureName);
+
+                compareText = dataObject.SeriesArray[toDisplay][adjustedX].FormattedDate + "  " + dataObject.SeriesArray[toDisplay][adjustedX].DisplayRawData + " (" + percentValue + ")";
+            }
+
+            var content = data.toDisplay + "<br>" + compareText;
+
+            chart.MouseHoverDetailDivContentJqueryElem.html(content);
+
+            var endingData = dataObject.SeriesArray[toDisplay][data.adjustedX].RawData;
+
+            if (hoverStatus == 0) {
+                chart.MouseClickDetailDiv1ContentJqueryElem.html(content);
+            }
+
+            if (hoverStatus != 1) {
+                chart.MouseClickDetailDiv2ContentJqueryElem.attr("StartingValue", endingData);
+                chart.MouseClickDetailDiv2ContentJqueryElem.html(content + " to");
+            }
+
+            var startingData = parseFloat(chart.MouseClickDetailDiv2ContentJqueryElem.attr("StartingValue"));
+
+            var percent = (endingData - startingData) / startingData * 100;
+
+            localizedPercent = percent.toFixed(2);
+
+            localizedPercent = this.FEChartDecimalPointFormat(localizedPercent, chart, useGlobalizationPlugin, detailChartCultureName);
+
+            if (startValue == 0) {
+                var relativePercnt = dataObject.SeriesArray[toDisplay][data.adjustedX].Value;
+                relativePercnt = this.FEChartDecimalPointFormat(relativePercnt, chart, useGlobalizationPlugin, detailChartCultureName);
+                chart.MouseClickDetailDiv2Content2JqueryElem.html(dataObject.SeriesArray[toDisplay][data.adjustedX].FormattedDate + "  " + dataObject.SeriesArray[toDisplay][data.adjustedX].DisplayRawData + " (" + relativePercnt + ") = " + localizedPercent);
+            }
+            else {
+                var relativePercent = ((parseFloat(dataObject.SeriesArray[toDisplay][data.adjustedX].Value) - startValue) / startValue * 100).toFixed(2);
+                relativePercent = this.FEChartDecimalPointFormat(relativePercent, chart, useGlobalizationPlugin, detailChartCultureName);
+                chart.MouseClickDetailDiv2Content2JqueryElem.html(dataObject.SeriesArray[toDisplay][data.adjustedX].FormattedDate + "  " + dataObject.SeriesArray[toDisplay][data.adjustedX].DisplayRawData + " (" + relativePercent + ") = " + localizedPercent);
+            }
+            //set data for content2
+            chart.MouseClickDetailDiv2Content2JqueryElem.data("compareText", compareText);
+            chart.MouseClickDetailDiv2Content2JqueryElem.data("compareData", dataObject.SeriesArray[toDisplay][data.adjustedX].DisplayRawData);
+
+            e.pageX = data.adjustedX;
+
+            var middleX = data.adjustedX - $(spot).width() / 2;
+            var middleY = data.adjustedY - $(spot).height() / 2;
+            var top = middleY + FEChartConstHelper.FEChartConsts.ScrollSpacing + $(spot).height();
+
+            var detailDivMiddleX = middleX;
+            var detailDivTop = top;
+            if (middleX + MouseClickDetailDiv.width() > DetailChart.width()) {
+                //// over the width now
+                detailDivMiddleX = middleX - MouseClickDetailDiv.width();
+            }
+
+            if (top + MouseClickDetailDiv.height() > DetailChart.height()) {
+                //// over the height now
+                detailDivTop = top - MouseClickDetailDiv.height();
+            }
+
+            if (hoverStatus == 0) {
+                MouseClickDetailDiv.show().css({
+                    "left": detailDivMiddleX + 'px',
+                    "top": detailDivTop + 'px'
+                }).hide().show();
+
+                $(spot).show().css({
+                    "left": middleX + 'px',
+                    "top": middleY + 'px'
+                }).hide().show();
+            }
+
+            if (hoverStatus == 0) {
+                MouseClickDetailDiv1.show().css({
+                    "left": detailDivMiddleX + 'px',
+                    "top": detailDivTop + 'px'
+                }).hide();
+
+                $(spot1).show().css({
+                    "left": middleX + 'px',
+                    "top": middleY + 'px'
+                }).hide();
+            }
+            else {
+                MouseClickDetailDiv1.show();
+                $(spot1).show();
+            }
+            if (hoverStatus == 0) {
+                MouseClickDetailDiv2.show().css({
+                    "left": detailDivMiddleX + 'px',
+                    "top": detailDivTop + 'px'
+                }).hide();
+
+                $(spot2).show().css({
+                    "left": middleX + 'px',
+                    "top": middleY + 'px'
+                }).hide();
+            }
+            else if (hoverStatus == 1) {
+
+                MouseClickDetailDiv2.show().css({
+                    "left": detailDivMiddleX + 'px',
+                    "top": detailDivTop + 'px'
+                });
+
+                $(spot2).show().css({
+                    "left": middleX + 'px',
+                    "top": middleY + 'px'
+                });
+
+            }
+        }
+    },
+
+    FEChartDecimalPointFormat: function (percentValue, chart, useGlobalizationPlugin, detailChartCultureName) {
+        if (useGlobalizationPlugin) {
+            Globalize.culture(detailChartCultureName);
+            percentValue = (Globalize.format(parseFloat(percentValue) / 100, "p"));
+        }
+        else {
+            if (chart.Options.DecimalPointSeparator == null || chart.Options.DecimalPointSeparator == "") {
+                percentValue = percentValue + '%';
+            }
+            else {
+                percentValue = percentValue.toString().replace(".", chart.Options.DecimalPointSeparator) + '%';
+            }
+        }
+
+        return percentValue;
+    },
+    FEChartImageHover: function (containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2) {
+        this.FEChartImageHoverCommon(0, containerId, e, DetailChart, MouseClickDetailDiv, MouseClickDetailDiv1, MouseClickDetailDiv2, spot, spot1, spot2);
+    },
+    resetSummaryWindowLeft: function (SummaryChartWindow, leftPos, width) {
+        //alert(SummaryChartWindow.length);
+        FEChartConstHelper.SummaryWindowResizedWithoutUserInteraction = true;
+        if (chart.Options.UseAdaptiveDesign) {
+            SummaryChartWindow.css({
+                "left": leftPos + "%"
+            });
+            SummaryChartWindow.width(width + '%');
+        }
+        else {
+            SummaryChartWindow.css({
+                "left": leftPos + FEChartConstHelper.PositionConsts.px
+            });
+            SummaryChartWindow.width(width);
+        }
+
+        window.log("set left at" + SummaryChartWindow.css("left"));
+        //        setTimeout(function () {
+        //            SummaryChartWindow.css({
+        //                "left": leftPos + FEChartConstHelper.PositionConsts.px
+        //            });
+
+        //            SummaryChartWindow.width(width);
+        //            window.log("set left at" + SummaryChartWindow.css("left"));
+        //        }, 10);
+
+    },
+    resetSummaryWindowPosition: function (containerId, startDate, endDate) {
+        var chart = GetChartDataStruct(containerId);
+        var returnObject = new Object();
+        var leftPercent;
+        var rightPercent;
+
+        var SummaryChart = chart.SummaryChartJqueryElem;
+        var SummaryChartWidth = SummaryChart.width();
+        var SummaryChartWindow = chart.SummaryChartWindowJqueryElem;
+        var SummaryChartWindowContent = chart.SummaryChartWindowContentJqueryElem;
+        var SummaryChartWindowLeftBorder = chart.SummaryChartWindowLeftBorderJqueryElem;
+        var SummaryChartWindowRightBorder = chart.SummaryChartWindowRightBorderJqueryElem;
+
+        if (startDate == null || startDate == "" || endDate == null || endDate == "") {
+            leftPercent = chart.ChartContainerJqueryElem.attr(FEChartConstHelper.PositionConsts.left);
+            rightPercent = chart.ChartContainerJqueryElem.attr(FEChartConstHelper.PositionConsts.right);
+        }
+        else {
+            var left;
+            var right;
+
+            var startDate = dates.ParseDDMMYYYYString(startDate);
+            var endDate = dates.ParseDDMMYYYYString(endDate);
+            var sumSpan = Math.abs(dates.GetTimeDiff(chart.MaxDate, chart.MinDate));
+
+            if (dates.compare(startDate, chart.MinDate) == -1) {
+                left = 0;
+                startDate = chart.MinDate;
+            }
+
+            if (dates.compare(chart.MaxDate, endDate) == -1) {
+                right = 1;
+                endDate = chart.MaxDate;
+            }
+
+            var leftPercent = dates.GetPercentage(chart.MinDate, chart.MaxDate, startDate);
+            var rightPercent = dates.GetPercentage(chart.MinDate, chart.MaxDate, endDate);
+        }
+
+        var SummaryChartHeight = chart.SummaryHeight == 0 ? chart.ServerSideHeight : chart.SummaryHeight;
+        var SummaryChartWidth = chart.SummaryWidth == 0 ? chart.ServerSideWidth : chart.SummaryWidth;
+
+        chart.SummaryLeftPercentage = leftPercent;
+        chart.SummaryRightPercentage = rightPercent;
+
+        var leftPos = SummaryChartWidth * leftPercent;
+        var width = SummaryChartWidth * rightPercent - leftPos - FEChartConstHelper.FEChartConsts.ScrollSpacing;
+
+        //give some width at least
+        if (width < 0)
+            width = 10;
+
+        if (chart.Options.UseAdaptiveDesign) {
+            width = width / SummaryChartWidth * 100;
+            leftPos = leftPercent;
+        }
+
+        this.resetSummaryWindowLeft(SummaryChartWindow, leftPos, width);
+
+        var returnObject = new Object();
+        returnObject.Left = leftPercent;
+        returnObject.Right = rightPercent;
+        return returnObject;
+    }
+};
+
+////####################################
+////constructors
+//NOTE: This file puts all the needed constructors for the charting project
+//Dependency:
+function ChartDataConstructor() {
+    this.ShowSummary = true;
+    this.DetailChartLeft;
+    this.DetailChartRight;
+    this.ChartDetailImageServiceURL;
+    this.ChartSummaryImageServiceURL;
+    this.ChartDetailSVGServiceURL;
+    this.DetailChartDataServiceUrl;
+    this.SummaryChartDataServiceUrl;
+    this.DetailDataKey;
+    this.SummaryDataKey;
+    this.MouseClickDetailDivJqueryElem;
+    this.MouseClickDetailDivJqueryElem1;
+    this.MouseClickDetailDivJqueryElem2;
+    this.HoverStatus;
+    this.DetailChartJqueryElem;
+    this.SummaryChartJqueryElem;
+    this.SummaryChartStartDateElem;
+    this.SummaryChartEndDateElem;
+    this.DetailChartDataReceived = false;
+    this.ChartContainerJqueryElem;
+    this.ChartData;
+    this.ExtraLayers;
+    this.MinDate;
+    this.MaxDate;
+    this.ServerSideWidth;
+    this.ServerSideHeight;
+    this.DetailChartRequest;
+    this.DetailChartRequestString;
+    this.SummaryTriggerDetail;
+    this.SummaryChartRequest;
+    this.SummaryChartRequestString;
+    this.Options = null;
+    this.spotJqueryElem;
+    this.spotJqueryElem1;
+    this.spotJqueryElem2;
+
+    this.MouseHoverDetailDivContentJqueryElem;
+    this.MouseClickDetailDiv1ContentJqueryElem;
+    this.MouseClickDetailDiv2ContentJqueryElem;
+    this.MouseClickDetailDiv2Content2JqueryElem;
+
+    this.SummaryChartWindowJqueryElem;
+    this.SummaryChartWindowContentJqueryElem;
+    this.SummaryChartWindowLeftBorderJqueryElem;
+    this.SummaryChartWindowRightBorderJqueryElem;
+    this.SummaryChartDivJqueryElem;
+    this.hdSummaryValueJqueryElem;
+    this.hdDetailChartHeightJqueryElem;
+    this.hdDetailChartWidthJqueryElem;
+    this.IsEmptyChart = false;
+    this.IsTriggeredByWindowInteraction = false;
+
+    this.PreviousInstruments = null;
+    this.SummaryWidth = null;
+    this.SummaryHeight = null;
+    this.SummaryLeftPercentage = null;
+    this.SummaryRightPercentage = null;
+    this.DateFormat = null;
+
+    this.DetailWidth = null;
+    this.SummaryWidth = null;
+    this.DetailHeight = null;
+    return this;
+}
+function ChartDefaults() {
+    this.id = null;
+    this.ChartFinishCallBack = null;
+    this.EmptyChartFinishCallBack = null;
+    this.TemplateURL = null;
+    this.TemplateXml = null;
+    this.ShowHoverOver = true;
+    this.ShowScrollingOverlay = true;
+    this.ShowLoadding = true;
+    this.ShowChartSummaryDatesOnDrag = false;
+    this.SummaryDateFormat = "";
+    this.Translations = null;
+    this.InstrumentEventImages = null;
+    this.RequstHandlerUrl = null;
+    this.OverMaxIntrumentError = null;
+    this.DetailChartCultureName = null;
+    this.UseGlobalizationPlugin = false;
+    this.UseAdaptiveDesign = false;
+    this.UsePercentageWidth = false;
+    this.DecimalPointSeparator = ".";
+    this.Width = null;
+    this.Height = null;
+    return this;
+}
+
+function SetupChartDataStruct(containerId) {
+    var dataStruct = new ChartDataConstructor();
+    dataStruct.ChartContainerJqueryElem = $("#" + containerId + "_FEChartJavascriptScrolling");
+    dataStruct.DetailChartDataServiceUrl = dataStruct.ChartContainerJqueryElem.attr("DetailChartDataServiceUrl");
+    dataStruct.SummaryChartDataServiceUrl = dataStruct.ChartContainerJqueryElem.attr("SummaryChartDataServiceUrl");
+    dataStruct.DetailDataKey = dataStruct.ChartContainerJqueryElem.attr("DetailDataKey");
+    dataStruct.SummaryDataKey = dataStruct.ChartContainerJqueryElem.attr("SummaryDataKey");
+    dataStruct.MouseClickDetailDivJqueryElem = $("#" + containerId + "_MouseHoverDetailDiv");
+    dataStruct.MouseClickDetailDivJqueryElem1 = $("#" + containerId + "_MouseClickDetailDiv1");
+    dataStruct.MouseClickDetailDivJqueryElem2 = $("#" + containerId + "_MouseClickDetailDiv2");
+    dataStruct.MouseClickDetailDiv2Content2JqueryElem = $("#" + containerId + "_MouseClickDetailDiv2Content2");
+
+    dataStruct.spotJqueryElem = $("#" + containerId + "_spot");
+    dataStruct.spotJqueryElem1 = $("#" + containerId + "_spot1");
+    dataStruct.spotJqueryElem2 = $("#" + containerId + "_spot2");
+
+    dataStruct.ChartSummaryImageServiceURL = dataStruct.ChartContainerJqueryElem.attr("ChartSummaryImageServiceURL");
+    dataStruct.TemplateId = $("#" + containerId + "_hdTemplateID").val();
+    dataStruct.HoverStatus = 0;
+    dataStruct.DetailChartJqueryElem = $("#" + containerId + "_DetailChart");
+    dataStruct.SummaryChartJqueryElem = $("#" + containerId + "_SummaryChart");
+    dataStruct.ChartDetailImageServiceURL = dataStruct.ChartContainerJqueryElem.attr("ChartDetailImageServiceURL");
+    dataStruct.ChartDetailSVGServiceURL = dataStruct.ChartContainerJqueryElem.attr("ChartDetailSVGServiceURL");
+    dataStruct.DetailChartLeft = dataStruct.ChartContainerJqueryElem.attr("left");
+    dataStruct.DetailChartRight = dataStruct.ChartContainerJqueryElem.attr("right");
+    dataStruct.ExtraLayers = $("#" + containerId + "_hdExtraLayersID").val();
+
+    dataStruct.MouseHoverDetailDivContentJqueryElem = $("#" + containerId + "_MouseHoverDetailDivContent");
+    dataStruct.MouseClickDetailDiv1ContentJqueryElem = $("#" + containerId + "_MouseClickDetailDiv1Content");
+    dataStruct.MouseClickDetailDiv2ContentJqueryElem = $("#" + containerId + "_MouseClickDetailDiv2Content");
+
+    dataStruct.SummaryChartWindowJqueryElem = $("#" + containerId + "_SummaryChartWindow");
+    dataStruct.SummaryChartWindowContentJqueryElem = $("#" + containerId + "_SummaryChartWindowContent");
+    dataStruct.SummaryChartWindowLeftBorderJqueryElem = $("#" + containerId + "_SummaryChartWindowLeftBorder");
+    dataStruct.SummaryChartWindowRightBorderJqueryElem = $("#" + containerId + "_SummaryChartWindowRightBorder");
+    dataStruct.SummaryChartDivJqueryElem = $("#" + containerId + "_SummaryChartDiv");
+
+
+    dataStruct.SummaryChartStartDateElem = $("<div class='SummaryChartStartDateBox' id='" + containerId + "_SummaryChartStartDate' />").insertBefore(dataStruct.SummaryChartWindowLeftBorderJqueryElem);
+    dataStruct.SummaryChartEndDateElem = $("<div class='SummaryChartEndDateBox' id='" + containerId + "_SummaryChartEndDate' />").insertBefore(dataStruct.SummaryChartWindowRightBorderJqueryElem);
+    dataStruct.SummaryChartStartDateElem.css({ "position": "absolute", "white-space": "nowrap" });
+    dataStruct.SummaryChartEndDateElem.css({ "position": "absolute", "white-space": "nowrap" });
+
+    dataStruct.hdSummaryValueJqueryElem = $("#" + containerId + "_hdSummaryValue");
+
+
+    dataStruct.hdDetailChartHeightJqueryElem = $("#" + containerId + "_hdDetailChartHeight");
+    dataStruct.hdDetailChartWidthJqueryElem = $("#" + containerId + "_hdDetailChartWidth");
+
+    dataStruct.DataObject = null;
+    dataStruct.NeedRecalculatePoints = false;
+    DataHolders[containerId] = dataStruct;
+}
+
+function GetChartDataStruct(containerId) {
+    chart = DataHolders[containerId];
+    if (chart == null || chart == undefined) {
+        SetupChartDataStruct(containerId);
+        chart = DataHolders[containerId];
+    }
+    return chart;
+
+}
+
+function SumChartRequestConstructor() {
+    this.TemplateURL;
+    this.TemplateXml;
+    this.Instruments = [];
+    this.StartDate = null;
+    this.EndDate = null,
+    this.ChartSeriesColourLoop = null;
+    this.WaterMarkText = null;
+    this.DBHint = null;
+    this.priceType = null;
+    this.MT = null;
+    this.CY = null;
+    this.PlotDividendOnChartImage = false;
+    this.PlotEventOnChartImage = false;
+    this.ShowDividend = false;
+    this.ShowEvent = false;
+    this.LanguageId = 1;
+    this.UseDNAsLegend = false;
+    this.LumpSum = null;
+    this.TimeStamp;
+    this.EventCodes = null;
+    this.Frequency = null;
+    this.Width = null;
+    this.Height = null;
+    return this;
+}
+
+function DetailChartRequestConstructor() {
+    this.TemplateURL;
+    this.Instruments = [];
+    this.StartDate = null;
+    this.EndDate = null;
+    this.ChartSeriesColourLoop = null;
+    this.WaterMarkText = null;
+    this.DBHint = null;
+    this.priceType = null;
+    this.MT = null;
+    this.CY = null;
+    this.PlotDividendOnChartImage = false;
+    this.PlotEventOnChartImage = false;
+    this.ShowDividend = false;
+    this.ShowEvent = false;
+    this.LanguageId = 1;
+    this.UseDNAsLegend = false;
+    this.TimeStamp;
+    this.Left;
+    this.Right;
+    this.ScriptKey;
+    this.EventCodes = null;
+    this.Frequency = null;
+    this.Width = null;
+    this.Height = null;
+    return this;
+}
+function DataRequestConstructor() {
+    this.id;
+    return this;
+}
+
+////#############################################
+
+var dates = {
+    convert: function (d) {
+        // Converts the date in d to a date-object. The input can be:
+        //   a date object: returned without modification
+        //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+        //   a number     : Interpreted as number of milliseconds
+        //                  since 1 Jan 1970 (a timestamp) 
+        //   a string     : Any format supported by the javascript engine, like
+        //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+        //  an object     : Interpreted as an object with year, month and date
+        //                  attributes.  **NOTE** month is 0-11.
+        return (
+            d.constructor === Date ? d :
+            d.constructor === Array ? new Date(d[0], d[1], d[2]) :
+            d.constructor === Number ? new Date(d) :
+            d.constructor === String ? new Date(d) :
+            typeof d === "object" ? new Date(d.year, d.month, d.date) :
+            NaN
+        );
+    },
+    compare: function (a, b) {
+        // Compare two dates (could be of any type supported by the convert
+        // function above) and returns:
+        //  -1 : if a < b
+        //   0 : if a = b
+        //   1 : if a > b
+        // NaN : if a or b is an illegal date
+        // NOTE: The code inside isFinite does an assignment (=).
+        return (
+            isFinite(a = this.convert(a).valueOf()) &&
+            isFinite(b = this.convert(b).valueOf()) ?
+            (a > b) - (a < b) :
+            NaN
+        );
+    },
+    inRange: function (d, start, end) {
+        // Checks if date in d is between dates in start and end.
+        // Returns a boolean or NaN:
+        //    true  : if d is between start and end (inclusive)
+        //    false : if d is before start or after end
+        //    NaN   : if one or more of the dates is illegal.
+        // NOTE: The code inside isFinite does an assignment (=).
+        return (
+            isFinite(d = this.convert(d).valueOf()) &&
+            isFinite(start = this.convert(start).valueOf()) &&
+            isFinite(end = this.convert(end).valueOf()) ?
+            start <= d && d <= end :
+            NaN
+        );
+    },
+    GetTimeDiff: function (date1, date2) {
+        dt1 = this.convert(date1);
+        dt2 = this.convert(date2);
+        var diff = date2.getTime() - date1.getTime();
+        return diff;
+    },
+    AddPercent: function (startDate, endDate, percent) {
+        var m = this.GetTimeDiff(startDate, endDate);
+        if (typeof percent == "string")
+            percent = parseFloat(percent);
+        var d = new Date();
+        d.setTime(startDate.getTime() + m * percent);
+        return d;
+    },
+    GetPercentage: function (startDate, endDate, splitDate) {
+        var m = this.GetTimeDiff(splitDate, startDate);
+        var n = this.GetTimeDiff(startDate, endDate);
+        var percent = Math.abs(m / n);
+        return percent;
+    },
+    ParseDDMMYYYYString: function (date) {
+        if (date.constructor === Date) {
+            //is date time already
+            return date;
+        }
+        myDateParts = date.split("/");
+        myJSDate = new Date(parseInt(myDateParts[2], 10), parseInt(myDateParts[1], 10) - 1, parseInt(myDateParts[0], 10));
+        return myJSDate;
+    },
+    BuildDDMMYYYYString: function (date) {
+        date = this.convert(date);
+        var txtDate = this.FormatDate(date.getDate()) + "/" + this.FormatDate(date.getMonth() + 1) + "/" + date.getFullYear();
+        return txtDate;
+    },
+    BuildYYYYMMDDString: function (date) {
+        date = this.convert(date);
+        var txtDate = date.getFullYear() + "/" + this.FormatDate(date.getMonth() + 1) + "/" + this.FormatDate(date.getDate());
+        return txtDate;
+    },
+    FormatDate: function (x) { return (x < 0 || x > 9 ? "" : "0") + x }
+};
+////#######################################
+////showDiv
+function showDiv(id) {
+
+    if (document.getElementById) {
+        obj = document.getElementById(id);
+        if (obj.className.indexOf("displayNone") > -1) {
+
+            obj.className = obj.className.replace("displayNone", obj.getAttribute("displayClassName"));
+            var detailWidth = $("#" + id + " :nth-child(2)").width();
+            //$("#" + id + " :nth-child(1)").width(detailWidth - 20);
+            $("#" + id).children(":first").width(detailWidth - 35);
+        } else {
+            obj.className = "displayNone";
+        }
+
+    }
+}
+
+function showLink(id) {
+    $("#" + id).toggle();
+}
+
+function showEvents(id, lkId, chart) {
+    var detail = $("#" + id);
+    if (!detail.is(":visible")) {
+        detail.show();
+        var pos = $("#" + lkId).offset();
+        var detailChartPos = chart.DetailChartJqueryElem.offset();
+        obj = document.getElementById(id);
+        obj.className = obj.className.replace("displayNone", obj.getAttribute("displayClassName"));
+        var detailWidth = $("#" + id + " :nth-child(2)").width();
+        //$("#" + id + " :nth-child(1)").width(detailWidth - 20);
+        detail.children(":first").width(detailWidth - 35);
+
+        detail.offset({ 'left': pos.left, 'top': pos.top });
+        detail.css({
+            "position": "absolute"
+        })
+
+    }
+    else {
+        detail.hide();
+    }
+}
+/////########################################
+/////GenericHistoryStringInstrumentParser
+//this function creates an empty instrument object
+function InstrumentConstructor() {
+    this.IT; //instrument type
+    this.UC; //unitcode
+    this.DN;
+    this.CL; //colour
+    this.IX; //indexkey
+    return this;
+}
+//this provide a common place for instrumentType
+var ITEnum =
+{
+    AssetClass: { Code: 'A', intValue: 9 },
+    CY: { Code: 'C', intValue: 8 },
+    Equity: { Code: 'E', intValue: 4 },
+    Fund: { Code: 'F', intValue: 1 },
+    ManagerPerson: { Code: 'M', intValue: 7 },
+    Index: { Code: 'N', intValue: 3 },
+    FundSector: { Code: 'X', intValue: 2 }
+};
+
+//this provide a common place for instrumentType
+var FrequencyEnum =
+{
+    Daily: { Code: 'Daily', Value: 0 },
+    Monthly: { Code: 'Monthly', Value: 1 },
+    Weekly: { Code: 'Weekly', Value: 4 },
+    Quarterly: { Code: 'Quarterly', Value: 3 }
+};
+
+//this object parses instrument for generic history string
+var GenericHistoryStringInstrumentParser = {
+    instrumentTypeStrToInt: function (instrType) {
+        var intType;
+        switch (instrType.toUpperCase()) {
+            case "C":
+                intType = 8;
+                break;
+            case "M":
+                intType = 7;
+                break;
+            case "K":
+                intType = 6;
+                break;
+            case "P":
+                intType = 5;
+                break;
+            case "E":
+                intType = 4;
+                break;
+            case "N":
+                intType = 3;
+                break;
+            case "X":
+                intType = 2;
+                break;
+            case "F":
+                intType = 1;
+                break;
+            case "?":
+                intType = 0;
+                break;
+            default:
+                intType = 0;
+        }
+        return intType;
+    },
+    //this function construct a instrument
+    ConstrumentInstrument: function (instrumentType, mCode) {
+        var instrument = new InstrumentConstructor();
+        instrument.IT = instrumentType;
+        instrument.UC = mCode;
+        return instrument;
+    },
+
+    //this function construct a instrument with universe code
+    ConstructInstrument: function (instrumentType, universe, mCode) {
+        var instrument = new InstrumentConstructor();
+        instrument.IT = instrumentType;
+        instrument.UC = mCode;
+        instrument.UN = universe;
+        return instrument;
+    },
+
+    ///mCode is the one after type removed e.g. AU:MON should be U:MON when getting here
+    ParseAssetClassString: function (mCode) {
+        return this.ConstrumentInstrument(ITEnum.AssetClass.Code, mCode);
+    },
+    ParseCYString: function (mCode) {
+        return this.ConstrumentInstrument(ITEnum.CY.Code, mCode);
+    },
+    ParseEquityString: function (mCode) {
+        if (mCode.substring(0, 1) == ":")
+            mCode = mCode.substring(1);
+        return this.ConstrumentInstrument(ITEnum.Equity.Code, mCode);
+    },
+    ParseFundString: function (mCode) {
+        if (mCode.substring(0, 1) == ":")
+            mCode = mCode.substring(1);
+        return this.ConstrumentInstrument(ITEnum.Fund.Code, mCode);
+    },
+    ParseManagerPersonString: function (mCode) {
+        return this.ConstrumentInstrument(ITEnum.ManagerPerson.Code, mCode);
+    },
+    ParseIndexString: function (mCode) {
+        return this.ConstrumentInstrument(ITEnum.Index.Code, mCode); Error
+    },
+    ParseFundSectorString: function (mCode) {
+        return this.ConstrumentInstrument(ITEnum.FundSector.Code, mCode);
+    },
+    SimpleParseTypeCodeWithColour: function (code, colour) {
+        var instrument = this.SimpleParseSelectionItemCode(code);
+        if (instrument != null && colour != null && colour != undefined) {
+            instrument.CL = colour.replace('#', '');
+        }
+        return instrument;
+    },
+    SetInstrumentWithColour: function (instrType, universe, code, colour) {
+        var instrument = this.ConstructInstrument(instrType, universe, code);
+        if (instrument != null && colour != null && colour != undefined) {
+            instrument.CL = colour.replace('#', '');
+        }
+        return instrument;
+    },
+    ///this function ignores ~, as it is for generic string 
+    SimpleParseSelectionItemCode: function (code) {
+        var mCode = "";
+        var mUniverse = "";
+
+        var originalCode = code;
+        var index = code.indexOf("~");
+        if (index > 0) {
+            code = code.substring(0, index);
+        }
+
+        if (code != '') {
+            var instrType = code.substring(0, 1);
+            code = code.substring(1);
+
+            if (code.substring(0, 1) == ":")
+                code = code.substring(1);
+
+            switch (instrType.toUpperCase()) {
+                case ITEnum.CY.Code:
+                    return this.ParseCYString(code);
+                    break;
+                case ITEnum.Index.Code:
+                    return this.ParseIndexString(code);
+                    break;
+                case ITEnum.Equity.Code:
+                    return this.ParseEquityString(code);
+                    break;
+                case ITEnum.AssetClass.Code:
+                    return this.ParseAssetClassString(code);
+                    break;
+                case ITEnum.Fund.Code:
+                    return this.ParseFundString(code);
+                    break;
+                case ITEnum.FundSector.Code:
+                    return this.ParseFundSectorString(code);
+                    break;
+                case ITEnum.ManagerPerson.Code:
+                    return this.ParseManagerPersonString(code);
+                    break;
+                default:
+                    return this.ConstrumentInstrument(instrType, code);
+                    return null;
+            }
+        }
+        alert("can not understand string " + originalCode);
+        return null;
+    }
+};
+
+function FERemoveEmptyProperties(obj) {
+    for (i in obj) {
+        if (obj[i] == "" || obj[i] === null) {
+            delete obj[i];
+        }
+        else if (typeof (obj[i]) == 'object') {
+            FERemoveEmptyProperties(obj[i]);
+        }
+    }
+}
+
+// ------------------------------------------------------------------
+// Utility functions for parsing in getDateFromFormat()
+// ------------------------------------------------------------------
+function _isInteger(val) {
+    var digits = "1234567890";
+    for (var i = 0; i < val.length; i++) {
+        if (digits.indexOf(val.charAt(i)) == -1) { return false; }
+    }
+    return true;
+}
+function _getInt(str, i, minlength, maxlength) {
+    for (var x = maxlength; x >= minlength; x--) {
+        var token = str.substring(i, i + x);
+        if (token.length < minlength) { return null; }
+        if (_isInteger(token)) { return token; }
+    }
+    return null;
+}
+
+// ------------------------------------------------------------------
+// getDateFromFormat( date_string , format_string )
+//
+// This function takes a date string and a format string. It matches
+// If the date string matches the format string, it returns the 
+// getTime() of the date. If it does not match, it returns 0.
+// ------------------------------------------------------------------
+function getDateFromFormat(val, format) {
+    val = val + "";
+    format = format + "";
+    var i_val = 0;
+    var i_format = 0;
+    var c = "";
+    var token = "";
+    var token2 = "";
+    var x, y;
+    var now = new Date();
+    var year = now.getYear();
+    var month = now.getMonth() + 1;
+    var date = 1;
+    var hh = now.getHours();
+    var mm = now.getMinutes();
+    var ss = now.getSeconds();
+    var ampm = "";
+
+    while (i_format < format.length) {
+        // Get next token from format string
+        c = format.charAt(i_format);
+        token = "";
+        while ((format.charAt(i_format) == c) && (i_format < format.length)) {
+            token += format.charAt(i_format++);
+        }
+        // Extract contents of value based on format token
+        if (token == "yyyy" || token == "yy" || token == "y") {
+            if (token == "yyyy") { x = 4; y = 4; }
+            if (token == "yy") { x = 2; y = 2; }
+            if (token == "y") { x = 2; y = 4; }
+            year = _getInt(val, i_val, x, y);
+            if (year == null) { return 0; }
+            i_val += year.length;
+            if (year.length == 2) {
+                if (year > 70) { year = 1900 + (year - 0); }
+                else { year = 2000 + (year - 0); }
+            }
+        }
+        else if (token == "MMM" || token == "NNN") {
+            month = 0;
+            for (var i = 0; i < MONTH_NAMES.length; i++) {
+                var month_name = MONTH_NAMES[i];
+                if (val.substring(i_val, i_val + month_name.length).toLowerCase() == month_name.toLowerCase()) {
+                    if (token == "MMM" || (token == "NNN" && i > 11)) {
+                        month = i + 1;
+                        if (month > 12) { month -= 12; }
+                        i_val += month_name.length;
+                        break;
+                    }
+                }
+            }
+            if ((month < 1) || (month > 12)) { return 0; }
+        }
+        else if (token == "EE" || token == "E") {
+            for (var i = 0; i < DAY_NAMES.length; i++) {
+                var day_name = DAY_NAMES[i];
+                if (val.substring(i_val, i_val + day_name.length).toLowerCase() == day_name.toLowerCase()) {
+                    i_val += day_name.length;
+                    break;
+                }
+            }
+        }
+        else if (token == "MM" || token == "M") {
+            month = _getInt(val, i_val, token.length, 2);
+            if (month == null || (month < 1) || (month > 12)) { return 0; }
+            i_val += month.length;
+        }
+        else if (token == "dd" || token == "d") {
+            date = _getInt(val, i_val, token.length, 2);
+            if (date == null || (date < 1) || (date > 31)) { return 0; }
+            i_val += date.length;
+        }
+        else if (token == "hh" || token == "h") {
+            hh = _getInt(val, i_val, token.length, 2);
+            if (hh == null || (hh < 1) || (hh > 12)) { return 0; }
+            i_val += hh.length;
+        }
+        else if (token == "HH" || token == "H") {
+            hh = _getInt(val, i_val, token.length, 2);
+            if (hh == null || (hh < 0) || (hh > 23)) { return 0; }
+            i_val += hh.length;
+        }
+        else if (token == "KK" || token == "K") {
+            hh = _getInt(val, i_val, token.length, 2);
+            if (hh == null || (hh < 0) || (hh > 11)) { return 0; }
+            i_val += hh.length;
+        }
+        else if (token == "kk" || token == "k") {
+            hh = _getInt(val, i_val, token.length, 2);
+            if (hh == null || (hh < 1) || (hh > 24)) { return 0; }
+            i_val += hh.length; hh--;
+        }
+        else if (token == "mm" || token == "m") {
+            mm = _getInt(val, i_val, token.length, 2);
+            if (mm == null || (mm < 0) || (mm > 59)) { return 0; }
+            i_val += mm.length;
+        }
+        else if (token == "ss" || token == "s") {
+            ss = _getInt(val, i_val, token.length, 2);
+            if (ss == null || (ss < 0) || (ss > 59)) { return 0; }
+            i_val += ss.length;
+        }
+        else if (token == "a") {
+            if (val.substring(i_val, i_val + 2).toLowerCase() == "am") { ampm = "AM"; }
+            else if (val.substring(i_val, i_val + 2).toLowerCase() == "pm") { ampm = "PM"; }
+            else { return 0; }
+            i_val += 2;
+        }
+        else {
+            if (val.substring(i_val, i_val + token.length) != token) { return 0; }
+            else { i_val += token.length; }
+        }
+    }
+    // If there are any trailing characters left in the value, it doesn't match
+    if (i_val != val.length) { return 0; }
+    // Is date valid for month?
+    if (month == 2) {
+        // Check for leap year
+        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) { // leap year
+            if (date > 29) { return 0; }
+        }
+        else { if (date > 28) { return 0; } }
+    }
+    if ((month == 4) || (month == 6) || (month == 9) || (month == 11)) {
+        if (date > 30) { return 0; }
+    }
+    // Correct hours value
+    if (hh < 12 && ampm == "PM") { hh = hh - 0 + 12; }
+    else if (hh > 11 && ampm == "AM") { hh -= 12; }
+    var newdate = new Date(year, month - 1, date);
+    return newdate;
+}

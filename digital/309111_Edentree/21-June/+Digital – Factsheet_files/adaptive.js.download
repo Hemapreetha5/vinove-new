@@ -1,0 +1,122 @@
+﻿
+$(function () {
+    $("#back-top").hide();
+    $("#menuTabs").tabs({ active: 0 });
+    $("#menuTabs").tabs();
+//    $(document).tooltip({ track: true });
+    $('form.mfs').mfs();
+    setSizeAlerts();
+    tabnavtoggle();
+
+    $(window).on("resize", function () {
+        setSizeAlerts();
+    });
+    $('#topNavbutton').on("click", function () {
+        var navpanel = $('.fe-menuTabs-list');
+        var navisOpen = navpanel.is(':visible');
+        navpanel[navisOpen ? 'slideUp' : 'slideDown']();
+    });
+//    $('.page_collapsible').addClass('collapse-close');
+    $('.fe-menuTabs-content').find('.fe-tabs-container:first').slideDown();
+    var check = $('.fe-menuTabs-content .fe-tabs-container:first').is(':visible');
+    if (check) {
+        $('.fe-menuTabs-content').find('.fe-tabs-container:first').prev('div').toggleClass('collapse-close collapse-open');
+    }
+//    $('.page_collapsible').on("click", function () {
+//        var pagecollapsiblepanel = $(this).next();
+//        var containerisOpen = pagecollapsiblepanel.is(':visible');
+//        pagecollapsiblepanel[containerisOpen ? 'slideUp' : 'slideDown']();
+//        if (containerisOpen) {
+//            $(this).removeClass('collapse-open');
+//            $(this).addClass('collapse-close');
+//        }
+//        else {
+//            $(this).addClass('collapse-open');
+//            $(this).removeClass('collapse-close');
+//        }
+
+//    });
+    $(function () {
+        $(window).on("scroll", function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-top a').on("click", function () {
+            $('body,html').animate({ scrollTop: 0
+            }, 300);
+        });
+
+    });
+});
+
+function setSizeAlerts() {
+
+    if ($(window).width() <= 580) {
+        sticky();
+        //$('.fe-tabs-container').hide();
+        $('.tabNavbutton_identity').show();
+        $('.fe-menuTabs-content').find('.fe-tabs-container:first').show();
+        
+        $('.fe-tabs li a').on("click", function () {});
+    }
+    else {
+        $('.tabNavbutton_identity').hide();
+        //$('.fe-menuTabs-list').hide();
+        $('.fe-tabs-container').css('display', 'block');
+
+        $('.fe-tabs li a').on("click", function () {
+            $("html, body").scrollTop(0);
+        });        
+    }
+}
+
+
+function tabnavtoggle() {
+    $(".tabNavbutton_identity").each(function () {
+        $(this).on("click", function () {
+            var tabnavpanel = $(this).parent().find('.fe-tabs');
+            var tabnavisOpen = tabnavpanel.is(':visible');
+            tabnavpanel[tabnavisOpen ? 'slideUp' : 'slideDown']('fast');
+            if (tabnavisOpen) {
+            }
+        });
+    });
+}
+function sticky() {
+    var sticky_navigation_offset_top = $('#sticky').offset().top;
+    var sticky_navigation = function (selectedTab) {
+        //var selectedTab = $("#menuTabs").tabs('option', 'selected').attr('id');
+        //var selectedTab = $('#menuTabs .fe-menuTabs-content:eq(' + $('#menuTabs').tabs('option', 'selected') + ')').attr('id');
+
+        var scroll_top = $(window).scrollTop(); // our current vertical position from the top
+        var tabnavpanel = $('.fe-tabs', '#' + selectedTab);
+        var tabnavisOpen = tabnavpanel.is(':visible');
+        // if we've scrolled more than the navigation, change its position to fixed to stick to top, otherwise change it back to relative
+        if (scroll_top > sticky_navigation_offset_top) {
+            $('#sticky', '#' + selectedTab).css({ 'position': 'fixed', 'top': 0, 'left': 0, 'z-index': 1000 });
+            $('.fe-tabs', '#' + selectedTab).hide();
+        } else {
+            $('#sticky', '#' + selectedTab).css({ 'position': 'relative', 'z-index': 10 });
+            $('.fe-tabs', '#' + selectedTab).show();
+        }
+    };
+    // run our function on load
+    sticky_navigation();
+
+    // and run it again every time you scroll
+    $(window).on("scroll", function () {
+        var selectedTab = $('#menuTabs .fe-menuTabs-content:eq(' + $('#menuTabs').tabs('option', 'selected') + ')').attr('id');
+        sticky_navigation(selectedTab);
+    });
+}
+
+
+  
+	
+	
+	
+  		

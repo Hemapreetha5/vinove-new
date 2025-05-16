@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en-gb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<base href="/">--><base href=".">
+    <title>+Digital - Charting Tool</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+        <link rel="stylesheet" type="text/css" href="./Digital-Charting-Tool_files/style.14f6d83fa21616438fc5624a20b6cbd4.css">
+    
+    <link rel="stylesheet" type="text/css" href="./Digital-Charting-Tool_files/printstylesheet.css">
+    <title>+Digital - Charting Tool</title>
+    
+    <link rel="stylesheet" type="text/css" href="./responsivecharting.css">
+    <!-- Google Tag Manager -->
+    <script type="text/javascript" async="" src="./Digital-Charting-Tool_files/ga.js.download"></script><script async="" src="./Digital-Charting-Tool_files/gtm.js.download"></script><script type="text/javascript">
+        var GTM = (function () {
+            function googleTagManager(w, d, s, l, i) {
+                if (i) {
+                    w[l] = w[l] || []; w[l].push({
+                        'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'
+                    }); var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                }
+            }
+
+            return {
+                GoogleTagManager: googleTagManager
+            }
+        })();
+    </script>
+    <!-- End Google Tag Manager -->
+<style></style><script type="text/javascript" charset="utf-8" async="" src="./Digital-Charting-Tool_files/0.0ac93eac76c24c2261f8.js.download"></script><script type="text/javascript" charset="utf-8" async="" src="./Digital-Charting-Tool_files/1.0ac93eac76c24c2261f8.js.download"></script><style>
+.block-ui-wrapper {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.70);
+  z-index: 30000;
+  cursor: wait;
+}
+
+.block-ui-wrapper.block-ui-wrapper--element {
+  position: absolute;
+}
+
+.block-ui-wrapper.active {
+  display: block;
+}
+
+.block-ui-wrapper.block-ui-main {
+  position: fixed;
+}
+
+.block-ui-spinner,
+.block-ui-template {
+  position: absolute;
+  top: 40%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.block-ui-spinner > .message {
+  font-size: 1.3em;
+  text-align: center;
+  color: #fff;
+}
+
+.block-ui__element {
+  position: relative;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 7px auto;
+  font-size: 5px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style></head>
+<body cz-shortcut-listen="true">
+    
+<script>GTM.GoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-NKK6XHP');</script>
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NKK6XHP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+<app-root _nghost-c0="" ng-version="4.4.7" style="display: inline;"><router-outlet _ngcontent-c0=""></router-outlet><app-charting _nghost-c1="">
+<!----><div _ngcontent-c1="">
+    <!---->
+    <!----><div _ngcontent-c1="" class="block-ui-container block-ui__element">
+        <div _ngcontent-c1="" class="fe-responsive-charting-container">
+            <!---->
+            <!----><div _ngcontent-c1="">
+                <input _ngcontent-c1="" class="gtm-GrsProjectId" type="hidden" value="48001421">
+                <!----><header-section _ngcontent-c1=""><header>
+    <!---->
+    <!----><div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="backButtonText">
+                    <!---->
+                </div>
+                <div class="pull-left headerText">
+                    <!---->
+                </div>
+                <!----><div class="pull-right fe-instrument-button">
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</header-section>
+                <!----><instrument-section _ngcontent-c1="" _nghost-c2=""><!----><div _ngcontent-c2="" class="container-fluid fe-instrument-panel-container block-ui__element collapse in show" aria-expanded="true" aria-hidden="false" style="overflow: visible; height: auto; display: block;">
+    <div _ngcontent-c2="" class="row">
+        <div _ngcontent-c2="" class="col-sm-12">
+            <div _ngcontent-c2="" class="card card-block card-header fe-instrument-panel">
+                <div _ngcontent-c2="" class="row">
+                    <h4 _ngcontent-c2="" class="col-sm-12">
+                        
+                        <button _ngcontent-c2="" aria-label="Close" class="close pull-right btn btn-default btn-close-inst-panel" type="button">
+                            <i _ngcontent-c2="" aria-hidden="true" class="fa fa-times"></i>
+                        </button>
+                    </h4>
+                </div>
+                <div _ngcontent-c2="" class="row">
+                    <div _ngcontent-c2="" class="col-sm-12 instrument-panel-tabs">
+                        <scrollable-tabset _ngcontent-c2=""><div class="ui-scroll-tabs">
+    <!----><div class="ui-scroll-tabs-header">
+        <div class="st-left-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-left" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Previous</span>
+            </button>
+        </div>
+        <div class="ui-scroll-tabs-view" mousewheel="" style="margin-bottom: 0px;">
+            <!---->
+        <div class="ui-noscroll-tabs-header">
+            <ul role="tablist" class="nav nav-tabs justify-content-start">
+                <!----><li class="nav-item active">
+                    <a class="nav-link active" href="javascript:void(0)" role="tab" id="scrollable-tab-0" aria-controls="scrollable-tab-0-panel" aria-expanded="true" aria-disabled="false">
+                        Funds<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-1" aria-controls="scrollable-tab-1-panel" aria-expanded="false" aria-disabled="false">
+                        Sector<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-2" aria-controls="scrollable-tab-2-panel" aria-expanded="false" aria-disabled="false">
+                        Index<!---->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        </div>
+        <div class="st-right-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-right" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </div>
+    <!---->
+
+    <div class="tab-content">
+        <!---->
+            <!----><div role="tabpanel" class="tab-pane active" aria-labelledby="scrollable-tab-0" id="scrollable-tab-0-panel" aria-expanded="true">
+                <!---->
+                                    <!----><div _ngcontent-c2="" class="row">
+                                        <div _ngcontent-c2="" class="col-md-12">
+                                            <!----><div _ngcontent-c2="">
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!----><div _ngcontent-c2="" class="fe-responsive-charting-advancesearchfilters">
+                                                    <dynamic-panel _ngcontent-c2=""><!----><div class="filter-searchtext-container">
+    <p>Search</p>
+    <div class="input-group">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" placeholder="Search">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="fe-search-advancedsearch-filters">
+    <!----><div class="fe-search-dropdown">
+        <p>
+            Range <!---->
+        </p>
+
+        <div>
+            <!---->
+            <!----><div>
+                <!----><div class="instrument-panel-tab-dropdown" multitypeaheadgroupfield="GroupName" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="Please Select">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+            </div>
+        </div>
+    </div><div class="fe-search-dropdown">
+        <p>
+            Sector <!---->
+        </p>
+
+        <div>
+            <!---->
+            <!----><div>
+                <!----><div class="instrument-panel-tab-dropdown" multitypeaheadgroupfield="GroupName" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="Please Select">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+            </div>
+        </div>
+    </div><div class="fe-search-dropdown">
+        <p>
+            Manager <!---->
+        </p>
+
+        <div>
+            <!---->
+            <!----><div>
+                <!----><div class="instrument-panel-tab-dropdown" multitypeaheadgroupfield="GroupName" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="Please Select">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fe-filter-result-container">
+    <!----><div class="fe-search-dropdown">
+        <p>Results</p>
+        <div class="instrument-panel-tab-dropdown" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="0 results found…">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+    </div>
+
+    <!----><div class="btn-group fe-search-add-to-chart" dropdown="" placement="bottom left">
+        <button class="btn btn-primary btn-add-to-chart" type="button" disabled="">Add  to chart</button>
+        <button class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-add-to-chart-split" dropdowntoggle="" type="button" aria-haspopup="true" disabled="true">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+        </button>
+        <!---->
+    </div><!---->
+    <!---->
+</div>
+<input class="advance-search-filter-name" type="hidden" value="">
+<input class="advance-search-filter-value" type="hidden" value="">
+<input class="fund-added-to-chart" type="hidden" value="">
+</dynamic-panel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-1" id="scrollable-tab-1-panel" aria-expanded="false">
+                <!---->
+                                    <!----><div _ngcontent-c2="" class="row">
+                                        <div _ngcontent-c2="" class="col-md-12">
+                                            <!----><div _ngcontent-c2="">
+                                                <!---->
+                                                <!----><div _ngcontent-c2="" class="fe-filter-container">
+                                                    <sector-panel _ngcontent-c2=""><p>Sector</p>
+<!----><div class="instrument-panel-tab-dropdown fe-search-dropdown" multitypeaheadgroupfield="GroupName" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="Please Select">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+<button class="btn btn-primary btn-add-to-chart" type="button" disabled="">Add  to chart</button>
+<input class="fund-added-to-chart" type="hidden" value="">
+</sector-panel>
+                                                </div>
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-2" id="scrollable-tab-2-panel" aria-expanded="false">
+                <!---->
+                                    <!----><div _ngcontent-c2="" class="row">
+                                        <div _ngcontent-c2="" class="col-md-12">
+                                            <!----><div _ngcontent-c2="">
+                                                <!---->
+                                                <!---->
+                                                <!----><div _ngcontent-c2="" class="fe-filter-container">
+                                                    <indices-panel _ngcontent-c2=""><p>Index</p>
+<!----><div class="instrument-panel-tab-dropdown fe-search-dropdown" multitypeaheadgroupfield="GroupName" multitypeaheadoptionfield="Name"><div class="input-group multitypeahead">
+        <input class="form-control ng-untouched ng-pristine ng-valid" type="text" readonly="readonly" placeholder="Please Select">
+        <span aria-hidden="true" class="input-group-addon mt-button"><i class="fa fa-chevron-down"></i></span>
+        </div></div>
+<button class="btn btn-primary btn-add-to-chart" type="button" disabled="">Add  to chart</button>
+<input class="fund-added-to-chart" type="hidden" value="">
+</indices-panel>
+                                                </div>
+                                                <!---->
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+            </div>
+        
+    </div>
+</div>
+</scrollable-tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<block-ui-content>
+<div class="block-ui-wrapper instrument-pane block-ui-wrapper--element">
+  <!----><div class="block-ui-spinner">
+    <div class="loader"></div>
+    <!---->
+  </div>
+  <!---->
+</div>
+</block-ui-content></div>
+</instrument-section>
+                <div _ngcontent-c1="" class="container-fluid common-paddingwrap currency-message-wrapper">
+                    <div _ngcontent-c1="" class="row">
+                        <div _ngcontent-c1="" class="col-sm-12 chart-currency-message">All performance is shown in GBP currency.</div>
+                    </div>
+                </div>
+                <!----><chart-section _ngcontent-c1=""><!----><div class="block-ui-container block-ui__element">
+    <div class="container-fluid fe-responsive-charting-tab-container">
+        <div class="row">
+            <div class="col-sm-12 chart-panel-tabs">
+                <!---->
+                    <scrollable-tabset><div class="ui-scroll-tabs">
+    <!----><div class="ui-scroll-tabs-header">
+        <div class="st-left-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-left" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Previous</span>
+            </button>
+        </div>
+        <div class="ui-scroll-tabs-view" mousewheel="" style="margin-bottom: 0px;">
+            <!---->
+        <div class="ui-noscroll-tabs-header">
+            <ul role="tablist" class="nav nav-tabs justify-content-start">
+                <!----><li class="nav-item active">
+                    <a class="nav-link active" href="javascript:void(0)" role="tab" id="scrollable-tab-3" aria-controls="scrollable-tab-3-panel" aria-expanded="true" aria-disabled="false">
+                        Cumulative Performance<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-4" aria-controls="scrollable-tab-4-panel" aria-expanded="false" aria-disabled="false">
+                        Discrete Performance<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-5" aria-controls="scrollable-tab-5-panel" aria-expanded="false" aria-disabled="false">
+                        Scatter Chart<!---->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        </div>
+        <div class="st-right-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-right" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </div>
+    <!---->
+
+    <div class="tab-content">
+        <!---->
+            <!----><div role="tabpanel" class="tab-pane active" aria-labelledby="scrollable-tab-3" id="scrollable-tab-3-panel" aria-expanded="true">
+                <!---->
+                                <chart-tab><div class="fe-responsive-chart-tab row">
+    <div class="col-sm-12">
+        <!----><chart-options><div class="row">
+    <div class="col-sm-12">
+        <!----><div class="chart-options-wrapper">
+            <button class="btn btn-default btn-chart-filters" containerclass="chart-options-popup" placement="bottom left">
+                <i aria-hidden="true" class="fa fa-filter"></i> 
+            </button>
+            <!---->
+        </div>
+    </div>
+</div>
+</chart-options>
+        <!----><chart-component><div data-hidden="false">
+    <div class="row highchart-display-wrapper">
+        <div class="col-sm-12" data-hidden="false">
+            <div data-highcharts-chart="2" style="overflow: hidden;"><div id="highcharts-oew29ja-26" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 1150px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none; touch-action: manipulation; outline: none;"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1150" height="400" viewBox="0 0 1150 400"><desc>Created with Highcharts 9.3.2</desc><defs><clippath id="highcharts-oew29ja-27-"><rect x="0" y="0" width="1092" height="291" fill="none"></rect></clippath><clippath id="highcharts-oew29ja-89-"><rect x="0" y="0" width="1092" height="291" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1150" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="48" y="37" width="1092" height="291"></rect><g class="highcharts-grid highcharts-yaxis-grid" data-z-index="1"><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 48 325.5 L 1140 325.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 48 252.5 L 1140 252.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 48 178.5 L 1140 178.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 48 105.5 L 1140 105.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="48" y="37" width="1092" height="291"></rect><g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1"><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 58.5 37 L 58.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 244.5 37 L 244.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 426.5 37 L 426.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 609.5 37 L 609.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 785.5 37 L 785.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 968.5 37 L 968.5 328" opacity="1"></path></g><g class="highcharts-axis highcharts-yaxis" data-z-index="2"><path fill="none" class="highcharts-axis-line" data-z-index="7" d="M 48 37 L 48 328"></path></g><g class="highcharts-axis highcharts-xaxis" data-z-index="2"><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 58.5 328 L 58.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 244.5 328 L 244.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 426.5 328 L 426.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 609.5 328 L 609.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 785.5 328 L 785.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 968.5 328 L 968.5 338" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" data-z-index="7" d="M 48 328.5 L 1140 328.5"></path></g><g class="highcharts-series-group" data-z-index="3"><g class="highcharts-series highcharts-series-0 highcharts-line-series" data-z-index="0.1" opacity="1" transform="translate(48,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-89-)"><path fill="none" d="M 0 214.57575757575756 L 8.9753424657534 206.125 L 11.967123287671 204.28787878787878 L 32.909589041096 189.95833333333331 L 53.852054794521 208.6969696969697 L 74.794520547945 115.37121212121212 L 95.73698630137 74.95454545454547 L 116.67945205479 62.09469696969697 L 137.62191780822 53.643939393939405 L 158.56438356164 26.08712121212119 L 179.50684931507 42.253787878787875 L 194.46575342466 95.53030303030303 L 200.44931506849 129.70075757575756 L 221.39178082192 115.00378787878788 L 242.33424657534 150.27651515151516 L 263.27671232877 194.7348484848485 L 284.21917808219 264.1780303030303 L 305.16164383562 232.57954545454544 L 326.10410958904 258.29924242424244 L 347.04657534247 291 L 367.98904109589 223.02651515151513 L 376.96438356164 232.21212121212122 L 388.93150684932 223.02651515151513 L 409.87397260274 163.50378787878788 L 430.81643835616 133.375 L 451.75890410959 136.31439393939394 L 466.71780821918 140.72348484848484 L 472.70136986301 75.32196969696969 L 493.64383561644 99.57196969696969 L 514.58630136986 117.57575757575756 L 535.52876712329 152.4810606060606 L 556.47123287671 125.6590909090909 L 577.41369863014 143.6628787878788 L 598.35616438356 63.19696969696969 L 619.29863013699 54.746212121212125 L 640.24109589041 23.147727272727252 L 652.20821917808 49.23484848484847 L 661.18356164384 0 L 682.12602739726 25.35227272727269 L 703.06849315068 34.90530303030306 L 724.01095890411 69.81060606060609 L 735.97808219178 61.72727272727272 L 744.95342465753 79.36363636363637 L 765.89589041096 70.91287878787878 L 786.83835616438 65.0340909090909 L 807.78082191781 66.13636363636363 L 828.72328767123 34.90530303030306 L 849.66575342466 43.356060606060595 L 870.60821917808 11.75757575757575 L 891.55068493151 19.473484848484873 L 912.49315068493 20.575757575757564 L 933.43561643836 18.371212121212125 L 954.37808219178 29.761363636363626 L 975.32054794521 11.75757575757575 L 996.26301369863 34.90530303030306 L 1011.2219178082 27.189393939393938 L 1017.2054794521 27.189393939393938 L 1038.1479452055 22.78030303030306 L 1059.0904109589 9.185606060606062 L 1080.0328767123 59.52272727272728 L 1092 68.70833333333331" class="highcharts-graph" data-z-index="1" stroke="#912227" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><path fill="none" d="M 0 214.57575757575756 L 8.9753424657534 206.125 L 11.967123287671 204.28787878787878 L 32.909589041096 189.95833333333331 L 53.852054794521 208.6969696969697 L 74.794520547945 115.37121212121212 L 95.73698630137 74.95454545454547 L 116.67945205479 62.09469696969697 L 137.62191780822 53.643939393939405 L 158.56438356164 26.08712121212119 L 179.50684931507 42.253787878787875 L 194.46575342466 95.53030303030303 L 200.44931506849 129.70075757575756 L 221.39178082192 115.00378787878788 L 242.33424657534 150.27651515151516 L 263.27671232877 194.7348484848485 L 284.21917808219 264.1780303030303 L 305.16164383562 232.57954545454544 L 326.10410958904 258.29924242424244 L 347.04657534247 291 L 367.98904109589 223.02651515151513 L 376.96438356164 232.21212121212122 L 388.93150684932 223.02651515151513 L 409.87397260274 163.50378787878788 L 430.81643835616 133.375 L 451.75890410959 136.31439393939394 L 466.71780821918 140.72348484848484 L 472.70136986301 75.32196969696969 L 493.64383561644 99.57196969696969 L 514.58630136986 117.57575757575756 L 535.52876712329 152.4810606060606 L 556.47123287671 125.6590909090909 L 577.41369863014 143.6628787878788 L 598.35616438356 63.19696969696969 L 619.29863013699 54.746212121212125 L 640.24109589041 23.147727272727252 L 652.20821917808 49.23484848484847 L 661.18356164384 0 L 682.12602739726 25.35227272727269 L 703.06849315068 34.90530303030306 L 724.01095890411 69.81060606060609 L 735.97808219178 61.72727272727272 L 744.95342465753 79.36363636363637 L 765.89589041096 70.91287878787878 L 786.83835616438 65.0340909090909 L 807.78082191781 66.13636363636363 L 828.72328767123 34.90530303030306 L 849.66575342466 43.356060606060595 L 870.60821917808 11.75757575757575 L 891.55068493151 19.473484848484873 L 912.49315068493 20.575757575757564 L 933.43561643836 18.371212121212125 L 954.37808219178 29.761363636363626 L 975.32054794521 11.75757575757575 L 996.26301369863 34.90530303030306 L 1011.2219178082 27.189393939393938 L 1017.2054794521 27.189393939393938 L 1038.1479452055 22.78030303030306 L 1059.0904109589 9.185606060606062 L 1080.0328767123 59.52272727272728 L 1092 68.70833333333331" visibility="visible" data-z-index="2" class="highcharts-tracker-line" stroke-linecap="round" stroke-linejoin="round" stroke="rgba(192,192,192,0.0001)" stroke-width="22"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-line-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(48,37) scale(1 1)" clip-path="none"><path fill="#912227" visibility="hidden" d="M 619 54.746212121212125 A 0 0 0 1 1 619 54.746212121212125 Z" class="highcharts-halo highcharts-color-undefined" data-z-index="-1" fill-opacity="0.25"></path><path fill="#912227" d="M 619 60.746212121212125 A 6 6 0 1 1 619.005999999 60.746209121212374 Z" stroke="#ffffff" stroke-width="1" opacity="1" visibility="hidden" class="highcharts-point"></path></g><g class="highcharts-series highcharts-series-1 highcharts-line-series" data-z-index="0.1" opacity="1" transform="translate(48,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-89-)"><path fill="none" d="M 0 214.57575757575756 L 8.9753424657534 214.20833333333334 L 11.967123287671 214.20833333333334 L 32.909589041096 213.10606060606062 L 53.852054794521 212.37121212121212 L 74.794520547945 211.26893939393938 L 95.73698630137 210.5340909090909 L 116.67945205479 209.79924242424244 L 137.62191780822 208.32954545454544 L 158.56438356164 207.22727272727272 L 179.50684931507 206.125 L 194.46575342466 205.02272727272728 L 200.44931506849 204.65530303030303 L 221.39178082192 203.5530303030303 L 242.33424657534 202.45075757575756 L 263.27671232877 200.9810606060606 L 284.21917808219 199.51136363636363 L 305.16164383562 198.04166666666666 L 326.10410958904 196.20454545454544 L 347.04657534247 194.7348484848485 L 367.98904109589 193.2651515151515 L 376.96438356164 192.53030303030303 L 388.93150684932 191.4280303030303 L 409.87397260274 189.22348484848484 L 430.81643835616 187.38636363636363 L 451.75890410959 185.1818181818182 L 466.71780821918 183.71212121212122 L 472.70136986301 182.97727272727275 L 493.64383561644 181.1401515151515 L 514.58630136986 178.93560606060606 L 535.52876712329 176.36363636363637 L 556.47123287671 173.79166666666666 L 577.41369863014 171.58712121212122 L 598.35616438356 169.0151515151515 L 619.29863013699 166.4431818181818 L 640.24109589041 164.23863636363637 L 652.20821917808 162.76893939393938 L 661.18356164384 161.66666666666666 L 682.12602739726 158.72727272727272 L 703.06849315068 156.15530303030303 L 724.01095890411 153.2159090909091 L 735.97808219178 151.74621212121212 L 744.95342465753 150.27651515151516 L 765.89589041096 147.70454545454544 L 786.83835616438 144.76515151515153 L 807.78082191781 141.82575757575756 L 828.72328767123 138.88636363636363 L 846.67397260274 136.31439393939394 L 870.60821917808 133.00757575757572 L 891.55068493151 130.0681818181818 L 912.49315068493 127.12878787878788 L 933.43561643836 124.18939393939394 L 954.37808219178 120.88257575757575 L 975.32054794521 117.94318181818181 L 996.26301369863 114.6363636363636 L 1011.2219178082 112.43181818181822 L 1017.2054794521 111.32954545454544 L 1038.1479452055 108.3901515151515 L 1059.0904109589 105.08333333333331 L 1080.0328767123 101.77651515151513 L 1092 99.93939393939394" class="highcharts-graph" data-z-index="1" stroke="#D3292E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><path fill="none" d="M 0 214.57575757575756 L 8.9753424657534 214.20833333333334 L 11.967123287671 214.20833333333334 L 32.909589041096 213.10606060606062 L 53.852054794521 212.37121212121212 L 74.794520547945 211.26893939393938 L 95.73698630137 210.5340909090909 L 116.67945205479 209.79924242424244 L 137.62191780822 208.32954545454544 L 158.56438356164 207.22727272727272 L 179.50684931507 206.125 L 194.46575342466 205.02272727272728 L 200.44931506849 204.65530303030303 L 221.39178082192 203.5530303030303 L 242.33424657534 202.45075757575756 L 263.27671232877 200.9810606060606 L 284.21917808219 199.51136363636363 L 305.16164383562 198.04166666666666 L 326.10410958904 196.20454545454544 L 347.04657534247 194.7348484848485 L 367.98904109589 193.2651515151515 L 376.96438356164 192.53030303030303 L 388.93150684932 191.4280303030303 L 409.87397260274 189.22348484848484 L 430.81643835616 187.38636363636363 L 451.75890410959 185.1818181818182 L 466.71780821918 183.71212121212122 L 472.70136986301 182.97727272727275 L 493.64383561644 181.1401515151515 L 514.58630136986 178.93560606060606 L 535.52876712329 176.36363636363637 L 556.47123287671 173.79166666666666 L 577.41369863014 171.58712121212122 L 598.35616438356 169.0151515151515 L 619.29863013699 166.4431818181818 L 640.24109589041 164.23863636363637 L 652.20821917808 162.76893939393938 L 661.18356164384 161.66666666666666 L 682.12602739726 158.72727272727272 L 703.06849315068 156.15530303030303 L 724.01095890411 153.2159090909091 L 735.97808219178 151.74621212121212 L 744.95342465753 150.27651515151516 L 765.89589041096 147.70454545454544 L 786.83835616438 144.76515151515153 L 807.78082191781 141.82575757575756 L 828.72328767123 138.88636363636363 L 846.67397260274 136.31439393939394 L 870.60821917808 133.00757575757572 L 891.55068493151 130.0681818181818 L 912.49315068493 127.12878787878788 L 933.43561643836 124.18939393939394 L 954.37808219178 120.88257575757575 L 975.32054794521 117.94318181818181 L 996.26301369863 114.6363636363636 L 1011.2219178082 112.43181818181822 L 1017.2054794521 111.32954545454544 L 1038.1479452055 108.3901515151515 L 1059.0904109589 105.08333333333331 L 1080.0328767123 101.77651515151513 L 1092 99.93939393939394" visibility="visible" data-z-index="2" class="highcharts-tracker-line" stroke-linecap="round" stroke-linejoin="round" stroke="rgba(192,192,192,0.0001)" stroke-width="22"></path></g><g class="highcharts-markers highcharts-series-1 highcharts-line-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(48,37) scale(1 1)" clip-path="none"></g></g><text x="575" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:10;fill:#333333;" y="17"></text><text x="1140" text-anchor="end" class="highcharts-subtitle" data-z-index="4" style="color:#666666;font-size:10;fill:#666666;" y="22">27/06/2022 - 27/06/2023</text><text x="10" text-anchor="start" class="highcharts-caption" data-z-index="4" style="color:#666666;fill:#666666;" y="398"></text><g class="highcharts-legend highcharts-no-tooltip" data-z-index="7" transform="translate(311,360)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="527" height="25" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-line-series highcharts-color-undefined highcharts-series-0" data-z-index="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" class="highcharts-graph" stroke="#912227" stroke-width="2"></path><text x="21" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="14">(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn</text></g><g class="highcharts-legend-item highcharts-line-series highcharts-color-undefined highcharts-series-1" data-z-index="1" transform="translate(365.578125,3)"><path fill="none" d="M 0 11 L 16 11" class="highcharts-graph" stroke="#D3292E" stroke-width="2"></path><text x="21" y="14" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2">Bank Of England Base Rate</text></g></g></g></g><g class="highcharts-axis-labels highcharts-yaxis-labels" data-z-index="7"><text x="33" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="329" opacity="1">-2.00</text><text x="33" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="256" opacity="1">0.00</text><text x="33" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="182" opacity="1">2.00</text><text x="33" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="109" opacity="1">4.00</text></g><g class="highcharts-axis-labels highcharts-xaxis-labels" data-z-index="7"><text x="59.281506849315" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/07/2022</text><text x="244.77191780822" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/09/2022</text><text x="427.27054794521" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/11/2022</text><text x="609.76917808219" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/01/2023</text><text x="786.28424657534" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/03/2023</text><text x="968.78287671233" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">01/05/2023</text></g><g class="highcharts-label highcharts-tooltip highcharts-color-undefined" style="cursor:default;white-space:nowrap;pointer-events:none;" data-z-index="8" transform="translate(515,35)" opacity="0" visibility="visible"><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 301.5 0.5 C 304.5 0.5 304.5 0.5 304.5 3.5 L 304.5 38.5 C 304.5 41.5 304.5 41.5 301.5 41.5 L 157.5 41.5 L 151.5 47.5 L 145.5 41.5 L 3.5 41.5 C 0.5 41.5 0.5 41.5 0.5 38.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 301.5 0.5 C 304.5 0.5 304.5 0.5 304.5 3.5 L 304.5 38.5 C 304.5 41.5 304.5 41.5 301.5 41.5 L 157.5 41.5 L 151.5 47.5 L 145.5 41.5 L 3.5 41.5 C 0.5 41.5 0.5 41.5 0.5 38.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 301.5 0.5 C 304.5 0.5 304.5 0.5 304.5 3.5 L 304.5 38.5 C 304.5 41.5 304.5 41.5 301.5 41.5 L 157.5 41.5 L 151.5 47.5 L 145.5 41.5 L 3.5 41.5 C 0.5 41.5 0.5 41.5 0.5 38.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(247,247,247,0.85)" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 301.5 0.5 C 304.5 0.5 304.5 0.5 304.5 3.5 L 304.5 38.5 C 304.5 41.5 304.5 41.5 301.5 41.5 L 157.5 41.5 L 151.5 47.5 L 145.5 41.5 L 3.5 41.5 C 0.5 41.5 0.5 41.5 0.5 38.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#912227" stroke-width="1"></path><text x="8" data-z-index="1" y="18" style="color:#333333;font-size:10;fill:#333333;"><tspan style="font-weight:bold;">(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn</tspan><tspan class="highcharts-br" dy="13" x="8">​</tspan>20/01/2023 4.35 (1.38)</text></g></svg></div></div>
+        </div>
+        <!---->
+    </div>
+    <!---->
+</div>
+</chart-component>
+    </div>
+</div>
+
+<!---->
+</chart-tab>
+                            
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-4" id="scrollable-tab-4-panel" aria-expanded="false" style="">
+                <!---->
+                                <chart-tab><div class="fe-responsive-chart-tab row">
+    <div class="col-sm-12">
+        <!----><chart-options><div class="row">
+    <div class="col-sm-12">
+        <!----><div class="chart-options-wrapper">
+            <button class="btn btn-default btn-chart-filters" containerclass="chart-options-popup" placement="bottom left">
+                <i aria-hidden="true" class="fa fa-filter"></i> 
+            </button>
+            <!---->
+        </div>
+    </div>
+</div>
+</chart-options>
+        <!----><chart-component><div data-hidden="false">
+    <div class="row highchart-display-wrapper">
+        <div class="col-sm-12" data-hidden="false">
+            <div data-highcharts-chart="0" style="overflow: hidden;"><div id="highcharts-oew29ja-0" dir="ltr" style="position: relative; overflow: hidden; width: 1180px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none; touch-action: manipulation; outline: none;" class="highcharts-container "><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1180" height="400" viewBox="0 0 1180 400"><desc>Created with Highcharts 9.3.2</desc><defs><clippath id="highcharts-oew29ja-2-"><rect x="0" y="0" width="1116" height="278" fill="none"></rect></clippath><clippath id="highcharts-oew29ja-8-"><rect x="0" y="0" width="1116" height="278" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1180" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="54" y="37" width="1116" height="278"></rect><g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1"><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 276.5 37 L 276.5 315" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 499.5 37 L 499.5 315" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 723.5 37 L 723.5 315" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 946.5 37 L 946.5 315" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 1169.5 37 L 1169.5 315" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 53.5 37 L 53.5 315" opacity="1"></path></g><g class="highcharts-grid highcharts-yaxis-grid" data-z-index="1"><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 315.5 L 1170 315.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 259.5 L 1170 259.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 204.5 L 1170 204.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 148.5 L 1170 148.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 93.5 L 1170 93.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 54 36.5 L 1170 36.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="54" y="37" width="1116" height="278"></rect><g class="highcharts-axis highcharts-xaxis" data-z-index="2"><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" data-z-index="7" d="M 54 315.5 L 1170 315.5"></path></g><g class="highcharts-axis highcharts-yaxis" data-z-index="2"><path fill="none" class="highcharts-axis-line" data-z-index="7" d="M 54 37 L 54 315"></path></g><g class="highcharts-series-group" data-z-index="3"><g class="highcharts-series highcharts-series-0 highcharts-column-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(54,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-8-)" style="cursor:pointer;"><rect x="51" y="157" width="54" height="11" fill="#912227" opacity="1" class="highcharts-point"></rect><rect x="275" y="168" width="54" height="51" fill="#912227" opacity="1" class="highcharts-point highcharts-negative"></rect><rect x="498" y="20" width="54" height="148" fill="#912227" opacity="1" class="highcharts-point"></rect><rect x="721" y="134" width="54" height="34" fill="#912227" opacity="1" class="highcharts-point"></rect><rect x="944" y="143" width="54" height="25" fill="#912227" opacity="1" class="highcharts-point"></rect></g><g class="highcharts-markers highcharts-series-0 highcharts-column-series" data-z-index="0.1" opacity="1" transform="translate(54,37) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-series-1 highcharts-column-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(54,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-8-)" style="cursor:pointer;"><rect x="118" y="136" width="54" height="32" fill="#D3292E" opacity="1" class="highcharts-point"></rect><rect x="341" y="164" width="54" height="4" fill="#D3292E" opacity="1" class="highcharts-point"></rect><rect x="565" y="167" width="54" height="1" fill="#D3292E" opacity="1" class="highcharts-point"></rect><rect x="788" y="161" width="54" height="7" fill="#D3292E" opacity="1" class="highcharts-point"></rect><rect x="1011" y="160" width="54" height="8" fill="#D3292E" opacity="1" class="highcharts-point"></rect></g><g class="highcharts-markers highcharts-series-1 highcharts-column-series" data-z-index="0.1" opacity="1" transform="translate(54,37) scale(1 1)" clip-path="none"></g></g><text x="590" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:10;fill:#333333;" y="17"></text><text x="1170" text-anchor="end" class="highcharts-subtitle" data-z-index="4" style="color:#666666;font-size:10;fill:#666666;" y="22">as at 31/05/2023</text><text x="10" text-anchor="start" class="highcharts-caption" data-z-index="4" style="color:#666666;fill:#666666;" y="398"></text><g class="highcharts-legend highcharts-no-tooltip" data-z-index="7" transform="translate(308,360)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="564" height="25" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-column-series highcharts-color-undefined highcharts-series-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="14">(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn</text><rect x="2.5" y="4" width="11" height="11" fill="#912227" rx="5.5" ry="5.5" class="highcharts-point" data-z-index="3"></rect></g><g class="highcharts-legend-item highcharts-column-series highcharts-color-undefined highcharts-series-1" data-z-index="1" transform="translate(390.34521484375,3)"><text x="21" y="14" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2">Bank Of England Base Rate</text><rect x="2.5" y="4" width="11" height="11" fill="#D3292E" rx="5.5" ry="5.5" class="highcharts-point" data-z-index="3"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" data-z-index="7"><text x="165.6" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="335" opacity="1">31/05/2022<tspan class="highcharts-br" dy="13" x="165.6">​</tspan>- 31/05/2023</text><text x="388.79999999999995" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="335" opacity="1">31/05/2021<tspan class="highcharts-br" dy="13" x="388.79999999999995">​</tspan>- 31/05/2022</text><text x="612" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="335" opacity="1">31/05/2020<tspan class="highcharts-br" dy="13" x="612">​</tspan>- 31/05/2021</text><text x="835.1999999999999" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="335" opacity="1">31/05/2019<tspan class="highcharts-br" dy="13" x="835.1999999999999">​</tspan>- 31/05/2020</text><text x="1058.4" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="335" opacity="1">31/05/2018<tspan class="highcharts-br" dy="13" x="1058.4">​</tspan>- 31/05/2019</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" data-z-index="7"><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="319" opacity="1">-10.00</text><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="263" opacity="1">-5.00</text><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="208" opacity="1">0.00</text><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="152" opacity="1">5.00</text><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="97" opacity="1">10.00</text><text x="39" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="41" opacity="1">15.00</text></g></svg></div></div>
+        </div>
+        <!---->
+    </div>
+    <!---->
+</div>
+</chart-component>
+    </div>
+</div>
+
+<!---->
+</chart-tab>
+                            
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-5" id="scrollable-tab-5-panel" aria-expanded="false" style="">
+                <!---->
+                                <chart-tab><div class="fe-responsive-chart-tab row">
+    <div class="col-sm-12">
+        <!----><chart-options><div class="row">
+    <div class="col-sm-12">
+        <!----><div class="chart-options-wrapper">
+            <button class="btn btn-default btn-chart-filters" containerclass="chart-options-popup" placement="bottom left">
+                <i aria-hidden="true" class="fa fa-filter"></i> 
+            </button>
+            <!---->
+        </div>
+    </div>
+</div>
+</chart-options>
+        <!----><chart-component><div data-hidden="false">
+    <div class="row highchart-display-wrapper">
+        <div class="col-sm-12" data-hidden="false">
+            <div data-highcharts-chart="1" style="overflow: hidden;"><div id="highcharts-oew29ja-17" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 1180px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none; touch-action: manipulation; outline: none;"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1180" height="400" viewBox="0 0 1180 400"><desc>Created with Highcharts 9.3.2</desc><defs><clippath id="highcharts-oew29ja-18-"><rect x="0" y="0" width="1125" height="291" fill="none"></rect></clippath><clippath id="highcharts-oew29ja-20-"><rect x="0" y="0" width="1125" height="291" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1180" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="45" y="37" width="1125" height="291"></rect><g class="highcharts-grid highcharts-yaxis-grid" data-z-index="1"><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 45 328.5 L 1170 328.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 45 231.5 L 1170 231.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 45 134.5 L 1170 134.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 45 36.5 L 1170 36.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="45" y="37" width="1125" height="291"></rect><g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1"><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 150.5 37 L 150.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 294.5 37 L 294.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 439.5 37 L 439.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 583.5 37 L 583.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 727.5 37 L 727.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 871.5 37 L 871.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 1016.5 37 L 1016.5 328" opacity="1"></path><path fill="none" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 1160.5 37 L 1160.5 328" opacity="1"></path></g><g class="highcharts-axis highcharts-yaxis" data-z-index="2"><path fill="none" class="highcharts-axis-line" data-z-index="7" d="M 45 37 L 45 328"></path></g><g class="highcharts-axis highcharts-xaxis" data-z-index="2"><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 150.5 328 L 150.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 294.5 328 L 294.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 439.5 328 L 439.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 583.5 328 L 583.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 727.5 328 L 727.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 871.5 328 L 871.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1016.5 328 L 1016.5 338" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1160.5 328 L 1160.5 338" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" data-z-index="7" d="M 45 328.5 L 1170 328.5"></path></g><g class="highcharts-series-group" data-z-index="3"><g class="highcharts-series highcharts-series-0 highcharts-scatter-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(45,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-20-)"></g><g class="highcharts-markers highcharts-series-0 highcharts-scatter-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(45,37) scale(1 1)" clip-path="none"><path fill="#912227" d="M 1113 201.173576 A 5 5 0 1 1 1113.0049999991666 201.1735735000002 Z" opacity="1" class="highcharts-point"></path></g><g class="highcharts-series highcharts-series-1 highcharts-scatter-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(45,37) scale(1 1)" clip-path="url(#highcharts-oew29ja-20-)"></g><g class="highcharts-markers highcharts-series-1 highcharts-scatter-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(45,37) scale(1 1)" clip-path="none"><path fill="#D3292E" d="M 11 8.076358540000001 L 16 13.076358540000001 L 11 18.07635854 L 6 13.076358540000001 Z" opacity="1" class="highcharts-point"></path></g></g><text x="590" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:10;fill:#333333;" y="17"></text><text x="1170" text-anchor="end" class="highcharts-subtitle" data-z-index="4" style="color:#666666;font-size:10;fill:#666666;" y="22">31/05/2022 - 31/05/2023</text><text x="10" text-anchor="start" class="highcharts-caption" data-z-index="4" style="color:#666666;fill:#666666;" y="398"></text><g class="highcharts-legend highcharts-no-tooltip" data-z-index="7" transform="translate(326,360)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="527" height="25" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-scatter-series highcharts-color-undefined highcharts-series-0" data-z-index="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" class="highcharts-graph"></path><path fill="#912227" d="M 8 16 A 5 5 0 1 1 8.00499999916667 15.999997500000209 Z" class="highcharts-point" opacity="1"></path><text x="21" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="14">(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn</text></g><g class="highcharts-legend-item highcharts-scatter-series highcharts-color-undefined highcharts-series-1" data-z-index="1" transform="translate(365.578125,3)"><path fill="none" d="M 0 11 L 16 11" class="highcharts-graph"></path><path fill="#D3292E" d="M 8 6 L 13 11 L 8 16 L 3 11 Z" class="highcharts-point" opacity="1"></path><text x="21" y="14" style="color:#333333;cursor:pointer;font-size:10;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2">Bank Of England Base Rate</text></g></g></g></g><g class="highcharts-axis-labels highcharts-yaxis-labels" data-z-index="7"><text x="30" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="334" opacity="1">0.00</text><text x="30" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="237" opacity="1">1.00</text><text x="30" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="140" opacity="1">2.00</text><text x="30" style="color:#666666;cursor:default;font-size:10;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="43" opacity="1">3.00</text></g><g class="highcharts-axis-labels highcharts-xaxis-labels" data-z-index="7"><text x="151.17517614009" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">1.00</text><text x="295.39730786899" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">2.00</text><text x="439.61943959789" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">3.00</text><text x="583.84157132679" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">4.00</text><text x="728.06370305569" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">5.00</text><text x="872.28583478459" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">6.00</text><text x="1016.5079665135" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">7.00</text><text x="1160.1400146484375" style="color:#666666;cursor:default;font-size:10;white-space:nowrap;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">8.00</text></g></svg></div></div>
+        </div>
+        <!---->
+    </div>
+    <!---->
+</div>
+</chart-component>
+    </div>
+</div>
+
+<!---->
+</chart-tab>
+                            
+            </div>
+        
+    </div>
+</div>
+</scrollable-tabset>
+                
+                <!---->
+            </div>
+        </div>
+    </div>
+<block-ui-content>
+<div class="block-ui-wrapper chart-section block-ui-wrapper--element">
+  <!----><div class="block-ui-spinner">
+    <div class="loader"></div>
+    <!---->
+  </div>
+  <!---->
+</div>
+</block-ui-content></div>
+</chart-section>
+                <!----><table-section _ngcontent-c1="" _nghost-c3=""><!----><div _ngcontent-c3="" class="block-ui-container block-ui__element">
+    <div _ngcontent-c3="" class="container-fluid fe-table-panel-container">
+        <div _ngcontent-c3="" class="row">
+            <div _ngcontent-c3="" class="col-sm-12 chart-table-panel-tabs">
+                <scrollable-tabset _ngcontent-c3=""><div class="ui-scroll-tabs">
+    <!----><div class="ui-scroll-tabs-header">
+        <div class="st-left-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-left" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Previous</span>
+            </button>
+        </div>
+        <div class="ui-scroll-tabs-view" mousewheel="" style="margin-bottom: 0px;">
+            <!---->
+        <div class="ui-noscroll-tabs-header">
+            <ul role="tablist" class="nav nav-tabs justify-content-start">
+                <!----><li class="nav-item active">
+                    <a class="nav-link active" href="javascript:void(0)" role="tab" id="scrollable-tab-6" aria-controls="scrollable-tab-6-panel" aria-expanded="true" aria-disabled="false">
+                        Cumulative Performance<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-7" aria-controls="scrollable-tab-7-panel" aria-expanded="false" aria-disabled="false">
+                        Discrete Performance<!---->
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="tab" id="scrollable-tab-8" aria-controls="scrollable-tab-8-panel" aria-expanded="false" aria-disabled="false">
+                        Annualised Performance<!---->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        </div>
+        <div class="st-right-arrow st-arrow">
+            <button class="btn glyphicon glyphicon-chevron-right" type="button" disabled="" aria-disabled="true">
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </div>
+    <!---->
+
+    <div class="tab-content">
+        <!---->
+            <!----><div role="tabpanel" class="tab-pane active" aria-labelledby="scrollable-tab-6" id="scrollable-tab-6-panel" aria-expanded="true">
+                <!---->
+                            <table-tab _ngcontent-c3=""><div class="fe-responsive-charting-table">
+    <dynamic-table><div class="fe-responsive-table-div" style="width: 100%;">
+    <table class="fe-responsive-table-container fe-cascade-table">
+        <thead class="fe-responsive-table-header">
+        <!----><tr>
+            <td class="fe-responsive-table-asatdatetextcontainer" colspan="100">
+                <!----><span class="fe-responsive-table-performanceastext">
+                    Performance data as at &nbsp;26/06/2023<!---->
+                </span>
+                <!---->
+                <!---->
+                <!---->
+            </td>
+        </tr>
+            <tr class="fe-responsive-table-header-row">
+                <!----><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartkey">
+                    Key
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-name">
+                    Name
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_1w">
+                    Weekly Change (%)
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_1m">
+                    1m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_3m">
+                    3m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_6m">
+                    6m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_1y">
+                    1yr
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_2y">
+                    2yrs
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_3y">
+                    3yrs
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_4y">
+                    4yrs
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_5y">
+                    5yrs
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_10y">
+                    10yrs
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartdeletebutton">
+                    Del
+                    <!---->
+                </th>
+                <!----><th class="morebtn-th" role="presentation" data-hidden="true"><span aria-visible="hidden" class="cascade-hide" data-hidden="false">More Information</span></th>
+            </tr>
+        </thead>
+        <!----><tbody class="fe-responsive-table-content">
+        <!----><!---->
+            <tr class="fe-responsive-table-content-row even">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#912227" class="ChartKey">A</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1w">
+                    <!----><ng-component><!---->-1.45
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1m">
+                    <!----><ng-component><!---->-0.87
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_3m">
+                    <!----><ng-component><!---->0.14
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_6m">
+                    <!----><ng-component><!---->2.25
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1y">
+                    <!----><ng-component><!---->3.98
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_2y">
+                    <!----><ng-component><!---->-5.03
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_3y">
+                    <!----><ng-component><!---->5.58
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_4y">
+                    <!----><ng-component><!---->9.74
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_5y">
+                    <!----><ng-component><!---->13.68
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_10y">
+                    <!----><ng-component><!---->26.80
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="FA:00HZ~2" data-citicode="00HZ">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        <!---->
+            <tr class="fe-responsive-table-content-row odd">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#D3292E" class="ChartKey">B</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->Bank Of England Base Rate
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1w">
+                    <!----><ng-component><!---->-
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1m">
+                    <!----><ng-component><!---->0.39
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_3m">
+                    <!----><ng-component><!---->1.09
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_6m">
+                    <!----><ng-component><!---->2.06
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_1y">
+                    <!----><ng-component><!---->3.12
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_2y">
+                    <!----><ng-component><!---->3.53
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_3y">
+                    <!----><ng-component><!---->3.63
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_4y">
+                    <!----><ng-component><!---->4.21
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_5y">
+                    <!----><ng-component><!---->4.97
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_10y">
+                    <!----><ng-component><!---->7.28
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="NB:BOE~1">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        
+        </tbody>
+    </table>
+</div>
+</dynamic-table>
+</div>
+</table-tab>
+                        
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-7" id="scrollable-tab-7-panel" aria-expanded="false">
+                <!---->
+                            <table-tab _ngcontent-c3=""><div class="fe-responsive-charting-table">
+    <dynamic-table><div class="fe-responsive-table-div" style="width: 100%;">
+    <table class="fe-responsive-table-container fe-cascade-table">
+        <thead class="fe-responsive-table-header">
+        <!----><tr>
+            <td class="fe-responsive-table-asatdatetextcontainer" colspan="100">
+                <!---->
+                <!----><span class="fe-responsive-table-discreteperformanceastext">
+                    Discrete performance as at&nbsp;31/05/2023<!---->
+                </span>
+                <!---->
+                <!---->
+            </td>
+        </tr>
+            <tr class="fe-responsive-table-header-row">
+                <!----><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartkey">
+                    Key
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-name">
+                    Name
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-0to12m">
+                    0-12m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_12to24m">
+                    12-24m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_24to36m">
+                    24-36m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_36to48m">
+                    36-48m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-_48to60m">
+                    48-60m
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartdeletebutton">
+                    Del
+                    <!---->
+                </th>
+                <!----><th class="morebtn-th" role="presentation" data-hidden="true"><span aria-visible="hidden" class="cascade-hide" data-hidden="false">More Information</span></th>
+            </tr>
+        </thead>
+        <!----><tbody class="fe-responsive-table-content">
+        <!----><!---->
+            <tr class="fe-responsive-table-content-row even">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#912227" class="ChartKey">A</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-0to12m">
+                    <!----><ng-component><!---->0.98
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_12to24m">
+                    <!----><ng-component><!---->-4.58
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_24to36m">
+                    <!----><ng-component><!---->13.27
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_36to48m">
+                    <!----><ng-component><!---->3.05
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_48to60m">
+                    <!----><ng-component><!---->2.24
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="FA:00HZ~2" data-citicode="00HZ">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        <!---->
+            <tr class="fe-responsive-table-content-row odd">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#D3292E" class="ChartKey">B</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->Bank Of England Base Rate
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-0to12m">
+                    <!----><ng-component><!---->2.87
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_12to24m">
+                    <!----><ng-component><!---->0.32
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_24to36m">
+                    <!----><ng-component><!---->0.10
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_36to48m">
+                    <!----><ng-component><!---->0.61
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-_48to60m">
+                    <!----><ng-component><!---->0.71
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="NB:BOE~1">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        
+        </tbody>
+    </table>
+</div>
+</dynamic-table>
+</div>
+</table-tab>
+                        
+            </div>
+        
+            <!----><div role="tabpanel" class="tab-pane " aria-labelledby="scrollable-tab-8" id="scrollable-tab-8-panel" aria-expanded="false">
+                <!---->
+                            <table-tab _ngcontent-c3=""><div class="fe-responsive-charting-table">
+    <dynamic-table><div class="fe-responsive-table-div" style="width: 100%;">
+    <table class="fe-responsive-table-container fe-cascade-table">
+        <thead class="fe-responsive-table-header">
+        <!----><tr>
+            <td class="fe-responsive-table-asatdatetextcontainer" colspan="100">
+                <!---->
+                <!---->
+                <!----><span class="fe-responsive-table-calendarperformanceastext">
+                    Calendar performance as at&nbsp;30/12/2022<!---->
+                </span>
+                <!---->
+            </td>
+        </tr>
+            <tr class="fe-responsive-table-header-row">
+                <!----><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartkey">
+                    Key
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-name">
+                    Name
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-year1">
+                    2022
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-year2">
+                    2021
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-year3">
+                    2020
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-year4">
+                    2019
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-year5">
+                    2018
+                    <!---->
+                </th><th scope="col" data-hidden="false" class="fe-responsive-headerfield-chartdeletebutton">
+                    Del
+                    <!---->
+                </th>
+                <!----><th class="morebtn-th" role="presentation" data-hidden="true"><span aria-visible="hidden" class="cascade-hide" data-hidden="false">More Information</span></th>
+            </tr>
+        </thead>
+        <!----><tbody class="fe-responsive-table-content">
+        <!----><!---->
+            <tr class="fe-responsive-table-content-row even">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#912227" class="ChartKey">A</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->(ex Insight DTR) Blackrock Diversified Dynamic Growth (ARC) Pn
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year1">
+                    <!----><ng-component><!---->-8.44
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year2">
+                    <!----><ng-component><!---->5.06
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year3">
+                    <!----><ng-component><!---->8.22
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year4">
+                    <!----><ng-component><!---->11.51
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year5">
+                    <!----><ng-component><!---->-2.75
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="FA:00HZ~2" data-citicode="00HZ">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        <!---->
+            <tr class="fe-responsive-table-content-row odd">
+                <!----><td data-hidden="false" class="fe-responsive-datafield-chartkey">
+                    <!----><ng-component><div style="background-color:#D3292E" class="ChartKey">B</div></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-name">
+                    <!----><ng-component><!---->Bank Of England Base Rate
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year1">
+                    <!----><ng-component><!---->1.44
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year2">
+                    <!----><ng-component><!---->0.11
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year3">
+                    <!----><ng-component><!---->0.23
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year4">
+                    <!----><ng-component><!---->0.75
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-year5">
+                    <!----><ng-component><!---->0.61
+                 <!----></ng-component>
+                </td><td data-hidden="false" class="fe-responsive-datafield-chartdeletebutton">
+                    <!----><ng-component><a href="javascript:void(0)" role="button" class="chart-delete-button" data-typecode="NB:BOE~1">
+                  <img role="presentation" src="./Digital-Charting-Tool_files/transparent-1x1.png">
+               </a></ng-component>
+                </td>
+                
+                <!---->
+            </tr>
+            
+            <!---->
+        
+        </tbody>
+    </table>
+</div>
+</dynamic-table>
+</div>
+</table-tab>
+                        
+            </div>
+        
+    </div>
+</div>
+</scrollable-tabset>
+            </div>
+        </div>
+    </div>
+<block-ui-content>
+<div class="block-ui-wrapper table-section block-ui-wrapper--element">
+  <!----><div class="block-ui-spinner">
+    <div class="loader"></div>
+    <!---->
+  </div>
+  <!---->
+</div>
+</block-ui-content></div>
+
+</table-section>
+
+                <div _ngcontent-c1="" class="container-fluid">
+                    <div _ngcontent-c1="" class="row fe-responsive-pdf-btn-container">
+                        <div _ngcontent-c1="" class="col-sm-12">
+                            <div _ngcontent-c1="" class="pull-right">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----><footer-section _ngcontent-c1="" _nghost-c4=""><footer _ngcontent-c4="">
+    <!----><div _ngcontent-c4="" class="container-fluid">
+        <div _ngcontent-c4="" class="row">
+            <div _ngcontent-c4="" class="col-sm-12">
+                <div _ngcontent-c4="" class="fe-footer-container">
+                    <!----><div _ngcontent-c4="" class="fe-caveat-container">
+                        <!---->
+                    </div>
+                    <div _ngcontent-c4="" class="fe-poweredBy-Container">
+                        <p _ngcontent-c4="">
+                            <label _ngcontent-c4="">Powered by FE fundinfo</label>
+                            <a _ngcontent-c4="" class="img" href="https://www.fe-fundinfo.com/" rel="external" target="_blank">
+                                <img _ngcontent-c4="" alt="Logo" src="./Digital-Charting-Tool_files/logo_FE_small.png">
+                            </a>
+                        </p>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <!---->
+    </div>
+    <!---->
+</footer>
+</footer-section>
+            </div>
+        </div>
+        <!---->
+
+        <!---->
+
+    <block-ui-content>
+<div class="block-ui-wrapper entire-app block-ui-wrapper--element">
+  <!----><div class="block-ui-spinner">
+    <div class="loader"></div>
+    <!---->
+  </div>
+  <!---->
+</div>
+</block-ui-content></div>
+</div>
+
+
+<!---->
+
+</app-charting>
+</app-root><script>window['TRANSFER_STATE'] = {"serviceUrl":"https://staging-digital.feprecisionplus.com","highchartsUrl":"https://highcharts-plusdigitaleunstg.azurewebsites.net/","appInsightsKey":"6bba36c8-bd16-4e7e-8862-9836596052b3","roleName":"+Digi-Responsive Tools-Stg","https://staging-digital.feprecisionplus.com/embarkgroup/responsivecharting/gettoolsettings/en-gb/Embark{}":{"Header":null,"InstrumenPanelSetting":{"InstrumentPanelButton":false,"InstrumentPanelButtonOverride":"","InstrumentPanelOnLoad":true,"InstrumentPanelTabs":[{"ProjectToolTabId":30641684,"Name":"Funds","DisplayName":"Funds","ShowSearchBox":true,"SearchButtonDropDown":[{"Key":1,"Value":"Add Sector Too"}],"AdvanceSearchFilters":null,"DataLoadRanges":null,"InstrumentPanelDropDown":null,"IsInvalidTab":false,"UnitList":null,"CascadeFilters":null,"SearchBoxLabel":"Search","SearchBoxPlaceholderText":"Search","TabLabel":null},{"ProjectToolTabId":30641680,"Name":"Sector","DisplayName":"Sector","ShowSearchBox":false,"SearchButtonDropDown":null,"AdvanceSearchFilters":null,"DataLoadRanges":null,"InstrumentPanelDropDown":null,"IsInvalidTab":false,"UnitList":null,"CascadeFilters":null,"SearchBoxLabel":null,"SearchBoxPlaceholderText":null,"TabLabel":"Sector"},{"ProjectToolTabId":30641681,"Name":"Indices","DisplayName":"Index","ShowSearchBox":false,"SearchButtonDropDown":null,"AdvanceSearchFilters":null,"DataLoadRanges":null,"InstrumentPanelDropDown":null,"IsInvalidTab":false,"UnitList":null,"CascadeFilters":null,"SearchBoxLabel":null,"SearchBoxPlaceholderText":null,"TabLabel":"Index"}],"DropDownDefaultText":"Please Select","AddToChartText":"Add  to chart"},"ChartTableTabs":[{"TabName":"Cumulative Performance","TabNameOverride":null,"OrderId":1,"PdfOrderId":0,"IsPdfEnable":true,"PerformancePeriodEndType":3,"DiscretePerformanceEndType":3,"IsDisplayLatestAsAtDate":false,"RiskAnalyticalPeriod":12,"RiskBenchmark":0,"RiskFreeRate":"","ShowAsAtDate":false,"Columns":[{"ColumnId":489,"ColumnName":"Chart Key","OrderId":1,"DisplayName":"Key","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":null,"DataPath":"ChartKey","ColumnDataTypeId":20,"GroupDataSourceName":null},{"ColumnId":16,"ColumnName":"Name","OrderId":2,"DisplayName":"Name","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"Alt":"FundNameHyperLinkAltText","CssClassParam":"fe-column-name"},"DataPath":"Common.Name","ColumnDataTypeId":4,"GroupDataSourceName":"Common"},{"ColumnId":289,"ColumnName":"1w","OrderId":3,"DisplayName":"Weekly Change (%)","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":null,"DataPath":"Price._1w","ColumnDataTypeId":2,"GroupDataSourceName":"Price"},{"ColumnId":38,"ColumnName":"1m","OrderId":4,"DisplayName":"1m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._1m","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":39,"ColumnName":"3m","OrderId":5,"DisplayName":"3m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._3m","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":40,"ColumnName":"6m","OrderId":6,"DisplayName":"6m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._6m","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":42,"ColumnName":"1y","OrderId":7,"DisplayName":"1yr","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._1y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":43,"ColumnName":"2y","OrderId":8,"DisplayName":"2yrs","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._2y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":44,"ColumnName":"3y","OrderId":9,"DisplayName":"3yrs","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._3y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":45,"ColumnName":"4y","OrderId":10,"DisplayName":"4yrs","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._4y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":46,"ColumnName":"5y","OrderId":11,"DisplayName":"5yrs","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._5y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":47,"ColumnName":"10y","OrderId":12,"DisplayName":"10yrs","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"Performance._10y","ColumnDataTypeId":2,"GroupDataSourceName":"Performance"},{"ColumnId":490,"ColumnName":"Chart Delete Button","OrderId":13,"DisplayName":"Del","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CssClass":"chart-delete-button","ExtraAttributes":"data-typecode:${Common.TypeCode}, data-citicode:${Common.CitiCode}","ResponsiveClickFunction":"RemoveInstrument"},"DataPath":"ChartDeleteButton","ColumnDataTypeId":15,"GroupDataSourceName":null}]},{"TabName":"Discrete Performance","TabNameOverride":null,"OrderId":2,"PdfOrderId":0,"IsPdfEnable":true,"PerformancePeriodEndType":1,"DiscretePerformanceEndType":1,"IsDisplayLatestAsAtDate":false,"RiskAnalyticalPeriod":60,"RiskBenchmark":0,"RiskFreeRate":"","ShowAsAtDate":false,"Columns":[{"ColumnId":489,"ColumnName":"Chart Key","OrderId":1,"DisplayName":"Key","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":null,"DataPath":"ChartKey","ColumnDataTypeId":20,"GroupDataSourceName":null},{"ColumnId":16,"ColumnName":"Name","OrderId":2,"DisplayName":"Name","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"Alt":"FundNameHyperLinkAltText","CssClassParam":"fe-column-name"},"DataPath":"Common.Name","ColumnDataTypeId":4,"GroupDataSourceName":"Common"},{"ColumnId":129,"ColumnName":"0to12m","OrderId":3,"DisplayName":"0-12m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"DiscretePerformance._0to12m","ColumnDataTypeId":2,"GroupDataSourceName":"DiscretePerformance"},{"ColumnId":130,"ColumnName":"12to24m","OrderId":4,"DisplayName":"12-24m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"DiscretePerformance._12to24m","ColumnDataTypeId":2,"GroupDataSourceName":"DiscretePerformance"},{"ColumnId":132,"ColumnName":"24to36m","OrderId":5,"DisplayName":"24-36m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"DiscretePerformance._24to36m","ColumnDataTypeId":2,"GroupDataSourceName":"DiscretePerformance"},{"ColumnId":133,"ColumnName":"36to48m","OrderId":6,"DisplayName":"36-48m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"DiscretePerformance._36to48m","ColumnDataTypeId":2,"GroupDataSourceName":"DiscretePerformance"},{"ColumnId":136,"ColumnName":"48to60m","OrderId":7,"DisplayName":"48-60m","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"DiscretePerformance._48to60m","ColumnDataTypeId":2,"GroupDataSourceName":"DiscretePerformance"},{"ColumnId":490,"ColumnName":"Chart Delete Button","OrderId":8,"DisplayName":"Del","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CssClass":"chart-delete-button","ExtraAttributes":"data-typecode:${Common.TypeCode}, data-citicode:${Common.CitiCode}","ResponsiveClickFunction":"RemoveInstrument"},"DataPath":"ChartDeleteButton","ColumnDataTypeId":15,"GroupDataSourceName":null}]},{"TabName":"Annualised Performance","TabNameOverride":null,"OrderId":3,"PdfOrderId":0,"IsPdfEnable":true,"PerformancePeriodEndType":4,"DiscretePerformanceEndType":4,"IsDisplayLatestAsAtDate":false,"RiskAnalyticalPeriod":60,"RiskBenchmark":0,"RiskFreeRate":"","ShowAsAtDate":false,"Columns":[{"ColumnId":489,"ColumnName":"Chart Key","OrderId":1,"DisplayName":"Key","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":null,"DataPath":"ChartKey","ColumnDataTypeId":20,"GroupDataSourceName":null},{"ColumnId":16,"ColumnName":"Name","OrderId":2,"DisplayName":"Name","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"Alt":"FundNameHyperLinkAltText","CssClassParam":"fe-column-name"},"DataPath":"Common.Name","ColumnDataTypeId":4,"GroupDataSourceName":"Common"},{"ColumnId":37,"ColumnName":"Year 1","OrderId":3,"DisplayName":"2022","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"CalendarPerformance.Year1","ColumnDataTypeId":2,"GroupDataSourceName":"CalendarPerformance"},{"ColumnId":55,"ColumnName":"Year 2","OrderId":4,"DisplayName":"2021","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"CalendarPerformance.Year2","ColumnDataTypeId":2,"GroupDataSourceName":"CalendarPerformance"},{"ColumnId":56,"ColumnName":"Year 3","OrderId":5,"DisplayName":"2020","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"CalendarPerformance.Year3","ColumnDataTypeId":2,"GroupDataSourceName":"CalendarPerformance"},{"ColumnId":57,"ColumnName":"Year 4","OrderId":6,"DisplayName":"2019","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"CalendarPerformance.Year4","ColumnDataTypeId":2,"GroupDataSourceName":"CalendarPerformance"},{"ColumnId":58,"ColumnName":"Year 5","OrderId":7,"DisplayName":"2018","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CustomFormatter":"{0}%","SingleLineParam":""},"DataPath":"CalendarPerformance.Year5","ColumnDataTypeId":2,"GroupDataSourceName":"CalendarPerformance"},{"ColumnId":490,"ColumnName":"Chart Delete Button","OrderId":8,"DisplayName":"Del","Responsiveness":0,"ColumnHelpText":"","DataTemplateParameters":{"CssClass":"chart-delete-button","ExtraAttributes":"data-typecode:${Common.TypeCode}, data-citicode:${Common.CitiCode}","ResponsiveClickFunction":"RemoveInstrument"},"DataPath":"ChartDeleteButton","ColumnDataTypeId":15,"GroupDataSourceName":null}]}],"ChartPanelSetting":{"ChartTabs":[{"Name":"Cumulative Performance","DisplayName":"","PdfOrderId":0,"IsPdfEnable":true,"ChartType":15,"PerformanceTimePeriod":1,"PerformancePeriodEndType":3,"ShowAsAtDate":true,"ShowAxisLabels":false,"XAxisLabel":"","YAxisLabel":"","XAxisDateControl":0,"ShowLegend":true,"DataType":1,"ChartOptions":{"TimePeriods":[{"DisplayText":"1","Value":"1m","GroupName":"m"},{"DisplayText":"3","Value":"3m","GroupName":"m"},{"DisplayText":"6","Value":"6m","GroupName":"m"},{"DisplayText":"1","Value":"1y","GroupName":"y"},{"DisplayText":"3","Value":"3y","GroupName":"y"},{"DisplayText":"5","Value":"5y","GroupName":"y"},{"DisplayText":"10","Value":"10y","GroupName":"y"}]},"ProjectToolTabId":30641685,"FilterButtonText":"","ShowPricePerformance":"111","ShowPrice":true,"ShowPerformance":true,"ShowIndexAmount":true},{"Name":"Discrete Performance","DisplayName":"","PdfOrderId":0,"IsPdfEnable":true,"ChartType":16,"PerformanceTimePeriod":5,"PerformancePeriodEndType":1,"ShowAsAtDate":true,"ShowAxisLabels":false,"XAxisLabel":"","YAxisLabel":"","XAxisDateControl":3,"ShowLegend":true,"DataType":0,"ChartOptions":{"TimePeriods":[{"DisplayText":"1","Value":"1y","GroupName":"y"},{"DisplayText":"3","Value":"3y","GroupName":"y"},{"DisplayText":"5","Value":"5y","GroupName":"y"},{"DisplayText":"10","Value":"10y","GroupName":"y"}]},"ProjectToolTabId":30641686,"FilterButtonText":"","ShowPricePerformance":"","ShowPrice":false,"ShowPerformance":false,"ShowIndexAmount":false},{"Name":"Scatter Chart","DisplayName":"","PdfOrderId":0,"IsPdfEnable":true,"ChartType":17,"PerformanceTimePeriod":1,"PerformancePeriodEndType":0,"ShowAsAtDate":true,"ShowAxisLabels":true,"XAxisLabel":"","YAxisLabel":"","XAxisDateControl":0,"ShowLegend":true,"DataType":0,"ChartOptions":{"TimePeriods":[{"DisplayText":"1","Value":"1m","GroupName":"m"},{"DisplayText":"3","Value":"3m","GroupName":"m"},{"DisplayText":"6","Value":"6m","GroupName":"m"},{"DisplayText":"1","Value":"1y","GroupName":"y"},{"DisplayText":"3","Value":"3y","GroupName":"y"},{"DisplayText":"5","Value":"5y","GroupName":"y"},{"DisplayText":"10","Value":"10y","GroupName":"y"}]},"ProjectToolTabId":30641688,"FilterButtonText":"","ShowPricePerformance":"","ShowPrice":false,"ShowPerformance":false,"ShowIndexAmount":false}],"CurrencyOptions":[{"DisplayText":"Local","Value":"","GroupName":null}],"ShowPercentageSymbolOnYAxis":false,"FontSize":{"Html":"10","Pdf":""}},"ShowPDFButton":false,"PDFButtonTextOverride":"","PDFTitle":"","Footer":{"Disclaimer":null,"HtmlAll":null,"PdfAll":null,"PdfLast":null,"DisclaimerText":"Disclaimer","FooterLogoText":"Powered by FE fundinfo"},"LanguageId":1,"LanguageCode":"en-gb","GrsProjectId":48001421,"DefaultThemeName":"Embark","SpecialUnitSetting":0,"MethodType":1,"CurrencyCode":"GBP","ToolId":19,"ProjectToolId":45007718,"DateFormat":"dd/MM/yyyy","DisplayIfNull":"-","DecimalPlaces":2,"ColourKeys":["#912227","#D3292E","#4F0800","#E66208","#F39000","#FED89C","#EDE4DF","#848484"],"DecimalPointSeparator":".","TooManyInstrumentsSelected":"A maximum of 10 instruments can be plotted on the chart. Please delete one or more instruments to continue.","NoInstrumentsSelected":"No instrument selected. Please select an instrument to add to the chart.","TokenError":"Error","TokenOk":"Ok","PageWidth":"1200","ProjectRanges":{"45003366":"Funds - Advance by Embark Platform","45003477":"Funds - Whole of Market - Life","45003478":"Funds - Whole of Market - Pension","45003479":"Funds - Whole of Market - IA UT and OEIC","45003480":"Funds - Whole of Market - FCA Recognised","45003481":"Funds - Whole of Market - Investment Companies","45003482":"Alternative Inv. - Whole of Market - Global ETFs","45003483":"Alternative Inv. - Whole of Market - Global Hedge","45003484":"Alternative Inv. - Whole of Market - Struct. Prod.","45003485":"Equities - Advance by Embark Platform","45003486":"Alternative Inv. - Advance by Embark","45003487":"Equities - Whole of Market - Equities","45003497":"Cash"},"BackButtonText":null,"HeaderText":null,"Translations":{"Error":"Error","OK":"Ok","TooManyInstrumentsSelected":"A maximum of 10 instruments can be plotted on the chart. Please delete one or more instruments to continue.","ResultsFound...":" results found…","Results":"Results","Agree":"Agree","Disagree":"Disagree","LocalCurrencyValue":"Local","AsAt":"as at","PerformanceCurrencyIsIn":"All performance is shown in {0} currency.","No1YrPerformanceChartHistory":"At least 1 year history is required to display a chart","SelectCurrency":"Select currency","TimePeriod":"Time Period","ChartSettings":"Chart Settings","ChartSettingPerformance":"Performance","PlotOptions":"Plot options","IndexAmount":"Indexed Value","IndexAmountWarningMessage":"Please enter a value greater than 0","Value":"Value","Price":"Price","SelectTimePeriod":"Select time period","Month":"Month","ResponsiveChartingYears":"Years","From":"From","To":"to","FromDateGreaterThanTo":"From date is greater than the to date","Message":"Message","EndDateWarningMessage":"End date cannot be before start date","Yes":"Yes","No":"No","SectorAverage":"Sector"},"AccessibilityStandard":true,"KeyboardNavigation":false,"LineChartBrokenLines":false,"BarChartHighContrast":false,"ScatterChartHighContrast":false,"DisplayDisclaimer":false,"DisclaimerHeaderText":"Disclaimer","DisclaimerReturnUrl":"","DisclaimerMultiLingualText":null}}</script>
+
+<script type="text/javascript" src="./Digital-Charting-Tool_files/vendor.94931204b715de9a5a44.js.download"></script>
+
+
+    <!-- Here we're passing down any data to be used by grabbed and parsed by Angular -->
+    <script>window['TRANSFER_CACHE'] = {};</script>
+    <script>(function(){function init(e,t){waitUntilReady((t||window).prebootData={opts:e,listening:!0,apps:[],listeners:[]})}function waitUntilReady(e,t){((t||window).document||{}).body?start(e):setTimeout(function(){waitUntilReady(e)},10)}function start(e,t){var o=t||window;if(!o.prebootStarted){o.prebootStarted=!0;var r=o.document||{},n=(e.opts||{}).eventSelectors||[];e.overlay=createOverlay(r),getAppRoots(r,e.opts).forEach(function(t){var o={root:t,events:[]};e.apps.push(o),n.forEach(function(t){return handleEvents(e,o,t)})})}}function createOverlay(e){var t=e.createElement("div");return t.setAttribute("id","prebootOverlay"),t.setAttribute("style","display:none;position:absolute;left:0;top:0;width:100%;height:100%;z-index:999999;background:black;opacity:.3"),e.body.appendChild(t),t}function getAppRoots(e,t){var o=[];return t.appRoot&&t.appRoot.length&&[].concat(t.appRoot).forEach(function(e){return o.push({serverSelector:e})}),o.forEach(function(o){o.serverNode=e.querySelector(o.serverSelector),o.clientSelector=o.clientSelector||o.serverSelector,o.clientSelector!==o.serverSelector?o.clientNode=e.querySelector(o.clientSelector):t.buffer?o.clientNode=createBuffer(o):o.clientNode=o.serverNode,o.serverNode||console.log("No server node found for selector: "+o.serverSelector)}),o}function handleEvents(e,t,o){var r=t.root.serverNode;if(r){var n=r.querySelectorAll(o.selector);if(n)for(var i=0,a=n;i<a.length;i++)!function(r){o.events.forEach(function(n){var i=createListenHandler(e,o,t,r);r.addEventListener(n,i),e.listeners.push({node:r,eventName:n,handler:i})})}(a[i])}}function createListenHandler(e,t,o,r){var n=["keyup","keydown","focusin","mouseup","mousedown"],i=["INPUT","TEXTAREA"];return function(a){var c=o.root,l=a.type;if(r&&l){var s=t.keyCodes;if(!s||!s.length||s.filter(function(e){return a.which===e}).length){t.preventDefault&&a.preventDefault(),t.action&&t.action(r,a);var d=getNodeKeyForPreboot({root:c,node:r});if(n.indexOf(l)>=0&&i.indexOf(r.tagName)>=0?e.activeNode={root:c,node:r,nodeKey:d,selection:getSelection(r)}:"change"!==l&&"focusout"!==l&&(e.activeNode=null),t.freeze){var u=e.overlay;u.style.display="block",setTimeout(function(){u.style.display="none"},1e4)}t.noReplay||o.events.push({node:r,nodeKey:d,event:a,name:l})}}}}function getSelection(e){var t=(e=e||{}).value||"",o={start:t.length,end:t.length,direction:"forward"};try{(e.selectionStart||0===e.selectionStart)&&(o.start=e.selectionStart,o.end=e.selectionEnd,o.direction=e.selectionDirection)}catch(e){}return o}function createBuffer(e){var t=e.serverNode;if(!t||!t.parentNode||"html"===e.serverSelector||"body"===e.serverSelector)return t;var o=t.cloneNode(!1);return o&&(o.style.display="none",t.parentNode.insertBefore(o,t)),o}function getNodeKeyForPreboot(e){for(var t=[],o=e.root,r=e.node,n=r;n&&n!==o.serverNode&&n!==o.clientNode;)t.push(n),n=n.parentNode;n&&t.push(n);for(var i=(r.nodeName||"unknown")+"_"+o.serverSelector,a=t.length-1;a>=0;a--)if((n=t[a]).childNodes&&a>0)for(var c=0;c<n.childNodes.length;c++)if(n.childNodes[c]===t[a-1]){i+="_s"+(c+1);break}return i}init({"buffer":true,"minify":true,"eventSelectors":[{"selector":"input,textarea","events":["keypress","keyup","keydown","input","change"]},{"selector":"select,option","events":["change"]},{"selector":"input","events":["keyup"],"preventDefault":true,"keyCodes":[13],"freeze":true},{"selector":"form","events":["submit"],"preventDefault":true,"freeze":true},{"selector":"input,textarea","events":["focusin","focusout","mousedown","mouseup"],"noReplay":true},{"selector":"button","events":["click"],"preventDefault":true,"freeze":true}],"appRoot":"app-root"})})()</script>
+    
+    
+    
+        <script type="text/javascript" src="./Digital-Charting-Tool_files/main-client.0ac93eac76c24c2261f8.js.download"></script>
+    
+
+
+
+</body></html>

@@ -1,0 +1,92 @@
+﻿
+var FundCentre = FundCentre || {}
+
+FundCentre.AsAtDate = function () {
+
+    SetAsDateLabel = function (model, container, fundInfo) {
+
+        var containerId = container.attr("id");
+        var containerName = containerId.substring(0, containerId.indexOf('_'));
+        var parent = $('#' + containerId).parents('.fe-tabs-container').siblings('.fe-asatdate-containers');
+        parent.css('visibility', 'visible');
+        var performanceAsAtText = '', discreteAsAtPerformanceText = '', calendarAsAtPerformanceText = '', riskAsAtText = '';
+
+        if ($('li[data-id=fe-performance-astext]').length > 0) {
+            performanceAsAtText = new FundCentre.AsAtDateLabel(model.PerformanceAsText, $('li[data-id=fe-performance-astext] span', parent), $('li[data-id=fe-performance-astext]', parent));
+            discreteAsAtPerformanceText = new FundCentre.AsAtDateLabel(model.DiscretePerformanceAsText, $('li[data-id=fe-discreteperformance-astext] span', parent), $('li[data-id=fe-discreteperformance-astext]', parent));
+            calendarAsAtPerformanceText = new FundCentre.AsAtDateLabel(model.CalendarPerformanceAsText, $('li[data-id=fe-calenderperformance-astext] span', parent), $('li[data-id=fe-calenderperformance-astext]', parent));
+            riskAsAtText = new FundCentre.AsAtDateLabel(model.RiskAsText, $('li[data-id=fe-risk-astext] span', parent), $('li[data-id=fe-risk-astext]', parent));
+        }
+        else {
+            performanceAsAtText = new FundCentre.AsAtDateLabel(model.PerformanceAsText, $('li[id=fe-performance-astext] span', parent), $('li[id=fe-performance-astext]', parent));
+            discreteAsAtPerformanceText = new FundCentre.AsAtDateLabel(model.DiscretePerformanceAsText, $('li[id=fe-discreteperformance-astext] span', parent), $('li[id=fe-discreteperformance-astext]', parent));
+            calendarAsAtPerformanceText = new FundCentre.AsAtDateLabel(model.CalendarPerformanceAsText, $('li[id=fe-calenderperformance-astext] span', parent), $('li[id=fe-calenderperformance-astext]', parent));
+            riskAsAtText = new FundCentre.AsAtDateLabel(model.RiskAsText, $('li[id=fe-risk-astext] span', parent), $('li[id=fe-risk-astext]', parent));
+        }
+        
+
+        if (model.AsAtDateModel != null) {
+            $.each(model.AsAtDateModel, function (index, tabModel) {
+
+                if (tabModel.Name == containerName) {
+
+                    if (tabModel.HasPerformance) {
+                        performanceAsAtText.Show();
+                    }
+                    else {
+                        performanceAsAtText.Hide();
+                    }
+
+                    if (tabModel.HasDiscrete) {
+                        discreteAsAtPerformanceText.Show();
+                    }
+                    else {
+                        discreteAsAtPerformanceText.Hide();
+                    }
+
+                    if (tabModel.HasCalendar) {
+                        calendarAsAtPerformanceText.Show();
+                    }
+                    else {
+                        calendarAsAtPerformanceText.Hide();
+                    }
+
+                    if (tabModel.HasRisk) {
+                        riskAsAtText.Show();
+                    }
+                    else {
+                        riskAsAtText.Hide();
+                    }
+                }
+            });
+        }
+    }
+
+
+    return {
+        SetAsAtDate: SetAsDateLabel
+    };
+} ();
+
+
+
+FundCentre.AsAtDateLabel = function (asAtText, label, parentItem) {
+
+    this.label = label;
+    this.asAtText = asAtText;
+    this.parentItem = parentItem;
+
+    this.Show = function () {
+        if (this.asAtText && this.asAtText != '') {
+            label.html(this.asAtText);
+            parentItem.show();
+        }
+        else {
+            this.Hide();
+        }
+    }
+
+    this.Hide = function () {
+        parentItem.hide();
+    }
+};

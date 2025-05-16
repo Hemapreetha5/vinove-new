@@ -1,0 +1,2546 @@
+/* ---------- General classes --------------- */
+@font-face {
+	font-family: 'MyriadPro-Regular';
+	src: url('fe_img/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),  url('fe_img/MyriadPro-Regular.otf')  format('opentype'),
+		   url('fe_img/MyriadPro-Regular.woff') format('woff'), url('fe_img/MyriadPro-Regular.ttf')  format('truetype'), url('fe_img/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+  }
+  @font-face {
+	font-family: 'MyriadPro-Light';  
+	  src: url('fe_img/MyriadPro-Light.eot?#iefix') format('embedded-opentype'),  url('fe_img/MyriadPro-Light.otf')  format('opentype'),
+		   url('fe_img/MyriadPro-Light.woff') format('woff'), url('fe_img/MyriadPro-Light.ttf')  format('truetype'), url('fe_img/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+  }
+  :root{
+	  --theme-black:#000;
+	  --theme-darkgray:#505050;
+	  --theme-lightgray:#F0F0F0;
+	  --theme-blue:#0000FF;
+	  --theme-green:#1dd698;
+	  --theme-white:#ffffff;
+	  --theme-red:#D31E25;
+  }
+  body {
+	  font:normal 13px "MyriadPro-Regular", sans-serif;
+	  color: #333;
+	  padding: 0px;
+	  margin: 0px;
+	  background:#fff none;
+  }
+  p{
+	  padding: 0 0 15px;
+	  margin: 0;
+  }
+  a{
+	  color: #333;
+	  text-decoration: underline;
+  }
+  a:hover{
+	  text-decoration: none;
+	  color: #333;
+  }
+  li { list-style-type:none; list-style-image:none;}
+  a:focus, li:focus, span:focus, button:focus, select:focus, input:focus, *:focus {
+	  outline: none !important;
+  }
+  .ui-widget{
+	  font-size: 15px;
+  }
+  .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{font-family:"MyriadPro-Regular", sans-serif !important;}
+  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-widget-header {background: none transparent; border: 0 none;}
+  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background: none;}
+  .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: inherit; text-decoration: inherit;}
+  .ui-button-text-only .ui-button-text, .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text{ padding:0; line-height:20px; }
+  .page {
+	  padding: 0px;
+	  /*! min-height: 1000px; */	
+	  position:relative;
+	  margin: 0 auto;
+	  width: 100% !important;
+  }
+  .ui-page-content-panel {
+	  margin: 0;
+  }
+  .ui-logo-container{
+	  height: 90px;
+	  display: block;
+	  /* background:url(fe_img/novia-logo.png) no-repeat left 7px; */
+	  background:url("fe_img/logo-image.png") no-repeat left 350px top 20px;
+	  border-bottom: 0;
+	  margin: 0 auto;
+	  max-width: 1080px;
+	  background-size: auto 50px;
+  }
+  .ui-logo-container img{
+	  display:none;
+  }
+  /* ============== Search =========================== */ 
+  #advancedSearchContainer {
+	  background: transparent;
+	  border:0;
+	  border-radius:0;
+	  padding:0;
+	  margin-top: 0;
+  }
+  .fe-search-searchbox-container{
+	  margin: 5px 0 0;
+	  padding: 0 0 0 12px;
+	  float: inherit;
+	  width: auto;
+	  margin: 0;
+	  position: absolute;
+	  top: 0;
+	  border-left: 1px solid #9f9e9e;
+  }
+  .fe-search-searchbox-container+div{
+	  display:none
+  }
+  .fe-search-textbox, .fe-search-textbox:focus /* search input */{
+	  font:normal 16px "MyriadPro-Regular", sans-serif !important;
+	  color: #fff !important;
+	  height: auto;
+	  padding: 10px 4px 10px 0;
+	  margin: 5px 5px 0 0;
+	  background-color: transparent;
+	  border: 0;
+	  border-radius:0;
+	  -webkit-border-radius:0;
+	  -moz-border-radius:0;
+  }
+  .ui-autocomplete /* auto search textbox */{
+	  z-index:9999 !important;
+	  border-radius:3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+  }
+  .fe-button.ui-state-default, .ui-button.ui-state-default, .fe-button.fe-search-button, .fe-column-icon-responsive-AddtoPortfolio, .pscan-edit-uploadbutton , .ui-dialog-buttonset .ui-button /* All buttons */{
+	  font: normal 15px "MyriadPro-Regular", sans-serif;
+	  color: var(--theme-white);
+	  text-decoration: none;
+	  width: auto !important;
+	  height:auto;
+	  margin: 0 4px 0 0;
+	  padding: 7px 10px 5px;
+	  background: var(--theme-green) none;
+	  text-transform: uppercase;
+	  border:0;
+	  border-radius:3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+	  cursor:pointer;
+	  box-shadow: 0 2px 2px 0 rgba(0,118,138,0.14),0 3px 1px -2px rgba(0,118,138,0.2),0 1px 5px 0 rgba(0,118,138,0.12);
+  }
+  .fe-button:hover,  .ui-button:hover, 
+  .fe-column-icon-responsive-AddtoPortfolio:hover, .pscan-edit-uploadbutton:hover /* All buttons hover */{
+	  text-decoration: none;	
+	  background: #19c289 none;
+	  box-shadow: 0 14px 26px -12px rgba(0,118,138,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,118,138,0.2);
+  }
+  td.fe-column-icon-responsive-AddtoPortfolio{
+	  display: table-cell !important;
+	  width: 20px !important;
+	  box-shadow: none !important;
+  }
+  
+  #basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover /* search button*/ {
+	  background: url(fe_img/icon-search.png) no-repeat center center transparent !important;
+	  border: 0 none;
+	  color: transparent;
+	  font-size: 0 !important;
+	  height: 46px;
+	  margin: 0 !important;
+	  padding: 0 0 0 20px;
+	  text-decoration: none;
+	  vertical-align: top;
+	  width: 50px !important;
+	  border-radius: 0;
+	  box-shadow: none;
+  }
+  .fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus,.fe-advSearch-button.ui-state-hover /* advanced search button -----animation */{
+	  font-size:0 !important;
+	  color: transparent;
+	  padding:0;
+	  text-decoration: none;
+	  margin: 0 4px 0 0;
+	  width: 50px !important;
+	  height: 46px;
+	  vertical-align: top;
+	  background: transparent url(fe_img/ico_advance.png) no-repeat center center;
+	  border:0;
+	  border-left: 1px solid #9f9e9e;
+	  border-radius:0;
+	  box-shadow: none;
+  }
+  /*advance search sorting icon */
+  #advanceSearch .ui-icon-triangle-1-s{background:none no-repeat 5px center;}
+  #advanceSearch .ui-icon-triangle-1-n{background:none no-repeat 5px center;}
+  .fe-search-clear-button.ui-state-default,.fe-search-clear-button.ui-state-focus, .fe-search-clear-button.ui-state-hover /* clearbutton */{
+	  background: transparent url(fe_img/ico_clear.png) no-repeat center center !important;
+	  color: transparent;
+	  font-size:0 !important;
+	  height: 46px;
+	  margin: 0 !important;
+	  padding: 0;
+	  text-decoration: none;
+	  top: 0;
+	  vertical-align: top;
+	  width: 50px !important;
+	  border:0;
+	  border-left: 1px solid #9f9e9e;
+		  border-right: 1px solid #9f9e9e;
+	  border-radius:0;
+	  box-shadow: none;
+  }
+  #advance{
+	  background: #ffffff;
+	  border: 0 none;
+  /*
+	  border-radius: 0 0 5px 5px;
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+  */
+	  margin: 0px 0 0;
+	  padding:12px;
+	  z-index:100;
+	  position:relative;
+	  padding-bottom:12px;
+	  border: 1px solid var(--theme-darkgray);
+	  border-top: 0;
+  }
+  .fe-search-fileters-container {
+	  float: left;
+	  height: 45px;
+	  width: 240px;
+	  margin: 0 20px 30px 0 !important;
+	  font: normal 16px "MyriadPro-Regular", sans-serif;
+	  padding: 0;
+	  position:relative;
+  }
+  .fe-search-fileters-container.fe-search-filter-OngoingCharge{
+	  margin-bottom: 0 !important;
+  }
+  .fe-collapsiblefilter-header{
+	  margin-bottom:10px;
+  }
+  .fe-search-fileters-label /* filter text - both sliders and dropdowns */{
+	  font-weight: normal;
+	  color: var(--theme-green);
+	  font-size: 14px;
+	  display: inline-block;
+	  margin-bottom: 10px;
+  }
+  .fe-search-fileters-slider-value {
+	  font-weight: normal;
+	  display: inline-block;
+	  margin-left: 10px;
+	  color: var(--theme-green);
+  }
+  .fe-search-fileters-container .mfs-container{
+	  width:100% !important;
+  }
+  .fe-search-performance-filter-options .mfs-container{
+	  width: 122px !important;
+  }
+  .fe-search-performance-filter-operator .mfs-container {
+	  width: 40px !important;
+  }
+  .fe-search-performance-filter-value{
+	  margin: 0 5px 0;
+	  width: 45px;
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+	  height: 25px;
+	  padding: 0;
+  }
+  .fe-search-performance-filter-percentage{
+	  
+  color: #68c1d0;
+  }
+  /*mfs container*/
+  .mfs-container a.mfs-selected-option /* dropdown list will attach with dropdown */{
+	  margin:0;
+	  padding: 5px 5px 0 0;
+	  font:15px "MyriadPro-Regular", sans-serif;
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+	  color: var(--theme-black);
+  }
+  .fe-fundCentre-body .mfs-container a.mfs-selected-option{
+	  padding: 5px 5px 2px 0;
+  }
+  .mfs-container A.mfs-selected-option span{
+	  *
+	  padding-top:0;
+	  *
+	  padding-bottom:8px;
+	  border-left:0;
+	  padding: 5px 0 0 0;
+	  background: url(fe_img/dropDownArrow.png) no-repeat scroll center 11px #fff;
+	  float: left;
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+  }
+  .fe-fundCentre-body .mfs-container A.mfs-selected-option span{
+	  padding: 5px 0 2px 0;
+  }
+  .mfs-options{
+	  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+	  border: 0;
+	  border-radius: 3px;
+	  padding: 5px;
+	  margin-top: 5px;
+	  background-color: #fff;
+	  box-shadow: 0 9px 46px 8px rgba(0,0,0,0.2), 0 11px 15px -7px rgba(0,0,0,0.14), 0 24px 38px 3px rgba(0,0,0,0.12);
+  }
+  .mfs-options li.mfs-optgroup {
+	  color: #444444;
+	  font-weight: bold;
+	  padding: 4px 5px;
+  }
+  .mfs-optgroup-option {
+	  padding-left: 10px;
+	  font-weight: normal;
+  }
+  .mfs-options li a{
+	  font:normal 15px "MyriadPro-Regular", sans-serif;
+	  padding: 8px 5px 6px;
+	  color: #333;
+  }
+  .mfs-options li.selected, .mfs-options li:hover, .mfs-options li.active  {
+	  background-color: var(--theme-green);
+	  margin: 0;
+	  border-radius: 2px;
+	  -webkit-transition: all 150ms linear;
+	  -moz-transition: all 150ms linear;
+	  -o-transition: all 150ms linear;
+	  -ms-transition: all 150ms linear;
+	  transition: all 150ms linear;
+	  box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.2)
+  }
+  .mfs-options li.selected, .mfs-options li.active {
+	  background-color: var(--theme-green);
+  }
+  .mfs-options li.selected a, .mfs-options li.active a, .mfs-options li:hover a{
+	  color:var(--theme-white);
+  }
+  .mfs-options li a:focus, .mfs-options li a:hover{
+	  box-shadow: 0 5px 20px 0px rgba(0,0,0,0.2),0 13px 24px -11px var(--theme-green);
+  }
+  .mfs-options li.mfs-optgroup{
+	  font:bold 15px "MyriadPro-Regular", sans-serif;
+	  color: #000;
+  }
+  .mfs-options li.mfs-optgroup:hover {
+	  background: transparent none;
+  }
+  /* ============== Sliders =========================== */ 
+  .ui-slider{
+	  background: var(--theme-white) none;
+	  opacity: 1;
+	  height: 0;
+	  margin:0;
+	  width: 100%;
+	  border: 0;
+	  border-bottom: 1px solid #3391a1;
+  }
+  .ui-slider-range.ui-widget-header{
+	  background: #646363;
+	  opacity: 1;
+	  margin-left:5px;
+	  height: 1px;
+  }
+  .ui-slider-handle.ui-state-default, .ui-slider-handle.ui-state-default.ui-state-focus /* handle  */{
+	  opacity: 1;
+	  background-color: var(--theme-green);
+	  height: 10px;
+	  width: 10px;
+	  margin-left: 0;
+	  -webkit-border-radius: 0;
+	  -moz-border-radius:0;
+	  border-radius: 0;
+  }
+  .ui-slider-handle.ui-state-default.ui-state-focus /* handle focus */{
+	  background-color: var(--theme-green);  
+  }
+  /* --------- End of sliders ---------------- */
+  .fe-topmenu{
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  width: 100%;
+	  background: transparent;
+	  margin-bottom:10px
+  }
+  .fe-topmenu > .ui-scroll-tabs-header {
+	  /* background: var(--theme-darkgray) url(fe_img/menu-shadow.png) repeat-x left top; */
+	  background-color: var(--theme-darkgray);
+  }
+  .fe-topmenu > .ui-scroll-tabs-header .stNavMain{
+	  display: none
+  }
+  /* ============== Top Menu =========================== */ 
+  .fe-menuTabs-list{
+	  top: 0;
+	  float: inherit;
+	  height: 46px;
+	  max-width: 1080px;
+	  margin: 0 auto !important;
+	  text-align: right;
+	  padding: 0 !important;
+  }
+  .fe-topmenu .fe-menuTabs-list li, .fe-topmenu .fe-menuTabs-list li:hover{
+	  list-style-type: none;
+	  list-style-image: none;
+	  padding: 0;
+	  margin: -1px 0 0 0 !important;
+	  color: #ababab;
+	  border:0;
+	  border-right: 1px solid #9f9e9e;
+	  background: transparent none;
+	  border-radius:0;
+  }
+  .fe-topmenu .fe-menuTabs-list li.selected {
+	  background: transparent none;
+	  padding-bottom: 0;
+  }
+  .fe-topmenu.ui-tabs .fe-menuTabs-list li a{
+	  padding: 15px 32px 13px;
+	  display: block;
+	  color: #fff;
+	  text-decoration: none;
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+  }
+  .fe-topmenu .fe-menuTabs-list li:hover a{
+	  color: #fff !important;
+  }
+  .fe-topmenu .fe-menuTabs-list li a.selected{
+	  color: var(--theme-green) !important;
+	  text-decoration: none;
+  }
+  /*End of Top Menu UL LI*/ 
+  .ui-tabs .ui-tabs-panel{
+	  padding:0;
+	  margin: 0 auto;	
+  }
+  .fe-fundCentre-body .ui-tabs .ui-tabs-panel{
+	  max-width: 1080px;
+	  
+  }
+  .fe-fundCentre-body .ui-tabs .ui-tabs-panel.fe-mastertabs-PortfolioMasterTab{
+	  position: relative;
+  }
+  .fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+	  padding: 0;
+  }
+  .fe-asatdate-containers{
+	  margin-bottom:5px;
+	  font-size:14px;
+  }
+  .fe-tabs-container.ui-tabs /*Content Main section /*ie 7 8 fix for tabs*/ {
+	  position:relative;
+	  z-index:50;	
+	  margin-top:2px;
+	  background:transparent;
+  }
+  /* ============== Secondary tabs =========================== */ 
+  .fe-tabs-container, .ui-tabs /* tabs section */{
+	  border: 0;
+	  padding: 0;
+  }
+  .fe-tabs-container-FundCentre .ui-scroll-tabs-header {
+	  background: var(--theme-green) none;
+  }
+  /* Fundcenter Tabs & Charting */
+  .fe-tabs-container .ui-scroll-tabs-header, .fe-chart-body .ui-scroll-tabs-header, .fe-tabs-autoLoad .ui-scroll-tabs-header{
+	  /* background: var(--theme-green) none; */
+  }
+  .fe-tabs.ui-tabs-nav /* UL background*/{
+	  height: 39px;	
+	  padding:0;
+	  background:var(--theme-green) none;
+  }
+  .fe-tabs-item.ui-state-default /* LI background*/{
+	  text-decoration: none;
+	  font: 15px "MyriadPro-Regular", sans-serif;
+	  opacity: 1;
+	  margin: 0 !important;
+	  background: none transparent;
+	  border-right: 0;
+	  list-style:none;
+	  top: 0 !important
+  }
+  .fe-tabs-item.ui-state-default a /* Li normal text */{
+	  display: block;
+	  color: var(--theme-white);
+	  padding: 12px 12px 9px !important;
+	  text-align: center;
+	  white-space: normal;
+	  text-transform: uppercase;
+	  background-color: var(--theme-green);
+  }
+  .fe-tabs-item.ui-state-default.ui-state-hover,.fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover background */{
+	  background:  var(--theme-darkgray);
+  }
+  .fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/{
+	  color: var(--theme-white);
+  }
+  .fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/{
+	  text-decoration: none;	
+	  opacity: 1;
+  }
+  .fe-tabs-item.ui-state-default.ui-state-active,.fe-tabs-item.ui-state-default.ui-state-active a {
+	  background:var(--theme-black) none;
+  }
+  .fe-tabs-item.ui-state-default.ui-state-active a /* LI selected text */{
+	  color: var(--theme-white);
+  }
+  .ui-tabs .ui-tabs-nav li.ui-tabs-selected{
+	  padding-bottom: 0
+  }
+  .stNavMain .ui-button.ui-state-default {
+	  margin-right: 0;
+	  padding-top: 4px;
+	  border-radius: 0;
+  }
+  .stNavPrevArrow .ui-icon, .stNavNextArrow .ui-icon{
+	  background: url('fe_img/prev-icon.png') no-repeat center !important;
+	  width: 15px;
+	  height: 15px;
+	  display: block;
+	  background-size: auto 15px !important;
+  }
+  .stNavNextArrow .ui-icon{
+	  background-image: url('fe_img/next-icon.png') !important;
+  }
+  /* End of tabs*/
+  /* the tab contents section */
+  .ui-tabs.ui-tabs-panel.fe-tabs-datacontainer {
+	  padding: 0;
+	  background: transparent none;
+	  color: #333;
+  }
+  .fe-datatable {
+	  margin: 0;
+	  border-collapse: collapse;
+	  border-spacing: 0;
+	  border-right:0;
+  }
+  /* ============== Pagination =========================== */ 
+  .fe-datatable-pagination-container.ui-corner-top /* pagination row top */ {
+	  font:normal 14px "MyriadPro-Regular", sans-serif;
+	  padding: 10px 6px 6px 0;
+	  margin: 0;
+	  border: 0;
+	  background-color: transparent;
+	  height:auto;
+  }
+  .fe-datatable-pagination-container .fe-paging-navContainer /* Disable top pagination */ {
+	  display: none !important;
+  }
+  .fe-tabs-autoLoad .fe-datatable-pagination-container.ui-corner-top /* remove padding for portfolio scan html page. This will avoid extra space*/{
+	  padding:0;
+  }
+  .fe-paging-footer.ui-corner-bottom /* pagination row bottom */{
+	  font:normal 15px "MyriadPro-Regular", sans-serif;
+	  padding: 1px 6px;
+	  background-color: transparent;
+	  border:0;
+	  height:auto;
+  }
+  .fe-paging-navContainer /* pagination control section*/{
+	  padding: 13px 0px 13px 0px;
+	  margin-right: 0;
+  }
+  .pagination .ui-state-default, .pagination .ui-state-default /* pagination button normal */{
+	  background: none transparent;
+	  border: 0 none;
+	  color: #999;
+	  font-weight: normal;
+	  margin: 0 2px 0 0;
+	  padding: 5px 9px;
+	  text-decoration: none;
+	  text-shadow: none !important;
+	  opacity:1;
+	  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	  filter: alpha(opacity=100);
+	  -webkit-border-radius: 100%;
+	  -moz-border-radius: 100%;
+	  border-radius: 100%;
+	  text-transform: uppercase
+  }
+  .pagination .ui-state-disabled, .pagination .ui-paging-ellipse{
+	  opacity:0.5;
+  }
+  .pagination .ui-state-highlight /* pagination buttons selected */{
+	  background: none var(--theme-green);
+	  border: 0 none;
+	  color: #fff;
+	  font-weight: normal; 
+	  opacity:1;   
+	  box-shadow: 0 4px 5px 0 rgba(0,118,138,0.14),0 1px 10px 0 rgba(0,118,138,0.12),0 2px 4px -1px rgba(0,118,138,0.2)
+  }
+  .pagination .ui-state-default.ui-paging-prev {} /* use image for prev - default stage*/ .pagination .ui-state-default.ui-state-disabled.ui-paging-prev {} /* use image for prev - disabled stage*/
+  .pagination .ui-state-default.ui-paging-next{}/* use image for next - default stage*/ .pagination .ui-state-default.ui-paging-next{}/* use image for next - disabled stage*/
+  /* End of Pagination */
+  .fe-paging-displayContainer {
+	  color: #000;
+	  margin: 5px 0 0;
+	  *margin-top:-6px
+  }
+  .fe-paging-displayContainer .mfs-container .mfs-options{
+	  min-height: 130px;
+  }
+  .fe-paging-displayContainer .fe-paging-showtext, .fe-paging-displayContainer .fe-display-count{
+	  padding-top: 7px;
+  }
+  .fe-paging-showmainunits{
+	  color:#000;
+	  padding: 8px 0 0;
+  }
+  .fe-paging-showmainunits > input{
+	  vertical-align:bottom;
+  }
+  /* ============== Table =========================== */ 
+  .fe-datatable th, .fe-portfolioconstituents-dialog table thead th{
+	  padding: 8px 6px;
+	  font: 16px/16px "MyriadPro-Light", sans-serif;
+	  color: #333;
+	  height: 44px;
+	  vertical-align: bottom;
+	  border-spacing: 0;
+	  background-color: transparent;
+	  border-bottom: 0;
+	  min-width:50px;
+  }
+  .fe-soretedColumn /* th sorted (selected table header field) */{
+	  background-color: #e9e9e9;
+  }
+  .fe-columnheader-Change, .fe-columnheader-Change_{
+	  text-align:right;
+  }
+  .fe-datatable th .ui-icon-triangle-1-n /* sorting arrow for table header field - down arrow */ {
+	  /* background: url("fe_img/ico_sortdown.png") no-repeat scroll center bottom ; */
+  }
+  .fe-datatable th .ui-icon-triangle-1-s /* sorting arrow for table header field - up arrow */{
+	  /*background: url("fe_img/ico_sortup.png") no-repeat scroll center bottom;*/
+  }
+  /* -----   table row ---- */
+  .fe-datatable td{
+	  background-color: #fff;
+	  padding: 7px 6px;
+	  vertical-align: middle;
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  height:24px;	
+	  border-top: 1px solid #ddd;
+  }
+  .fe-datatable .fe-fund-tableBody tr:first-child > td{
+	  border-color:var(--theme-green)
+  }
+  .fe-datatable .odd td, .fe-dialog-portfolioconstituents table tbody tr.odd td, .fe-datatable .odd td.dt-risk{
+	  background-color: var(--theme-white) !important;
+  }
+  .fe-datatable .even td, .fe-dialog-portfolioconstituents table tbody tr.even td, .fe-datatable .even td.dt-risk{
+	  background-color: var(--theme-lightgray) !important;
+  }
+  .fe-portfolio-totalFooter td, .fe-datatable .total TD /* total row */{
+	  font-weight: bold;
+	  background-color: transparent;
+	  border-bottom:0;
+  }
+  .fe-datatable th:first-child, .fe-datatable td:first-child{
+	  text-align: left;
+  }
+  .fe-portfolio-totalValueContainer{
+	  white-space: nowrap
+  }
+  td.fe-column-name{
+	  min-width: 150px;
+	   
+	  display: table-cell !important;
+  }
+  .fe-datatable .mouseover /* tr hover */{}
+  .dt-risk {
+	  background: url(fe_img/bg_RiskScore.png) no-repeat center center !important;
+	  color: #444444;
+	  font-size: 11px;
+	  font-weight: normal;
+  }
+  td.fe-change-positive, .fe-datatable .even td.fe-change-positive /* positive even row */{
+	  color: #009900;
+	  text-align: right;
+	  /* background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center; */
+  }
+  .fe-datatable .odd td.fe-change-positive /* positive odd row */{
+	  color: #009900;
+	  text-align: right;
+	  /*background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;*/
+  }
+  td.fe-change-negative, .fe-datatable .even td.fe-change-negative /* negative even row */{
+	  color: #ff0000;
+	  text-align: right;
+  }
+  .fe-datatable .odd td.fe-change-negative /* negative odd row */{
+	  color: #ff0000;
+	  text-align: right;
+  }
+  td.fe-change-neutral, .fe-datatable .even td.fe-change-neutral /* neutral even row */{
+	  text-align: right;
+	  /*background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;*/
+  }
+  .fe-datatable .odd td.fe-change-neutral /* neutral odd row */{
+	  text-align: right;
+	  /*background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;*/
+  }
+  a.fe-ico-basket-shortlist-add, a.fe-ico-basket-portfolio-add, td.fe-icon-basket-add a /* add fund icon */{
+	  
+	  background: url(fe_img/ico_addFund.png) no-repeat scroll center 1px transparent;
+	  float: left;
+	  height: 18px;
+	  padding: 0 0 0 17px;	
+  }
+  a.fe-ico-basket-remove, td.fe-icon-basket-remove a /* remove fund icon */{	
+	  background: url(fe_img/ico_remove.png) no-repeat scroll center 1px transparent;
+	  float: left;
+	  height: 18px;
+	  padding: 0 0 0 17px;	
+  }
+  td.fe-icon-factsheet a, a.fe-icon-factsheet, td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon */{
+	  background: url(fe_img/ico_fs.png) no-repeat left center;
+	  width: 20px;
+	  height: 20px;
+	  padding: 0;
+  }
+  td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon hover */{
+	  background-image: url(fe_img/ico_fs.png) ;
+  }
+  .fe-fund-document-icon, .fe-fund-document-icon:hover /*document icon */{
+	  background: url(fe_img/ico_fs.png) no-repeat left center;
+	  width: 20px;
+	  height: 20px;
+	  padding: 0;
+  }
+  .cascade-col .fe-fund-document-icon, .cascade-col .fe-fund-document-icon:hover {
+	  padding-left: 25px;
+	  white-space: nowrap
+  }
+  td.fe-icon-chart a, a.fe-icon-chart, td.fe-icon-chart a:hover, a.fe-icon-chart:hover, .fe-column-icon-responsive-ClientFactsheetLink a/*chart icon */{
+	  background: url(fe_img/ico_chart.png) no-repeat left center;
+	  width: 20px;
+	  height: 20px;
+	  padding: 0;
+	  margin: 0 auto;
+  }
+  td.fe-icon-chart a:hover, a.fe-icon-chart:hover, .fe-column-icon-responsive-ClientFactsheetLink a:hover /*chart icon hover */{
+	  background-image: url(fe_img/ico_chart.png);
+  }
+  .fe-fund-document-icon:hover /*document icon hover */{
+	  background-image: url(fe_img/ico_fs.png);
+  }
+  .fe-download-icon, .fe-download-icon:hover {
+	  background: url(fe_img/ico_download1.png) no-repeat left center;
+	  width: 20px;
+	  height: 20px;
+	  padding: 0;
+  }
+  td.fe-deleteRow a, .delete /* delete fund */{
+	  background: url(fe_img/ico_deleteBasket.png) no-repeat;
+	  height: 17px;
+	  width: 16px;
+	  margin: auto;
+	  padding: 0;
+	  cursor: pointer;
+	  display: block;
+	  text-decoration:none;
+  }
+  .fe-datatable .fe-basket-shortlistitems td a, .fe-datatable .fe-basket-portfolioitems TD a /* Disable basket icon */{
+	  background: url(fe_img/ico_disabledBasket.png) no-repeat;
+	  padding: 0 0 0 17px;
+	  cursor: default;
+	  height:18px
+  }
+  td.fe-deleteImage a /* Delete Basket icon */{
+	  background: url(fe_img/ico_deleteBasket.png) no-repeat;
+	  padding: 2px 0 0 17px;
+	  text-decoration:none;
+  }
+  .fe-noresult /* container for the no results message */{
+	  color: #ff0000;
+	  font:normal 13px "MyriadPro-Regular", sans-serif;
+	  text-align: center;
+	  padding: 20px;
+  }
+  .fe-column-icon-responsive-AddtoPortfolio a {
+	  color: #fff;
+	  text-decoration: none;
+  }
+  .fe-icon-portfolio-add {
+	  /*! width: 18px !important; */
+  }
+  .cascade-col.pdfableColumn.fe-icon-portfolio-add.fe-icon-portfolio.fe-column-icon-responsive.fe-column-icon-responsive-AddtoPortfolio {
+  
+	  display: none !important;
+  
+  }
+  td.fe-icon-portfolio-add a, td.fe-icon-portfolio-remove a{
+	  background: url(fe_img/icon-add1.png) no-repeat left center;
+	  height: 16px;
+	  width: 16px;
+	  margin: auto;
+	  padding: 0;
+	  cursor: pointer;
+	  display: block;
+	  text-decoration:none;
+  }
+  td.fe-icon-portfolio-remove a{
+	  background-image: url(fe_img/icon-remove.png)
+  }
+  /* set fixed width for Table fields */
+  .fe-columnheader-FundName {
+	  text-align: left;
+  /*	display: table-cell !important;*/
+  }
+  .InstrumentName{
+	  text-align: left !important
+  }
+  .fe-tabs-datacontainer .fe-datatable td:nth-last-child(1), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(2), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(3)/* info columns icons */{
+	  width: 25px;
+  }
+  .fe-icon-basket.fe-icon-basket-remove,.fe-icon-basket.fe-icon-basket-add   /* Add/remove column width change */
+  {
+	  width: 16px;
+	  text-align:center;
+  }
+  /*
+  .fe-columnheader-AMC, .fe-columnheader-InitialCharge, .fe-columnheader-MinInvestment, .fe-columnheader-OngoingCharge, .fe-columnheader-FECrownRating, .fe-columnheader-Price, .fe-columnheader-PriceDate, .fe-columnheader-PricingFreq_, .fe-columnheader-Change, .fe-columnheader-Change_{
+	  width:75px;
+  }
+  */
+  .fe-columnheader-PriceDate {
+	  width: 85px;
+  }
+  /*
+  .fe-fundCentre-body .fe-columnheader-_0to12m,.fe-fundCentre-body  .fe-columnheader-_12to24m,.fe-fundCentre-body  .fe-columnheader-_24to36m,.fe-fundCentre-body  .fe-columnheader-_36to48m, .fe-fundCentre-body .fe-columnheader-_48to60m, .fe-fundCentre-body .fe-columnheader-YTD, .fe-fundCentre-body .fe-columnheader-Year1, .fe-fundCentre-body .fe-columnheader-Year2,.fe-fundCentre-body  .fe-columnheader-Year3, .fe-fundCentre-body .fe-columnheader-Year4,.fe-fundCentre-body .fe-columnheader-Year5 {
+	  width: 100px;
+  }
+  */
+  .fe-tab-container-Risk .fe-columnheader-GroupManagerName {
+	  width: 150px;
+  }
+  .fe-cascade-morebutton .ui-icon.ui-icon-carat-1-s, .fe-cascade-morebutton .ui-icon.ui-icon-carat-1-n  {
+	  background: none;
+	  border-top: 7px solid #fff;
+	  border-left: 7px solid transparent;
+	  border-right: 7px solid transparent;
+	  width: auto;
+	  height: 4px;
+	  margin: 5px auto 0;
+  }
+  .fe-cascade-morebutton .ui-icon.ui-icon-carat-1-n{
+	  border-bottom: 7px solid #fff;
+	  border-top:0;
+	  margin-bottom: 5px;
+	  margin-top: 0;
+  }
+  .fe-cascade-table tbody .cascade-menu .cascade-menu-cnt{
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+  }
+  .fe-cascade-table tbody .cascade-menu.active{
+	  margin-top: 33px;
+  }
+  /* ============== Footer =========================== */ 
+  .fe-footer-container{
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  padding: 10px 0 0;
+	  color:#000000;
+	  max-width: 1080px;
+	  margin: 0 auto;
+	  height: 450px;
+  }
+  .fe-caveat-container {
+	  margin-top:10px;
+  }
+  .fe-caveat-container a, a.fe-disclaimer-actionLink {
+	  color: #000;
+	  text-decoration:underline;
+  }
+  .fe-caveat-container a:hover, a.fe-disclaimer-actionLink:hover {
+	  color: #000;
+	  text-decoration:none;
+  }
+  .right50 label, .fe-footer-logo label {
+	  vertical-align: middle !important;
+  }
+  /* ============== Basket =========================== */ 
+  .fe-basket{
+	  z-index: 3000;
+	  position: absolute;
+	  right: 0;
+	  top: 11px;
+	  padding-top: 0;
+	  width: 44px;
+	  background:transparent none;
+	  padding-right:0;
+	  border-radius:5px;
+	  -webkit-border-radius:35px;
+	  -moz-border-radius:5px;
+  }
+  .fe-fundsInBasket{
+	  text-align: center;
+	  float: left;
+	  color: #FFFFFF;
+	  font-size: 11px;
+	  cursor: pointer;
+	  width: 100%;
+	  height: 30px;
+	  background: #211d1e none;
+	  border:0;
+  }
+  .fe-fundsInBasket.fe-basket-collapse, .fe-fundsInBasket.fe-basket-expand{
+	  background: url(fe_img/basket.png) no-repeat center center;
+	  border: 1px solid #000;
+	  width: 31px;
+	  border-radius:5px;
+	  -webkit-border-radius:5px;
+	  -moz-border-radius:5px;
+  }
+  .fe-basketHeader{
+	  padding: 6px 0 5px;
+	  color: transparent;
+	  font-size: 0;
+	  text-transform:capitalize;
+  }
+  .fe-basketTitle{
+	  display: inline-block;
+	  width: 100%;
+	  text-align: left;
+	  font-weight: bold;	
+	  font-size:0;
+	  font-family:helvetica, arial;
+	  padding:0 3px 0 7px;
+  }
+  .fe-basketPin{
+	  display:none;
+  }
+  .fe-fundsInBasket H5{
+	  margin: -22px 4px 0;
+	  padding: 0 5px;
+	  color: #ffffff !important;
+	  background:#e34e35 none;
+	  font:bold 13px "MyriadPro-Regular", sans-serif;
+	  right:0;
+	  position:absolute;
+	  border-radius:15px;
+	  -webkit-border-radius:15px;
+	  -moz-border-radius:15px;
+  }
+  .fe-basket-header-item-count p, .fe-basketDraggable{
+	  display: none;
+  }
+  .fe-tableInBasket /* Basket open Box */{	
+	  padding: 10px;
+	  margin: -26px 0 0;
+	  background-color: #ffc20e;
+	  border: 0;
+	  box-shadow: 0 2px 3px #666;
+	  float: right;
+	  display: none;
+	  width: 300px;	
+  }
+  .fe-basket-empty-message{
+	  margin: 36% auto 0;
+	  text-align: center;
+  }
+  .fe-basket-empty-message span {
+	  font-weight: normal;
+	  color:#ff0000;
+  }
+  .fe-basketbuttonslegend /* Legend in Basket*/{
+	  border:1px solid #333;
+	  background: #ffc20e;
+	  padding:4px 4px 6px\9 !important /* padding for IE 8 alone */
+  }
+  .display-inline-block{
+	  margin-right:8px;
+  }
+  .fe-basketbuttons a /* Action Buttons in basket */{
+	  background-color: #000 !important;
+	  text-decoration:none;
+	  border-radius:3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+  }
+  .fe-effects-moveToBasket /* fund added to basket */{
+	  border: 2px dotted #000;
+	  background-color: #000;
+  }
+  /* End of Basket*/
+  /* ============================ Charting tool ======================= */
+  .fe-chart-body .page{
+	  width: 950px !important;
+  }
+  .fe-search-panel.ui-tabs-panel /* search pannel */{
+	  color: #000;
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  height: auto;
+	  background:none;
+	  margin-bottom: 0;
+	  padding: 10px 0;
+  }
+  .instrumentTabSearchOptions /* LABEL */{
+	  margin: 0 12px 0 0;
+	  padding: 0 13px 10px 0;
+	  background:none;
+	  border-right: 1px solid #999;
+	  height: 58px;
+  }
+  .fe-search-panel label{
+	  font-weight:normal;
+	  font-size: 12px;
+	  color: #646363;
+  }
+  .instrumentTabSearchOptions .fe-chart-instrumentsearch-ortext {
+	  float: left;
+	  margin: 0 5px 0 10px;
+	  padding-top: 3px;
+  }
+  .instrumentTabResultsOptions{
+	  padding: 0;
+	  border: 0;
+	  height: auto;
+	  width: 200px;
+  }
+  .addToChart{
+	  float: left;
+	  margin-left: 50px;
+	  margin-top: 0;
+  }
+  div#instrumentOptionsTabs .ui-scroll-tabs-header .stNavMain {
+	  display: none;
+  }
+  div#instrumentOptionsTabs .ui-scroll-tabs-header.show-controls-always.st-activate-controls{
+	  padding:0;
+  }
+  div#instrumentOptionsTabs .fe-tabs.ui-tabs-nav{
+	  height:auto;
+  }
+  div#instrumentOptionsTabs .ui-scroll-tabs-header ul.ui-tabs-nav li{
+	  float:left;
+  }
+  #instrumentType-N-options .addToChart, #instrumentType-X-options .addToChart, #instrumentType-P-options .addToChart {
+	  float: left;
+  }
+  #instrumentType-F16000440-options .addToChart {
+	  border-left: 1px solid #999;
+	  height: 46px;
+	  margin: 0 589px 0 0;
+	  padding: 0 13px 20px 10px;
+  }
+  /*Performance & Scatter chart section */
+  .fe-chart-tabs-container.ui-tabs/*Chart Main section /*ie 7 8 fix for tabs*/{
+	  position:relative;
+	  z-index:40;	
+	  background:none !important;
+  }
+  .fe-chart-tabs-innerContainer{
+	  width: 100%;
+  }
+  .fe-chart-chartingOptions-container{
+	  margin: -44px 0 0;
+	  right: 0;
+	  width: 50% !important;	
+  }
+  .fe-chart-PanelToggleButton {
+	  margin-top: 9px;
+  }
+  .fe-chart-PanelToggleButton>.fe-button.ui-state-default {
+	  box-shadow: 0 0px 2px 0 rgb(95, 188, 204), 0 0  2px -2px rgb(51, 145, 161), 0 0px 5px 0 rgb(51, 145, 161) !important;
+  }
+  .fe-chart-PanelToggleButton>.fe-button.ui-state-focus{
+	  box-shadow:none !important;
+  }
+  /* chart basis popup */
+  .shownOption {
+	  top: 38px;
+	  right: 0px;
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  color: #444;
+	  padding: 10px;
+	  border: 1px solid #c5c5c5;
+	  background: #fff none;
+	  z-index:1010;
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+  }
+  .fe-panel-text{
+	  float:none;
+	  display:inline-block;
+	  margin-bottom:8px;
+	  min-width:110px;
+  }
+  .fe-chart-togglePanel .fe-button.ui-state-default, .fe-chart-togglePanel .fe-button.ui-state-highlight, .fe-chart-togglePanel .fe-button:hover {
+	  color: var(--theme-green);
+	  padding: 3px 7px !important;
+	  margin:0 0 4px 0;
+	  text-decoration: none;
+	  font:normal 16px "MyriadPro-Regular", sans-serif;
+	  width:inherit !important;
+	  background: var(--theme-white);
+	  border:1px solid var(--theme-green);
+	  text-transform: uppercase;
+	  font-size: 15px;
+	  border-radius: 3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;	
+  }
+  .fe-chart-togglePanel .fe-button.ui-state-highlight, .fe-chart-togglePanel .fe-button.ui-state-active, .fe-chart-togglePanel .fe-button:hover {
+	  color: var(--theme-white);
+	  background: var(--theme-green);	
+  }
+  .fe-button.fe-event-label.ui-state-default {
+	  padding: 3px 1px !important;
+  }
+  .fe-button.fe-event-label.ui-state-default .ui-icon{
+	  display:none
+  }
+  .fe-innerEvent-container{
+	  width: 212px;
+  }
+  .fe-basis-toglebutton.ui-state-default.fe-chart-currency-return {
+	  width:100% !important;
+  }
+  .fe-chart-returnbasis-input {
+	  position: relative;
+  }
+  .fe-chart-return-text {
+	  position: absolute;
+	  right: 5px;
+	  top: 3px;
+  }
+  .fe-chart-return-textbox{
+	  width: 40px;
+	  border: 1px solid #ddd;
+	  font-size: 14px !important;
+  }
+  .fe-chart-TimeSpanRangeInput {
+	  border: 0;
+	  border-bottom: 1px solid #ddd;
+	  background-color: transparent;
+  }
+  .fe-closebutton-container /* Close dialog container */{
+	  position:absolute;
+	  top:11px;
+	  right:5px;
+	  float:none;
+	  display:block;
+	  width:20px;
+	  height:16px;
+  }
+  .fe-closebutton-container .fe-button.ui-state-default /* Close dialog icon */ {
+	  text-indent: -1000em;
+	  background: url(fe_img/close-dialog-icon.png) no-repeat 2px 4px;
+	  height:24px;
+	  margin: -6px 0 0;
+	  padding: 0 9px;
+	  text-indent: -1000em;
+	  width: 24px;
+	  border:0;
+	  box-shadow: none;
+  }
+  .fe-chart-OrLabel {
+	  margin-top:6px;
+  }
+  /* Chart popup ends */
+  .fe-chart-currency.fe-currency {
+	  margin-top: -18px;
+	  position: relative;
+	  font-size:14px;
+	  padding-left: 18px;
+	  background:#fff;
+	  padding-top: 5px;
+  }
+  .fe-chart-container.ui-tabs-panel, .fe-chart-scatterchart-container.ui-tabs-panel /* Chart background section */ {
+	  margin: 0 0 0;
+	  padding-bottom:10px;
+	  border:0;
+	  background:#fff;
+  }
+  #performanceChartTab > div/* Move Chart to center */ {
+	  width:100% !important;
+  }
+  .ChartContainer {
+	  overflow:visible !important;
+	  margin: 0 auto !important;
+	  width:96% !important;
+  }
+  .fe-chart-scatterchart-container {
+	  text-align: center;
+	  width: 100% !important;
+  }
+  .SummaryChartWindow {
+	  background-color: #ccc !important;
+	  border-left: 3px solid #000 !important;
+	  border-right: 3px solid #000 !important;
+  }
+  .chartKey{	
+	  border-radius: 14px;
+	  color: #FFFFFF;
+	  padding: 2px;
+  }
+  /* Performance tabs section - section 3rd */
+  .fe-chart-performanceTabs-container {
+	  background:transparent none;
+  }
+  .fe-performance-table.ui-tabs /* performance table container */{
+	  padding: 10px!important;
+	  background: none #fff;
+  }
+  .ui-asdate /* date */{
+	  padding: 3px;
+  }
+  /* ============== Dialog box =========================== */ 
+  .ui-widget-overlay{
+	  background: #222;
+	  opacity: 0.30;
+  }
+  .fe-ui-dialog, .ui-dialog{
+	  background: #fff;
+	  padding: 0;	
+	  overflow: visible;
+	  border: 1px solid #d4d8db !important;
+	  box-shadow: 0 27px 24px 0 rgba(0,0,0,0.2),0 40px 77px 0 rgba(0,0,0,0.22);
+	  border-radius:6px;
+	  -webkit-border-radius:6px;
+	  -moz-border-radius:6px;	
+	  -webkit-transform: translate(0, 0);
+	  -ms-transform: translate(0, 0);
+	  -o-transform: translate(0, 0);
+	  transform: translate(0, 0);
+	  -webkit-transition: -webkit-transform 0.3s ease-out;
+	  -moz-transition: -moz-transform 0.3s ease-out;
+	  -o-transition: -o-transform 0.3s ease-out;
+	  transition: transform 0.3s ease-out;
+	  left: 0 !important;
+	  right: 0 !important;
+	  margin: 0 auto;
+  }
+  .ui-dialog .ui-dialog-buttonpane{
+	  border-radius:0 0 6px 6px;
+	  -webkit-border-radius:0 0 6px 6px;
+	  -moz-border-radius:0 0 6px 6px;	
+	  border: 0;
+  }
+  .ui-dialog .ui-dialog-buttonpane button{ 
+	  margin: 2px;
+  }
+  .ui-dialog-titlebar {
+	  background: none transparent;
+	  border-radius: 6px 6px 0 0;
+	  color: #000 !important;
+	  font: 25px "MyriadPro-Regular", sans-serif;
+	  margin: 0;
+	  padding: 15px !important;
+  }
+  .ui-dialog .ui-dialog-titlebar-close span{
+	  display:none;
+  }
+  .ui-button.ui-dialog-titlebar-close {
+	  background: url("fe_img/close-dialog-icon.png") no-repeat scroll 1px center !important;	
+	  transition:all 0.2s ease-in-out;
+	  border: 0 none;
+	  display: block !important;
+	  height: 20px !important;
+	  margin: 0;
+	  padding: 0 !important;
+	  right: 10px !important;
+	  top: 22px !important;
+	  width: 15px !important; 
+	  position:absolute;
+	  box-shadow: none
+  }
+  .ui-dialog-titlebar-close:hover{
+	  border:0 !important;
+  }
+  .ui-dialog-content.ui-widget-content /* content container */{
+	  padding: 15px;
+	  height:auto !important;
+  }
+  /* ============== Popup content =========================== */ 
+  .fe-dialog-createPortfolio-container label, .fe-saveportfolio-stepOne-container label, .fe-dialog-createComparison-container label{
+	  font: bold 16px "MyriadPro-Regular", sans-serif;
+	  padding: 0 0 7px 0;
+	  color: #000000;	
+  }
+  .fe-portfoliodetails-input, .fe-portfoliodetails-multiline {
+	  width: 300px;
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+  }
+  .fe-portfoliodetails-multiline {
+	  border: 1px solid #d2d2d2;
+  
+  }
+  .fe-pscan-benchmark-clientNameContainer label, .fe-comparison-report-clientNameContainer label {
+	 /* background: url("fe_img/ico_client_name.png") no-repeat;*/
+	  cursor: pointer;
+	  display: inline-block;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-pscan-benchmark-portfolioNameContainer label {
+	 /* background: url("fe_img/ico_portfolio_name.png") no-repeat;*/
+	  cursor: pointer;
+	  display: inline-block;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-pscan-benchmark-preparedByContainer label, .fe-comparison-report-preparedByContainer label {
+	 /*background: url("fe_img/ico_preparedby.png") no-repeat;*/
+	  cursor: pointer;
+	  display: inline-block;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-pscan-benchmark-datePreparedContainer label, .fe-comparison-report-datePreparedContainer label {
+	 /* background: url("fe_img/ico_date_prepared.png") no-repeat;*/
+	  cursor: pointer;
+	  display: inline-block;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-pscan-benchmark-summaryTextContainer label{
+	 /* background: url("fe_img/ico_summary_text.png") no-repeat;*/
+	  cursor: pointer;
+	  display: inline-block;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-pscan-benchmark-customStartDateContainer label {
+	  /*background: url("fe_img/ico_date_prepared.png") no-repeat;*/
+	  cursor: pointer;
+	  height: 30px;
+	  width: 120px;
+  }
+  .fe-portfolioSettings-portfoliodetails-html label {
+	  font-size: 15px !important;
+	  color: #000 !important;
+  }
+  #customPortfolioStartDatePicker {
+	  background: none repeat scroll 0 0 #FFFFFF;
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+	  color: #000;
+	  display: block;
+	  margin-top: 10px;
+	  padding: 5px 0;
+	  overflow: hidden;
+	  text-decoration: none;
+	  text-transform: lowercase;
+	  white-space: nowrap;
+	  width: 218px;
+  }
+  .fe-pscan-benchmark-OrContainer{
+	  margin:8px 0;
+  }
+  .fe-pscan-benchmark-indiciesContainer  {
+	  position: relative;
+	  z-index: 50;
+  }
+  .fe-pscan-benchmarkContainer.ui-dialog-content.ui-widget-content{
+	  height:auto !important;
+  }
+  .fe-dialog-createPortfolio-container .ui-widget-content{
+	  position: static;
+  }
+  .fe-pscan-benchmark-sectorContainer {
+	  position: relative;
+	  z-index: 40;
+  }
+  .fe-pscan-benchmark-timePeriodContainer{
+	  position: relative;
+	  z-index: 38;
+  }
+  .fe-pscan-benchmark-customStartDateContainer{
+	  position: relative;
+	  z-index: 30;
+  }
+  .fe-benchmark-indiciesContainer .mfs-container{
+	  position:relative;
+	  z-index:50;
+  }
+  .fe-shownext {
+	  background: url(fe_img/ico_next.png) no-repeat;
+  }
+  .fe-dialog-createPortfolio-container h2, .fe-dialog-portfoliosave-container h2{
+	  font-size: 15px;
+	  margin: 0;
+	  padding: 0 0 10px 0;
+	  color: #ffc20e;
+	  /*background: url(fe_img/ico_step.png) no-repeat left 1px;*/
+	  display: block;
+  }
+  .fe-dialog-createPortfolio-container label{
+	  font:normal 12px "MyriadPro-Regular", sans-serif;
+	  padding: 0 0 7px 0;
+	  color: #666;
+  }
+  .fe-dialog-createPortfolio-container select,  .fe-saveportfolio-stepOne-container select{
+	  width: 92%;
+	  margin: 0 0 20px;
+  }
+  .fe-portfolioSettings-stepOne-container /* step one container */{
+	  float: left;
+	  width: 48.5%;
+	  width: 49% \9;	/* below ie8 */	
+	  height:175px;
+	  border-right: 1px solid #cbcbcb;
+	  margin: 0 2% 0 0;
+  }
+  .fe-portfolioSettings-stepTwo-container /* step two container */{
+	  float: right;
+	  width: 49%;
+  }
+  .fe-pscan-benchmark-indiciesContainer label, .fe-benchmark-indiciesContainer label /* select indicies */{
+	 /* background: url(fe_img/ico_select_index.png) no-repeat left top;*/
+	  display: block;
+  }
+  .fe-pscan-benchmark-sectorContainer label, .fe-benchmark-sectorContainer label /* select sector */{
+	 /* background: url(fe_img/ico_select_sector.png) no-repeat left top;*/
+	  display: block;
+  }
+  
+  
+  .fe-pscan-benchmark-weightedSectorAverageContainer{
+	  width: 92%;
+	  margin-top: 15px;
+  }
+  .fe-pscan-benchmark-weightedSectorAverageContainer label, .fe-benchmark-weightedSectorAverageContainer label /* sector averages */{
+	 /* background: url(fe_img/ico_sector_average.png) no-repeat left top;*/
+	  display: inline-block;
+	  float: left;
+  }
+  .fe-pscan-benchmark-weightedSectorAverageContainer input, .fe-benchmark-weightedSectorAverageContainer input{
+	  float: left;
+	  margin-left:15px;
+  }
+  .fe-pscan-benchmark-timePeriodContainer label, .fe-benchmark-timePeriodContainer label /* time period */{
+	  /*background: url(fe_img/ico_time_period.png) no-repeat left top;*/
+	  display: block;
+  }
+  .fe-text-OR{
+	  font: normal 16px "MyriadPro-Regular", sans-serif;
+	  margin: -26px 15px 20px 0;
+	  float:right;
+  }
+  .fe-chart-subOptionLabel{
+	  position:relative;
+	  z-index:0;
+  }
+  .fe-benchmark-sectorContainer .mfs-container {
+	  z-index: 4;
+  }
+  .chart-addToChart-Container .mfs-container {
+	  position:relative;
+	  z-index: 5;
+  }
+  .BenchmarkSettingNavButtons /* buttons container */{
+	  border-top: 0;
+	  display: inline-block;
+	  margin-top: 10px;
+	  padding: 10px 0 0;
+	  right: 0;
+	  width: 100%;	
+  }
+  .slide-button-left {
+	  float: right;
+	  margin-bottom: 0;
+	  margin-top: 0;
+  }
+  /*Save portfolio Poup*/
+  .fe-saveportfolio-stepOne-container /* step one container */{
+	  float: right;
+	  width: 47.5%;
+	  margin-bottom:20px;
+  }
+  .fe-portfolioSettings-stepTwo-container /* step two container */{
+	  float: left; 
+	  width: 47%;  
+  }
+  .fe-saveportfolio-stepTwo-container{
+	  float: left;
+	  width: 49.5%;
+	  margin: 0 2.45% 0 0;
+	  height: 246px;
+	  border-right: 1px solid #cbcbcb;
+  }
+  .fe-saveportfolio-stepTwo-container label{
+	  font: bold 16px "MyriadPro-Regular", sans-serif;
+	  color: #000000;	
+	  display:block;
+	  padding: 0 0 7px 0px;
+  }
+  .fe-saveportfolio-stepTwo-container select{
+	  width: 95%;
+	  margin: 0 0 20px;
+  }
+  .fe-saveportfolio-stepTwo-container input{
+	  width: 92%;
+	  margin: 0 0 10px;
+  }
+  .fe-saveportfolio-stepTwo-container textarea{
+	  width: 92%;
+	  margin: 0 0 10px;
+	  height:50px;
+  }
+  .fe-portfoliosave-buttons /* buttons container */{
+	  padding: 10px 0 0;
+	  border-top: 1px solid #cbcbcb;
+	  margin-bottom: 20px;
+	  margin-top: 26px;
+	  width:273px;
+	  position:relative;	
+  }
+  .btnSaveContainer, .btnUpdateContainer {
+	  float: left;
+  }
+  .btnSaveContainer {
+	  margin-right: 5px;
+	  position:absolute;
+  }
+  .btnUpdateContainer.visibilityhidden {
+	  display: none;
+  }
+  .fe-mandatoryfield-message {
+	  font-size: 13px;
+	  margin-top: 2px;
+  }
+  /* ============== Portfolio Scan =========================== */ 
+  .fe-tabs-autoLoad.ui-tabs{
+	  background:transparent;
+	  max-width: 1080px;
+	  margin: 0 auto;
+  }
+  .fe-tabs-autoLoad-container{
+	  padding:0 0 10px !important;
+	  background:#fff !important;
+  }
+  .fe-tabs-autoLoad-container h2 {
+	  font: normal 24px "MyriadPro-Regular", sans-serif;;
+	  font-weight: normal;
+	  padding: 10px 0;
+	  margin: 10px 0;
+  }
+  .fe-tabs-autoLoad-container h3{
+	  margin: 0;
+	  padding: 20px 0;
+	  color:#000;
+	  font-size: 15px;
+  }
+  .fe-pscan-summarytext-value, .fe-pscan-commentarytext{
+	  word-wrap: break-word;
+  }
+  .fe-pscan-clientname, .fe-pscan-portname, .fe-pscan-preparedby, .fe-pscan-dateprepared, .fe-pscan-benchmark, .fe-pscan-timeperiod{
+	  padding:4px 0;
+  }
+  .fe-pscan-timeperiod{
+	  padding-bottom: 10px;
+  }
+  .fe-pscan-clientname-label, .fe-pscan-portname-label, .fe-pscan-preparedby-label, .fe-pscan-dateprepared-label, .fe-pscan-benchmark-label, .fe-pscan-timeperiod-label {   
+	  width:200px;
+	  display:inline-block;
+  }
+  .fe-columnheader-LegendColour /*portfolio scan table*/{
+	  margin: 0;
+	  padding: 0;
+	  width: 25px !important;
+  }
+  .fe-tabs-autoLoad .fe-columnheader-FundName {
+	  width: 200px !important;
+  }
+  .fe-chartlegend{
+	  margin-top:10px;
+  }
+  .fe-chartlegend-column2 {
+	  float: left;
+	  margin-left: 4%;
+	  width: 46%;
+  }
+  .fe-chartlegend-column1{
+	  margin-left:0;
+	  width: 48%;
+  }
+  .fe-chartlegend-datatable{
+	  display:none;
+  }
+  .fe-chartlegend-key{
+	  margin-left: 0
+  }
+  .fe-chart-container{
+	  text-align: center;
+	  width: 100% !important;
+  }
+  .fe-pscan-portfoliorow .fe-chartlegend-datatable, .fe-pscan-benchmarkrow .fe-chartlegend-datatable, .fe-ratios-tableBody .fe-chartlegend-datatable, .fe-ratios-tableBody .fe-chartlegend-datatable{
+	  display: inline-block;
+  }
+  .treeTable tr td {
+	  border-bottom: 1px solid #B0B0B0;
+  }
+  .treeTable tr.expanded td a.expander {
+	  background: url(fe_img/toggle-collapse-dark.png) no-repeat;
+	  margin-left: 0 !important;
+	  padding-left: 40px !important;
+	  text-decoration:none;
+	  vertical-align: top;
+	  display: inline-block
+  }
+  .treeTable tr.collapsed td a.expander {
+	  background: url(fe_img/toggle-expand-dark.png) no-repeat;
+	  margin-left: 0 !important;
+	  padding-left: 40px !important;
+	  text-decoration:none;
+	  vertical-align: top;
+	  display: inline-block
+  }
+  .treeTable tr td a strong, .treeTable tr td strong {
+	  font-weight: normal;
+	  display: inline-block
+  }
+  .fe-ratios-tableBody td:first-child{
+	  width: 30px;
+  }
+  .fe-pscan-actions {
+	  max-width: 1080px;
+	  margin: 10px auto 0
+  }
+  .pscan-edit-subtitle, .pscan-edit-nologomessage{
+	  padding-left: 0
+  }
+  .pscan-edit-warningcontainer{
+	  margin-top: 8px;
+  }
+  .pscan-edit-sortableContainer{
+	  padding-left: 0
+  }
+  /* ============== Login =========================== */ 
+  .fe-login-page{
+		 background-color: transparent;
+	  margin: 0 auto;
+	  padding: 5px 0;
+	  width: 1000px;
+	  min-height: 500px;
+  }
+  .fe-loginPannel{
+	  width: auto;
+	  height:500px;
+	  margin: 0 auto;
+	  background:url(fe_img/LoginBackground.png) no-repeat left top;
+  }
+  .fe-login-header{
+	  font:normal 23px "MyriadPro-Regular", sans-serif;
+	  padding: 0;
+	  margin: 0 0 30px;
+	  display:none;
+  }
+  .fe-login-form{
+	  margin: 90px auto 0 !important;
+	  padding: 20px 0 0;
+	  line-height:80%;
+	  width: 450px;
+	  font-size:13px;
+  }
+  .fe-login-form label {
+	  color: #000;
+	  display: inline-block;
+	  font:bold 16px "MyriadPro-Regular", sans-serif;
+	  float: left;
+	  font-weight: bold;
+	  padding: 5px 10px 0 0;
+	  text-align: right;
+	  width: 23%;
+  }
+  .fe-login-textbox, .fe-login-textbox:focus{
+		border: 1px solid #C4C4C4;
+	  float: left;
+	  font: normal 16px "MyriadPro-Regular", sans-serif;
+	  height: 12px;
+	  width: 60%;
+	  margin: 0 0 20px;
+	  padding: 5px;
+	  border-radius:3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+  }
+  .fe-login-button-container{
+	  float: right;
+	  margin:0 332px 0 0;
+	  *width:70px;
+  }
+  .fe-logon-errors .validation-summary-errors{
+	  background: #FABBAA;
+	  border: 1px solid #DC143C; 
+	  margin-top: 1em;
+  }
+  .fe-logout-container {
+	  padding: 5px 0 0;
+	  text-align: right;
+	  background: transparent none;
+	  position:absolute;
+	  right:0;
+	  height:25px;
+	  font:bold 16px "MyriadPro-Regular", sans-serif;
+  }
+  .fe-logout-container a {
+	  font-weight:bold;
+	  margin-left:5px;
+	  color:#ffc20e;
+  }
+  /* ============== Download tool =========================== */ 
+  .fe-dialog-createDownloadTool-container /* Set fixed size for Download tool popup */{
+	  margin: 0 auto !important;
+	  position: absolute !important;
+	  right: 0 !important;
+	  left:0 !important;
+	  width: 610px !important;
+  }
+  .fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap {
+	  background: none transparent;
+	  border: 0;
+	  padding: 9px 0;
+	  margin:0 0 15px;
+	  width: 100%;
+	  border-radius:0;
+	  box-shadow: none;
+  }
+  .fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap .fe-downloadtool-options-name{
+	  width:230px;
+	  font: normal 16px/19px "MyriadPro-Regular", sans-serif;
+	  min-width:230px !important;
+	  margin-top:3px;
+	  color:#000;
+  }
+  .fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap .fe-downloadtool-options-val {
+	  font:normal 16px/19px "MyriadPro-Regular", sans-serif;
+	  color:#000;
+  }
+  .fe-input-radio:first-child {
+	  margin-left: 0;
+  }
+  .fe-tab-container-PriceAndDividend .mfs-container {
+	  width: 229px;
+  }
+  .fe-tab-container-PriceAndDividend .fe-date-input input {
+	  border: 0;
+	  border-bottom: 1px solid #d2d2d2;
+	  border-radius: 0;
+	  padding: 3px;
+	  width: 221px;
+	  color:#000;
+	  font-size: 15px;
+	  font-family: "MyriadPro-Regular", sans-serif;
+	  outline:none;
+	  text-transform: lowercase;
+  }
+  .fe-downloadtool-options-wrap.fe-downloadprice-displayoptions, .fe-downloadtool-options-wrap.fe-downloaddividend-displayoptions, .fe-downloadtool-options-wrap.fe-downloadDocuments-table {
+	  background: none transparent;
+	  box-shadow: none;
+  }
+  .fe-tab-container-PriceAndDividend h5 {
+	  font:bold 15px "MyriadPro-Regular", sans-serif;
+	  margin-bottom: 8px;
+	  padding: 20px 0 0;
+  }
+  .fe-downloadtooltabs .fe-datatable th /*download tool table header */ {
+	  height: 22px !important;
+  }
+  .fe-tab-container-DownloadPrice .fe-columnheader-Bid, .fe-tab-container-DownloadPrice .fe-columnheader-Offer, .fe-tab-container-DownloadPrice .fe-columnheader-Mid, .fe-tab-container-DownloadPrice .fe-columnheader-PriceDate, .fe-tab-container-DownloadPrice .fe-columnheader-Currency/*set fixed width for table fields*/ {
+	  width: 100px;
+  }
+  .dividendHtmlContainer, .priceHtmlContainer{
+	  margin-bottom:10px;
+  }
+  .empty-div{
+	  height: auto;
+  }
+  .ui-button.ui-state-default.fe-downloadTool-button {  
+	  margin-bottom: 10px;
+  }
+  /* ============== Date Picker =========================== */ 
+  .ui-datepicker {
+	  background: none #fff;
+	  border: 0;
+	  width: 222px;
+	  z-index: 99999 !important;
+	  border-radius:0;
+	  -webkit-border-radius:0;
+	  -moz-border-radius:0;
+	  box-shadow: 0 16px 38px -12px rgba(0,0,0,0.56),0 4px 25px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,0,0,0.2);
+  }
+  .ui-datepicker th{
+	  color:#000;font-weight: normal;
+  }
+  .ui-datepicker td{
+	  padding: 8px 0;
+  }
+  .ui-datepicker td span, .ui-datepicker td a{
+	   background: none #fff !important;
+	   border: 0;
+	   color: #000 !important;
+	  border-radius: 100%;
+	  height: 24px;
+	  width: 25px;
+	  vertical-align: middle;
+	  text-align: center;
+	  padding: 0;
+	  line-height: 25px;
+  }
+  .ui-datepicker td a.ui-state-active {
+	  background: none var(--theme-green) !important;
+	  color: var(--theme-white) !important;
+  }
+  .ui-datepicker td a:hover{
+	  background-color: #eeeeee !important
+  }
+  .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+	  margin: 0 5px;
+	  width: 43%;
+  }
+  /* ============== Glossary Tab =========================== */ 
+  .tabGlossaryContainer .accordion-header {
+	  background: none repeat scroll 0 0 #D8E9F31;
+	  border-radius: 8px;
+	  color: #007FB;
+	  cursor: pointer;
+	  display: block;
+	  font-size: 13px;
+	  font-weight: bold;
+	  margin: 0 0 3px;
+	  padding: 8px 10px;
+  }
+  .tabGlossaryContainer .accordion-content {
+	  font-size: 12px;
+	  margin: 0 0 1px;
+	  padding:5px 10px;
+	  line-height:18px;
+  }
+  .tabGlossary .ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active {
+	  color: #007FB1;
+	  font: bold 13px "MyriadPro-Regular", sans-serif;
+	  margin: 0 0 0 -15px;
+	  padding: 0;
+  }
+  /* ============== Portfolio Tab =========================== */ 
+  .fe-mastertabs-PortfolioMasterTab.fe-menuTabs-content{
+	  padding:10px 0 0;
+  }
+  .fe-userPortfolioDropdown{
+	  padding-top: 12px;
+  }
+  .fe-userPortfolioDetails.visibilityhidden {
+	  display: none;
+  }
+  .fe-userPortfolioDetails {
+	  min-height: 10px !important;
+	  padding-bottom: 10px;
+  }
+  .fe-userPortfolio-name-label, .fe-userPortfolio-benchmark-label, .fe-userPortfolio-currency-label{
+	  font-weight: bold;
+	  width: 200px;
+	  padding:2px 0;
+	  display: inline-block;
+  }
+  .fe-column-weight /* weight textbox in table */{
+	  width: 50px;
+	  text-align: right;
+  }
+  .fe-portfolio-deleteall /*Delete all button in portfolio builder page */{
+	  border: 0 none;
+	  box-shadow: none;
+	  height: 17px;
+	  margin: 0;
+	  padding: 0;
+	  position: absolute;
+	  width: 100px;
+	  left: 985px\0/;
+	  left:787px;
+	  bottom: 471px;
+	  behavior: url(http://toolkit.financialexpress.net/Assets/css/PIE.htc) !important;
+  }
+  a.fe-icon-deleteall, a.fe-icon-deleteall:hover {
+	  background:none;
+	  text-decoration:none;
+	  padding: 8px 8px 7px;
+	  color:#fff;
+	  text-transform: uppercase;
+	  background: none var(--theme-green);
+	  border: 0 none;
+	  border-radius: 3px;
+	  box-shadow: 0 2px 2px 0 rgba(0,118,138,0.14),0 3px 1px -2px rgba(0,118,138,0.2),0 1px 5px 0 rgba(0,118,138,0.12);
+  }
+  a.fe-icon-deleteall:hover{
+	  background: #19c289 none;
+	  box-shadow: 0 14px 26px -12px rgba(0,118,138,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,118,138,0.2);
+	  text-decoration: none;
+  }
+  
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+  .fe-portfolio-deleteall {
+  /*
+	  left:794px;
+	  bottom: 388px;
+  */
+	  left:954px;
+	   
+  }
+	  a.fe-icon-deleteall, a.fe-icon-deleteall:hover{
+		  padding: 7px 8px 4px;
+	  }
+  }
+  ::i-block-chrome, .fe-portfolio-deleteall {
+	  left:985px !important;
+	   
+  }
+  /*
+  @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {	
+  .fe-portfolio-deleteall {
+		left: 985px;
+		top: calc(100% - 407px);
+	  left: 787px;
+	  top: calc(100% - 408px);
+  }
+  }
+  */
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+	   /* Add your Safari-specific styles here. */
+	  .fe-portfolio-deleteall {
+		  left: 950px ;
+	  }
+	  a.fe-icon-deleteall, a.fe-icon-deleteall:hover{
+		   padding: 8px 8px 7px ;
+	  }
+  }
+  @supports (-ms-ime-align:auto) {
+	  .fe-portfolio-deleteall {
+		  left: 954px;
+	  }
+	  a.fe-icon-deleteall, a.fe-icon-deleteall:hover{
+		  padding: 7px 8px 4px;
+	  }
+  }
+  @-moz-document url-prefix(){
+	  .fe-portfolio-deleteall {	
+  /*		left:985px;*/
+		  left:950px !important;;
+		   
+	  }
+	  a.fe-icon-deleteall, a.fe-icon-deleteall:hover{
+		  padding: 9px 8px 6px;
+	  }
+  }
+  /* ============== Tooltip =========================== */ 
+  .fe-helptext-switch {
+	  margin-top: -10px;
+	  height: 18px;
+	  color: #F1F7FC;
+	  display:none;
+  }
+  .fe-helptext-image {
+	  margin-top: -21px;
+	  position: absolute;
+  }
+  .fe-helptext-image-background { background:url(fe_img/helpTextInfo.png) no-repeat; height:15px }
+  .fe-helptext-div-css  { 
+	  background:url(fe_img/bubble_midimg.png) repeat-y; 
+	  margin-top:20px; 
+	  margin-left:-33px;
+	  color:#000; 
+	  width:196px; 
+  }
+  .fe-helptext-div-css:hover { z-index:1002 }
+  .fe-helptext-div-css .help-text-callout-top { background:url(fe_img/bubble_arrow.png) no-repeat; width:35px; height:17px; top:-20px; left:40px }
+  .fe-helptext-div-css .help-text-callout-middle { background:url(fe_img/bubble_top3.png) no-repeat; height:auto ; padding-top:30px; margin-top:-40px }
+  .fe-helptext-div-css .help-text-callout-bottom { background:url(fe_img/bubble_botimg.png) no-repeat; height:15px; top:6px }
+  .fe-helptext-div-css .help-text-callout-middle div { padding-right:12px; text-transform:none; text-align:left; font:13px "MyriadPro-Regular", sans-serif; }
+  .fe-helptext-div-css .help-text-callout-middle .closeHelpText { color:#000; padding:0; cursor:pointer; text-decoration: underline }
+  /* tooltip for search*/
+  .fe-search-fileters-container .fe-helptext-image {
+	  position: relative;
+  }
+  .fe-search-fileters-container .fe-helptext-div-css {
+	  margin-left: 0;
+  }
+  #div-fe-helptext-span-1-0-0-AssetClassId.fe-helptext-div-css {
+	  margin-left: 32px !important;
+  }
+  #fe-helptext-span-1-0-0-OngoingCharge .fe-helptext-div-css {
+	  margin-left: 61px !important;
+  }
+  /* ============== Saved Portfolio Tab =========================== */ 
+  .fe-mastertabs-SavedPortfoliosMasterTab.fe-menuTabs-content {
+	  padding: 20px 0 0;
+  }
+  .fe-savedportfolios-portfoliomanagement {
+	  left: 374px;
+	  margin: 1px 0 0;
+	  position: absolute;
+  }
+  .ui-multiselect.ui-state-default {
+	  height: 26px;
+	  padding: 0 0 0 5px;
+	  border:1px solid #333;
+	  font:16px "MyriadPro-Regular", sans-serif;
+	  color: #000 !important;
+	  background: none transparent !important;
+	  text-align: left;
+	  width: 200px !important;
+	  border-radius: 5px;
+  }
+  .ui-multiselect span.ui-icon { float:right }
+  .ui-multiselect-menu { 
+	  display:none; 
+	  padding:3px; 
+	  position:absolute; 
+	  z-index:10000; 
+	  text-align: left; 
+	  border-radius:4px; 
+	  width: 193px !important; 
+  }
+  .ui-multiselect-header { 
+	  margin-bottom:3px; padding:3px 0 3px 4px; background-color: #EBECEC; 
+  }
+  .ui-multiselect-header ul { font-size:0.9em }
+  .ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+  .ui-multiselect-header a { text-decoration:none }
+  .ui-multiselect-header a:hover { text-decoration:underline }
+  .ui-multiselect-header span.ui-icon { float:left }
+  .ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
+  .ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+  .ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
+  .ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:auto }
+  .ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px 1px }
+  .ui-multiselect-checkboxes label input { position:relative; }
+  .ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+  .ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+  .ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+  /* remove label borders in IE6 because IE6 does not support transparency */
+  * html .ui-multiselect-checkboxes label { border:none }
+  .ui-multiselect-checkboxes .ui-corner-all.ui-state-hover {
+	  background: none #000000;
+	  border: 0 none;
+	  color: #FFFFFF;
+  }
+  .fe-portfolioconstituents-dialog table th {
+	  padding: 5px;
+	  height: 10px !important;
+  }
+  .fe-portfolioconstituents-dialog table tbody th {
+	  font-weight:normal;
+	  background-color: #f8f8f8;
+	  border-bottom: 1px solid #b0b0b0;
+  }
+  td.fe-editportfolio-icon a, .edit {
+	  background: url(fe_img/ammend.png) no-repeat center center;
+	  cursor: pointer;
+	  display: block;
+	  height: 20px;
+	  width: 20px;
+	  text-decoration:none;
+  }
+  td.fe-portfolioscan-icon a {
+	  background: url(fe_img/PortfolioScan.png) no-repeat center center;
+	  cursor: pointer;
+	  display: block;
+	  height: 20px;
+	  width: 20px;
+	  text-decoration:none;
+  }
+  .apply, .cancel {
+	  text-decoration:none;
+  }
+  a.fe-showportfolioconstituents {
+	  background: url(fe_img/icon_Constituents.png) no-repeat center center transparent;
+	  cursor: pointer;
+	  display: block;
+	  height: 20px;
+	  line-height: 20px;
+  }
+  .fe-manageportfolios-dialog.ui-dialog-content{
+	  height: auto !important;
+  }
+  /* ============== Model Portfolio Tab =========================== */ 
+  .fe-fund-tableBody td.fe-icon-export-portfolio a {
+	  background: url(fe_img/exported-fund.png) no-repeat scroll 0 0;
+	  text-decoration:none;
+  }
+  td.fe-icon-multiple-documents a {
+	  background: url(fe_img/ico_multipleDoc.png) no-repeat;
+	  text-decoration:none;
+  }
+  .fe-portfolio-export-dlg.ui-dialog-content.ui-widget-content {
+	  height: auto !important;
+  }
+  .ui-dialog .fe-portfolio-export-dlg{
+	  padding: 0 0 10px;
+  }
+  .fe-portfolioExport-fundName {
+	  background-color: #000;
+	  color: white;
+	  display: block;
+	  font-size: 13px;
+	  padding: 5px 0 5px 10px;
+  }
+  .fe-ico-add-to-portfolio, .fe-ico-add-to-basket {
+	  margin-left: 10px;
+	  text-decoration:none;
+  }
+  .fe-ico-add-to-portfolio, .fe-ico-add-to-portfolio:hover {
+	 /* background: url(fe_img/ico_addToPortfolio.png) no-repeat scroll left top;*/
+	  padding: 0 0 0 17px;
+	  text-decoration:none;
+  }
+  .fe-ico-add-to-portfolio:hover {
+	  background-image: url(fe_img/ico_addToPortfolioOver.png);
+  }
+  .fe-ico-add-to-basket, .fe-ico-add-to-basket:hover {
+	 /* background: url(fe_img/ico_addToBasket.png) no-repeat scroll left 1px;*/
+	  padding: 0 0 0 17px;
+	  text-decoration:none;
+  }
+  .fe-ico-add-to-basket:hover {
+	  background-image: url(fe_img/ico_addToBasketOver.png);
+  }
+  .mpconstituent-fundname {
+	  margin-bottom: 10px;
+	  margin-top:20px;
+  }
+  .mpconstituent-backTo-container {
+	  padding-bottom:0;
+  }
+  .fe-icon-back.fe-back-button {
+	  margin-left: 0 !important;
+  }
+  @media screen and (min-width: 0px) and (max-width: 1079px){
+	  .page, .fe-chart-body .page{
+		  width : 97% !important;
+	  }	
+	  .ui-logo-container, .fe-fundCentre-body .ui-tabs .ui-tabs-panel, .fe-tabs-autoLoad.ui-tabs, .fe-pscan-actions, .fe-footer-container{
+		  max-width: inherit;
+	  }
+	  .fe-ui-dialog, .ui-dialog{
+		  width: 80% !important;
+	  }
+	  .ui-scroll-tabs-header.show-controls-always.st-activate-controls{
+		  padding: 0 32px;
+	  }
+	  /*table responsive*/
+	  .fe-cascade-table .cascade-childrow-cnt {
+		  margin: 10px;
+		  padding: 10px;
+		  background-color: #fff;
+		  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+	  }
+	  span.cascade-cellheader {
+		  font-size: 12px;
+		  font-style: normal !important;
+		  color: #666;
+	  }
+	  .fe-cascade-table tbody .cascade-col{
+		  color: #000
+	  }
+	  /**/
+	  .fe-portfolio-deleteall{
+		  position: relative;
+		  left: 0 !important;
+		  bottom: inherit;
+		  margin-top: 5px;
+	  }
+  }
+  @media screen and (min-width: 769px) and (max-width: 1079px){
+	  .fe-search-searchbox-container{
+		  /* right: 0 */
+	  }
+	  .fe-search-fileters-container {
+		  width: 31% !important;
+		  margin-right: 2% !important;
+	  }
+	  .ui-slider{
+		  width: 97%;
+	  }
+	  .fe-search-performance-filter-options{
+		  width: 115px;
+	  }
+	  .fe-search-performance-filter-options .mfs-container{
+		  width: 100% !important
+	  }
+	  .fe-ui-dialog, .ui-dialog {
+		  width: 55% !important;
+	  }
+	  .fe-chartlegend{
+		  width: 68%
+	  }
+  }
+  @media screen and (min-width: 0px) and (max-width: 768px){
+	  .ui-logo-container{
+		  background-size: 60%
+	  }
+	  .fe-topmenu .fe-menuTabs-list li a{
+		  padding: 15px 20px 13px;
+	  }
+	  .fe-topmenu .fe-menuTabs-list li:first-child, .fe-topmenu .fe-menuTabs-list li:hover:first-child{
+		  border-left: 0;
+	  }
+	  /*Search*/
+	  .fe-search-searchbox-container{
+		  position: relative;
+		  margin-left: 0;
+		  padding: 0;
+		  border: 0;
+		  margin-top: 7px;
+		  display: inline-block;
+		  width: 100%;
+	  }
+	  .fe-search-textbox, .fe-search-textbox:focus{
+		  border-bottom: 1px solid #ddd;
+		  padding: 8px 4px;
+	  }
+	  #advance{
+		  margin-top: 0;
+		  border-top: 1px solid var(--theme-darkgray);
+		  top: 7px;
+	  }
+	  .fe-search-fileters-container, .fe-search-performance-filter-options .mfs-container{
+		  width: 100% !important;
+	  }
+	  .fe-search-performance-filter-options{
+		  width: 58%;
+	  }
+	  .fe-search-performance-filter-value{
+		  width: 60px;
+	  }
+	  .ui-slider{
+		  width: 98%
+	  }
+	  #basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover, .fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus, .fe-advSearch-button.ui-state-hover, .fe-search-clear-button.ui-state-default, .fe-search-clear-button.ui-state-focus, .fe-search-clear-button.ui-state-hover{
+		  background-color: var(--theme-green) !important;
+		  border-radius: 3px;
+		  border-left: 0;
+		  width: 40px !important;
+		  height: 40px;
+		  margin-right: 0 !important;			
+	  }
+	   
+	  .fe-topmenu .fe-menuTabs-list li:first-child, .fe-topmenu .fe-menuTabs-list li:first-child:hover{
+		  border-left: 0;
+	  }
+	  .fe-cascade-table tbody .cascade-menu-wrapper{
+		  padding-top: 14px
+	  }
+	  /*Charting tool*/
+	  .instrumentTabSearchOptions{
+		  margin-right: 0;
+		  margin-bottom: 35px;
+		  border-right: 0;
+		  width: 100%
+	  }
+	  .fe-chart-managersearch-container {
+		  width: 100%;
+		  margin-bottom: 15px;
+	  }
+	  .fe-chart-sectorsearch-container, .chart-addToChart-Container .mfs-container {	
+		  width: 100%;
+	  }
+	  .instrumentTabSearchOptions .mfs-container, .instrumentTabResultsOptions{
+		  width: 88%;
+	  }
+	  .fe-search-panel label{
+		  display: block
+	  }
+	  .addToChart{
+		  margin-left: 0;
+		  margin-bottom: 15px;
+	  }
+	  .fe-chart-chartingOptions-container {
+		  margin: 0;
+		  width: 100% !important;
+	  }
+	  .shownOption{
+		  top: 82px
+	  }	
+  }
+  @media screen and (min-width: 568px) and (max-width: 768px) {
+	  .fe-search-fileters-container {
+		  width: 48% !important;
+		  margin-right: 2% !important;
+	  }
+	  .fe-search-performance-filter-options {
+		  width: 50%;
+	  }
+	  .instrumentTabSearchOptions{
+		  margin-bottom: 0
+	  }
+	  .fe-chart-managersearch-container {
+		  width: 52%;
+	  }
+	  .instrumentTabResultsOptions, .fe-chart-sectorsearch-container{
+		  width: 48% !important
+	  }
+	  .fe-chart-sectorsearch-container, .chart-addToChart-Container{
+		  width: 100%;
+	  }
+	  .addToChart {
+			 margin-left: 20px;
+	  }
+	  .pscan-edit-leftcolumn{
+		  width: 200px
+	  }
+	  .pscan-edit-rightcolumn{
+		  width: 240px;
+		  height: auto
+	  }
+	  .pscan-edit-sortableContainer .ui-sortable, .pscan-edit-nologomessage{
+		  width: 100%;
+	  }
+	  .fe-split-chart{
+		  width: 100%;
+	  }
+	  .fe-pscan-highchart-container-Sector, .fe-pscan-highchart-container-Geographical, .fe-pscan-highchart-container-Asset{
+		  margin: 0 auto
+	  }
+	  .fe-chartlegend{
+		  width: 100%;
+	  }
+	  .fe-chartlegend-column1{
+		  width: 48%;
+	  }
+  }
+  @media screen and (min-width: 0) and (max-width: 580px) {
+	  /*popup*/
+	  .fe-portfoliodetails-input, .fe-portfoliodetails-multiline{
+		  width: 100%;
+	  }
+	  ..fe-pscan-benchmarkContainer div {
+		  margin-bottom: 12px;
+	  }
+	  .fe-pscan-benchmarkContainer label{
+		  height: 10px;
+		  font-size: 12px !important;
+		  color: #666 ;
+	  }
+	  .fe-portfolioSettings-stepOne-container, .fe-portfolioSettings-stepTwo-container{
+		  border-right: 0;
+		  width: 100%;
+		  margin-right: 0;
+		  height: auto;
+		  margin-bottom: 10px;
+	  }
+	  .fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap{
+		  margin-bottom: 0
+	  }
+	  .ui-button.ui-state-default.fe-downloadTool-button {
+		  width: 100% !important;
+	  }
+	  .fe-chartlegend, .fe-chartlegend-column1, .fe-chartlegend-column2, .fe-split-chart {
+		  width: 99%;
+		  margin-left: 0
+	  }
+	  .fe-pscan-highchart-container-Sector, .fe-pscan-highchart-container-Geographical, .fe-pscan-highchart-container-Asset{
+		  margin: 0 auto;
+	  }
+	  .pscan-edit-leftcolumn, .pscan-edit-rightcolumn, .pscan-edit-sortableContainer .ui-sortable, .pscan-edit-nologomessage{
+		  width: 100%;
+		  height: auto
+	  }
+	  .fe-chart-PanelToggleButton>.fe-button.ui-state-default{
+		  font-size:12px !important;
+		  padding:3px 5px;
+	  }
+  }
+  @media screen and (min-width: 0px) and (max-width: 480px){
+	  .fe-datatable tbody{
+		  display: table;
+	  }
+	  .fe-datatable th.morebtn-th {
+	  display: contents;
+	}
+	  .ui-logo-container{
+		  background-position: left 10px;
+		  background-size: 90%;
+	  }
+	  #basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover, .fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus, .fe-advSearch-button.ui-state-hover, .fe-search-clear-button.ui-state-default, .fe-search-clear-button.ui-state-focus, .fe-search-clear-button.ui-state-hover{
+		  margin-top: 10px !important
+	  }	
+	  .fe-search-textbox, .fe-search-textbox:focus{
+		  margin-top: 14px;
+		  width: 97%;
+	  }
+	  .fe-search-searchbox-container{
+		  text-align:right;
+	  }
+	  .fe-chart-basisOptionsGroup, .fe-innerEvent-container{
+		  width: 100%;
+	  }
+	  .fe-ui-dialog, .ui-dialog{
+		  width: 75% !important;
+	  }
+	  /*Top menu Header Center position*/
+	  .fe-menuTabs-list{
+		  max-width: inherit;
+		  width: 97%;
+	  }
+	  .fe-topmenu > .stNavMain .ui-button.ui-state-default{
+		  display: none;
+	  }
+	  .fe-topmenu .fe-menuTabs-list li, .fe-topmenu .fe-menuTabs-list li:hover{
+		  width: 50%;
+	  }
+	  .fe-topmenu > .ui-scroll-tabs-header.show-controls-always.st-activate-controls{
+		  padding: 0;
+	  }	
+	  .fe-topmenu .fe-menuTabs-list li, .fe-topmenu .fe-menuTabs-list li:hover{
+		  width: 50%;
+	  }
+	  .fe-masterTab-portfolio {
+		  border-right:0 !important
+	  }
+	  .fe-topmenu .fe-menuTabs-list li a{
+		  padding-left: 0;
+		  padding-right: 0;
+		  text-align: center;
+		  width: 100%;
+	  }
+	  /**/
+	  td.fe-column-name{
+		  min-width: 268px;
+	  }
+	  td.fe-portfolio-TotalLabel,td.fe-portfolio-TotalLabel,.fe-datatable th.fe-columnheader-Weight{
+		  display:none;
+	  }
+	  .fe-portfolio-totalValueContainer:before{
+		  content:"Total";
+		  padding-right:10px
+	  }
+	  .fe-tabs-container-Portfolio td.fe-column-name {
+		  min-width: 190px;
+		  display: table-cell !important;
+		  padding: 7px 0;
+	  }
+	  .fe-currencyToggle-button.fe-button.ui-state-default, .fe-currencyToggle-button.ui-button.ui-state-default{
+		  padding: 7px 10px 5px;
+		  font-size: 14px;
+		  margin: 0 0 0 4px;
+	  }
+	  /*Charting tool menu center position*/
+	  .fe-chart-tabs-container .ui-scroll-tabs-header.show-controls-always.st-activate-controls{
+		  padding: 0;
+	  }
+	  .fe-chart-tabs-container .stNavMain .ui-button.ui-state-default{
+		  display: none;
+	  }
+	  .fe-chart-tabs-container .ui-scroll-tabs-view{
+		  width: 100%;
+	  }
+	  .fe-chart-tabs-container .fe-tabs-item.ui-state-default {
+		  width: 50%;
+	  }
+	  .fe-chart-tabs-container .fe-tabs-item.ui-state-default a {
+		  padding: 12px 0 !important;
+		  text-align: center;
+		  width: 100%;
+	  }
+	  
+  }
+  @media screen and (min-width: 0px) and (max-width: 320px){
+	  td.fe-column-name{
+		  min-width: 220px;
+	  }
+	  .fe-tabs-container-Portfolio td.fe-column-name {
+		  min-width: 176px;
+	  }
+	  .fe-chart-chartingOptions-container .fe-button.ui-state-default, .fe-chart-chartingOptions-container .ui-button.ui-state-default{
+		  padding: 7px 4px 5px;
+	  }
+  }
+  
+  .floatL .fe-button.fe-search-button.fe-button-chartall .ui-button-text{
+	  display:none;
+  }
+  .floatL .fe-button.fe-search-button.fe-button-chartall:after{
+	   content:"CHART SELECTED FUNDS";
+	   line-height: 18px;
+	   font-size: 15px;
+  }
+  
+  .fe-additionaltools {
+	  margin-top: 5px;
+		
+  }
+  .fe-additionaltools button#btn-portfolio-chartall {
+	  font-size: 0;
+  }
+  .fe-additionaltools .fe-button.fe-search-button {
+	  float:left;
+	  margin-bottom:5px ;
+  }
+  .fe-portfolio-deleteall{
+	display:none;
+  }
+  
+  /* 22-06-2023 changes */
+  .ui-logo-container::before {
+	  background: var(--theme-black);
+	  position: absolute;
+	  z-index: -1;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  content: "";
+	  height: 92px;
+  }
+  .stNavMain .ui-button.ui-state-default{
+	  color: var(--theme-black);
+	  background: var(--theme-white);
+	  border: 1px solid var(--theme-green);
+	  opacity: 1;
+	  padding: 6px 6px 5px;
+  }
+  .stNavMainLeft .ui-button.ui-state-default{
+	  border-radius: 8px 0 0 8px;
+  }
+  .stNavMainRight .ui-button.ui-state-default{
+	  border-radius: 0 8px 8px 0;
+  }
+  .fe-tabs-container-FundCentre .ui-scroll-tabs-header{
+	  background: transparent;
+  }
+  .ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+	  padding: 0 29px;
+  }
+  .ui-scroll-tabs-header .stNavMainLeft{
+	  left:0;
+  }
+  .ui-widget-content .fe-datatable .fe-fund-tableBody a {
+	  color: var(--theme-blue);
+  }
+  input[type="radio"], input[type="checkbox"] {
+	  accent-color: var(--theme-blue);
+	  margin-right: 5px;
+  }
+  .fe-downloadtool-options-val button,.fe-downloadBtn-Container button {
+	  border: 2px solid var(--theme-blue) !important;
+	  background: transparent !important;
+	  color: var(--theme-black) !important;
+	  box-shadow: none !important;
+  }
+  .fe-downloadtool-options-val button:active,.fe-downloadtool-options-val button:visited {
+	  background: var(--theme-green) !important;
+	  border-color:var(--theme-green) !important;
+  }
+  .fe-downloadBtn-Container button:last-child{
+	border: 2px solid var(--theme-red) !important;
+	background: var(--theme-red) !important;
+	color: var(--theme-white) !important;
+	box-shadow: none !important;
+  }
+  /*NoviaFinancial*/

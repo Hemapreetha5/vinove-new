@@ -1,0 +1,36 @@
+﻿var HighChartsHelper = HighChartsHelper || {};
+
+var HighChartsHelper = function () { };
+
+HighChartsHelper.prototype = function () {
+
+    function getValidInstrumentHistory(fundPerformance, instrumentPerformance) {
+        var validInstrumentHistory = [];
+        if (!instrumentPerformance || instrumentPerformance.length === 0) return validInstrumentHistory;
+
+        validInstrumentHistory.push({ name: 'P12M', y: instrumentPerformance[0]["P12M"] });
+
+        if (fundPerformance[0]['P12To24M'] != null) {
+            validInstrumentHistory.push({ name: 'P12To24M', y: instrumentPerformance[0]["P12To24M"] });
+        }
+
+        if (fundPerformance[0]['P24To36M'] != null) {
+            validInstrumentHistory.push({ name: 'P24To36M', y: instrumentPerformance[0]["P24To36M"] });
+        }
+
+        if (fundPerformance[0]['P36To48M'] != null) {
+            validInstrumentHistory.push({ name: 'P36To48M', y: instrumentPerformance[0]["P36To48M"] });
+        }
+
+        if (fundPerformance[0]['P48To60M'] != null) {
+            validInstrumentHistory.push({ name: 'P48To60M', y: instrumentPerformance[0]["P48To60M"] });
+        }
+
+        return validInstrumentHistory;
+
+    };
+
+    return {
+        GetValidInstrumentHistory: getValidInstrumentHistory
+    };
+}();

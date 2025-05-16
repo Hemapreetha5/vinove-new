@@ -1,0 +1,140 @@
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arial.ttf')  format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arialbd.ttf')  format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+:root{
+	  --primary:#00485E;
+	  --secondary:#353535;
+	  --orange:#FF6120;
+	  --lightblue:#6ABDC6;
+	  --highlightpink:#FF00A0;
+	  --yellow:#F5E02E;
+      --lightgray:#E3EBED;
+      --white:#FFF;
+      --black:#000;
+      --fontDrukBold:"Druk-Bold";
+      --fontHeadings:"Publico-Headline-Roman-Regular";
+      --bodyFont:"AkkuratPro-Regular";
+      --font:"Arial";
+}
+*{
+	box-sizing: border-box;
+}
+body {
+      font-family: var(--font);
+	  color: var(--secondary);
+      font-size:12px;
+	  padding: 0px;
+	  margin: 0px;
+}
+/* h1{
+    font-family: var(--fontDrukBold);
+}
+h2,h3,h4,h5,h6{
+    font-family: var(--fontHeadings);
+} */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #d8d9db;
+    background: #d8d9db;
+    font-weight: normal;
+    color: var(--secondary);
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+	color: var(--secondary);
+}
+a:focus, li:focus, span:focus, input:focus, button:focus {
+    outline:none !important;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li,.ui-tabs .ui-tabs-nav li {
+    margin: 0;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none;
+    background: transparent;
+}
+.ui-widget-header{
+	border: none;
+    background: transparent;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected{
+	margin-bottom: 0;
+	border: 1px solid #d8d9db;
+    background: #d8d9db;
+}
+.fundCentreContent{
+	position: relative;
+}
+.fe-fundcentre-content::before {
+    content: "";
+    background-image: url('fe_img/logo-image.png');
+    background-size: auto 67px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 67px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.fe-cover.fe-fundInformationTools{
+    position: relative;
+}
+.fe-cover.fe-fundInformationTools::before {
+    content: "";
+    background-image: url("fe_img/banner-image.jpg");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 9;
+    background-position: center center;
+}
+.fe-tabs-container-FundCentre{
+	position: relative;
+	padding-top: 225px;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 16px 10px;
+    font-size: 12px;
+}
+button.fe-button.fe-search-button.fe-button-chartall {
+    position: relative;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    font-size: 12px;
+    color: var(--white);
+}
+.fe-datatable {
+    border-spacing: 0;
+}
+.fe-datatable th {
+    background: #E6E6E6;
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 0;
+}
+
+/*BNYM*/

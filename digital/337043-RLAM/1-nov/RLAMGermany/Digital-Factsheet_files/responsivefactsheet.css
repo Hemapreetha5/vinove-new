@@ -1,0 +1,947 @@
+@font-face {
+font-family: 'FontAwesome';
+
+src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.eot') format('embedded-opentype'),
+url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff2') format('woff2'),
+url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff') format('woff'),
+url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.ttf') format('truetype'),
+url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.svg') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+/*HTML Factsheet responsive override*/
+body{
+    font: 18px/24px Arial, Helvetica, sans-serif !important;
+    background: #fff;
+}
+.fe-asatdate-containers ul li{
+	margin-top:16px;
+}
+.fe-fund-performance-astext-element{
+	font:14px Arial, Helvetica, sans-serif !important;
+	color:#333;
+}
+.page{
+	width: 1000px !important;
+	padding-top: 76px;
+	background: url('fe_img/RLAM_logo_HiRes.png')  no-repeat;
+	background-size: 15%;
+	background-position: -1px -8px;
+}
+#tab-responsiveFactsheet{
+	background: #fff;
+	border-radius: 8px 8px 0 0;
+	padding: 0 0 0 0;
+	margin: 24px 0 0 0;
+}
+.fe-responsivefactsheet-title{
+	font-size: 28px !important;
+	font-weight: 600;
+	color: #421853;
+	font-family: Georgia,serif;
+	margin: -48px 0 0px 164px;
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	max-width: 850px;
+	line-height: 1.2;
+}
+.fe-tab-container-Documents .fe-section-horizontal.section_2_1,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_1,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2{
+	width: 47% !important;
+border: none !important;
+	padding: 20px 3% 20px 0%;
+	float: left;
+}
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2 {
+	padding-bottom: 15px;
+	float: right;
+	padding: 20px 3% 20px 0;
+}
+ 
+.fe-tab-container-Prices .fe-section-horizontal.section_2_1
+{
+	border: 1px solid;
+	margin: 0;
+	padding: 20px;
+	width: 95.5% !important;
+}
+.fe-tab-container-Documents .fe-section-horizontal.section_2_1{
+	height: auto;
+}
+.fe-tab-container-Documents .fe-section-horizontal.section_2_1 h5,
+.fe-tab-container-Prices .fe-section-horizontal.section_2_1 h5{
+	margin: 0 0;
+}
+.fe-tab-container-Performance .section_2_1 h5,
+.fe-tab-container-Performance .section_4_1 h5,
+.fe-tab-container-Performance1 .section_2_1 h5,
+.fe-tab-container-Performance1 .section_4_1 h5,
+.fe-tab-container-Breakdowns h5,
+.fe-section-horizontal.section_1_2 h5,
+.fe-tab-container-Documents3 .fe-section-text.section_2_1 h5,
+.fe-tab-container-Documents4 .fe-section-text h5{
+	margin: 10px 0 20px;
+	font: 22px/20px Arial, Helvetica, sans-serif;
+	color: #00818A;
+}
+.fe-tab-container-Documents4 .fe-section-text h5
+{
+	margin-top: 24px;
+}
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_1 h5,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2 h5{
+	margin: 0;
+}
+text, tspan, text tspan{
+	font-family: Arial;
+}
+.highcharts-title{
+	font-size: 16px !important;
+  position: relative;
+	transform: translateX(6px);
+}
+.fe-tabs-datacontainer.ui-tabs.ui-tabs-panel{
+  padding:20px 0 !important;  
+}
+.fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all /* tab control chart */ {
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+	border-radius: 0;
+	border: 0px solid #eaebea;
+	display: table;
+	width: 100%;
+}
+.fe-helptext-switch {
+	margin-top: -10px;
+    height: 18px;
+    color: #F1F7FC;
+	display:none;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active a /*  a (text) within tab selected */ /*  a (text) within tab selected */ {
+	outline: none;
+	color: #000 !important;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active {
+	background: url(fe_img/tab-over.png) repeat-x left bottom #ffffff;
+	border-right: 1px solid #333;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active a,.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active a:focus /*  a (text) within tab selected */ /*  a (text) within tab selected */ {
+	outline: none !important;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top /* tab charting tool*/ {
+	font-size: 12px;
+	opacity: 1;
+	background: url(fe_img/transactionType_bg.png) repeat-x scroll left center #FDFDFD;
+	border-top-left-radius: 3px;
+	float: left;
+	height: 31px;
+	margin: 0 5px 0 0;
+	padding: 0;
+	text-align: center;
+	
+}
+.fe-tabs-item.ui-state-default.ui-corner-top a /* a (text) within tab */ {
+	display: block;
+	color: #fff !important;
+	width: auto;
+	text-align: center;
+	white-space: pre-line;
+	line-height: 13px;
+	font-weight: bold;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top a /* a (text) within tab */ {
+	background-position: center 10px;
+	background-repeat: no-repeat;
+	color: #333;
+	display: block;
+	font: normal 17px/24px Arial, Helvetica, sans-serif;
+	text-align: center;
+	word-wrap: break-word;
+	padding: 13px 0px;
+	width: 100%;
+	border-radius: 0 !important;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover a /* a (text) within tab:hover */ {
+	color: #5D5E62 !important;
+ 
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active /* tab selected */ {
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 12px;
+	opacity: 1;
+	height: 30px;
+	margin: 0 5px 0 0;
+	border-bottom: 0 !important;
+	border-radius: 0;
+}
+
+.fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all /* tab control fund centre*/ {
+	height: 49px;
+	background-color: transparent;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+	color: inherit;
+	text-decoration: inherit;
+}
+.fe-tab-InvestmentInformation.fe-tabs-item.ui-state-default.ui-corner-top a {
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover /* tab:hover */ {
+	border-right: 1px solid #eaebea;
+	background: url(fe_img/tab-over.png) repeat-x left bottom #eaebea;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover a /* a (text) within tab:hover */ {
+	padding: 13px 0px;
+	 background:#eaebea;
+}
+.fe-tabs-item.ui-state-default:first-of-type{
+
+/* border-top-left-radius: 8px !important; */
+}
+.fe-tabs-item.ui-state-default:last-of-type{
+	/* border-top-right-radius: 8px !important; */
+	overflow:hidden;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active /* tab selected */ {
+	background: #EAEBEA !important;
+	border-right: 1px solid #eaebea !important;
+	/*! border-top: 0px solid #eeeeee; */
+	/*! border-bottom: 0px solid #eeeeee !important; */
+	height: 50px;
+	margin: 0;
+	padding: 0;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top /* tab charting tool*/ {
+	background: #00818A !important;
+	float: none;
+	height: 49px;
+	margin: 0;
+	text-align: center;
+	border-right: 1px solid #eaebea;
+	width: 25% !important;
+	border-top: none;
+	border-radius: 0;
+	border-left: 0;
+	display: table-cell;
+}
+.fe-tabs-item.ui-state-default.ui-corner-top:first-child {
+	 
+}
+fe-tabs-item.ui-state-default.ui-corner-top a /* a (text) within tab */ {
+	background-position: center 10px;
+	background-repeat: no-repeat;
+	color: #333;
+	display: block;
+	font: normal 18px/24px Arial, Helvetica, sans-serif;
+	text-align: center;
+	word-wrap: break-word;
+	padding: 13px 20px;
+	border: none;
+}
+
+.fe-section-header.title.section_1_1{
+     position: absolute;
+     right:0;
+     width: 28% !important;
+     padding: 18px 0px;
+     /*! color: #fff; */
+     display: none;
+}
+.fe-section-horizontal.section_1_2{
+      position:absolute;
+      right: 14px;
+      width: 257px !important;
+      top: 7px;
+      border: 0;
+      /*! color: #fff; */
+      padding: 0px 6px 0 12px;
+}
+.fe-section-horizontal.section_1_2 h5{
+/*margin: 0 0 3px 0;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 15.9px;
+	color: #333;
+	font-weight: 600;
+	padding: 0 5px; */
+	margin-top:24px;
+}
+.fe-tab-container-Breakdowns .fe-section-horizontal.section_1_2 h5{
+	padding: 0;
+}
+.fe-section-horizontal.section_3_1{
+/*       position:absolute;
+      right: 12px;
+      width: 26% !important;
+      top: 240px;
+      border: 0; */
+      /*! color: #fff; */
+      
+}
+.fe-tab-container-Documents3 .fe-section-text.section_2_1{
+	width: 96% !important;
+	border: none !important;
+	padding: 21px 3% 0;
+	margin: 0;
+	float: none;
+}
+.fe-tab-container-Documents3 .minFsData{
+	border: 1px solid #000;
+	width: 68%;
+}
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_1,
+.fe-tab-container-Documents3 .section_3_2{
+	width: 46% !important;
+border: none !important;
+	padding: 0 3% 24px 2%;
+	float: left;
+}
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_2 {
+	padding-bottom: 15px;
+	float: right;
+	padding: 0 3% 0 0;
+}
+.fe-tab-container-Documents3 .section_3_2 h5{
+	/*! display: none; */
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-name{
+    font-size: 14px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    /* padding-top: 9px !important; */
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-val{
+    font-size: 14px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.fe-fund-tableBody{
+	position: relative;
+}
+.minFsData:before {
+	content: "";
+	display: block;
+	width: 29.3%;
+	height: 99.8%;
+	right: 0;
+	position: absolute;
+	border: 1px solid #00818A;
+}
+.fe-tab-container-Prices .minFsData,
+.fe-tab-container-Performance .minFsData,
+.fe-tab-container-Performance1 .minFsData,
+.fe-tab-container-Breakdowns .minFsData,
+.fe-tab-container-Documents4 .minFsData{
+	    width: 67.3%;
+}
+.fe-tab-container-Breakdowns .minFsData:after{
+	content:"Source: Royal London Asset Management and FE fundinfo. Portfolio characteristics and holdings are subject to change without notice. This does not constitute an investment recommendation. For information purposes only, methodology available on request.";
+  font-size: 14px !important;
+  line-height: 18px !important;
+	display: block;
+	padding: 12px 0 0;
+	
+}
+.fe-tab-container-Documents4 .minFsData{
+	border: 1px solid;
+	padding: 0 20px;
+	width: 642px;
+}
+.minFsData {
+    width: 70%;
+    padding: 0;
+    background-color: transparent;
+    /* min-height: 700px; */
+}
+.fe-tab-container-Documents4 .fe-section-text{
+	/*! margin: 0; */
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+    border:none !important;
+    
+}
+.fe-section-horizontal.section_2_1{
+    border-left: 1px solid #000;
+    border-right:0;
+}
+.fe-section-horizontal.section_2_2{
+	 border-right: 1px solid #000;
+}
+.fe-section-horizontal.section_2_1,.fe-section-horizontal.section_2_2{
+ 
+border-top: 1px solid #000;
+ 
+border-bottom: 1px solid #000;
+ 
+height:380px;
+ 
+width: 48.35% !important;
+}
+.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap>.fe-section-horizontal-name,.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap>.fe-section-horizontal-val,
+.fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap>.fe-section-horizontal-name,.fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap>.fe-section-horizontal-val,
+.fe-section-horizontal.section_2_2 .fe-section-horizontal-wrap>.fe-section-horizontal-name,.fe-section-horizontal.section_2_2 .fe-section-horizontal-wrap>.fe-section-horizontal-val,
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_1 .fe-section-horizontal-name,.fe-tab-container-Documents3 .fe-section-horizontal.section_3_1 .fe-section-horizontal-val,
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_2 .fe-section-horizontal-name,.fe-tab-container-Documents3 .fe-section-horizontal.section_3_2 .fe-section-horizontal-val,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_1 .fe-section-horizontal-name,.fe-tab-container-Documents4 .fe-section-horizontal.section_4_1 .fe-section-horizontal-val,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2 .fe-section-horizontal-name,.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2 .fe-section-horizontal-val{
+	background-color: transparent;
+	padding: 7px 6px;
+	vertical-align: middle;
+	font: 14px Arial, Helvetica, sans-serif !important;
+	min-height: 24px;
+	color: #333;
+	width: auto;
+	margin: 0 0 0px 0;
+	/*! word-break: break-all; */
+	/*! max-width: 59%; */
+	display: table-cell;
+	float: none;
+	vertical-align: top;
+}
+.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap>.fe-section-horizontal-name,
+.fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap>.fe-section-horizontal-name,
+.fe-section-horizontal.section_2_2 .fe-section-horizontal-wrap>.fe-section-horizontal-name,
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_1 .fe-section-horizontal-name,
+.fe-tab-container-Documents3 .fe-section-horizontal.section_3_2 .fe-section-horizontal-name,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_1 .fe-section-horizontal-name,
+.fe-tab-container-Documents4 .fe-section-horizontal.section_4_2 .fe-section-horizontal-name{
+    font-weight:600 !important
+}
+.fe-section-horizontal{
+margin: 0;
+padding: 10px 5px 20px }
+.fe-tab-container-Documents2 .fe-section-horizontal.section_2_1,.fe-tab-container-Documents1 .fe-section-horizontal.section_2_1{padding: 10px 20px 19px 20.3px;width: 43% !important;}
+.fe-tab-container-Documents2 .fe-section-horizontal.section_2_2,.fe-tab-container-Documents1 .fe-section-horizontal.section_2_2{
+	padding: 10px 20.3px 19px 20px;
+	width: 43% !important;
+}
+.fe-fund-document-icon{
+	background: none no-repeat center center;
+	background-size: 90%;
+	width: 21px;
+	height: 22px;
+	padding: 0;
+	text-decoration:none;
+}	
+.fe-fund-document-icon:before, .fe-fund-document:before {
+    font-family: 'FontAwesome';
+    content: "\f1c1";
+    font-size: 20px;
+    color: #00818A;
+}
+.fe-documentdropdownbutton{
+	background:transparent !important;
+	background-size: 20px !important;
+	margin: 0 25%;
+	margin: 0;
+}
+.fe-multidocument-div-css{
+   
+  border-color: #00818A;
+	position: absolute;
+	margin-top: 10px;
+	left: 15px;
+	top:25px;
+	border-width: 2px;
+	border-radius: 4px;
+	
+}
+.fe-multidocument-div-css::after {
+  border-color:transparent transparent #00818A ;
+	border-width: 10px;
+	top:-10px;
+}
+.fe-documentdropdownbutton::before {
+  font-family: 'FontAwesome';
+  content: "\f1c1";
+  font-size: 20px;
+  color: #00818A;
+	position: absolute;
+	margin-top: 0px;
+}
+.fe-multidocument-div-css li{
+	text-decoration: underline;
+	text-decoration-color: black;
+	font: 14px Arial, Helvetica, sans-serif !important;
+}
+.fe-multidocument-div-css li:hover {
+  background: #E6E2E8 !important;
+	text-decoration-color: #00818A;
+}
+.fe-fund-multidocument-icon, .fe-fund-multidocument-icon:hover{
+	background:none;
+}
+.fe-section-vertical-wrap .fe-section-vertical-name {
+	margin: 0px 0 !important;
+	padding: 8px 2px;
+	background: #00818A;
+	font: 14px/18px Arial, Helvetica, sans-serif;
+	/* border-top:1px solid; */
+	/* border-bottom: 1px solid #333; */
+	border-right: 1px solid #00818A;
+	color: #fff;
+}
+.fe-section-vertical-wrap:nth-of-type(2) .fe-section-vertical-name{
+	border-left: 1px solid;
+}
+.fe-section-vertical.section_3_1 > .fe-section-vertical-wrap{
+	display:none;
+	width: 128px !important;
+}
+.fe-section-vertical.section_3_1 > .fe-section-vertical-wrap ~ .fe-section-vertical-wrap{
+	display:inline-block;
+}
+
+
+.fe-section-vertical.section_5_1 > .fe-section-vertical-wrap{
+	display:none;
+	width: 107px !important;
+}
+.fe-section-vertical.section_5_1 > .fe-section-vertical-wrap ~ .fe-section-vertical-wrap{
+	display:inline-block;
+}
+
+.fe-section-vertical.section_3_1 .perfomanceAndRiskSectionHeight > .fe-section-vertical-wrap{
+	display:none;
+	width: 128px !important;
+	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
+}
+.fe-section-vertical.section_3_1 .perfomanceAndRiskSectionHeight > .fe-section-vertical-wrap._1m{
+  /* border-left: 1px solid; */
+  width: 94px !important;
+  margin-left: 2px;
+}
+.fe-section-vertical.section_3_1 .perfomanceAndRiskSectionHeight> .fe-section-vertical-wrap ~ .fe-section-vertical-wrap{
+	display:inline-block;
+}
+
+.perfomanceAndRiskSectionHeight > .fe-section-vertical-wrap .fe-section-vertical-val{
+	background:transparent;
+	margin: 0 !important;
+	color: unset;
+    font: 14px/18px Arial, Helvetica, sans-serif;
+}
+
+.fe-section-chart,.fe-section-breakdowns,.fe-section-holdings {
+	margin: 0;
+	border: 1px solid #000;
+	padding: 20px;
+	width: 95.5% !important;
+	position: relative;
+}
+.fe-section-chart.section_2_1 h5,.fe-section-chart.section_4_1 h5{
+	margin: 0;
+}
+.fe-section-chart.section_4_1:before{
+	content: "Click and drag across the graph to set the graph to a specific date range. Click the reset button to return to the default view.";
+	font:normal 14px/1.5 Arial;
+}
+.fe-section-chart.section_2_1:before{
+	content: "Click on a year to show the discrete monthly performance for that year. Click the reset button to return to the default view.";
+	font:normal 14px/1.5 Arial;
+	
+}
+.fe-section-chart.section_2_1:before,
+.fe-section-chart.section_4_1:before{
+  position: absolute;
+	top:450px;
+	width: 90%;
+}
+/*.fe-section-chart.section_2_1 .CitiCode:after,
+.fe-section-chart.section_4_1 .CitiCode:after{
+		content: "The benchmark has been deemed appropriate for comparison with this fund.";
+	font:normal 14px/1.5 Arial;
+	position: relative;
+	top:27px;
+}*/
+.fe-section-chart.section_2_1 .CitiCode,
+.fe-section-chart.section_4_1 .CitiCode{
+	padding-bottom: 40px;
+	height: 400px;
+}
+.fe-section-chart-wrap{
+	margin:0;
+}
+ .highcharts-background{
+ 	fill:transparent;
+ }
+.fe-section-chart-reset{
+	
+float: right;
+position: absolute;
+top: 36px;
+	width:auto;
+	padding-left:20px;
+		right:20px
+}
+.fe-section-chart-reset:after{
+	content:"Reset "; 
+	font:14px Arial;
+	position: relative;
+	top:-5px;
+	
+}
+.fe-section-breakdowns{
+	margin-bottom: 15px;
+}
+.fe-section-breakdowns.section_2_1 > div,.fe-section-breakdowns.section_3_1 > div,.fe-section-breakdowns.section_4_1 > div,.fe-section-breakdowns.section_5_1 > div,.fe-section-nodatamessage,.fe-section-holdings.section_5_1 > div{
+	font:14px Arial, Helvetica, sans-serif !important;
+}
+.fe-section-breakdowns span:empty{
+	display: none;
+}
+.breakdownsChart{
+	height: 250px;
+	width: 50% !important;
+}
+.breakdownsChart+div{
+	width: 50% !important;
+}
+.fe-section-vertical.section_5_1 .perfomanceAndRiskSectionHeight > .fe-section-vertical-wrap{
+	display:none;
+	/*! width: 122px!important; */
+}
+.fe-section-vertical.section_5_1 .perfomanceAndRiskSectionHeight> .fe-section-vertical-wrap ~ .fe-section-vertical-wrap{
+	display:inline-block;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	width: 107px !important;
+}
+.fe-section-vertical.section_5_1 .perfomanceAndRiskSectionHeight> .fe-section-vertical-wrap ~ .fe-section-vertical-wrap._0to12m{
+	/* border-left: 1px solid; */
+	width: 130px !important;
+}
+.fe-section-breakdowns .fe-section-vertical-name{
+	margin:  0 !important;
+	padding: 0px 0px;
+	min-height:50px;
+	background: #f1f1f1;
+	font: 17px/24px Arial, Helvetica, sans-serif;
+	display: none !important;
+}
+.fe-section-holdings  .fe-section-nesteddata-row  .fe-section-vertical-name{
+	margin: 0!important;
+	padding:0px;
+    min-height:20px;
+	background: #f1f1f1;
+	font: 17px/24px Arial, Helvetica, sans-serif;
+	font-size: 0 !important;
+	background: no-repeat;
+}
+.fe-section-breakdowns .ItemWeight.fe-section-vertical-val,.fe-section-breakdowns .ItemWeight.fe-section-vertical-name{
+	text-align:right;
+}
+.fe-section-breakdowns .fe-section-vertical-val,
+.fe-section-holdings .fe-section-vertical-val{
+	float: none !important;
+	display: table-cell;
+	vertical-align: middle;
+	font: 14px Arial, Helvetica, sans-serif !important;
+	font-size: 1em;
+}
+.fe-section-holdings .fe-section-vertical-val{
+	width: 100% !important;
+
+	display: block;
+}
+.fe-section-holdings .fe-section-vertical-val.HoldingWeight{
+	text-align: right;
+	width: 100px;
+}
+.fe-section-nesteddata-row{
+	margin: 0;
+	display: table;
+	border-bottom: 1px solid #d5d5d5;
+}
+.fe-section-nesteddata-row .HoldingName,
+.fe-section-nesteddata-row .HoldingWeight{
+	display: table-cell;
+}
+.fe-section-nesteddata-row .HoldingWeight{
+	width: 100px;
+	
+}
+.fe-section-nesteddata-row .HoldingWeight .fe-section-vertical-val{
+	text-align: right !important;
+}
+.fe-section-holdings h5+div+div.fe-section-nesteddata-row,
+.fe-section-holdings .fe-section-nesteddata-row:nth-of-type(odd){
+	background:none !important;
+}
+.fe-section-holdings  span:empty{
+	display: none;
+}
+.fe-section-holdings h5+div+div.fe-section-nesteddata-row{
+	border-bottom: 0;
+}
+.fe-section-nesteddata-row:first-of-type{
+	margin-top: 20px;
+	border-bottom: 0;
+}
+.fe-section-breakdowns .BreakdownKey {
+	 /*! width:10% !important; */
+	 display: table-cell;
+	 width: 30px;
+}
+.fe-section-breakdowns .BreakdownName {
+	 width:auto !important;
+	 display: table-cell;
+}
+
+.fe-section-breakdowns .ItemWeight{
+	width:60px !important;
+	text-align: right;
+	display: table-cell;
+} 
+.fe-tab-container-Performance .fe-section-vertical.section_3_1> h5:after,.fe-tab-container-Performance1 .fe-section-vertical.section_3_1> h5:after{
+	content: "Discrete performance (%)";
+	color: #00818A;
+	display: block;
+	float: left;
+	font: 22px/20px Arial, Helvetica, sans-serif;
+	margin: 5px 0 20px;
+	width: 100%;
+	padding: 8px 0;
+}
+
+.fe-tab-container-Performance .fe-section-vertical.section_5_1> h5:after,.fe-tab-container-Performance1 .fe-section-chart.section_4_1> h5:after{
+	content: "Cumulative performance (%)";
+	color: #00818A;
+	display: block;
+	float: left;
+	font: 22px/20px Arial, Helvetica, sans-serif;
+	margin: 5px 0 20px;
+	width: 100%;
+	padding: 8px 0;
+}
+
+.fe-section-vertical.section_3_1,
+.fe-section-vertical.section_5_1{
+	margin:10px 0;
+	border: 0;
+	padding: 20px;
+	border: 1px solid;
+	width: 95.5% !important;
+}
+.fe-section-chart.section_2_1:after,
+.fe-section-chart.section_4_1:after,
+.fe-section-vertical.section_3_1:after,
+.fe-section-vertical.section_5_1:after{
+	content: "Past performance is not a guide to future performance. The value of investments and the income from them is not guaranteed and may go down as well as up and investors may not get back the amount originally invested. Source: RLAM and FE fundinfo. Fund performance is shown on a mid to mid price basis, net of fees and gross of taxes, with gross income reinvested unless otherwise stated. Benchmark performance is shown net of fees and taxes.";
+	font-size: 14px;
+	line-height: inherit;
+	padding: 20px 0 0;
+	display: block;
+}
+.fe-section-vertical.section_5_1{
+	/*! margin-bottom: 4px !important; */
+	/*! padding-bottom: 40px; */
+}
+.fe-section-vertical.section_3_1 h5,
+.fe-section-vertical.section_5_1 h5{
+	margin: 0;
+	font-size: 0 !important;
+}
+.fe-section-header .fe-section-header-val{
+	margin-right:0px;
+}
+.fe-fund-document{
+	background-image:none;
+}
+a:focus, li:focus{
+	outline:none !important;
+}
+.fe-section-horizontal.section_2_1 .fe-section-horizontal-name,.fe-section-horizontal.section_2_2 .fe-section-horizontal-name{
+    width: 70% !important;
+}
+.fe-section-horizontal.section_2_1 .fe-section-horizontal-val,.fe-section-horizontal.section_2_2 .fe-section-horizontal-val{
+    width: 20% !important;
+}
+.UnitLaunchDate.fe-section-horizontal-wrap .fe-section-horizontal-name {
+  white-space:nowrap;
+  overflow:hidden;
+}
+.fe-section-horizontal.section_1_2 .UnitLaunchDate.fe-section-horizontal-wrap > .fe-section-horizontal-name{
+/*! font-size: 0 !important; */	
+}
+.UnitLaunchDate.fe-section-horizontal-wrap{
+	
+}
+.fe-section-horizontal.section_1_2 .UnitLaunchDate.fe-section-horizontal-wrap > .fe-section-horizontal-name:after {
+	/*! content:"Launch date"; */
+	/*! font-size: 14px !important; */	
+}
+.UnitLaunchDate.fe-section-horizontal-wrap >.fe-section-horizontal-name .fe-helptext-image{
+  
+}
+.fe-footer-container{
+	font-size:14px !important;
+	line-height: 18px !important;
+}
+.fe-helptext-image-background{
+	background-image: none;
+}
+.fe-helptext-image-background:before{
+	font-weight:  normal;
+	font-family: 'FontAwesome';
+content: "\f05a";
+font-size: 14px;
+color: #00818A;
+}
+.fe-helptext-div-css{
+	padding-top: 0px;
+	width: 220px;
+}
+.fe-helptext-div-css:before{
+	content: "";
+	display: block;
+	width: 1px;
+	height: 1px;
+	border: 10px solid;
+	border-color: transparent transparent #00818a transparent;
+	margin-left:32px;
+}
+.fe-helptext-div-css .help-text-callout-top,
+.fe-helptext-div-css .help-text-callout-middle,
+.fe-helptext-div-css .help-text-callout-bottom{
+	background-image: none;
+}
+.fe-helptext-div-css .help-text-callout-middle div{
+	color: #333 !important;
+	font-weight: normal !important;
+	font-size: 14px;
+	text-align:left;
+	padding-right: 12px;
+}
+.fe-helptext-div-css .help-text-callout-top{
+	background-color: #fff;
+	height: 15px;
+  border-radius: 4px 4px 0 0;
+	border-width: 2px 2px 0 2px;
+	border-color: #00818a;
+	border-style: solid;
+}
+.fe-helptext-div-css .help-text-callout-middle{
+	background-color: #fff;
+  border-radius: 0px 0 0;
+	border-width: 0px 2px 0 2px;
+	border-color: #00818a;
+	border-style: solid;
+}
+.fe-helptext-div-css .help-text-callout-bottom{
+	background-color: #fff;
+  border-radius: 0px 0 4px 4px;
+	border-width: 0px 2px 2px 2px;
+	border-color: #00818a;
+	border-style: solid;
+}
+ /**{
+	border:1px solid;
+}*/
+/* ============== Dialog box =========================== */ 
+.ui-dialog  /* Set fixed size for Download tool popup */{
+	margin: 0 auto !important;
+	position: absolute !important;
+	right: 0 !important;
+	left:0 !important;
+ 	background: #fff;
+	border: 3px solid #421853 !important;
+	border-radius: 4px;
+	padding: 0;
+}
+ 
+.ui-dialog .ui-dialog-buttonpane{
+	border-radius:0 0 6px 6px;
+	-webkit-border-radius:0 0 6px 6px;
+	-moz-border-radius:0 0 6px 6px;	
+}
+.ui-dialog .ui-dialog-buttonpane button{
+ 
+ border: 0;
+	min-width: 50px;
+	color: #fff !important;
+	background: #00818a !important;
+	font-size: 12px !important;
+	border-radius: 50px;
+	padding: 9px 2px;
+}
+.ui-dialog-titlebar {
+    background: none repeat scroll 0 0 #421853;
+    /* border-radius: 2px 2px 0 0; */
+    color: #ffffff !important;
+    font: 16px 'Arial', sans-serif;
+    margin: 0px 0px 0px 0px;
+    height: 30px;
+	border: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close span{
+	display:none;
+}
+.ui-button.ui-dialog-titlebar-close {
+    background: url("fe_img/close-dialog-icon.png") no-repeat scroll 1px center !important;
+    transition:all 0.2s ease-in-out;
+    border: 0 none;
+    display: block !important;
+    height: 35px !important;
+    margin: 0;
+    padding: 0 !important;
+    right: 10px !important;
+    top: 2px !important;
+    width: 36px !important;
+    position:absolute;
+}
+.ui-dialog-titlebar-close:hover{
+	border:0 !important;
+}
+.ui-dialog-content.ui-widget-content /* content container */{
+    padding: 15px;
+	height:auto !important;
+}
+.OngoingCharge.fe-section-horizontal-wrap .fe-section-horizontal-name::after{
+	
+}
+.OngoingCharge.fe-section-horizontal-wrap .fe-section-horizontal-name{
+}
+
+@media screen and (min-width: 2000px) and (max-width: 2400px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 25% !important;
+	}	
+}
+@media screen and (min-width: 2400px) and (max-width: 2559px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 24.87% !important;
+	}	
+}
+@media screen and (min-width: 2559px) and (max-width: 3560px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 24.85% !important;
+	}	
+}
+@media screen and (min-width: 3560px) and (max-width: 3840px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 24.8% !important;
+	}	
+}
+@media screen and (min-width: 3841px) and (max-width: 5760px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 24.7% !important;
+	}	
+}
+@media screen and (min-width: 5760px) and (max-width: 7680px){
+ .fe-tabs-item.ui-state-default.ui-corner-top{
+	 width: 24.6% !important;
+	}	
+}
+.fe-tab-container-Performance1 .fe-section-chart:nth-last-child(2){
+	border-right:1px solid #000;
+}
+.fe-tab-container-Performance1 .fe-section-chart.section_4_1:after{
+	padding-top: 40px;
+}
+.fe-tab-container-Performance1 .fe-section-chart.section_4_1> h5:after{
+	padding:0;
+	margin-bottom: 7px;
+}
+/*rlamdigital-htmlfactsheet*/

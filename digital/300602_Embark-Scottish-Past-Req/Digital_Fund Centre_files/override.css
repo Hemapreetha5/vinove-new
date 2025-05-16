@@ -1,0 +1,3567 @@
+/* ---------- General classes --------------- */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@font-face {
+  font-family: "FontAwesome";
+  src: url("fe_img/fontawesome-webfont.eot?v=4.6.3");
+  src: url("fe_img/fontawesome-webfont.eot?#iefix&v=4.6.3")
+      format("embedded-opentype"),
+    url("fe_img/fontawesome-webfont.woff2?v=4.6.3") format("woff2"),
+    url("fe_img/fontawesome-webfont.woff?v=4.6.3") format("woff"),
+    url("fe_img/fontawesome-webfont.ttf?v=4.6.3") format("truetype"),
+    url("fe_img/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*  Font - Family */
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("./fe_img/GiorgioSans-Regular-Web.woff") format("woff"),
+    url("./fe_img/GiorgioSans-Regular-Web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Unit Rounded Pro";
+  src: url("./fe_img/UnitRoundedPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ---------- General classes --------------- */
+
+:root {
+  /* Primary Colors */
+  --primaryDeepred: #912227;
+  --primaryWarmred: #d3292e;
+  --black: #000000;
+  --white: #ffffff;
+  /* Secondary Colors */
+  --secondaryBrown: #4f0800;
+  --secondaryDarkOrange: #e66208;
+  --secondaryWarmOrange: #f39000;
+  --secondaryLightOrange: #fed89c;
+  /* Background	*/
+  --NeutralWarm: #f3ede0;
+  --NeutralCool: #ede4df;
+  --OffWhite: #f7f4f3;
+  /* Grey colours	 */
+  --DarkGrey: #333333;
+  --LightGrey: #848484;
+  /* Deep blue	*/
+  --DeepBlue: #005f86;
+  --primaryRed:#d73e42;
+  --lightGray:#adadad;
+  --darkBlack:#222;
+  --mediumGray:#e5e5e5;
+
+  /* Font-family description */
+  --headingFontFamily: "Giorgio Sans";
+  --bodyFontFamily: "Unit Rounded Pro";
+  --bodyFontSize: 12px;
+  --bodyFontWeight: "normal";
+}
+/* ---------- General classes --------------- */
+body {
+  /* font: 12px var(--bodyFontFamily); */
+  font-family: var(--bodyFontFamily);
+  font-size: var(--bodyFontSize);
+  font-weight: var(--bodyFontWeight);
+  color: var(--black);
+  padding: 0px;
+  margin: 0px;
+  background: var(--white) none;
+}
+*:focus,
+a:focus {
+  outline: none !important;
+}
+p {
+  padding: 0 0 15px;
+  margin: 0;
+}
+a {
+  color: #000;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+  color: #222222;
+}
+li {
+  list-style-type: none;
+  list-style-image: none;
+}
+a:focus,
+li:focus,
+span:focus,
+button:focus,
+select:focus,
+input:focus,
+*:focus {
+  outline: #000 solid 0px !important;
+}
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font: 12px var(--bodyFontFamily) !important;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-widget-header {
+  background: none transparent;
+  border: 0 none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: none;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: inherit;
+  text-decoration: inherit;
+}
+.ui-button-text-only .ui-button-text,
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+  padding: 0;
+  line-height: 20px;
+}
+.ui-widget.ui-widget-content {
+  border: 0;
+}
+.page {
+  padding: 0px;
+  min-height: 1000px;
+  position: relative;
+  width: 99% !important;
+}
+.ui-page-content-panel {
+  margin: 0;
+}
+
+/* .ui-page-content-panel  */
+.ui-logo-container {
+  height: 90px;
+  display: block;
+  background: url(fe_img/sw-logo.svg) no-repeat 28px 12px;
+  /* background-size: 13%; */
+  background-size: auto 1.5cm;
+  border-bottom: 0;
+  margin: 0;
+}
+.ui-logo-container img {
+  display: none;
+}
+/* ============== Search =========================== */
+
+.page{
+  background-color: #F6F4F2;
+}
+
+#advancedSearchContainer {
+  background: var(--white);
+  /* background-color: #F6F4F2; */
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 10px;
+  padding: 15px 0;
+  box-shadow: 0px 1px 2px #1d1d1d80;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+.fe-search-searchbox-container {
+  margin: 5px 0 5px 15px;
+  padding: 0;
+}
+.fe-search-textbox, .fe-search-textbox:focus /* search input */ {
+  font: normal 13px var(--bodyFontFamily) !important;
+  color: #333;
+  height: 14px !important;
+  padding: 10px 12px;
+  margin: 0 10px 0 0;
+  background-color: #fff;
+  border: 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  width: 238px;
+  box-shadow: 0 1px 2px #1d1d1d80;
+}
+.ui-autocomplete /* auto search textbox */ {
+  z-index: 9999 !important;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#PScanDistributeWeightage {
+  /* Container for our tooltip */
+  position: relative;
+}
+#PScanDistributeWeightage:after {
+  content: "Please press to equally split all holdings within the portfolio.";
+  width: 150px;
+  height: 50px;
+  border: 1px solid #000;
+  background-color: #eff3f7;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  top: 35px;
+  border-radius: 10px; /* This defines tooltip text position */
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+}
+
+#PScanDistributeWeightage:hover:after {
+  visibility: visible;
+}
+.fe-button.ui-state-default, .ui-button.ui-state-default, .fe-button.fe-search-button /* All buttons */ {
+  font: normal 13px var(--bodyFontFamily);
+  color: #fff;
+  text-decoration: none;
+  width: auto !important;
+  height: auto;
+  margin: 0 4px 0 0;
+  padding: 10px 15px;
+  background: var(--primaryDeepred) none;
+  border: 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+.fe-button.ui-state-hover, .fe-button.ui-state-focus, .ui-button.ui-state-hover, .ui-button.ui-state-focus, .fe-button.ui-state-default:hover /* All buttons hover */ {
+  color: #ffffff !important;
+  text-decoration: none;
+  background: var(--primaryDeepred) none;
+  box-shadow: 0 3px 6px #1d1d1d4d;
+}
+#basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover /* search button*/ {
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  margin: 0px 10px 0 0;
+  /*! width: 29px !important; */
+  height: ;
+  vertical-align: top;
+  background: var(--primaryDeepred) none !important;
+  border: 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus,.fe-advSearch-button.ui-state-hover /* advanced search button -----animation */ {
+  color: #fff;
+  padding: 10px 15px 10px 15px;
+  text-decoration: none;
+  margin: 0px 10px 0 0;
+  right: 0px;
+  /*! width: 29px !important; */
+  height: ;
+  vertical-align: top;
+  background: var(--primaryDeepred) none !important;
+  border: 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.fe-advSearch-button.fe-button.ui-state-default:hover {
+  /*! transition: none; */
+  /*! color: transparent !important; */
+  /*! background:#fff url(fe_img/ico_advance.png) no-repeat center center; */
+}
+/*advance search sorting icon */
+#advanceSearch .ui-icon-triangle-1-n {
+  background: url(fe_img/ico-up.png) no-repeat right center;
+  background-size: 50%;
+}
+/*#advanceSearch .ui-icon-triangle-1-n:before{
+	border-bottom: 5px solid #fff;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+width: 0;
+height: 0;
+content: "";
+	position: absolute;
+	top: 6px;
+	right: 0;
+}*/
+#advanceSearch .ui-icon-triangle-1-s {
+  background: url(fe_img/ico-down.png) no-repeat right center;
+  background-size: 50%;
+}
+/*#advanceSearch .ui-icon-triangle-1-s:before{
+		border-top: 5px solid #fff;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		width: 0;
+		height: 0;
+		content: "";
+		position: absolute;
+	top: 6px;
+	right: 0;
+}*/
+.fe-search-clear-button.ui-state-default,.fe-search-clear-button.ui-state-focus, .fe-search-clear-button.ui-state-hover /* clearbutton */ {
+  background: var(--primaryDeepred) none !important;
+  color: #fff !important;
+  /*! font-size:0 !important; */
+  right: 0;
+  margin: 0 !important;
+  padding: 10px 15px;
+  text-decoration: none;
+  top: 0;
+  vertical-align: top;
+  /*! width: 32px !important; */
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border: 0;
+}
+#advance {
+  background: transparent;
+  border: 0 none;
+  border-radius: 0 0 5px 5px;
+  box-shadow: none;
+  margin: 0 0 0;
+  padding: 0;
+  *padding-bottom: 12px;
+  display: none;
+}
+.fe-search-fileters-container {
+  float: left;
+  height: 35px;
+  width: 260px;
+  margin: 20px 15px !important;
+  font: normal 13px var(--bodyFontFamily);
+  padding: 0;
+  position: relative;
+}
+.fe-search-fileters-label /* filter text - both sliders and dropdowns */ {
+  font-weight: bold;
+  color: #1d1d1d;
+}
+.fe-search-fileters-slider-value {
+  font-weight: bold;
+  color: var(--primaryDeepred);
+}
+.fe-search-fileters-container .mfs-container {
+  width: 100% !important;
+}
+.fe-search-performance-filter-options .mfs-container {
+  width: 150px !important;
+}
+.fe-search-performance-filter-value {
+  margin-top: 0;
+  height: 20px;
+  border: 1px solid #c1c1c1;
+}
+.fe-search-fileters-container.fe-search-filter-Currency {
+  margin-bottom: 15px !important;
+}
+/*mfs container*/
+.mfs-options {
+  border-radius: 0;
+  background: #fff;
+  border: 0;
+  width: 100%;
+  box-shadow: 0 1px 2px #1d1d1d80;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+ul.mfs-options li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 5px;
+}
+ul.mfs-options li a {
+  color: #494e50;
+  padding: 7px 5px;
+  font: normal 13px var(--bodyFontFamily);
+}
+.mfs-options li.active {
+  background-color: #cfe1f2;
+}
+.mfs-container a.mfs-selected-option /* dropdown list will attach with dropdown */ {
+  margin: 3px 0 0 0;
+  padding: 10px 20px 10px 12px;
+  font-size: 12px;
+  border: 0;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  box-shadow: 0 1px 2px #1d1d1d80;
+  color: #494e50;
+}
+.mfs-container A.mfs-selected-option span {
+  background: transparent url(fe_img/ico-dropdownarrow.png) no-repeat left 10px;
+  float: left;
+  margin: 4px 0 0 0;
+  width: 20px !important;
+  border: 0;
+  background-size: 43%;
+}
+/*.mfs-selected-option span::before {
+    border-top: 5px solid #494E50;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    width: 0;
+    height: 0;
+    content: "";
+}*/
+.mfs-options li.mfs-optgroup {
+  color: #1d1d1d;
+  font-weight: bold;
+  padding: 4px 5px;
+}
+.mfs-optgroup-option {
+  padding-left: 10px;
+  font-weight: normal;
+}
+.mfs-options li.selected,
+.mfs-options li:active {
+  background-color: #cfe1f2;
+}
+ul.mfs-options li.selected a,
+ul.mfs-options li.active a {
+  color: #494e50;
+}
+.fe-search-performance-filter-operator
+  .mfs-container
+  A.mfs-selected-option
+  span {
+  display: none;
+}
+/* ============== Sliders =========================== */
+.ui-slider {
+  background: #fff none;
+  opacity: 1;
+  height: 8px;
+  margin: 18px 0 0 7px;
+  width: 95.5%;
+  box-sizing: border-box;
+  border: 1px solid #cfe1f2 !important;
+}
+.ui-slider-range.ui-widget-header {
+  background: #cfe1f2 none;
+  opacity: 1;
+  margin-left: 5px;
+}
+.ui-slider-handle.ui-state-default /* handle  */ {
+  opacity: 1;
+  background-color: var(--primaryDeepred);
+  height: 15px;
+  width: 15px;
+  top: -5px !important;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+.ui-slider-handle.ui-state-default.ui-state-focus /* handle focus */ {
+  opacity: 1;
+  background-color: var(--primaryDeepred);
+  height: 15px;
+  width: 15px;
+  top: -5px !important;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+/* --------- End of sliders ---------------- */
+.fe-topmenu {
+  font: normal 13px var(--bodyFontFamily);
+  width: 100%;
+  background: transparent;
+  margin-bottom: 10px;
+}
+/*.fe-topmenu > .ui-widget-header:nth-child(1) {
+    background-color: #fff;
+}*/
+.fe-menuTabs-content {
+  margin: 0 40px;
+}
+/* ============== Top Menu =========================== */
+.fe-menuTabs-list {
+  top: 0;
+  float: left;
+  height: 55px;
+}
+.fe-topmenu ul.fe-menuTabs-list {
+  /* background-color: #eff3f7; */
+  background-color: var(--white);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1px 20px 18px 33px;
+  height: 80px;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.fe-topmenu .fe-menuTabs-list li,
+.fe-topmenu .fe-menuTabs-list li:hover {
+  list-style-type: none;
+  list-style-image: none;
+  padding: 0;
+  margin: 0 27px 0 0 !important;
+  height: 30px;
+  color: #ababab;
+  border: 0;
+  background: transparent none;
+  border-radius: 0;
+  float: left !important;
+}
+.fe-topmenu .fe-menuTabs-list li.selected {
+  background: transparent none;
+}
+.fe-topmenu .fe-menuTabs-list li a {
+  padding: 27px 0 33px !important;
+  /*! display: block; */
+  color: #1d1d1d;
+  text-decoration: none;
+  font: normal 16px var(--bodyFontFamily);
+  /*! text-transform:uppercase; */
+  position: relative;
+}
+.fe-topmenu .fe-menuTabs-list li a:hover {
+  color: #000;
+}
+.fe-topmenu .fe-menuTabs-list li a.selected {
+  color: var(--primaryDeepred) !important;
+  text-decoration: none;
+  font-weight: bold;
+}
+.fe-topmenu .fe-menuTabs-list li:first-child a::before {
+  /*! background-color: transparent; */
+}
+.fe-topmenu .fe-menuTabs-list li a::before {
+  /*! content: ""; */
+  /*! width: 1px; */
+  /*! height: 59%; */
+  /*! background-color: #fff; */
+  /*! position: absolute; */
+  /*! left: -15px; */
+  /*! bottom: 0; */
+  /*! top:5px; */
+}
+.fe-topmenu .fe-menuTabs-list li a::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: var(--primaryDeepred);
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  opacity: 0;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-transition: height 0.3s ease 0s, opacity 0.3s ease 0s,
+    -webkit-transform 0.3s ease 0s;
+  transition: height 0.3s ease 0s, opacity 0.3s ease 0s, transform 0.3s ease 0s;
+}
+.fe-topmenu .fe-menuTabs-list li a.selected::after {
+  /*! color: #F9A86C; */
+  height: 6px;
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  border-radius: 10px;
+}
+/*Topmenu tooltip*/
+.fe-menuTabs-list a br {
+  display: none;
+}
+.fe-menuTabs-list .fe-helptext-image {
+  margin-top: 0;
+  float: right;
+  top: 14px;
+  right: -9px;
+}
+/*End of Top Menu UL LI*/
+.ui-tabs .ui-tabs-panel {
+  padding: 0;
+}
+.fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+  padding: 0;
+}
+.fe-asatdate-containers {
+  margin-bottom: 5px;
+}
+.fe-tabs-container.ui-tabs /*Content Main section /*ie 7 8 fix for tabs*/ {
+  position: relative;
+  z-index: 50;
+  margin-top: 2px;
+  background: transparent;
+}
+/* ============== Secondary tabs =========================== */
+.fe-tabs-container, .ui-tabs /* tabs section */ {
+  border: 0;
+  padding: 0;
+}
+/* Fundcenter Tabs & Charting */
+.fe-tabs.ui-tabs-nav /* UL background*/ {
+  /*! height: 53px; */
+  padding: 0;
+  background: #f9a86c none;
+  border-bottom: 1px solid rgba(101, 101, 101, 0.2);
+  display: block !important;
+}
+.fe-tabs-item.ui-state-default /* LI background*/ {
+  text-decoration: none;
+  font: bold 14px/16px var(--headingFontFamily);
+  letter-spacing: 1px;
+  opacity: 1;
+  /*! height: 52px; */
+  margin: 0 !important;
+  background: none transparent;
+  border-right: 0 solid #ccc;
+  list-style: none;
+}
+.fe-tabs-item.ui-state-default a /* Li normal text */ {
+  display: block;
+  padding: 11px 13px !important;
+  text-align: center;
+  white-space: normal;
+  /*! width: 125px; */
+  font-size: 13px;
+  /* color: #fff; */
+  color: var(--DarkGrey);
+  float: inherit !important;
+}
+.fe-tab-FundInfo.fe-tabs-item.ui-state-default a,
+.fe-tab-Performance.fe-tabs-item.ui-state-default a,
+.fe-tab-DiscretePerformance.fe-tabs-item.ui-state-default a,
+.fe-tab-CalendarPerformance.fe-tabs-item.ui-state-default a,
+.fe-pscan-portfolioDiscrete.fe-tabs-item.ui-state-default a {
+  font-size: 0;
+  /* height: ; */
+}
+.fe-tab-FundInfo.fe-tabs-item.ui-state-default a:before {
+  content: "Fund info";
+  font-size: 13px;
+}
+.fe-tab-Performance.fe-tabs-item.ui-state-default a:before {
+  content: "Cumulative performance";
+  font-size: 13px;
+}
+.fe-tab-DiscretePerformance.fe-tabs-item.ui-state-default a:before,
+.fe-pscan-portfolioDiscrete.fe-tabs-item.ui-state-default a:before {
+  content: "Discrete performance";
+  font-size: 13px;
+}
+.fe-tab-CalendarPerformance.fe-tabs-item.ui-state-default a:before {
+  content: "Calendar performance";
+  font-size: 13px;
+}
+.fe-tabs-item.ui-state-default.ui-state-hover /* LI hover background */ {
+  /* background: rgb(0 83 158 / 0.5) none; */
+  background: var(--primaryDeepred);
+}
+.fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/ {
+  /* color: #fff; */
+  color: #f3ece0;
+}
+.fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/ {
+  text-decoration: none;
+  opacity: 1;
+  /* background: rgb(0 83 158 / 50%) none; */
+  background: var(--primaryDeepred);
+  /*! height: 52px; */
+}
+.fe-tabs-item.ui-state-default.ui-state-active a /* LI selected text */ {
+  /* color: rgb(8 135 251); */
+}
+.fe-tabs-item.ui-state-default.ui-tab::before {
+  /*! content: ''; */
+  border-left: 4px solid #fff;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  position: absolute;
+  left: 2px;
+  top: 14px;
+  opacity: 1;
+  margin: auto 0;
+  width: 10px;
+  height: 1px;
+}
+.fe-tabs-item.ui-state-default.ui-tab.ui-tabs-active::before {
+  border-left-color: #000;
+}
+.fe-tabs-item.ui-state-default.ui-tab.ui-tab::after {
+  /*! content: ''; */
+  background-color: #fff;
+  width: 1px;
+  height: 40px;
+  position: absolute;
+  margin: 8px auto 8px -7px;
+}
+.fe-tab-Price.fe-tabs-item.ui-state-default a,
+.fe-tab-Documents.fe-tabs-item.ui-state-default a {
+  width: auto;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  padding-bottom: 0;
+}
+.fe-tabs-container .ui-widget-header,
+.fe-tabs-autoLoad .ui-widget-header {
+  background-color: #1d1d1d;
+  padding-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  margin: 0;
+  height: 38px;
+}
+.ui-scroll-tabs-header .stNavMainLeft,
+.ui-scroll-tabs-header .stNavMainRight {
+  background-color: #fff;
+}
+/*Extra setting for specific page tabs*/
+.fe-chart-body .fe-tabs.ui-tabs-nav {
+  height: 44px;
+}
+.fe-chart-body .fe-tabs-item.ui-state-default.ui-state-active {
+  height: 43px;
+}
+/*Charting Tool Instrument Tabs*/
+#instrumentOptionsTabs .fe-tabs.ui-tabs-nav /* UL background*/ {
+  height: 51px;
+  padding: 0;
+  background: transparent none;
+  border: 0;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default /* LI background*/ {
+  text-decoration: none;
+  font: normal 16px var(--bodyFontFamily);
+  opacity: 1;
+  height: 51px;
+  margin: 0 0 0;
+  background: none transparent;
+  border-right: 0;
+  list-style: none;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default a /* Li normal text */ {
+  display: block;
+  color: #ababab;
+  height: 28px;
+  text-align: center;
+  white-space: normal;
+  text-transform: uppercase;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover /* LI hover background */ {
+  background: transparent none;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/ {
+  color: #fff;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/ {
+  text-decoration: none;
+  opacity: 1;
+  height: 51px;
+  background: transparent none;
+  margin: 0 0 0;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active a /* LI selected text */ {
+  color: #fff;
+}
+#instrumentOptionsTabs .fe-tabs li a {
+  padding: 13px 25px 13px 0 !important;
+}
+/* End of tabs*/
+/* the tab contents section */
+.ui-tabs.ui-tabs-panel.fe-tabs-datacontainer {
+  padding: 0;
+  background: transparent none;
+  color: var(--darkBlack) !important;
+}
+.fe-datatable {
+  margin: 25px 0 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-right: 0;
+}
+/* ============== Pagination =========================== */
+.fe-datatable-pagination-container.ui-corner-top /* pagination row top */ {
+  font: normal 13px var(--bodyFontFamily);
+  padding: 1px 0 6px 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  height: auto;
+}
+/*.fe-datatable-pagination-container .fe-paging-navContainer /* Disable top pagination */
+ {
+  display: none !important;
+}
+*/
+.fe-tabs-autoLoad .fe-datatable-pagination-container.ui-corner-top /* remove padding for portfolio scan html page. This will avoid extra space*/ {
+  padding: 0;
+}
+.fe-paging-footer.ui-corner-bottom /* pagination row bottom */ {
+  font: normal 12px var(--bodyFontFamily);
+  padding: 1px 6px;
+  background-color: #fff;
+  border: 0;
+  height: auto;
+}
+.fe-paging-navContainer /* pagination control section*/ {
+  padding: 13px 0px 13px 0px;
+  margin-right: 0;
+  float: left;
+}
+.pagination .ui-state-default, .pagination .ui-state-default /* pagination button normal */ {
+  /* background: none repeat scroll 0 0 #fff; */
+  border: 0 none;
+  color: #494e50;
+  font-weight: bold;
+  margin: 0 2px 0 0;
+  padding: 3px 8px;
+  text-decoration: none;
+  text-shadow: none !important;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.pagination .ui-state-disabled,
+.pagination .ui-paging-ellipse {
+  /* opacity: 0.5; */
+}
+.pagination .ui-state-highlight /* pagination buttons selected */ {
+  background: none repeat scroll 0 0 var(--primaryDeepred);
+  border: 0 none;
+  color: var(--white);
+  font-weight: bold;
+  opacity: 1;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.pagination .ui-state-default.ui-paging-prev {
+  font-size: 0;
+  position: relative;
+  /* float: left; */
+  margin-right: 5px;
+  /* background: url(fe_img/icon-left.png) no-repeat center center; */
+  background: url(fe_img/icon-leftDeepRed.png) no-repeat center center;
+
+  width: 26px;
+  height: 12px;
+  background-size: 12px auto;
+  display: inline-block;
+  vertical-align: top;
+} /* use image for prev - default stage*/
+/*.pagination .ui-state-default.ui-paging-prev:before{
+	content:"";
+	border-right:8px solid var(--primaryDeepred) ;
+	border-top:8px solid transparent;
+	border-bottom: 8px solid transparent;
+	position: absolute;
+	left: 0;
+	top: 0;
+}*/
+.pagination .ui-state-default.ui-state-disabled.ui-paging-prev {
+  /* background: url(fe_img/icon-left-disabled.png) no-repeat center center; */
+  background: url(fe_img/icon-left-disabledNeutral.png) no-repeat center center;
+  width: 26px;
+  height: 12px;
+  background-size: 12px auto;
+  display: inline-block;
+  vertical-align: top;
+} /* use image for prev - disabled stage*/
+
+.pagination .ui-state-default.ui-paging-next {
+  font-size: 0;
+  position: relative;
+  /* float: right; */
+  margin-left: 12px;
+  /* background: url(fe_img/icon-right.png) no-repeat left center; */
+  background: url(fe_img/icon-right-DeepRed.png) no-repeat left center;
+  width: 26px;
+  height: 12px;
+  background-size: 12px auto;
+  display: inline-block;
+  vertical-align: top;
+} /* use image for next - disabled stage*/
+.pagination .ui-state-default.ui-state-disabled.ui-paging-next {
+  /* background: url(fe_img/icon-right-disabled.png) no-repeat left center; */
+  background: url(fe_img/icon-right-disabled-NeutralWarm.png) no-repeat left
+    center;
+  width: 26px;
+  height: 12px;
+  background-size: 12px auto;
+  display: inline-block;
+  vertical-align: top;
+} /* use image for next - disabled stage*/
+/*.pagination .ui-state-default.ui-paging-next:before{
+	content: "";
+	border-left: 8px solid var(--primaryDeepred);
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	position: absolute;
+	left: 0;
+	top: 0;
+}*/
+/* End of Pagination */
+.fe-paging-displayContainer {
+  color: #000;
+  margin: 5px 0 0;
+  *margin-top: -6px;
+  float: right;
+}
+.fe-paging-displayContainer .fe-paging-showtext,
+.fe-paging-displayContainer .fe-display-count {
+  padding-top: 12px;
+}
+.fe-paging-displayContainer .mfs-selected-option span {
+  margin-top: 17px !important;
+}
+.fe-paging-showmainunits {
+  color: #000;
+  padding: 8px 0 0;
+}
+.fe-paging-showmainunits > input {
+  vertical-align: bottom;
+}
+.fe-paging-displayContainer .mfs-container A.mfs-selected-option span {
+  background-position: left 0px;
+}
+/* ============== Table =========================== */
+.fe-datatable th,
+.fe-portfolioconstituents-dialog table thead th {
+  padding: 8px 6px 8px 6px;
+  font: bold 12px/16px var(--headingFontFamily);
+  letter-spacing: 1px;
+  color: var(--DarkGrey);
+  height: 44px;
+  vertical-align: middle;
+  border-spacing: 0;
+  background-color: var(--mediumGray);
+  border-bottom: 0;
+  text-align: left;
+}
+.fe-tabs-datacontainer .fe-datatable th:first-child {
+  border-radius: 5px 0 0 0;
+}
+.fe-tabs-datacontainer .fe-datatable th:nth-last-child(2) {
+  border-radius: 0 5px 0 0;
+}
+.fe-tabs-container table tr.ui-widget-header {
+  background: transparent;
+  border-radius: 5px;
+}
+.fe-soretedColumn /* th sorted (selected table header field) */ {
+  background-color: #e9e9e9;
+}
+.fe-columnheader-Change,
+.fe-columnheader-Change_ {
+  text-align: right;
+}
+.fe-datatable th .ui-icon-triangle-1-n /* sorting arrow for table header field - down arrow */ {
+  background: url("fe_img/ico-down-black.png") no-repeat scroll center bottom;
+  background-size: 50%;
+}
+.fe-datatable th .ui-icon-triangle-1-s /* sorting arrow for table header field - up arrow */ {
+  background: url("fe_img/ico-up-black.png") no-repeat scroll center bottom;
+  background-size: 50%;
+}
+/* -----   table row ---- */
+.fe-datatable td {
+  background-color: #fff;
+  padding: 10px 6px 10px 6px;
+  vertical-align: middle;
+  font: normal 12px var(--bodyFontFamily);
+  height: 24px;
+  border-bottom: 1px solid #eee;
+  text-align: unset;
+}
+
+.fe-column-icon-responsive.fe-column-icon-responsive-DownloadToolLink {
+  width: 3%;
+  padding-right: 0;
+  padding-left: 24px;
+  margin: 0px 0px 0 0px;
+}
+.fe-column-icon-responsive.fe-column-icon-responsive-ResponsiveChartingLink {
+  width: 3% !important;
+  /* text-align: unset !important; */
+}
+.fe-column-icon-responsive.fe-column-icon-responsive-ResponsiveChartingLink
+  > a {
+  margin: 0 0 0 0px !important;
+  text-align: unset !important;
+}
+.fe-column-icon-responsive.fe-column-icon-responsive-ResponsiveChartingLink
+  > a
+  img {
+  display: none !important;
+}
+.fe-datatable .odd td,
+.fe-dialog-portfolioconstituents table tbody tr.odd td,
+.fe-datatable .odd td.dt-risk,
+.treeTable tr:nth-child(2n + 2) td,
+.fe-downloadTool-container tbody tr:nth-child(2n + 2) td {
+  background-color: #fff !important;
+}
+.fe-datatable .even td,
+.fe-dialog-portfolioconstituents table tbody tr.even td,
+.fe-datatable .even td.dt-risk,
+.fe-downloadTool-container tbody tr:nth-child(2n + 1) td {
+  background-color: #eee !important;
+}
+.fe-tab-container-Documents .fe-datatable td,
+.fe-tab-container-Documents .fe-datatable th {
+  text-align: center !important;
+}
+.fe-mastertabs-PortfolioMasterTab .fe-datatable tbody td:nth-last-child(5) {
+  text-align: center !important;
+}
+.fe-tab-container-Documents .fe-datatable td.fe-column-name,
+.fe-tab-container-Documents .fe-datatable th.fe-columnheader-FundName {
+  text-align: left !important;
+}
+.fe-portfolio-totalFooter td, .fe-datatable .total TD /* total row */ {
+  font-weight: bold;
+  background-color: #fff;
+}
+.fe-datatable .mouseover /* tr hover */ {
+}
+.dt-risk {
+  background: url(fe_img/bg_RiskScore.png) no-repeat center center !important;
+  color: #444444;
+  font-size: 11px;
+  font-weight: normal;
+}
+td.fe-change-positive, .fe-datatable .even td.fe-change-positive /* positive even row */ {
+  color: #009900;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+.fe-datatable .odd td.fe-change-positive /* positive odd row */ {
+  color: #009900;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+td.fe-change-negative, .fe-datatable .even td.fe-change-negative /* negative even row */ {
+  color: #ff0000;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+.fe-datatable .odd td.fe-change-negative /* negative odd row */ {
+  color: #ff0000;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+td.fe-change-neutral, .fe-datatable .even td.fe-change-neutral /* neutral even row */ {
+  text-align: right;
+  background: #f5f5f5 no-repeat right center;
+  /* 	url(fe_img/priceZero.png) */
+}
+.fe-datatable .odd td.fe-change-neutral /* neutral odd row */ {
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;
+}
+a.fe-ico-basket-shortlist-add, a.fe-ico-basket-portfolio-add, td.fe-icon-basket-add a, .fe-icon-basket a /* add fund icon */ {
+  background: url(fe_img/icon-add1.png) no-repeat scroll left 1px transparent;
+  float: left;
+  height: 18px;
+  padding: 0 0 0 17px;
+}
+a.fe-ico-basket-remove, td.fe-icon-basket-remove a, .fe-icon-basket-remove a, td.fe-icon-portfolio-remove a /* remove fund icon */ {
+  background: url(fe_img/icon-remove1.png) no-repeat scroll left 1px transparent;
+  float: left;
+  height: 18px;
+  padding: 0 0 0 17px;
+}
+td.fe-icon-chart a, a.fe-icon-chart, td.fe-icon-chart a:hover, a.fe-icon-chart:hover/*chart icon */ {
+  background-image: none;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+td.fe-icon-chart a:after, a.fe-icon-chart:after/*chart icon */ {
+  content: "\f080";
+  font-family: FontAwesome;
+  background-image: none;
+  font-size: 20px;
+  padding: 3px 0 0px 0;
+  color: var(--primaryDeepred);
+  display: inline-block;
+}
+td.fe-icon-chart a:hover, a.fe-icon-chart:hover /*chart icon hover */ {
+  background-image: none;
+}
+td.fe-icon-factsheet a, a.fe-icon-factsheet, td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon */ {
+  background: url(fe_img/icon-docDeepred.png) no-repeat center center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon hover */ {
+  background-image: url(fe_img/icon-docDeepred.png);
+}
+.fe-fund-document-icon, .fe-fund-document-icon:hover /*document icon */ {
+  background: url(fe_img/icon-docDeepred.png) no-repeat center center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+.fe-icon-basket a,
+.fe-icon-basket-remove a {
+  width: auto;
+  text-align: left;
+  padding-left: 25px;
+  margin: 0;
+  background-repeat: no-repeat;
+}
+.fe-fund-document-icon:hover /*document icon hover */ {
+  background-image: url(fe_img/icon-docDeepred.png);
+}
+.fe-download-icon,
+.fe-download-icon:hover {
+  background: url(fe_img/icon_downloadDeepred.png) no-repeat center center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+.cascade-col .fe-download-icon {
+  background: none;
+  padding-left: 0 !important;
+}
+.cascade-col a,
+.cascade-pin-btns a,
+.cascade-col a:hover,
+.cascade-pin-btns a:hover {
+  color: var(--primaryDeepred) !important;
+  height: auto;
+  font-weight: bold;
+  background: none;
+  width: auto;
+}
+td.fe-deleteRow a, .delete /* delete fund */ {
+  background: url(fe_img/icon_delete.png) no-repeat;
+  height: 25px;
+  width: 25px;
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.fe-datatable .fe-basket-shortlistitems td a, .fe-datatable .fe-basket-portfolioitems TD a /* Disable basket icon */ {
+  background: url(fe_img/icon_remove.png) no-repeat;
+  padding: 0 0 0 17px;
+  cursor: default;
+  height: 18px;
+}
+td.fe-deleteImage a /* Delete Basket icon */ {
+  background: url(fe_img/icon_delete.png) no-repeat;
+  padding: 2px 0 0 17px;
+  text-decoration: none;
+}
+.fe-noresult /* container for the no results message */ {
+  color: #ff0000;
+  font: normal 13px var(--bodyFontFamily);
+  text-align: center;
+  padding: 20px;
+}
+/* set fixed width for Table fields */
+.fe-columnheader-FundName {
+  width: 350px;
+  min-width: 250px !important;
+  text-align: left;
+  position: relative;
+  padding-left: 73px !important;
+}
+.fe-datatable th.fe-columnheader-FundName .ui-icon-triangle-1-s,
+.fe-datatable th.fe-columnheader-FundName .ui-icon-triangle-1-n {
+  position: absolute;
+  top: 16px;
+  left: 81px;
+}
+.fe-mastertabs-PortfolioMasterTab #FundInfo_7_2 .fe-columnheader-FundName {
+  min-width: 50px !important;
+  width: 50px !important;
+}
+.fe-columnheader-FundLaunchDate {
+  min-width: 150px !important;
+}
+.fe-columnheader-FundObjective {
+  width: 200px;
+}
+.fe-tabs-datacontainer .fe-datatable th {
+  min-width: 50px;
+  position: relative;
+  text-align: left;
+}
+.fe-tabs-datacontainer .fe-datatable th.fe-columnheader-Info {
+  text-align: center;
+  min-width: 90px;
+}
+.fe-datatable th.fe-columnheader-Info {
+  white-space: nowrap;
+  text-indent: -96px;
+  overflow: hidden;
+}
+.fe-datatable th.fe-columnheader-Info:after {
+  content: "Tools";
+  padding-left: 76px;
+}
+.fe-datatable th.fe-columnheader-Price,
+.fe-datatable th.fe-columnheader-PriceDate,
+.fe-datatable th.fe-columnheader-Change,
+.fe-datatable th.fe-columnheader-Change_,
+.fe-datatable th.fe-columnheader-AMC,
+.fe-datatable th.fe-columnheader-OngoingCharge,
+.fe-datatable th.fe-columnheader-Yield,
+.fe-datatable th.fe-columnheader-FundSize,
+.fe-datatable th.fe-columnheader-FundLaunchDate,
+.fe-datatable th.fe-columnheader-YTD,
+.fe-datatable th.fe-columnheader-_3m,
+.fe-datatable th.fe-columnheader-_6m,
+.fe-datatable th.fe-columnheader-_1y,
+.fe-datatable th.fe-columnheader-_3y,
+.fe-datatable th.fe-columnheader-_5y,
+.fe-datatable th.fe-columnheader-S_L,
+.fe-datatable th.fe-columnheader-UnitLaunchDate,
+.fe-datatable th.fe-columnheader-_0to12m,
+.fe-datatable th.fe-columnheader-_12to24m,
+.fe-datatable th.fe-columnheader-_24to36m,
+.fe-datatable th.fe-columnheader-_36to48m,
+.fe-datatable th.fe-columnheader-_48to60m,
+.fe-datatable th.fe-columnheader-Year1,
+.fe-datatable th.fe-columnheader-Year2,
+.fe-datatable th.fe-columnheader-Year3,
+.fe-datatable th.fe-columnheader-Year4,
+.fe-datatable th.fe-columnheader-Year5,
+.fe-datatable th.fe-columnheader-Alpha,
+.fe-datatable th.fe-columnheader-Beta,
+.fe-datatable th.fe-columnheader-InfoRatio,
+.fe-datatable th.fe-columnheader-Sharpe,
+.fe-datatable th.fe-columnheader-TrackingError,
+.fe-datatable th.fe-columnheader-Volatility,
+.fe-datatable th.fe-columnheader-FERiskScore,
+.fe-datatable th.fe-columnheader-PositivePeriods,
+.fe-datatable th.fe-columnheader-NegativePeriods,
+.fe-datatable th.fe-columnheader-PercentageWeight,
+.fe-datatable th.fe-columnheader-HoldingDate,
+.fe-datatable
+  th.fe-columnheader-_07020_One_off_cost_Financial_Instrument_entry_cost,
+.fe-datatable
+  th.fe-columnheader-_07080_One_off_costs_Financial_Instrument_Typical_exist_cost,
+.fe-datatable th.fe-columnheader-_07100_Financial_Instrument_Ongoing_costs,
+.fe-datatable
+  th.fe-columnheader-_07130_Financial_Instrument_Transaction_costs_ex_ante,
+.fe-datatable
+  th.fe-columnheader-_07140_Financial_Instrument_Incidental_costs_ex_ante,
+.fe-pscan-portfolioComp .fe-datatable td:nth-child(4),
+.fe-pscan-portfolioComp .fe-datatable td:nth-child(5),
+.fe-pscan-assetSplit .fe-datatable td:nth-child(2),
+.fe-pscan-assetSplit .fe-datatable th:nth-child(2),
+.fe-pscan-geographicSplit .fe-datatable td:nth-child(2),
+.fe-pscan-geographicSplit .fe-datatable th:nth-child(2),
+.fe-pscan-sectorSplit .fe-datatable td:nth-child(2),
+.fe-pscan-sectorSplit .fe-datatable th:nth-child(2),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(3),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(4),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(5),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(6),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(7),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(8),
+.fe-pscan-portfolioPerf .fe-datatable td:nth-child(9),
+.fe-pscan-portfolioDiscrete .fe-datatable td:nth-child(3),
+.fe-pscan-portfolioDiscrete .fe-datatable td:nth-child(4),
+.fe-pscan-portfolioDiscrete .fe-datatable td:nth-child(5),
+.fe-pscan-portfolioDiscrete .fe-datatable td:nth-child(6),
+.fe-pscan-portfolioDiscrete .fe-datatable td:nth-child(7),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(3),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(4),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(5),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(6),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(7),
+.fe-pscan-portfolioRisk .fe-datatable td:nth-child(8),
+.fe-pscan-stocks .fe-datatable th:nth-child(2),
+.fe-pscan-stocks .fe-datatable td:nth-child(2),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(9),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(11),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(11),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Price
+  .fe-datatable
+  tbody
+  td:nth-child(12),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-FundInfo
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-FundInfo
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-FundInfo
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-FundInfo
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(3),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(9),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(9),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Performance
+  .fe-datatable
+  tbody
+  td:nth-child(11),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(3),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-DiscretePerformance
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(3),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-CalendarPerformance
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(3),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(9),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(4),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(5),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(6),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(7),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(8),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(9),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-PortfolioMasterTab
+  .fe-tab-container-Risk
+  .fe-datatable
+  tbody
+  td:nth-child(11),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Research
+  .fe-datatable
+  tbody
+  td:nth-child(10),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Research
+  .fe-datatable
+  tbody
+  td:nth-child(11),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Research
+  .fe-datatable
+  tbody
+  td:nth-child(12),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Research
+  .fe-datatable
+  tbody
+  td:nth-child(13),
+.fe-mastertabs-FundCentreMasterTab
+  .fe-tab-container-Research
+  .fe-datatable
+  tbody
+  td:nth-child(14) {
+  text-align: right;
+  max-width: 100px;
+}
+.fe-tabs-datacontainer .fe-datatable td:nth-last-child(1), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(2), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(3)/* info columns icons */ {
+  width: 25px;
+  text-align: center;
+}
+.fe-icon-basket.fe-icon-basket-remove,.fe-icon-basket.fe-icon-basket-add   /* Add/remove column width change */ {
+  /*! width: 16px; */
+  /*! text-align:center; */
+  padding-bottom: 18px;
+}
+/*.fe-columnheader-AMC, .fe-columnheader-InitialCharge, .fe-columnheader-MinInvestment, .fe-columnheader-OngoingCharge, .fe-columnheader-FECrownRating{
+	width:150px;
+}*/
+.fe-fundCentre-body .fe-columnheader-_0to12m,
+.fe-fundCentre-body .fe-columnheader-_12to24m,
+.fe-fundCentre-body .fe-columnheader-_24to36m,
+.fe-fundCentre-body .fe-columnheader-_36to48m,
+.fe-fundCentre-body .fe-columnheader-_48to60m,
+.fe-fundCentre-body .fe-columnheader-Year1,
+.fe-fundCentre-body .fe-columnheader-Year2,
+.fe-fundCentre-body .fe-columnheader-Year3,
+.fe-fundCentre-body .fe-columnheader-Year4,
+.fe-fundCentre-body .fe-columnheader-Year5 {
+  width: 100px;
+}
+.fe-tab-container-Risk .fe-columnheader-GroupManagerName {
+  width: 150px;
+}
+.fe-columnheader-Change_,
+.fe-columnheader-YTD {
+  min-width: 46px !important;
+}
+.fe-columnheader-YTD {
+  min-width: 39px !important;
+}
+.fe-columnheader-S_L {
+  width: 96px !important;
+}
+.fe-tab-container-Charges .fe-columnheader-BespokeColumn6,
+.fe-tab-container-Charges .fe-columnheader-BespokeColumn2,
+.fe-columnheader-FundSize {
+  width: 157px;
+}
+.fe-columnheader-ProviderFactsheet,
+.fe-columnheader-KeyFactStatement,
+.fe-columnheader-Prospectus,
+.fe-columnheader-ManagersReport_Final {
+  width: 92px;
+  text-align: center !important;
+}
+.fe-dlg-expexcel-project-tool-export-all-btn.ui-state-default {
+}
+.fe-additionaltools {
+  margin-left: 0;
+}
+.fe-datatable td.fe-icon-portfolio-add {
+  padding-right: 0 !important;
+  width: 40px !important;
+  min-width: 30px !important;
+}
+td.fe-icon-shortlist-add a,
+td.fe-icon-portfolio-add a,
+td.fe-icon-dynamicshortlist-add a {
+  background-image: url(fe_img/icon-add1Deepred.png);
+}
+a.fe-icon-portfolio-remove,
+td.fe-icon-portfolio-remove a,
+a.fe-icon-portfolio-add,
+td.fe-icon-portfolio-add a {
+  padding: 0;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  background-position: left center;
+}
+.fe-datatable td.fe-icon-portfolio-remove,
+.fe-datatable td.fe-icon-portfolio-add {
+  width: 25px !important;
+  min-width: 25px !important;
+  padding-left: 20px;
+  padding-right: 20px !important;
+}
+.fe-datatable td.fe-column-icon-responsive-SelectInstrument {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  width: 13px !important;
+}
+/*loading gif*/
+.loading-indicator,
+.fe-tabs-Loading-Icon {
+  background-image: url(fe_img/ajax-loader.gif) !important;
+  width: 64px;
+  height: 64px;
+}
+.fe-tabs-Loading-text {
+  color: var(--primaryDeepred);
+}
+/* ============== Footer =========================== */
+.fe-footer-container {
+  font: normal 12px var(--bodyFontFamily);
+  padding: 10px 0 0;
+  color: #000000;
+  height: 200px;
+}
+.fe-caveat-container {
+  margin-top: 10px;
+}
+.fe-caveat-container a,
+a.fe-disclaimer-actionLink {
+  color: #000;
+  text-decoration: underline;
+}
+.fe-caveat-container a:hover,
+a.fe-disclaimer-actionLink:hover {
+  color: #000;
+  text-decoration: none;
+}
+.right50 label,
+.fe-footer-logo label {
+  vertical-align: middle !important;
+}
+/* ============== Basket =========================== */
+.fe-basket {
+  z-index: 3000;
+  position: absolute;
+  right: 2px;
+  top: 7px;
+  padding-top: 0;
+  width: 48px;
+  background: transparent none;
+  padding-right: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 5px;
+}
+.fe-fundsInBasket {
+  text-align: center;
+  float: left;
+  color: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  width: 100%;
+  height: 23px;
+  background: #211d1e none;
+  border: 0;
+  display: none;
+}
+.fe-fundsInBasket.fe-basket-collapse,
+.fe-fundsInBasket.fe-basket-expand {
+  background: url(fe_img/basket.png) no-repeat right center;
+  /*! border: 1px solid #636466; */
+  width: 23px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.fe-basketHeader {
+  padding: 6px 0 5px;
+  color: transparent;
+  font-size: 0;
+  text-transform: capitalize;
+}
+.fe-basketTitle {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0;
+  font-family: helvetica, arial;
+  padding: 0 3px 0 7px;
+}
+.fe-basketPin {
+  display: none;
+}
+.fe-fundsInBasket H5 {
+  margin: -16px 4px 0;
+  padding: 0 5px;
+  color: #ffffff !important;
+  background: #646363 none;
+  font: bold 13px var(--bodyFontFamily);
+  right: 0;
+  position: absolute;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+.fe-basket-header-item-count p,
+.fe-basketDraggable {
+  display: none;
+}
+.fe-tableInBasket /* Basket open Box */ {
+  padding: 10px;
+  margin: -26px 0 0;
+  background-color: #f9a86c;
+  border: 0;
+  box-shadow: 0 2px 3px #666;
+  float: right;
+  display: none;
+  width: 300px;
+}
+.fe-basket-empty-message {
+  margin: 36% auto 0;
+  text-align: center;
+}
+.fe-basket-empty-message span {
+  font-weight: normal;
+  color: #ff0000;
+}
+.fe-basketbuttonslegend /* Legend in Basket*/ {
+  border: 1px solid #fff;
+  background: #f9a86c;
+  padding: 4px 4px 6px\9 !important; /* padding for IE 8 alone */
+}
+.display-inline-block {
+  margin-right: 8px;
+}
+.fe-basketbuttons a /* Action Buttons in basket */ {
+  background-color: transparent !important;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 3px;
+  border: 1px solid #fff;
+}
+.fe-effects-moveToBasket /* fund added to basket */ {
+  border: 2px dotted #000;
+  background-color: #000;
+}
+.fe-basketbuttonslegend legend {
+  color: #fff;
+}
+/* End of Basket*/
+/* ============================ Charting tool ======================= */
+.ui-charting-headertext {
+  margin-bottom: 20px;
+}
+div#instrumentPanelToggle {
+  margin-top: 0;
+  display: none;
+}
+.fe-search-panel.ui-tabs-panel /* search pannel */ {
+  color: #000;
+  font: normal 13px var(--bodyFontFamily);
+  height: auto;
+  background: none;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+.instrumentTabSearchOptions /* LABEL */ {
+  margin: 0 12px 0 0;
+  padding: 0 13px 10px 0;
+  background: none;
+  border-right: 1px solid #999;
+  height: 58px;
+}
+.fe-search-panel label {
+  font-weight: normal;
+}
+.instrumentTabSearchOptions .fe-chart-instrumentsearch-ortext {
+  float: left;
+  margin: 0 5px 0 10px;
+  padding-top: 3px;
+}
+.instrumentTabResultsOptions {
+  padding: 0;
+  border: 0;
+  height: auto;
+  width: 200px;
+}
+.addToChart {
+  margin-right: 96px;
+  margin-top: 0;
+}
+#instrumentType-N-options .addToChart,
+#instrumentType-X-options .addToChart,
+#instrumentType-P-options .addToChart {
+  float: left;
+}
+#instrumentType-F16000440-options .addToChart {
+  border-left: 1px solid #999;
+  height: 46px;
+  margin: 0 589px 0 0;
+  padding: 0 13px 20px 10px;
+}
+/*Performance & Scatter chart section */
+.fe-chart-tabs-container.ui-tabs/*Chart Main section /*ie 7 8 fix for tabs*/ {
+  position: relative;
+  z-index: 40;
+  background: none !important;
+}
+.fe-chart-tabs-innerContainer {
+  width: 100%;
+}
+.fe-chart-chartingOptions-container {
+  margin: -62px 0 0;
+  right: 0;
+  width: 50% !important;
+}
+.fe-chart-PanelToggleButton {
+  margin-top: 9px;
+}
+/* chart basis popup */
+.shownOption {
+  top: 43px;
+  right: 0px;
+  font: normal 13px var(--bodyFontFamily);
+  color: #fff;
+  padding: 10px;
+  border: 1px solid #f9a86c;
+  background: #f9a86c none;
+  z-index: 1010;
+}
+.fe-panel-text {
+  float: none;
+  display: inline-block;
+  margin-bottom: 8px;
+  min-width: 110px;
+}
+.fe-chart-togglePanel .fe-button.ui-state-default {
+  color: #fff;
+  padding: 1px 7px !important;
+  margin: 0 0 4px 0;
+  text-decoration: none;
+  font: normal 13px var(--bodyFontFamily);
+  width: inherit !important;
+  background: #f9a86c;
+  border: 1px solid #fff;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+.fe-chart-togglePanel .fe-button.ui-state-highlight,
+.fe-chart-togglePanel .fe-button.ui-state-hover {
+  color: #f9a86c !important;
+  margin: 0 0 4px 0;
+  padding: 1px 7px !important;
+  background: #fff;
+  border: 1px solid #f9a86c;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+.fe-basis-toglebutton.ui-state-default.fe-chart-currency-return {
+  width: 100% !important;
+}
+.fe-chart-returnbasis-input {
+  position: relative;
+}
+.fe-chart-return-text {
+  position: absolute;
+  right: 5px;
+  top: 1px;
+}
+.fe-closebutton-container /* Close dialog container */ {
+  position: absolute;
+  top: 11px;
+  right: 5px;
+  float: none;
+  display: block;
+  width: 20px;
+  height: 16px;
+}
+.fe-closebutton-container .fe-button.ui-state-default /* Close dialog icon */ {
+  text-indent: -1000em;
+  background: url(fe_img/closeChartBasisPannel.png) no-repeat 2px 4px;
+  height: 24px;
+  margin: -6px 0 0;
+  padding: 0 9px;
+  text-indent: -1000em;
+  width: 24px;
+  border: 0;
+}
+.fe-chart-OrLabel {
+  margin-top: 6px;
+}
+/* Chart popup ends */
+.fe-chart-currency.fe-currency {
+  margin-top: -18px;
+  position: relative;
+  font-size: 14px;
+  padding-left: 18px;
+  background: #fff;
+  padding-top: 5px;
+}
+.fe-chart-container.ui-tabs-panel, .fe-chart-scatterchart-container.ui-tabs-panel /* Chart background section */ {
+  margin: 0 0 0;
+  padding-bottom: 10px;
+  border: 0;
+  background: #fff;
+}
+#performanceChartTab > div/* Move Chart to center */ {
+  width: 100% !important;
+}
+.ChartContainer {
+  overflow: visible !important;
+  margin: 0 auto !important;
+  width: 96% !important;
+}
+.fe-chart-scatterchart-container {
+  text-align: center;
+  width: 100% !important;
+}
+.SummaryChartWindow {
+  background-color: #ffc8bf !important;
+  border-left: 3px solid #f9a86c !important;
+  border-right: 3px solid #f9a86c !important;
+}
+.chartKey {
+  border-radius: 14px;
+  color: #ffffff;
+  padding: 2px;
+}
+/* Performance tabs section - section 3rd */
+.fe-chart-performanceTabs-container {
+  background: transparent none;
+}
+.fe-performance-table.ui-tabs /* performance table container */ {
+  padding: 10px !important;
+  background: none #fff;
+}
+.ui-asdate /* date */ {
+  padding: 3px;
+}
+/* ============== Dialog box =========================== */
+.ui-dialog::before {
+  content: "";
+  background-color: #ccc;
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+}
+.fe-ui-dialog,
+.ui-dialog {
+  background: #fff !important;
+  padding: 0;
+  overflow: visible;
+  border: 1px solid #d4d8db !important;
+  box-shadow: 0 0 3px #b7b7b7;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  margin: 0 auto;
+  left: 0 !important;
+  right: 0;
+  z-index: 1;
+}
+.ui-dialog .ui-dialog-buttonpane {
+  border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  background-color: #fff;
+  margin-top: 0;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+  margin: 2px;
+  background: var(--primaryDeepred);
+  border: 0;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.ui-dialog .ui-dialog-buttonpane button:hover {
+  box-shadow: 0 3px 6px #1d1d1d4d;
+}
+.ui-dialog-titlebar {
+  background: none repeat scroll 0 0 #fff;
+  border-radius: 0;
+  color: var(--primaryDeepred) !important;
+  font: bold 16px var(--bodyFontFamily) !important;
+  margin: 0;
+  padding-top: 10px !important;
+  padding-top: 13px !important;
+}
+.ui-dialog .ui-dialog-titlebar-close span {
+  display: none;
+}
+.ui-button.ui-dialog-titlebar-close {
+  background: none;
+  transition: all 0.2s ease-in-out;
+  border: 0 none;
+  display: block !important;
+  height: 20px !important;
+  margin: 0;
+  padding: 0 !important;
+  right: 10px !important;
+  top: 10px !important;
+  width: 25px !important;
+  position: absolute;
+  font-size: 0 !important;
+}
+.ui-button.ui-dialog-titlebar-close:before {
+  content: "";
+  background: #e5f1f2;
+  width: 22px;
+  height: 22px;
+  display: block;
+  border-radius: 100%;
+  z-index: 0;
+  text-indent: 0;
+
+  border: 1px solid var(--primaryDeepred);
+}
+.ui-button.ui-dialog-titlebar-close:after {
+  content: "X";
+  color: var(--primaryDeepred);
+  width: 21px;
+  height: 20px;
+  font-size: 12px;
+  display: block;
+  text-indent: 0;
+  font-weight: bold;
+  font-family: verdana;
+  z-index: 1;
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  bottom: 0;
+  margin: 0 auto;
+}
+.ui-dialog-titlebar-close:hover {
+  border: 0 !important;
+}
+.ui-dialog-content.ui-widget-content /* content container */ {
+  padding: 15px;
+  height: auto !important;
+  background-color: #fff;
+}
+/* ============== Popup content =========================== */
+.fe-dialog-createPortfolio-container label,
+.fe-saveportfolio-stepOne-container label,
+.fe-dialog-createComparison-container label {
+  font: bold 14px var(--bodyFontFamily);
+  padding: 0 0 7px 20px;
+  color: #000000;
+}
+.fe-portfoliodetails-input,
+.fe-portfoliodetails-multiline,
+.fe-comparisondetails-input {
+  width: 300px;
+  border: 0;
+  box-shadow: 0 1px 2px #1d1d1d80;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+.fe-pscan-benchmark-clientNameContainer label,
+.fe-comparison-report-clientNameContainer label {
+  background: url("fe_img/ico_client_name.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-portfolioNameContainer label {
+  background: url("fe_img/ico_portfolio_name.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-preparedByContainer label,
+.fe-comparison-report-preparedByContainer label {
+  background: url("fe_img/ico_date_prepared.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-datePreparedContainer label,
+.fe-comparison-report-datePreparedContainer label {
+  background: url("fe_img/ico_date_prepared.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-summaryTextContainer label {
+  background: url("fe_img/ico_summary_text.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-customStartDateContainer label {
+  background: url("fe_img/ico_date_prepared.png") no-repeat;
+  cursor: pointer;
+  height: 30px;
+  width: 120px;
+}
+.fe-nonmandatoryfield-message {
+  margin-top: 20px;
+}
+#customPortfolioStartDatePicker {
+  background: none repeat scroll 0 0 #ffffff;
+  border: 0;
+  border-radius: 5px;
+  color: #666666;
+  display: block;
+  margin-top: 10px;
+  padding: 9px 5px;
+  overflow: hidden;
+  text-decoration: none;
+  text-transform: lowercase;
+  white-space: nowrap;
+  width: 218px;
+  box-shadow: 0 1px 2px #1d1d1d80;
+}
+.fe-pscan-benchmark-OrContainer {
+  margin: 8px 0;
+}
+.fe-pscan-benchmark-indiciesContainer {
+  position: relative;
+  z-index: 50;
+  margin-bottom: 12px;
+}
+.fe-pscan-benchmarkContainer.ui-dialog-content.ui-widget-content {
+  height: auto !important;
+}
+.fe-dialog-createPortfolio-container .ui-widget-content {
+  position: static;
+}
+.fe-pscan-benchmark-sectorContainer {
+  position: relative;
+  z-index: 40;
+  margin-bottom: 12px;
+}
+.fe-pscan-benchmark-timePeriodContainer {
+  position: relative;
+  z-index: 40;
+  margin-bottom: 10px;
+}
+.fe-pscan-benchmark-customStartDateContainer {
+  position: relative;
+  z-index: 30;
+}
+.fe-benchmark-indiciesContainer .mfs-container {
+  position: relative;
+  z-index: 50;
+}
+.fe-shownext {
+  background: url(fe_img/ico_next.png) no-repeat;
+}
+.fe-dialog-createPortfolio-container h2,
+.fe-dialog-portfoliosave-container h2 {
+  font-size: 15px;
+  margin: 0;
+  padding: 0 0 10px 0;
+  color: #000;
+  background: none;
+  display: block;
+}
+.fe-dialog-createPortfolio-container label {
+  font: normal 13px var(--bodyFontFamily);
+  padding: 0 0 7px 20px;
+}
+.fe-dialog-createPortfolio-container select,
+.fe-saveportfolio-stepOne-container select {
+  width: 92%;
+  margin: 0 0 20px;
+}
+.fe-portfolioSettings-stepOne-container /* step one container */ {
+  float: left;
+  width: 48.5%;
+  width: 49% \9; /* below ie8 */
+  height: 182px;
+  border-right: 0;
+  margin: 0 2% 0 0;
+}
+.fe-portfolioSettings-stepTwo-container /* step two container */ {
+  float: right;
+  width: 49%;
+}
+.fe-pscan-benchmark-indiciesContainer label, .fe-benchmark-indiciesContainer label /* select indicies */ {
+  background: url(fe_img/ico_select_index.png) no-repeat left top;
+  display: block;
+}
+.fe-pscan-benchmark-sectorContainer label, .fe-benchmark-sectorContainer label /* select sector */ {
+  background: url(fe_img/ico_select_sector.png) no-repeat left top;
+  display: block;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer {
+  width: 92%;
+  margin-top: 8px;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer label, .fe-benchmark-weightedSectorAverageContainer label /* sector averages */ {
+  background: url(fe_img/ico_sector_average.png) no-repeat left top;
+  display: inline-block;
+  float: left;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer input,
+.fe-benchmark-weightedSectorAverageContainer input {
+  float: left;
+  margin-left: 15px;
+}
+.fe-pscan-benchmark-timePeriodContainer label, .fe-benchmark-timePeriodContainer label /* time period */ {
+  background: url(fe_img/ico_time_period.png) no-repeat left top;
+  display: block;
+}
+.fe-text-OR {
+  font: normal 13px var(--bodyFontFamily);
+  margin: -26px 15px 20px 0;
+  float: right;
+}
+.fe-chart-subOptionLabel {
+  position: relative;
+  z-index: 0;
+}
+.fe-benchmark-sectorContainer .mfs-container {
+  z-index: 4;
+}
+.chart-addToChart-Container .mfs-container {
+  position: relative;
+  z-index: 5;
+}
+.BenchmarkSettingNavButtons /* buttons container */ {
+  border-top: 1px solid #cbcbcb;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 0 0;
+  right: 0;
+  width: 100%;
+}
+.slide-button-left {
+  float: right;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+/*Save portfolio Poup*/
+.fe-saveportfolio-stepOne-container /* step one container */ {
+  float: right;
+  width: 47.5%;
+  margin-bottom: 20px;
+}
+.fe-portfolioSettings-stepTwo-container /* step two container */ {
+  float: left;
+  width: 47%;
+}
+.fe-saveportfolio-stepTwo-container {
+  float: left;
+  width: 49.5%;
+  margin: 0 2.45% 0 0;
+  height: 246px;
+  border-right: 1px solid #cbcbcb;
+}
+.fe-saveportfolio-stepTwo-container label {
+  font: bold 14px var(--bodyFontFamily);
+  color: #000000;
+  display: block;
+  padding: 0 0 7px 0px;
+}
+.fe-saveportfolio-stepTwo-container select {
+  width: 95%;
+  margin: 0 0 20px;
+}
+.fe-saveportfolio-stepTwo-container input {
+  width: 92%;
+  margin: 0 0 10px;
+}
+.fe-saveportfolio-stepTwo-container textarea {
+  width: 92%;
+  margin: 0 0 10px;
+  height: 50px;
+}
+.fe-portfoliosave-buttons /* buttons container */ {
+  padding: 10px 0 0;
+  border-top: 1px solid #cbcbcb;
+  margin-bottom: 20px;
+  margin-top: 26px;
+  width: 273px;
+  position: relative;
+}
+.btnSaveContainer,
+.btnUpdateContainer {
+  float: left;
+}
+.btnSaveContainer {
+  margin-right: 5px;
+  position: absolute;
+}
+.btnUpdateContainer.visibilityhidden {
+  display: none;
+}
+.fe-mandatoryfield-message {
+  font-size: 13px;
+  margin-top: 2px;
+}
+/* ============== Portfolio Scan =========================== */
+.fe-tabs-autoLoad.ui-tabs {
+  background: transparent;
+}
+.fe-tabs-autoLoad .fe-tabs {
+  background: none transparent;
+  border-bottom: 1px solid rgba(101, 101, 101, 0.2);
+  padding: 0;
+  /*! height: 44px; */
+}
+.fe-tabs-autoLoad .fe-tabs-item.ui-state-default {
+  /*! height: 43px; */
+}
+.fe-tabs-autoLoad .fe-tabs-item.ui-state-default a {
+  width: auto;
+  padding: 11px 6px !important;
+}
+.fe-tabs-autoLoad-container {
+  padding: 0 0 10px !important;
+  background: #fff !important;
+}
+.fe-tabs-autoLoad-container h3 {
+  margin: 0;
+  padding: 20px 0;
+  color: #000;
+  font-size: 15px;
+}
+.fe-pscan-summarytext-value,
+.fe-pscan-commentarytext {
+  word-wrap: break-word;
+}
+.fe-pscan-clientname,
+.fe-pscan-portname,
+.fe-pscan-preparedby,
+.fe-pscan-dateprepared,
+.fe-pscan-benchmark,
+.fe-pscan-timeperiod {
+  padding: 4px 0;
+}
+.fe-pscan-timeperiod {
+  padding-bottom: 10px;
+}
+.fe-pscan-clientname-label,
+.fe-pscan-portname-label,
+.fe-pscan-preparedby-label,
+.fe-pscan-dateprepared-label,
+.fe-pscan-benchmark-label,
+.fe-pscan-timeperiod-label {
+  font-weight: bold !important;
+  width: 200px;
+  display: inline-block;
+}
+.fe-columnheader-LegendColour /*portfolio scan table*/ {
+  margin: 0;
+  padding: 0;
+  width: 25px !important;
+}
+.fe-tabs-autoLoad .fe-columnheader-FundName {
+  width: 200px !important;
+  text-align: left;
+  padding-left: 40px !important;
+}
+.fe-tabs-autoLoad .fe-column-name {
+  padding-left: 40px !important;
+}
+.fe-geographicalSplit th:first-child,
+.fe-sectorSplit th:first-child,
+.fe-assetSplit th:first-child {
+  text-align: left;
+  padding-left: 40px;
+}
+.fe-chartlegend {
+  margin-top: 10px;
+  width: 66%;
+}
+.fe-chartlegend-column2 {
+  float: left;
+  margin-left: 4%;
+  width: 46%;
+}
+.fe-chartlegend-column1 {
+  margin-left: 0;
+  width: 46%;
+}
+.fe-chartlegend-datatable {
+  display: none;
+}
+.fe-chart-container {
+  text-align: center;
+  width: 100% !important;
+}
+.fe-pscan-portfoliorow .fe-chartlegend-datatable,
+.fe-pscan-benchmarkrow .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable {
+  display: inline-block;
+}
+a.fe-icon-expandcollapse {
+  background-image: url(fe_img/expand-all-ico.png);
+}
+a.fe-icon-expandcollapse.fe-button-collapse {
+  background-image: url(fe_img/colapse-all-ico.png);
+}
+.treeTable tr td {
+  border-bottom: 1px solid #b0b0b0;
+}
+.treeTable tr.expanded td a.expander {
+  background: url(fe_img/toggle-collapse-dark.png) no-repeat;
+  margin-left: 0 !important;
+  padding-left: 40px !important;
+  text-decoration: none;
+  display: inline-block;
+}
+.treeTable tr.collapsed td a.expander {
+  background: url(fe_img/toggle-expand-dark.png) no-repeat;
+  margin-left: 0 !important;
+  padding-left: 40px !important;
+  text-decoration: none;
+  display: inline-block;
+}
+.fe-pscan-actions {
+  margin-left: 0;
+  margin-top: 10px;
+}
+/* ============== Login =========================== */
+.fe-login-page {
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 5px 0;
+  width: 1000px;
+  min-height: 500px;
+}
+.fe-loginPannel {
+  width: auto;
+  height: 500px;
+  margin: 0 auto;
+  background: url(fe_img/LoginBackground.png) no-repeat left top;
+}
+.fe-login-header {
+  font: normal 23px var(--bodyFontFamily);
+  padding: 0;
+  margin: 0 0 30px;
+  display: none;
+}
+.fe-login-form {
+  margin: 90px auto 0 !important;
+  padding: 20px 0 0;
+  line-height: 80%;
+  width: 450px;
+  font-size: 13px;
+}
+.fe-login-form label {
+  color: #000;
+  display: inline-block;
+  font: bold 14px var(--bodyFontFamily);
+  float: left;
+  font-weight: bold;
+  padding: 5px 10px 0 0;
+  text-align: right;
+  width: 23%;
+}
+.fe-login-textbox,
+.fe-login-textbox:focus {
+  border: 1px solid #c4c4c4;
+  float: left;
+  font: normal 13px var(--bodyFontFamily);
+  height: 12px;
+  width: 60%;
+  margin: 0 0 20px;
+  padding: 5px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-login-button-container {
+  float: right;
+  margin: 0 332px 0 0;
+  *width: 70px;
+}
+.fe-logon-errors .validation-summary-errors {
+  background: #fabbaa;
+  border: 1px solid #dc143c;
+  margin-top: 1em;
+}
+.fe-logout-container {
+  padding: 5px 0 0;
+  text-align: right;
+  background: transparent none;
+  position: absolute;
+  right: 0;
+  height: 25px;
+  font: bold 14px var(--bodyFontFamily);
+}
+.fe-logout-container a {
+  font-weight: bold;
+  margin-left: 5px;
+  color: #ffc20e;
+}
+/* ============== Download tool =========================== */
+.fe-dialog-createDownloadTool-container /* Set fixed size for Download tool popup */ {
+  margin: 0 auto !important;
+  position: absolute !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 610px !important;
+}
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap {
+  background: none #eee;
+  border: 0;
+  padding: 12px 0 12px 10px;
+  margin: 0 0 22px;
+  width: 560px;
+  border-radius: 6px;
+  /*! box-shadow: 0px 1px 2px #1D1D1D80; */
+}
+.fe-tab-container-PriceAndDividend
+  .fe-downloadtool-options-wrap
+  .fe-downloadtool-options-name {
+  width: 230px;
+  font: bold 12px/19px var(--bodyFontFamily);
+  min-width: 230px !important;
+  margin-top: 3px;
+  color: #494e50;
+}
+.fe-tab-container-PriceAndDividend
+  .fe-downloadtool-options-wrap
+  .fe-downloadtool-options-val {
+  font: normal 13px/19px var(--bodyFontFamily);
+  color: #494e50;
+}
+.fe-tab-container-PriceAndDividend .mfs-container {
+  width: 229px;
+}
+.fe-tab-container-PriceAndDividend .fe-date-input input {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 11px 5px;
+  width: 221px;
+  color: #494e50;
+  font-size: 12px;
+  font-family: var(--bodyFontFamily);
+  outline: none;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.fe-downloadtool-options-wrap.fe-downloadprice-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloaddividend-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloadDocuments-table {
+  background: none transparent;
+  box-shadow: none;
+}
+.fe-tab-container-PriceAndDividend h5 {
+  font: bold 15px var(--bodyFontFamily);
+  margin-bottom: 8px;
+  padding: 0px 0 0;
+}
+.fe-downloadtooltabs .fe-datatable th /*download tool table header */ {
+  height: 22px !important;
+}
+.fe-tab-container-DownloadPrice .fe-columnheader-Bid, .fe-tab-container-DownloadPrice .fe-columnheader-Offer, .fe-tab-container-DownloadPrice .fe-columnheader-Mid, .fe-tab-container-DownloadPrice .fe-columnheader-PriceDate, .fe-tab-container-DownloadPrice .fe-columnheader-Currency/*set fixed width for table fields*/ {
+  width: 100px;
+}
+.dividendHtmlContainer,
+.priceHtmlContainer {
+  margin-bottom: 10px;
+}
+.empty-div {
+  height: 0;
+}
+.fe-price-container .fe-downloadTool-button,
+.fe-dividend-container .fe-downloadTool-button {
+  min-width: 112px;
+}
+.fe-input-radio:first-child {
+  margin-left: 0;
+}
+#downloadtool_addDocuments {
+  margin-top: 12px;
+}
+/* ============== Date Picker =========================== */
+.ui-datepicker {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #666;
+  width: 222px;
+  z-index: 99999 !important;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: 0px 1px 2px #1d1d1d80;
+  /*! width: 100%; */
+}
+.ui-datepicker th {
+  color: #1d1d1d;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+  background: none repeat scroll 0 0 #e5f1f2 !important;
+  border: 1px solid var(--primaryDeepred) !important;
+  color: #000 !important;
+  text-align: center;
+  padding: 3px;
+}
+.ui-datepicker td a.ui-state-active,
+.ui-datepicker td a:hover {
+  background: none repeat scroll 0 0 var(--primaryDeepred) !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  margin: 0 5px;
+  width: 43%;
+}
+/* ============== Glossary Tab =========================== */
+.tabGlossaryContainer .accordion-header {
+  background: none repeat scroll 0 0 #D8E9F31;
+  border-radius: 8px;
+  color: #007FB;
+  cursor: pointer;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 0 3px;
+  padding: 8px 10px;
+}
+.tabGlossaryContainer .accordion-content {
+  font-size: 12px;
+  margin: 0 0 1px;
+  padding: 5px 10px;
+  line-height: 18px;
+}
+.tabGlossary .ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active {
+  color: #007fb1;
+  font: bold 13px var(--bodyFontFamily);
+  margin: 0 0 0 -15px;
+  padding: 0;
+}
+/* ============== Portfolio Tab =========================== */
+.fe-mastertabs-PortfolioMasterTab.fe-menuTabs-content {
+  padding: 10px 0 0;
+}
+.fe-userPortfolioDropdown {
+  padding-top: 12px;
+}
+.fe-userPortfolioDetails.visibilityhidden {
+  display: none;
+}
+.fe-userPortfolioDetails {
+  min-height: 10px !important;
+  padding-bottom: 10px;
+}
+.fe-userPortfolio-name-label,
+.fe-userPortfolio-benchmark-label,
+.fe-userPortfolio-currency-label {
+  font-weight: bold;
+  width: 200px;
+  padding: 2px 0;
+  display: inline-block;
+}
+.fe-column-weight /* weight textbox in table */ {
+  width: 50px;
+  text-align: right;
+  box-shadow: 0 1px 2px #1d1d1d80;
+  border: 0;
+  border-radius: 4px;
+  padding: 5px 3px;
+}
+.fe-portfolio-deleteall /*Delete all button in portfolio builder page */ {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  bottom: 111px;
+  box-shadow: none;
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  /* left: 563px;
+	left:567px\0/; */
+  right: 0;
+  bottom: 409px;
+  left: 434px;
+  behavior: url(http://toolkit.financialexpress.net/Assets/css/PIE.htc) !important;
+}
+:root .fe-portfolio-deleteall {
+  bottom: 409px\9;
+  left: 434px\9;
+}
+/* 26-06-2023 Changes */
+.fe-tabs-datacontainer.fe-enable-cascade .fe-datatable td.fe-column-name a {
+  color: var(--primaryRed);
+  text-decoration: none;
+  border-bottom: 1px solid var(--lightGray);
+  padding-bottom: 2px;
+}
+.fe-tabs-datacontainer.fe-enable-cascade .fe-datatable td.fe-column-name a:focus{
+  outline: 1px dotted var(--black) !important;
+}
+.fe-tabs-datacontainer.ui-tabs.ui-widget.ui-widget-content {
+  background-color: var(--white);
+  padding: 2px 24px 30px 24px;
+}
+.fe-tabs-datacontainer.fe-enable-cascade .even td{
+  background-color: var(--white) !important;
+}
+.fe-tabs-datacontainer.fe-enable-cascade .fe-datatable .fe-fund-tableBody td{
+  padding-top:30px;
+  padding-bottom:30px;
+}
+.fe-tabs-container .ui-widget-header {
+  background-color: var(--mediumGray);
+}
+/* For pagination */
+/* .fe-datatable-pagination-container {
+  display: none;
+} */
+/* td.ui-widget-header.fe-paging-footer.ui-corner-bottom {
+  background: #F6F4F2;
+  height: auto;
+  padding: 0 !important;
+  width: auto;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+td.ui-widget-header.fe-paging-footer.ui-corner-bottom .fe-paging-navContainer {
+  float: none;
+  text-align: center;
+  background: #F6F4F2;
+  padding: 30px 0;
+  border-top: 30px solid var(--white);
+} */
+/* .pagination.ui-widget .ui-state-default {
+  font-size: 16px;
+  font-weight: normal;
+} */
+.fe-datatable-pagination-container.ui-widget-header.ui-corner-top,
+.ui-widget-header.fe-paging-footer.ui-corner-bottom {
+  background: var(--white);
+}
+.fe-tabs-item.ui-state-default.ui-state-active a{
+  color:var(--white);
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .fe-portfolio-deleteall {
+    bottom: 409px;
+    left: 432px;
+  }
+}
+::i-block-chrome,
+.fe-portfolio-deleteall {
+  /* left:559px !important; */
+  bottom: 422px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .fe-portfolio-deleteall {
+    bottom: 218px;
+    left: auto;
+    right: calc(100vw - 1082px);
+  }
+}
+a.fe-icon-deleteall,
+a.fe-icon-deleteall:hover {
+  background: var(--primaryDeepred) none;
+  text-decoration: none;
+  padding: 9px 15px 9px;
+  color: #fff;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  border: 1px solid var(--primaryDeepred);
+  border-radius: 4px;
+}
+a.fe-icon-deleteall:hover {
+  color: #fff;
+  box-shadow: 0 3px 6px #1d1d1d4d;
+}
+/* ============== Tooltip =========================== */
+.fe-helptext-switch {
+  margin-top: -10px;
+  height: 18px;
+  color: #f1f7fc;
+  display: none;
+}
+.fe-helptext-image {
+  top: 4px;
+  position: absolute;
+  right: 8px;
+  height: 20px;
+  white-space: nowrap;
+}
+.cascade-cellheader {
+  position: relative;
+}
+.cascade-cellheader .fe-helptext-image {
+  right: 40px;
+}
+.fe-helptext-image-background {
+  /* background: url(fe_img/helpTextInfo.png) no-repeat; */
+  background: url(fe_img/helpTextInfoDeepRed.png) no-repeat;
+  height: 15px;
+}
+.fe-helptext-div-css {
+  background: url(fe_img/bubble_midimg.png) repeat-y;
+  margin-top: 20px;
+  margin-left: -33px;
+  color: #000;
+  width: 196px;
+}
+.fe-helptext-div-css:hover {
+  z-index: 1002;
+}
+.fe-helptext-div-css .help-text-callout-top {
+  background: url(fe_img/bubble_arrow.png) no-repeat;
+  width: 35px;
+  height: 17px;
+  top: -20px;
+  left: 40px;
+}
+.fe-helptext-div-css .help-text-callout-middle {
+  background: url(fe_img/bubble_top3.png) no-repeat;
+  height: auto;
+  padding-top: 30px;
+  margin-top: -40px;
+}
+.fe-helptext-div-css .help-text-callout-bottom {
+  background: url(fe_img/bubble_botimg.png) no-repeat;
+  height: 15px;
+  top: 6px;
+}
+.fe-helptext-div-css .help-text-callout-middle div {
+  padding-right: 12px;
+  text-transform: none;
+  text-align: left;
+  white-space: normal;
+  font: 13px var(--bodyFontFamily);
+}
+.fe-helptext-div-css .help-text-callout-middle .closeHelpText {
+  color: #000;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* tooltip for search*/
+.fe-search-fileters-container .fe-helptext-image {
+  position: relative;
+}
+.fe-search-fileters-container .fe-helptext-div-css {
+  margin-left: 0;
+}
+#div-fe-helptext-span-1-0-0-AssetClassId.fe-helptext-div-css {
+  margin-left: 32px !important;
+}
+#fe-helptext-span-1-0-0-OngoingCharge .fe-helptext-div-css {
+  margin-left: 61px !important;
+}
+/* ============== Saved Portfolio Tab =========================== */
+.fe-mastertabs-SavedPortfoliosMasterTab.fe-menuTabs-content {
+  padding: 20px 0 0;
+}
+.fe-savedportfolios-portfoliomanagement {
+  left: 374px;
+  margin: 1px 0 0;
+  position: absolute;
+}
+.ui-multiselect.ui-state-default {
+  height: 26px;
+  padding: 0 0 0 5px;
+  border: 1px solid #333;
+  font: 14px var(--bodyFontFamily);
+  color: #000 !important;
+  background: none transparent !important;
+  text-align: left;
+  width: 200px !important;
+  border-radius: 5px;
+}
+.ui-multiselect span.ui-icon {
+  float: right;
+}
+.ui-multiselect-menu {
+  display: none;
+  padding: 3px;
+  position: absolute;
+  z-index: 10000;
+  text-align: left;
+  border-radius: 4px;
+  width: 193px !important;
+}
+.ui-multiselect-header {
+  margin-bottom: 3px;
+  padding: 3px 0 3px 4px;
+  background-color: #ebecec;
+}
+.ui-multiselect-header ul {
+  font-size: 0.9em;
+}
+.ui-multiselect-header ul li {
+  float: left;
+  padding: 0 10px 0 0;
+}
+.ui-multiselect-header a {
+  text-decoration: none;
+}
+.ui-multiselect-header a:hover {
+  text-decoration: underline;
+}
+.ui-multiselect-header span.ui-icon {
+  float: left;
+}
+.ui-multiselect-header li.ui-multiselect-close {
+  float: right;
+  text-align: right;
+  padding-right: 0;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes input {
+  position: absolute !important;
+  top: auto !important;
+  left: -9999px;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes label {
+  padding: 5px !important;
+}
+.ui-multiselect-checkboxes {
+  position: relative /* fixes bug in IE6/7 */;
+  overflow-y: auto;
+}
+.ui-multiselect-checkboxes label {
+  cursor: default;
+  display: block;
+  border: 1px solid transparent;
+  padding: 3px 1px;
+}
+.ui-multiselect-checkboxes label input {
+  position: relative;
+}
+.ui-multiselect-checkboxes li {
+  clear: both;
+  font-size: 0.9em;
+  padding-right: 3px;
+}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a {
+  display: block;
+  padding: 3px;
+  margin: 1px 0;
+  text-decoration: none;
+}
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label {
+  border: none;
+}
+.ui-multiselect-checkboxes .ui-corner-all.ui-state-hover {
+  background: none #000000;
+  border: 0 none;
+  color: #ffffff;
+}
+.fe-portfolioconstituents-dialog table th {
+  padding: 5px;
+  height: 10px !important;
+}
+.fe-portfolioconstituents-dialog table tbody th {
+  font-weight: normal;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #b0b0b0;
+}
+td.fe-editportfolio-icon a,
+.edit {
+  background: url(fe_img/ammend.png) no-repeat center center;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  width: 20px;
+  text-decoration: none;
+}
+td.fe-portfolioscan-icon a {
+  background: url(fe_img/PortfolioScan.png) no-repeat center center;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  width: 20px;
+  text-decoration: none;
+}
+.apply,
+.cancel {
+  text-decoration: none;
+}
+a.fe-showportfolioconstituents {
+  background: url(fe_img/icon_Constituents.png) no-repeat center center
+    transparent;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  line-height: 20px;
+}
+.fe-manageportfolios-dialog.ui-dialog-content {
+  height: auto !important;
+}
+/* ============== Model Portfolio Tab =========================== */
+.fe-fund-tableBody td.fe-icon-export-portfolio a {
+  background: url(fe_img/exported-fund.png) no-repeat scroll 0 0;
+  text-decoration: none;
+}
+td.fe-icon-multiple-documents a {
+  background: url(fe_img/ico_multipleDoc.png) no-repeat;
+  text-decoration: none;
+}
+.fe-portfolio-export-dlg.ui-dialog-content.ui-widget-content {
+  height: auto !important;
+}
+.ui-dialog .fe-portfolio-export-dlg {
+  padding: 0 0 10px;
+}
+.fe-portfolioExport-fundName {
+  background-color: #000;
+  color: white;
+  display: block;
+  font-size: 13px;
+  padding: 5px 0 5px 10px;
+}
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-basket {
+  margin-left: 10px;
+  text-decoration: none;
+}
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-portfolio:hover {
+  background: url(fe_img/ico_addToPortfolio.png) no-repeat scroll left top;
+  padding: 0 0 0 17px;
+  text-decoration: none;
+}
+.fe-ico-add-to-portfolio:hover {
+  background-image: url(fe_img/ico_addToPortfolioOver.png);
+}
+.fe-ico-add-to-basket,
+.fe-ico-add-to-basket:hover {
+  background: url(fe_img/ico_addToBasket.png) no-repeat scroll left 1px;
+  padding: 0 0 0 17px;
+  text-decoration: none;
+}
+.fe-ico-add-to-basket:hover {
+  background-image: url(fe_img/ico_addToBasketOver.png);
+}
+.mpconstituent-fundname {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.mpconstituent-backTo-container {
+  padding-bottom: 0;
+}
+.fe-icon-back.fe-back-button {
+  margin-left: 0 !important;
+}
+#totalFundsObtained {
+  display: none;
+}
+/* .menuTabsResponsive{
+	display: none;
+} */
+
+.ui-scroll-tabs-header .stNavMainLeft {
+  left: 0;
+}
+.ui-scroll-tabs-header .stNavMainRight {
+  right: 0;
+}
+.fe-topmenu > .ui-scroll-tabs-header:first-child .stNavMainLeft,
+.fe-topmenu > .ui-scroll-tabs-header:first-child .stNavMainRight {
+  display: none;
+}
+.stNavMain button {
+  background-color: transparent !important;
+  border: 0 !important;
+}
+.stNavMain span {
+  display: none;
+}
+.stNavMain button.stNavPrevArrow {
+  background: url(fe_img/icon_arrow_left.png) no-repeat left center;
+  background-size: 50%;
+  margin-right: 0;
+}
+.stNavMain button.stNavNextArrow {
+  background: url(fe_img/icon_arrow_right.png) no-repeat right center;
+  background-size: 50%;
+}
+.fe-cascade-table tbody .cascade-col {
+  text-align: left;
+}
+.fe-cascade-table tbody .cascade-child .cascade-cellheader {
+  text-align: left;
+  font-weight: bold;
+  font-style: normal;
+}
+.fe-cascade-morebutton.fe-button.ui-state-default {
+  background-color: var(--primaryDeepred);
+  border: 0;
+  border-radius: 100%;
+  width: 30px !important;
+  height: 30px;
+  box-shadow: 0 0 2px #1d1d1d4d;
+}
+.fe-cascade-morebutton.fe-button.ui-state-default:hover {
+  box-shadow: 0 3px 6px #1d1d1d4d;
+}
+.fe-cascade-morebutton.fe-button.ui-state-default {
+  border-radius: 100%;
+  width: 25px !important;
+  height: 25px !important;
+  padding: 14px;
+}
+.fe-cascade-morebutton .ui-icon-carat-1-s,
+.fe-cascade-morebutton .ui-icon-carat-1-n {
+  background: none transparent !important;
+  position: absolute;
+  /*! /*! font-size: 0; */
+  height: auto;
+  line-height: 0;
+  margin: 0;
+  text-indent: 0;
+  font-size: 0;
+  left: 0;
+  top: 2px;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+}
+.fe-cascade-morebutton .ui-icon-carat-1-s:after,
+.fe-cascade-morebutton .ui-icon-carat-1-n:after {
+  content: "...";
+  font: bold 15px var(--bodyFontFamily) !important;
+  color: #fff !important;
+  display: block;
+  text-indent: 0;
+  text-align: center;
+  margin: auto;
+}
+.fe-cascade-table.fe-enable-cascade tbody .cascade-menu.active {
+  border: 1px solid var(--primaryDeepred);
+  right: 50px;
+  top: 39px;
+  background-color: #fff;
+}
+.fe-cascade-table tbody .cascade-menu-wrapper::before {
+  content: "";
+  background-color: #eee;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+}
+.ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+  padding: 0 30px;
+}
+/* Export to excel*/
+.fe-dlg-expexcel-chkbx-column-section,
+.fe-dlg-expexcel-column-name-section,
+.fe-dlg-expexcel-from-tab-name-section {
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 0;
+}
+.fe-dlg-expexcel-from-tab-name-section {
+  width: 44%;
+}
+.fe-dlg-expexcel-column-name-section {
+  width: 50%;
+}
+@media screen and (max-width: 1920px) {
+  .page {
+    width: 99% !important;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .fe-portfolio-deleteall {
+    right: calc(100vw - 1057px);
+  }
+}
+@media screen and (max-width: 1279px) {
+  .fe-portfolio-deleteall {
+    right: calc(100vw - 1075px);
+  }
+}
+@media screen and (max-width: 960px) {
+  div#portfolio-deleteall-container {
+    position: relative;
+    left: inherit;
+    bottom: inherit;
+    top: 10px;
+  }
+  .fe-tabs-datacontainer .fe-datatable th:nth-last-child(2) {
+    border-radius: 0;
+  }
+  .fe-tabs-datacontainer .fe-datatable th:nth-last-child(1) {
+    border-radius: 0 5px 0 0;
+  }
+}
+@media screen and (min-width: 900px) {
+  .stNavMain,
+  .menuTabsResponsive,
+  .fe-tabs-container-responsive {
+    display: none;
+  }
+  .fe-additionaltools + .fe-additionaltools {
+    margin-left: 2px;
+    display: inline-block;
+  }
+  .ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 899px) {
+  .fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+    margin: 0 10px;
+  }
+  .page {
+    width: 98% !important;
+    min-height: auto;
+  }
+  .fe-datatable {
+    margin: 25px 0 0;
+    width: 100%;
+  }
+  .fe-tabs.ui-tabs-nav {
+    border-bottom: 0;
+  }
+  .ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+    border-bottom: 1px solid rgba(101, 101, 101, 0.2);
+  }
+  div#portfolio-deleteall-container {
+    position: relative;
+    left: inherit;
+    bottom: inherit;
+    top: 10px;
+  }
+  .ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+    padding: 0 5%;
+    width: 90%;
+  }
+  .fe-tabs-container-responsive {
+    display: none;
+  }
+  .fe-button.ui-state-default,
+  .ui-button.ui-state-default,
+  .fe-button.fe-search-button {
+    margin-bottom: 5px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .fe-search-fileters-container {
+    width: 46% !important;
+    margin-right: 1% !important;
+  }
+  .fe-search-performance-filter-options .mfs-container {
+    width: 100% !important;
+  }
+  .fe-search-performance-filter-options {
+    width: 70%;
+  }
+  .fe-cascade-table .cascade-childrow-cnt {
+    padding: 0;
+  }
+  .fe-button.ui-state-default,
+  .ui-button.ui-state-default,
+  .fe-button.fe-search-button {
+    margin-bottom: 5px;
+  }
+  .fe-ui-dialog,
+  .ui-dialog {
+    width: 80% !important;
+  }
+  .fe-tabs-item.ui-state-default.ui-tab.ui-tab::after {
+    width: 0;
+  }
+  .fe-dlg-expexcel-column-name-section {
+    width: 48%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 580px) {
+  .fe-topmenu .fe-menuTabs-list li a {
+    font-size: 14px;
+  }
+  .fe-search-searchbox-container {
+    margin-left: 0;
+  }
+  .fe-search-textbox,
+  .fe-search-textbox:focus {
+    width: 99%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  .fe-advSearch-button.ui-state-default,
+  .fe-advSearch-button.ui-state-focus,
+  .fe-advSearch-button.ui-state-hover {
+    margin-left: 0;
+  }
+  .fe-column-name {
+    min-width: 200px;
+  }
+  .fe-search-fileters-container {
+    box-sizing: border-box;
+    margin: 0 0 25px !important;
+    width: 100% !important;
+  }
+  .fe-ui-dialog,
+  .ui-dialog {
+    width: 90% !important;
+  }
+  /*Portfolio popup*/
+  .fe-portfolioSettings-stepOne-container {
+    width: 100%;
+    border-right: 0;
+    margin: 0;
+  }
+  .fe-dlg-expexcel-line {
+    line-height: 18px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 479px) {
+  .fe-search-performance-filter-options {
+    width: 74%;
+  }
+  .fe-search-fileters-container {
+    width: 100%;
+    margin-right: 0 !important;
+  }
+  #advancedSearchContainer {
+    padding: 15px;
+  }
+  .fe-dlg-expexcel-column-name-section {
+    width: 42%;
+  }
+}
+@print {
+  /*Pdf - portfolio scan */
+  .pscan-pdf-header .ui-logo-container {
+    background-position: right 7px;
+    height: 130px;
+    padding-bottom: 10px;
+    background-size: 200px;
+  }
+  .pscan-pdf-header-text {
+    float: left;
+    padding: 30px 0 0 15px;
+    font-size: 24px;
+    color: #f9a86c;
+  }
+  .fe-pscan-pdf-pages {
+    padding: 1cm 0 0;
+  }
+  .fe_portfoliocomposition_namecolumn1,
+  .fe_portfoliocomposition_namecolumn2,
+  .fe_portfoliocomposition_valuecolumn1,
+  .fe_portfoliocomposition_valuecolumn2 {
+    text-align: left !important;
+  }
+  th.fe_portfoliocomposition_namecolumn3,
+  th.fe_portfoliocomposition_namecolumn4 {
+    text-align: center;
+  }
+  .fe-pscan-pdf-pages-container .fe-datatable th {
+    height: auto;
+  }
+  .fe-pscan-pdf-pages-container .fe-datatable td {
+    padding: 2px 6px;
+  }
+  .fe_portfoliocomposition_footercolumn {
+    font-weight: bold;
+  }
+  #PortfolioScanAssetSplit-container,
+  #PortfolioScanGeographicalSplit-container,
+  #PortfolioScanSectorSplit-container {
+    width: 32%;
+    float: left;
+    margin-right: 1.5%;
+  }
+  #PortfolioScanSectorSplit-container {
+    margin-right: 0 !important;
+    float: right;
+  }
+  .fe-pscan-pdf-breakdowns-page {
+    border: 1px solid #636466;
+  }
+  .fe-pscan-pdf-breakdowns-page h3 {
+    background-color: #636466;
+    padding: 5px;
+    color: #fff;
+    margin: 0;
+  }
+  div#TopHoldings-container {
+    width: 100%;
+    float: left;
+  }
+  .fe-pscan-pdf-highchart-breakdowns,
+  .fe-pscan-pdf-breakdowns-legends {
+    width: 100% !important;
+  }
+  div[class^="fe-chartlegend-column"] {
+    width: 100%;
+    padding-left: 2%;
+  }
+  .fe-chartlegend-item {
+    width: 96%;
+    margin: 0 auto;
+  }
+  .fe-pscan-pdf-pages-container .treeTable th:last-child {
+    text-align: center;
+  }
+  .fe-pscan-pdf-cumulative-performance-page th,
+  .fe-pscan-pdf-discrete-performance-page th {
+    text-align: center;
+  }
+  .fe-pscan-pdf-cumulative-performance-page th:first-child,
+  .fe-pscan-pdf-cumulative-performance-page td:first-child,
+  .fe-pscan-pdf-discrete-performance-page th:first-child,
+  .fe-pscan-pdf-discrete-performance-page td:first-child {
+    text-align: left;
+  }
+}
+/****  Embark ****/

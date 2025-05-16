@@ -1,0 +1,23 @@
+﻿$(document).ready(function () {
+
+	$(".treeTable").treeTable({ clickableNodeNames: 'true' });
+
+	$('.portfolio-topholdings-container').on('click', '#expandCollapseLnk', function () {
+		var source = $(this);
+		var collapse = source.data("collapse") | false; // expanding by default
+		source.data("collapse", !collapse);
+		
+		source.toggleClass("fe-button-collapse", collapse);
+
+		$(".treeTable tbody tr", ".portfolio-topholdings-container").each(function () {
+			var item = $(this);
+			if (collapse) {
+				item.collapse();
+			} else {
+				item.expand();
+			}
+		});
+		ToolkitUI.Common.ResizeIFrame();
+	});
+});
+

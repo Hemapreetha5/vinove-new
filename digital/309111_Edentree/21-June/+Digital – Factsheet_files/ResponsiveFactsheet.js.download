@@ -1,0 +1,91 @@
+﻿$(function () {
+    $("div.backButton button").on("click", function () {
+        GoBack();
+    });
+
+    if ($('#tab-responsiveFactsheet').length > 0) {
+        $("#tab-responsiveFactsheet").FundInformationTable({
+            GetModel: GetResponsiveFactsheetModel,
+            hasPagingAndSorting: false
+        });
+        $("#tab-responsiveFactsheet").FundInfoLoadData(true, true);
+    }
+}
+);
+
+
+
+
+function GetResponsiveFactsheetModel() {
+    var model = {};
+    model.ProjectName = modelContents.ProjectName;
+    model.LanguageCode = modelContents.LanguageCode;
+    model.LanguageId = modelContents.LanguageId;
+    model.Theme = modelContents.Theme;
+    model.CodesList = (modelContents.TypeCodeForResponsiveFactsheet) ? modelContents.TypeCodeForResponsiveFactsheet : [];
+    model.SelectedSpecialUnitType = (modelContents.ResponsiveFactsheetSpecialUnitType) ? modelContents.ResponsiveFactsheetSpecialUnitType : '';
+    model.OverrideDocumentCountryCode = getParameterByNameIgnoreCase('DocumentCountry');
+    model.PerformanceCurrency = getQueryStringValue('PerformanceCurrency');
+
+    if (modelContents.Useazureservice == 'True') {
+        model.GRSProjectId = modelContents.GrsProjectId;
+    }
+
+    if (getParameterByNameIgnoreCase('MPCategoryCode')) {
+        var filteringOptions = {};
+
+        if (model.FilteringOptions) {
+            filteringOptions = model.FilteringOptions;
+            filteringOptions.MPCategoryCode = filteringOptions.MPCategoryCode ? filteringOptions.MPCategoryCode : getParameterByNameIgnoreCase('MPCategoryCode');
+        }
+        else {
+            filteringOptions.MPCategoryCode = filteringOptions.MPCategoryCode ? filteringOptions.MPCategoryCode : getParameterByNameIgnoreCase('MPCategoryCode');
+        }
+
+        model.FilteringOptions = filteringOptions;
+    }
+
+    if (getParameterByNameIgnoreCase('priipproductcode')) {
+        var filteringOptions = {};
+
+        if (model.FilteringOptions) {
+            filteringOptions = model.FilteringOptions;
+            filteringOptions.PriipProductCode = filteringOptions.PriipProductCode ? filteringOptions.PriipProductCode : getParameterByNameIgnoreCase('priipproductcode');
+        }
+        else {
+            filteringOptions.PriipProductCode = filteringOptions.PriipProductCode ? filteringOptions.PriipProductCode : getParameterByNameIgnoreCase('priipproductcode');
+        }
+
+        model.FilteringOptions = filteringOptions;
+    }
+
+    if (getParameterByNameIgnoreCase('rangecode')) {
+        model.RangeCode = getParameterByNameIgnoreCase('rangecode');
+    }
+
+    return model;
+}
+
+DisplayDisclaimer = function () {
+    $(this).showDisclaimer($("#DisclaimerTextDiv").html());
+    return false;
+};
+
+GetSearchModel = function (toolId, projectToolId) {
+    var model = {};
+    model.GrsProjectId = modelContents.GrsProjectId;
+    model.ProjectName = modelContents.ProjectName;
+    model.ToolId = toolId;
+    model.ProjectToolId = projectToolId;
+    model.LanguageId = modelContents.LanguageId;
+    model.LanguageCode = modelContents.LanguageCode;
+    return model;
+};
+
+function SetResponsiveFactsheetHeader(fundName) {
+    if ($('#fundNameHeader h1').length > 0) {
+        $('#fundNameHeader h1').text(fundName);
+    } else {
+        $('#fundNameHeader').text(fundName);
+    }
+}

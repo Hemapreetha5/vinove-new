@@ -1,0 +1,273 @@
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arial.ttf')  format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arialbd.ttf')  format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'akkurat_proregular';
+    src: url('fe_img/akkuratpro-regular-webfont.woff2') format('woff2'),
+         url('fe_img/akkuratpro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+:root{
+	  --primary:#00485E;
+      --brown: #A29060;
+	  --secondary:#353535;
+	  --orange:#FF6120;
+	  --lightblue:#6ABDC6;
+	  --highlightpink:#FF00A0;
+	  --yellow:#F5E02E;
+      --lightgray:#E6E6E6;
+      --white:#FFF;
+      --black:#000;
+      --fontDrukBold:"Druk-Bold";
+      --fontHeadings:"Publico-Headline-Roman-Regular";
+      --bodyFont:"akkurat_proregular";
+      --font:"Arial";
+}
+*{
+	box-sizing: border-box;
+}
+body {
+      font-family: var(--bodyFont);
+	  color: var(--secondary);
+      font-size:12px;
+	  padding: 0px;
+	  margin: 0px;
+}
+/* h1{
+    font-family: var(--fontDrukBold);
+}
+h2,h3,h4,h5,h6{
+    font-family: var(--fontHeadings);
+} */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #d8d9db;
+    background: #d8d9db;
+    font-weight: normal;
+    color: var(--secondary);
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+	color: var(--secondary);
+}
+a:focus, li:focus, span:focus, input:focus, button:focus {
+    outline:none !important;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li,.ui-tabs .ui-tabs-nav li {
+    margin: 0;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none;
+    background: transparent;
+}
+.ui-widget-header{
+	border: none;
+    background: transparent;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected{
+	margin-bottom: 0;
+	border: 1px solid var(--lightgray);
+    background: var(--lightgray);
+}
+.fundCentreContent{
+	position: relative;
+}
+.fe-fundcentre-content::before {
+    /* content: "";
+    background-image: url('fe_img/logo-image.png');
+    background-size: auto 67px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 67px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9; */
+}
+.fe-helptext-switch{
+    display: none !important;
+}
+.fe-cover.fe-fundInformationTools{
+    position: relative;
+}
+.fe-cover.fe-fundInformationTools::before {
+    /* content: "";
+    background-image: url("fe_img/banner-image.jpg");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 9;
+    background-position: center center; */
+}
+.fe-tabs-container-FundCentre{
+	position: relative;
+	/* padding-top: 225px; */
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 16px 10px;
+    font-size: 12px;
+}
+button.fe-button.fe-search-button.fe-button-chartall {
+    position: relative;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    font-size: 12px;
+    color: var(--white);
+}
+.fe-datatable {
+    border-spacing: 0;
+}
+.fe-datatable th {
+    background: var(--secondary);
+    padding: 15px 10px;
+    vertical-align: middle;
+    color: #ffffff;
+}
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 0;
+}
+.fe-datatable td {
+    padding: 10px 5px 5px;
+}
+td.fe-column-name {
+    display: flex;
+    align-items: center;
+    min-height: 43px;
+}
+.fe-datatable tr.child-row.parent td{
+    border-bottom: 1px solid var(--secondary);
+    background-color: #ffffff;
+}
+.fe-datatable .share-class-icon {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    margin-right: 5px;
+    font-size: 0;
+}
+.fe-datatable .share-class-icon a {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0;
+    border-radius: 50%;
+    background: var(--secondary);
+}
+.share-class-expansion.minus:before,
+.share-class-expansion.plus:before {
+    color: #fff;
+}
+.fe-datatable tr.parent {
+    background-color: var(--lightgray);
+}
+.fe-download-icon {
+    background-size: 20px;
+    background-position: center;
+}
+.fe-caveat-container p {
+    margin: 0;
+}
+.fe-datatable tr th .ui-icon{
+    filter: invert(1);
+}
+.ui-widget {
+    font-family: var(--bodyFont);
+}
+.fe-download-icon {
+    background-image: url(fe_img/ico_download_secondary.png);
+}
+.mfs-container a.mfs-selected-option {
+    border-radius: 0;
+}
+.mfs-container a.mfs-selected-option span {
+    background-color: var(--brown);
+    border: none;
+    border-radius: 0px;
+    height: 100%;
+    background-image: url(fe_img/dropDownArrow-white.png);
+}
+label.fe-search-fileters-label {
+    margin-block: 5px;
+    display: inline-block;
+}
+.fe-search-container {
+    background: var(--secondary);
+    color: #fff;
+    padding-block: 20px;
+}
+.fe-search-fileters-container {
+    height: auto;
+}
+span.ui-slider-handle.ui-corner-all.ui-state-default {
+    background-color: var(--brown);
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+}
+.fe-button.fe-search-button,
+.fe-button.fe-search-clear-button{
+	background-color: var(--brown);
+	color:#fff;
+}
+
+.ui-slider.ui-slider-horizontal{
+	position:relative;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -6px;
+    margin-left: -.6em;
+}
+.ui-slider-horizontal .ui-slider-range{
+	background-color: var(--brown);
+}
+.fe-slider-valuedisplay {
+    padding-bottom: 5px;
+    margin-block: 5px;
+}
+.page {
+    width: 1340px;
+}
+.fe-fundCentre-body .fe-tabs-container-FundCentre .fe-fund-document-icon {
+    background-image: url(fe_img/pdfIcon.png);
+    width: 18px;
+    height: 18px;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor,.ui-widget .ui-widget ,.fe-search-container,
+.fe-search-textbox,.mfs-container{
+    font-size: 13px;
+}
+.fe-footer-container{
+    font-size: 12px;
+}
+.fe-tabs-container-FundCentre .ui-widget-header.fe-paging-footer.ui-corner-bottom {
+    display: none;
+}
+
+/*BNYM*/

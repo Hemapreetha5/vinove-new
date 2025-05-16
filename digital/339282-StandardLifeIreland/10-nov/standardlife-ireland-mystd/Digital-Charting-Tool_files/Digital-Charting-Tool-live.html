@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<!-- saved from url=(0155)https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&Category=ARFPre&SpecialUnitType=ORDN -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>+Digital – Charting Tool</title>
+    <link rel="dns-prefetch" href="https://themescdn.feprecisionplus.com/">
+    <link rel="dns-prefetch" href="https://dundasservices.financialexpress.net/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="./Digital-Charting-Tool-live_files/clientui.css" rel="stylesheet" type="text/css">
+    <link href="./Digital-Charting-Tool-live_files/JqueryUIStyles" rel="stylesheet">
+
+    <link href="./Digital-Charting-Tool-live_files/showLoading.css" rel="stylesheet" type="text/css">
+    <link href="./Digital-Charting-Tool-live_files/IconHack.css" rel="stylesheet" type="text/css">
+    <meta name="Language" content="en">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="./Digital-Charting-Tool-live_files/override.css" rel="stylesheet" type="text/css">
+    <!-- ********************** Custom Css section ********************* -->
+
+    <link href="./Digital-Charting-Tool-live_files/ScrollingChart.css" rel="stylesheet" type="text/css">
+    <!-- ********************** End of Custom Css section ********************* -->
+    <!-- ********************** Javascript files ********************* -->
+    <script type="text/javascript" async="" src="./Digital-Charting-Tool-live_files/js"></script><script type="text/javascript" async="" src="./Digital-Charting-Tool-live_files/ga.js.download"></script><script async="" src="./Digital-Charting-Tool-live_files/gtm.js.download"></script><script async="" src="./Digital-Charting-Tool-live_files/gtm(1).js.download"></script><script src="./Digital-Charting-Tool-live_files/JqueryScripts"></script>
+
+
+    <script src="./Digital-Charting-Tool-live_files/ChartingToolPlugins"></script>
+
+    <!-- Third party script files -->
+    <script type="text/javascript" src="./Digital-Charting-Tool-live_files/jquery.glob.en-gb.js.download"></script>
+    <script type="text/javascript" src="./Digital-Charting-Tool-live_files/jquery.ui.datepicker-en-gb.js.download"></script>
+
+    <!-- Project specific script files -->
+    <script src="./Digital-Charting-Tool-live_files/ChartCommonScripts"></script>
+
+    
+<script type="text/javascript">
+    $.actions({
+        Index: ''
+    });
+
+    $.paths({
+        Images: '/Assets/images/',
+        Stylesheet: '/Assets/css/'
+    });
+
+
+    var modelContents = {
+        ProjectName: 'standardlifeireland',
+        LanguageCode: 'en-gb',
+        MajorLanguageCode: 'en-gb',
+        LanguageId: '1',
+        GrsProjectId: '16000194',
+        InternalLangageId: '1',
+        Theme: 'standardlife-ireland-mystd',
+        FundCentreAutoCompleteActionUrl: '',
+        PortfolioBreakdownActionUrl: '',
+        FundCentreManagerReportsActionUrl: '',
+        SortingStyle: '1',
+        DynamicShortlistEnabled: 'False',
+        ShortlistEnabled: 'False',
+        PortfolioEnabled: 'True',
+        ShowSiteCookieMessage: 'False',
+        forSaleIn: '',
+        FundNameSourceId: 1,
+        Category: '',
+        FSIexclCT: '',
+        ExtendSessionTimeoutUrl: '/standardlifeireland/Logon/ExtendSessionTimeout',
+        ChangePasswordUrl: '/standardlifeireland/Logon/ChangePassword/en-gb/standardlife-ireland-mystd',
+        PortfolioScanTimePeriodUrl: '/standardlifeireland/en-gb/PScanData/GetPortfolioScanTimePeriod?ThemeName=standardlife-ireland-mystd',
+        PortfolioScanUrl: '/standardlifeireland/en-gb/PScanData/GetPortfolioScanUrl?ThemeName=standardlife-ireland-mystd',
+        PortfolioScanPdfUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScanPdf/GetPortfolioScanPdfUrl',
+        GetComparisonReportPdfUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/ComparisonReport/GetComparisonReportPdfUrl',
+        ComparisonReportUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/ComparisonReport/GeneratePdf',
+        PortfolioScanPdfHomeUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScanPdf',
+        ExportUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/XmlMessage/ExportXml',
+        FeAnalyticsExportUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/XmlMessage/ExporttoAnalytics',
+        XmlMessageOutputMethod: 'None',
+        ExternalLogonErrorUrl: '/standardlifeireland/ExternalLogon/ExternalLogonError/en-gb/standardlife-ireland-mystd',
+        ChartingUrl: '/standardlifeireland/charting/en-gb/standardlife-ireland-mystd',
+        FundModelForExportUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/XmlMessage/GetFundModelForExport',
+        SavePortfolioUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/SavePortfolio',
+        CascadingDropDownValuesUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetCascadingFilterValues',
+        InstrumentHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetInstrumentHistory',
+        PerformanceAndRiskDataUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetPerformanceAndRiskData',
+            FundDiscretePerformanceUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetFundDiscretePerformance',
+                                            GetFundManagerAndHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetFundManagerDataAndHistory',
+                                            GetHoldingAndBreakDownsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetHoldingAndBreakDowns',
+                                            GetCustomHoldingDataUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/FundInformationData/GetCustomHoldingData',
+
+            DownloadToolFundOptionsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/FundOptions',
+                                            DocumentsConcatenateUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/ConcatenateDocuments',
+                                            DocumentsZipUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/ZipDocuments',
+                                            DownloadToolTimePeriodUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GeFundTimePeriod',
+                                            DownloadToolUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool',
+
+
+        ////Used in download tool and downlod section
+        PriceHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetPriceHistory',
+        StatementUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetStatementTabData',
+        ExportStatementUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetStatementDataFile',
+        DividendHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetDividendHistory',
+        CSVPriceHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetPriceHistoryFile',
+        CSVDividendHistoryUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetDividendHistoryFile',
+        PriceHistoryForAllFundsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/DownloadTool/GetUnitsPriceHistory',
+        ImageUploadUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScan/UploadImage',
+        ImageDeleteUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScan/RemoveImage',
+        SaveUserDataUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScan/SaveUserSpecificData',
+        GetClientConfigUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/PortfolioScan/GetClientConfiguration',
+        ExportExcelUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/ExportExcel/GenerateExportExcel',
+
+
+        LogoutUrl: '/standardlifeireland/Logon/Logout/en-gb/standardlife-ireland-mystd?ReturnUrl=https%3A%2F%2Fdigital.feprecisionplus.com%2Fstandardlifeireland%2Fcharting%2Fen-gb%2Fstandardlife-ireland-mystd%2F%3FTypeCode%3DFDP%3AA2F5%26Category%3DARFPre%26SpecialUnitType%3DORDN',
+        ShowAddToBasketAnimation: 'False',
+
+
+
+
+
+        GetTranslation: function(key) {
+            var arr = GetTranslations();
+
+            for (var i = 0; i < arr.length; i++) {
+                var item = arr[i];
+                if (item.key == key) {
+                    return item.value;
+                    break;
+                }
+            }
+            return "";
+        },
+        InternalLoginEnabled: 'False',
+        ExternalLoginEnabled: 'False',
+        DisplayFundsOnLoad: 'True',
+        DisplayFundForUrlParam: showFundsOnLoad(),
+        DisplayCaveatOnLoad:'False',
+        IsSharedResponsiveURL: false,
+        AllowSavingOfPortfolios: 'False',
+        UserPortfoliosUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetUserPortfolios',
+        IsPortfolioNameValidUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/IsPortfolioNameValid',
+        PortfolioInformationUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetPortfolioInformation',
+        GetPortfolioManagementViewUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetPortfolioManagementView',
+        GrsUserId: '0',
+        WatchlistLimit : '30',
+        DeleteUserPortfolioUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/DeleteUserPortfolio',
+        GetPortfolioConstituentDetailsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetPortfolioConstituentDetails',
+        GetPortfolioConstituentsViewUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetPortfolioConstituentsView',
+        GetMercerDocumentUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/MercerDocuments/GetMercerDocumentUrl',
+        AreAnyPortfolioSettingEnabledForPdf: stringToBoolean('False'),
+        AreAnyPortfolioSettingEnabledForHtml: stringToBoolean('False'),
+        AreAnyComparisonDetailsSettingsEnabled: stringToBoolean('False'),
+        GetMercerProfileDocumentUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/MercerDocuments/GetMercerProfileDocumentUrl',
+        PostMessagingEnabled: stringToBoolean('False'),
+        GetUSDocument: '/standardlifeireland/en-gb/standardlife-ireland-mystd/USDocuments/ShowUSDocument',
+        IsBasketEnabled: stringToBoolean('True'),
+        FundCentreAMEnabled: false,
+        AMFundCentreAccordionEnabled: false,
+        AMAllFundsAccordionEnabled: false,
+        MakePlatformResponsive: true,
+        ShowAllFunds: stringToBoolean('False'),
+        UseStaticDocumentUrl: 'False',
+        ShowNoOfFundsInShortlist: 'False',
+        ShowNoOfFundsInPortfolio: 'False',
+        ChartSpecialUnitTypeSetting: '0',
+        ResponsiveFactsheetSpecialUnitType: '',
+        FundCentreClearBtnRetainUrlParams:stringToBoolean('False'),
+        AMFundCentreClearBtnRetainUrlParams:stringToBoolean('False'),
+        AMAllFundsClearBtnRetainUrlParams:stringToBoolean('False'),
+        DisabledCookies:'',
+        Useazureservice: 'True',
+        IsGFMDMigrated: 'False',
+        UseMVForFC:'',
+        AzureRowIDurl: 'https://digitalfundservice.feprecisionplus.com/FundDataService.svc/GetRowIdList',
+        AzureUrlForCitiCode: 'https://digitalfundservice.feprecisionplus.com/FundDataService.svc/GetUnitList',
+        ValidateFeResearchAccess : 'False',
+        HasFeResearchFullAccess:'False', // Default Value as True which will not filter FullFeReasearch Citi Code's
+        HasSameFundDataForPortfoio :  'True',
+        HasSameFundDataForShortList :  'True',
+        EnableSedolSearch: 'false',
+        ShowRSMFactsheet: 'False',
+        EnableScrollTabs: '',
+        scrollTabsOptions: {
+            easing: 'swing',
+            enableDebug: false,
+            closable: false,
+            showFirstLastArrows: false,
+            selectTabAfterScroll: false,
+            showNavWhenNeeded: false
+        },
+        EnableCascadingRows: '',
+        ShowMainUnitExpansion: stringToBoolean('False'),
+        DisplayDisclaimer: stringToBoolean('False'),
+        UseCombinedOngoingChargeTER: stringToBoolean('False'),
+        InvalidInstruments: '',
+        Accessibility: stringToBoolean('False'),
+        HigChartAccessibilitySettings: {
+            ShowBrokenLine: stringToBoolean('False'),
+            EnableKeyboardNavigation: stringToBoolean('False'),
+            UseBarChartHighContrast : stringToBoolean('False'),
+            UseScatterChartHighContrast : stringToBoolean('False'),
+            UsePieChartHighContrast : stringToBoolean('False')
+        },
+        ShowMultipleWatchlists: stringToBoolean('False'),
+        CreateNewLabelWatchlist: '+ Create new watchlist ',
+        IsWatchlistNameValidUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/IsWatchlistNameValid',
+        SaveWatchlistUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/SaveWatchlist',
+        UserWatchlistsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetUserWatchlists',
+        GetUserWatchlistWithConstituentsUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/GetUserWatchlistWithConstituents',
+        DeleteUserWatchlistItemUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/DeleteUserWatchlistItems',
+        UpdateUserWatchlistNameUrl: '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/UpdateUserWatchlistName',
+        DeleteUserWatchlistUrl : '/standardlifeireland/en-gb/standardlife-ireland-mystd/Portfolio/DeleteUserWatchlist'
+    };
+
+    function translation(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    function GetTranslations() {
+
+        var translations = [];
+        translations.push(new translation("PortfolioClear", "Exporting this portfolio will clear the existing funds in your portfolio. Do you wish to continue?"));
+        translations.push(new translation("RemoveItemsFromBasketWarning", "Do you wish to remove all funds from your basket?"));
+        translations.push(new translation("SessionExpiring", "Session Expiring"));
+        translations.push(new translation("PScanNoFunds", "Portfolio contains no funds.  Please add funds to your portfolio before continuing."));
+        translations.push(new translation("PScanWeightingsNotHundredPerc", "Weighting must add up to 100%"));
+        translations.push(new translation("PScanUnderThreeMonthsOld", "Portfolio must have at least 3 months history before continuing. Please remove the following funds before continuing:"));
+        translations.push(new translation("PScanBenchmarkValidation", "Please select a single benchmark before continuing"));
+        translations.push(new translation("PScanTimePeriodValidation", "Please select a single time period before continuing"));
+        translations.push(new translation("PortfolioStartDateHistoryValidation", "Portfolio consituents do not have enough history for date selected.  Please select another date."));
+        translations.push(new translation("InvalidDateError", "Invalid date entered"));
+        translations.push(new translation("PScanBenchmarkDialogTitle", "Select a benchmark"));
+        translations.push(new translation("PScanBenchmarkDialogErrorTitle", "Portfolio scan error"));
+        translations.push(new translation("ComparisonReportErrorTitle", "Comparison report error"));
+        translations.push(new translation("ComparisonReportError", "Please select between 2-4 funds before continuing."));
+        translations.push(new translation("ExternalLoginSessionTimeout", "Your session has timed out."));
+        translations.push(new translation("ChartAllNoFundsSelectedError", "Please select a fund before continuing"));
+        translations.push(new translation("ChartAllErrorTitle", "Chart All error"));
+        translations.push(new translation("ChartAllFundsLimitError", "A maximum of 10 instruments can be plotted on the chart.  Please delete one or more instruments to continue."));
+        translations.push(new translation("PortfolioNameRequired", "Portfolio Name is required"));
+        translations.push(new translation("PortfolioCurrencyRequired", "Portfolio Currency is required"));
+        translations.push(new translation("PortfolioSaveDuplicateNameError", "Portfolio name already exists.  Please enter another."));
+        translations.push(new translation("SavePortfolioTitle", "Save Portfolio"));
+        translations.push(new translation("PortfolioSaveNoConstituentsError", ""));
+        translations.push(new translation("PortfolioSaveWeigthingError", "Portfolio constituents must add up to 100%"));
+        translations.push(new translation("PortfolioUnsavedMessageTitle", "Portfolio Unsaved Message"));
+        translations.push(new translation("PortfolioUnsavedChangesMessage", "Selecting a different portfolio will clear the current portfolio being displayed.  Do you wish to continue?"));
+        translations.push(new translation("SelectPortfolios", "Choose Portfolios"));
+        translations.push(new translation("SelectAllPortfolios", "Check All"));
+        translations.push(new translation("DeselectAllPortfolios", "Uncheck All"));
+        translations.push(new translation("ContinueButtonText", "Continue"));
+        translations.push(new translation("LocalCurrencyValue", "Local"));
+        translations.push(new translation("PortfolioManagement", "Portfolio Management"));
+        translations.push(new translation("PortfolioDetails", "Portfolio Details"));
+        translations.push(new translation("PortfolioDescriptionMaxLengthMessage", "The maximum length for portfolio description has been exceeded.  Please amend the description before continuing."));
+        translations.push(new translation("PortfolioChartAllNoFundsSelectedError", "Please select a portfolio before continuing"));
+        translations.push(new translation("BasketCountExceeded", "You have exceeded the maximum fund count. Please remove existing funds before adding more."));
+        translations.push(new translation("DeletePortfolio", "Delete fund"));
+        translations.push(new translation("DeletePortfolioWarning", "Are you sure you would like to delete your portfolio ?"));
+        translations.push(new translation("PortfolioNameInvalidCharacters", "Portfolio name is invalid. Name cannot contain the character(s) ;"));
+        translations.push(new translation("ComparisonReportDetails", "Report Details"));
+        translations.push(new translation("SelectManager", "Select a manager"));
+        translations.push(new translation("SelectSector", "Select a sector"));
+        translations.push(new translation("Ok", "Ok"));
+        translations.push(new translation("Cancel", "Cancel"));
+        translations.push(new translation("Logout", "Logout"));
+        translations.push(new translation("Close", "Close"));
+        translations.push(new translation("ChangePassword", "Change Password"));
+        translations.push(new translation("UpdateSuccessMessage", "Updated successfully."));
+        translations.push(new translation("UpdateErrorMessage", "Error occurred while updating."));
+        translations.push(new translation("ConfirmPasswordMismatchText", "Confirm password should be same as new password."));
+        translations.push(new translation("AllFieldsMandatoryText", "All fields are mandatory."));
+        translations.push(new translation("ShowAllManagers", "Fund has multiple managers - show all"));
+        translations.push(new translation("ShowOnlyPrimaryManager", "Hide"));
+        translations.push(new translation("ShowAllFunds", "Show All Funds"));
+        translations.push(new translation("ShowMinimumFunds", "Show Fewer Funds"));
+        translations.push(new translation("ShowAll", "Show All"));
+        translations.push(new translation("ShowLess", "Show less"));
+        translations.push(new translation("NoFundManagersInfoAvailable", "No Fund Manager Information Available"));
+        translations.push(new translation("NoPerformanceChart", "No Performance Information Available"));
+        translations.push(new translation("No1YrPerformanceChartHistory", "At least 1 year history is required to display a chart"));
+        translations.push(new translation("NoHoldingInfoAvailable", "No Holdings Available"));
+        translations.push(new translation("NoBreakdownInfoAvailable", "No Breakdowns Available"));
+        translations.push(new translation("AsAt", "as at"));
+        translations.push(new translation("FundsReturned", ""));
+        translations.push(new translation("FundReturned", ""));
+        translations.push(new translation("InvalidWatchlistNameError", "Invalid watchlist name"));
+        translations.push(new translation("WatchlistNameDuplicateError", "A watchlist with the same name already exists"));
+        translations.push(new translation("EmptyFundsAddToWatchlistError", "Please select one or more funds to add to the watchlist"));
+        translations.push(new translation("SaveSuccessfulMessage", "has been saved successfully"));
+        translations.push(new translation("WatchlistExistingInstruments", "The instrument(s) are already available in the watchlist"));
+        translations.push(new translation("WatchlistDeleteSuccessMessage", "Watchlist deleted successfully"));
+        translations.push(new translation("WatchlistRenameSameNameErrorMessage", "New name cannot be the same as the old name"));
+        translations.push(new translation("WatchlistRenameSuccessMessage", "Watchlist renamed successfully"));
+        translations.push(new translation("MaximumLengthWatchlistNameErrorMessage", "WatchlistName can contain only 40 characters"));
+        translations.push(new translation("WatchlistNameSpecialCharacterCheck", "Invalid characters detected. Allowed characters"));
+        translations.push(new translation("WatchlistLimitErrorMessage", "Your remaining balance is insufficient to add the selected funds"));
+        translations.push(new translation("WatchlistNameSpaceCheckErrorMessage", "Spaces are not allowed"));
+        translations.push(new translation("WatchlistLimitCheckInfoMessage1", "You can shortlist up to {1} funds"));
+        translations.push(new translation("WatchlistLimitCheckInfoMessage2", "Your remaining balance is"));
+        translations.push(new translation("WatchlistExistingPlusNewInstruments", "Some of the selected instruments are already available in your watchlist. Only new instrument(s) are added"));
+        translations.push(new translation("WatchlistItemsDeleteMessage", "Are you sure you want to continue"));
+        translations.push(new translation("InactiveFundsDownloadToolErrorMessage", "No&#160;initial&#160;pricing&#160;date&#160;is&#160;available&#160;for&#160;this&#160;fund,&#160;so&#160;the&#160;download&#160;tool&#160;cannot&#160;be&#160;used"));
+
+        // portfolio Tool
+        translations.push(new translation("ViewInFeAnalyticsHeader", "View in FE Analytics"));
+        translations.push(new translation("ViewInFeAnalyticsError", "View in FE Analytics error"));
+        translations.push(new translation("PortfolioContainsNoFundsWarning", "Portfolio contains no funds. Please add funds to your portfolio before continuing"));
+        translations.push(new translation("PortfolioWeightingWarning", "Weighting must add up to 100%"));
+        translations.push(new translation("EnterPortfolioNameAnalyticsWarning", "Please enter a portfolio name before proceeding to FE Analytics"));
+        translations.push(new translation("PortfolioNameAlreadyExistsWarning", "Portfolio name already exists. Please amend or click Login to overwrite the existing portfolio"));
+        translations.push(new translation("IncorrectAnalyticsLogin", "Incorrect FE Analytics login details. Please enter login details again"));
+        translations.push(new translation("PortfolioValueErrorMessage", "At least one value must be entered"));
+
+        // Download Tool
+        translations.push(new translation("DownloadToolDocumentsValidation", "Please add a document before continuing"));
+        translations.push(new translation("DownloadToolFundValidation", "Please select a fund before continuing"));
+        translations.push(new translation("DownloadToolDialogErrorTitle", "Download Tool Error"));
+        translations.push(new translation("DownloadToolDisplayHtml", "Display on screen"));
+        translations.push(new translation("DownloadToolHideHtml", "Hide"));
+        translations.push(new translation("DownloadToolName", "Download Tool"));
+        translations.push(new translation("DownloadToolDocumentsUnavailable", "is not available for concatenation. Please remove this file before continuing"));
+        translations.push(new translation("InvalidDateRangeError", "Invalid date range selected"));
+
+        translations.push(new translation("Fund", "Fund "));
+        translations.push(new translation("Sector", "Sector"));
+        translations.push(new translation("Quartile", "Quartile Rank"));
+        translations.push(new translation("RankinSector", "Rank in Sector"));
+        translations.push(new translation("Benchmark", "Benchmark"));
+        translations.push(new translation("ResponsiveFactsheetSector", "Sector"));
+
+        translations.push(new translation("ImageUploadErrorTitle", "Image Upload Error"));
+        translations.push(new translation("ImageUploadFailureSummary", "The image failed to upload as it did not meet one or more of the below criteria:"));
+        translations.push(new translation("GenerateReport", "Generate Report"));
+
+        translations.push(new translation("NoDateWarning", ""));
+        translations.push(new translation("NoFundSelectionWarning", ""));
+        translations.push(new translation("UnitCountNotEnteredWarning", ""));
+        translations.push(new translation("StatementTabMaxLimitWarning", "You have reached the maximum amount of funds that can be added to your portfolio"));
+        translations.push(new translation("StatementTabFundExistWarning", "The fund is already listed in the funds table"));
+        //// Portfolio Scan Commentary.
+        translations.push(new translation("DeleteCommentaryDlgConfirmBtn", "Delete Commentary"));
+
+        //// Export column data to Excel document.
+        translations.push(new translation("ExpExcelDlgHeader", "Export to Excel"));
+        translations.push(new translation("ExpExcelDlgNoColsSelectedMsg", "No columns selected. Please select at least one column from the list."));
+        translations.push(new translation("ExpExcelDlgErrorTitle", "Column Selection Error"));
+        translations.push(new translation("ExpExcelDlgNoFundsSelectedErrorTitle", "No Funds Selected"));
+        translations.push(new translation("ExpExcelDlgNoFundsSelectedErrorMsg", "No funds have been selected. Please add one or more funds before exporting."));
+        translations.push(new translation("ExpExcelDlgMaxFundsErrorTitle", "Maximum of 250 funds permitted"));
+        translations.push(new translation("ExpExcelDlgMaxFundsErrorMsg", "Only a maximum of 250 funds can be exported. Do you wish to proceed?"));
+        translations.push(new translation("DownloadToolDlgNoFundsSelectedErrorTitle", "No Funds Selected"));
+        translations.push(new translation("DownloadToolDlgNoFundsSelectedErrorMsg", "No funds have been selected. Please add one or more funds before downloading"));
+        translations.push(new translation("UnselectAll", ""));
+        translations.push(new translation("SelectAll", "Select All"));
+        translations.push(new translation("SelectAllFunds", "All Funds"));
+
+        // Dynamic Shortlist tokens
+        translations.push(new translation("ConfirmChanges", "Confirm Changes"));
+        translations.push(new translation("HoldingWeightSuccess", "Success"));
+        translations.push(new translation("HoldingWeightSuccessMessage", "Your changes have been saved"));
+        translations.push(new translation("HoldingWeightError", "Error"));
+        translations.push(new translation("HoldingWeightErrorMessage", "Weighting must add up to 100%"));
+        translations.push(new translation("HoldingWeightWarning", "Warning"));
+        translations.push(new translation("HoldingWeightWarningMessage", "Changes have been made. Please click Confirm to save or cancel to make further changes"));
+        translations.push(new translation("OthersHoldingHeader", "Others"));
+
+        translations.push(new translation("XMLImportFailureWarningTitle", "Warning"));
+        translations.push(new translation("XMLImportFailureWarningMessage", "Not all funds are available in the research tool. Only available funds has been displayed.\nThe invalid codes are"));
+
+        return translations;
+    }
+
+    function stringToBoolean(string){
+
+        switch(string.toLowerCase()){
+            case "true": case "yes": case "1": return true;
+            case "false": case "no": case "0": case null: return false;
+            default: return Boolean(string);
+        }
+    }
+
+    function showFundsOnLoad() {
+        var validParameters = [ "defaultcategorycode", "defaultrangename", "defaultrangecode", "managercode", "sectorcode", "bespokecolumn1", "bespokecolumn2", "bespokecolumn3", "bespokecolumn4", "bespokecolumn5" ];
+        var showFunds = false;
+        if ('False' == 'True') {
+            for (var i = 0; i < validParameters.length; i++) {
+                if (getParameterByNameIgnoreCase(validParameters[i]) != null) {
+                    showFunds = true;
+                    return showFunds;
+                }
+            }
+        }
+        //if DisplayFundForURLParam is false then Validparameters is not needed to check.
+        //Hence if DisplayFundForUrlParam is false and DisplayFundsOnLoad is true then showFunds is set to true.
+        else if('True' == 'True')
+            showFunds = true;
+
+        return showFunds;
+    }
+
+</script>
+
+    <!-- ****************** End of Javascript files ****************** -->
+    <!-- ********************** Custom Scripts section ********************* -->
+
+    <script type="text/javascript" src="./Digital-Charting-Tool-live_files/ChartRequestHandlerRelative.js.download"></script>
+    <script src="./Digital-Charting-Tool-live_files/ChartingToolScripts"></script>
+
+
+<script src="./Digital-Charting-Tool-live_files/ChartResponsiveScripts"></script>
+
+    <script type="text/javascript">
+        // HOTFIX: We can't upgrade to jQuery UI 1.8.6 (yet)
+        // This hotfix makes older versions of jQuery UI drag-and-drop work in IE9
+        (function ($) {
+            var a = $.ui.mouse.prototype._mouseMove;
+            $.ui.mouse.prototype._mouseMove = function (b) {
+                if (browser.msie && document.documentMode >= 9) {
+                    b.button = 1;
+                }
+                ;
+                a.apply(this, [b]);
+            }
+        }(jQuery));
+    </script>
+    <script type="text/javascript">
+	<!--
+
+        $(document).ready(function() {
+
+            var typeCodes = [];
+            var suppresedTypeCodes = [];
+            var names = [];
+            var portfolioDetails = [];
+                typeCodes.push('FDP:A2F5~1');
+
+
+                        names.push({typeCode:'FDP:A2F5~1',fName:'Standard Life Pension Asia Pacific Equity'});
+
+            
+            AssignUrlParamsToBodyData(typeCodes, suppresedTypeCodes, names, portfolioDetails);
+            var para = new ChartInitializationParameters();
+                para.UsePercentageWidth = true;
+                para.Width =  ($("#chartTabs").width() / $(window).width()) - 0.02;
+            //// this is to tell chart service where to get the templates.
+            para.TemplateURL = 'https://digital.feprecisionplus.com/ChartingTemplate/ChartingData/GetPerformanceChartTemplate/standardlifeireland/en-gb?chartClientName=Toolkit';
+            //// this is to tell chart service where to put the charting html elements.
+            para.ContainerId = "performanceChartTab";
+            //// Optional this is to tell chart service what function to call when both chart are loaded
+            para.ChartsFinishLoadingCallBack = AllChartLoaded;
+            para.InitializationCallBack
+                = ChartingInitialisation;
+            para.ShowChartSummaryDatesOnDrag = true;
+
+            var dateFormat = 'dd MMM yyyy';
+            dateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+            para.SummaryDateFormat = dateFormat;
+            var colours = '0a2f73;f88a00;FFD700;7FFF00;006400;00FFFF;0000FF;8A2BE2;FF00FF;6495ED';
+
+            var colourArray = colours.split(';');
+
+            // State object for handling charted/selected instruments
+            var chartState = new ChartStateHandler(colourArray);
+            chartState.ContainerId = "performanceChartTab";
+            chartState.PriceType = 'TotalReturnNet';
+            chartState.MethodType = 'BidToBid';
+            chartState.ChartingCurrency = 'EUR';
+            chartState.PerformanceTimePeriod = 'm' + '36';
+            chartState.ScatterTimePeriod = 'm' + '36';
+            chartState.CurrencyCode = 'EUR';
+            chartState.CumulativePerformancePeriodEndType = 'c';
+            chartState.DiscretePerformancePeriodPeriodEndType = 'm';
+            chartState.LocalCurrencyValue = 'Local';
+            chartState.SpecialUnitType = '';
+            chartState.ProjectRangeId = '';
+                chartState.LanguageCode = 'en-gb';
+
+            if (dateFormat != null && dateFormat != undefined) {
+                chartState.DateFormat = dateFormat;
+            }
+
+                para.ShowScrollingOverlay = true;
+
+                chartState.ShowLineChartOverlay = true;
+
+
+            chartState.Save("chartState");
+
+            ChartingStyleInitialisation();
+            var tokens = new TokenHandler();
+            tokens.DateInFuture = 'Date is in the future';
+            tokens.DateIsToday = 'Date cannot be today&#39;s date';
+            tokens.FromDateGreaterThanTo = 'From date is greater than the to date';
+            tokens.NoInstrumentSelected = 'No instrument selected. Please select an instrument to add to the chart.';
+            tokens.TooManyInstrumentsSelected = 'A maximum of 10 instruments can be plotted on the chart. Please delete one or more instruments to continue.';
+            tokens.Ok = 'Ok';
+            tokens.Save("tokens");
+
+            //// Send initialization request to the chart service url
+
+                SendChartInitialization(para, '//dundasservices.financialexpress.net/charting/RequestHandler.ashx');
+
+            //// Width of the fund dropdown in IE8 and below should auto expand.
+            if (browser.msie && browser.version < 9)
+                $('select.chartInstrument', '.instrumentTabResultsOptions')
+                    .bind('mousedown', function() { $(this).addClass('auto-width'); })
+                    .bind('blur change', function() { $(this).removeClass('auto-width'); });
+        });
+    //-->
+    </script>
+    <script id="template-CumulativePerformance" type="text/html"><tr><td class="LegendKeyColumn pdfableColumn"><div Colour='${CumulativePerformance.Colour}' style='background-color:${CumulativePerformance.Colour}' class='chartKey'>${GetKeyCharFromIndex($data.CumulativePerformance.Index)}</div></td><td title="Select Instrument"><input onclick="CheckBoxClicked('${CumulativePerformance.Chart}', event);" title="Select Instrument" type="checkbox" value="${CumulativePerformance.TypeCode}" /></td><td class="pdfableColumn InstrumentName">${FormatData($data.CumulativePerformance.Instrument,'-')}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance.YTD,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._1m,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._3m,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._6m,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._1y,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._3y,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._5y,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance._10y,'-',2, '.', false)}</td><td class="ui-nowrap pdfableColumn">${NumberToString($data.CumulativePerformance.S_L,'-',2, '.', false)}</td><td class="pdfableColumn fe-deleteImage"><a href="javascript:void(0)" onclick="DeleteUnit('${CumulativePerformance.Del}', event); return false;" role="button" target="_blank" title="Remove Instrument"><img src='/Assets/images/transparent-1x1.png' role='presentation' alt='Remove Instrument' /></a></td></tr></script>
+
+    <!-- ********************** End of Custom Scripts section ********************* -->
+  
+<script src="./Digital-Charting-Tool-live_files/ai.0.js.download"></script></head>
+<body class="fe-chart-body" cz-shortcut-listen="true">
+    <!-- ********************** Custom dialogs section ********************* -->
+<!-- ********************** End of Custom dialogs section ********************* -->
+    <div class="page" style="width:900px;">
+        <!-- ********************** Footer section ********************* -->
+        
+
+    <div class="ui-logo-container">
+            <img src="./Digital-Charting-Tool-live_files/logo_pdf.png" alt="Logo">
+    </div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+
+
+
+
+
+
+        <!-- ********************** End of Footer section ********************* -->
+        
+
+
+
+
+
+<!-- Google Tag Manager -->
+<script>
+    GTM.GoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-KGLGRKD');
+    if ('GTM-PGVPNC2' != '')
+    {
+        GTM.GoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-PGVPNC2');
+    }
+</script>
+<script>
+    PageTrack('c3910c20-2d06-4d8d-ba58-9651582a0a50',
+        'ClientUI-Web-EUW',
+        'PD1SDWK001A0R');
+</script>
+<!-- End Google Tag Manager -->
+    <!-- ********************** Top Search section ********************* -->
+
+
+    <div class="backButton"><button class="fe-button fe-back-button ui-state-default ui-button-text-only ui-button ui-corner-all ui-widget" tabindex="2">Back to Fund Centre</button></div>
+
+    <div id="instrumentOptionsTabs" class="fe-tabs-container ui-tabs ui-corner-all ui-widget ui-widget-content" data-fund-filter-off="True" data-url-range-code="" data-range-ids="17200380" data-chartingfundfilteroption="3">
+            <div class="fe-tabs-container-responsive"><span class="fe-tabs-responsive-icon" style="display: none;"></span><span class="fe-tabs-responsive-title"></span>
+            </div>
+        <ul class="fe-tabs fe-universeseletor-tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist" style="">
+            <li class="fe-tabs-item ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active ui-tabs-selected" id="instrumentTypeF17200380" role="tab" tabindex="3" aria-controls="instrumentType-F17200380-options" aria-labelledby="ui-id-2" aria-selected="true" aria-expanded="true"><a class="fe-tabHeader ui-tabs-anchor" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#instrumentType-F17200380-options" tabindex="-1" id="ui-id-2">Add funds</a></li>
+
+        </ul>
+        <div class="clear">
+        </div>
+
+
+<div id="instrumentType-F17200380-options" class="fe-search-panel ui-tabs-panel ui-corner-bottom ui-widget-content" aria-labelledby="ui-id-2" role="tabpanel" aria-hidden="false">
+    <div class="chart-addToChart-Container">
+        <div id="unitSearchResults17200380" class="instrumentTabResultsOptions">
+            <label for="unitResults17200380" class="fe-chart-label">Select Fund</label>
+            <div>
+                <div class="mfs-container"><a class="mfs-selected-option" href="javascript:void(0)" tabindex="4">13 results found…<span>&nbsp;</span></a><ul class="mfs-options" style="display: none;"><li class="mfs-option selected"><a href="javascript:void(0)" index="0">13 results found…</a></li><li class="mfs-option"><a href="javascript:void(0)" index="1">Standard Life Pension Asia Pacific Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="2">Standard Life Pension Cash (see below)</a></li><li class="mfs-option"><a href="javascript:void(0)" index="3">Standard Life Pension Euro Global Liquidity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="4">Standard Life Pension European Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="5">Standard Life Pension Fixed Interest</a></li><li class="mfs-option"><a href="javascript:void(0)" index="6">Standard Life Pension Global Absolute Return Strategies (closing Oct 2023)</a></li><li class="mfs-option"><a href="javascript:void(0)" index="7">Standard Life Pension Global Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="8">Standard Life Pension International Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="9">Standard Life Pension Japanese Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="10">Standard Life Pension Managed</a></li><li class="mfs-option"><a href="javascript:void(0)" index="11">Standard Life Pension North American Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="12">Standard Life Pension UK Equity</a></li><li class="mfs-option"><a href="javascript:void(0)" index="13">Standard Life Pension UK Property (see below)</a></li></ul><select id="unitResults17200380" class="chartInstrument mfs-enabled" data-load-url="/ChartData/ChartingData/GetUnitList/standardlifeireland?Category=ARFPre%2C&amp;LanguageCode=en-gb" data-default-value-suffix=" results found…"><option value="" selected="selected">13 results found…</option>
+                    
+                <option value="FDP:A2F5~1|DP:FEQ|null#null||false|[]">Standard Life Pension Asia Pacific Equity</option><option value="FDP:STIMCP~1|DP:CAS|null#Euro Overnight Interbank Average Index||false|[]">Standard Life Pension Cash (see below)</option><option value="FDP:I6C1~1|DP:CAS|null#EONIA||false|[]">Standard Life Pension Euro Global Liquidity</option><option value="FDP:A2F6~1|DP:EEQ|null#null||false|[]">Standard Life Pension European Equity</option><option value="FDP:STIMFP~1|DP:FNT|null#Bank of America Merrill Lynch EMU DG over 5yrs Index||false|[]">Standard Life Pension Fixed Interest</option><option value="FDP:DWU0~1|DP:ABR|null#null||false|[]">Standard Life Pension Global Absolute Return Strategies (closing Oct 2023)</option><option value="FDP:STIMEP~1|DP:ITE|null#null||false|[]">Standard Life Pension Global Equity</option><option value="FDP:STIMNP~1|DP:ITE|null#null||false|[]">Standard Life Pension International Equity</option><option value="FDP:A2F4~1|DP:JPE|null#null||false|[]">Standard Life Pension Japanese Equity</option><option value="FDP:STIMGP~1|DP:MAB|null#Rubicon Managed Fund Survey Average||false|[]">Standard Life Pension Managed</option><option value="FDP:A2F3~1|DP:AME|null#null||false|[]">Standard Life Pension North American Equity</option><option value="FDP:A2F2~1|DP:ENE|null#null||false|[]">Standard Life Pension UK Equity</option><option value="FDP:STIMPP~1|DP:PRP|null#null||false|[]">Standard Life Pension UK Property (see below)</option></select></div>
+            </div>
+            
+        </div>
+        <div class="addToChart">
+            
+            <button class="fe-button fe-addtochart-button ui-state-default ui-button-text-only ui-button ui-corner-all ui-widget" tabindex="5">Add  to chart</button>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+
+
+    </div>
+    <!-- ********************** End of Top Search section ********************* -->
+<!-- ********************** Chart section ********************* -->
+
+<div id="chartTabs" class="fe-tabs-container fe-chart-tabs-container ui-tabs ui-corner-all ui-widget ui-widget-content">
+    <div class="fe-chart-tabs-innerContainer">
+         <ul class="fe-tabs fe-charting-tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist">
+                <li class="fe-tabs-item ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active ui-tabs-selected" role="tab" tabindex="6" aria-controls="performanceChartTab" aria-labelledby="lkPerformanceChartTab" aria-selected="true" aria-expanded="true"><a class="fe-tabHeader ui-tabs-anchor" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#performanceChartTab" id="lkPerformanceChartTab" tabindex="-1">Performance Chart</a></li>
+                    </ul>
+    </div>
+    <div class="fe-chart-chartingOptions-container">
+        
+
+
+
+
+
+
+	<div id="timePeriodPanelToggle" class="fe-chart-PanelToggleButton">
+		<button class="fe-button fe-timeperiodToggle-button ui-state-default ui-button-text-only ui-button ui-corner-all ui-widget" tabindex="7"><span class="fe-button-text">Time Period</span><span class="fe-button-image"></span></button>
+
+		<div id="timePeriodPanel" class="displayNone fe-chart-togglePanel">
+			<div class="fe-panel-text">Select time period</div>
+			<div class="fe-closebutton-container">
+				<button title="Close button" class="fe-button fe-closetimeperiod-button ui-state-default ui-button-text-only ui-button ui-corner-all ui-widget" tabindex="8">x</button>				
+			</div>
+			<div class="clear"></div>
+			<div id="chartTimeSpanOptions" class="fe-chart-TimeSpanOptions">
+				<div id="chartTimeSpans" class="fe-chart-TimeSpans-container">
+					<div class="fe-discreteperiods-container">
+						
+							<button id="chartTimeSpan1m" data-time-period="m1" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="9">1m</button>
+													<button id="chartTimeSpan3m" data-time-period="m3" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="10">3m</button>
+													<button id="chartTimeSpan6m" data-time-period="m6" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="11">6m</button>
+													<button id="chartTimeSpan1yr" data-time-period="m12" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="12">1yr</button>
+																			<button id="chartTimeSpan3yrs" data-time-period="m36" class="fe-button fe-timeperiod-button ui-button ui-widget ui-button-text-only ui-corner-all timePeriod ui-state-highlight" tabindex="13">3yrs</button>
+																			<button id="chartTimeSpan5yrs" data-time-period="m60" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="14">5yrs</button>
+													<button id="chartTimeSpan7yrs" data-time-period="m84" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="15">7yrs</button>
+													<button id="chartTimeSpan10yrs" data-time-period="m120" class="fe-button fe-timeperiod-button ui-button ui-widget ui-state-default ui-button-text-only ui-corner-all timePeriod" tabindex="16">10yrs</button>
+											</div>
+					<div class="fe-calendar-container">
+							<div class="fe-chart-OrLabel"><span>or</span></div>
+
+							<div id="chartTimeSpanRange" data-time-period="custom" class="fe-chart-TimeSpanRange ui-widget ui-state-default ui-corner-all">
+						  
+									<label for="chartTimeSpanFromDate">From</label>
+									<input id="chartTimeSpanFromDate" class="fe-chart-TimeSpanRangeInput hasDatepicker" title="From" tabindex="17">
+				
+									<label for="chartTimeSpanToDate">to</label>
+									<input id="chartTimeSpanToDate" class="fe-chart-TimeSpanRangeInput hasDatepicker" title="to" tabindex="18">			
+							
+							</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+
+    </div>
+    <div class="clear"></div>
+    <br>
+    <div class="fe-chart-currency fe-currency">		        
+        <label id="lblSelectedCurrency">            
+            All performance is shown in <span id="currentCurrency">EUR</span> currency.
+        </label>		   
+    </div>	
+
+    <div id="performanceChartTab" class="fe-chart-container ui-tabs-panel ui-corner-bottom ui-widget-content" data-load-url="/ChartData/ChartingData/GetSpecialUnitDetailsByTypeCodes/standardlifeireland" data-loadname-url="" aria-labelledby="lkPerformanceChartTab" role="tabpanel" aria-hidden="false">
+        <div class="clear"></div>
+    <div id="performanceChartTab_FEChartJavascriptScrolling" style="text-align: left; min-height: 81px; width: 873px;">
+<div id="performanceChartTab_ChartContainer" class="ChartContainer" style="min-height: 254px; height: 274px; width: 873px;">
+    <span id="performanceChartTab_ChartData" style="float:left"></span>
+    <div style="clear:both"></div>
+    <div id="chartExtraLayerContainer" style="position: relative;"></div><div id="performanceChartTab_DetailChartDiv" class="ChartContainerDetail" style="min-height: 254px; border-width: 0px; height: 274px; position: relative; width: 873px;"><div id="chartCustomEventsContainer" style="position: relative;"></div><img src="./Digital-Charting-Tool-live_files/RequestHandler.ashx" alt="Performance Chart">
+    
+    <div id="performanceChartTab_MouseHoverDetailDiv" class="ChartDataNormalHoverDisplayBox" series="Standard Life Pension Asia Pacific Equity" x="347" style="position: absolute; display: none; left: 339px; top: 101px;">
+
+        <span id="performanceChartTab_MouseHoverDetailDivContent">Standard Life Pension Asia Pacific Equity<br>17 Dec 2021  5.2240 (10.37%)</span>
+
+    </div><div id="performanceChartTab_MouseClickDetailDiv1" class="ChartDataHoverStayDisplayBox" series="Standard Life Pension Asia Pacific Equity" x="347" style="position: absolute; display: none; left: 339px; top: 101px;">
+
+        <span id="performanceChartTab_MouseClickDetailDiv1Content">Standard Life Pension Asia Pacific Equity<br>17 Dec 2021  5.2240 (10.37%)</span>
+
+    </div><div id="performanceChartTab_MouseClickDetailDiv2" class="ChartDataHoverStayAboveDisplayBox" series="Standard Life Pension Asia Pacific Equity" x="347" style="position: absolute; display: none; left: 339px; top: 101px;">
+
+        <span id="performanceChartTab_MouseClickDetailDiv2Content" startingvalue="5.2240">Standard Life Pension Asia Pacific Equity<br>17 Dec 2021  5.2240 (10.37%) to</span>
+
+        <br>
+
+        <span id="performanceChartTab_MouseClickDetailDiv2Content2">17 Dec 2021  5.2240 (10.37%) = 0.00%</span>
+
+</div><div id="performanceChartTab_spot" class="ChartDataNormalHoverSpot" style="position: absolute; display: none; left: 339px; top: 83px;">
+
+    </div><div id="performanceChartTab_spot1" class="ChartDataNormalHoverSpotDisplay" style="position: absolute; display: none; left: 339px; top: 83px;">
+
+    </div><div id="performanceChartTab_spot2" class="ChartDataHoverSpotStayAboveDisplay" style="position: absolute; display: none; left: 339px; top: 83px;">
+
+    </div><div class="SummaryChartStartDateBox" id="performanceChartTab_SummaryChartStartDate" style="position: absolute; white-space: nowrap; display: none;"></div><div class="SummaryChartEndDateBox" id="performanceChartTab_SummaryChartEndDate" style="position: absolute; white-space: nowrap; display: none;"></div>
+    <input type="hidden" name="ctl00$MainContent$chart1$hdScriptDataKey" id="performanceChartTab_hdScriptDataKey">
+    <input type="hidden" name="ctl00$MainContent$chart1$hdChartWebServiceURL" id="performanceChartTab_hdChartWebServiceURL">
+    <input type="hidden" name="ctl00$MainContent$chart1$hdTemplateID" id="performanceChartTab_hdTemplateID">
+    <input type="hidden" name="ctl00$MainContent$chart1$hdMouseHoverStatus" id="performanceChartTab_hdMouseHoverStatus">
+    <input type="hidden" name="ctl00$MainContent$chart1$hdExtraLayersID" id="performanceChartTab_hdExtraLayersID">
+	</div>
+</div> 
+
+<div id="performanceChartTab_SummaryChartDiv" class="ChartContainer" style="min-height: 81px; border-top-width: 0px; position: relative; width: 873px;;height:90px"><img src="./Digital-Charting-Tool-live_files/RequestHandler(1).ashx" alt="Summary Performance Chart" style="height: 90px;">
+    
+     
+
+    <div id="performanceChartTab_SummaryChartWindow" class="SummaryChartWindow ui-draggable ui-draggable-handle ui-resizable" style="height: 90px; width: 93.9761px; top: -90px; left: 775.003px; opacity: 0.5; position: relative;">
+            <div>
+             <div id="performanceChartTab_SummaryChartWindowLeftBorder" class="SummaryChartWindowLeftBorder" style="float:left;height:100%; width:3px; background-color:Red">
+            </div>
+            <div id="performanceChartTab_SummaryChartWindowContent" class="SummaryChartWindowContent" style=""> </div>
+            <div id="performanceChartTab_SummaryChartWindowRightBorder" class="SummaryChartWindowRightBorder" style="height:100%; float:left; width:3px; background-color:Red">
+            </div>
+       </div>
+       <div style="clear:both"></div>
+    <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div></div>
+</div>
+
+
+
+    
+
+    
+
+
+<div style="clear:both"></div>
+    
+    
+ 
+
+    
+
+    
+
+    
+    
+    
+
+
+    </div></div>
+
+
+	    <form id="pdfForm" target="_blank" action="https://digital.feprecisionplus.com/ChartPdf/standardlifeireland/en-gb/standardlife-ireland-mystd/" method="get">
+    <input type="text" id="request" title="PDF Form" style="display:none" name="request">
+    </form>
+</div>
+<!-- ********************** End of Chart section ********************* -->
+<!-- ********************** Bottom Data section ********************* -->
+
+<div class="clear"></div>
+
+<div id="performanceTabs" class="fe-chart-performanceTabs-container ui-tabs ui-corner-all ui-widget ui-widget-content" style="opacity: 1;" data-load-url="/ChartData/ChartingData/GetPerformanceDataByTypeCodes/standardlifeireland">
+        <div class="fe-tabs-container-responsive"><span class="fe-tabs-responsive-icon" style="display: none;"></span><span class="fe-tabs-responsive-title"></span></div>
+    <ul class="chartingTabs fe-performancetable-tabs fe-tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist" style=""><li class="fe-tab-CumulativePerformance fe-tabs-item ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active ui-tabs-selected" data-containerid="CumulativePerformance" data-tabid="12" role="tab" tabindex="19" aria-controls="CumulativePerformance-data-container" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a class="fe-tabHeader ui-tabs-anchor" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#CumulativePerformance-data-container" tabindex="-1" id="ui-id-1">Cumulative Performance (%)</a></li></ul>
+    <div class="clear"></div>
+    <div class="fe-performance-table ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-panel ui-corner-bottom fe-cascade-table" id="CumulativePerformance-data-container" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false"><span class="fe-ui-helper-date-element ui-asdate" data-id="PerformanceAs">Performance data as at  10 Nov 2023</span> <div class="clear"></div><table class="fe-datatable fe-chart-datable" id="CumulativePerformance"><thead><tr class="check ui-widget-header ui-corner-all"><th class="ui-notsortable fe-tabs-grid-columnheader LegendKeyColumn pdfableColumn fe-columnheader-Key" id="GridColumn_12_113">Key</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader fe-columnheader-Chart" id="GridColumn_12_114">Chart  </th>
+<th class="ui-notsortable fe-tabs-grid-columnheader InstrumentName pdfableColumn fe-columnheader-Instrument" id="GridColumn_12_115">Instrument</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-YTD" id="GridColumn_12_41">YTD</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_1m" id="GridColumn_12_38">1m</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_3m" id="GridColumn_12_39">3m</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_6m" id="GridColumn_12_40">6m</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_1y" id="GridColumn_12_42">1yr</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_3y" id="GridColumn_12_44">3yrs</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_5y" id="GridColumn_12_46">5yrs</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-_10y" id="GridColumn_12_47">10yrs</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-S_L" id="GridColumn_12_48">Since launch</th>
+<th class="ui-notsortable fe-tabs-grid-columnheader pdfableColumn fe-columnheader-Del" id="GridColumn_12_117">Del</th>
+</tr></thead><tbody class="fe-chart-perfTableBody" data-id="docRows"><tr class="even"><td class="LegendKeyColumn pdfableColumn"><div colour="#0a2f73" style="background-color:#0a2f73" class="chartKey">A</div></td><td title="Select Instrument"><input onclick="CheckBoxClicked(&#39;FDP:A2F5~1&#39;, event);" title="Select Instrument" type="checkbox" value="FDP:A2F5~1" tabindex="20"></td><td class="pdfableColumn InstrumentName">Standard Life Pension Asia Pacific Equity</td><td class="ui-nowrap pdfableColumn">-1.24</td><td class="ui-nowrap pdfableColumn">-0.60</td><td class="ui-nowrap pdfableColumn">-2.43</td><td class="ui-nowrap pdfableColumn">-0.11</td><td class="ui-nowrap pdfableColumn">2.63</td><td class="ui-nowrap pdfableColumn">-6.24</td><td class="ui-nowrap pdfableColumn">18.28</td><td class="ui-nowrap pdfableColumn">58.91</td><td class="ui-nowrap pdfableColumn">269.07</td><td class="pdfableColumn fe-deleteImage"><a href="javascript:void(0)" onclick="DeleteUnit(&#39;FDP:A2F5~1&#39;, event); return false;" role="button" target="_blank" title="Remove Instrument" tabindex="21"><img src="./Digital-Charting-Tool-live_files/transparent-1x1.png" role="presentation" alt="Remove Instrument"></a></td></tr></tbody></table><div class="ui-helper-hidden fe-noresult" data-id="NoResultsMessage">Your search has yielded no results. Please amend your search criteria. </div></div>
+	
+        <a class="fe-chart-deleteAll" href="javascript:void(0)" onclick="DeleteAllUnits(); return false;" tabindex="22"> </a>
+    <div class="clear"></div>
+</div>
+
+
+<div style="visibility:hidden; height:1px;">
+<table id="CumulativePerformanceData">
+    <tbody data-id="docRows"></tbody>
+</table>
+<table id="DiscretePerformanceData">
+    <tbody data-id="docRows"></tbody>
+</table>
+<table id="CalendarPerformanceData">
+    <tbody data-id="docRows"></tbody>
+</table>
+</div>
+
+
+<!-- ********************** End of Bottom Data section ********************* -->
+<div data-id="PerformanceSuppressionCaveat" class="fe-PerformanceSuppressionCaveat">
+</div>
+
+    <div class="exportToPdf">
+        
+        <button class="fe-button fe-exporttopdf-button ui-state-default ui-button-text-only ui-button ui-corner-all ui-widget" tabindex="23">
+            <span class="fe-button-text">Export to pdf</span><span class="fe-button-image"></span>
+        </button>
+    </div>
+    <div class="clear">
+    </div>
+
+        <!-- ********************** Footer section ********************* -->
+        
+
+<div class="fe-footer-container">
+
+<script type="text/javascript">
+	function DisplayDisclaimer() 
+	{
+		$(this).showDisclaimer($("#DisclaimerTextDiv").html());
+		return false;
+	}
+</script>
+
+	    <div class="fe-chart-caveat fe-caveat">		
+		    <div class="ImportantInfo">Important information</div> <br> There are trading restrictions on some Cash and Property funds. For more information, see <a class="SL-link" href="https://www.standardlife.ie/dam/Global-blueprint/Geo-IE/Standardlife_IE/IE-PDFs/products-and-funds-trading.pdf" target="_blank" tabindex="24">Products and funds trading (PDF 139KB)</a>. <br><br> The prices are guides only for the date shown and are rounded. The price used for a transaction will depend on the date and the time of your request. <br><br> Performance is net of the Annual Management Charge. Performance figures reflect Price Date, as shown on the “Price” tab. Performance figures are calculated daily by FE fundinfo. <br><br> Some products are open to new investments, including top ups. Other products may be open to top ups only, or closed. For more information, see <a class="SL-link" href="https://www.standardlife.ie/dam/Global-blueprint/Geo-IE/Standardlife_IE/IE-PDFs/products-and-funds-trading.pdf" target="_blank" tabindex="25">Products and funds trading (PDF 139KB)</a>.<br><br> We don’t publish unit prices for any of our with profits funds. On its own, the price is unlikely to provide a full and fair view of what a with profits investment is worth. For information, see our <a class="SL-link" href="https://www.standardlife.ie/funds/with-profits-useful-guides" target="_blank" tabindex="26">guides to with profits.</a> <br><br> <div class="warningMsg">      <div class="cmPadding"><span class="warning"><b>Warning: </b></span><b> The value of your investment may go down as well as up. </b></div>      <br>     <div class="cmPadding"><span class="warning"><b>Warning: </b></span><b> Past performance is not a reliable guide to future performance.</b></div>      <br>     <div class="cmPadding"><span class="warning"><b>Warning: </b></span><b> These funds may be affected by changes in currency exchange rates. </b></div>  </div><div class="SLdisclaimer"> Standard Life International dac is regulated by the Central Bank of Ireland. Standard Life International dac is a designated activity company limited by shares and registered in Dublin, Ireland (408507) at 90 St Stephen’s Green, Dublin 2. Standard Life International dac is part of the Phoenix Group and uses the Standard Life brand under licence from the Standard Life Aberdeen Group. © 2019 Standard Life Aberdeen, reproduced under licence. All rights reserved.</div> 
+
+<div class="FElogocaveat">
+    <label style="vertical-align:bottom;">Powered by data from </label>
+    <a href="http://www.fe-fundinfo.com/" rel="external" class="img" target="_blank" tabindex="27"><img src="./Digital-Charting-Tool-live_files/logo_FE_small.png" alt="FE fundinfo | BE BETTER INFORMED"></a> </div>
+	    </div>
+	
+		<div class="fe-chart-Disclaimer fe-Disclaimer">
+			<div rows="" id="DisclaimerTextDiv" title="Disclaimer" style="display:none;">All information contained in Fund Centre is compiled and sourced by FE fundinfo (UK) Limited, with the exception of the following, which is provided by Standard Life: Product, Fund name, AMC, Launch Date, Volatility Rating, Factsheets, Supplementary Investment Documents, Fund Updates. Neither the Phoenix Group nor any of its subsidiaries and associated companies (including Standard Life International dac) give any warranty or representation or accept any liability or responsibility for the completeness or accuracy of this information () or any use to which Fund Centre and the information on it may be put. Fund Centre and the information on it are intended to provide general investment research and analysis only. You use Fund Centre and the information on it at your own risk. 
+<br><br>
+Nothing in connection with Fund Centre and the information on it constitutes financial or tax advice from the Phoenix Group. 
+<br><br>
+
+The Phoenix Group reserve the right to change the content, presentation, performance, facilities and availability of all or part of Fund Centre at its sole discretion and without prior notice. The Phoenix Group make no warranty or representation that Fund Centre can be accessed at all times. Fund Centre may be temporarily unavailable or restricted for administrative or other reasons. The Phoenix Group will not be liable for any loss or damage arising out of or in connection with the use of Fund Centre. 
+<br><br>
+
+The Phoenix Group accept no responsibility for information contained on any other sites that can be accessed by hypertext link from Fund Centre or by Fund Centre not being accessible at all times. The links to any other sites are provided for general information purposes only and the sites concerned and their contents are not endorsed or promoted by the Phoenix Group in any way, unless otherwise stated. 
+<br><br>
+
+© FE fundinfo (UK) Limited 2020. All rights reserved. The compilation of data contained herein is the copyright of FE fundinfo. Whilst reasonable care has been taken in the compilation of the data it is not warranted to be accurate or complete and has been drawn by FE fundinfo from sources which are also not warranted to be accurate and complete. 
+</div>	
+			<a href="javascript:void(0)" title="Disclaimer" onclick="return DisplayDisclaimer();" tabindex="28">Disclaimer</a>					
+		</div>		
+		 <div id="disclaimer-dialog" title="Disclaimer">
+			
+				<p id="disclaimerDialogMessage" class="fe-chart-disclaimer fe-disclaimer"></p>
+		</div>
+	 
+	<div class="fe-footer-logo">
+		<label style="vertical-align:bottom;">Powered by FE fundinfo </label><a href="https://www.fe-fundinfo.com/" rel="external" class="img" target="_blank"><img src="./Digital-Charting-Tool-live_files/logo_FE_small(1).png" alt="Logo"></a>
+	</div>
+	<div class="clear"></div>
+	
+</div>
+
+        <!-- ********************** End of Footer section ********************* -->
+        <div id="confirmationDialog" title="Please confirm">
+            <p id="confirmationDialogMessage">
+            </p>
+        </div>
+        <div id="error-dialog" title="Error">
+            <p id="errorDialogMessage">
+            </p>
+        </div>
+        <div id="message-dialog" title="Message">
+            <p id="dialogMessage">
+            </p>
+        </div>
+        <div id="disclaimer-dialog" title="Disclaimer">
+            <p id="disclaimerDialogMessage">
+            </p>
+        </div>
+    </div>
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="Prev"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><a class="ui-datepicker-next ui-corner-all ui-state-disabled" title="Next"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><select class="ui-datepicker-month" aria-label="Select month" data-handler="selectMonth" data-event="change"><option value="0">Jan</option><option value="1">Feb</option><option value="2">Mar</option><option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option><option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option><option value="9">Oct</option><option value="10" selected="selected">Nov</option></select><select class="ui-datepicker-year" aria-label="Select year" data-handler="selectYear" data-event="change"><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023" selected="selected">2023</option></select></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="1">1</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="2">2</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="3">3</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="4">4</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="5">5</a></td></tr><tr><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="6">6</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="7">7</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="8">8</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="9">9</a></td><td class="  ui-datepicker-current-day" data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default ui-state-active" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="true" data-date="10">10</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="11">11</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="12">12</a></td></tr><tr><td class="  ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="10" data-year="2023"><a class="ui-state-default ui-state-highlight" href="https://digital.feprecisionplus.com/standardlifeireland/charting/en-gb/standardlife-ireland-mystd/?TypeCode=FDP%3AA2F5&amp;Category=ARFPre&amp;SpecialUnitType=ORDN#" aria-current="false" data-date="13">13</a></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">14</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">15</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">16</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">17</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">18</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">19</span></td></tr><tr><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">20</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">21</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">22</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">23</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">24</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">25</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">26</span></td></tr><tr><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">27</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">28</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">29</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">30</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td></tr></tbody></table></div></body></html>

@@ -1,0 +1,813 @@
+
+.ChartContainer
+{
+    overflow:hidden;
+    border-collapse:collapse;
+}
+/***********************************************************************************
+Detail chart
+Definition for the Detail chart.  Note the url of the background-image.
+Since the CSS folder is one-level up, a ../ is used to find the DrawChart.ashx
+***********************************************************************************/
+.DetailChart
+{
+    
+    background-position: 0px 0px;
+    overflow:hidden;
+}
+.DetailChart:hover
+{
+    cursor: pointer;
+}
+/***********************************************************************************
+Summary Chart
+Very similar to the Detail chart described above
+***********************************************************************************/
+.SummaryChart
+{
+    background-position: 0px 0px;
+    overflow:hidden;
+}
+/***********************************************************************************
+Summary Chart Window
+The yellow translucent box that is positioned above the Summary chart.  This is the
+box that is moved around by clicking on it and dragging the mouse
+***********************************************************************************/
+.SummaryChartWindow
+{
+    border-left-width:3px;
+    border-left-color:Red;
+    border-right-width:3px;
+    border-right-color:red;
+    background-color:#FFDD44;
+    border-left-style:solid;
+    border-right-style:solid;
+    position: relative;
+    opacity: 0.5;
+    cursor: pointer; 
+    cursor: hand;
+    text-align:left;
+}
+.SummaryChartWindowContent
+{
+    background-color:#ffdd44;
+    opacity: 0.5;
+}
+.SummaryChartWindowContent:hover
+{
+    cursor:move;
+}
+.SummaryChartWindowRightBorder
+{
+    height:100%; 
+    float:left; 
+    width:3px; 
+    background-color:Red;
+    display:none;
+}
+.SummaryChartWindowLeftBorder
+{
+    height:100%; 
+    float:left; 
+    width:3px; 
+    background-color:Red;
+    display:none;
+}
+
+.SummaryChartWindowLeftBorder:hover
+{
+    cursor:e-resize;
+}
+.SummaryChartWindowRightBorder:hover
+{
+    cursor:e-resize;
+}
+
+ .SummaryChartStartDateBox
+{
+    z-index: 9999; 
+    opacity: 0.85; 
+    border: 1px solid black; 
+    line-height: 12px; 
+    color: black; 
+    font-size: 9px; 
+    font-weight: bold; 
+    font-family: Verdana; 
+    background-color: #FFFFAA; 
+    padding:1px;
+    display:none;
+ }
+ 
+ .SummaryChartEndDateBox
+{
+    z-index: 9999; 
+    opacity: 0.85; 
+    border: 1px solid black; 
+    line-height: 12px; 
+    color: black; 
+    font-size: 9px; 
+    font-weight: bold; 
+    font-family: Verdana; 
+    background-color: #FFFFAA; 
+    padding:1px;
+    display:none;
+ }
+
+/***********************************************************************************
+Datapoint marker (red dot), Tool tip and Axis marker (red line)
+These are positioned in absolute co-ordinate space so they can be freely moved
+around on the page.  Set the display to be hidden by default
+***********************************************************************************/
+.DataPointMarker,.ToolTip,.AxisMarker
+{
+    position:absolute;
+    border:0px;margin:0px;padding:0px;
+    display:none;
+}
+.DataPointMarker {
+    background-color:#f00;
+    width:4px;height:4px;
+}
+#ToolTip
+{
+    background-color:#ffffe0;
+    color:#000;
+    border:solid 1px #222;
+    padding:10px;
+    opacity: 0.75;
+}
+.AxisMarker
+{
+    background-color:#faa;
+    height:2px;
+}
+.QuickModalDialog
+{ 
+	position:absolute;
+    left:45%;
+    top:45%;
+    display:none;
+}
+.QuickOverlay
+{ 
+	 background:#ffffff none repeat scroll 0 0;
+     display:none;
+     left:0;
+     filter:alpha(opacity=50);
+     opacity: 0.5;
+     top:0;
+     width:100%;
+     display:none;
+     position:absolute;
+}
+.ChartDataNormalHoverDisplayBox
+{
+    z-index: 1003; 
+    opacity: 0.85; 
+    border: 1px solid black; 
+    line-height: 14px; 
+    color: black; 
+    font-size: 9px; 
+    font-weight: bold; 
+    font-family: Verdana; 
+    background-color: #ACC6DF; 
+    cursor: crosshair; 
+    position: absolute;
+    padding:5px;
+    display:none;
+ }
+ .ChartDataHoverStayDisplayBox
+{
+    z-index: 1003; 
+    opacity: 0.85; 
+    border: 1px solid black; 
+    line-height: 14px; 
+    color: black; 
+    font-size: 9px; 
+    font-weight: bold; 
+    font-family: Verdana; 
+    background-color: #B7FFB7; 
+    cursor: crosshair; 
+    position: absolute;
+    padding:5px;
+    display:none;
+ }
+ .ChartDataHoverStayAboveDisplayBox
+{
+    z-index: 1005; 
+    opacity: 0.85; 
+    border: 1px solid black; 
+    line-height: 14px; 
+    color: black; 
+    font-size: 9px; 
+    font-weight: bold; 
+    font-family: Verdana; 
+    background-color: #D991AF; 
+    cursor: crosshair; 
+    position: absolute;
+    padding:5px;
+    display:none;
+ }
+ .FEEvent
+ {
+     position:absolute;
+ }
+ .loading-indicator {
+	height: 80px;
+	width: 80px;
+	background: url( '../images/loading.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+ .fundloading-indicator {
+	height: 80px;
+	width: 128px;
+	background: url( '../images/fundbar.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.loading-indicator-overlay {
+	background-color: #FFFFFF;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.ChartDataNormalHoverSpot
+{
+    background-image: url(../images/SpotSprite.png);
+	background-repeat: no-repeat;
+	background-position:0px 0px;
+    z-index: 1003; 
+    opacity: 0.5; 
+    cursor: crosshair; 
+    position: absolute;
+    display:none;
+    width: 14px;
+	height: 14px;
+ }
+ .ChartDataNormalHoverSpotDisplay
+{
+    background-image: url(../images/SpotSprite.png);
+	background-repeat: no-repeat;
+	background-position:0px -16px;
+    z-index: 1003; 
+    opacity: 0.5; 
+    cursor: crosshair; 
+    position: absolute;
+    display:none;
+    width: 14px;
+	height: 14px;
+ }
+ .ChartDataHoverSpotStayAboveDisplay
+{
+    background-image: url(../images/SpotSprite.png);
+	background-repeat: no-repeat;
+	background-position:0px -32px;
+    z-index: 1003; 
+    opacity: 0.5; 
+    cursor: crosshair; 
+    position: absolute;
+    display:none;
+    width: 14px;
+	height: 14px;
+ }
+ 
+
+.dividends {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/icon_d.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.dividends:hover {
+	background-image: url(../images/icon_dhover.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.dividendsDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.dividendsDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-image: url(../images/icon_dhover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.news {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_fw1.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin-top: 90px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 400px;
+}
+.news:hover {
+	background-image: url(../images/ico_fwhover1.png);
+}
+.newsDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+	margin-top: 88px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 395px;
+}
+.newsDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #c00;
+	background-image: url(../images/ico_fwhover1.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.mcn {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/icon_mNew.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.mcn:hover {
+	background-image: url(../images/icon_mNewHover.png);
+}
+.mcnDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.mcnDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #7030A0;
+	background-image: url(../images/icon_mNewHover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.mcd {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_mDeparting.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.mcd:hover {
+	background-image: url(../images/ico_mDepartingHover.png);
+}
+.mcdDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.mcdDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #00b050;
+	background-image: url(../images/ico_mDepartingHover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.fnc {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_FNC.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fnc:hover {
+	background-image: url(../images/ico_FNCHover.png);
+}
+.fncDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.fncDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #ff7f00;
+	background-image: url(../images/ico_FNCHover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.fgr {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_FGR.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fgr:hover {
+	background-image: url(../images/ico_FGRHover.png);
+}
+.fgrDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.fgrDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #ffff00;
+	background-image: url(../images/ico_FGRHover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.managerApp {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_m.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.managerApp:hover {
+	background-image: url(../images/ico_mhover1.png);
+}
+.managerAppDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.managerAppDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #863489;
+	background-image: url(../images/ico_mhover1.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.sec {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_s.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.sec:hover {
+	background-image: url(../images/ico_shover.png);
+}
+.secDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.secDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #ffc000;
+	background-image: url(../images/ico_shover.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.TER {
+	position: absolute;
+	width: 22px;
+	height: 30px;
+	z-index: 1000;
+	background-image: url(../images/ico_t.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.TER:hover {
+	background-image: url(../images/ico_thover1.png);
+}
+.TERDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.TERDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #27bdf2;
+	background-image: url(../images/ico_thover1.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.eventDetails {
+	margin: 0 0 0 28px;
+	padding: 5px;
+	font-size: 11px;
+	border: 1px solid #c3c3c3;
+	border-top: 0;
+	background-color: #f9f9f9;
+	color: #7f7f7f;
+}
+.eventDetails .dynamicData {
+	color: #404040;
+	display:block;
+	 white-space:nowrap;
+}
+.dividendsDetails p, .newsDetails p , .managerAppDetails p, .TERDetails p, .secDetails p{
+	padding: 0 5px;
+	margin: 0;
+}
+.displayNone {
+	display: none;
+}
+.ui-resizable-e
+{
+    background-color:Transparent;
+}
+.ui-resizable-w
+{
+    background-color:Transparent;
+}
+
+.fpf {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fpf:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fpfDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.fpfDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.fpr {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fpr:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fprDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.fprDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+
+.crd {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crd:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crdDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.crdDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+
+.crp {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crp:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crpDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.crpDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.crp {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crp:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.crpDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.crpDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.fsc {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fsc:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.fscDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.fscDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.qtd {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.qtd:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.qtdDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.qtdDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+.qtp {
+	position: absolute;
+	width: 22px;
+	height: 20px;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.qtp:hover {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.qtpDetails {
+	position: absolute;
+	z-index: 1005;
+	text-align: left;
+	cursor: pointer;
+}
+.qtpDetails h2 {
+	padding: 5px 5px 5px 30px;
+	margin: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #BFBFBF;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}

@@ -1,0 +1,684 @@
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@font-face {
+  font-family: "FontAwesome";
+  src: url("fe_img/fontawesome-webfont.eot?v=4.6.3");
+  src: url("fe_img/fontawesome-webfont.eot?#iefix&v=4.6.3")
+      format("embedded-opentype"),
+    url("fe_img/fontawesome-webfont.woff2?v=4.6.3") format("woff2"),
+    url("fe_img/fontawesome-webfont.woff?v=4.6.3") format("woff"),
+    url("fe_img/fontawesome-webfont.ttf?v=4.6.3") format("truetype"),
+    url("fe_img/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*  Font - Family */
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("./fe_img/GiorgioSans-Regular-Web.woff") format("woff"),
+    url("./fe_img/GiorgioSans-Regular-Web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Unit Rounded Pro";
+  src: url("./fe_img/UnitRoundedPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Primary Colors */
+  --primaryDeepred: #912227;
+  --primaryWarmred: #d3292e;
+  --black: #000000;
+  --white: #ffffff;
+  /* Secondary Colors */
+  --secondaryBrown: #4f0800;
+  --secondaryDarkOrange: #e66208;
+  --secondaryWarmOrange: #f39000;
+  --secondaryLightOrange: #fed89c;
+  /* Background	*/
+  --NeutralWarm: #f3ede0;
+  --NeutralCool: #ede4df;
+  --OffWhite: #f7f4f3;
+  /* Grey colours	 */
+  --DarkGrey: #333333;
+  --LightGrey: #848484;
+  /* Deep blue	*/
+  --DeepBlue: #005f86;
+
+  /* Font-family description */
+  --headingFontFamily: "Giorgio Sans";
+  --bodyFontFamily: "Unit Rounded Pro";
+  --bodyFontSize: 12px;
+  --bodyFontWeight: "normal";
+}
+
+body {
+  /* font: normal 14px var(--bodyFontFamily); */
+  font-family: var(--bodyFontFamily);
+  font-size: var(--bodyFontSize);
+  font-weight: var(--bodyFontWeight);
+  color: var(--black);
+  color: #666;
+  padding: 0px;
+  margin: 0px;
+  background: #fff none;
+}
+p {
+  padding: 0 0 5px;
+  margin: 0;
+  font-family: 14px var(--bodyFontFamily);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+}
+a {
+  color: #0076b6;
+  text-decoration: none;
+}
+a:focus,
+li:focus,
+span:focus,
+button:focus,
+select:focus,
+input:focus,
+*:focus {
+  outline: none !important;
+}
+.page {
+  margin: 0 auto;
+  width: 1000px !important;
+  padding: 0;
+  position: relative;
+  border-top: 7px solid #182b49;
+}
+.ui-logo-container {
+  height: 126px;
+  display: block;
+  background: url(fe_img/sw-logo.svg) no-repeat left bottom;
+  border-bottom: 0;
+  margin: 0;
+  background-position: left center;
+  background-size: auto 1.5cm;
+}
+.ui-logo-container img {
+  display: none;
+}
+.fe-footer-logo label {
+  vertical-align: middle !important;
+}
+.fe-responsivefactsheet-title {
+  color: #fff;
+  font-size: 18px;
+}
+.fe-responsivefactsheet-title h1 {
+  /*! font-size: 26px; */
+  display: table-cell;
+  vertical-align: middle;
+  /*! width: 100%; */
+}
+.fe-responsivefactsheet-title {
+  color: #00395d;
+  font-size: 18px !important;
+  padding: 0;
+  font-weight: 500;
+  text-align: right;
+  /* background: url(fe_img/logo.png) no-repeat left top/auto 80px; */
+  height: 165px;
+  position: absolute;
+  top: -6px;
+  right: 0;
+  padding-left: 300px;
+  margin: 0;
+  display: table;
+}
+.backButton {
+  position: absolute;
+  right: 0;
+  top: 33px;
+  width: auto;
+}
+.fe-button.ui-state-default, .ui-button.ui-state-default, .fe-button.fe-search-button, .MasterColumn .fe-section-vertical-name, .ProviderFactsheet .fe-section-vertical-name /* All buttons */ {
+  color: #fff;
+  font: 14px var(--bodyFontFamily) !important;
+  margin: 0 4px 0 0;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: top;
+  width: auto !important;
+  background-color: hsl(41, 85%, 28%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.39);
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.fe-button.ui-state-hover, .fe-button.ui-state-focus, .ui-button.ui-state-hover, .ui-button.ui-state-focus /* All buttons hover */ {
+  background-position: 0 -15px;
+  color: #ffffff !important;
+  text-decoration: none;
+}
+.fe-tabs-container-ResponsiveFactsheet {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: #f4f6f8;
+}
+.ui-tabs .ui-tabs-panel {
+  padding: 15px !important;
+  width: 100% !important;
+  background-color: #f4f6f8;
+  box-sizing: border-box;
+}
+.minFsData {
+  padding: 0;
+}
+.minFsData h5 {
+  font-size: 16px;
+  color: #00395d;
+  padding: 0 0 10px;
+  margin: 10px 0;
+  font-family: var(--bodyFontFamily);
+  border-bottom: 0;
+  font-weight: 500;
+  display: inline-block;
+}
+.minFsData h5:empty {
+  display: none;
+}
+.fe-fund-performance-astext-element {
+  font-size: 12px;
+}
+/* ============== Secondary tabs =========================== */
+.fe-tabs.ui-tabs-nav /* UL background*/ {
+  padding: 0;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.fe-helptext-switch {
+  display: none;
+}
+.fe-tabs-container-FundCentre .fe-tabs {
+  display: none !important;
+}
+.fe-tabs-item.ui-state-default.ui-state-hover a,
+.fe-tabs-item.ui-state-default.ui-state-active a {
+  padding: 80px 15px 10 !important;
+}
+.fe-tabs-item.ui-state-default /* LI background*/ {
+  position: static !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+  border: 0;
+  background-color: transparent;
+}
+.fe-tabs-item.ui-state-default a /* Li normal text */ {
+  font: 15px/16px var(--headingFontFamily), Arial, serif;
+  color: #fff;
+  letter-spacing: 1px;
+  background-color: #000000 !important;
+  background-image: none;
+  padding: 9px 9px 10px 9px !important;
+  margin: 0 4px 0 0;
+  vertical-align: middle;
+  transition: all 0.5s;
+  display: block;
+  border: 0;
+  /* border-bottom: 0; */
+  border-radius: 4px 4px 0 0;
+}
+.fe-tabs-item.ui-state-default.ui-state-hover a, .fe-tabs-item.ui-state-default.ui-state-active a /* LI hover text*/ {
+  /* color: rgb(8 135 251); */
+  background-color: var(--primaryDeepred) !important;
+  border-color: var(--primaryDeepred);
+}
+.fe-tabs-item.ui-tab a {
+  background-size: auto 50px;
+  background-repeat: no-repeat;
+  background-position: center 15px;
+}
+.fe-tabs-item.ui-tab.fe-tab-KeyFacts a,
+.fe-tabs-item.fe-tab-ESG a,
+.fe-tabs-item.fe-tab-SpecialRiskFactors a,
+.fe-tabs-item.ui-tab.fe-tab-KeyFacts1 a {
+  background-image: url(fe_img/ico-keyfacts.png);
+}
+.fe-tabs-item.ui-tab.fe-tab-Performance a {
+  background-image: url(fe_img/ico-performance.png);
+  background-position: center 17px;
+}
+.fe-tabs-item.ui-tab.fe-tab-AssetAllocation a,
+.fe-tabs-item.ui-tab.fe-tab-GeographicAllocation a,
+.fe-tabs-item.ui-tab.fe-tab-SectorAllocation a {
+  background-image: url(fe_img/ico-current-asset-allocation.png);
+}
+.fe-tabs-item.ui-tab.fe-tab-Holdings a {
+  background-image: url(fe_img/ico-holdings.png);
+
+  background-position: center 17px;
+}
+.fe-tabs-item.ui-tab.fe-tab-ESGCredentials a {
+  background-image: url(fe_img/ico-more-information.png);
+}
+
+.fe-section-header {
+  display: none;
+}
+
+.fe-section-vertical,
+.fe-section-horizontal,
+.fe-section-text,
+.fe-section-textwithpicture,
+.fe-section-chart {
+  padding: 0;
+  margin: 0 0 1%;
+  border: 0;
+  color: #666;
+}
+.highcharts-background {
+  fill: #f4f6f8;
+}
+.fe-tab-container-ESG .fe-section-text h2 {
+  font-size: 14px;
+}
+.fe-section-vertical-wrap,
+.fe-section-horizontal-wrap {
+  background: none transparent;
+  padding: 8px 0;
+  border: 0;
+}
+.fe-section-vertical-name,
+.fe-section-vertical-val,
+.fe-section-horizontal-name,
+.fe-section-horizontal-val {
+  background: none transparent !important;
+  color: #666;
+  font: normal 14px var(--bodyFontFamily) !important;
+  padding: 2px 5px;
+}
+.fe-section-holdings .fe-section-vertical-val {
+  width: auto !important;
+}
+.fe-section-holdings .HoldingWeight .fe-section-vertical-val {
+  float: none;
+  display: inline-block;
+}
+.fe-tab-container-FundInformation .fe-section-horizontal-name,
+.fe-tab-container-FundInformation .fe-section-horizontal-val,
+.fe-tab-container-StatisticalFundData .fe-section-horizontal-name,
+.fe-tab-container-StatisticalFundData .fe-section-horizontal-val {
+  width: calc(50% - 10px) !important;
+}
+.FundObjective.fe-section-horizontal-wrap .fe-section-horizontal-name {
+  width: 30%;
+}
+.FundObjective.fe-section-horizontal-wrap
+  .fe-section-horizontal-val.pdfableColumn {
+  width: 70%;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-val img {
+  width: 100%;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-val img {
+  width: auto;
+  max-width: 100%;
+}
+
+a.fe-icon-chart:after {
+  content: "\f080";
+  font-family: FontAwesome;
+  background-image: none;
+  font-size: 20px;
+  padding: 3px 0 0px 0;
+  color: #00539e;
+  display: inline-block;
+}
+a.fe-icon-chart, a.fe-icon-chart:hover/*chart icon */ {
+  background: no-repeat center top;
+  /*     url(fe_img/ico-chart.png) */
+  width: 25px;
+  height: 30px;
+  padding: 0;
+  margin: 0 auto;
+}
+.fe-fund-document-icon, .fe-fund-document-icon:hover /*document icon */ {
+  background: no-repeat center center; /*url(fe_img/icon-fs.png) */
+  width: 49px;
+  height: 64px;
+  padding: 0;
+  background-size: 80% auto;
+}
+.fe-section-chart {
+  position: relative;
+  margin-bottom: 10px;
+}
+.fe-section-chart-wrap {
+  margin-bottom: 0;
+  width: 100% !important;
+}
+.fe-section-chart-reset {
+  background: url(fe_img/reload.png) no-repeat right top;
+  background-size: 16px;
+  height: 16px;
+  width: 18px;
+  position: absolute;
+  top: 6%;
+  right: 0;
+  font-size: 0 !important;
+  display: block;
+}
+
+.fe-tabs-container-ResponsiveFactsheet .ui-widget-header {
+  background: #fff none !important;
+  border: 0;
+  border-bottom: 0;
+  line-height: 0;
+}
+tspan {
+  font-family: var(--bodyFontFamily);
+}
+.highcharts-legend-item path {
+  stroke-width: 15px;
+}
+.fe-helptext-switch {
+  display: none;
+}
+.fe-section-nesteddata-row .fe-section-vertical-name {
+  display: none;
+}
+.BreakdownKey {
+  width: 7% !important;
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #c6d2da;
+}
+.BreakdownName {
+  width: 71% !important;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #c6d2da;
+}
+.ItemWeight {
+  width: 18% !important;
+  text-align: right;
+  /*! float: right; */
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #c6d2da;
+}
+.fe-section-breakdowns .BreakdownKey .fe-section-vertical-val {
+}
+.colourKey {
+  width: 15px;
+  height: 15px;
+}
+.fe-section-breakdowns .fe-section-vertical-val {
+  padding: 5px 1% !important;
+  width: auto !important;
+  float: none;
+  display: inline-block;
+}
+/*Key facts*/
+.fe-section-recursivecontainer {
+  width: 100% !important;
+}
+
+.fe-tab-container-FundInformation .fe-section-horizontal.section_1_2,
+.fe-tab-container-StatisticalFundData .fe-section-horizontal.section_1_2 {
+  width: 48% !important;
+  padding-left: 2%;
+}
+.fe-tab-container-FundInformation .fe-section-recursivecontainer,
+.fe-tab-container-StatisticalFundData .fe-section-recursivecontainer {
+  width: 49% !important;
+}
+.fe-tab-container-FundInformation .fe-section-horizontal-wrap,
+.fe-tab-container-StatisticalFundData .fe-section-horizontal-wrap {
+  border-bottom: 1px solid #c6d2da;
+  width: 100%;
+}
+.fe-tab-container-FundInformation .fe-section-horizontal-wrap:nth-of-type(odd),
+.fe-tab-container-StatisticalFundData
+  .fe-section-horizontal-wrap:nth-of-type(odd),
+.showhiderow:nth-of-type(even) {
+  background: #fff;
+}
+.fe-tab-container-FundInformation .fe-section-horizontal-wrap:nth-of-type(even),
+.fe-tab-container-StatisticalFundData
+  .fe-section-horizontal-wrap:nth-of-type(even),
+.showhiderow:nth-of-type(odd) {
+  /*! background: #eee; */
+}
+.fe-tab-container-FundInformation
+  .fe-section-horizontal-wrap.Bid
+  .fe-section-horizontal-name:after,
+.fe-tab-container-StatisticalFundData
+  .fe-section-horizontal-wrap.Bid
+  .fe-section-horizontal-name:after {
+  content: "Price";
+  padding-left: 4px;
+}
+.fe-tab-container-StatisticalFundData .section_1_2,
+.fe-tab-container-StatisticalFundData .section_2_2 {
+  width: 48% !important;
+  float: right;
+}
+.fe-tab-container-StatisticalFundData .section_2_1 {
+  width: 100% !important;
+}
+.fe-tab-container-FundInformation .section_1_1,
+.fe-tab-container-StatisticalFundData .section_1_1 {
+  width: 49% !important;
+}
+/*performance*/
+.fe-tab-container-Performance .section_2_1 h5,
+.fe-tab-container-Performance .section_4_1 h5 {
+  border-bottom: 2px solid #c6d2da;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+.perfomanceAndRiskSectionHeight {
+  border-top: 1px solid #c6d2da;
+}
+.fe-tab-container-Performance .fe-section-vertical-wrap {
+  border-top: 2px solid #c6d2da;
+}
+.perfomanceAndRiskSectionHeight .fe-section-vertical-wrap {
+  border-bottom: 1px solid #c6d2da;
+  border-top: 0;
+}
+.fe-tab-container-CumulativePerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap,
+.fe-tab-container-DiscretePerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap,
+.fe-tab-container-AnnualisedPerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap {
+  background: #fff;
+}
+.fe-tab-container-CumulativePerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap:nth-of-type(n + 7),
+.fe-tab-container-DiscretePerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap:nth-of-type(n + 7),
+.fe-tab-container-AnnualisedPerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap:nth-of-type(n + 6) {
+  background: transparent;
+}
+.fe-tab-container-DiscretePerformance
+  .perfomanceAndRiskSectionHeight
+  .fe-section-vertical-wrap:nth-of-type(n + 14) {
+  background: #fff;
+}
+.fe-tab-container-Performance .fe-section-vertical-wrap {
+  padding: 2px 0;
+}
+.breakdownsChart {
+  height: 200px !important;
+  width: 50% !important;
+  clear: left;
+}
+.breakdownsChart + div {
+  width: 50% !important;
+}
+/*Asset allocation*/
+.fe-section-breakdowns,
+.fe-section-holdings {
+  width: 100% !important;
+}
+.fe-section-breakdowndata-row {
+  border-bottom: 1px solid #c6d2da;
+}
+.fe-section-breakdowndata-row:first-child {
+  border-top: 1px solid #c6d2da;
+}
+.fe-section-breakdowns h5,
+.fe-section-holdings h5 {
+  float: left !important;
+  margin-right: 10px;
+}
+.fe-section-breakdowns h5 + div,
+.fe-section-holdings h5 + div {
+  padding-top: 12px;
+}
+.fe-section-breakdowndata-row .BreakdownKey div {
+  transition: width 0.3s;
+}
+.fe-section-breakdowndata-row:hover .BreakdownKey div {
+  float: left;
+  width: 5px;
+  margin: 0 10px 0 0px;
+  transition: margin 0.1s;
+}
+.showhiderow {
+  border-bottom: 0px solid #c6d2da;
+  display: table;
+}
+.HoldingName {
+  width: 85% !important;
+  display: table-cell;
+  vertical-align: middle;
+}
+.HoldingWeight {
+  text-align: center;
+  width: 15% !important;
+  display: table-cell;
+  vertical-align: middle;
+}
+.fe-tab-container-ESGCredentials .section_1_1 {
+  width: 100% !important;
+}
+.fe-tab-container-ESG .section_2_1:after {
+  content: "If Ã¢â‚¬ËœYesÃ¢â‚¬â„¢ appears for this fund, then its fund managers are UNPRI signatories. Being a UNPRI signatory means you undertake a mandatory assessment of your firm wide approach to responsible investment and adherence to the six principles detailed below. Committing to the PRI and adhering to their principlesÃ¢â‚¬Â¯can be seen asÃ¢â‚¬Â¯a minimum level of compliance to responsible investment. The PRI continues to raise the bar with their assessment and tolerance for reporting submissions, with signatures being removed in the past year due to lack of commitment. The United Nations backed Principles for Responsible Investment was launched by, then UN Secretary General, Kofi Annan in 2006. The PRI is a non-profit membershipÃ¢â‚¬Â¯organisationÃ¢â‚¬Â¯that aims to promote responsible investment globally. As of 2020 it has around 3000 signatory organisations covering over $100trn in assets under management. Investment managers, asset owners and service providers can become signatory members of the PRI by committing to follow six principles: 1. We will incorporate ESG issues into investment analysis and decision-making processes. 2. We will be active owners and incorporate ESG issues into our ownership policies and practices. 3. We will seek appropriate disclosure on ESG issues by the entities in which we invest. 4. We will promote acceptance and implementation of the Principles within the investment industry. 5. We will work together to enhance our effectiveness in implementing the Principles. 6. We will each report on our activities and progress towards implementing the Principles.";
+}
+.fe-tab-container-ESG .BespokeColumn20 {
+  display: none;
+}
+.fe-tab-container-ESGCredentials .fe-section-horizontal-wrap {
+  border-bottom: 1px solid #c6d2da;
+}
+.fe-tab-container-ESG .section_1_1 {
+  width: 20% !important;
+}
+.fe-tab-container-ESG .section_1_1 .BespokeColumn7 {
+  text-align: left;
+}
+.fe-tab-container-ESG .section_1_1 .BespokeColumn7 .fe-section-vertical-name {
+  font-weight: bold !important;
+}
+
+.fe-footer-container {
+  font-size: 14px;
+}
+.fe-tab-container-Performance .section_4_1 {
+  float: left;
+}
+.fe-tab-container-Performance .section_4_1 h2 {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+@media screen and (min-width: 0) and (max-width: 900px) {
+  .page {
+    width: 97% !important;
+    margin: 0 auto;
+  }
+  .fe-tabs-item.ui-state-default a {
+    font-size: 12px;
+    background-size: auto 40px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+@media screen and (min-width: 0) and (max-width: 768px) {
+  .fe-tab-container-FundInformation .fe-section-recursivecontainer,
+  .fe-tab-container-FundInformation .fe-section-horizontal.section_1_2,
+  .fe-tab-container-StatisticalFundData .fe-section-recursivecontainer,
+  .fe-tab-container-StatisticalFundData .fe-section-horizontal.section_1_2,
+  .fe-tab-container-StatisticalFundData .section_1_1,
+  .fe-tab-container-StatisticalFundData .section_2_2 {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .fe-section-horizontal-wrap .fe-section-horizontal-val img {
+    width: auto !important;
+  }
+}
+@media screen and (min-width: 0) and (max-width: 480px) {
+  .ui-logo-container {
+    background-size: 50% auto;
+  }
+  .fe-responsivefactsheet-title {
+    position: relative;
+    padding: 0;
+  }
+  .fe-tabs-item.ui-state-default,
+  .fe-tabs-item.ui-state-default a {
+    width: 100% !important;
+    border-radius: 0;
+  }
+  .fe-tabs-item.ui-state-default a {
+    width: 70% !important;
+    font-size: 14px;
+    background-size: auto 40px !important;
+    background-position: 20px 10px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 25% !important;
+    padding-right: 5% !important;
+  }
+  .fe-tabs-item.ui-state-default.fe-tab-Holdings a {
+    background-position: 12px 10px !important;
+  }
+  .breakdownsChart,
+  .breakdownsChart + div {
+    width: 100% !important;
+  }
+}
+
+.fe-tab-container-Breakdowns .fe-section-breakdowns {
+  border-bottom: 1px solid #000000;
+  padding-bottom: 10px;
+}
+.fe-section-tools-val {
+  float: none !important;
+}
+/* embark Htmlfactsheet*/

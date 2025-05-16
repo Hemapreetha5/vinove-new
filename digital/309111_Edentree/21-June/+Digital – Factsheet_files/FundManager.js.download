@@ -1,0 +1,84 @@
+﻿function InitializeShowAllManagers(container) {
+
+    //TODO AM TK: The below two show hide rows works the same we should be able to make this into a single function.
+
+    $("div.fe-section-recursivecontainer").find("div.fe-section-recursivecontainer-contentwrapper:not(div.fe-section-recursivecontainer-contentwrapper:first)").hide();
+    $(".showhidemanagers", container).each(function () {
+        $(this).click(function () {
+            if ($(this).text() == modelContents.GetTranslation('ShowAllManagers')) {
+                var parent = $(this).parent();
+                $(this).parent().find("div.fe-section-recursivecontainer-contentwrapper:not(div.fe-section-recursivecontainer-contentwrapper:first)").toggle(400, "swing", function () {
+                    ToolkitUI.Common.ResizeIFrame();
+                });
+
+                $('html,body').animate({ scrollTop: $(parent).offset().top }, 'slow');
+
+                $(this).text(modelContents.GetTranslation('ShowOnlyPrimaryManager'));
+                $(this).removeClass('showmore');
+                $(this).addClass('showless');
+            }
+            else {
+                var parent = $(this).parent();
+                $(parent).find("div.fe-section-recursivecontainer-contentwrapper:not(div.fe-section-recursivecontainer-contentwrapper:first)").toggle(400, "swing", function () {
+                    ToolkitUI.Common.ResizeIFrame();
+                });
+
+                $('html,body').animate({ scrollTop: $(parent).offset().top }, 'slow');
+
+                $(this).text(modelContents.GetTranslation('ShowAllManagers'));
+
+                $(this).removeClass('showless');
+                $(this).addClass('showmore');
+            }
+            return false;
+        });
+    });
+
+    ////TODO AM TK: make the below method common for both Managers and Funds.
+    ////TODO AM TK: create the focus to move above and set to a position.
+    $(".showhiderowlink", container).each(function () {
+        var showminrowcount = parseInt($(this).attr('showminrowcount')) || 0;
+
+        if (showminrowcount == 0) {
+            $(this).hide();
+            return;
+        }
+
+        var showminrowcount = showminrowcount - 1;
+
+        $(this).parent().find(".showhiderow:gt(" + showminrowcount + ")").hide();
+
+        var showmoremessage = $(this).attr('showmoremessage');
+        var showminmessage = $(this).attr('showminmessage');
+
+        if (showmoremessage == null || showmoremessage == '') {
+            showmoremessage = $(this).text();
+        }
+
+        if (showminmessage == null || showminmessage == '') {
+            showminmessage = $(this).text();
+        }
+
+        $(this).click(function (event) {
+            var toggletoshowless = $(this).hasClass('showmore');
+            $(this).toggleClass('showmore', !toggletoshowless);
+            $(this).toggleClass('showless', toggletoshowless);
+
+            $(this).parent().find(".showhiderow:gt(" + showminrowcount + ")").toggle(400, "swing", function () {
+                ToolkitUI.Common.ResizeIFrame();
+            });
+
+            var focusrow;
+            if ($(this).hasClass('showmore')) {
+                $(this).text(showmoremessage);
+                focusrow = $(this).parent();
+            } else {
+                $(this).text(showminmessage);
+                focusrow = $(this).parent().find(".showhiderow:gt(" + showminrowcount + ")");
+            }
+            
+            return false;
+        });
+    });
+
+}

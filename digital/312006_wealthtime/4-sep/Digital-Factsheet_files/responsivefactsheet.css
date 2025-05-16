@@ -1,0 +1,1442 @@
+/* ---------- General classes --------------- */
+/* @font-face {
+  font-family: 'MyriadPro-Regular';
+  src: url('fe_img/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),  url('fe_img/MyriadPro-Regular.otf')  format('opentype'),
+	     url('fe_img/MyriadPro-Regular.woff') format('woff'), url('fe_img/MyriadPro-Regular.ttf')  format('truetype'), url('fe_img/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MyriadPro-Light';  
+	src: url('fe_img/MyriadPro-Light.eot?#iefix') format('embedded-opentype'),  url('fe_img/MyriadPro-Light.otf')  format('opentype'),
+	     url('fe_img/MyriadPro-Light.woff') format('woff'), url('fe_img/MyriadPro-Light.ttf')  format('truetype'), url('fe_img/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+} */
+@font-face {
+	font-family: "AllianceNo2-Regular";
+	src: url('fe_img/AllianceNo2Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+  }
+  @font-face {
+	font-family: "AllianceNo2-Medium";
+	src: url('fe_img/AllianceNo2Medium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+  }
+:root{
+	--theme-black:#000;
+	--theme-darkgray:#505050;
+	--theme-lightgray:#F0F0F0;
+	--theme-blue:#0000FF;
+	--theme-green:#1dd698;
+	--theme-white:#ffffff;
+	--theme-red:#D31E25;
+}
+body {
+	font: normal 16px "AllianceNo2-Regular", sans-serif;
+	color: #333;
+	padding: 0px;
+	margin: 0px;
+	background: #fff none;
+}
+a:focus, li:focus, span:focus, button:focus, select:focus, input:focus, *:focus {
+	outline: none !important;
+}
+p {
+	padding: 0 0 15px;
+	margin: 0;
+}
+a {
+	color: #000;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+	color: #000;
+}
+.page {
+	padding: 0;
+	margin: 0 auto;
+	position: relative;
+	/* background: url("fe_img/novia-logo.png") no-repeat left 7px transparent; */
+	background:url("fe_img/logo-image.png") no-repeat center top 25px;
+	border-bottom: 0;
+	margin: 0 auto;
+	max-width: 1080px;
+	background-size: auto 35px;
+	min-height: 1000px;
+}
+.page::before {
+    background: var(--theme-black);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    content: "";
+    height: 92px;
+}
+h1 {
+	background: none transparent;
+	font: 28px/26px "AllianceNo2-Regular", sans-serif;
+	color: #000;
+	padding: 115px 0 0;
+	margin: 0;
+	width: 100% !important;
+	z-index: 2;
+}
+h2 {
+    font: normal 20px "AllianceNo2-Regular", sans-serif;
+	padding: 0;
+	margin: 10px 0;
+}
+.fe-helptext-switch {
+	display: none;
+}
+.fe-tabs-container-ResponsiveFactsheet.ui-tabs /* Overall content */ {
+	min-height: 600px;
+	margin: 0;
+	background: transparent none;
+	border: 0;
+}
+/*Tabs*/
+.ui-scroll-tabs-header {
+    background: var(--theme-black);
+	width: 71.3% !important;
+	border: 0;
+}
+.fe-tabs.ui-tabs-nav /* UL background*/{
+	height: 39px;	
+	padding:0;
+	background:var(--theme-black) none;
+}
+.fe-tabs-item.ui-state-default /* LI background*/{
+	text-decoration: none;
+	font: 12.5px "AllianceNo2-Regular", sans-serif;
+	opacity: 1;
+	margin: 0 !important;
+	background: none transparent;
+	border-right: 0;
+	list-style:none;
+	top: 0 !important;
+	border: 0;
+}
+.fe-tabs-item.ui-state-default a /* Li normal text */{
+	display: block;
+	color: #fff;
+	padding:12px 21px !important;
+	height: 16px;
+	text-align: center;
+	white-space: normal;
+	text-transform: uppercase
+}
+.fe-tabs-item.ui-state-default.ui-state-hover /* LI hover background */{
+	background:  var(--theme-darkgray) none;
+}
+.fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/{
+	color: #fff;
+}
+.fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/{
+	text-decoration: none;	
+	opacity: 1;
+	background: var(--theme-green) none;
+}
+.fe-tabs-item.ui-state-default.ui-state-active a /* LI selected text */{
+	color: var(--theme-black);
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected{
+	padding-bottom: 0
+}
+.stNavMain .ui-button.ui-state-default {
+    margin-right: 0;
+	padding-top: 2px;
+	background: none;
+	border: 0;
+}
+.stNavPrevArrow .ui-icon, .stNavNextArrow .ui-icon{
+	background: url(fe_img/icon_prev.png) no-repeat center !important;
+	width: 7px;
+	height: 13px;
+	display: block;
+	margin-top:0;
+}
+.stNavNextArrow .ui-icon{
+	background-image: url(fe_img/icon_next.png) !important;
+}
+/*mfs container*/
+.mfs-container a.mfs-selected-option /* dropdown list will attach with dropdown */{
+	margin:0; 
+	padding:5px 5px 0px 0;
+	font:15px "AllianceNo2-Regular", sans-serif;	
+	border: 0;
+	border-bottom: 1px solid #d2d2d2;
+	border-radius: 0;
+	color: #000
+}
+.mfs-container A.mfs-selected-option span{
+	*padding-top:0;
+	*padding-bottom:8px;
+	border-left:0;
+	padding:5px 0 0;
+    background: url(fe_img/dropDownArrow.png) no-repeat scroll center 11px #fff;
+    float: left;
+	border: 0;
+	border-bottom: 1px solid #d2d2d2;
+	border-radius: 0;
+}
+.mfs-options{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+	border: 0;
+	border-radius: 3px;
+	padding: 5px;
+	margin-top: 5px;
+}
+.mfs-options li.mfs-optgroup {
+    color: #444444;
+    font-weight: bold;
+    padding: 4px 5px;
+}
+.mfs-optgroup-option {
+    padding-left: 10px;
+    font-weight: normal;
+}
+.mfs-options li a{
+	font:normal 15px "AllianceNo2-Regular", sans-serif;
+	padding: 8px 5px;
+	color: #333;
+}
+.mfs-options li.selected, .mfs-options li:hover, .mfs-options li.active  {
+	background-color: var(--theme-green);
+	margin: 0;
+	border-radius: 2px;
+	-webkit-transition: all 150ms linear;
+	-moz-transition: all 150ms linear;
+	-o-transition: all 150ms linear;
+	-ms-transition: all 150ms linear;
+	transition: all 150ms linear;
+	box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.2)
+}
+.mfs-options li.selected, .mfs-options li.active {
+    background-color: var(--theme-green);
+}
+.mfs-options li.selected a, .mfs-options li.active a, .mfs-options li:hover a{
+	color:#fff;
+}
+.mfs-options li a:focus, .mfs-options li a:hover{
+	box-shadow: 0 5px 20px 0px rgba(0,0,0,0.2),0 13px 24px -11px var(--theme-green);
+}
+.mfs-options li.mfs-optgroup{
+	font:bold 15px "AllianceNo2-Regular", sans-serif;
+	color: #000;
+}
+.mfs-options li.mfs-optgroup:hover {
+    background: transparent none;
+}
+
+/*Tabs Content*/
+.fe-tabs-datacontainer {
+	background: none transparent !important;
+	padding: 0 !important;
+	background-color: #ffffff;
+	color: #000;
+	margin: 0;
+	width: 100%;
+}
+.minFsData {
+	font: normal 15px "AllianceNo2-Regular", sans-serif !important;
+	color: #000;
+	border: 0;
+	padding: 15px;
+	width: 68%;
+	border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12)
+}
+.minFsData h5 {
+	color: #000;
+	float: left;	
+	margin: 0;
+	padding: 10px 0;
+	text-transform: capitalize;
+	width: 100%;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-name, .fe-section-horizontal-wrap .fe-section-horizontal-val, .fe-section-vertical-wrap .fe-section-vertical-name, .fe-section-vertical-wrap .fe-section-vertical-val, .fe-downloadsection-options-name, .fe-section-download-data .fe-section-vertical-val, .fe-section-holdings .fe-section-vertical-val, .fe-section-breakdowns .fe-section-vertical-val{
+	font: normal 15px "AllianceNo2-Regular", sans-serif;
+}
+.fe-section-composite-container, .fe-section-recursivecontainer {
+	width: 100%;
+}
+.fe-section-recursivecontainer-contentwrapper, .ie8 .fe-section-recursivecontainer-contentwrapper {
+	margin: 0;
+	padding: 0;
+}
+.fe-section-recursivecontainer-contentwrapper {
+	border-top: 2px solid #ffc20e;
+}
+.ie7 .page, .ie8 .page {
+	width: 1000px;
+}
+.ie7 .fe-tabs-container > div, .ie8 .fe-tabs-container > div {
+	width: auto !important;
+}
+.fe-section-vertical, .fe-section-horizontal, .fe-section-chart {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+.fe-section-horizontal-wrap, .fe-section-vertical-wrap {
+	padding: 0;
+	border: 0;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-name {
+	background: transparent;
+	text-align: left;
+	vertical-align: top;
+	width: 46%;
+	padding: 5px 0 0 5px;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-val {
+	text-align: left;
+	vertical-align: top;
+	width: 50%;
+	margin-left: -1px;
+	padding: 5px 0;
+}
+.fe-section-vertical-wrap .fe-section-vertical-val {
+	background-color: #fff;
+	border-bottom: 0;
+	display: block;
+	margin: 0 0 1px 0;
+	padding: 5px 0;
+	font: normal 16px/16px "AllianceNo2-Regular", sans-serif;
+}
+.fe-section-vertical-wrap .fe-section-vertical-name {
+	background-color: transparent!important;
+	display: block;
+	margin: 0 1px 0 0;
+	padding: 9px 0;
+}
+.fe-section-nesteddata .fe-section-vertical-name {
+	padding-left: 5px;
+	margin: 0;
+}
+.fe-section-nesteddata .fe-section-vertical-val {
+	padding-left: 5px;
+	margin: 0;
+}
+.fe-section-text, .fe-section-textwithpicture {
+	font: normal 14px/16px "AllianceNo2-Regular", sans-serif;
+	color: #333;
+}
+.fe-section-nodatamessage {
+	color: red;
+	font: normal 14px/16px "AllianceNo2-Regular", sans-serif;
+}
+.fe-section-chart-reset {
+	background: url(fe_img/icon_zoom.png) no-repeat 0 0;
+	border: medium none;
+	cursor: pointer;
+	height: 40px;
+	outline: medium none;
+	width: 40px;
+	float: right;
+	margin-top: -29px;
+	color: transparent
+}
+.fe-fund-document-icon {
+	background: url(fe_img/ico_fs.png) no-repeat center center;
+	width: 25px;
+	height: 25px;
+	padding: 0;
+}
+.fe-fund-document-icon:hover {
+	background: url(fe_img/ico_fs.png) no-repeat center center;
+	width: 25px;
+	height: 25px;
+	padding: 0;
+}
+a.showhiderowlink, a.showhidemanagers, a.sectionshowhide {	
+	display: inline-block;		
+	float: right;
+	font: normal 15px "AllianceNo2-Regular", sans-serif;    
+	color: #fff !important;
+	text-decoration: none;
+	width: auto !important;
+	height: auto;
+	margin: 10px 4px 0 0;
+	padding: 7px 10px 5px;
+	background: var(--theme-green) none;
+	text-transform: uppercase;
+	border: 0;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 0 2px 2px 0 rgba(0,118,138,0.14),0 3px 1px -2px rgba(0,118,138,0.2),0 1px 5px 0 rgba(0,118,138,0.12);	
+}
+a.showhiderowlink:hover, a.showhidemanagers:hover, a.sectionshowhide:hover {
+	background: #19c289 none;
+	box-shadow: 0 14px 26px -12px rgba(0,118,138,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,118,138,0.2);
+	text-decoration: none;
+}
+/* Fund Overview */
+.fe-tab-container-Overview .fe-section-vertical-wrap .fe-section-vertical-val {
+    background-color: #fff !important;
+    display: block;    
+    margin: 0 2px;
+    padding: 5px 0;
+	color:#000;
+}
+.fe-tab-container-Overview .fe-section-vertical-wrap .fe-section-vertical-name {
+    background-color: #fff !important;
+    display: block;
+    margin: 0 2px 2px;
+    padding: 4px 0;
+	color:#666;font-size:13px;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_1_2 {
+    position: absolute;
+    right: 0;
+	padding:10px;
+	top:-39px;
+	width: 24% !important;
+	background:#fff;
+	border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap, .fe-tab-container-Overview .fe-section-horizontal.section_2_2_1 .fe-section-horizontal-wrap{
+	border-bottom: 1px solid #ddd
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap:nth-child(2n), .fe-tab-container-Overview .fe-section-horizontal.section_2_2_1 .fe-section-horizontal-wrap:nth-child(2n) {
+    background: none #f9f9f9;
+	padding:0;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_1 .fe-section-horizontal-wrap:nth-child(2n+1), .fe-tab-container-Overview .fe-section-horizontal.section_2_2_1 .fe-section-horizontal-wrap:nth-child(2n+1){
+    background: none #fff;
+	padding:0;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-name
+{
+	width:82% !important;
+	float:right !important;
+	color:#000;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-val
+{
+	width:12% !important;
+	padding: 0 0 10px;
+	float:left;
+	text-align:center;
+	height: 25px;
+	min-width: 25px;
+}
+.fe-tab-container-Overview .fe-section-header.title.section_3_2 {
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	padding:10px;
+	margin:0;
+	bottom:0;
+	border:1px solid #B0AEAE;
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+}
+.Email.fe-section-header-val.pdfableColumn, 
+.WebUrl.fe-section-header-val.pdfableColumn {    
+    margin: 0;
+}
+.fe-tab-container-Overview .fe-section-composite-container.section_1_1{
+	width:100% !important;
+	border-bottom:0;
+}
+.fe-tab-container-Overview .fe-section-vertical.section_1_1_1 {
+    border: 0 none;
+    width: 100% !important;
+}
+.fe-tab-container-Overview .section_1_1_1 h5, .fe-tab-container-Overview .section_1_1_2 h5, .fe-tab-container-PerformanceRisk .fe-section-vertical.section_2_1 h5, .fe-tab-container-PerformanceRisk .fe-section-vertical.section_4_1 h5{
+	display: none;
+}
+.fe-tab-container-Overview .fe-section-text.section_1_1_2 
+{
+	border: 0 none;
+    width: 100% !important;
+	margin-top: 10px;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_1 {
+    border: 0 none;
+    width: 48% !important;
+	padding:0;
+	margin-right: 3% !important;
+}
+.fe-tab-container-Overview .fe-section-composite-container.section_2_2
+{
+	width:48% !important;
+	border:0;
+	float:right;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_2_1, .fe-tab-container-Overview .fe-section-horizontal.section_2_2_2{
+	border:0;
+}
+.fe-tab-container-Overview .fe-section-horizontal.section_2_2_2 {
+	display:none;
+    margin-top: 10px;
+}
+.fe-tab-container-Overview .fe-section-recursivecontainer{
+	width:100% !important;
+}
+.fe-tab-container-Overview .fe-section-textwithpicture.section_3_1{
+	border:0;
+	padding:0;
+	margin:15px 0 0 0;
+	width:100% !important;
+	position: relative;
+}
+.ManagerPersonName{
+	color: #00768a;
+    font:600 16px/15px "AllianceNo2-Regular", sans-serif;
+    margin-right: 5px;
+	display:block;
+	top: 15px;
+	position: absolute;
+	margin-left: 82px;
+}
+/* Fund performance */
+.fe-astext-tab-responsiveFactsheet {
+	display:none;
+}
+.fe-astext-tabs-modelPortfolio {
+    margin-top: 50px !important;
+}
+.fe-section-chart-wrap{
+	margin-bottom: 10px;
+}
+.perfomanceAndRiskSectionHeight .fe-section-vertical-wrap {
+    border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	margin-top: -1px
+}
+#PerformanceAndRiskSection_2600543_UM48 .fe-section-vertical-wrap:first-child .fe-section-vertical-val, #PerformanceAndRiskSection_2600549_UM48 .fe-section-vertical-wrap:first-child .fe-section-vertical-val
+{
+	background:#000 none !important;
+	color:#fff !important;
+}
+.fe-tab-container-PerformanceRisk .section_2_1 .fe-section-vertical-name{
+	min-height: 32px !important;
+    padding: 5px 0 3px;	
+	line-height: 14px;
+}
+.fe-tab-container-PerformanceRisk .fe-section-chart.section_3_1
+{	
+	margin: 15px 0 0;
+}
+.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1
+{
+    padding: 10px;
+    position: absolute;
+    right: 0;
+	top:-39px;
+    width: 24% !important;
+	background:#fff;	
+	border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+}
+.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-name {
+    float: right !important;
+    width: 82% !important;
+	color:#000;
+}
+.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-val {
+    float: left;
+    text-align: center;
+    width: 12% !important;
+	padding:0 0 10px;
+	height: 25px;
+	min-width: 25px;
+}
+.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_6_1
+{
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	top:0;
+	margin-top:377px;
+	border:1px solid #B0AEAE;	
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.fe-tab-container-PerformanceRisk .section_6_1 .fe-section-horizontal-val {
+    text-align: right;
+}
+.fe-tab-container-PerformanceRisk .section_6_1 .fe-section-horizontal-wrap:nth-child(2n){
+	background-color: #f1f1f1;
+}
+.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_6_1 .fe-section-horizontal-name{
+	width: 47% !important;
+}
+.fe-tab-container-PerformanceRisk .fe-section-header.title.section_7_1
+{	
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	top:0;
+	margin-top:250px;	
+	border:1px solid #B0AEAE;
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.fe-tab-container-PerformanceRisk .fe-section-text.section_8_1 {
+    bottom: 0;
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	border:1px solid #B0AEAE;
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+/* Prices */
+.fe-tab-container-Priceanddividends .fe-section-downloadprice.section_1_1, .fe-tab-container-Priceanddividends .fe-section-downloaddividend.section_2_1
+{
+	width:100% !important;
+}
+.fe-tabs-datacontainer.ui-tabs.ui-widget.ui-widget-content.ui-corner-all.fe-tab-container-Priceanddividends.ui-tabs-panel.ui-corner-bottom
+{
+	min-height:624px;
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal-wrap
+{	
+    border: 0 none;
+    padding: 0 0 0 0;
+    width: 96%;
+}
+.fe-tab-container-Priceanddividends .section_3_2 .fe-section-horizontal-wrap{
+	border-bottom:1px solid #ddd
+}
+.fe-tab-container-Priceanddividends .section_3_2 .fe-section-horizontal-wrap:nth-child(2n){
+	background-color: #f9f9f9;
+}
+.fe-tab-container-Priceanddividends .section_3_2 .fe-section-horizontal-wrap:nth-child(2n+1){
+	background-color: #fff;
+}
+.fe-tab-container-Priceanddividends .PricingFreq_.fe-section-horizontal-wrap.fe-section-horizontal-name, .fe-tab-container-Priceanddividends .PricingFreq_.fe-section-horizontal-wrap.fe-section-horizontal-name, .Currency.fe-section-horizontal-wrap.fe-section-horizontal-name,.DividendsPerAnnum.fe-section-horizontal-wrap.fe-section-horizontal-name
+{
+	border-right:1px solid #fff !important;
+}
+.fe-tab-container-Priceanddividends .PricingFreq_.fe-section-horizontal-wrap.fe-section-horizontal-val, .fe-tab-container-Priceanddividends .PricingFreq_.fe-section-horizontal-wrap.fe-section-horizontal-val, .Currency.fe-section-horizontal-wrap.fe-section-horizontal-val,.DividendsPerAnnum.fe-section-horizontal-wrap.fe-section-horizontal-val
+{
+	border-left:0 !important;
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1 {
+    position: absolute;
+    right: 0;
+	padding:10px;
+	top:-39px;
+	width: 24% !important;
+	background:#fff;
+	border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1 .fe-section-horizontal-wrap .fe-section-horizontal-name
+{
+	width:82% !important;
+	float:right !important;
+	color:#000;
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1 .fe-section-horizontal-wrap .fe-section-horizontal-val
+{
+	width:12% !important;
+	padding:0 0 10px;
+	float:left;
+	text-align:center;
+	height: 25px;
+	min-width: 25px;
+}
+.fe-tab-container-Priceanddividends .fe-section-text.section_3_3 {
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	padding:10px;
+	margin:0;
+	bottom:0;	
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.Email {
+    font-size: 11px;
+}
+.fe-tab-container-Priceanddividends .minFsData {
+    min-height: 635px;
+}
+.fe-tab-container-Priceanddividends .fe-downloadsection-options-name
+{
+	min-width:80px;
+	margin-top: 3px;
+} 
+.fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-start-datepicker,
+.fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-end-datepicker
+{
+	background:url(fe_img/ico_date_fs.png) no-repeat right top;
+	width:19px;
+	height:22px;
+	margin:0 10px 0 0;
+}
+.fe-tab-container-Priceanddividends .fe-button.fe-downloadSection-button
+{
+	font:normal 15px "AllianceNo2-Regular", sans-serif;
+	color: #fff;
+	text-decoration: none;	
+	width: auto !important;	
+	height:auto;
+	margin: 0 4px 0 0;
+	padding: 7px 10px 5px;
+	background: var(--theme-green) none;
+	text-transform: uppercase;
+	border:0;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	cursor:pointer;
+	box-shadow: 0 2px 2px 0 rgba(0,118,138,0.14),0 3px 1px -2px rgba(0,118,138,0.2),0 1px 5px 0 rgba(0,118,138,0.12);
+}
+.fe-tab-container-Priceanddividends .fe-button.fe-downloadSection-button:hover {
+	background: #19c289 none;
+	box-shadow: 0 14px 26px -12px rgba(0,118,138,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,118,138,0.2);
+}
+.fe-button.fe-downloadSection-button.fe-section-viewdividend-button {
+   /* text-indent: -3000px; */
+   padding: 7px 0px 5px;
+   /* background: url("fe_img/update.png") no-repeat !important; */  
+   position: relative;
+   color: transparent;
+}
+.fe-button.fe-downloadSection-button.fe-section-viewdividend-button:after{
+	content:"Update results";
+	display:block;
+	position: absolute;
+	top: 3px;
+	left: 0;
+	right: 0;
+	color: white;
+	margin-top: 3px !important;
+}
+.fe-tab-container-Priceanddividends div.fe-section-download-data-rowheader {
+	background: transparent;
+	color: #fff;
+	border-bottom: 1px solid #ddd;
+}
+.fe-tab-container-Priceanddividends .fe-section-download-data
+{
+	min-height:165px !important;
+}
+.fe-tab-container-Priceanddividends div.fe-section-download-data-rowheader .fe-section-vertical-name
+{
+	text-align:center;
+	margin: 0 !important;
+    padding: 6px 0 !important;
+	background: none transparent;
+    color: #000;
+}
+.fe-tab-container-Priceanddividends .fe-section-download-data .fe-section-vertical-val{
+    font-size: 15px ;
+	text-align:center;
+}
+.fe-tab-container-Priceanddividends .fe-section-downloadPeriodOption{
+	float: left;
+    width: 50% !important;
+	margin-right: 10px
+}
+.fe-section-downloadPeriodOption .fe-downloadsection-options-name {
+    display: block;
+    font-size: 12px;
+    color: #666;
+}
+.fe-downloadsection-options-wrap.fe-downloadsectiondividend-displayoptions {
+	float: right;
+	margin-top: 10px;
+}
+.fe-tab-container-Priceanddividends .fe-section-download-data-row {
+	background: transparent;
+}
+.fe-section-download-data .fe-section-download-data-row {
+    border-bottom: 1px solid #ddd;
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_2 {
+    margin-top: 250px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24% !important;
+	background:#fff;
+    border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);		
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-name
+{
+	border-right:0;	
+}
+.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-val
+{
+	border-left:0;	
+}
+.fe-section-downloaddividend.section_2_1 {
+    border-top: 1px solid #B0AEAE ;
+    margin-top: 15px;
+	display:none
+}
+.fe-start-datepicker {
+    margin-bottom: 12px !important;
+}
+/* Break Down */
+.fe-section-breakdowndata-row.fe-section-nesteddata-row {
+    border-bottom: 1px solid #ddd;
+}
+.fe-tab-container-Breakdown .fe-section-holdings.section_1_1 h5, .fe-tab-container-Breakdown .fe-section-breakdowns.section_2_1 h5, .fe-tab-container-Breakdown .fe-section-breakdowns.section_3_1 h5, 
+.fe-tab-container-Breakdown .fe-section-breakdowns.section_4_1 h5 {
+    margin-right: 5px;
+	margin-bottom:15px;
+}
+.fe-section-holdings{
+	width: 100% !important
+}
+.fe-section-holdings h2 + div, .fe-section-breakdowns h2 + div {    
+    margin-top: 12px;
+	font-size:13px;
+	margin-top: 10px;
+	margin-left: 8px;
+	display: inline-block;
+	width: auto !important;
+}
+.fe-section-holdings h2, .fe-section-breakdowns h2 {
+    display: inline-block;
+}
+.fe-section-holdings h5 + div, .fe-section-breakdowns h5+div{
+	right: 0;
+	width: auto !important
+}
+.fe-section-holdings .fe-section-nesteddata-row {
+    border-bottom: 1px solid #ddd !important;
+}
+.fe-tab-container-Breakdown .fe-section-breakdowns.section_2_1, .fe-tab-container-Breakdown .fe-section-breakdowns.section_3_1, .fe-tab-container-Breakdown .fe-section-breakdowns.section_4_1 {
+    border-top: 0 ;
+    margin-top: 15px;
+    width: 100% !important;
+}
+.KiiRiskImage.fe-section-header-val.pdfableColumn img
+{
+	margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.fe-tab-container-Breakdown .fe-section-horizontal.section_5_1 {
+    position: absolute;
+    right: 0;
+	padding:10px;
+	top:-39px;
+	width: 24% !important;
+	background:#fff;
+	border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.fe-tab-container-Breakdown .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-name
+{
+	width:82% !important;
+	float:right !important;
+	color:#000;
+}
+.fe-tab-container-Breakdown .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-val
+{
+	width:12% !important;
+	padding:0 0 10px;
+	float:left;
+	text-align:center;
+	height: 25px;
+	min-width: 25px;
+}
+.fe-tab-container-Breakdown .fe-section-text.section_6_1 {
+    position: absolute;
+    right: 0;
+    width: 24% !important;
+	padding:10px;
+	margin:0;
+	bottom:0;
+	background:#fff;
+	border: 0;	
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);	
+}
+.BreakdownKey{
+    width: 10% !important;
+}
+.fe-section-breakdowns.section_2_1 div:last-child .colourKey, .fe-section-breakdowns.section_3_1 div:last-child .colourKey, .fe-section-breakdowns.section_4_1 div:last-child .colourKey  {
+    margin: 0 auto;
+    text-align: center;
+	width:16px !important;
+	height:16px !important;
+}
+.fe-tab-container-Breakdowns .BreakdownKey.fe-section-vertical-name, .fe-tab-container-Breakdowns .BreakdownName.fe-section-vertical-name, .fe-tab-container-Breakdowns .ItemWeight.fe-section-vertical-name
+{
+	display:none;
+}
+.fe-tab-container-Breakdown .fe-section-holdings .fe-section-nesteddata-row, .fe-tab-container-Breakdown .fe-section-breakdowns .fe-section-nesteddata-row
+{
+	background: none #fff !important;
+	display:none ;
+	margin: 0 !important;
+    position: relative !important;
+} 
+.fe-tab-container-Breakdown .fe-section-holdings .showhiderow.fe-section-nesteddata-row {
+    background: none #fff !important;
+    border-bottom: 0;
+	display:block ;
+    width: 100% !important;
+}
+.fe-tab-container-Breakdown .fe-section-breakdowns .showhiderow.fe-section-nesteddata-row
+{
+	display:block !important;
+}
+.fe-tab-container-Breakdowns .fe-section-breakdowns .fe-section-vertical-val, .fe-tab-container-Breakdowns .fe-section-holdings .fe-section-vertical-val
+{
+	padding: 5px 0 5px 5px;
+}
+.fe-tab-container-Breakdowns .BreakdownKey.fe-section-vertical-name,.fe-tab-container-Breakdowns .BreakdownKey.fe-section-vertical-val.LegendKeyColumn.pdfableColumn {
+    text-align: center;
+    width: 10% !important;
+}
+.BreakdownName {
+    width: 64% !important;
+	text-align:left !important;
+}
+.ItemWeight {
+    width: 26% !important;
+	text-align:right;
+}
+.HoldingName {
+    width: 85% !important;
+	text-align:left !important;
+}
+.HoldingWeight {
+    width: 15% !important;
+	text-align:right;
+}
+.fe-section-breakdowns.section_2_1 div:last-child .colourKey, .fe-section-breakdowns.section_2_2 div:last-child .colourKey, .fe-section-breakdowns.section_2_3 div:last-child .colourKey, 
+.fe-section-breakdowns.section_3_1 .colourKey {
+    margin: 0 auto;
+    text-align: center;
+    width: 16px !important;
+	height:16px;
+}
+.breakdownsChart.assetBreakdowns.jqplot-target, .breakdownsChart.areaBreakdowns.jqplot-target {
+    float: left !important;
+}
+.fe-tab-container-Breakdowns .fe-section-horizontal.section_4_1 {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc !important;
+    margin-top: 15px;
+    padding-top: 10px !important;
+    width: 99% !important;
+}
+.fe-tab-container-Breakdowns .fe-section-accordion-header.fe-section-vertical.section_1_2 {
+    float: right;
+    margin-top: 10px;
+    width: 15% !important;
+}
+.breakdownsChart.assetBreakdowns, .breakdownsChart.areaBreakdowns, .breakdownsChart.sectorBreakdowns
+{
+	min-height: 190px !important;
+}
+.fe-section-breakdowns.section_2_1 .breakdownsChart.assetBreakdowns .highcharts-container,.fe-section-breakdowns.section_2_2 .breakdownsChart.areaBreakdowns .highcharts-container, .fe-section-breakdowns.section_3_1 .breakdownsChart.sectorBreakdowns .highcharts-container  {
+    position: relative;
+    top: 0 !important;
+}
+.ui-corner-all
+{
+	behavior:none !important;
+}
+.fe-footer-container{
+	font-size: 15px;
+	margin-top: 10px;
+}
+/* ============== Dialog box =========================== */ 
+.ui-widget-overlay{
+	background: #222;
+	opacity: 0.30;
+}
+.fe-ui-dialog, .ui-dialog{
+    background: #fff;
+    padding: 0;	
+    overflow: visible;
+	border: 1px solid #d4d8db !important;
+    box-shadow: 0 27px 24px 0 rgba(0,0,0,0.2),0 40px 77px 0 rgba(0,0,0,0.22);
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;	
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	-o-transform: translate(0, 0);
+	transform: translate(0, 0);
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	-moz-transition: -moz-transform 0.3s ease-out;
+	-o-transition: -o-transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+}
+.ui-dialog .ui-dialog-buttonpane{
+	border-radius:0 0 6px 6px;
+	-webkit-border-radius:0 0 6px 6px;
+	-moz-border-radius:0 0 6px 6px;	
+	border: 0;
+}
+.ui-dialog .ui-dialog-buttonpane button{ 
+	margin: 2px;
+}
+.ui-dialog-titlebar {
+    background: none transparent;
+    border-radius: 6px 6px 0 0;
+    color: #000 !important;
+    font: 25px "AllianceNo2-Regular", sans-serif;
+    margin: 0;
+	padding: 15px !important;
+	border: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close span{
+	display:none;
+}
+.ui-button.ui-dialog-titlebar-close {
+    background: url("fe_img/close-dialog-icon.png") no-repeat scroll 1px center !important;	
+	transition:all 0.2s ease-in-out;
+    border: 0 none;
+    display: block !important;
+    height: 20px !important;
+    margin: 0;
+    padding: 0 !important;
+    right: 10px !important;
+    top: 22px !important;
+    width: 15px !important; 
+	position:absolute;
+	box-shadow: none
+}
+.ui-dialog-titlebar-close:hover{
+	border:0 !important;
+}
+.ui-dialog-content.ui-widget-content /* content container */{
+    padding: 15px;
+	height:auto !important;
+}
+.ui-dialog .ui-dialog-buttonpane button{
+	font:normal 15px "AllianceNo2-Regular", sans-serif;
+	color: #fff;
+	text-decoration: none;	
+	width: auto !important;	
+	height:auto;
+	margin: 0 4px 0 0;
+	background: var(--theme-green) none;
+	text-transform: uppercase;
+	border:0;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	cursor:pointer;
+	box-shadow: 0 2px 2px 0 rgba(0,118,138,0.14),0 3px 1px -2px rgba(0,118,138,0.2),0 1px 5px 0 rgba(0,118,138,0.12);
+}
+.ui-dialog .ui-dialog-buttonpane button:hover
+{
+	text-decoration: none;	
+	background: #19c289 none;
+	box-shadow: 0 14px 26px -12px rgba(0,118,138,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,118,138,0.2);
+}
+/* End Break Down */
+@media(min-width:901px){
+	.page {
+		width: 100%;
+		max-width:100%;
+	}
+	.page > *{
+		width: 900px;
+		max-width:900px;
+		margin-left: auto !important;
+		margin-right:auto !important;
+	}
+}
+@media screen and (min-width: 0px) and (max-width: 920px)
+{ 
+	.page {
+		width: 100% !important;
+		/* background-position: left 25px; */
+	}
+	.fe-responsivefactsheet-title
+	{
+		width: 96% !important;
+		margin: 0 0 5px 0;
+		position:relative;
+	}
+	.fe-tabs-tab-ResponsiveFactsheet.fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all { 
+		width: 100% !important; 
+	}
+	.ui-scroll-tabs-header{
+		width: inherit !important
+	}
+	.minFsData	{
+		border:0 !important;
+		margin: 8px 0 !important;
+    	padding: 0 !important;
+    	width: 100% !important;
+		border-radius: 0;
+	    box-shadow: none;
+	}		
+	/* Overview*/
+	.fe-tab-container-Overview .fe-section-vertical.section_1_1_1
+	{
+		margin-top:0 !important;
+	}
+	.fe-tab-container-Overview .fe-section-composite-container.section_1_1
+	{
+		width:100% !important;
+	}
+	.fe-tab-container-Overview .fe-section-vertical-wrap .fe-section-vertical-name
+	{
+    	margin: 0 0 1px;
+		min-height: 18px;
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_1_2
+	{
+		border:0;
+		position:relative !important;
+		padding:0 !important;
+		width:100% !important;
+		box-shadow:none !important;
+		top:0;
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_2_1
+	{
+		margin-top:5px;
+		width:100% !important;
+	}
+	.fe-tab-container-Overview .section_2_1 .fe-section-horizontal-wrap, .fe-tab-container-Overview .section_2_2 .fe-section-horizontal-wrap, .fe-tab-container-PerformanceRisk .section_6_1 .fe-section-horizontal-wrap
+	{
+		width:100% !important;
+	}	
+	.fe-tab-container-Overview .fe-section-composite-container.section_2_2
+	{
+		margin-top:10px;
+		width:100% !important;
+	}
+	.fe-tab-container-Overview .section_2_2 .fe-section-horizontal-name
+	{
+		border-right: 1px solid #fff;
+	}
+	.fe-tab-container-Overview .section_2_2 .fe-section-horizontal-val {
+		border-left: 0 none;
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_2_2_1, .fe-tab-container-Overview .fe-section-horizontal.section_2_2_2
+	{
+		width:100% !important;
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_2_2_2
+	{
+		border-top:1px solid #B0AEAE;
+	}
+	.fe-tab-container-Overview .fe-section-recursivecontainer
+	{
+		padding-bottom: 10px;
+	}
+	.fe-tab-container-Overview .fe-section-header.title.section_3_2
+	{
+		border:0;
+		border-bottom:1px solid #B0AEAE;
+		padding:0;
+		top:0;
+		padding-bottom:10px;
+		position:relative;
+		width:100% !important;
+		background:transparent;
+		border-radius:0;
+		box-shadow:none;
+		float:left;
+	}
+	.fe-footer-container
+	{
+		margin:0 8px;		
+	}
+	.ui-resizable.ui-draggable.ui-corner-all.ui-widget-content.ui-widget.ui-dialog
+	{
+		left:0 !important;
+		right:0 !important;
+		margin:0 auto !important;
+		width:90% !important;
+	}
+	/* Performance */
+	.fe-tab-container-PerformanceRisk .fe-section-chart.section_1_1
+	{
+		margin-top:0 !important;
+	}	
+	.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1
+	{
+		border: 0 none;		
+		margin:10px 0 0;
+		padding: 0 !important;
+		position: relative !important;
+		width: 100% !important;
+		box-shadow:none;
+		border-radius:0;
+		top:0;
+	}
+	.fe-tab-container-PerformanceRisk .fe-section-horizontal.section_6_1
+	{
+		position:relative !important;
+		width:100% !important; 
+		margin-top:10px !important;
+		border:0;
+		top:0;
+		padding:0 !important;
+		box-shadow:none;
+		border-radius:0;
+	}	
+	.fe-tab-container-PerformanceRisk .fe-section-header.title.section_7_1
+	{
+		position:relative !important;
+		width:100% !important;
+		margin-top:10px !important;
+		border:0 !important;
+		padding:0;
+		top:0;
+		box-shadow:none;
+		border-radius:0;
+	}		
+	.fe-tab-container-PerformanceRisk .fe-section-text.section_8_1
+	{
+		border:0;
+		border-bottom:1px solid #B0AEAE;
+		margin-top:10px;
+		padding:0;
+		top:0;
+		padding-bottom:10px;
+		position:relative;
+		width:100% !important;
+		box-shadow:none;
+		border-radius:0;
+	}
+	/* Prices */
+	.fe-tab-container-Priceanddividends .minFsData
+	{
+		min-height:auto !important;
+	}
+	.fe-tab-container-Priceanddividends .fe-section-downloadprice.section_1_1
+	{
+		margin-top:0px;
+		width:100% !important;
+	}
+	.fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1, .fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_2
+	{
+		border: 0 none;
+		padding: 0 !important;
+		position: relative !important;
+		width: 100% !important;
+		margin: 10px 0 0;
+		box-shadow:none;
+		border-radius:0;
+		top:0;
+	}
+	.fe-tab-container-Priceanddividends .fe-section-text.section_3_3
+	{
+		border:0;
+		border-bottom:1px solid #B0AEAE;
+		margin-top:10px;
+		padding:0;
+		top:0;
+		padding-bottom:10px;
+		position:relative;
+		width:100% !important;
+		box-shadow:none;
+		border-radius:0;
+	}
+	.Email {
+    font-size: 14px !important;;
+}
+	.fe-tab-container-Priceanddividends .fe-section-downloaddividend.section_2_1
+	{
+		width:100% !important;
+	}
+	/* Breakdown */
+	.fe-tab-container-Breakdown .fe-section-holdings.section_1_1
+	{
+		margin-top:0;
+	}
+	.fe-tab-container-Breakdown .fe-section-horizontal.section_5_1
+	{
+		border: 0 none;
+		padding: 0 !important;
+		margin:0;
+		top:0;
+		position: relative !important;
+		width: 100% !important;
+		margin-top:10px;
+		box-shadow:none;
+		border-radius:0;
+	}
+	.fe-tab-container-Breakdown .fe-section-text.section_6_1
+	{
+		border:0;
+		border-bottom:1px solid #B0AEAE;
+		border-top:0;
+		padding:0;
+		top:0;
+		padding-bottom:10px;
+		position:relative;
+		width:100% !important;
+		margin-top:10px;
+		box-shadow:none;
+		border-radius:0;
+	}
+	.breakdownsChart.assetBreakdowns, .breakdownsChart.areaBreakdowns, .breakdownsChart.sectorBreakdowns
+	{
+		width:100% !important;
+	}
+	.fe-section-breakdowns.section_2_1 div:last-child, .fe-section-breakdowns.section_3_1 div:last-child, .fe-section-breakdowns.section_4_1 div:last-child
+	{
+		width:100% !important;
+	}
+	.KiiRiskImage.fe-section-header-val.pdfableColumn img {
+		margin: 0px;
+		padding: 0px;
+		width: auto;
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-val, .fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-val, .fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1 .fe-section-horizontal-wrap .fe-section-horizontal-val, .fe-tab-container-Breakdown .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-val{
+		 width: auto !important;		
+	}
+	.fe-tab-container-Overview .fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-name, .fe-tab-container-PerformanceRisk .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-name, .fe-tab-container-Priceanddividends .fe-section-horizontal.section_3_1 .fe-section-horizontal-wrap .fe-section-horizontal-name, .fe-tab-container-Breakdown .fe-section-horizontal.section_5_1 .fe-section-horizontal-wrap .fe-section-horizontal-name{
+		width: 90% !important;
+	}
+}
+@media screen and (min-width: 0px) and (max-width: 480px)
+{
+	.fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-start-datepicker, .fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-end-datepicker
+	{
+		margin-right:0;
+		width:100% !important;
+	}
+	.fe-downloadSection-datePicker
+	{
+		width:90% !important;
+	}
+	.fe-tab-container-Overview .fe-section-vertical-wrap .fe-section-vertical-name{
+		min-height: 32px;
+	}
+	
+}
+@media screen and (min-width: 0px) and (max-width: 579px)
+{	
+	.page{
+		/* background-size: 100% auto; */
+	}
+	.fe-tab-container-Overview .fe-section-vertical-wrap .fe-section-vertical-val
+	{
+		font-size:13px !important;
+	}
+	.KiiRiskImage.fe-section-header-val.pdfableColumn img
+	{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	.perfomanceAndRiskSectionHeight .fe-section-vertical-val, .fe-tab-container-PerformanceRisk .section_2_1 .fe-section-vertical-name, .fe-tab-container-PerformanceRisk .section_4_1 .fe-section-vertical-name {
+		font-size: 12px;
+	}
+	.fe-tab-container-Priceanddividends .fe-button.fe-downloadSection-button
+	{
+	 margin-bottom: 5px;
+	}
+	.fe-tab-container-Priceanddividends .fe-section-download-data
+	{
+		min-height:auto !important;
+	}
+	.fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-start-datepicker, .fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-end-datepicker
+	{
+		margin-right:45px;
+	}
+	.fe-tab-container-Priceanddividends div.fe-section-download-data-rowheader .fe-section-vertical-name
+	{
+		font-size: 12px;
+    	line-height: 15px;
+	}
+	.fe-tab-container-Priceanddividends .fe-section-download-data .fe-section-vertical-val
+	{
+		font-size:12px;
+	}
+	.fe-tab-container-Breakdown .fe-section-holdings.section_1_1{
+		width: 100% !important
+	}
+	.fe-tab-container-Breakdown .fe-section-holdings .showhiderow.fe-section-nesteddata-row{
+		margin-left: 0 !important;
+		width: 100% !important;
+	}
+	.HoldingWeight, .ItemWeight {
+		text-align: right !important;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 920px)
+{
+	.fe-tab-container-Priceanddividends .fe-section-downloadPeriodOption
+	{
+		float: left;
+	 
+	}
+	.fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-start-datepicker, .fe-tab-container-Priceanddividends .fe-downloadsection-options-val.fe-date-input.fe-end-datepicker
+	{
+		margin: 0 44px 0 0;
+		width: 51% !important;
+	}
+	.fe-downloadSection-datePicker
+	{
+		margin-right: 25px;
+		width: 85% !important;
+	} 
+}
+.fe-helptext-switch {
+    display: none;
+}
+
+  /* wealthtime */
