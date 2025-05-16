@@ -1,0 +1,4769 @@
+
+/*!---- custom-----*/
+$j(document).on("keydown",".modal-wrapper input",function(e){
+	if($j(".combo__list").is(":visible")){
+	  if(e.keyCode === 40){
+		if(!$j(this).parent().find(".combo__list li.show").hasClass("focused")){
+		  console.log("down pressed");
+		  $j(this).parent().find(".combo__list li.show").first().addClass("focused").children("a").focus();
+		}
+	  }   
+	}  
+  });
+  
+  
+  $j(document).on("keydown",".combo__list li",function(e){
+	if($j(".combo__list").is(":visible")){
+	  if(e.keyCode === 40){
+		$j(".combo__list li").removeClass("focused");
+		$j(this).addClass("focused").next().children("a").focus();
+	  }
+	}
+  });
+  
+  /*-----------*/
+  
+  $j(document).on("keyup",".modal-wrapper input",function(e){
+	if($j(".combo__list").is(":visible")){
+	  if(e.keyCode === 38){
+		if(!$j(this).parent().find(".combo__list li.show").hasClass("focused")){
+		  console.log("down pressed");
+		  $j(this).parent().find(".combo__list li.show").first().addClass("focused").children("a").focus();
+		}
+	  }    
+	}  
+	
+  });
+  
+  
+  $j(document).on("keyup",".combo__list li",function(e){
+	if($j(".combo__list").is(":visible")){
+	  if(e.keyCode === 38){
+		$j(".combo__list li").removeClass("focused");
+		$j(this).addClass("focused").prev().children("a").focus();
+	  }
+	}  
+	
+  });
+  
+  /*-------*/
+  $j(document).on("keyup",function(e) {
+	
+	if (e.which == 27) {
+	  if($j(".combo__list").is(":visible")){  
+		$j(".modal-wrapper .combo__list").fadeOut(300);
+	  }
+	  else if($j(".modal").is(":visible")) {
+		$j(".modal").fadeOut(300);
+		$j(".combo__list li").removeClass("focused");
+	  } else {
+		return;
+	  }    
+	}  
+  });
+  
+  /*- Trigger next prev page
+  ---------------------------------*/
+  
+  $j(document).on("click",".tab-prev-link a",function(e){
+	  $j(".tab-menu ul li a.active-a").parent().prev().children().trigger("click");
+	  e.preventDefault();
+  });
+  
+  $j(document).on("click",".tab-next-link a",function(e){
+	  $j(".tab-menu ul li a.active-a").parent().next().children().trigger("click");
+	  e.preventDefault();
+  });
+  
+  
+  $j(document).ready(function() {
+  
+    findAndReplaceDOMText(document.querySelector("body"), {
+ 		  find: /\?/g,
+ 		  wrap: 'span' ,
+		  wrapClass: 'fnClass'
+ 	  });  
+  
+  
+  $j(document).on("click",'.tab-a',function(){        
+	   findAndReplaceDOMText(document.querySelector("body"), {
+		  find: /\?/g,
+		  wrap: 'span' ,
+		  wrapClass: 'fnClass'
+	  });  
+   });
+  /*
+  if(!$j('body').hasClass('ip3-editxxx')){
+	  $j('h1,h2,h3,h4,p,table,label,li.level2,li.level3, div.breadcrumb-wrapper, div.animation-a-underline ul li, a.button, section.sitemap-wrapper, div.news-title').each(function(){
+		$j(this).wrapInTag({
+		  tag: 'em',
+		  words: ['\\?']
+		});
+	  });
+	  
+	}*/
+  
+  });
+  $j.fn.wrapInTag = function(opts) {
+	var fn= 'fnClass';
+	var tag = opts.tag || 'strong',
+		words = opts.words || [],
+		regex = RegExp(words.join('|'), 'gi'),
+		replacement = '<'+ tag +' class= '+fn+'>$&</'+ tag +'>';
+  
+	return this.html(function() {
+	  return $j(this).html().replace(regex, replacement);
+	});
+  };
+/*!---- main-----*/
+let bool = false;
+var menuAccessFlag = 0;
+var clickFlag = 0;
+let dcYesWrapper, dcNoWrapper, prevBtn, dcMainWrapper, dcWrapper;
+const getClass = (selector) => {
+  return document.getElementsByClassName(selector)[0];
+};
+const manageBtns = () => {
+  if (
+    $j(".col-sm-12.content-wrapper > .button-wrapper.d-inline")
+      .next("div.button-wrapper")
+      .hasClass("d-inline")
+  ) {
+    var btnModule = $j(".col-sm-12.content-wrapper").children(
+      ".button-wrapper.d-inline"
+    );
+    for (var i = 0, len = btnModule.length; i < len; i += 2) {
+      btnModule
+        .slice(i, i + 2)
+        .wrapAll(
+          `<section class="container ${
+            document.getElementsByClassName("death-claim").length ? "pt-0" : ""
+          }"></section>`
+        );
+    }
+  } else if (
+    $j(".col-sm-12.content-wrapper > .button-wrapper").next(
+      "div.button-wrapper"
+    ).length > 0
+  ) {
+    var btnModule = $j(".col-sm-12.content-wrapper").children(
+      ".button-wrapper"
+    );
+    for (var i = 0, len = btnModule.length; i < len; i += 2) {
+      btnModule
+        .slice(i, i + 2)
+        .wrapAll('<section class="container"></section>');
+    }
+  } else {
+    var btnModule = $j(".col-sm-12.content-wrapper").children(
+      ".button-wrapper"
+    );
+    for (var i = 0, len = btnModule.length; i < len; i++) {
+      btnModule.wrapAll('<section class="container"></section>');
+    }
+  }
+};
+$j(document).ready(function () {
+// Call the function to activate it
+//handleInputFocus();
+
+var policyLinks = document.querySelectorAll('.policyLink');
+policyLinks.forEach(function(policyLink) {
+  policyLink.addEventListener('click', function(e) {
+ 	 e.preventDefault()
+    setTimeout(handlePolicyPopup, 500); 
+  });
+});
+var radPopups = document.querySelectorAll('.rad-lightbox');
+radPopups.forEach(function(radPopupLink) {
+  radPopupLink.addEventListener('click', function() {
+    setTimeout(handlePolicyPopup, 500); 
+  });
+});
+
+var activeDCChecker = document.querySelector(".dc-no-wrapper");
+//console.log(activeDCChecker);
+if(activeDCChecker){
+//console.log("found dc-no-wrapper");
+var staticModal = activeDCChecker.querySelector(".field__input");
+if (staticModal){
+//console.log("field input found");
+
+setTimeout(function() {
+//console.log('called');
+  staticModal.addEventListener('click', handleOnPagePolicyPopup);
+}, 500);
+}
+}
+
+
+  moveHeaderItems();
+
+  /*--- error page redirection and counter starts --------*/
+  if (
+    $j("body").attr("id") == "ip3-error-page" &&
+    !$j("body").hasClass("ip3-edit")
+  ) {
+    var counter_value = parseInt($j(".counter").html());
+    var cnt = setInterval(function () {
+      counter_value--;
+      if (counter_value < 10) {
+        $j(".counter").html("0" + counter_value);
+      } else {
+        $j(".counter").html(counter_value);
+      }
+      if (counter_value <= 0) {
+        window.location.href =
+          window.location.protocol + "//" + window.location.hostname;
+        clearInterval(cnt);
+      }
+    }, 1000);
+  }
+
+  /*--- error page redirection and counter ends --------*/
+
+  /* --- Deep Linking for accordion in page links Starts --- */
+  $j("section.accordian-wrapper").each(function () {
+    $j(this)
+      .find("a[href*='" + $j(this).attr("id") + "']")
+      .each(function () {
+        let attachFunction = $j(this)
+          .attr("href")
+          .substring(
+            $j(this).attr("href").lastIndexOf("/") + 1,
+            $j(this).attr("href").length
+          );
+        $j(this).attr("href", "javascript:void(0)");
+        $j(this).attr("onclick", "linkedSnapdown('" + attachFunction + "')");
+      });
+  });
+
+  /*----mega menu on tab key focus starts----*/
+
+  //$j("header li.level1.haschildren a").focus(function(){
+  // $j(this).parent().find("ul.ulLevel1").css({"opacity": "0", "visibility": "invisible"});
+  //$j(this).parent().find("ul.ulLevel1").css({"opacity": "1", "visibility": "visible"});
+
+  // $j(targetPopUpLinks).on('keydown', function (event) {
+  // if (event.key == "Escape") {
+
+  // });
+  //});
+
+  // MS: START
+  $j(document).keydown(function (e) {
+    //console.log(e.key);
+    if (e.key === "Escape") {
+      // escape key maps to keycode `27`
+      e.stopPropagation();
+      e.preventDefault();
+      //console.log("Key Pressed");
+      $j("body").removeClass("show-focus-outlines");
+      //$j("ul.ulLevel1 a.active-menu-element").css({"opacity": "0", "visibility": "hidden"});
+      //$j("body").addClass("tabbing-removed");
+    } else if (e.keyCode === 9) {
+      //on tab key pressed
+      $j("body").addClass("show-focus-outlines");
+      //$j("body").removeClass("tabbing-removed");
+    } else {
+      //$j("body").removeClass("show-focus-outlines");
+      //$j("body").addClass("tabbing-removed");
+    }
+  });
+  
+
+ 
+
+  // MS: End
+
+  //$j(document).keyup(function(e) {
+  //  if( e.which == 9 ) {
+  //     console.log( "tabb pressed" );
+  //  $j(body).addClass("tabbed");
+  //   }
+  //});
+
+  //alert("in");
+  //});
+
+  //$j("header li.haschildren > a.active-menu-element")(function(){
+  //	console.log("1234", this)
+  //if($j(this).is(":focus")){
+  //	console.log('link focused');
+  //}
+  //});
+
+  /*----mega menu on tab key focus ends----*/
+
+  /* --- Deep Linking for accordion in page links Ends --- */
+  /*-------Wrap tables except inv-responsive tables with horizontal scrollable wrapper Starts--*/
+  $j(
+    '.content-container table:not(".inv-responsive, .rad-responsive, .searchresultpage  table")'
+  ).each(function () {
+    if ($j(this).parents("div.scroll-table-container").length < 1) {
+      $j(this).wrap('<div class="scroll-table-container"></div>');
+    }
+  });
+  /*-------Wrap tables except inv-responsive tables with horizontal scrollable wrapper Ends--*/
+
+  /*-------Wrap tables except inv-responsive tables with horizontal scrollable wrapper Starts--*/
+  $j('#contentwrapper table:not(".inv-responsive")').each(function () {
+    if ($j(this).parents("div.scroll-table-container").length < 1) {
+      $j(this).wrap('<div class="scroll-table-container"></div>');
+    }
+  });
+  /*--------- <END> ------*/
+
+  if ($j(".newstab ul li").length > 1) {
+    $j(".selectedTab").click(function () {
+      if (!$j(".newstab").is(":animated")) {
+        $j(".newstab").slideToggle();
+        $j(this).toggleClass("open");
+      }
+    });
+  } else {
+    $j("div.drop-down").addClass("single-item");
+  }
+
+  $j(document).on("click", ".userScrolled .b2t-link", function () {
+    $j("html,body").animate({ scrollTop: 0 });
+  });
+  $j(document).on(
+    "click",
+    ".glossary-wrapper button.glossary-text,.glossary-wrapper .glossary-link",
+    function () {
+      $j(".panel-wrapper").removeClass("active-popup");
+      $j(this).next(".panel-wrapper").addClass("active-popup");
+
+      if ($j(this).hasClass("btnModal")) {
+        $j(".banner-wrapper modal").removeClass("active-popup");
+        $j(this)
+          .parents(".banner-wrapper")
+          .find("modal")
+          .addClass("active-popup");
+      }
+      if (
+        $j(this).hasClass("glossary-link") &&
+        $j(".active-popup").length > 0
+      ) {
+        $j("html").css("overflow", "hidden");
+        $j(".btnCloseGlossary button").focus();
+      }
+    }
+  );
+
+  /* --- Modal Popup Starts --- */
+  $j(document).on(
+    "click",
+    ".message-modal-wrapper .btn-modal,.btnModal",
+    function () {
+      $j(this).next(".modal").addClass("active-modal").fadeIn(200);
+      if ($j(this).hasClass("btnModal")) {
+        $j(this)
+          .parents(".banner-wrapper")
+          .find(".modal")
+          .addClass("active-modal")
+          .fadeIn(200);
+      }
+    }
+  );
+  $j(document).on(
+    "click",
+    ".modal .close,.message-modal-wrapper .close,.banner-wrapper .modal .close, .glossary-wrapper .close-popup, .modalExternalLink .popupExternalLink",
+    function () {
+      $j(this)
+        .parents(".message-modal-wrapper")
+        .find(".modal")
+        .removeClass("active-modal")
+        .fadeOut(200);
+      $j(this)
+        .parents(".banner-wrapper")
+        .find(".modal")
+        .removeClass("active-modal")
+        .fadeOut(200);
+      $j(this)
+        .parents(".glossary-wrapper")
+        .find(".active-popup")
+        .removeClass("active-popup");
+      $j(".modal").removeClass("active-modal").fadeOut(200);
+      if ($j(this).parents(".btnCloseGlossary").length > 0) {
+        $j("html").attr("style", "");
+      }
+    }
+  );
+  /* --- Modal Popup Ends --- */
+
+  if ($j(".inpage__link").length > 1) {
+    let modulesList = [],
+      finalList = [];
+    $j(".content-wrapper > *").each((i, e) => {
+      modulesList.push($j(e).attr("id"));
+    });
+
+    modulesList.forEach((value, index) => {
+      $j(".inpage__links > li:not(.inpage__title)").each((i, e) => {
+        if (value == $j(e).data("modules")) {
+          finalList.push($j(e));
+        }
+      });
+    });
+
+    $j(".inpage__links > li:not(.inpage__title)").remove();
+    $j(".inpage__links").append(finalList);
+    $j(".inpage__link.inpage__link--active").removeClass(
+      "inpage__link--active"
+    );
+    $j(".inpage__links .inpage__link").eq(0).addClass("inpage__link--active");
+
+    $j(document).on("click", ".inpage__link", (e, v) => {
+      $j(".inpage__link").removeClass("inpage__link--active");
+      $j(e.currentTarget).addClass("inpage__link--active");
+    });
+  }
+
+  if (!$j("body").hasClass("ip3-edit")) {
+    manageBtns();
+  }
+  /* --- Policy: Changing input value by keyup functionality --- */
+  $j(document).on("keyup", "#cmbo3,#cmbo2", function () {
+    let curValue = $j(this).val().toLowerCase();
+    $j(this)
+      .parent()
+      .children(".combo__list")
+      .children("li")
+      .each(function () {
+        if (
+          $j(this).children("a").text().toLowerCase().indexOf(curValue) == 0 &&
+          (curValue != "" || curValue != "")
+        ) {
+          $j(this).removeClass("invisible").addClass("show");
+          if (!$j(this).parent(".combo__list").is(":visible")) {
+            $j(this).parent(".combo__list").fadeIn();
+          }  
+          if (
+            !$j(this)
+              .parents(".input-field")
+              .find(".icon-symbol")
+              .children(".search-close")
+              .is(":visible")
+          ) {
+            $j(this)
+              .parents(".input-field")
+              .find(".icon-symbol")
+              .children("img:not(.search-close)")
+              .hide();
+            $j(this)
+              .parents(".input-field")
+              .find(".icon-symbol")
+              .children(".search-close")
+              .show();
+          }
+          if ($j(this).parent(".combo__list").attr("style").indexOf("px")) {
+            $j(this).parent(".combo__list").css("width", "100%");
+          }
+        } else {
+          $j(this).addClass("invisible").removeClass("show");
+        }
+        if (
+          $j(this).children("a").text().toLowerCase().trim() == curValue &&
+          $j(this)
+            .parents(".modal-wrapper")
+            .find(".btnPolicyCheck")
+            .hasClass("disableTag")
+        ) {
+          $j(this)
+            .parents(".modal-wrapper")
+            .find(".btnPolicyCheck");
+           // .removeClass("disableTag");
+          return false;
+        } else {
+          if (
+            !$j(this)
+              .parents(".modal-wrapper")
+              .find(".btnPolicyCheck")
+              .hasClass("disableTag")
+          ) {
+            $j(this)
+              .parents(".modal-wrapper")
+              .find(".btnPolicyCheck")
+              .addClass("disableTag");
+          }
+          if (
+            !$j(this)
+              .parents(".dc-no-wrapper")
+              .find(".btnPolicyCheck")
+              .hasClass("disableTag")
+          ) {
+            $j(this)
+              .parents(".dc-no-wrapper")
+              .find(".btnPolicyCheck")
+              .addClass("disableTag");
+          }
+        }
+      });
+    if (curValue == "" || curValue == "") {
+      $j(".combo__list li").removeClass("invisible");
+      $j(".combo__list li").removeClass("selected-insurance");
+      if ($j(this).next(".combo__list").is(":visible")) {
+        $j(this).next(".combo__list").fadeOut();
+      }
+      if (
+        !$j(this)
+          .parent()
+          .find(".icon-symbol")
+          .children("img:not(.search-close)")
+          .is(":visible")
+      ) {
+        $j(this).parent().find(".icon-symbol").children("img").hide();
+        $j(this)
+          .parent()
+          .find(".icon-symbol")
+          .children("img:not(.search-close)")
+          .show();
+      }
+    }
+  });
+  /* --- Policy: Changing input value by keyup functionality --- */
+
+  /* --- Policy: Clicking on policy list functionality --- */
+  $j(document).on(
+    "click",
+    ".combo__list > li.combo__list-option",
+    function (e) {
+      e.preventDefault();
+      if (
+        $j(this)
+          .parents(".model-filer")
+          .find(".policy-holder-type-wrapper.show").length > 0
+      ) {
+        $j(this)
+          .parents(".model-filer")
+          .find(".policy-holder-type-wrapper.show")
+          .find(".policy-holder-innerwrap li input")
+          .prop("checked", false);
+        $j(this)
+          .parents(".model-filer")
+          .find(".policy-holder-type-wrapper.show")
+          .removeClass("show")
+          .appendTo($j(this).parent().find(".selected-insurance"));
+      }
+      if (
+        $j(this).find(".policy-holder-innerwrap").children("li").length > 0 &&
+        ($j(e.target).parents(".policyModalPopup").length ||
+          $j(e.target).parents(".dc-no-wrapper").length)
+      ) {
+        //$j(this).children(".policy-holder-type-wrapper").insertBefore(".policyModalPopup .model-filer .btnPolicyCheck").addClass("show");
+        if ($j(e.target).parents(".dc-no-wrapper").length) {
+          $j(this)
+            .children(".policy-holder-type-wrapper")
+            .insertBefore(
+              $j(this).parents(".model-filer").find(".btnPolicyCheck").prev("p")
+            )
+            .addClass("show");
+        } else {
+          $j(this)
+            .children(".policy-holder-type-wrapper")
+            .insertBefore(
+              $j(this).parents(".model-filer").find(".btnPolicyCheck")
+            )
+            .addClass("show");
+        }
+      }
+      //$j(".combo__list li").removeClass("selected-insurance");
+      $j(this)
+        .parent(".combo__list")
+        .children("li")
+        .removeClass("selected-insurance");
+      $j(this).addClass("selected-insurance");
+      $j(this).parent().parent().children("input").val("");
+      $j(this)
+        .parent()
+        .parent()
+        .children("input")
+        .val($j(this).children("a").text());
+      //$j("#cmbo3").val("");
+      //$j("#cmbo3").val($j(this).children("a").text());
+
+      if (
+        $j(this).find("a span").text().trim() ==
+        $j(this).parent().parent().children("input").val().trim()
+      ) {
+        //if($j(".combo__list-option.selected-insurance a span").text().trim() == $j(this).parent().parent().children("input").val().trim()){
+        if (
+          $j(this)
+            .parents(".modal-wrapper")
+            .find(".btnPolicyCheck")
+            .hasClass("disableTag")
+        ) {
+          $j(this)
+            .parents(".modal-wrapper")
+            .find(".btnPolicyCheck")
+            .removeClass("disableTag");
+        }
+        if (
+          $j(this)
+            .parents(".dc-no-wrapper")
+            .find(".btnPolicyCheck")
+            .hasClass("disableTag")
+        ) {
+          $j(this)
+            .parents(".dc-no-wrapper")
+            .find(".btnPolicyCheck")
+            .removeClass("disableTag");
+        }
+        if (
+          !$j(this)
+            .parents(".field-wrapper")
+            .find(".icon-symbol")
+            .children(".search-close")
+            .is(":visible")
+        ) {
+          $j(this)
+            .parents(".field-wrapper")
+            .find(".icon-symbol")
+            .children("img")
+            .hide()
+            .parent()
+            .children(".search-close")
+            .show();
+        }
+      }
+    }
+  );
+  /* --- Policy: Clicking on policy list functionality --- */
+
+  /* --- Policy: Open droplist on input focus --- */
+  $j(document).on("focus", "#cmbo3,#cmbo2", function () {
+    //$j(this).parent().find(".combo__list").fadeIn();
+  });
+
+  $j(document).on("click", ".btn-list", function () {
+    $j(this)
+      .parent()
+      .find(".combo__list")
+      .fadeIn()
+      .children("li")
+      .removeClass("invisible");
+    manageListWidth($j(this));
+  });
+  /* --- Policy: Open droplist on input focus --- */
+
+  $j(document).on("click", function (e) {
+    if (
+      !$j(e.target).parent(".combo-wrapper").length > 0 &&
+      !$j(e.target).hasClass("icon-symbol") &&
+      ($j(e.target).parents(".policyModalPopup").length > 0 ||
+        $j(e.target).parents(".dc-no-wrapper").length > 0) &&
+      !$j(e.target).hasClass("btn-list")
+    ) {
+      $j(
+        ".policyModalPopup .combo__list,.dc-no-wrapper .combo__list"
+      ).fadeOut();
+
+      if ($j(".policyModalPopup .selected-insurance").length > 0) {
+        //$j("#cmbo3").val($j(".policyModalPopup .selected-insurance span").text().trim())
+      }
+    }
+    if (
+      $j(e.target).parents(".loginRegisterPopup").length > 0 &&
+      !$j(e.target).hasClass("icon-symbol") &&
+      !$j(e.target).parent(".input-field").length > 0 &&
+      !$j(e.target).hasClass("btn-list")
+    ) {
+      $j(".loginRegisterPopup .combo__list").fadeOut();
+      if ($j(".loginRegisterPopup .selected-insurance").length > 0) {
+        $j("#cmbo2").val(
+          $j(".loginRegisterPopup .selected-insurance span").text().trim()
+        );
+      }
+    }
+    if (
+      $j(e.target).is("a") &&
+      $j(e.target).parents(".combo__list").length > 0 &&
+      $j(e.target).attr("href").indexOf(":void(0)") > 0 &&
+      $j(".modal").is(":visible")
+    ) {
+      e.preventDefault();
+    }
+    if (
+      $j(".active_ddl").length > 0 &&
+      !$j(e.target).not(".ddl_title").parents(".dropdown-wrapper").length > 0
+    ) {
+      $j(".active_ddl .ddlSelectedValue").trigger("click");
+    }
+    if (
+      $j("#main-nav-check").prop("checked") == true &&
+      $j(window).width() < 992 &&
+      !$j(e.target).is(
+        'label[for="main-nav-check"],label[for="main-nav-check"] span,#main-nav-check'
+      ) &&
+      !$j(e.target).parents("nav").length > 0
+    ) {
+      $j(".mob-menu").trigger("click");
+    }
+    if (
+      !$j(e.target).hasClass("rad-popup") &&
+      $j(".rad-popup.open-tt").length > 0 &&
+      !$j(e.target).hasClass("rad-caption")
+    ) {
+      $j(".rad-popup")
+        .removeClass("open-tt")
+        .find(".close-tt")
+        .attr("tabindex", "-1");
+    }
+    if (
+      !$j(e.target).parents(".activeShare").length > 0 &&
+      !$j(e.target).hasClass("activeShare") &&
+      $j(".activeShare").length > 0 &&
+      !$j(e.target).parents(".share-news-item").length > 0 &&
+      !$j(e.target).hasClass("share-news-item") > 0
+    ) {
+      $j(".activeShare").prev().find(".share-news-item").trigger("click");
+    }
+    if (
+      $j(e.target).hasClass("panel-wrapper") &&
+      $j(".panel-wrapper.active-popup").length > 0
+    ) {
+      $j(".active-popup .close-popup").trigger("click");
+    }
+    if (
+     $j(e.target).parents(".policyModalPopup").length < 1 &&
+      !$j(e.target).hasClass("rad-lightbox") &&
+      !$j(e.target).hasClass("policyLink") &&
+      $j(e.target).parents(".policyLink").length < 1 &&
+      $j(".policyModalPopup").is(":visible")
+    ) {
+  //  $j(".policyModalPopup .close").trigger("click");
+    }
+
+    if (
+      $j(e.target).hasClass("modalExternalLink") &&
+      $j(".modalExternalLink.active-modal").length > 0
+    ) {
+      $j(".modal-wrapper .close").trigger("click");
+    }
+  });
+
+  /* --- Policy: Clear Selected Value on Input --- */
+  $j(document).on("click", ".icon-symbol", function () {
+    if (
+      !$j(this).children(".policySearch").is(":visible") &&
+      $j(this).children(".search-close").is(":visible")
+    ) {
+      $j(this).parents(".field-wrapper").find("input").val("");
+      $j(this)
+        .parents(".model-filer")
+        .find(".btnPolicyCheck")
+        .addClass("disableTag");
+      $j(this).children(".search-close").hide();
+      $j(this).children(".policySearch").show();
+    }
+    if ($j(this).parent().find(".combo__list").is(":visible")) {
+      $j(this).parent().find(".combo__list").fadeOut();
+    }
+  });
+  /* --- Policy: Clear Selected Value on Input --- */
+
+  /* --- Check Eligibility Starts ---*/
+  $j(document).on("click", ".btn-eligibility", function (e) {
+    var selectedInsurance = $j(".loginRegisterPopup .selected-insurance");
+    if (selectedInsurance.length > 0) {
+      $j(".lr-container > .row.p__rel").addClass("hideOnLeft hide");
+      if (
+        $j(
+          ".loginRegisterPopup .selected-insurance .policy-holder-innerwrap"
+        ).children().length > 0
+      ) {
+        var eligbleRadio = $j(
+          ".loginRegisterPopup .selected-insurance .policy-holder-type-wrapper"
+        ).clone();
+        eligbleRadio.children(".policyHolderHeadText").remove();
+        eligbleRadio
+          .prepend($j(".selectOptionPolicy"))
+          .prependTo(".lr-container")
+          .removeClass("hide")
+          .wrapAll("<div class='checkPolicyRadioWrapper'></div>");
+        $j(".lrinner .field-wrapper")
+          .siblings()
+          .clone()
+          .appendTo(".checkPolicyRadioWrapper");
+        $j(".checkPolicyRadioWrapper button")
+          .removeClass("btn-eligibility")
+          .addClass("disableTag btnCheckRadioPolicy");
+      } else if (selectedInsurance.data("eligible") == "eligible") {
+        $j(".eligble-content").clone().prependTo(".lr-container");
+      } else {
+        var eligibilityContent = $j(".not-eligble-content").clone();
+        if (
+          $j(".lr-container .selected-insurance").data("contact") != "" ||
+          $j(".lr-container .selected-insurance").data("overseas") != ""
+        ) {
+          eligibilityContent
+            .children(".no-contacts-eligibility")
+            .addClass("hide");
+          if (
+            $j(".lr-container .selected-insurance").data("customcontent") ==
+            true
+          ) {
+            eligibilityContent
+              .children(".with-contacts-eligibility")
+              .addClass("hide");
+            var customContent = $j(".lr-container .selected-insurance")
+              .find(".custom-policy-content")
+              .clone();
+            customContent
+              .removeClass("hide")
+              .insertAfter(eligibilityContent.find("h2"));
+          }
+
+          var localContact = $j(".lr-container .selected-insurance").data("contact");
+          var overSeasContact = $j(".lr-container .selected-insurance").data("overseas");
+
+          var contactForm =$j(".lr-container .selected-insurance").data("cform");
+          var contactFormLink =$j(".lr-container .selected-insurance").data("clink");
+
+          if (localContact != "") {
+            eligibilityContent.children(".localContact").removeClass("hide");
+          }
+          if (overSeasContact != "") {
+            eligibilityContent.children(".overseasContact").removeClass("hide");
+          }
+          if (contactForm != "") {
+            eligibilityContent.children(".localContactForm").removeClass("hide");
+          }
+          
+          eligibilityContent
+            .find(".localContact a")
+            .attr("href", "tel:" + localContact)
+            .children("strong")
+            .text(localContact);
+            
+          eligibilityContent
+            .find(".overseasContact a")
+            .attr("href", "tel:" + overSeasContact)
+            .text(overSeasContact);
+
+          eligibilityContent
+          .find(".localContactForm a")
+           .attr("href", contactFormLink)
+          
+
+        } else {
+          if (
+            $j(".lr-container .selected-insurance").data("customcontent") ==
+            true
+          ) {
+            eligibilityContent
+
+              .children(".no-contacts-eligibility")
+              .addClass("hide");
+            var customContent = $j(".lr-container .selected-insurance")
+              .find(".custom-policy-content")
+              .clone();
+            customContent
+              .removeClass("hide")
+              .insertAfter(eligibilityContent.find("h2"));
+          }
+          eligibilityContent
+            .children(".with-contacts-eligibility")
+            .addClass("hide");
+        }
+        eligibilityContent.prependTo(".lr-container");
+      }
+    }
+  });
+
+  $j(document).on("change", ".checkPolicyRadioWrapper input", function (e) {
+    if ($j(".checkPolicyRadioWrapper input.activeRadioPolicy").length > 0) {
+      $j(".checkPolicyRadioWrapper input.activeRadioPolicy").removeClass(
+        "activeRadioPolicy"
+      );
+    }
+    $j(this).addClass("activeRadioPolicy");
+    if ($j(".btnCheckRadioPolicy").hasClass("disableTag")) {
+      $j(".btnCheckRadioPolicy").removeClass("disableTag");
+    }
+  });
+
+  $j(document).on("click", ".btnCheckRadioPolicy", function (e) {
+  
+  
+    if (
+      $j(".checkPolicyRadioWrapper input.activeRadioPolicy")
+        .parent()
+        .data("checkeligible") == "eligible"
+    ) {
+      $j(".checkPolicyRadioWrapper").children().remove();
+      $j(".eligble-content")
+        .clone()
+        .prependTo(".lr-container .checkPolicyRadioWrapper");
+    } else {
+      $j(".checkPolicyRadioWrapper").children().remove();
+      var eligibilityContent = $j(".not-eligble-content").clone();
+      if (
+        $j(".lr-container .selected-insurance").data("contact") != "" ||
+        $j(".lr-container .selected-insurance").data("overseas") != ""
+      ) {
+        eligibilityContent
+          .children(".no-contacts-eligibility")
+          .addClass("hide");
+        if (
+          $j(".lr-container .selected-insurance").data("customcontent") == true
+        ) {
+          eligibilityContent
+            .children(".with-contacts-eligibility")
+            .addClass("hide");
+          var customContent = $j(".lr-container .selected-insurance")
+            .find(".custom-policy-content")
+            .clone();
+          customContent
+            .removeClass("hide")
+            .insertAfter(eligibilityContent.find("h2"));
+        }
+        var localContact = $j(".lr-container .selected-insurance").data(
+          "contact"
+        );
+        var overSeasContact = $j(".lr-container .selected-insurance").data(
+          "overseas"
+        );
+        if (localContact != "") {
+          eligibilityContent.children(".localContact").removeClass("hide");
+        }
+        if (overSeasContact != "") {
+          eligibilityContent.children(".overseasContact").removeClass("hide");
+        }
+        eligibilityContent
+          .find(".localContact a")
+          .attr("href", "tel:" + localContact)
+          .children("strong")
+          .text(localContact);
+        eligibilityContent
+          .find(".overseasContact a")
+          .attr("href", "tel:" + overSeasContact)
+          .text(overSeasContact);
+      } else {
+        eligibilityContent
+          .children(".with-contacts-eligibility")
+          .addClass("hide");
+        if (
+          $j(".lr-container .selected-insurance").data("customcontent") == true
+        ) {
+          eligibilityContent
+            .children(".no-contacts-eligibility")
+            .addClass("hide");
+          var customContent = $j(".lr-container .selected-insurance")
+            .find(".custom-policy-content")
+            .clone();
+          customContent
+            .removeClass("hide")
+            .insertAfter(eligibilityContent.find("h2"));
+        }
+      }
+      eligibilityContent.prependTo(".lr-container .checkPolicyRadioWrapper");
+    }
+  });
+  /* --- Check Eligibility Ends ---*/
+
+  $j(document).on("click", ".reset-filter .lnk-reset", function () {
+    $j(".dropdown-wrapper ul li").removeClass("active-li");
+    $j(".dropdown-wrapper ul li:first-child").addClass("active-li");
+    $j(".dropdown-wrapper").each(function () {
+      var inittext = $j(this).find("ul li:first-child").text().trim();
+      $j(this).find(".ddlSelectedValue").text(inittext);
+    });
+    $j(".news-filter-row input.field__input").val("");
+    if (!$j(this).hasClass("filter_executed")) {
+      $j(this).addClass("filter_executed");
+      filterNewsItem();
+    }
+  });
+
+  $j(document).on("click", ".news-filter-row .button", function () {
+    if ($j(".reset-filter .lnk-reset").hasClass("filter_executed")) {
+      $j(".reset-filter .lnk-reset").removeClass("filter_executed");
+    }
+    filterNewsItem();
+  });
+
+  /* --- Policy:Setting up cookie on Button Click --- */
+   if (document.getElementsByClassName("btnsaveInsurance").length > 0) {
+    document.getElementsByClassName("btnsaveInsurance")[0].onclick = function (
+      e
+    ) {
+
+        console.log("Button Clicked");
+
+      var selector = "";
+      let checkCompany;
+      let excUrl;
+      if ($j(".policy-holder-type-wrapper.show li input:checked").length > 0) {
+        selector = $j(
+          ".policy-holder-type-wrapper.show li input:checked"
+        ).parent();
+        checkCompany = $j(".policy-holder-type-wrapper.show li input:checked")
+          .parent()
+          .attr("data-centre");
+      } else {
+        selector = $j(".selected-insurance a");
+        checkCompany = $j(".selected-insurance").attr("data-centre");
+       // excUrl = $j(".selected-insurance a").attr("exception-url");
+      }
+      var checkPolicy,
+        addExactPageUrl = selector.data("url");
+      var anchorUrl =
+        $j(".clickedPolicyLink").attr("href") !== undefined
+          ? $j(".clickedPolicyLink").attr("href")
+          : "";
+      var checkPolicyChange = $j(e.target).parents(".changePolicyExecuted")
+        .length
+        ? window.location.pathname
+        : "";
+      if ($j(".clickedPolicyLink").hasClass("policyLink")) {
+        checkPolicy = $j(".clickedPolicyLink")
+          .data("policy")
+          .toString()
+          .toLowerCase();
+      }
+      if ($j(".clickedPolicyLink").hasClass("rad-lightbox")) {
+        checkPolicy = $j(".clickedPolicyLink").text().trim().toLowerCase();
+      }
+      if (
+        checkPolicy.indexOf("profits") > -1 ||
+        anchorUrl.indexOf("profits") > -1 ||
+        checkPolicyChange.indexOf("profits") > -1
+      ) {
+        addExactPageUrl += "/with-profits";
+      } else if (
+        checkPolicy.indexOf("unit") > -1 ||
+        anchorUrl.indexOf("unit") > -1 ||
+        checkPolicyChange.indexOf("unit") > -1
+      ) {
+        addExactPageUrl += "/unit-linked-fund-prices";
+      } else if (
+        checkPolicy.indexOf("personal") > -1 ||
+        checkPolicy.indexOf("personal") > -1 ||
+        anchorUrl.indexOf("personal") > -1 ||
+        checkPolicyChange.indexOf("personal") > -1
+      ) {
+        addExactPageUrl += "/change-of-personal-information";
+      } else if (
+        checkPolicy.indexOf("subject") > -1 ||
+        anchorUrl.indexOf("subject") > -1 ||
+        checkPolicyChange.indexOf("subject") > -1
+      ) {
+        addExactPageUrl += "/subject-access-request-form";
+      } else if (
+        checkPolicy.indexOf("guides") > -1 ||
+        anchorUrl.indexOf("guides") > -1 ||
+        checkPolicy.indexOf("how") > -1 ||
+        checkPolicy.indexOf("make a complain") > -1 ||
+        checkPolicyChange.indexOf("guides") > -1
+      ) {
+        addExactPageUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          addExactPageUrl
+            .substring(addExactPageUrl.lastIndexOf("/"))
+            .replace("/manage-my-policy-", "");
+      } else if (
+        checkPolicy.indexOf("complaint") > -1 ||
+        anchorUrl.indexOf("complaint") > -1 ||
+        checkPolicyChange.indexOf("complaint") > -1
+      ) {
+        addExactPageUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          addExactPageUrl
+            .substring(addExactPageUrl.lastIndexOf("/"))
+            .replace("/manage-my-policy-", "") +
+          "/make-a-complaint";
+      } else if (
+        checkPolicy.indexOf("request") > -1 ||
+        anchorUrl.indexOf("request") > -1 ||
+        checkPolicyChange.indexOf("request") > -1
+      ) {
+        addExactPageUrl += "/contact/retirement-pack-request-form";
+      } else if (
+        checkPolicy.indexOf("contact") > -1 ||
+        anchorUrl.indexOf("contact") > -1 ||
+        checkPolicyChange.indexOf("contact") > -1
+      ) {
+        addExactPageUrl += "/contact";
+      } else if (
+        window.location.pathname === "/about-phoenix-life/sustainability/sustainability-disclosure"
+      ) {
+        addExactPageUrl += "/contact/contact-form";
+      } else {
+        addExactPageUrl;
+      }
+      var date = new Date();
+      var dateToSet = new Date(date.setDate(date.getDate() + 30));
+      //document.cookie = "selectedInsurance=" + '{"name":"'+document.getElementById("cmbo3").value+'","url":"'+selector.data("url")+'"}'+ ";" + "expires=" + dateToSet + ";" + "path=/";
+     document.cookie = `selectedInsurance={"name":"${
+        document.getElementById("cmbo3").value
+      }","url":"${selector.data(
+        "url"
+      )}","company": "${checkCompany}"};expires=${dateToSet};path=/`;
+      $j(".policyModalPopup.modal .close").trigger("click");
+      $j.ajax({
+        url: addExactPageUrl,
+        success: function (result, status, xhr) {
+          location.href = addExactPageUrl;
+        },
+        error: function (xhr, status, error) {
+          location.href = selector.data("url");
+        },
+      });
+    };
+  }
+});
+/* --- Policy:Setting up cookie on Button Click --- */
+
+window.onscroll = function () {
+  backToTop();
+};
+
+/* --- Document Ready Starts--- */
+$j(document).ready(function () {
+resizeIframe();
+  changeYearSlide();
+  inPageLinks();
+  if (
+    $j(".hero-banner__inner").innerHeight() > 400 &&
+    $j(window).width() > 1100
+  ) {
+    $j(".hero-banner__inner").css("bottom", "80px");
+  }
+  if ($j(".rad-caption").length > 0) {
+    if ($j(".rad-caption").length == 1) {
+      $j(".rad-caption").prepend(
+        "<span class='close-tt' tabindex='-1'><img src='/~/media/Images/P/Phoenix-HWU-V3/icons/glossary-cross.svg' alt='close icon'></span>"
+      );
+    } else {
+      $j(".rad-caption").each(function () {
+        $j(this).prepend(
+          "<span class='close-tt' tabindex='-1'><img src='/~/media/Images/P/Phoenix-HWU-V3/icons/glossary-cross.svg' alt='close icon'></span>"
+        );
+      });
+    }
+  }
+  if ($j(".rad-popup").length) {
+    $j(".rad-popup").each(function () {
+      $j(this).replaceWith(
+        $j(
+          '<a href="javascript:;" class="rad-popup" aria-label="Read more on ' +
+            $j(this).contents()[0].textContent +
+            '">' +
+            $j(this).html() +
+            "</a>"
+        )
+      );
+    });
+  }
+
+  if ($j(".rad-link").length > 0) {
+    $j(".rad-link").each(function () {
+      var currentLink = $j(this).attr("href");
+      var findIndex = currentLink.split("/");
+      var accordionItem = currentLink.split("/").pop();
+      var accordionPageUrl = currentLink.split(
+        findIndex[findIndex.length - 3]
+      )[0];
+      accordionPageUrl =
+        "/" +
+        accordionPageUrl.substring(
+          accordionPageUrl.toString().lastIndexOf("/"),
+          1
+        ) +
+        "#" +
+        accordionItem;
+      $j(this).attr("href", accordionPageUrl);
+    });
+  }
+  if (window.location.hash != "" || window.location.hash != "") {
+    linkedSnapdown(window.location.hash.replace("#", ""));
+  }
+  if ($j(".loginRegister-page .combo__list").length < 1) {
+    var clonedItems = $j(".combo__list").clone(false);
+    clonedItems.find(".policy-holder-innerwrap").each(function () {
+      if ($j(this).children().length > 0) {
+        $j(this)
+          .find("input")
+          .each(function () {
+            var currId = $j(this).attr("id");
+            var gname = $j(this).attr("name");
+            $j(this)
+              .attr("name", gname + "1")
+              .attr("id", currId + "1");
+            $j(this)
+              .next("label")
+              .attr("for", currId + "1");
+          });
+      }
+    });
+    clonedItems.insertAfter($j(".loginRegister-page input"));
+  }
+  manageGlossary();
+});
+
+$j(document).on("click", ".rad-filter", function (e) {
+  e.preventDefault();
+  $j(".glossary-link").trigger("click");
+});
+$j(document).on("click", ".tab-a", function (){
+  $j(this)
+    .parents("section")
+    .find(".tab-holder")
+    .children(".tab")
+    .removeClass("tab-active");
+  $j(this)
+    .parents("section")
+    .find(".tab[data-id='" + $j(this).attr("data-id") + "']")
+    .addClass("tab-active");
+  $j(this).parents("section").find(".tab-a").removeClass("active-a");
+  $j(this).parent().find(".tab-a").addClass("active-a");
+  
+});
+
+$j(document).on("click", ".ddlSelectedValue", function (e) {
+  e.preventDefault();
+  if ($j(this).parent().hasClass("active_ddl")) {
+   //$j(this).parent().parent().toggleClass('.300');
+    $j(this).next("ul").slideUp(300).parent().removeClass("active_ddl");
+    $j(this).next("ul").slideUp(300).parent().removeClass("active_ddl");
+  } else {
+  
+    $j(this).next("ul").slideDown(300).parent().addClass("active_ddl");
+  }
+});
+
+$j(document).on("click", ".dropdown-wrapper ul li", function () {
+  var currentText = $j(this).text().trim();
+  $j(this)
+    .parents(".dropdown-wrapper")
+    .find(".ddlSelectedValue")
+    .text(currentText)
+    .trigger("click")
+    .parents(".dropdown-wrapper")
+    .find("li")
+    .removeClass("active-li");
+  $j(this).addClass("active-li");
+});
+
+$j(document).on(
+  "click",
+  ".tab-main-wrapper .tab-inner ul li a, .custom-tab-wrapper ul li a",
+  function (e) {
+    e.preventDefault();
+    var newUrl = $j(this).attr("href");
+   // console.log("start");
+    $j.ajax({
+      url: newUrl,
+      beforeSend: function () {
+        $j(".loader-overlay").show();
+      },
+      complete: function () {
+        $j(".loader-overlay").hide();
+      },
+      success: function (data) {
+        $j(".content-wrapper").empty();
+        history.pushState(null, null, newUrl);
+        document.title = $j(data).filter("title").text();
+        $j("article > .row.m-0").html($j(data).find(".row.m-0").html());
+        $j(".panel-wrapper").html($j(data).find(".panel-wrapper").html());
+        manageGlossary();
+        $j(".loader-overlay").hide();
+        changeYearSlide();
+        inPageLinks();
+        manageBtns();
+        
+        lastChildFocus();
+        clickedOnExtraTab();
+        resizeIframe();
+//<script src="https://content.jwplatform.com/players/afcpQBgM-GdWyXZd2.js"></script>
+
+//  var scriptTag = document.createElement('script');
+  //          scriptTag.src = 'https://content.jwplatform.com/players/afcpQBgM-GdWyXZd2.js';
+    //        $j('.video-card__video-container').append(scriptTag);
+        
+        if ($j(e.target).parents(".custom-tab-wrapper")) {
+          dcYesWrapper = getClass("dc-yes-wrapper");
+          dcNoWrapper = getClass("dc-no-wrapper");
+          prevBtn = getClass("btnBackToPrev");
+          dcMainWrapper = getClass("death-claim-wrapper");
+          dcWrapper = getClass("dc-main-wrapper");
+          deathClaim(
+            dcYesWrapper,
+            dcNoWrapper,
+            prevBtn,
+            dcMainWrapper,
+            dcWrapper
+          );
+        }
+
+        findAndReplaceDOMText(document.querySelector("body"), {
+          find: /\?/g,
+          wrap: "abbr",
+          wrapClass: "fnClass",
+        });
+
+        $j("html,body").animate(
+          {
+            scrollTop: $j("article > .row.m-0")
+              .find(".tab-main-wrapper")
+              .offset().top,
+          },
+          30
+        );
+        
+        
+       // console.log("END");
+       setTimeout(function(){
+         $j("a.tab-a.active-a").focus();
+         // console.log("END1");
+        //  $j(".tab-menu ul").trigger("hover");
+          //console.log("END2");
+        //  $j(".tab-menu ul").trigger("click");
+         // console.log("END3");
+        // $j(".tab-menu ul")[0].trigger("click");
+         
+
+        },1000);
+        
+      },
+       
+    });
+  }
+);
+
+$j(document).on("click", ".bod__container label", function (e) {
+  e.preventDefault();
+  $j(".bod_content_wrapper_inner").html("");
+  var dataIndex = $j(this).parents(".bod_item_wrapper").data("index");
+  var dataMobIndex = $j(this).parents(".bod_item_wrapper").data("mobindex");
+  var datasMobIndex = $j(this).parents(".bod_item_wrapper").data("smobindex");
+
+  if (
+    dataIndex != $j(".bod_content_wrapper.act-content-wrapper").data("index")
+  ) {
+    $j(".bod_content_wrapper.bod-desktop")
+      .slideUp(0)
+      .removeClass("act-content-wrapper");
+  }
+  if (
+    dataMobIndex !=
+    $j(".bod_content_wrapper.act-mcontent-wrapper").data("mobindex")
+  ) {
+    $j(".bod_content_wrapper.bod-mob")
+      .slideUp(0)
+      .removeClass("act-mcontent-wrapper");
+  }
+  if (
+    datasMobIndex !=
+    $j(".bod_content_wrapper.act-scontent-wrapper").data("smobindex")
+  ) {
+    $j(".bod_content_wrapper.bod-smob")
+      .slideUp(0)
+      .removeClass("act-scontent-wrapper");
+  }
+
+  if (!$j(this).parents(".bod_item_wrapper").hasClass("active-bod")) {
+    $j(".bod_item_wrapper").removeClass("active-bod");
+    $j(this).parents(".bod_item_wrapper").addClass("active-bod");
+    var currentContent = $j(this).next(".bod__content").html();
+    $j(this)
+      .parents(".bod_item_wrapper")
+      .siblings(".bod_content_wrapper[data-index='" + dataIndex + "']")
+      .addClass("act-content-wrapper")
+      .slideDown(300)
+      .find(".bod_content_wrapper_inner")
+      .html(currentContent);
+    $j(this)
+      .parents(".bod_item_wrapper")
+      .siblings(".bod_content_wrapper[data-mobindex='" + dataMobIndex + "']")
+      .addClass("act-mcontent-wrapper")
+      .slideDown(300)
+      .find(".bod_content_wrapper_inner")
+      .html(currentContent);
+    $j(this)
+      .parents(".bod_item_wrapper")
+      .siblings(".bod_content_wrapper[data-smobindex='" + datasMobIndex + "']")
+      .addClass("act-scontent-wrapper")
+      .slideDown(300)
+      .find(".bod_content_wrapper_inner")
+      .html(currentContent);
+    if ($j(window).width() > 767) {
+      $j("html,body").animate(
+        {
+          scrollTop: $j(
+            ".bod_content_wrapper[data-index='" + dataIndex + "']"
+          ).offset().top,
+        },
+        300
+      );
+    } else if ($j(window).width() > 575 && $j(window).width() < 768) {
+      $j("html,body").animate(
+        {
+          scrollTop: $j(
+            ".bod_content_wrapper[data-mobindex='" + dataMobIndex + "']"
+          ).offset().top,
+        },
+        300
+      );
+    } else {
+      $j("html,body").animate(
+        {
+          scrollTop: $j(
+            ".bod_content_wrapper[data-smobindex='" + datasMobIndex + "']"
+          ).offset().top,
+        },
+        300
+      );
+    }
+  } else {
+    $j(".bod_item_wrapper").removeClass("active-bod");
+    $j(".bod_content_wrapper").slideUp(300);
+  }
+});
+$j(document).on("click", ".bod_content_wrapper .icon-close", function (e) {
+  $j(".bod_item_wrapper.active-bod").find("label").trigger("click");
+});
+/*--- Mobile Menu Starts ---*/
+$j(document).on("click", ".mob-menu span,.mob-menu", function () {
+  setTimeout(function () {
+    if ($j("#main-nav-check").prop("checked") == true) {
+      $j("main").addClass("bk-menu-overlay");
+      $j("nav.navigation").addClass("active-mmenu");
+    } else {
+      $j("main").removeClass("bk-menu-overlay");
+       $j("nav.navigation").removeClass("active-mmenu");
+    }
+  }, 50);
+});
+
+$j(document).on("click", ".toggle-sub", function () {
+  if ($j(this).attr("for").indexOf("-level2") > 0) {
+    var currentHeight = $j(this).siblings("ul").children("li").length * 38 + 45;
+    $j("nav").animate({ height: currentHeight - 20 }, 200);
+    $j(this).siblings("ul").animate({ scrollTop: -65 });
+    $j(".ulLevel0,.ulLevel1").css("overflow-y", "hidden");
+  } else {
+    var currentHeight = $j(this).siblings("ul").children("li").outerHeight();
+    //console.log("In ",currentHeight);
+    $j("nav").animate({ height: currentHeight - 20 }, 200);
+    $j(".ulLevel0,.ulLevel1").css("overflow-y", "hidden");
+  }
+  $j("html,body").animate({ scrollTop: 0 }, 100);
+});
+$j(document).on("click", ".btnBack.toggle:not(.toggle-sub)", function () {
+  if ($j(this).attr("for").indexOf("-level1") > 0) {
+    /*$j(".ulLevel0").css("overflow","auto");*/
+    var ulHeight = $j("nav > ul").outerHeight();
+    $j("nav").animate({ height: ulHeight + 20 }, 200);
+  }
+  if ($j(this).attr("for").indexOf("-level2") > 0) {
+    $j(".ulLevel1").css("overflow", "auto");
+    var ulHeight = $j(this).parents(".ulLevel1 > li").outerHeight();
+    $j("nav").animate({ height: ulHeight + 20 }, 200);
+  }
+}); 
+/*--- Mobile Menu Ends ---*/
+/* On Click external link model popup */
+/*
+$j(document).on("click","a[data-linktype='external'],a[title*='Opens in a new window']:not([href^='/'])",function(e){
+	e.preventDefault();
+	if(!$j(".modal.modalExternalLink").length > 0){
+		var modalHtml = '<div class="modal modalExternalLink"><div class="modal-wrapper"><button type="button" class="close"><img src="/~/media/Images/P/Phoenix-HWU-V3/icons/glossary-cross.svg" alt="Modal Close" class="glossary-icon"></button><div class="modal--center m-0"><p class="h2 modal__title">You’ve selected a link to another website</p><div class="modal__text"><p>Phoenix can’t accept responsibility or liability for the content.</p><p>Do you want to continue?</p></div><a href="#" target="_blank" class="button popupExternalLink">Yes<img src="/~/media/Images/P/Phoenix-HWU-V3/icons/external-link.svg" alt="External Link Icon"/></a><button class="button button--secondary close">No</button></div></div></div>';
+		$j("body").prepend(modalHtml);
+	}
+	$j(".modal.modalExternalLink").addClass("active-modal").fadeIn(200).find(".popupExternalLink").attr("href",$j(this).attr("href"));
+	$j(".modal.modalExternalLink .modal-wrapper > .close").focus();
+});
+
+*/
+// $j(document).on("click",".popupExternalLink,.loginRegisterPopup .close",function(e){
+// $j(".modal").removeClass("active-modal").fadeOut(200);
+// });
+
+// $j(document).on("click",".login-register",function(e){
+// e.preventDefault();
+// if($j(".loginRegisterPopup .combo__list").length < 1){
+// $j(".combo__list").clone().insertAfter($j(".loginRegisterPopup input"));
+// }
+// $j(".loginRegisterPopup").addClass("active-modal").fadeIn(200).find(".popupExternalLink").attr("href",$j(this).attr("href"));
+// $j(".loginRegisterPopup .close").focus();
+// })
+function yearSlide(itemsPerSlide, isResized) {
+  var $prev = $j(".tab-previous");
+  var $next = $j(".tab-next");
+  var $tabsList = $j(".tab-menu ul");
+  var currentTransformX = 0;
+  var $tabs = $j(".tab-menu ul li");
+  var tabsLength = $tabs.length;
+  var slideDifference = tabsLength - itemsPerSlide;
+  var updatedDifference = slideDifference;
+  var ulWidth = 0;
+  var activeIndex = $j(".active-a").index(".tab-a") + 1;
+  var liWidth = $j(".tab-menu").width() / itemsPerSlide;
+  $j(".tab-menu ul li").width(liWidth);
+  ulWidth = tabsLength * liWidth;
+ 
+//console.log("activeIndex:",activeIndex);
+// console.log("itemsPerSlide:",itemsPerSlide);
+// console.log("tabsLength:",tabsLength);
+
+  $j(".tab-menu ul").width(ulWidth);
+  if (activeIndex > itemsPerSlide) {
+    currentTransformX = -((activeIndex - itemsPerSlide) * liWidth);
+$tabsList.css("transform", "translateX(" + currentTransformX + "px)");
+    updatedDifference = tabsLength - activeIndex;
+    //console.log("Updated Difference on active change ", updatedDifference);
+  }
+
+  if (tabsLength == activeIndex) {
+    $next.addClass("disableTag");
+  }
+  if (activeIndex == 1) {
+    $prev.addClass("disableTag");
+  }
+  $next.on("click", function () {
+  
+    if (window.innerWidth < 576) {
+      if (isResized) return;
+      if (
+        $j(".active-a")
+          .parents("ul")
+          .find("li:last-child")
+          .children(".active-a").length
+      )
+        return;
+      $j(".active-a").parent().next().find(".tab-a").trigger("click");
+      return;
+    }
+    if (updatedDifference != 0) {
+      //$tabs.position().left;
+      $prev.removeClass("disableTag");
+      currentTransformX -= liWidth;
+      $tabsList.css("transform", "translateX(" + currentTransformX + "px)");
+      updatedDifference--;
+      //console.log("Updated Difference on next ", updatedDifference);
+    }
+   
+    if (updatedDifference == 0) {
+      $next.addClass("disableTag");
+      
+    }
+    // tabbbing index update
+    if (updatedDifference == 1) {
+      if($j("body").hasClass("show-focus-outlines")){
+        $next.addClass("disableTag");
+      }
+    }
+  });
+
+  $prev.on("click", function () {
+    if (window.innerWidth < 576) {
+      if (isResized) return;
+      if (
+        $j(".active-a")
+          .parents("ul")
+          .find("li:first-child")
+          .children(".active-a").length
+      )
+        return;
+      $j(".active-a").parent().prev().find(".tab-a").trigger("click");
+      return;
+    }
+    if (currentTransformX == 0) {
+      return;
+    }
+    $next.removeClass("disableTag");
+    currentTransformX += liWidth;
+    $tabsList.css("transform", "translateX(" + currentTransformX + "px)");
+    if (updatedDifference != slideDifference) {
+      //console.log("Updated Difference on before prev inside if ", updatedDifference);
+      updatedDifference++;
+    }
+    if (updatedDifference == slideDifference) {
+      $prev.addClass("disableTag");
+    }
+    //console.log("Updated Difference on after prev ", updatedDifference);
+  });
+}
+$j(window).on("resize", function () {
+  // yearSlide();
+  moveHeaderItems();
+  changeYearSlide();
+  manageListWidth();
+  manageTooltipPosition();
+  manageActiveTooltip();
+  /* --- Our History Starts --- */
+  if ($j(".our-history-white-item label.active").length > 0) {
+    if ($j(window).width() > 767) {
+      if (
+        $j(".our-history-inner-container input:checked").next(
+          ".our-history-timeline"
+        ).length === 0
+      ) {
+        $j(".activeHistoryContent")
+          .removeClass("open activeHistoryContent")
+          .insertAfter($j(".our-history-inner-container input:checked"));
+      }
+    } else {
+      if (
+        $j("label.active").parent().next(".our-history-timeline ").length === 0
+      ) {
+        $j(
+          ".our-history-inner-container input[id='" +
+            $j("label.active").attr("for") +
+            "']"
+        )
+          .next()
+          .addClass("open activeHistoryContent")
+          .insertAfter($j("label.active").parent());
+      }
+    }
+  }
+  /* --- Our History Ends --- */
+  if ($j(".hero-banner__inner").length > 0) {
+    if (
+      $j(".hero-banner__inner").innerHeight() > 400 &&
+      $j(window).width() > 1100
+    ) {
+      $j(".hero-banner__inner").css("bottom", "80px");
+    } else {
+      if ($j(".hero-banner__inner").attr("style") != "") {
+        $j(".hero-banner__inner").attr("style", "");
+      }
+    }
+  }
+});
+function inPageLinks() {
+  if ($j(".inpage-link-wrapper").length > 0) {
+    var links = [];
+    $j(".inpage__links li:not(.inpage__title)").each(function () {
+      links.push($j(this).attr("data-modules"));
+    });
+    $j("section[id='" + value + "']").addClass("linked-section");
+    links.forEach(function (value) {
+      $j("section[id='" + value + "']").addClass(
+        "linked-section overflow-hidden"
+      );
+    });
+    $j("article .linked-section:first").addClass("active");
+
+    const changeNav = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+          document
+            .querySelector(".inpage__link--active")
+            .classList.remove("inpage__link--active");
+          var id = entry.target.getAttribute("id");
+          var newLink = document
+            .querySelector(`[href="#${id}"]`)
+            .parentElement.classList.add("inpage__link--active");
+        }
+      });
+    };
+    const options = {
+      threshold: 0.55,
+    };
+
+    const observer = new IntersectionObserver(changeNav, options);
+
+    // target the elements to be observed
+    const sections = document.querySelectorAll("section.linked-section");
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+    var firstItemTop, lastItem, lastItemTop, linkWrapper, linkWrapperBottom;
+    $j(window).on("resize", function () {
+      firstItemTop = $j(
+        "section[id='" +
+          $j(".inpage-link-wrapper a").eq(0).attr("href").replace("#", "") +
+          "']"
+      ).offset().top;
+      lastItem =
+        $j(
+          "section[id='" +
+            $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+            "']"
+        ).offset().top +
+        $j(
+          "section[id='" +
+            $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+            "']"
+        ).height();
+      lastItemTop = $j(
+        "section[id='" +
+          $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+          "']"
+      ).offset().top;
+      linkWrapper =
+        $j(".inpage-link-wrapper").height() > 270
+          ? $j(".inpage-link-wrapper").height() / 2 -
+            ($j(".inpage-link-wrapper").height() - 270)
+          : $j(".inpage-link-wrapper").height() / 2;
+      linkWrapperBottom =
+        $j(".inpage-link-wrapper").height() > 270
+          ? $j(".inpage-link-wrapper").height()
+          : $j(".inpage-link-wrapper").height() +
+            ($j(".inpage-link-wrapper").height() - 270);
+    });
+    firstItemTop = $j(
+      "section[id='" +
+        $j(".inpage-link-wrapper a").eq(0).attr("href").replace("#", "") +
+        "']"
+    ).offset().top;
+    lastItem =
+      $j(
+        "section[id='" +
+          $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+          "']"
+      ).offset().top +
+      $j(
+        "section[id='" +
+          $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+          "']"
+      ).height();
+    lastItemTop = $j(
+      "section[id='" +
+        $j(".inpage-link-wrapper a").last().attr("href").replace("#", "") +
+        "']"
+    ).offset().top;
+    linkWrapper =
+      $j(".inpage-link-wrapper").height() > 270
+        ? $j(".inpage-link-wrapper").height() / 2 -
+          ($j(".inpage-link-wrapper").height() - 270)
+        : $j(".inpage-link-wrapper").height() / 2;
+    linkWrapperBottom =
+      $j(".inpage-link-wrapper").height() > 270
+        ? $j(".inpage-link-wrapper").height()
+        : $j(".inpage-link-wrapper").height() +
+          ($j(".inpage-link-wrapper").height() - 270);
+
+    $j(".inpage-link-wrapper")
+      .css("top", firstItemTop - linkWrapper)
+      .parent()
+      .addClass("showVisibility");
+
+    if (document.readyState === "interactive") {
+      $j(window).trigger("scroll");
+    }
+
+    $j(window).on("scroll", function () {
+      if (
+        $j(this).scrollTop() > firstItemTop &&
+        $j(this).scrollTop() < lastItemTop - 40
+      ) {
+        $j(".inpage-link-wrapper")
+          .attr("style", "")
+          .parent()
+          .addClass("sticky_links");
+      } else if ($j(this).scrollTop() < firstItemTop) {
+        $j(".inpage-link-wrapper")
+          .css("top", firstItemTop - linkWrapper)
+          .parent()
+          .removeClass("sticky_links");
+      } else {
+        $j(".inpage-link-wrapper")
+          .css("top", lastItemTop - linkWrapperBottom)
+          .parent()
+          .removeClass("sticky_links");
+      }
+    });
+  }
+}
+
+function manageTooltipPosition(selector) {
+  if (selector === undefined && $j(".open-tt").length) {
+    selector = $j(".open-tt");
+  }
+  if ($j(selector).hasClass("open-tt").length > 0) {
+    if ($j(selector).children(".rad-caption").offset().left < 0) {
+      $j(selector)
+        .children(".rad-caption")
+        .css("left", $j(selector).offset().left / 2);
+      var offset = $j(".open-tt").width() / 2;
+      var style = document.createElement("style");
+      style.setAttribute("id", "caption");
+      style.innerHTML =
+
+        ".open-tt .rad-caption:before { left:" + offset + "px }";
+      if ($j("#caption").length < 1) {
+        document.body.appendChild(style);
+      } else {
+        $j("#caption").html(
+          ".open-tt .rad-caption:before { left:" + offset + "px }"
+        );
+      }
+    } else {
+      $j(".rad-caption").attr("style", "");
+      $j("#caption").html("");
+    }
+  }
+}
+function manageListWidth(selector) {
+  if (selector === undefined && $j(".policyPopup").is(":visible")) {
+    selector = $j(".policyPopup .btn-list");
+  }
+  if ($j(".policyPopup").is(":visible")) {
+    if ($j(window).width() > 599) {
+      $j(selector)
+        .parent()
+        .find(".combo__list")
+        .width(
+          $j(selector).offset().left -
+            $j(selector).offsetParent().offset().left +
+            $j(selector).width() +
+            64
+        );
+    } else {
+      $j(selector)
+        .parent()
+        .find(".combo__list")
+        .width($j(selector).parent().find("input").outerWidth());
+    }
+  }
+}
+function changeYearSlide(isResized) {
+  if ($j(".tab-menu").length > 0) {
+    if ($j(window).width() > 991 && $j(".tab-menu ul li").length > 6) {
+      yearSlide(6);
+    } else if (
+      $j(window).width() < 992 &&
+      $j(window).width() > 576 &&
+      $j(".tab-menu ul li").length > 3
+    ) {
+      yearSlide(3);
+    } else if (
+      $j(window).width() < 992 &&
+      $j(window).width() > 576 &&
+      $j(".tab-menu ul li").length < 4
+    ) {
+      $j(".tabs").hide();
+      $j(".tab-container").addClass("p-0");
+      $j(".tab-menu ul,.tab-menu ul li").attr("style", "");
+    } else if ($j(window).width() < 577) {
+      if (!$j(".tabs").is(":visible")) {
+        $j(".tabs").show();
+        $j(".tab-container").removeClass("p-0");
+      }
+      yearSlide(1, isResized);
+    } else if ($j(".tab-menu ul li").length < 7) {
+      $j(".tab-menu ul,.tab-menu ul li").attr("style", "");
+    } else {
+      return;
+    }
+  }
+}
+function backToTop() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    $j(".b2t-wrapper,.glossary-wrapper").addClass("userScrolled");
+    //document.querySelector(".b2t-wrapper").classList.add("userScrolled");
+  } else {
+    $j(".b2t-wrapper,.glossary-wrapper").removeClass("userScrolled");
+    //document.querySelector(".b2t-wrapper").classList.remove("userScrolled");
+  }
+}
+
+function linkedSnapdown(selector) {
+  if (
+    $j(".accordian-wrapper input[data-snapdown='" + selector + "']").length > 0
+  ) {
+    if (
+      !$j(
+        ".accordian-wrapper input[data-snapdown='" +
+          selector +
+          "'] + label + .section__content"
+      ).is(":visible")
+    ) {
+      $j(".accordian-wrapper input[data-snapdown='" + selector + "']").trigger(
+        "click"
+      );
+    }
+    $j("html,body").animate(
+      {
+        scrollTop: $j(
+          ".accordian-wrapper input[data-snapdown='" + selector + "'] + label"
+        ).offset().top,
+      },
+      1000
+    );
+  }
+}
+
+function filterNewsItem() {
+  var selectedCategory = $j(".dropdown-wrapper.category ul li.active-li").data(
+    "cat"
+  );
+  var selectedTopic = $j(".dropdown-wrapper.topics ul li.active-li").data(
+    "topic"
+  );
+  var searchText =
+    $j(".news-filter-row input.field__input").val() == ""
+      ? "*"
+      : $j(".news-filter-row input.field__input").val();
+  var url = window.location.origin + window.location.pathname;
+  $j.ajax({
+    url:
+      url +
+      (location.href.indexOf("?") > 0
+        ? "&"
+        : "?" +
+          "async=1&category=" +
+          selectedCategory +
+          "&topic=" +
+          selectedTopic +
+          "&freetext=" +
+          searchText),
+    beforeSend: function () {
+      $j(".loader-overlay").show();
+    },
+    complete: function () {
+      $j(".loader-overlay").hide();
+    },
+    success: function (data) {
+      $j(".news-content-wrap").remove();
+      $j(".tab.tab-active").append(data);
+
+      findAndReplaceDOMText(document.querySelector("body"), {
+        find: /\?/g,
+        wrap: "abbr",
+        wrapClass: "fnClass",
+      });
+    },
+  });
+}
+
+function moveHeaderItems() {
+  if ($j(window).width() > 991) {
+    if ($j(".navigation__topbar > li.level1").length > 0) {
+      $j(".navigation__topbar > li.level1").appendTo(".nav_icons_wrapper");
+    }
+  } else {
+    if ($j(".nav_icons_wrapper li:not(:first-child)").length > 0) {
+      $j(".nav_icons_wrapper li:not(:first-child)").insertAfter(
+        ".navigation__topbar .logo"
+      );
+    }
+  }
+}
+
+/*------------ Main menu ---------------------*/
+
+let focusableElements;
+let focusableHFinalArray = [];
+if (document.getElementsByClassName("our-history-inner-container")[0]) {
+  focusableElements = document.querySelectorAll(
+    ".our-history-white-item label[tabindex='0']"
+  );
+  focusableElements.forEach((el) => {
+    let checkAccordion = el.getAttribute("for");
+    focusableHFinalArray.push(el);
+    if (
+      document.querySelectorAll(
+        `input[id="${checkAccordion}"] + .our-history-timeline .accordian-wrapper input`
+      ).length > 0
+    ) {
+      document
+        .querySelectorAll(
+          `input[id="${checkAccordion}"] + .our-history-timeline .accordian-wrapper input`
+        )
+        .forEach((inp) => {
+          focusableHFinalArray.push(inp);
+        });
+    }
+  });
+}
+const historyFocusableElements = (e) => {
+  if (!document.getElementsByClassName("our-history-inner-container")[0]) {
+    return;
+  }
+  const index = focusableHFinalArray.indexOf(document.activeElement);
+  let nextIndex = 0;
+  if (e.shiftKey && e.keyCode === 9) {
+    if (focusableHFinalArray.indexOf(document.activeElement) === 0) {
+      return;
+    }
+    e.preventDefault();
+    nextIndex = index > 0 ? index - 1 : 0;
+    if (
+      $j(document.activeElement).is("label:not(.active)") &&
+      $j(focusableHFinalArray[nextIndex]).is("input") &&
+      getComputedStyle(
+        focusableHFinalArray[nextIndex].closest(".our-history-timeline")
+      ).opacity == "0"
+    ) {
+      for (let i = nextIndex; i >= 0; i--) {
+        if ($j(focusableHFinalArray[i]).is("label")) {
+          nextIndex = i;
+          break;
+        }
+      }
+    }
+    focusableHFinalArray[nextIndex].focus();
+  } else if (e.keyCode === 9) {
+    if (
+      focusableHFinalArray.indexOf(document.activeElement) ==
+      focusableHFinalArray.length - 1
+    ) {
+      return;
+    }
+    e.preventDefault();
+    nextIndex = index + 1 < focusableHFinalArray.length ? index + 1 : index;
+    if (
+      $j(document.activeElement).is("label:not(.active)") &&
+      $j(focusableHFinalArray[nextIndex]).is("input") &&
+      getComputedStyle(
+        focusableHFinalArray[nextIndex].closest(".our-history-timeline")
+      ).opacity == "0"
+    ) {
+      for (let i = nextIndex; i < focusableHFinalArray.length; i++) {
+        if ($j(focusableHFinalArray[i]).is("label")) {
+          nextIndex = i;
+          break;
+        }
+      }
+    }
+    focusableHFinalArray[nextIndex].focus();
+  } else if (e.keyCode === 13 && e.target.tagName != "INPUT") {
+    e.preventDefault();
+    $j(e.target).trigger("click");
+  }
+};
+
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode === 9) {
+    $j("body").addClass("show-focus-outlines");
+  }
+  let currTarget = e.target;
+  if (
+    (currTarget.tagName === "LABEL" || currTarget.tagName === "INPUT") &&
+    $j(".our-history-white-item").length
+  ) {
+    historyFocusableElements(e);
+  }
+});
+
+// document.addEventListener("click", function (e) {
+//   $j("body").removeClass("show-focus-outlines");
+// });
+
+$j(document).on({
+  mouseenter: function () {
+    $j("body").removeClass("show-focus-outlines");
+  },
+  mouseleave: function () {
+    $j("body").removeClass("show-focus-outlines");
+  },
+});
+
+/*
+$j(document).on("click",".news-title",function(e){
+	location.href = $j(this).parent().children("a").attr("href");
+});*/
+/* = = = = = = = = = = = = = = = = = = Tools Landing Page = = = = = = = = = = = = = = = = = = */
+
+/* = = = = = = = = = = = = = = = = = = Tools Landing Page = = = = = = = = = = = = = = = = = = */
+$j(document).on("click", ".btnIframe", function (e) {
+  e.preventDefault();
+  var clickedId = $j(this).parent().data("id");
+  if ($j(this).attr("aria-expanded") == "false") {
+    $j(this).attr("aria-expanded", "true");
+  } else {
+    $j(this).attr("aria-expanded", "false");
+  }
+  if (
+    $j(".external-content-wrapper[data-frameid='" + clickedId + "']").hasClass(
+      "activeIframe"
+    )
+  ) {
+    $j(
+      ".external-content-wrapper[data-frameid='" + clickedId + "']"
+    ).removeClass("activeIframe"); //.slideUp(200)
+  } else {
+    $j(".external-content-wrapper[data-frameid='" + clickedId + "']")
+      .addClass("activeIframe")
+      .slideDown(200, function () {
+        $j("html,body").animate(
+          {
+            scrollTop: $j(
+              ".external-content-wrapper[data-frameid='" +
+                clickedId +
+                "'] iframe"
+            ).offset().top,
+          },
+          200
+        );
+      });
+    $j(window).trigger("resize");
+  }
+});
+
+//Tooltip
+$j(document).on("click", ".rad-popup", function (e) {
+  e.preventDefault();
+  if (!$j(e.target).hasClass("rad-caption")) {
+    if ($j(this).hasClass("open-tt")) {
+      $j(this).removeClass("open-tt").find(".close-tt").attr("tabindex", "-1");
+    } else {
+      $j(".rad-popup").removeClass("open-tt");
+      $j(this)
+        .addClass("open-tt")
+        .find(".close-tt")
+        .attr("tabindex", "0")
+        .focus();
+    }
+  }
+  $j(".rad-caption").attr("style", "");
+  manageTooltipPosition($j(this));
+});
+
+$j(document).on("keypress", ".close-tt", function (e) {
+  if (e.keyCode === 13) {
+    $j(e.target).parents(".rad-popup").trigger("click");
+  }
+});
+
+//history
+
+$j(document).on("click", ".our-history-white-item label", function (e) {
+  var currentLabel = $j(this);
+  $j(
+    ".our-history-inner-container .our-history-timeline[style*='margin-top']"
+  ).removeAttr("style");
+  if ($j(".our-history-timeline.activeHistoryContent").length > 0) {
+    $j(".our-history-timeline.activeHistoryContent")
+      .removeClass("open activeHistoryContent")
+      .insertAfter($j(".our-history-inner-container input:checked"));
+  }
+  if ($j(this).hasClass("active")) {
+    $j(this).removeClass("active");
+    if ($j(window).width() < 768) {
+      $j(".our-history-timeline.activeHistoryContent")
+        .removeClass("open activeHistoryContent")
+        .insertAfter($j(".our-history-inner-container input:checked"));
+    }
+  } else {
+    $j(".our-history-inner-container input").prop("checked", false);
+    $j(".our-history-white-item label").removeClass("active");
+    $j(this).addClass("active");
+    if ($j(this).parent().next().length > 0 && $j(window).width() < 768) {
+      $j(
+        ".our-history-inner-container input[id='" + $j(this).attr("for") + "']"
+      )
+        .next()
+        .addClass("open activeHistoryContent")
+        .insertAfter($j(this).parent());
+      setTimeout(function () {
+        $j("html,body").animate({ scrollTop: currentLabel.offset().top });
+      }, 350);
+    } else {
+      var previousItemTop = $j(this).parent().prev(".our-history-white-item");
+
+      if (previousItemTop.length > 0) {
+        setTimeout(function () {
+          var currentItemTop =
+            previousItemTop.offset().top +
+            previousItemTop.innerHeight() -
+            $j(
+              ".our-history-inner-container input[id='" +
+                currentLabel.attr("for") +
+                "']"
+            )
+              .next()
+              .offset().top;
+          if (window.innerWidth > 767) {
+            $j(
+              ".our-history-inner-container input[id='" +
+                currentLabel.attr("for") +
+                "']"
+            )
+              .next()
+              .css("margin-top", currentItemTop);
+          }
+          currItem = $j(
+            ".our-history-inner-container input[id='" +
+              currentLabel.attr("for") +
+              "']"
+          ).next();
+          setTimeout(function () {
+            $j("html,body").animate({
+              scrollTop:
+                previousItemTop.offset().top + previousItemTop.innerHeight(),
+            });
+          }, 350);
+        }, 300);
+      } else {
+        setTimeout(function () {
+          $j("html,body").animate({ scrollTop: currentLabel.offset().top });
+        }, 350);
+      }
+    }
+  }
+});
+
+$j(".our-history-white-item > label").on("keypress", function (e) {
+  if (e.which == 13) {
+    console.log(
+      $j(this)
+        .parents(".our-history-item")
+        .find(".close-timeline > a")
+        .attr("for")
+    );
+    $j(this).parents(".our-history-item").find(".close-timeline > a").focus();
+  }
+});
+
+$j(document).on("keypress", function (e) {
+  let currHLabel;
+  if (
+    e.which == 13 &&
+    $j(e.target).is("label") &&
+    $j(e.target).parent(".our-history-white-item").length > 0
+  ) {
+    currHLabel = $j(e.target);
+    currHLabel.trigger("click");
+    // if($j(`input[id=${currHLabel.attr("for")}] + .our-history-timeline .accordian-wrapper`).length){
+    // setTimeout(function(){
+    // $j(`input[id=${currHLabel.attr("for")}] + .our-history-timeline .accordian-wrapper label:first-of-type`).focus();
+    // },300);
+    // }
+  }
+});
+
+$j(document).on(
+  "click",
+  ".our-history-timeline .close-timeline label",
+  function () {
+    if ($j(".our-history-white-item label").hasClass("active")) {
+      $j(".our-history-white-item label").removeClass("active");
+    }
+  }
+);
+
+$j(document).on("click", ".inpage__links a", function (e) {
+  e.preventDefault();
+  $j("html,body").animate({
+    scrollTop: $j(
+      ".linked-section[id='" + $j(this).attr("href").replace("#", "") + "']"
+    ).offset().top,
+  });
+});
+
+/*--------*/
+
+/* --- Policy Click Popup Starts --- */
+
+$j(document).on("click", ".policyLink,.rad-lightbox", function (e) {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  $j(".policyLink,.rad-lightbox").removeClass("clickedPolicyLink");
+  $j(this).addClass("clickedPolicyLink");
+  var checkPolicy;
+  var policyText;
+  var anchorUrl =
+    e.target.tagName == "A"
+      ? $j(e.target).attr("href")
+      : $j(e.target).parent("a").attr("href");
+  if ($j(this).hasClass("policyLink")) {
+    checkPolicy = $j(this).data("policy").toString().toLowerCase();
+    policyText = $j(this).data("policy");
+  }
+  if ($j(this).hasClass("rad-lightbox") == true) {
+    checkPolicy = $j(this).text().trim().toLowerCase();
+    policyText = $j(this).text().trim();
+  }
+  if (
+    document.cookie.indexOf("selectedInsurance") > 0 &&
+    $j(this).parents(".policy-banner-wrapper").length == 0 &&
+    !$j(this).hasClass("btnWhoLookspolicy")
+  ) {
+    var readCookieUrl = JSON.parse(
+      document.cookie.split("selectedInsurance=")[1].split(";")[0]
+    );
+    readCookieUrl = readCookieUrl.url.toString();
+    if (
+      checkPolicy.indexOf("profits") > -1 ||
+      anchorUrl.indexOf("profits") > -1
+    ) {
+      readCookieUrl += "/with-profits";
+    } else if (
+      checkPolicy.indexOf("unit") > -1 ||
+      anchorUrl.indexOf("unit") > -1
+    ) {
+      readCookieUrl += "/unit-linked-fund-prices";
+    } else if (
+      checkPolicy.indexOf("personal") > -1 ||
+      checkPolicy.indexOf("change") > -1 ||
+      anchorUrl.indexOf("change") > -1
+    ) {
+      readCookieUrl += "/change-of-personal-information";
+    } else if (
+      checkPolicy.indexOf("subject") > -1 ||
+      anchorUrl.indexOf("subject") > -1
+    ) {
+      readCookieUrl += "/subject-access-request-form";
+    } else if (
+      checkPolicy.indexOf("complain") > -1 ||
+      anchorUrl.indexOf("complain") > -1
+    ) {
+      readCookieUrl =
+        "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+        readCookieUrl
+          .substring(readCookieUrl.lastIndexOf("/"))
+          .replace("/manage-my-policy-", "") +
+        "/make-a-complaint";
+    } else if (
+      checkPolicy.indexOf("guides") > -1 ||
+      anchorUrl.indexOf("guides") > -1
+    ) {
+      readCookieUrl =
+        "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+        readCookieUrl
+          .substring(readCookieUrl.lastIndexOf("/"))
+          .replace("/manage-my-policy-", "");
+    } else if ($j(e.target).hasClass("policyLink")) {
+      if (
+        e.target.tagName != "A" &&
+        $j(e.target).find("a").attr("href").indexOf("guides") > -1
+      ) {
+        readCookieUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          readCookieUrl
+            .substring(readCookieUrl.lastIndexOf("/"))
+            .replace("/manage-my-policy-", "");
+      }
+      if ($j(this).attr("href").indexOf("guides") > -1) {
+        readCookieUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          readCookieUrl
+            .substring(readCookieUrl.lastIndexOf("/"))
+            .replace("/manage-my-policy-", "");
+      }
+    } else if (
+      checkPolicy.indexOf("request") > -1 ||
+      anchorUrl.indexOf("request") > -1
+    ) {
+      readCookieUrl += "/contact/retirement-pack-request-form";
+    } else if ((
+      checkPolicy.indexOf("contact") > -1 ||
+      anchorUrl.indexOf("contact") > -1)
+    ) {
+      readCookieUrl += "/contact";
+    }
+    else if (
+      window.location.pathname === "/about-phoenix-life/sustainability/sustainability-disclosure"
+    ) {
+      readCookieUrl += "/contact/contact-form";
+    }
+    else {
+      readCookieUrl;
+    }
+    $j.ajax({
+      url: readCookieUrl,
+      success: function (result, status, xhr) {
+        location.href = readCookieUrl;
+      },
+      error: function (xhr, status, error) {
+        location.href = JSON.parse(
+          document.cookie.split("selectedInsurance=")[1].split(";")[0]
+        ).url;
+      },
+    });
+    //location.href = readCookieUrl;
+  } else {
+    if ($j(this).hasClass("btnWhoLookspolicy")) {
+      $j(".policyModalPopup .modal__title").text($j(this).attr("data-title"));
+      $j(".policyModalPopup .policy-description > p").text(
+        $j(this).attr("data-content")
+      );
+      $j(".policyModalPopup .policy-bottom-wrapper .rad-small").addClass(
+        "hide"
+      );
+    } else {
+      $j(".policyModalPopup .modal__title").text(policyText);
+      if ($j(e.target).hasClass("btnModal")) {
+        $j(".policyModalPopup").addClass("changePolicyExecuted");
+      }
+    }
+
+    $j(".policyModalPopup").fadeIn(200);
+    setTimeout(function () {
+      $j(".policyModalPopup .close").focus();
+    }, 205);
+  }
+});
+/* ---  Policy Click Popup Ends  --- */
+
+//accordion scroll to top
+$j(document).on("click", ".section__label", function () {
+  $j("body,html").animate({ scrollTop: $j(this).offset().top }, 310);
+});
+
+$j(document).on("click", ".section__input", function () {
+  if ($j(this).attr("aria-expanded") == "false") {
+    $j(this).attr("aria-expanded", true);
+  } else {
+    $j(this).attr("aria-expanded", false);
+  }
+});
+
+$j(document).on("keydown", function (e) {
+  // Accordion Accessibility to able to be able to expand / collapse through Enter
+  if (e.which === 13 && $j(e.target).hasClass("section__input")) {
+    $j(e.target).trigger("click");
+  }
+});
+
+$j(
+  ".navigation > ul > li.level1 > a,.navigation > ul > li.level1 > button.activePage"
+).on("focus", function (e) {
+  $j(".navigation ul.ulLevel1").removeClass("visibleUl");
+  $j(
+    ".navigation ul:not(.nav_icons_wrapper) li.level1 > a,.navigation ul:not(.nav_icons_wrapper) li.level1 > button.activePage"
+  )
+    .removeClass("active-menu-element")
+    //.attr("aria-expanded", false);
+  $j(this).addClass("active-menu-element");
+  //$j(document).unbind("keydown");
+  // Space / Enter checks
+  $j(this).on("keydown", function (f) {
+    //f.preventDefault();
+    //f.stopImmediatePropagation();
+    //console.log("Inside keydown");
+    // Left Key
+    if (f.keyCode === 37) {
+      menuAccessFlag = 0;
+      if ($j(f.target).parent().prev().length) {
+        $j(
+          ".navigation ul:not(.nav_icons_wrapper) li.level1 > a,.navigation ul:not(.nav_icons_wrapper) li.level1 > button.activePage"
+        )
+          .removeClass("active-menu-element")
+          //.attr("aria-expanded", false);
+        menuAccessFlag = 1;
+        $j(f.target)
+          .parent()
+          .prev()
+          .children()
+          .first()
+          //.attr("aria-expanded", "true")
+          .trigger("focus")
+          .trigger("click");
+      }
+    }
+
+    // Down Key
+    if (f.keyCode === 40) {
+      f.preventDefault();
+      // Triggering focus on First Element
+      if ($j(f.target).hasClass("active-menu-element")) {
+        $j(f.target)
+          .siblings("ul")
+          .find("li.level2")
+          .first()
+          .children("a")
+          .trigger("focus")
+          .trigger("click");
+
+        document.addEventListener("keydown", handleInputFocusTransfer);
+      }
+    }
+
+    // Right Key
+    if (f.keyCode === 39) {
+      menuAccessFlag = 0;
+      $j(
+        ".navigation ul:not(.nav_icons_wrapper) li.level1 > a,.navigation ul:not(.nav_icons_wrapper) li.level1 > button.activePage"
+      )
+        .removeClass("active-menu-element")
+      // .attr("aria-expanded", false);
+      if ($j(f.target).parent().next().hasClass("level1")) {
+        menuAccessFlag = 1;
+        $j(f.target)
+          .parent()
+          .next()
+          .children()
+          .first()
+         // .attr("aria-expanded", "true")
+          .trigger("focus")
+          .trigger("click");
+      }
+    }
+
+    // Tab and Enter Key
+    if (f.keyCode === 13 || f.keyCode === 32) {
+      f.stopImmediatePropagation();
+      if ($j(f.target).hasClass("active-menu-element")) {
+        f.preventDefault();
+        menuAccessFlag = 1;
+        //console.log(menuAccessFlag);
+        //e.preventDefault();
+        $j(f.target).trigger("click");
+        //currentTarget.attr("aria-expanded",true).closest(".ulLevel1");
+      }
+    }
+
+    
+
+  });
+});
+
+$j(document).on(
+  "click",
+  ".navigation > ul > li.level1 > a,.navigation > ul > li.level1 > button.activePage",
+  function (e) {
+    if (menuAccessFlag == 1) {
+      e.preventDefault();
+      //console.log("Inside click");
+      //console.log("clicked");
+      var currentTarget = $j(e.target);
+      if (
+        currentTarget.attr("aria-expanded") == "true" &&
+        currentTarget.parent().find(".ulLevel1").hasClass("visibleUl")
+      ) {
+        if (e.target.tagName === "A") {
+          location.href = currentTarget.attr("href");
+        } else {
+          return;
+        }
+      } else {
+        // $j(
+        //    ".navigation ul:not(.nav_icons_wrapper) li.level1 > a,.navigation ul:not(.nav_icons_wrapper) li.level1 > button.activePage"
+        //  ).attr("aria-expanded", false);
+        $j(e.target)
+          // .attr("aria-expanded", true)
+          .parent()
+          .find(".ulLevel1")
+          .addClass("visibleUl");
+      }
+    }
+  }
+);
+$j(document).on(
+  "hover",
+  ".navigation ul:not(.nav_icons_wrapper) li.level1 > a,.navigation ul:not(.nav_icons_wrapper) li.level1 > button.activePage",
+  function (e) {
+    if (menuAccessFlag == 1 && menuAccessFlag != 0) {
+      menuAccessFlag = 0;
+    }
+    if ($j(".visibleUl").length > 0) {
+      $j(".visibleUl").removeClass("visibleUl");
+    }
+    if ($j(".active-menu-element").length > 0) {
+      $j(".active-menu-element").removeClass("active-menu-element");
+    }
+  }
+);
+
+/* --- Action Panel Wrapper Dropdown Click Starts --- */
+$j(document).on(
+  "click",
+  ".action-panel-wrapper .dropdown-wrapper li,.combo__list li a",
+  function (e) {
+    e.preventDefault();
+  }
+);
+
+$j(document).on(
+  "click",
+  ".action-panel-wrapper .action-panel__element",
+  function (e) {
+    if ($j(".action-panel-wrapper .dropdown-wrapper li.active-li").length > 0) {
+      location.href = $j(
+        ".action-panel-wrapper .dropdown-wrapper li.active-li a"
+      ).attr("href");
+    }
+  }
+);
+/* ---  Action Panel Wrapper Dropdown Click Ends --- */
+
+/* --- Glossary Dropdown Click Starts --- */
+$j(document).on(
+  "click",
+  ".glossary-list li a,.glossary-item-wrapper a[href^='#']",
+  function (e) {
+    e.preventDefault();
+    var scrollToItem;
+    if ($j(this).parents(".glossary-item-wrapper").length > 0) {
+      scrollToItem = "common-content-wrapper";
+    } else {
+      scrollToItem = "glossary-item-wrapper";
+    }
+    $j("html,body").animate(
+      {
+        scrollTop: $j(
+          "." +
+
+            scrollToItem +
+            "[id='" +
+            $j(this).attr("href").replace("#", "") +
+            "']"
+        ).offset().top,
+      },
+      200
+    );
+    if ($j("input#glossary").is(":checked")) {
+      $j("input#glossary").trigger("click");
+    }
+  }
+);
+
+$j(".lblGlossary").on("click", function (e) {
+  $j(`input#${e.target.getAttribute("for")}`).attr("checked");
+});
+/* --- Glossary Dropdown Click Ends --- */
+
+/* --- Receive PostMessage from Iframe Starts --- */
+var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+var eventer = window[eventMethod];
+var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+eventer(messageEvent, function (e) {
+    console.log("Log 1 " + e.data);
+  setTimeout(function() {
+   /* if (e.data.includes("iframe_form_submitted") || e.data.includes("form_submitted")) {
+            jQuery('html, body').animate({
+                scrollTop: 800 // Scroll 800 pixels from the top
+            }); // You can adjust the duration as needed
+        }
+    }, 2000); // Delay of 2000 milliseconds (2 seconds) */
+     if (typeof e.data === 'string' && (e.data.includes("form_submitted"))) {
+            jQuery('html, body').animate({
+                scrollTop: 800 // Scroll 800 pixels from the top
+            }); // You can adjust the duration as needed
+        }
+    }, 2000); // Delay of 2000 milliseconds (2 seconds)
+
+  if (typeof e.data === 'string' && e.data.indexOf("top-") > -1) {
+      var srcurl = e.data.split("top-")[1];
+      setTimeout(function () {
+          scrollVal = $j('iframe[src="' + srcurl + '"]').offset().top;
+          $j('html, body').animate({
+              scrollTop: scrollVal
+          }, 300);
+      }, 300);
+  }
+  if (e.data === "scroll-up") {
+      setTimeout(function () {
+          scrollVal = $j('iframe').offset().top;
+          $j('html, body').animate({
+              scrollTop: scrollVal
+          }, 300, "easeOutCirc");
+      }, 300);
+  }
+  if (typeof e.data === 'object' && e.data.key === "scroll-down") {
+      // Ensure that e.data.value is a number (e.g., by parsing it)
+      var value = parseFloat(e.data.value);
+      if (!isNaN(value)) {
+          setTimeout(function () {
+              scrollVal = $j('iframe').offset().top + value;
+              $j('html, body').animate({
+                  scrollTop: scrollVal
+              }, 300, "easeOutCirc");
+          }, 300);
+      }
+  }
+}, false);
+
+
+
+/* ---  Receive PostMessage from Iframe Ends --- */
+
+
+
+/* --- Tooltip for News Item Starts --- */
+$j(document).on("click", ".share-news-item", function () {
+  var currentPosition = $j(this).position().left + $j(this).width() + 16;
+  var closestShare = $j(this)
+    .parents(".date-share-wrapper")
+    .find(".news-item-share-wrapper");
+  if (closestShare.hasClass("d-flex activeShare")) {
+    closestShare.removeClass("d-flex activeShare");
+  } else {
+    $j(".news-item-share-wrapper")
+      .removeClass("d-flex activeShare")
+      .attr("style", "");
+    //closestShare.addClass("d-flex activeShare").css("left",currentPosition + "px");
+    closestShare.addClass("d-flex activeShare");
+    manageActiveTooltip();
+  }
+});
+
+function manageActiveTooltip() {
+  if ($j(".activeShare").length > 0) {
+    var activePosition =
+      $j(".activeShare").offset().left + $j(".activeShare").width() + 50;
+    var sharePosition =
+      $j(".activeShare").parent().find(".share-news-item").offset().left - 110;
+    var shareParentPosition =
+      $j(".activeShare").parent().find(".share-news-item").position().left +
+      $j(".activeShare").parent().find(".share-news-item").width() +
+      16;
+    if (
+      $j(window).width() < 410 &&
+      !$j(".activeShare").hasClass("makeTTDown")
+    ) {
+      $j(".activeShare").addClass("makeTTDown").css("left", "26px");
+    } else if ($j(window).width() > 410) {
+      $j(".activeShare")
+        .removeClass("makeTTDown")
+        .css("left", shareParentPosition);
+    } else {
+      return;
+    }
+  }
+}
+/* ---  Tooltip for News Item Ends  --- */
+
+/*--- Manage Glossary Words Starts--- */
+function manageGlossary() {
+  var glossaryLetter = [];
+  var glossaryWord = [];
+  $j(".rad-filter").each(function () {
+    if (glossaryLetter.indexOf($j(this).text().substring(0, 1)) < 0) {
+      glossaryLetter.push($j(this).text().substring(0, 1));
+      if (
+        $j(
+          ".word-content-wrapper[data-id='" +
+            $j(this).text().toLowerCase() +
+            "']"
+        ).find("a[href^='#']").length > 0
+      ) {
+        $j(
+          ".word-content-wrapper[data-id='" +
+            $j(this).text().toLowerCase() +
+            "']"
+        )
+          .find("a[href^='#']")
+          .each(function () {
+            var linkedWord = $j(this)
+              .attr("href")
+              .replace(/-/g, " ")
+              .replace("#", "");
+            var linkedLetter = linkedWord.substring(0, 1).toUpperCase();
+            if (glossaryWord.indexOf(linkedWord) < 0) {
+              glossaryWord.push(linkedWord);
+            }
+            if (glossaryLetter.indexOf(linkedLetter) < 0) {
+              glossaryLetter.push(linkedLetter);
+            }
+          });
+      }
+    }
+    if (glossaryWord.indexOf($j(this).text()) < 0) {
+      glossaryWord.push($j(this).text().trim().toLowerCase());
+    }
+  });
+
+  if (glossaryLetter < 1) {
+    $j(".glossaryPanelTopContentNoWord").removeClass("hide");
+    $j(".glossaryPanelTopContent").addClass("hide");
+  }
+  if (glossaryLetter.length > 0) {
+    for (var letter in glossaryLetter) {
+      $j(".panel-section#" + glossaryLetter[letter].toUpperCase()).addClass(
+        "hasContent"
+      );
+      $j(
+        ".glossary-index li a[href='#" +
+          glossaryLetter[letter].toUpperCase() +
+          "']"
+      )
+        .parent()
+        .addClass("anchorHasContent");
+    }
+  }
+
+  if (glossaryWord.length > 0) {
+    for (var word in glossaryWord) {
+      $j(
+        ".word-content-wrapper[data-id='" + glossaryWord[word] + "']"
+      ).addClass("existInPage");
+    }
+  }
+
+  $j(".panel-section:not(.hasContent)").remove();
+  $j(".glossary-index li:not(.anchorHasContent,.btnCloseGlossary)").remove();
+  $j(".word-content-wrapper:not(.existInPage)").remove();
+}
+/*--- Manage Glossary Words Starts--- */
+
+function handleInputFocusTransfer(e) {
+  const focusableInputElements = document.querySelectorAll("li.level2 a");
+  const focusable = [...focusableInputElements];
+  const index = focusable.indexOf(document.activeElement);
+  let nextIndex = 0;
+  if (e.keyCode === 38) {
+    e.preventDefault();
+    nextIndex = index > 0 ? index - 1 : 0;
+    focusableInputElements[nextIndex].focus();
+  } else if (e.keyCode === 40) {
+    e.preventDefault();
+    nextIndex = index + 1 < focusable.length ? index + 1 : index;
+    focusableInputElements[nextIndex].focus();
+  }
+}
+
+/*--- News Topics lable Filter Starts--- */
+$j(document).on(
+  "click",
+  ".news-content-wrap .news-items .news-category button",
+  function (e) {
+    e.preventDefault();
+    if ($j(this).parents(".tab-main-wrapper").length) {
+      filterNewsBasedOnTopics($j(this).attr("data-topic"));
+    } else {
+      var url = $j(this)
+        .parents(".news-items")
+        .find(".news-image-link")
+        .attr("href");
+      url = url.substring(0, url.lastIndexOf("/"));
+      url += "#" + $j(this).data("topic");
+      location.href = url;
+    }
+  }
+);
+
+/*--- News Topics lable Filter Ends--- */
+
+/*--- News Item Topics lable Filter Ends--- */
+$j(document).on(
+  "click",
+  ".news-item-wrapper .news-item-banner__topics > button",
+  function (e) {
+    e.preventDefault();
+    var url = window.location.href.substring(
+      0,
+      window.location.href.lastIndexOf("/")
+    );
+    window.location.href = url + "#" + $j(this).data("topic");
+  }
+);
+
+if (window.location.hash && window.location.href.indexOf("news") > -1) {
+  filterNewsBasedOnTopics(window.location.hash.replace("#", ""));
+  window.location.hash = "";
+}
+
+function filterNewsBasedOnTopics(selectedTopic) {
+  $j(".news-filter-row .dropdown-wrapper.topics ul li").removeClass(
+    "active-li"
+  );
+  $j(
+    ".news-filter-row .dropdown-wrapper.topics ul li[data-topic='" +
+      selectedTopic +
+      "']"
+  ).addClass("active-li");
+  $j(".news-filter-row .dropdown-wrapper.topics .ddlSelectedValue").text(
+    $j(
+      ".news-filter-row .dropdown-wrapper.topics ul li[data-topic='" +
+        selectedTopic +
+        "']"
+    ).text()
+  );
+  filterNewsItem();
+  $j(".news-filter-row .lnk-reset").removeClass("filter_executed");
+}
+
+/*--- News Topics lable Filter Ends--- */
+
+/*--- 	Ombudsman Radio button Start	---*/
+
+var answerArray = [
+  {
+    name: "ans1",
+    ans: [
+      [1, 2, 1],
+      [1, 1, 1],
+      [1, 1, 2],
+    ],
+  },
+  { name: "ans2", ans: [[1, 2, 2]] },
+  {
+    name: "ans3",
+    ans: [
+      [2, 2, 1],
+      [2, 1, 1],
+    ],
+  },
+  {
+    name: "ans4",
+    ans: [
+      [2, 2, 2],
+      [2, 1, 2],
+    ],
+  },
+];
+
+if (document.getElementById("btnOmbudsman") !== null) {
+  document.getElementById("btnOmbudsman").onclick = (e) => {
+    let selectedValues = [];
+    document
+      .querySelectorAll(".rbtn-selectorWrapper input:checked")
+      .forEach((elm) => {
+        selectedValues.push(elm.getAttribute("data-value"));
+      });
+    // console.log(selectedValues.toString());
+    let filteredArray = answerArray
+      .filter((element) =>
+        element.ans.some((sub) => sub.toString() == selectedValues.toString())
+      )
+      .map((final) => final.name)
+      .toString();
+    //  console.log(filteredArray);
+    if (
+      !document.querySelector(".ans-data.open#" + filteredArray + "") &&
+      document.querySelector(".ans-data.open")
+    ) {
+      document.querySelector(".ans-data.open").classList.remove("open");
+    }
+    document.getElementById(filteredArray).classList.add("open");
+  };
+}
+/*--- 	Ombudsman Radio button End	---*/
+
+/*---  Top header Font Size Link starts 	--- */
+Array.from(document.getElementsByClassName("font-size-link")).forEach((elm) => {
+  elm.onclick = (e) => {
+    let clickedFont = e.target.getAttribute("class").split(" ")[1];
+    let bodyElm = document.getElementsByTagName("html")[0];
+    if (bodyElm.classList.toString().indexOf("selected-") > -1) {
+      let regex = new RegExp("\\bselected-[^ ]*[ ]?\\b", "g");
+      bodyElm.className = bodyElm.className.replace(regex, "");
+    }
+    bodyElm.classList.add(`selected-${clickedFont}`);
+  };
+});
+/*--- 	Top header Font Size Link End 	---*/
+
+/* --- Death Claim Notification Starts --- */
+if (window.location.search.indexOf("request=") > -1) {
+  window.history.replaceState("", "", window.location.pathname);
+}
+if (document.getElementsByClassName("dc-no-wrapper").length) {
+  dcYesWrapper = getClass("dc-yes-wrapper");
+  dcNoWrapper = getClass("dc-no-wrapper");
+  prevBtn = getClass("btnBackToPrev");
+  dcMainWrapper = getClass("death-claim-wrapper");
+  dcWrapper = getClass("dc-main-wrapper");
+}
+function deathClaim(
+  dcYesWrapper,
+  dcNoWrapper,
+  prevBtn,
+  dcMainWrapper,
+  dcWrapper
+) {
+  if (document.getElementsByClassName("dc-no-wrapper").length) {
+    /* --- Cloning and managing ID's of Policy List Starts --- */
+    let clonedNode = Array.from(
+      document.getElementsByClassName("combo__list")[0].cloneNode(true).children
+    );
+    // Remove abbey life from list since it is not required on Online Cash In App
+//     if (document.getElementsByClassName("dc-online").length > 0) {
+//       clonedNode = clonedNode
+//         .filter(
+//           (elm) =>
+//             elm
+//               .querySelector("span.combo__list-text")
+//               .textContent.toLowerCase() != "abbey life"
+//         )
+//         .map((elm) => elm);
+//     }
+    clonedNode.forEach((elm) => {
+      elm.setAttribute("id", `dc-${elm.getAttribute("id")}`);
+      if (elm.querySelectorAll("input,label").length) {
+        let currentID;
+        elm.querySelectorAll("input,label").forEach((inp) => {
+          if (inp.tagName === "INPUT") {
+            currentID = inp.getAttribute("id");
+            inp.setAttribute("id", `dc-${currentID}`);
+          } else {
+            inp.setAttribute("for", `dc-${currentID}`);
+          }
+        });
+      }
+    });
+    let ulElm = document.createElement("ul");
+    ulElm.classList.add("combo__list");
+    document.querySelector(".dc-no-wrapper .input-field").appendChild(ulElm);
+    Element.prototype.append.apply(
+      document.querySelector(".dc-no-wrapper .combo__list"),
+      clonedNode
+    );
+    //document.querySelector(".dc-no-wrapper .input-field").appendChild(...clonedNode);
+    if (
+      document.getElementsByClassName("dc-online").length > 0 &&
+      document.cookie.indexOf("selectedInsurance") > -1
+    ) {
+      let readPolicyName = JSON.parse(
+        document.cookie.split("selectedInsurance=")[1].split(";")[0]
+      ).name;
+      let checkClonedElements = setInterval(() => {
+        if (
+          document.querySelector(".dc-online .combo__list").children.length >
+            0 &&
+          document.querySelector(
+            `.dc-online li[data-policyname='${readPolicyName}']`
+          )
+        ) {
+          //console.log("DC Online true");
+          document
+            .querySelector(`.dc-online li[data-policyname='${readPolicyName}']`)
+            .click();
+          clearInterval(checkClonedElements);
+        } else {
+          clearInterval(checkClonedElements);
+        }
+      }, 2500);
+    }
+    /* --- Cloning and managing ID's of Policy List Ends --- */
+
+    /* --- Managing Redirection of Policy Based on Selection Starts --- */
+    /* --- Custom Functions Starts --- */
+
+    const cSlideUp = (selector, duration) => {
+      Object.assign(selector.style, {
+        height: selector.clientHeight + "px",
+        transition: `all ${duration}s ease`,
+        overflow: "hidden",
+        margin: "0",
+        padding: "0",
+      });
+      setTimeout(() => {
+        selector.style.height = 0;
+        selector.addEventListener(
+          "transitionend",
+          () => {
+            let topPos =
+              window.pageYOffset +
+              dcMainWrapper.querySelector(".container").getBoundingClientRect()
+                .y;
+            window.scrollTo({ top: topPos, behavior: "smooth" });
+            selector.style = "";
+            selector.classList.remove("showBlock");
+            selector.classList.add("hide");
+          },
+          { once: true }
+        );
+      }, 1);
+    };
+    const cSlideDown = (selector, duration) => {
+      selector.classList.add("showBlock");
+      Object.assign(selector.style, {
+        transition: `all ${duration}s ease`,
+        overflow: "hidden",
+      });
+      let height = selector.clientHeight + "px";
+      selector.style.height = 0;
+      setTimeout(() => {
+        selector.style.height = height;
+        selector.addEventListener(
+          "transitionend",
+          () => {
+            let topPos =
+              window.pageYOffset +
+              dcMainWrapper.querySelector(".container").getBoundingClientRect()
+                .y;
+            window.scrollTo({ top: topPos, behavior: "smooth" });
+            selector.style = "";
+            selector.classList.remove("hide");
+          },
+          { once: true }
+        );
+      }, 1);
+    };
+
+    const managePopup = (selector, reverseWords) => {
+      selector = selector === undefined ? "modalExternalLink" : selector;
+      if (reverseWords) {
+        Array.from(
+          getClass(selector).getElementsByClassName("rad-case")
+        ).forEach((e, i) => {
+          if (i == 0) {
+            e.textContent = "Peterborough";
+          } else {
+            e.textContent = "Glasgow";
+          }
+        });
+      }
+      Object.assign(getClass(selector).style, {
+        transition: "all 0.3s ease",
+        display: "block",
+        opacity: "0",
+      });
+      setTimeout(() => {
+        getClass(selector).classList.add("active-modal");
+        getClass(selector).style.opacity = "1";
+      }, 1);
+    };
+    const checkDataCentre = (selector) => {
+      let activeDcElm = getClass("activeDc");
+      let selectedCentre = selector.getAttribute("data-centre");
+      let selectedUrl =
+        selector.getAttribute("data-url") === null
+          ? selector.getElementsByTagName("a")[0].getAttribute("data-url")
+          : selector.getAttribute("data-url");
+      let selectedOther = selector.getAttribute("data-other-company");
+      switch (selectedCentre) {
+        case "peterborough":
+        case "liverpool":
+          managePopup();
+          break;
+
+        case "glasgow":
+          if (getClass("dc-online")) {
+            if (activeDcElm) {
+              activeDcElm.classList.remove("activeDc");
+            }
+            getClass("dc-glasgow-wrapper").classList.add(
+              "activeDc",
+              "fromPolicyList"
+            );
+            cSlideUp(dcNoWrapper, 0.4);
+            cSlideDown(getClass("dc-glasgow-wrapper"), 0.4);
+          } else {
+                      //console.log('>>> raa',selectedUrl);
+            
+                         if(bool === true){
+                         //console.log('>>> raa true')
+				window.location =  "/customer-centre/manage-my-policy/manage-my-policy-GlasgowA/contact/death-claim-notification-form"
+			}
+            else{
+            //console.log('>>> raa false')
+            window.location = `${selectedUrl}/contact/contact-form?request=notify-us-of-the-death-of-a-policyholder`;
+            }
+          }
+          break;
+
+        default:
+          window.location =
+            selectedOther !== null || selectedOther !== ""
+              ? `${selectedUrl}/contact`
+              : selectedOther;
+      }
+    };
+    /* --- Custom Functions Ends --- */
+
+    /* --- Clone external popup Starts --- */
+    if (getClass("dc-online")) {
+      let cloneExternalPopup = getClass("modalExternalLink").cloneNode(true);
+      cloneExternalPopup.classList.add("warningPopup");
+      cloneExternalPopup.querySelector(".modal__text").innerHTML =
+        getClass("dc-online").getAttribute("expop-online");
+      cloneExternalPopup
+        .querySelector(".modal--center a")
+        .removeAttribute("target");
+      cloneExternalPopup.querySelector(".modal--center a").textContent = "Yes";
+      cloneExternalPopup
+        .querySelector(".modal--center a")
+        .setAttribute("href", "javascript:;");
+      cloneExternalPopup
+        .querySelector(".modal--center a")
+        .classList.add("exDcYes");
+      cloneExternalPopup.querySelector(
+        ".modal--center button.close"
+      ).textContent = "No";
+      getClass("dc-online").append(cloneExternalPopup);
+    }
+
+    /* --- Clone external popup Ends --- */
+    // let clonePrevTxt = getClass("dc-prevPolicy").querySelector("a").cloneNode(true);
+    // clonePrevTxt.children[0].textContent = "click here";
+    // dcNoWrapper.getElementsByClassName("model-filer")[0].insertBefore(clonePrevTxt,dcNoWrapper.getElementsByClassName("model-filer")[0].lastElementChild)
+
+    Array.from(getClass("dc-btn-wrapper").getElementsByTagName("a")).forEach(
+      (elm) => {
+        if (
+          elm.getAttribute("data-query") !== null &&
+          elm.getAttribute("data-query") !== ""
+        ) {
+          let href = elm.getAttribute("href");
+          let query = elm.getAttribute("data-query");
+          elm.setAttribute("href", `${href}?${query}`);
+        }
+      }
+    );
+    getClass("btnDc").onclick = (e) => {
+      if (
+        e.target.parentElement.querySelector(
+          ".policy-holder-type-wrapper.show input:checked"
+        )
+      ) {
+        checkDataCentre(
+          e.target.parentElement.querySelector(
+            ".policy-holder-type-wrapper.show input:checked"
+          ).parentElement
+        );
+        return;
+      }
+      checkDataCentre(
+        e.target.closest(".model-filer").querySelector(".selected-insurance")
+      );
+      
+     
+    let slctdIns = document.querySelector('li.selected-insurance').getAttribute("data-policyname");
+    let chckIns = "Abbey Life";
+    let chckIns1 = "Century Life plc";
+    let chckIns2 = "Century Life" 
+    let selectedIns = ["Century Life plc", "Century Life", "Black Sea and Baltic General Insurance Company", "Century Group", "City of Edinburgh Life Assurance Company", "Colonial Life Insurance Company (UK)", "Consumers Life Insurance Company", "Credit & Commerce Life Assurance", "Crown Assurance Company", "Equico International", "Growth & Secured Life Assurance Society", "Hiscox Insurance Company", "Lamont Life Assurance Company", "Langham Life Assurance Company", "Mutual Life Assurance","National Australia Life Company", "National Employers Life Assurance Company", "NEL Britannia Assurance Company", "Old Mutual Life Assurance Company", "Oxford Life Assurance Company", "Prosperity Financial Services", "Prosperity Life Assurance", "Providence Capitol Life Assurance Company", "Sentinel Life", "Shield Assurance", "UK Life Assurance Company","Unit Assurance Company"]
+    
+    let deathFormForGlasgowA = ["Britannia Life","Britannia Life Limited","Crescent Life","Crusader Insurance","Crusader Insurance plc","Foreman & Staff Mutual Benefit Society","FS Assurance","LAS Investment Assurance","LAS Pensions Management","Life Association of Scotland"]
+    let deathFormForGlasgowB = ["Allianz Cornhill","Allianz Cornhill Insurance plc","Britannic","Britannic Assurance","Britannic Assurance plc","Britannic Retirement Solutions","Britannic Unit Linked Assurance","British Legal Life Assurance Company"]
+    let deathFormForGlasgowBR = ["Evergreen Retirement Assurance"]
+    let deathFormForGlasgowSM = ["Scottish Mutual","Scottish Mutual Assurance Limited","Scottish Mutual Assurance plc","Scottish Mutual Assurance Society","Scottish Temperance","Scottish Temperance Life Assurance Society"]
+	let deathFormForGlasgowSP = ["PFM Assurance","Prolific Life & Pensions","Provincial Life Assurance","Provincial Life Assurance Company Limited","Provincial Pensions","Scottish Provident","Scottish Provident Assurance Limited","Scottish Provident Institution","Scottish Provident Limited","Scottish Provident Managed Pension Funds Limited"]    
+let lifetimeMortgages = ["Papilio", "Legal & General", "Northern Rock", "Papilio ERM Limited"]
+ if(chckIns == slctdIns){
+   
+    if (window.location.href.indexOf("death-claim-notification") > -1) {
+    let curentUri = "contact";
+    let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-bournemouth/contact/death-claim-notification-form";
+    
+    window.location.pathname = rediUri;
+    
+    }
+    }
+    if(selectedIns.includes(slctdIns)){
+        if (window.location.href.indexOf("death-claim-notification") > -1) {
+            let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-romford/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+            }
+    }
+    if(deathFormForGlasgowA.includes(slctdIns)){
+   
+		if (window.location.href.indexOf("death-claim-notification") > -1) {
+       // if(deathFormForGlasgowA === "Alba Life" || "Alba Life Limited"){
+       // bool = false;
+       // }
+       // else{
+    		let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-GlasgowA/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+    	//}
+        
+        }
+    }
+    if(deathFormForGlasgowB.includes(slctdIns)){
+    	if (window.location.href.indexOf("death-claim-notification") > -1) {
+    		let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-GlasgowB/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+    	}
+    }
+    if(deathFormForGlasgowBR.includes(slctdIns)){
+    	if (window.location.href.indexOf("death-claim-notification") > -1) {
+    		let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-GlasgowBR/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+    	}
+    }
+    if(deathFormForGlasgowSM.includes(slctdIns)){
+    	if (window.location.href.indexOf("death-claim-notification") > -1) {
+    		let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-GlasgowSM/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+    	}
+    }
+    if(deathFormForGlasgowSP.includes(slctdIns)){
+    	if (window.location.href.indexOf("death-claim-notification") > -1) {
+    		let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-GlasgowSP/contact/death-claim-notification-form";
+            window.location.pathname = rediUri;
+    	}
+    }
+    if(lifetimeMortgages.includes(slctdIns)){
+        if (window.location.href.indexOf("death-claim-notification") > -1) {
+            let rediUri = "/customer-centre/manage-my-policy/manage-my-policy-phoenix-group-lifetime-mortgages";
+            window.location.pathname = rediUri;
+        }
+    } 
+    };
+    $j(".death-claim-wrapper .dc-no-wrapper button.btnPolicyCheck").click(
+      function () {
+        $j(this).parent().parent().removeClass("d-block");
+      }
+    );
+    /* --- Online Application for links Starts --- */
+    if (
+      document.querySelector("a[data-online='glasgow']") &&
+      getClass("dc-online")
+    ) {
+      document
+        .querySelector("a[data-online='glasgow']")
+        .setAttribute("href", "javascript:;");
+    }
+    /* --- Online Application for links Ends --- */
+
+    let clickElement;
+    document.onclick = (e) => {
+      //e.stopImmediatePropagation();
+      let topPos =
+        window.pageYOffset +
+        dcMainWrapper.querySelector(".container").getBoundingClientRect().y;
+      let activeDcElm = getClass("activeDc");
+      if (e.target.classList.contains("dc-no")) {
+        if (activeDcElm) {
+          activeDcElm.classList.remove("activeDc");
+        }
+        cSlideUp(dcWrapper, 0.4);
+        cSlideDown(dcNoWrapper, 0.4);
+        dcNoWrapper.classList.add("activeDc");
+        prevBtn.classList.add("showBlock");
+      } else if (e.target.classList.contains("dc-yes")) {
+        if (activeDcElm) {
+          activeDcElm.classList.remove("activeDc");
+        }
+        cSlideUp(dcWrapper, 0.4);
+        cSlideDown(dcYesWrapper, 0.4);
+        dcYesWrapper.classList.add("activeDc");
+        prevBtn.classList.add("showBlock");
+      } else if (e.target.classList.contains("btnBackToPrev")) {
+        if (document.querySelector(".dc-glasgow-wrapper.activeDc")) {
+          cSlideUp(getClass("dc-glasgow-wrapper"), 0.4);
+          if (getClass("fromPolicyList")) {
+            cSlideDown(dcNoWrapper, 0.4);
+            getClass("dc-glasgow-wrapper").classList.remove(
+              "activeDc",
+              "fromPolicyList"
+            );
+            dcNoWrapper.classList.add("activeDc");
+          } else {
+            cSlideDown(dcYesWrapper, 0.4);
+            getClass("dc-glasgow-wrapper").classList.remove("activeDc");
+            dcYesWrapper.classList.add("activeDc");
+          }
+        } else if (getClass("activeDc")) {
+          cSlideUp(activeDcElm, 0.4);
+          cSlideDown(dcWrapper, 0.4);
+          e.target.classList.remove("showBlock");
+          setTimeout(() => {
+            activeDcElm.classList.remove("activeDc");
+            window.scrollTo({ top: topPos, behavior: "smooth" });
+          }, 400);
+        } else {
+          cSlideUp(getClass("toggleWBtn"), 0.4);
+          cSlideDown(getClass("online-app-main-wrapper"), 0.4);
+        }
+      } else if (e.target.classList.contains("btnDcToggle")) {
+      /* --- Online Application Starts --- */
+        cSlideUp(e.target.parentElement, 0.4);
+        cSlideDown(getClass("toggleWBtn"), 0.4);
+      } else if (e.target.classList.contains("btnDcYes")) {
+        clickElement = e.target;
+        if (
+          e.target.getAttribute("data-linktype") == "external" &&
+          document.cookie.indexOf("selectedInsurance") < 0
+        ) {
+          e.preventDefault();
+          managePopup();
+        }
+        if (!getClass("dc-online")) return;
+        let readCompanyName;
+        if (document.cookie.indexOf("selectedInsurance") > -1) {
+          readCompanyName = JSON.parse(
+            document.cookie.split("selectedInsurance=")[1].split(";")[0]
+          ).company;
+        }
+
+        // Check Glasgow and show respective content
+        if (
+          e.target.getAttribute("data-online") == "glasgow" &&
+          getClass("dc-glasgow-wrapper")
+        ) {
+          if (readCompanyName == "peterborough") {
+            managePopup("warningPopup", true);
+            return;
+          }
+          if (activeDcElm) {
+            activeDcElm.classList.remove("activeDc");
+          }
+          getClass("dc-glasgow-wrapper").classList.add("activeDc");
+          cSlideUp(getClass("dc-yes-wrapper"), 0.4);
+          cSlideDown(getClass("dc-glasgow-wrapper"), 0.4);
+        }
+        if (
+          e.target.getAttribute("data-online") == "peterborough" &&
+          getClass("dc-glasgow-wrapper")
+        ) {
+          e.preventDefault();
+          if (readCompanyName == "glasgow") {
+            managePopup("warningPopup");
+            return;
+          }
+          managePopup();
+        }
+      } else if (e.target.classList.contains("exDcYes")) {
+        if (clickElement.getAttribute("data-online") == "glasgow") {
+          if (activeDcElm) {
+            activeDcElm.classList.remove("activeDc");
+          }
+          getClass("dc-glasgow-wrapper").classList.add("activeDc");
+          cSlideUp(getClass("dc-yes-wrapper"), 0.4);
+          cSlideDown(getClass("dc-glasgow-wrapper"), 0.4);
+        } else if (clickElement.getAttribute("data-online") == "peterborough") {
+          managePopup();
+        }
+      }
+      /* --- Online Application Ends --- */
+    };
+    /* --- Managing Redirection of Policy Based on Selection Starts --- */
+  }
+}
+deathClaim(dcYesWrapper, dcNoWrapper, prevBtn, dcMainWrapper, dcWrapper);
+/* ---  Death Claim Notification Ends --- */
+/*---------------------------------------- */
+
+$j(".dc-glasgow-wrapper ~ button").click(function(){
+	if($j(".dc-glasgow-wrapper").hasClass("activeDc")){
+		$j(".dc-no-wrapper.default-no").removeClass("hide");
+		$j(".dc-no-wrapper.default-no").css("height","auto");
+	}
+});
+
+$j(".dc-no-wrapper.default-no ~ button.btnBackToPrev").click(function(){
+
+if($j(".dc-no-wrapper.default-no").hasClass('activeDc')){
+
+$j(".dc-main-wrapper").parent('.dc-inner-wrapper').removeClass("showBlock");
+$j(".dc-inner-wrapper").prev(".online-app-main-wrapper").removeClass("hide");
+$j(".dc-inner-wrapper").addClass("hide") 
+
+}
+});
+$j(".death-claim-wrapper .online-app-main-wrapper button.btnDcToggle").click(function(){
+
+$j('.dc-inner-wrapper .dc-no-wrapper').css("height","auto");
+})
+
+function lastChildFocus(){
+$j(".tab-menu ul li:last-child a").focus(function(){
+    $j(".tab-next").addClass("disableTag");
+   // console.log("Last Child Focused")
+    $j(".disableTag").keydown(function(event){
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    })
+})
+}
+
+lastChildFocus(); 
+//  document.getElementsByClassName("tab-menu ul").addEventListener("keydown", logKey);
+ 
+//  function logKey(e) {
+//    console.log("code:"+`${e.code}`);
+//  }
+var prevTabs = document.getElementsByClassName(".tab-menu ul")
+var totalTabsLength =document.querySelectorAll(".tab-menu ul li").length;
+var targetedTab = document.querySelectorAll(".tab-menu ul li")
+//console.log(prevTabs);
+//console.log("totaltabs:",totalTabsLength);
+//console.log(targetedTab);
+function clickedOnExtraTab(){
+  var activeIndex = $j(".active-a").index(".tab-a") + 1;
+  var totalTabsLength =document.querySelectorAll(".tab-menu ul li").length;
+  if(activeIndex > 6){
+    //console.log("clicked on extra tab");
+    getTranslateXVal();
+    cornerTab();
+  }
+  }
+  function getTranslateXVal(){
+// Get the ul element
+var ulElement = $('.tab-menu ul')[0];
+ 
+// Get the computed style of the ul element
+var style = ulElement.style.transform || window.getComputedStyle(ulElement).getPropertyValue('transform');
+ 
+// Parse the translateX value from the transform property
+var matrix = new DOMMatrix(style);
+var translateXValue = matrix.m41;
+ 
+// Log the translateX value
+//console.log('translateX value:', translateXValue);
+ 
+ 
+}
+function cornerTab(){
+
+var activeAnchor = $('.tab-menu ul li a.active-a');
+
+var fifthAnchor = activeAnchor.parent().prevAll('li').eq(4).find('a');
+
+var anchorValue = fifthAnchor.text();
+
+//console.log('Value of the anchor tag 5 elements before the active anchor:', anchorValue);
+
+// Add event listener for focus event
+fifthAnchor.on('focus', function () {
+   // console.log('Focus went on the fifth anchor:', anchorValue);
+    
+    // Change the translateX value to 0
+    $j('.tab-menu ul').css('transform', 'translateX(0)');
+    $j('.tab-inner > a.tab-next').removeClass('disableTag');
+    $j('.tab-inner > a.tab-previous').addClass('disableTag');
+     $('.tab-inner > a.tab-previous').on('keydown', function (event) {
+        // Prevent the default action (disable the link)
+        if (event.key !== 'Tab') {
+            event.preventDefault();
+        }
+    });
+});
+}
+
+//focus functionality on mmenu
+ 
+document.addEventListener('DOMContentLoaded', function () {
+    // Find the elements
+    var mobMenuLabel = document.querySelector('label.mob-menu');
+    var mainElement = document.querySelector('main');
+    var mainNavCheck = document.getElementById('main-nav-check');
+    var navigationElement = document.querySelector('.header nav.navigation');
+    var specificAnchor = document.querySelector('nav ul#nav-section-Homepage-level1 li#Homepage-nav-nav-register-level1 a');
+    var nav = document.querySelector('nav.navigation');
+
+    function handleEnterKey(event) {
+        if (event.key === 'Enter') {
+            mainNavCheck.checked = !mainNavCheck.checked;
+            mainElement.classList.toggle('bk-menu-overlay');
+            nav.classList.toggle('active-mmenu');
+            //navigationElement.style.display = 'block';
+            
+        }
+    }
+    if(specificAnchor){
+      document.addEventListener('keydown', function (event) {
+                if (document.activeElement === specificAnchor && (event.key === 'Tab')) {
+                console.log("clicked forced")
+                    mobMenuLabel.click();
+                }
+            });
+    }
+
+    if (mobMenuLabel && mainElement) {
+    
+        mobMenuLabel.addEventListener('focus', function () {
+            document.addEventListener('keypress', handleEnterKey);
+			//document.addEventListener('click', toggleNavClass)
+          
+        });
+
+        mobMenuLabel.addEventListener('blur', function () {
+            document.removeEventListener('keypress', handleEnterKey);
+        });
+    }
+});
+
+
+
+
+
+/*on focus of hamburger icon block the megamenu*/
+
+let currentOpenedLevel1;
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    hideLevel1Menu(currentOpenedLevel1);
+  }
+});
+
+// Function to check if the screen width is above 991.98px
+function isLargeScreen() {
+  return window.innerWidth > 991.98;
+}
+
+function addEventListeners() {
+  // Get all anchor tags inside li.level1 elements
+  const level1Anchors = document.querySelectorAll('.navigation .ulLevel0 .level1 a');
+  level1Anchors.forEach(anchor => {
+    anchor.addEventListener('focus', function () {
+      showLevel1MenuForLevel1(anchor.closest('.level1'));
+    });
+  });
+
+  // Get all li.level1 elements
+  const level1Items = document.querySelectorAll('.navigation .ulLevel0 .level1');
+
+  level1Items.forEach(level1Item => {
+    level1Item.addEventListener('mouseenter', function () {
+      showLevel1Menu(this);
+    });
+
+    level1Item.addEventListener('mouseleave', function () {
+      hideLevel1Menu(this);
+    });
+
+    level1Item.addEventListener('blur', function () {
+      handleBlur(this);
+      hideLevel1Menu(this);
+    });
+
+    const level1Menu = level1Item.querySelector('.ulLevel1');
+
+    if (level1Menu) {
+      // Add focusin event listener to the submenu itself
+      level1Menu.addEventListener('focusin', function () {
+        showLevel1Menu(level1Item);
+      });
+
+      // Add focusout event listener to the submenu itself
+      level1Menu.addEventListener('focusout', function () {
+        handleBlur(level1Item);
+        hideLevel1Menu(level1Item);
+      });
+    }
+  });
+}
+
+// Initial check and adding event listeners
+if (isLargeScreen()) {
+  addEventListeners();
+}
+
+// Event listener for window resize
+window.addEventListener('resize', function () {
+  if (isLargeScreen()) {
+    addEventListeners();
+  }
+});
+
+function showLevel1Menu(element) {
+  const level1Menu = element.querySelector('.ulLevel1');
+  if (level1Menu) {
+    level1Menu.style.visibility = 'visible';
+    level1Menu.style.opacity = '1';
+    currentOpenedLevel1 = element;
+  }
+}
+
+function hideLevel1Menu(element) {
+  if (element) {
+    const level1Menu = element.querySelector('.ulLevel1');
+    if (level1Menu) {
+      level1Menu.style.visibility = 'hidden';
+      level1Menu.style.opacity = '0';
+      currentOpenedLevel1 = null;
+    }
+  }
+}
+
+function showLevel1MenuForLevel1(level1Element) {
+  // If the focus moves to a different level1 element, hide the previous ulLevel1
+  hideLevel1Menu(currentOpenedLevel1);
+
+  // Show the ulLevel1 for the newly focused level1
+  showLevel1Menu(level1Element);
+}
+
+function handleBlur(level1Item) {
+  const anchorInsideLevel1 = level1Item.querySelector('a.active-menu-element');
+  if (anchorInsideLevel1) {
+    anchorInsideLevel1.classList.remove('active-menu-element');
+  }
+}
+
+//dynamic height to jwplayer video iframe
+        function resizeIframe() {
+                var aspectRatio = 9 / 16; // 16:9 aspect ratio
+                var iframes = $j('.video-card__video-container').find('iframe');
+
+                  // Check if there is at least one iframe
+                if (iframes.length > 0) {
+                    iframes.height(iframes.width() * aspectRatio);
+                }
+            }
+
+            // Call the function on page load and window resize
+            $j(window).on('load resize', resizeIframe);
+            
+            
+            
+             //
+
+
+// Listen for the input event on the input field
+             let inputVal = document.querySelector('#cmbo2');
+             if(inputVal) {
+             	inputVal.addEventListener('blur', function(event) {
+    //console.log('Focus lost on input'); 
+    //console.log("InputValue", inputVal.value);
+});
+
+             }
+
+// Listen for click events on the suggestions
+document.querySelectorAll('.selected-insurance').forEach(suggestion => {
+    suggestion.addEventListener('click', function(event) {
+        //console.log("Selected policy:", suggestion.textContent);
+    });
+});
+
+// Get all radio buttons inside the <ul> element
+const radioButtons = document.querySelectorAll('.policy-holder-innerwrap input[type="radio"]');
+
+// Add event listener to each radio button
+radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('click', function(event) {
+        // Get the corresponding label text when a radio button is selected
+        const label = this.nextElementSibling.textContent;
+        //console.log("event.target", event.target);
+        if(event.target.id === "dc-an-individual-policyholder-alba-life" || event.target.id === "dc-an-individual-policyholder-alba-life-limited"){
+        bool = true;
+        }
+        else{
+        bool = false;
+        }
+       //console.log("bool", bool);
+    });
+});
+
+
+
+
+
+ 
+// Function to check radio buttons and configure button class
+ 
+function handlePolicyPopup() {
+    //console.log("handlePolicyPopup function called");
+    var popup = document.querySelector('.policyModalPopup');
+    // Check if popup exists and is visible
+    if (popup && getComputedStyle(popup).display === 'block') {
+      //console.log("Popup found and visible");
+      var btnSaveInsurance = popup.querySelector('.btnsaveInsurance');
+      // Check if .policy-holder-type-wrapper is already present
+      setTimeout(checkPolicyHolderWrapper, 1000);
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList') {
+            // Check if .policy-holder-type-wrapper is added to the DOM
+            if (mutation.addedNodes.length > 0) {
+              mutation.addedNodes.forEach(function(node) {
+                if (node.classList && node.classList.contains('policy-holder-type-wrapper')) {
+                 // console.log(".policy-holder-type-wrapper added to the DOM");
+                  checkPolicyHolderWrapper();
+                }
+              });
+            }
+          }
+        });
+      });
+
+      observer.observe(popup, {
+        childList: true,
+        subtree: true
+      });
+    } else {
+      //console.log("Popup not found or not visible");
+    }
+  }
+        
+// Function to check if .policy-holder-type-wrapper is present and add disabledTag class if needed
+
+function checkPolicyHolderWrapper() {
+ var popup = document.querySelector('.model-filer');
+//console.log("inside checkPolicyHolderWrapper");
+  var btnSaveInsurance = document.querySelector('.model-filer .btnsaveInsurance');
+  var policyHolderWrappers = popup.querySelectorAll('.policy-holder-type-wrapper');
+  policyHolderWrappers.forEach(function(policyHolderWrapper) {
+  //console.log("found .policy-holder-type-wrapper");
+    var closestComboList = policyHolderWrapper.closest('ul.combo__list');
+    //console.log(closestComboList);
+    if (!closestComboList) {
+      //console.log("Policy holder wrapper found and not within ul.combo__list");
+      var radioInputs = policyHolderWrapper.querySelectorAll('input[type="radio"]');
+      if (radioInputs.length > 0) {
+      console.log(radioInputs);
+        var isChecked = Array.from(radioInputs).some(function(input) {
+          return input.checked;
+        });
+        if (!isChecked) {
+        
+          btnSaveInsurance.classList.add('disableTag');
+          console.log("disabledTag class added to btnSaveInsurance");
+        } else {
+          console.log("At least one checkbox is already checked, disableTag not added to btnSaveInsurance");
+        }
+
+        // Add event listener to each radio input
+        radioInputs.forEach(function(radioInput) {
+          radioInput.addEventListener('change', function() {
+            // Check if any radio input is checked
+            var isChecked = Array.from(radioInputs).some(function(input) {
+              return input.checked;
+            });
+            // If any radio input is checked, remove disableTag class from btnSaveInsurance
+            if (isChecked) {
+            //console.log("here")
+            
+              btnSaveInsurance.classList.remove('disableTag');
+              console.log("disabledTag class removed from btnSaveInsurance");
+            }
+          });
+        });
+      } else {
+        //console.log("No radio inputs found");
+      }
+    } else {
+      //console.log(".policy-holder-type-wrapper not found")
+      //console.log("current policy holder type wrapper:", policyHolderWrapper);
+    }
+  });
+}
+
+
+//function to handle policy selector button limitation if popup modal comes on page in static way
+function handleOnPagePolicyPopup(){
+//console.log("hello static modal");
+var staticPopup = document.querySelector(".dc-inner-wrapper .model-filer")
+var policyHolder = staticPopup.querySelector(".dc-inner-wrapper .policy-holder-type-wrapper")
+
+ var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList') {
+            // Check if .policy-holder-type-wrapper is added to the DOM
+            if (mutation.addedNodes.length > 0) {
+              mutation.addedNodes.forEach(function(node) {
+                if (node.classList && node.classList.contains('policy-holder-type-wrapper')) {
+                  //console.log(".policy-holder-type-wrapper added to the DOM");
+                checkStaticPolicyHolderWrapper();
+                }
+              });
+            }
+          }
+        });
+      });
+
+observer.observe(staticPopup,{
+		childList: true,
+        subtree: true
+});
+}
+function checkStaticPolicyHolderWrapper(){
+console.log("staic policy holder wrapper function called");
+var btnSaveInsurance = document.querySelector('.dc-inner-wrapper .model-filer .btnsaveInsurance');
+var staticPopup = document.querySelector(".dc-inner-wrapper .model-filer")
+var policyHolderWrappers = staticPopup.querySelectorAll(".policy-holder-innerwrap")
+
+    policyHolderWrappers.forEach(function(policyHolderWrapper) {
+  //console.log("found .policy-holder-type-wrapper");
+    var closestComboList = policyHolderWrapper.closest('ul.combo__list');
+    //console.log(closestComboList);
+    if (!closestComboList) {
+      //console.log("Policy holder wrapper found and not within ul.combo__list");
+      var radioInputs = policyHolderWrapper.querySelectorAll('input[type="radio"]');
+      if (radioInputs.length > 0) {
+      //console.log(radioInputs);
+        var isChecked = Array.from(radioInputs).some(function(input) {
+          return input.checked;
+        });
+        if (!isChecked) {
+        
+          btnSaveInsurance.classList.add('disableTag');
+          //console.log("disabledTag class added to btnSaveInsurance");
+        } else {
+          //console.log("At least one checkbox is already checked, disableTag not added to btnSaveInsurance");
+        }
+
+        // Add event listener to each radio input
+        radioInputs.forEach(function(radioInput) {
+          radioInput.addEventListener('change', function() {
+            // Check if any radio input is checked
+            var isChecked = Array.from(radioInputs).some(function(input) {
+              return input.checked;
+            });
+            // If any radio input is checked, remove disableTag class from btnSaveInsurance
+            if (isChecked) {
+              btnSaveInsurance.classList.remove('disableTag');
+              console.log("disabledTag class removed from btnSaveInsurance");
+            }
+          });
+        });
+      } else {
+       // console.log("No radio inputs found");
+      }
+    } else {
+      //console.log(".policy-holder-type-wrapper not found")
+      //console.log("current policy holder type wrapper:", policyHolderWrapper);
+    }
+  });
+
+}
+
+//function to handle enter in input field of popup //
+
+// function handleInputFocus() {
+//     var inputField = document.getElementById('cmbo3');
+//     inputField.addEventListener('focus', function() {
+//         console.log("Input field focused");
+
+//         // Set a timeout to allow some time for the checkboxes to appear
+//         setTimeout(function() {
+//             var checkboxes = document.querySelectorAll('.model-filer .policy-holder-innerwrap input[type="checkbox"]');
+//             console.log("Initial checkboxes:", checkboxes);
+//             if (checkboxes.length > 0) {
+//                 console.log("Checkboxes found initially:", checkboxes);
+//                 handleCheckboxPresence(true); // Invoke function to handle checkbox presence
+//             } else {
+//                 console.log("No checkboxes found initially. Setting up MutationObserver...");
+
+//                 // Mutation observer to continuously monitor changes in the container
+//                 var observer = new MutationObserver(function(mutations) {
+//                     mutations.forEach(function(mutation) {
+//                         // Check if nodes are added to the container
+//                         if (mutation.type === 'childList') {
+//                             handleCheckboxPresence(false); // Invoke function to handle checkbox presence
+//                             observer.disconnect(); // Disconnect observer once checkboxes are found or when no changes occur
+//                         }
+//                     });
+//                 });
+
+//                 // Start observing changes in the container
+//                 observer.observe(document.querySelector('.model-filer'), { childList: true, subtree: true });
+//             }
+//         }, 1000); // Adjust the timeout duration as needed
+//     });
+// }
+
+// // Function to handle checkbox presence and button state based on checkboxes
+// function handleCheckboxPresence(initialCheckboxesFound) {
+//     var btnSaveInsurance = document.querySelector('.model-filer .btnsaveInsurance');
+//     var checkboxes = document.querySelectorAll('.model-filer .policy-holder-innerwrap input[type="checkbox"]');
+//     console.log("All checkboxes:", checkboxes);
+//     if (initialCheckboxesFound || checkboxes.length > 0) {
+//         console.log("Checkboxes found:", checkboxes);
+//         btnSaveInsurance.classList.add('disableTag');
+//         console.log("disableTag class added to btnSaveInsurance");
+//     } else {
+//         console.log("No checkboxes found. Removing disableTag class from btnSaveInsurance");
+//         btnSaveInsurance.classList.remove('disableTag');
+//     }
+// }  
+document.addEventListener('focusin', function(event) {
+  if (event.target.tagName.toLowerCase() === 'input' &&
+      event.target.closest('.policyModalPopup')) {
+      event.preventDefault();
+  }
+});
+
+
+// Manage my policy 
+$j(document).ready(function() {
+    var selectedInsurance = null;
+    // If selectedInsurance is set
+    if (getCookie('selectedInsurance')) {
+      selectedInsurance = JSON.parse(getCookie('selectedInsurance'));
+    }
+    if (selectedInsurance && selectedInsurance.url) {
+      $j('a[data-policy="Manage my policy"]').attr('href', selectedInsurance.url);
+      $j('.breadcrumb__item').each(function() {
+        if ($j(this).text().trim() === "Manage my policy") {
+          $j(this).attr('href', selectedInsurance.url);
+        }
+      });
+    } else {
+      // If selectedInsurance is not set, set the default URL
+      $j('a[data-policy="Manage my policy"]').attr('href', '/customer-centre/manage-my-policy');
+      $j('a[data-policy="How to Guide"]').attr('href', '/customer-centre/help-centre/how-to-guides');
+      $j('.breadcrumb__item').each(function() {
+        if ($j(this).text().trim() === "Manage my policy") {
+          $j(this).attr('href', '/customer-centre/manage-my-policy');
+        }
+         // Setting the href for "How to Guide" link
+         if ($j(this).text().trim() === "How to Guide") {
+          $j(this).attr('href', '/customer-centre/help-centre/how-to-guides');
+        }
+      });
+    }
+  });
+
+
+// remove fnclass on register login page
+$j(document).ready(function(){
+    $j(".loginRegister-page.loginRegisterPopup .combo__list-option a").click(function(){
+        $j(".policy-holder-type-wrapper.hide .fnClass").remove();
+    });
+});
+
+/*!---- accessibility-----*/
+//mobile menu accessibility 
+$j('.toggle-sub.text_indent_hide').each(function () {
+    var nextInput_1 = $j(this).next('input');
+    $j(this).keydown(function (e) {
+        if ( e.keyCode == 13) {
+       
+            $j(this).trigger('click');
+//             if (nextInput_1.length > 0) {
+//                 nextInput_1.prop('checked', !nextInput_1.prop('checked'));
+//             }
+        }
+    });
+});
+$j('.btnBack:not(".text_indent_hide")').each(function () {
+    var nextInput_2 = $j(this).closest('ul').prev();
+  
+    $j(this).keydown(function (e) {
+        if (e.keyCode == 13) {
+            $j(this).trigger('click');
+//             if (nextInput_2.length > 0) {
+//                 nextInput_2.prop('checked', !nextInput_2.prop('checked'));
+//             } 
+        }
+    });
+   
+    });
+$j('.btnBack:not(".text_indent_hide")').on('click', function () {
+    var nextInput_3 = $j(this).closest('ul').prev();
+   console.log("back btn pressed");
+    if (nextInput_3.length > 0) {
+    console.log("ul found");
+        jQuery(this).parents('ul').removeClass('child-menu--opened')
+        nextInput_3.prop('checked', !nextInput_3.prop('checked'));
+    }
+  
+});
+$j('.header .navigation__topbar .navigation li .toggle.text_indent_hide').on('click', function () {
+    var nextInput_5 = $j(this).next('input');
+     console.log("labl btn pressed");
+    if (nextInput_5.length > 0) {
+     console.log("input found");
+        jQuery(this).parents('ul').addClass('child-menu--opened')
+        nextInput_5.prop('checked', !nextInput_5.prop('checked'));
+    }
+});
+
+setTimeout(function() {
+    $j('.btnBack:not(".text_indent_hide")').on('click', function () {
+    var nextInput_3 = $j(this).closest('ul').prev();
+    if (nextInput_3.length > 0) {
+        jQuery(this).parents('ul').removeClass('child-menu--opened')
+        nextInput_3.prop('checked', !nextInput_3.prop('checked'));
+    }
+});
+$j('.header .navigation__topbar .navigation li .toggle.text_indent_hide').on('click', function () {
+    var nextInput_5 = $j(this).next('input');
+    if (nextInput_5.length > 0) {
+        jQuery(this).parents('ul').addClass('child-menu--opened')
+        nextInput_5.prop('checked', !nextInput_5.prop('checked'));
+    }
+});
+}, 500)
+//m-menu acc. ends here//
+
+//change icon on active of media link
+function hasLinkAnimateAncestor(element) {
+    var parent = element.parentElement;
+    while (parent) {
+      if (parent.classList && parent.classList.contains('link-animate')) {
+        return true;
+      }
+      parent = parent.parentElement;
+    }
+    return false;
+  }
+  var linkTexts = document.querySelectorAll('.link-text');
+  
+  linkTexts.forEach(function(linkText) {
+    linkText.addEventListener('mousedown', function() {
+      var img = this.previousElementSibling;
+      if (!hasLinkAnimateAncestor(this)) {
+        var currentSrc = img.src;
+        if (currentSrc.includes("media")) {
+          img.src = "/~/media/Images/P/Phoenix-HWU-V3/icons/download-doc-link-grey.svg";
+        } else if (currentSrc.includes("external")) {
+          img.src = "/~/media/Images/P/Phoenix-HWU-V3/icons/external-link-grey.svg";
+        }
+      }
+    });
+  });
+  
+  // Function to handle click outside of link-text elements
+  function handleClickOutside(event) {
+    
+    if (!event.target.closest('.link-text')) {
+      
+      var imgs = document.querySelectorAll('.link-icon');
+      imgs.forEach(function(img) {
+        img.src = "/~/media/Images/P/Phoenix-HWU-V3/icons/download-doc-link.svg"; 
+      });
+    }
+  }
+  
+  document.addEventListener('click', handleClickOutside);
+  
+  
+  
+  
+  
+  
+   
+  
+  
+  //for unitlinkedprice/withprofit pages to check if policy is priviously selected or not
+  var anchorElement1 = document.querySelector('#manage-my-policy-nav-nav-with-profits-level3 a');
+  var anchorElement2 = document.querySelector('#manage-my-policy-nav-nav-unit-linked-fund-prices-level3 a');
+  
+  var anchorElement3 = document.querySelector('#customer-centre-nav-nav-manage-my-policy-level2 a');
+  var selectedInsuranceCookie = getCookie("selectedInsurance");
+  var cookieConsentV300 = v300Handler("__CookieConsentV300");
+  var valChecker;
+  function getCookie(name) { 
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
+  function v300Handler(name){
+   var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+   if (parts.length == 2) {
+      var cookieValue = JSON.parse(decodeURIComponent(parts.pop().split(";").shift()));
+      valChecker = cookieValue.accepted; // Assign valChecker here
+      console.log("v300 accepted value:", valChecker);
+    }
+  }
+  function observeCookieConsent(anchorElement) {
+    console.log("Observing cookie consent...");
+    var observer = new MutationObserver(function(mutationsList, observer) {
+      mutationsList.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'checked') {
+          console.log("Checked attribute changed");
+          var cookieValue = JSON.parse(decodeURIComponent(getCookie("__CookieConsentV300")));
+          if (cookieValue.checked === true) {
+            console.log("Cookie consent accepted!");
+            observer.disconnect();
+            if (anchorElement) {
+              console.log("Clicking anchor element...");
+              anchorElement.click();
+            }
+          }
+        }
+      });
+    });
+      var config = { attributes: true, attributeFilter: ['checked'] };
+    observer.observe(document.body, config);
+  }
+  function handleClick(anchorElement) {
+    var interval = setInterval(function() {
+      var cookieConsentV300 = getCookie("__CookieConsentV300");
+      if (cookieConsentV300) {
+        var cookieValue = JSON.parse(decodeURIComponent(cookieConsentV300));
+        if (cookieValue.accepted === true) {
+          clearInterval(interval);
+          console.log("Cookie consent accepted! Clicking anchor element...");
+          if (anchorElement) {
+            anchorElement.click();
+          }
+        }
+      }
+    }, 1000); // Check every second for changes in the cookie value
+  }
+  
+  if(window.location.href==='https://www.phoenixlife.co.uk/withprofits')
+  {
+      if(!selectedInsuranceCookie){
+             console.log("Handling click for withprofits...");
+          handleClick(anchorElement1);
+      }
+    //console.log("if:", window.location.href);
+  
+      //console.log({anchorElement2});
+      //console.log("clicked");
+      else
+        {
+      //console.log("cookie found");
+      let obj = JSON.parse(selectedInsuranceCookie);
+      let ar=window.location.href.split('/');
+      //console.log('ar',ar);
+      let len = ar.length;
+      //console.log('url:',obj.url,ar[len-1]);
+      let url_str=`${obj.url}/with-profits`;
+      //console.log('raa url:',url_str);
+      window.location.href = `${url_str}`;
+      
+        }   
+  }  
+    
+    
+  
+  if(window.location.href==='https://www.phoenixlife.co.uk/unitlinked'){
+    //console.log("else:", window.location.href);
+    if(!selectedInsuranceCookie){
+      handleClick(anchorElement2);
+    }
+    else
+    {
+      let obj = JSON.parse(selectedInsuranceCookie);
+      let ar=window.location.href.split('/');
+      //console.log('ar',ar);
+      let len = ar.length;
+      //console.log('url:',obj.url,ar[len-1]);
+      let url_str=`${obj.url}/unit-linked-fund-prices`;
+      //console.log('raa url:',url_str);
+      window.location.href = `${url_str}`;
+      
+    }  
+    
+  }
+  
+// ineligible
+if(window.location.href==='https://www.phoenixlife.co.uk/ineligible')
+  {
+      if(!selectedInsuranceCookie){
+        handleClick(anchorElement3);
+    }
+      else{
+        let obj = JSON.parse(selectedInsuranceCookie);
+      let ar=window.location.href.split('/');
+      let len = ar.length;
+      let url_str=`${obj.url}`;
+      window.location.href = `${url_str}`;
+      }   
+  }  
+// end ineligible
+
+    else if(window.location.href.includes("with-profits"))
+    {
+      if(!selectedInsuranceCookie){
+        let anchorElement1 = document.querySelector('#manage-my-policy-nav-nav-with-profits-level3 a');
+        //console.log({anchorElement});
+        handleClick(anchorElement1);
+      }
+    }else if(window.location.href.includes("unit-linked-fund-prices")){
+      if(!selectedInsuranceCookie){
+        let anchorElement2 = document.querySelector('#manage-my-policy-nav-nav-unit-linked-fund-prices-level3 a');
+        //console.log({anchorElement});
+        handleClick(anchorElement2);
+      }
+    }  
+  
+  
+  
+/*!---- data-layer-----*/
+$j(document).on("click", ".news-filter-row .button", function () {    
+    var searchYear = document.querySelector(".tab-main-wrapper .tab-menu ul li a.active-a").textContent;
+    var searchCategory = document.querySelector(".tab-main-wrapper .news-filter-row .category a").textContent;
+    var searchTopic = document.querySelector(".tab-main-wrapper .news-filter-row .topics a").textContent;
+    var searchTerm = document.querySelector(".tab-main-wrapper .news-filter-row .field__input").value;
+
+    var searchAction = searchTerm ? 'Search Term - search results page' : 'Search Term - Latest news';
+
+    var data = {
+        'event': 'siteSearch',
+        'searchAction': searchAction,
+        'searchYear': searchYear,
+        'searchCategory': searchCategory,
+        'searchTopic': searchTopic
+    };
+
+    if (searchTerm) {
+        data.searchTerm = searchTerm;
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(data);
+});
+
+
+$j(document).on("click", ".news-content-wrap .latest-news-item .news-items .news-title a", function () {
+	console.log("click on link");
+    var searchYear = document.querySelector(".tab-main-wrapper .tab-menu ul li a.active-a").textContent;
+    var searchCategory = document.querySelector(".tab-main-wrapper .news-filter-row .category a").textContent;
+    var searchTopic = document.querySelector(".tab-main-wrapper .news-filter-row .topics a").textContent;
+    var searchTerm = document.querySelector(".tab-main-wrapper .news-filter-row .field__input").value;
+//     var linktext = document.querySelector(this).textContent.trim();
+    var linktext = this.textContent.trim();
+
+    window.dataLayer = window.dataLayer || [];    
+    window.dataLayer.push({
+        'event': 'siteSearch',
+        'searchAction': 'Search Term - Link clicks',
+        'searchYear': searchYear,
+        'searchCategory': searchCategory,
+        'searchTopic': searchTopic,
+        'searchTerm': searchTerm,
+        'searchResultsLink': linktext
+    });
+    
+
+});
+
+if (document.getElementsByClassName("btn-eligibility").length > 0) {
+    document.getElementsByClassName("btn-eligibility")[0].onclick = function (
+      e
+    ) {
+      var selector = "";
+      let checkCompany;
+      if ($j(".policy-holder-type-wrapper.show li input:checked").length > 0) {
+        selector = $j(
+          ".policy-holder-type-wrapper.show li input:checked"
+        ).parent();
+        checkCompany = $j(".policy-holder-type-wrapper.show li input:checked")
+          .parent()
+          .attr("data-centre");
+      } else {
+        selector = $j(".selected-insurance a");
+        checkCompany = $j(".selected-insurance").attr("data-centre");
+       console.log("checkCompany",checkCompany)
+      }
+      var checkPolicy,
+      addExactPageUrl = selector.data("url");
+      console.log("addExactPageUrl",addExactPageUrl)
+      var checkPolicyChange = $j(e.target).parents(".loginRegister-page").length ? window.location.pathname : "";
+      if (
+        checkPolicyChange.indexOf("profits") > -1
+      ) {
+        addExactPageUrl += "/with-profits";
+      } else if (
+        checkPolicyChange.indexOf("unit") > -1
+      ) {
+        addExactPageUrl += "/unit-linked-fund-prices";
+      } else if (
+        checkPolicyChange.indexOf("personal") > -1
+      ) {
+        addExactPageUrl += "/change-of-personal-information";
+      } else if (
+        checkPolicyChange.indexOf("subject") > -1
+      ) {
+        addExactPageUrl += "/subject-access-request-form";
+      } else if (
+        checkPolicyChange.indexOf("guides") > -1
+      ) {
+        addExactPageUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          addExactPageUrl
+            .substring(addExactPageUrl.lastIndexOf("/"))
+            .replace("/manage-my-policy-", "");
+      } else if (
+        checkPolicyChange.indexOf("complaint") > -1
+      ) {
+        addExactPageUrl =
+          "/customer-centre/help-centre/how-to-guides/how-to-guides-" +
+          addExactPageUrl
+            .substring(addExactPageUrl.lastIndexOf("/"))
+           .replace("/manage-my-policy-", "") +
+           "/make-a-complaint";
+      } else if (
+        checkPolicyChange.indexOf("request") > -1
+      ) {
+        addExactPageUrl += "/contact/retirement-pack-request-form";
+      } else if (
+        checkPolicyChange.indexOf("contact") > -1
+      ) {
+        addExactPageUrl += "/contact";
+      } else {
+        addExactPageUrl;
+      }
+      var date = new Date();
+      var dateToSet = new Date(date.setDate(date.getDate() + 30));
+      //document.cookie = "selectedInsurance=" + '{"name":"'+document.getElementById("cmbo3").value+'","url":"'+selector.data("url")+'"}'+ ";" + "expires=" + dateToSet + ";" + "path=/";
+     document.cookie = `selectedInsurance={"name":"${
+        document.getElementById("cmbo2").value
+      }","url":"${selector.data(   
+        "url"
+      )}","company": "${checkCompany}"};expires=${dateToSet};path=/`;
+      $j(".policyModalPopup.modal .close").trigger("click");
+//       $j.ajax({
+//         url: addExactPageUrl,
+//         success: function (result, status, xhr) {
+//           location.href = addExactPageUrl;
+//         },
+//         error: function (xhr, status, error) {
+//           location.href = selector.data("url");
+//         }, 
+//       });
+    }; 
+  }
+
+
+
+
+
+/*!---- combining-peterborough-----*/
+// Function to set a cookie with JSON value
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+  // Function to get a cookie by name
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+  // Function to show/hide Data based on the cookie value
+  function displayData() {
+    const banners = {
+      'London Life': [
+        document.getElementById('peterboroughl-content'),
+        document.getElementById('peterboroughl-accordion'),
+        document.getElementById('peterboroughl-card-3-columns'),
+        // with unit linked
+        document.getElementById('peterboroughl-content-unit'),
+        document.getElementById('peterboroughl-external-content-unit'),
+        document.getElementById('peterboroughl-content-life-policy-unit'),
+        document.getElementById('peterboroughl-external-content-life-policy-unit'),
+  
+      ],
+      'Pearl Assurance': [
+        document.getElementById('peterboroughp-accordion'),
+        document.getElementById('peterboroughp-content'),
+        // with unit linked
+        document.getElementById('peterboroughp-external-content'),
+        document.getElementById('peterboroughp-content-life-policy'),
+        document.getElementById('peterboroughp-external-content-life-policy'),
+      ],
+      'NPI and National Provident Life': [
+        document.getElementById('peterboroughn-content'),
+        // with unit linked
+        document.getElementById('peterboroughn-external-content'),
+        document.getElementById('peterboroughn-pension-policy-content'),
+        document.getElementById('peterboroughn-external-content-pension-policy'),
+  
+      ],
+      'NPI and National Provident Life': [
+        document.getElementById('peterboroughnpll-accordion'),
+        document.getElementById('peterboroughnpll-content'),
+  
+        // with unit linked
+        document.getElementById('peterboroughnpll-external-content'),
+        document.getElementById('peterboroughnpll-content-policy'),
+        document.getElementById('peterboroughnpll-external-content-pension-policy'),
+      ],
+    };
+  
+    // Hide all banners initially
+    for (let key in banners) {
+      banners[key].forEach(element => {
+        if (element) {
+          element.style.display = 'none';
+        }
+      });
+    }
+  
+    // Get the banner name from the cookie
+    let cookieValue = getCookie('selectedInsurance');
+    // console.log('Cookie Value:', cookieValue);
+    
+  // when cookies not selected
+  const peterboroughCommonContent = document.querySelector("#peterborough-content-common");
+  const peterboroughCommonAccordion = document.querySelector("#peterborough-accordion-common");
+  const unitlinkedCommonContent = document.querySelector("#unit-linked-content-common");
+  const unitlinkedCommonExternalContent = document.querySelector("#common-external-content");
+  const unitlinkedCommonPolicyContent = document.querySelector("#common-pension-policy-content");
+  const unitlinkedCommonExternalPolicyContent = document.querySelector("#common-external-content-pension-policy");
+  const unitlinkedCommonThreeColumn = document.querySelector("#common-peterboroughn-card-3-columns");
+  
+  if (!cookieValue) {
+      // Peterborough elements
+      if (peterboroughCommonContent) {
+          peterboroughCommonContent.style.display = "block";
+      } else {
+          //console.error("peterboroughCommonContent not found");
+      }
+  
+      if (peterboroughCommonAccordion) {
+          peterboroughCommonAccordion.style.display = "block";
+      } else {
+         // console.error("peterboroughCommonAccordion not found");
+      }
+  
+      // Unit linked elements
+    
+  
+      if (unitlinkedCommonContent) {
+          unitlinkedCommonContent.style.display = "block";
+      } else {
+        //  console.error("unitlinkedCommonContent not found");
+      }
+  
+      if (unitlinkedCommonExternalContent) {
+          unitlinkedCommonExternalContent.style.display = "block";
+      } else {
+        //  console.error("unitlinkedCommonExternalContent not found");
+      }
+  
+      if (unitlinkedCommonPolicyContent) {
+          unitlinkedCommonPolicyContent.style.display = "block";
+      } else {
+         // console.error("unitlinkedCommonPolicyContent not found");
+      }
+  
+      if (unitlinkedCommonExternalPolicyContent) {
+          unitlinkedCommonExternalPolicyContent.style.display = "block";
+      } else {
+        //  console.error("unitlinkedCommonExternalPolicyContent not found");
+      }
+  
+      if (unitlinkedCommonThreeColumn) {
+          unitlinkedCommonThreeColumn.style.display = "block";
+      } else {
+         // console.error("unitlinkedCommonThreeColumn not found");
+      }
+  }
+  
+  // end 
+    if (cookieValue) {
+      try {
+        let selectedBanner = JSON.parse(cookieValue).name;
+        // console.log('Selected Banner:', selectedBanner);
+        if (selectedBanner && banners[selectedBanner]) {
+          banners[selectedBanner].forEach(element => {
+            if (element) {
+              element.style.display = 'block';
+            }
+          });
+          //  console.log('Displaying Banner:', selectedBanner); // Log when banners are displayed
+        }
+      } catch (e) {
+        //  console.error('Error parsing cookie value:', e);
+      }
+    } else {
+      //  console.log('No matching banner found or selectedBanner is null.');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', displayData);
+  // end Withprofit and Unit-linked
+  
+  // national-provident-life-limited
+  document.addEventListener('DOMContentLoaded', function () {
+    // Select all radio buttons
+    const radioButtons = document.querySelectorAll('input[name="group-52"]');
+    // Check if a radio button ID is stored in sessionStorage
+    const storedRadioButtonId = sessionStorage.getItem('selectedRadioButtonId');
+    // If a radio button ID is stored, set the 'selected' class for that radio button
+    if (storedRadioButtonId) {
+      const storedRadioButton = document.getElementById(storedRadioButtonId);
+      if (storedRadioButton) {
+        storedRadioButton.parentElement.classList.add('selected');
+        applyBodyClass(storedRadioButtonId);
+      }
+    }
+    // Add event listener to each radio button
+    radioButtons.forEach(function (radioButton) {
+      radioButton.addEventListener('change', function () {
+        // Remove the 'selected' class from all radio buttons' parent elements
+        radioButtons.forEach(function (radioButton) {
+          radioButton.parentElement.classList.remove('selected');
+        });
+        // Add the 'selected' class to the clicked radio button's parent element
+        this.parentElement.classList.add('selected');
+        // Store the ID of the clicked radio button in sessionStorage
+        sessionStorage.setItem('selectedRadioButtonId', this.id);
+        // Apply class to body tag based on the selected radio button
+        applyBodyClass(this.id);
+      });
+    });
+  });
+  
+  
+  // Function to apply class to body tag based on the selected radio button
+  function applyBodyClass(selectedId) {
+    // Remove existing classes from body tag
+    document.body.classList.remove('npi-limited-2012', 'npi-limited-2015');
+    if (selectedId === 'an-npi-or-national-provident-life-policy-that-was-transferred-to-phoenix-life-limited-in-march-2012-npi-and-national-provident-life') {
+      document.body.classList.add('npi-limited-2012');
+    } else if (selectedId === 'a-national-provident-life-limited-policy-that-was-transferred-to-phoenix-life-assurance-limited-in-june-2015-npi-and-national-provident-life') {
+      document.body.classList.add('npi-limited-2015');
+    }
+  }
+  
+  function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+  
+      // Remove whitespace at the beginning of the cookie name and compare it with the given string
+      if (name == cookiePair[0].trim()) {
+        return decodeURIComponent(cookiePair[1]);
+      }
+    }
+    // Return null if not found
+    return null;
+  }
+  // Function to check the cookie value and add class to body tag
+  function addClassBasedOnCookie() {
+    let cookieValue = getCookie("selectedInsurance");
+    if (cookieValue) {
+      // Parse the cookie value assuming it's a JSON string
+      try {
+        let parsedValue = JSON.parse(cookieValue);
+        if (parsedValue.name === "NPI and National Provident Life") {
+          document.body.classList.add("national-provident-life");
+        }
+      } catch (e) {
+        //  console.error("Error parsing cookie value", e);
+      }
+    }
+  }
+  // Call the function on page load
+  window.onload = addClassBasedOnCookie;
+  // end npi / n
+  
+  // this is only for manage-my-policy-peterboroughn and manage-my-policy-peterboroughnpll
+    document.addEventListener("DOMContentLoaded", function() {
+        const contentNpll = document.querySelector(".content-npll");
+        const contentN = document.querySelector(".content-n");
+    
+        if (contentNpll) {
+            contentNpll.addEventListener("click", function(event) {
+                event.preventDefault();
+                setTimeout(function() {
+                    document.body.classList.remove("npi-limited-2012");
+                    document.body.classList.add("npi-limited-2015");
+                }, 2000);
+            });
+        }
+    
+        if (contentN) {
+            contentN.addEventListener("click", function(event) {
+                event.preventDefault();
+                setTimeout(function() {
+                    document.body.classList.remove("npi-limited-2015");
+                    document.body.classList.add("npi-limited-2012");
+                }, 2000);
+            });
+        }
+    });
+  // end
+  
+  
+  $j(document).ready(function () {
+    var selectedInsurance = null;
+    // If selectedInsurance is set
+    if (getCookie('selectedInsurance')) {
+      selectedInsurance = JSON.parse(getCookie('selectedInsurance'));
+    }
+    if (selectedInsurance && selectedInsurance.url) {
+      $j('a[data-policy="Manage my policy"]').attr('href', selectedInsurance.url);
+      $j('.breadcrumb__item').each(function () {
+        if ($j(this).text().trim() === "Manage my policy") {
+          $j(this).attr('href', selectedInsurance.url);
+        }
+      });
+    } else {
+      // If selectedInsurance is not set, set the default URLs
+      $j('a[data-policy="Manage my policy"]').attr('href', '/customer-centre/manage-my-policy');
+      $j('a[data-policy="How to Guide"]').attr('href', '/customer-centre/help-centre/how-to-guides');
+      $j('.breadcrumb__item').each(function () {
+        if ($j(this).text().trim() === "Manage my policy") {
+          $j(this).attr('href', '/customer-centre/manage-my-policy');
+        }
+        // Setting the href for "How to Guide" link
+        if ($j(this).text().trim() === "How to Guide") {
+          $j(this).attr('href', '/customer-centre/help-centre/how-to-guides');
+        }
+      });
+    }
+  });
+  
+/*!---- validation-----*/
+// add rating validation 
+$j(document).ready(function () {
+  const stars = $j('.starInner');
+  const ratingValue = $j('#rating-value');
+  $j('body').on('click', '.starInner', function () {
+    $j(this).closest('.feedback-inner-wrapper').find('.errormsg').hide();
+  });
+  $j('body').on('click', '#rnr-widget-send', function () {
+    // console.log("Submit button clicked!");
+    if (!ratingValue.val()) {
+      $j(this).closest('.feedback-inner-wrapper').find('.errormsg').show();
+      // console.error("No rating selected!");
+    } else {
+      console.log("Rating selected:", ratingValue.val());
+    }
+  });
+});
+// end rating js validation
+
+/*!---- sustainability-disclosure-----*/
+// sustainability-disclosure js
+$j(document).ready(function() {
+  $j('.contact-form__withcookies').on('click', function(event) {
+      event.preventDefault();
+      var href = $(this).attr('href');
+      window.location.href = href;
+  });
+
+    const cookieValue = getCookie("selectedInsurance");
+    //console.log('Cookie Value (raw):', cookieValue);
+    if (cookieValue) {
+        try {
+            let parsedValue = JSON.parse(cookieValue);
+            //console.log('Parsed Cookie Value:', parsedValue);
+
+            const policyName = parsedValue.name;
+            //console.log('Looking for policy name:', policyName);
+            var selectedLink = $j('.combo__list-option').filter(function() {
+                return $j(this).data('policyname') === policyName;
+            });
+            if (selectedLink.length > 0) {
+                var contactFormLink = selectedLink.data('clink');
+                //console.log('Found matching link, updating contact form link to:', contactFormLink);
+                $j('.contact-form__withcookies').attr('href', contactFormLink);
+               
+            } else {
+                //console.log('No matching link found for the policy name:', policyName);
+            }
+        } catch (e) {
+            //console.error('Error parsing cookie value:', e);
+        }
+    }
+    let sustainabilityTrue = document.querySelector('#ip3-sustainability-disclosure')
+    if (sustainabilityTrue) {
+        let cookieValues = getCookie("selectedInsurance");
+        if (!cookieValue) {
+           // console.log("Cookies not selected");
+            let pbtn = document.querySelector('.btnsaveInsurance');
+            pbtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                let slctLink = document.querySelector('li.selected-insurance').getAttribute("data-clink");
+                //console.log(slctLink, "0")
+                if (slctLink) {
+                   setTimeout(function() {
+                       // window.location.href = "https://" + window.location.hostname + slctLink;
+                        window.location.assign(slctLink);
+                        //console.log(window.location.hostname + slctLink, "window.location.hostname+slctLink");
+                    }, 5000);
+                    console.log(slctLink, "1")
+                } else {
+                    //console.log("No link to redirect to.");
+                }
+               // console.log("button clickeddddd", slctLink)
+            })
+        }
+    }
+});
+/*!---- main-2-----*/
+function findLink() {
+    let cookieValue = getCookie("selectedInsurance");
+    //console.log(cookieValue, "cookies value")
+    if (cookieValue) {
+        try {
+            let parsedValue = JSON.parse(cookieValue);
+            if (parsedValue.company === "peterborough" || parsedValue.company === "liverpool") {
+                var request = document.querySelector("#contact-us-nav-nav-death-claim-notification-level3");
+                request.classList.add("death-claim-notification");
+                let linkElement = document.querySelector('.death-claim-notification > a');
+                if (linkElement) {
+                    linkElement.href = 'https://www.myphoenix.co.uk/bereavement/relation-notification';
+                    linkElement.setAttribute('target', '_blank');
+                    linkElement.setAttribute('aria-label', 'Link to My Phoenix website');
+                    linkElement.setAttribute('title', 'Link to My Phoenix website');
+                } else {
+                    // console.error('Element with class "request-retirement-pack" not found.');
+                }
+            }
+        } catch (e) {
+            //console.error('Error parsing cookie value:', e);
+        }
+    }
+}
+findLink();

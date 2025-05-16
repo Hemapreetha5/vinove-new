@@ -1,0 +1,436 @@
+/* Product highlighted styles */
+/*SRI styles*/
+/* table styles*/
+/* Condition check */
+/* table conditions*/
+/* footer styles */
+/*Common shared files of same template projects*/
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: 400;
+  color: black;
+  line-height: 1.2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+table,
+td,
+th {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  line-height: 1.2;
+  font-size: 8pt;
+}
+
+p {
+  padding: 0 0 1mm;
+}
+
+h2 {
+  background: rgb(0, 100, 127);
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 8pt;
+  padding: 1mm;
+  color: white;
+  margin-bottom: 0.2cm;
+}
+
+h3 {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-weight: "Arial Narrow", Arial, sans-serif;
+  font-size: 8pt;
+  color: white;
+}
+
+p:empty,
+h2:empty {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: inherit;
+  min-height: inherit;
+  width: auto;
+  height: auto;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.clear {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.page {
+  position: relative;
+  width: 19.5cm;
+  height: auto;
+  padding: 0cm 0.75cm 0cm 0.75cm;
+}
+
+.page > .row .composite1 .compositebody > .row .column {
+  float: none;
+  width: auto;
+}
+
+.page1 > .row6 .compositebody {
+  page-break-inside: avoid;
+}
+
+.page2 > .row2 .compositebody,
+.page3 > .row2 .compositebody {
+  page-break-inside: avoid;
+}
+
+.contentSection {
+  position: relative;
+}
+.contentSection > table {
+  margin: 0.2cm 0;
+}
+
+/* header styles*/
+.keyinformationdocument h2 {
+  background: none;
+  font-size: 16pt;
+  color: black;
+  text-align: right;
+}
+
+.keyinformationdocument {
+  position: running(kid);
+}
+
+/* column styles*/
+.page1 > .row5 .compositebody .column1, .page1 > .row6 .compositebody .column1 {
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance;
+}
+.page1 > .row5 .compositebody .column1 > .row1, .page1 > .row6 .compositebody .column1 > .row1 {
+  column-span: all;
+}
+
+/* SRI risk styles*/
+p.SriRange,
+p.Sri {
+  width: 1px;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent rgb(0, 100, 127) transparent;
+  position: absolute;
+  padding: 0;
+  padding-top: 2.45cm;
+  /* top: cm; */
+}
+p.Sri {
+  margin-top: 20px;
+}
+p.SriRange:after,
+p.Sri:after {
+  content: "!";
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 18pt;
+  color: white;
+  position: relative;
+  left: -3px;
+  top: 0.3cm;
+}
+
+.sriRiskRating,
+.sriRangeRiskRating {
+  width: 100%;
+  margin-top: 0 !important;
+  position: relative;
+}
+.sriRiskRating .ratings table,
+.sriRangeRiskRating .ratings table {
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+.sriRiskRating .ratings td.rating,
+.sriRangeRiskRating .ratings td.rating {
+  background: rgb(177, 179, 180);
+  width: 12.9mm;
+  height: 5mm;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 8pt;
+  text-align: center;
+}
+.sriRiskRating .ratings td.selected,
+.sriRangeRiskRating .ratings td.selected {
+  background: rgb(0, 100, 127);
+  color: white;
+}
+
+.rating + .rating {
+  border-left: 5px solid white;
+}
+
+.sriRiskRating .header,
+.sriRangeRiskRating .header {
+  display: block;
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+.sriRiskRating .header th,
+.sriRangeRiskRating .header th {
+  background: rgb(0, 100, 127);
+  width: 2cm;
+  text-align: left;
+  color: white;
+  border: 0;
+  padding: 1.2mm 4.5mm;
+}
+.sriRiskRating .header th:last-of-type,
+.sriRangeRiskRating .header th:last-of-type {
+  text-align: right;
+  border-left: 5cm solid white;
+}
+.sriRiskRating .arrow,
+.sriRangeRiskRating .arrow {
+  background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 270.45 10.28'%3E%3Cdefs%3E%3Cstyle%3E .cls-1, .cls-2 %7B fill: %23007d9f; %7D .cls-2 %7B fill-rule: evenodd; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='cls-2' points='5.56 9.89 5.56 0 0 4.95 5.56 9.89'/%3E%3Cpolygon class='cls-2' points='262.76 .39 262.76 10.28 270.45 5.34 262.76 .39'/%3E%3Crect class='cls-1' x='1.76' y='4.74' width='262.2' height='.45'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
+  height: 4mm;
+  width: 100%;
+}
+
+.page1 > .row6 .compositebody .column1 .row7 .narrative:before {
+  content: "";
+  width: 1.75cm;
+  height: 1.2cm;
+  float: left;
+}
+
+/* table styles*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+table th,
+table td {
+  margin: 0;
+  padding: 0;
+}
+table th {
+  page-break-inside: avoid;
+  /* is-fund-centre*/
+}
+table th:empty {
+  padding: 0;
+}
+table th.tableheader {
+  border: 0;
+}
+table th.groupHeader1 {
+  padding: 0;
+  border: 0;
+}
+
+.groupHeaderDiv1 th {
+  background: rgb(0, 46, 61);
+  color: white;
+}
+
+.groupHeaderDiv1 th,
+.groupRowDiv1 td,
+.groupRowDiv1 th,
+.groupRowDiv1 tr.header th {
+  padding: 1mm;
+  border-bottom: 0.5pt solid rgb(0, 46, 61);
+  border-right: 0.5pt solid rgb(0, 46, 61);
+  text-align: left;
+}
+.groupHeaderDiv1 th:first-of-type,
+.groupRowDiv1 td:first-of-type,
+.groupRowDiv1 th:first-of-type,
+.groupRowDiv1 tr.header th:first-of-type {
+  border-left: 0.5pt solid rgb(0, 46, 61);
+  border-right: 0.5pt solid rgb(0, 46, 61);
+}
+
+/* condition to check is-fund-centre or is-MOP*/
+.performanceScenario {
+  page-break-inside: auto !important;
+  /* if is-fund-centre starts*/
+  /* if is-fund-centre ends*/
+  /* if is-fund-centre starts*/
+}
+.performanceScenario th[class*=period],
+.performanceScenario td[class*=period] {
+  width: 3cm;
+}
+.performanceScenario th[class*=period] {
+  font-family: "Arial Narrow", Arial, sans-serif;
+}
+.performanceScenario .groupRowDiv1 td[rowspan],
+.performanceScenario .groupRowDiv1 td.description:nth-child(2) {
+  font-weight: 700;
+}
+.performanceScenario .groupRowDiv1 td[rowspan] {
+  width: 2.5cm;
+  vertical-align: top;
+}
+.performanceScenario .survival-scenario th,
+.performanceScenario .header th,
+.performanceScenario .ongoingcosts th,
+.performanceScenario .incidentalcosts th,
+.performanceScenario .oneofcosts th,
+.performanceScenario .scenarioheader th {
+  font-weight: 700;
+}
+.performanceScenario .holding-period th,
+.performanceScenario .scenarioheader th {
+  border-top: 0.5pt solid rgb(0, 46, 61);
+}
+
+.costOverTime.costovertime_2columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_2columntable .groupRowDiv1 td {
+  width: 50%;
+}
+.costOverTime.costovertime_3columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_3columntable .groupRowDiv1 td {
+  width: 33.3%;
+}
+.costOverTime.costovertime_4columntable .groupHeaderDiv1 th,
+.costOverTime.costovertime_4columntable .groupRowDiv1 td {
+  width: 25%;
+}
+.costOverTime tr.scenarioheader th {
+  border-top: 0.5pt solid var(--tableborder);
+}
+.costOverTime table td[class*=totalcosts] {
+  font-weight: 700;
+}
+
+.costComposition .oneofcosts th:last-of-type,
+.costComposition td:last-of-type {
+  width: 3cm;
+}
+.costComposition .entrycosts td:first-of-type,
+.costComposition .exitcosts td:first-of-type,
+.costComposition .managementfeesandothercosts td:first-of-type,
+.costComposition .transactioncosts td:first-of-type,
+.costComposition .performancefees td:first-of-type {
+  width: 4cm;
+  font-weight: 700;
+}
+
+/* footer styles*/
+.pagenumbers .footer,
+.pagenumbers .Pagination {
+  font-size: 7pt;
+  position: relative;
+  z-index: 1;
+}
+
+.pagenumbers .footer p,
+.pagenumbers .Pagination p {
+  position: running(pagination);
+  text-align: right;
+}
+
+.WB_Footer_1 {
+  display: none;
+}
+
+.pagenumbers .Pagination {
+  font-size: 0;
+}
+
+.pagenumbers .pageNumber {
+  font-size: 8pt;
+}
+
+@page {
+  margin: 2.8cm 0 1cm 0;
+  @top-center {
+    content: element(kid);
+    margin: 0.4cm 0.75cm 0 0;
+    background-image: url(./images/OFI_INVEST_LUX_Horizontal_RVB.jpg);
+    background-size: 32.5mm auto;
+    background-repeat: no-repeat;
+    background-position: left 0.7cm top 0.75cm;
+  }
+}
+@page {
+  @bottom-right {
+    content: element(pagination);
+    width: 9.75cm cm;
+    padding: 0.15cm 0cm 0cm 0cm;
+    margin: 0cm 1cm 1cm 1cm;
+    font-size: 7pt;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    text-align: right;
+  }
+}
+/* project specific changes*/
+.WB_HowlongshouldIholdit_1{
+  background: #B3C1C2;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  padding: 2mm;
+  color: white;
+}
+tbody {
+  display: table;
+  width: 100%;
+}
+
+.groupRowDiv1 th,
+.groupRowDiv1 td {
+  border-color: #b1b3b4;
+}
+.groupRowDiv1 td {
+  border-color: #b1b3b4;
+}
+.groupRowDiv1 td:first-of-type {
+  border-color: #b1b3b4;
+}
+
+.costComposition thead + tbody th:first-of-type {
+  border-left-color: #b1b3b4;
+  border-right-color: #b1b3b4;
+}
+.costComposition .groupHeaderDiv1 th {
+  border-bottom-color: rgb(0, 46, 61);
+}
+
+.performanceScenario .survival-scenario th {
+  border-bottom-color: rgb(0, 46, 61);
+}
+.page1 > .row5 .column1 .row7 br {
+  width:100%;
+  display: block;
+  margin: 0.2px 0;
+  content: "";
+  height:0.4px;
+}
+.page1 > .row5 p {
+  padding: 0 0 0.25mm;
+}
+/* priipskid_OFILUX_theme_EU*/
+
+/*# sourceMappingURL=theme.css.map */

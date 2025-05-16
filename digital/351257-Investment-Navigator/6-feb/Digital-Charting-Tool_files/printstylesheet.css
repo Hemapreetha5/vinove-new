@@ -1,0 +1,87 @@
+@media print {
+    @page {
+        size: A4;
+        margin-top: 2cm;
+        margin-bottom: 1.5cm;
+        margin-right: 1cm;
+        margin-left: 1cm;
+
+        @bottom-left { content: element(fe-caveat-container-pdfall); }
+
+        @top-left { content: element(fe-responsive-charting-header); }
+    }
+
+    @page:-ro-last {
+        @bottom-left { content: ''; }
+    }
+
+    body {
+        -webkit-print-color-adjust: exact;
+        font-size: small !important;
+    }
+
+    body h3 { font-size: medium !important; }
+
+    body h1 { font-size: x-large !important; }
+
+    body th, td {
+        font-size: small !important;
+        min-width: 20px !important;
+    }
+
+    .pdf-header-text-container { width: 100%; }
+
+    .pdfTileText { float: left !important; }
+
+    .chart-currency-message {
+        float: right !important;
+        vertical-align: text-bottom;
+        padding-right: 0;
+    }
+
+    .fe-responsive-charting-container {
+        background-image: none;
+        padding: 0;
+    }
+
+    .high-chart-export-image { max-width: 100% }
+
+    .pdf-page-break { break-before: page; }
+
+    header-section { min-height: 0; }
+
+    .fe-responsive-charting-header {
+        position: running(fe-responsive-charting-header);
+        margin-left: -0.35cm;
+    }
+
+    .fe-caveat-container-pdfall { position: running(fe-caveat-container-pdfall); }
+
+    .fe-caveat-container-pdflast {
+        vertical-align: bottom;
+    }
+
+    .fe-resposive-pdf-chart-container {
+        break-inside: avoid !important;
+    }
+
+    .fe-resposive-pdf-table-container {
+        break-inside: avoid !important;
+    }
+
+    .fe-responsive-charting-table-tabname {
+        break-after: avoid !important;
+    }
+
+    .fe-responsive-charting-table-tab {
+        break-before: avoid !important;
+    }
+
+    .fe-responsive-table-container {
+        break-inside: auto !important;
+    }
+
+    .fe-responsive-charting-pdf-container .fe-resposive-pdf-table-container {
+        break-inside: auto !important;
+    }
+}

@@ -1,0 +1,2990 @@
+﻿var isAccordionRetainNeeded = false;
+var isRowIdsAvailable = false;
+var mpCodeList = [];
+var mpCodelistkey = '';
+// This whole peace would require review, there might be too many closures being generated, the code also would need some clearing
+var ChartDefaults = {
+    Height: 300,
+    FontSize: '8pt'
+};
+
+function GetActiveDataContainer(fundInfo) {
+    var state = GetInternalState(fundInfo);
+    return state.ActiveContainer;
+}
+
+function checkMPCodes(codelist) {
+    var isMPCode = false;
+    var jsonString = readCookie(mpCodelistkey);
+    var jsonObj = JSON.parse('[' + jsonString + ']');
+    if (jsonObj[0] != null) {
+        mpCodeList = jsonObj[0];
+    } else {
+        mpCodeList = [];
+    }
+    $.each(codelist,
+        function (i, val) {
+            if ($.inArray(val, mpCodeList) !== -1) {
+                isMPCode = true;
+            }
+        });
+    return isMPCode;
+}
+
+function SetActiveContainer(fundInfo, container) {
+    var state = GetInternalState(fundInfo);
+    state.ActiveContainer = container;
+    SetInternalState(fundInfo, state);
+    return container;
+}
+
+function SetFundTabIndexesSelected(fundInfo, fundTabIndexesSelected) {
+    var state = GetInternalState(fundInfo);
+    state.FundTabIndexesSelected = fundTabIndexesSelected;
+    SetInternalState(fundInfo, state);
+    return fundTabIndexesSelected;
+}
+
+function GetOptions(fundInfo) {
+    return fundInfo.data("fundInfoOptions");
+}
+
+function SetOptions(fundInfo, options) {
+    fundInfo.data("fundInfoOptions", options);
+    return options;
+}
+
+function GetInternalState(fundInfo) {
+    return fundInfo.data("internalState");
+}
+
+function SetInternalState(fundInfo, state) {
+    fundInfo.data("internalState", state);
+    return state;
+}
+
+function GetOrderByOptions(fundInfo) {
+    var state = GetInternalState(fundInfo);
+    var result = state.OrderByOptions;
+    if (result == null || !result.OrderByColumn) {
+        // use default values
+        result = {};
+        result.OrderByColumn = state.ActiveContainer.attr("data-orderByCol") ? (state.ActiveContainer.attr("data-orderByCol") + ":init") : GetOrderByOptionForAMTools(state); //default value
+        result.IsOrderByAsc = true; //default value					
+    }
+
+    return result;
+}
+
+function GetOrderByOptionForAMTools(state) {
+    var amSortColumn = $('#' + $(state.ActiveContainer).parent().prop('id')).attr('data-orderByCol');
+    return (amSortColumn == null ? 'Name' : amSortColumn) + ':init';
+}
+
+function GetPagingState(fundInfo) {
+    if (fundInfo != null) {
+        var datacontainer = GetActiveDataContainer(fundInfo);
+        return {
+            TotalRows: datacontainer.getPageSize(),
+            PageNo: datacontainer.getCurrentPage(),
+            PageSize: datacontainer.getPageSize()
+        };
+    } else {
+        return null;
+    }
+}
+
+function GetFundTabIndexesSelected(fundInfo) {
+    var state = GetInternalState(fundInfo);
+    return state.FundTabIndexesSelected;
+}
+
+//#region Ordering functions
+
+function ClearActiveIcon(fundInfo, isSortButton) {
+    var state = GetInternalState(fundInfo);
+    var orderByOptions = GetOrderByOptions(fundInfo);
+    var activeContainer = state.ActiveContainer;
+    var sortingIcon;
+    if (isSortButton != null && isSortButton.toLowerCase() == 'true') {
+        sortingIcon = GetSortingIcon(activeContainer, orderByOptions.OrderByColumn);
+        ClearIcon(sortingIcon);
+    } else {
+        sortingIcon = GetGridSortingIcon(activeContainer, orderByOptions.OrderByColumn);
+        ClearGridIcon(sortingIcon);
+    }
+}
+
+function ToggleGridSortingCssClass(icon, show) {
+    var header = icon.parents("th").first();
+    header.toggleClass('fe-soretedColumn', show);
+}
+
+function GetGridSortingIcon(dataContainer, column) {
+    //remark - we can have several icons if the style is set to 2 arrows
+    var icons = dataContainer.find('th[data-name$="' + column + '"] span:nth-child(1)');
+    // we set the sorting style to the number of icons (1 = 1arrow and 2 = 2 arrows)
+    icons.SortingStyle = icons.length;
+
+    return icons;
+}
+
+function GetSortingIcon(dataContainer, column) {
+    //remark - we can have several icons if the style is set to 2 arrows
+    var icons = dataContainer.find('div[name="Sort_' + column + '"] span');
+    // we set the sorting style to the number of icons (1 = 1arrow and 2 = 2 arrows)
+    icons.SortingStyle = 1;
+
+    return icons;
+}
+
+function ClearGridIcon(icon) {
+    if (!icon.SortingStyle || icon.SortingStyle == 1) {
+        icon.removeClass("ui-icon-triangle-1-n ui-icon-triangle-1-s");
+        icon.attr("style", "visibility: hidden;");
+    } else if (icon.SortingStyle == 2) {
+        icon.parent().removeClass("ui-state-active");
+    }
+
+    ToggleGridSortingCssClass(icon, false);
+}
+
+function ClearIcon(icon) {
+    icon.removeClass("fe-sort-icon-sorted-asc");
+    icon.removeClass("fe-sort-icon-sorted-desc");
+    icon.parent().removeClass("fe-sort-buttonactive");
+}
+
+// this function will set the sorting icon in the current container. pass null for column and sorting order to set it to the existing ones
+function SetNewIconAndOrdering(sortedColumn, isAsc, fundInfo, isSortButton) {
+    var orderByOptions = GetOrderByOptions(fundInfo);
+    var state = GetInternalState(fundInfo);
+    state.OrderByOptions = orderByOptions;
+    var activeContainer = state.ActiveContainer;
+    var isFirstTime;
+    if (!sortedColumn) {
+        sortedColumn = orderByOptions.OrderByColumn.replace(':init', '');
+        isAsc = orderByOptions.IsOrderByAsc;
+        isFirstTime = true;
+    }
+
+    if (orderByOptions.OrderByColumn != null) {
+        //There was ordering in place - clear the icon				
+        var oldIcon, orderbyColumn;
+        orderbyColumn = orderByOptions.OrderByColumn.replace(':init', '');
+        if (isSortButton != null && isSortButton.toLowerCase() == 'true') {
+            oldIcon = GetSortingIcon(activeContainer, orderbyColumn);
+            ClearIcon(oldIcon);
+        } else {
+            oldIcon = GetGridSortingIcon(activeContainer, orderbyColumn);
+            ClearGridIcon(oldIcon);
+        }
+
+        if (isAsc == null) {
+            // if the ordering is not specified then we swtich it alternatively (1 arrow)
+            if (orderByOptions.OrderByColumn == sortedColumn) {
+                orderByOptions.IsOrderByAsc = !orderByOptions.IsOrderByAsc;
+            }
+            else {
+                orderByOptions.OrderByColumn = sortedColumn;
+                orderByOptions.IsOrderByAsc = false; //default value
+            }
+        } else {
+            orderByOptions.IsOrderByAsc = isAsc;
+            if (!isFirstTime) {
+                orderByOptions.OrderByColumn = sortedColumn;
+            }
+        }
+
+    }
+    else {
+        orderByOptions.OrderByColumn = sortedColumn;
+        orderByOptions.IsOrderByAsc = isAsc || false;
+    }
+
+    SetInternalState(fundInfo, state);
+
+    if (isSortButton != null && isSortButton.toLowerCase() == 'true') {
+        var newIcon = GetSortingIcon(activeContainer, sortedColumn);
+        SetSortingIcon(newIcon, orderByOptions.IsOrderByAsc);
+    } else {
+        var newIcon = GetGridSortingIcon(activeContainer, sortedColumn);
+        SetGridSortingIcon(newIcon, orderByOptions.IsOrderByAsc);
+    }
+
+    // save the option changes
+    SetInternalState(fundInfo, state);
+
+    function SetGridSortingIcon(icon, isAsc) {
+
+        if (icon.SortingStyle == 1 || !icon.SortingStyle) {
+            var newClass;
+            if (!isAsc) {
+                newClass = 'ui-icon-triangle-1-s';
+            }
+            else {
+                newClass = 'ui-icon-triangle-1-n';
+            }
+
+            icon.addClass("ui-icon " + newClass);
+            icon.attr("style", "visibility: visible;");
+        } else if (icon.SortingStyle == 2) {
+            icon.parent().filter('[data-isAsc="' + isAsc + '"]').addClass("ui-state-active");
+        }
+
+        ToggleGridSortingCssClass(icon, true);
+    }
+
+    function SetSortingIcon(icon, isAsc) {
+        var newClass;
+        if (!isAsc) {
+            newClass = 'fe-sort-icon-sorted-desc';
+        }
+        else {
+            newClass = 'fe-sort-icon-sorted-asc';
+        }
+
+        icon.addClass(newClass);
+        icon.parent().addClass("fe-sort-buttonactive");
+    }
+}
+
+(function ($) {
+
+
+    //#endregion
+    // TODO : check if you need to wrap those around (we would most probably but i want to preserve autocomplete)
+
+    var internalState = {
+        ActiveContainer: null,
+        OrderByOptions: { OrderByColumn: null, IsOrderByAsc: true },
+        PagingState: { PageNo: 1, PageSize: null },
+        CachedModel: null,
+        ChartCachedModel: {},
+        HoldingCacheModel: {},
+        BreakdownCacheModel: {},
+        DownloadSectionCacheModel: {},
+        PerformanceAndRiskDataCachedModel: {},
+        //Funds accordion selected indexes, set here to pre-open the funds needed in accordion.
+        FundTabIndexesSelected: []
+    };
+
+    $.fn.extend({
+        // yes, this plugin is not "official", i preffer to call methods not via passing strings
+        FundInformationTable: function (options) {
+
+            //Settings list and the default values
+            var defaults = {
+                ToolId: null, // The tool id used to get the data
+                Autoload: true, // set to true to cause tab change to load data                
+                GetModel: function ($this, pagingState, orderingState) {
+                    alert('This control need to have a function to get the model for the data gathering set');
+                    return null;
+                },
+                hasPagingAndSorting: true,
+
+                // Event handlers (events)
+                OnDataReceived: function ($this, model) {
+                    // called when data from the service is received and the results about to be rendered
+                },
+                OnTabRendered: function ($this, activeContainer) {
+                    // called when a tab is shown and loading of data has finished    
+                    ToolkitUI.Common.ResizeIFrame();
+                }
+            };
+
+            //#region  tab setup
+
+            function LoadTabData(model, container, actionLocation, fundInfo, useCache, isFirstTime, hasPagingAndSorting, source) {
+                container.StyleTableRows();
+
+                //If its a firsttime this will be undefined, on other places, false is sent
+                if (isFirstTime == undefined)
+                    isFirstTime = true;
+
+                /* Requiremnt to add dummy empty rows until data is loaded. Also for the ajax loader to be
+                positioned on the fourth row of the table */
+                SetPositionOfAjaxLoader(container, true);
+
+                ////This is perserved to use when the pagesize is not available    
+                if (modelContents.DefaultPageSize == null) {
+                    modelContents.DefaultPageSize = model.PageSize;
+                }
+
+                if (model.PageSize == null) {
+                    ///Clear button cause issue
+                    if (model.ToolId == "1" || model.ToolId == "14" || model.ToolId == "15") {
+                        model.PageSize = modelContents.DefaultPageSize;
+                    }
+                    else {
+                        ///Responsive factsheet does not have page size
+                        delete model.PageSize;
+                    }
+                }
+
+
+                if (model.PrefetchPages == null && model.PageSize != null) {
+                    var prefetchPageStart = parseInt(model.PageNo);
+                    if (modelContents && modelContents.RowIDInputs) {
+                        if (prefetchPageStart >= modelContents.RowIDInputs.PrefetchPageStart &&
+                            prefetchPageStart <= modelContents.RowIDInputs.PrefetchPageStart + modelContents.RowIDInputs.PrefetchPages) {
+                            prefetchPageStart = modelContents.RowIDInputs.PrefetchPageStart;
+                        }
+                    }
+                    model.PageSize = parseInt(model.PageSize);
+                    model.PrefetchPages = Math.ceil(2000 / model.PageSize);
+                    model.PrefetchPageStart = prefetchPageStart;
+                }
+
+                var deleteAll = false;
+                var matchedList = [];
+                ////If special unit is configured, data should loaded from DB rather DB.
+                var loadFromCache = $('#tab-fundCentre').attr('isspecialunitconfigured') != "1";
+                ////This is the place we need to check the PortFolio and ShortList contain the same fund information 
+                var externalCall = false;
+                if (((model.ToolId == 6 && modelContents.HasSameFundDataForShortList == "False") || source == 'sort') ||
+                    ((model.ToolId == 7 && modelContents.HasSameFundDataForPortfoio == "False") || source == 'sort')) {
+                    externalCall = true;
+                }
+
+                if ($('#fe-basket-table td a').length > 0 && model.CodesList != undefined) {
+                    for (var i = 0; i < $('#fe-basket-table td a').length; i++) {
+                        if (model.CodesList[i] != undefined && (model.CodesList[i] != $($('#fe-basket-table td a')[i]).attr('code'))) {
+                            externalCall = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!externalCall && (model.ToolId == 6 || model.ToolId == 7) && loadFromCache) {
+                    var originalCodeList = model.CodesList;
+
+                    $(model.CodesList).each(function (index, element) {
+                        if (element != undefined) {
+                            deleteAll = false;
+                            return false;
+                        }
+                        else {
+                            deleteAll = true;
+                        }
+                    });
+
+                    if (!deleteAll) {
+                        matchedList = CheckCache(model);
+
+                        if (model.CodesList.length > 0) {
+                            // We cannot reuse the cached units, as we don't have data for all
+                            // TODO: We should try to reuse data for available units and then query GetUnitList() for just missing ones and merge those two arrays
+                            model.CodesList = originalCodeList;
+                        }
+                    }
+                }
+                var currentVersion = 0;
+
+                // Logic is currently restricted to shortlist & portfolio
+                if (model.ToolId == 6 || model.ToolId == 7) {
+                    currentVersion = latestRequestVersion[getToolIdVarName(model.ToolId)];
+                    currentVersion = currentVersion > 10000 ? 1 : (currentVersion + 1);
+
+                    latestRequestVersion[getToolIdVarName(model.ToolId)] = currentVersion;
+                    model.Version = currentVersion;
+                }
+
+                if ((model.ToolId == 6 || model.ToolId == 7) && (deleteAll || (matchedList.length > 0 && model.CodesList.length <= 0))) {
+                    var tempId = model.ToolId;
+
+                    // When everything in basket matches the items in cache, then it is expected to be part of this below cache
+                    model = $.extend(true, {}, GetInternalState($('#AddedFunds_List')));
+
+                    if (model.CachedModel != null) {
+                        model.CachedModel.DataList = $.extend(true, [], matchedList);
+                        model.CachedModel.ToolId = tempId;
+                        model.CachedModel.PageSize = 100;
+                        model.CachedModel.TotalRows = matchedList.length;
+                        model.CachedModel.PageEndRecNo = matchedList.length;
+                        // Allow the cached data to be used by marking it as the latest data
+                        model.CachedModel.Version = currentVersion;
+                        OnDataReceived(model.CachedModel, container, fundInfo, isFirstTime, source);
+                    } else {
+                        // We have data for all requested codes, So there is no need for an ajax,
+                        // hide the loading symbol
+                        $('html').hideLoading();
+                    }
+                } else {
+                    if (hasPagingAndSorting) {
+                        if (!model.PageNo) {
+                            model.PageNo = 1;
+                            var recordcount = $(this).find(".record-count, input").val()
+                            if (recordcount) {
+                                model.PageSize = recordcount;
+                            }
+                        } else if (model.PageNo == 0)
+                            model.PageNo = 1;
+                    }
+
+                    //Show fund count before add
+                    if (model.ToolId == 6 || model.ToolId == 7 || model.ToolId == 20) {
+                        var fundcount = 0;
+                        if (model != null && model.CodesList != null) {
+                            $.each(model.CodesList, function (index, value) {
+                                if (value != null && value != "") {
+                                    fundcount++;
+                                }
+                            });
+                        }
+
+                        var countContainer, showNoofFunds;
+                        if (model.ToolId == 6) {
+                            countContainer = ".fe-ShortListMasterTab-nooffunds";
+                            showNoofFunds = modelContents.ShowNoOfFundsInShortlist;
+                        } else if (model.ToolId == 7) {
+                            countContainer = ".fe-PortfolioMasterTab-nooffunds";
+                            showNoofFunds = modelContents.ShowNoOfFundsInPortfolio;
+                        } else if (model.ToolId == 20) {
+                            countContainer = ".fe-DynamicShortListMasterTab-nooffunds";
+                            showNoofFunds = "true";
+                        }
+
+                        ShowHideNoOfFunds(countContainer, fundcount, showNoofFunds);
+                    }
+
+                    model.OverridenThemeName = modelContents.Theme;
+
+                    model.ForSaleIn = modelContents.forSaleIn;
+                    if (model.ForSaleIn) {
+                        model.FSIexclCT = modelContents.FSIexclCT;
+                    }
+
+
+                    if (useCache != null && useCache == true) {
+                        // Mark cached data as the latest available version
+                        model.Version = currentVersion;
+                        OnDataReceived(model, container, fundInfo, false, source);
+                    }
+                    else {
+                        var state = GetInternalState(fundInfo);
+                        //Funds accordion selected indexes, set here to pre-open the funds needed in accordion.
+
+                        if (isAccordionRetainNeeded) {
+                            isAccordionRetainNeeded = false;
+                        }
+                        else {
+                            state.FundTabIndexesSelected = [];
+                        }
+
+                        SetInternalState(fundInfo, state);
+
+                        model.ValidateFeResearchAccess = modelContents.ValidateFeResearchAccess === 'True';
+                        ////Set the HasFeResearchFullAccess status 
+                        model.HasFeResearchFullAccess = modelContents.HasFeResearchFullAccess === 'True';
+                        model.EnableSedolSearch = modelContents.EnableSedolSearch;
+                        var isFundCentre = (model.ToolId == 1 || model.ToolId == 14 || model.ToolId == 15);
+                        // If UseAzureService is enabled and tool is fund center than this will be called.
+                        if ((modelContents.IsGFMDMigrated.toLowerCase() === 'true' && isFundCentre && modelContents.UseMVForFC === "1") ||
+                            (modelContents.Useazureservice.toLowerCase() === 'true' && (isFundCentre || model.ToolId == 6 || model.ToolId == 7 || model.ToolId == 18))
+                            && (modelContents.HasErrorInAzureService == undefined || !modelContents.HasErrorInAzureService)) {
+                            if (model.ToolId == 6 || model.ToolId == 7 || model.ToolId == 18) {
+                                if (!checkMPCodes(model.CodesList)) {
+                                    FetchCiticodeDetailsByCiticodes(model,
+                                        container,
+                                        fundInfo,
+                                        isFirstTime,
+                                        source,
+                                        actionLocation);
+                                } else {
+                                    //Request for data list
+                                    GetFundMasterDataRequest(actionLocation, model, container, fundInfo, isFirstTime, source);
+                                }
+                            }
+                            else if (modelContents.RowIDInputs &&
+                                CompareModel(modelContents.RowIDInputs, $.extend(true, {}, model))) {
+                                // Fetch rowids for the selection and make call to fetch citicodes with details as input of the rowids
+                                // Check: Avoid default filter call before RowIds are loaded from DB
+                                if (isRowIdsAvailable) {
+                                    FetchCiticodesByRowIDs(modelContents,
+                                        model,
+                                        container,
+                                        fundInfo,
+                                        isFirstTime,
+                                        source,
+                                        actionLocation);
+                                }
+                            } else {
+                                modelContents.BackupRowIDInputs = modelContents.RowIDInputs;
+                                modelContents.RowIDInputs = $.extend(true, {}, model);
+                                ///Add additional info
+                                model.GrsProjectId = modelContents.GrsProjectId;
+
+                                if (model.ToolId == 1)
+                                    model.ShowMainUnitExpansion = modelContents.ShowMainUnitExpansion;
+
+                                isRowIdsAvailable = false;
+                                model.UseCombinedOngoingChargeTER = modelContents.UseCombinedOngoingChargeTER;
+                                // Make call for rowids
+                                $(this)
+                                    .sendJsonAsString(modelContents.AzureRowIDurl,
+                                        model,
+                                        function (result) {
+                                            isRowIdsAvailable = true;
+                                            modelContents.HasErrorInAzureService = false;
+                                            model.IsSuccessful = true;
+                                            // Receive and cache rowids into modelContents.rowIDsarray
+                                            if (result != '' && result != null &&
+                                                result.TotalRows != 0) {
+                                                modelContents.rowIDsarray = result.RowIdList;
+                                                //Total Number of Records 
+                                                modelContents.TotalRows = result.TotalRows;
+
+                                                model = JSON.parse(result.Units);
+                                                if (model.IsSuccessful) {
+                                                    $.when(GetFundManagerHistory(model, container, fundInfo, isFirstTime, source), GetHoldingsAndBreakdowns(model, container, fundInfo, isFirstTime, source)).done(function () {
+                                                        OnUnitsReceived(model, container, fundInfo, isFirstTime, source);
+                                                        displayInvalidFundsWarningInXMLImport();
+                                                    });
+                                                }
+                                            } else {
+                                                modelContents.rowIDsarray = null;
+                                                modelContents.TotalRows = null;
+                                                ShowNoResult(container, isFirstTime);
+                                            }
+
+                                        },
+                                        function (req, status, error) {
+                                            if (modelContents.HasErrorInAzureService == undefined ||
+                                                modelContents.HasErrorInAzureService) {
+                                                modelContents.HasErrorInAzureService = true;
+                                                GetFundMasterDataRequest(actionLocation,
+                                                    model,
+                                                    container,
+                                                    fundInfo,
+                                                    isFirstTime,
+                                                    source);
+                                            } else {
+                                                modelContents.RowIDInputs = modelContents.BackupRowIDInputs;
+                                                model.IsSuccessful = false;
+                                                $('html').hideLoading();
+                                                $(this)
+                                                    .showError("Sorry, an error occurred while processing your request.");
+                                            }
+                                        });
+                            }
+                        }
+                        else {
+                            //Request for data list
+                            GetFundMasterDataRequest(actionLocation, model, container, fundInfo, isFirstTime, source);
+                        }
+
+
+                    }
+                }
+                if (source) {
+                    if ($(source).is('select')) {
+                        $(source).siblings('.mfs-selected-option').trigger("focus");
+                    } else if ($(source).hasClass('fe-ico-basket-portfolio-add') || $(source).hasClass('fe-ico-basket-shortlist-add')) {
+                        $('.fe-tableInBasket tr a').each(function () {
+                            if ($(this).attr('code') == $(source).attr('code')) {
+                                $(this).trigger("focus");
+                            }
+                        });
+                    }
+                }
+            }
+
+            function ShowNoResult(container, isFirstTime) {
+                HideFundTableAndShowNoResult(container.parent());
+                HideFundListsAndShowNoResult(container);
+                $('html').hideLoading();
+                //If its a firsttime this will be true, when we dont want to send the height
+                if (!isFirstTime && !modelContents.FundCentreAMEnabled) {
+                    // Update the add/remove icons on the fund centre page to match what items are currently shown in the Shortlist.
+                    UpdateFundCentreViewForShortlist();
+                    // Update the add/remove icons on the fund centre page to match what items are currently shown in the Portfolio.
+                    UpdateFundCentreViewForPortfolio();
+                    if (dynamicShortListFn) {
+                        // Update the add/remove icons on the fund centre page to match what items are currently shown in the dynamic shortlist.
+                        dynamicShortListFn.UpdateFundCentreViewForDynamicShortlist();
+                    }
+
+                    ToolkitUI.Common.ResizeIFrame();
+                }
+
+                var textTranslated = modelContents.GetTranslation("FundReturned");
+                $('#totalFundsObtained').text(0 + " " + textTranslated);
+            }
+
+            function GetFundMasterDataRequest(actionLocation, model, container, fundInfo, isFirstTime, source) {
+                //Request for data list
+                $(this).sendJsonRequest($.ajaxTypes.get, $(this).AttachObjectAsUrlQueryString(actionLocation, model), null,
+                    function (model) {
+                        $.when(GetFundManagerHistory(model, container, fundInfo, isFirstTime, source), GetHoldingsAndBreakdowns(model, container, fundInfo, isFirstTime, source)).done(function () {
+                            OnUnitsReceived(model, container, fundInfo, isFirstTime, source);
+                            displayInvalidFundsWarningInXMLImport();
+
+                        });
+                    }, source);
+
+            }
+
+            function GetHoldingsAndBreakdowns(model, container, fundInfo, isFirstTime, source) {
+                if (model.HoldingsEnabled ||
+                    model.AssetBreakdownEnabled ||
+                    model.AreaBreakdownEnabled ||
+                    model.SectorBreakdownEnabled) {
+                    var url = $(this)
+                        .AttachObjectAsUrlQueryString(modelContents.GetHoldingAndBreakDownsUrl,
+                            GetCitiCodeListHoldingAndBreakDownDetails(model));
+                    SetPositionOfAjaxLoader(container, true);
+                    return $(this)
+                        .sendJsonReturnRequest($.ajaxTypes.get,
+                            url,
+                            null,
+                            function (modelResult) {
+                                if (modelResult != null && modelResult.IsSuccessful) {
+                                    updatemodelCacheWithHoldingsAndBreakDowns(modelResult,
+                                        model,
+                                        container,
+                                        fundInfo,
+                                        isFirstTime,
+                                        source);
+                                }
+                            });
+                }
+            }
+
+            SetCustomHoldingHeaderDate = function (holdingData, displayName, nullIndicator, dateFormat) {
+                var maxDate = null;
+                holdingData.forEach(function (holding, index) {
+                    if (index == 0 && holding.CustomHoldingDate != null)
+                        maxDate = holding.CustomHoldingDate;
+
+                    if (holding.CustomHoldingDate != null && maxDate < holding.CustomHoldingDate)
+                        maxDate = holding.CustomHoldingDate;
+                });
+
+                return maxDate == null ? displayName : displayName + " (" + FormatDate(maxDate, nullIndicator, dateFormat) + ")";
+            }
+
+            GetCitiCodeListHoldingAndBreakDownDetails = function (model) {
+                var inputModel = {};
+                inputModel.GrsProjectId = modelContents.GrsProjectId;
+                inputModel.ProjectName = modelContents.ProjectName;
+                inputModel.ToolId = model.ToolId;
+                inputModel.LanguageId = modelContents.InternalLangageId;
+                inputModel.LanguageCode = modelContents.LanguageCode;
+                inputModel.RangeCode = model.RangeCode;
+                inputModel.UseBreakdownDisplayName = model.UseBreakdownDisplayName;
+                inputModel.HoldingsEnabled = model.HoldingsEnabled;
+                inputModel.AssetBreakdownEnabled = model.AssetBreakdownEnabled;
+                inputModel.AreaBreakdownEnabled = model.AreaBreakdownEnabled;
+                inputModel.SectorBreakdownEnabled = model.SectorBreakdownEnabled;
+                var codeArray = new Array();
+                //Now for citiCode 
+                $(model.DataList).each(function (index, item) {
+                    if (item != null) {
+                        codeArray.push(item.FundInfo.CitiCode);
+                    }
+                });
+                inputModel.CodesList = codeArray;
+                return inputModel;
+            };
+
+            function updatemodelCacheWithHoldingsAndBreakDowns(modelResult, model, container, fundInfo, isFirstTime, source) {
+
+                if (modelResult != null && modelResult.IsSuccessful) {
+                    $(modelResult.DataList)
+                        .each(function (index, result) {
+                            if (result != null) {
+                                $(model.DataList)
+                                    .each(function (index, unit) {
+                                        if (
+                                            result.Common.CitiCode ==
+                                            unit.FundInfo.CitiCode) {
+                                            if (result.Holdings != null) {
+                                                unit.Holdings = result.Holdings;
+                                            }
+                                            if (result.AssetBreakdowns != null) {
+                                                unit.AssetBreakdowns = result.AssetBreakdowns;
+                                            }
+                                            if (result.AreaBreakdowns != null) {
+                                                unit.AreaBreakdowns = result.AreaBreakdowns;
+                                            }
+                                            if (result.SectorBreakdowns != null) {
+                                                unit.SectorBreakdowns = result.SectorBreakdowns;
+                                            }
+                                            if (result.CustomHoldingData != null) {
+                                                unit.CustomHoldingData = result.CustomHoldingData;
+                                            }
+                                        }
+                                    });
+                            }
+                        });
+                    OnUnitsReceived(model, container, fundInfo, isFirstTime, source, true);
+                }
+            }
+
+            function GetFundManagerHistory(model, container, fundInfo, isFirstTime, source) {
+
+                ////Testing to call new function to get fund manager and history details 
+                ////check showfundmanagerData is true or false before calling this function 
+                if (model.FundManagerEnabled == true) {
+                    SetPositionOfAjaxLoader(container, true);
+                    var url = $(this)
+                        .AttachObjectAsUrlQueryString(modelContents.GetFundManagerAndHistoryUrl,
+                            GetCitiCodeSectorCodeUniverseCodeList(model));
+                    return $(this)
+                        .sendJsonReturnRequest($.ajaxTypes.get,
+                            url,
+                            null,
+                            function (fundMangerResult) {
+                                if (fundMangerResult != null && fundMangerResult.IsSuccessful) {
+
+                                    $(fundMangerResult.DataList)
+                                        .each(function (index, fundmanager) {
+                                            if (fundmanager != null) {
+                                                $(model.DataList)
+                                                    .each(function (index, unit) {
+                                                        if (fundmanager != null) {
+                                                            if (
+                                                                fundmanager.FundInfo.CitiCode ==
+                                                                unit.FundInfo.CitiCode) {
+                                                                unit.FundManagers = fundmanager.FundManagers;
+                                                                unit.FundInfo.Fundmanagers =
+                                                                    fundmanager.FundInfo.Fundmanagers;
+                                                            }
+                                                        }
+                                                    });
+
+                                            }
+                                        });
+                                    OnUnitsReceived(model, container, fundInfo, isFirstTime, source, true);
+                                }
+                            });
+                }
+            }
+
+
+            GetCitiCodeSectorCodeUniverseCodeList = function (model) {
+                var inputModel = {};
+                inputModel.GrsProjectId = modelContents.GrsProjectId;
+                inputModel.ProjectName = modelContents.ProjectName;
+                inputModel.ToolId = model.ToolId;
+                inputModel.LanguageId = modelContents.LanguageId;
+                inputModel.RangeCode = model.RangeCode;
+                inputModel.CodesList = '';
+                //Now for citiCode 
+                $(model.DataList).each(function (index, item) {
+                    if (item != null) {
+                        inputModel.CodesList += item.FundInfo.CitiCode +
+                            '|' +
+                            item.FundInfo.SectorClassCode +
+                            '|' +
+                            item.FundInfo.SectorClassCode.split(':')[0] + ',';
+                    }
+                });
+
+                return inputModel;
+            };
+
+            // Compare cached model with the new model
+            function CompareModel(cachedModel, newModel) {
+                var returnValue = true;
+
+                returnValue = CompareModeldeep(cachedModel, newModel) && CompareModeldeep(newModel, cachedModel);
+
+                if (returnValue && (newModel.PageNo < cachedModel.PrefetchPageStart || newModel.PageNo > cachedModel.PrefetchPageStart + cachedModel.PrefetchPages)) {
+                    returnValue = false;
+                    return;
+                }
+
+                return returnValue;
+            }
+
+            // Compare two models
+            function CompareModeldeep(model1, model2) {
+                var returnValue = true;
+
+                $.map(model1, function (value, key) {
+                    if ($.isPlainObject(value)) {
+                        if (!returnValue) {
+                            return returnValue;
+                        }
+
+                        returnValue = CompareModeldeep(model1[key], model2[key]);
+                        if (!returnValue) {
+                            return returnValue;
+                        }
+                    }
+                    else {
+                        if (!returnValue) {
+                            return returnValue;
+                        }
+
+                        if (value != model2[key]) {
+                            switch (key) {
+                                case 'OverridenThemeName':
+                                case 'PageNo':
+                                case 'PageSize':
+                                case 'Theme':
+                                    returnValue = returnValue ? true : false;
+                                    return;
+                                default:
+                                    returnValue = false;
+                                    return;
+                            }
+                        }
+                    }
+                });
+
+                if (!returnValue) {
+                    return returnValue;
+                }
+
+                return returnValue;
+            }
+
+            function FetchCiticodesByRowIDs(modelContents, model, container, fundInfo, isFirstTime, source, actionLocation) {
+                if (modelContents.rowIDsarray == null || modelContents.TotalRows == null) {
+                    model.IsSuccessful = true;
+                    ShowNoResult(container, isFirstTime);
+                } else {
+                    // fetch the required rowids from cached rowIDs array
+                    var requiredRowIDs = modelContents.rowIDsarray[model.PageNo - model.PrefetchPageStart];
+                    model.RowCount = modelContents.TotalRows;
+                    // Attach requiredRowIDs to model to make it as parameter for azure call
+                    var requestModel = $.extend(true, {}, model);
+                    requestModel.RowIDs = requiredRowIDs;
+                    // and make call to fetch citicodes details
+                    $(this).sendJsonAsString(modelContents.AzureUrlForCitiCode, requestModel,
+                        function (model) {
+                            if (model != null && model != '') {
+                                model = JSON.parse(model);
+                                if (model.IsSuccessful) {
+                                    $.when(GetFundManagerHistory(model, container, fundInfo, isFirstTime, source), GetHoldingsAndBreakdowns(model, container, fundInfo, isFirstTime, source)).done(function () {
+                                        OnUnitsReceived(model, container, fundInfo, isFirstTime, source);
+                                    });
+                                }
+                            } else {
+                                ShowNoResult(container, isFirstTime);
+                            }
+                        }, null);
+                }
+            }
+
+            function FetchCiticodeDetailsByCiticodes(model, container, fundInfo, isFirstTime, source, actionLocation) {
+                $(this).sendJsonAsString(modelContents.AzureUrlForCitiCode, model,
+                    function (model) {
+                        if (model != null && model != '') {
+                            model = JSON.parse(model);
+                            if (model.IsSuccessful) {
+                                $.when(GetFundManagerHistory(model, container, fundInfo, isFirstTime, source), GetHoldingsAndBreakdowns(model, container, fundInfo, isFirstTime, source)).done(function () {
+                                    OnUnitsReceived(model, container, fundInfo, isFirstTime, source);
+                                });
+                            }
+                        } else {
+                            ShowNoResult(container, isFirstTime);
+                        }
+                    },
+                    function (req, status, error) {
+                        GetFundMasterDataRequest(actionLocation,
+                            model,
+                            container,
+                            fundInfo,
+                            isFirstTime,
+                            source);
+                    }
+                );
+            }
+
+            function OnUnitsReceived(model, container, fundInfo, isFirstTime, source, renderOnly) {
+                if (model.ToolId == 6 || model.ToolId == 7) {
+                    AddToBasketCache(model, fundInfo);
+                }
+                // Fix for Keyboardaccessibility
+                if ($(source).is("input[type=checkbox]") || $(source).is("input[type=radio]")) {
+                    if (source.parentElement.classList.contains('checked')) {
+                        source.checked = true;
+                    }
+                    else
+                        source.checked = false;
+                }
+                OnDataReceived(model, container, fundInfo, isFirstTime, source, renderOnly);
+            }
+
+            function CheckCache(model) {
+                var codeArray = model.CodesList;
+                var isFound = 0;
+                var matchedFunds = [];
+                var basketFunds = GetInternalState($('#AddedFunds_List')) != undefined && GetInternalState($('#AddedFunds_List')).CachedModel != undefined && GetInternalState($('#AddedFunds_List')).CachedModel.DataList != undefined ? GetInternalState($('#AddedFunds_List')).CachedModel.DataList : null;
+                var basketState;
+
+                codeArray = jQuery.grep(codeArray, function (value) {
+                    return value != undefined;
+                });
+
+                if (GetInternalState($("#tab-fundCentre")).CachedModel != null) {
+                    $(GetInternalState($("#tab-fundCentre")).CachedModel.DataList).each(function (index, element) {
+                        codeArray = jQuery.grep(codeArray, function (value) {
+                            if (value == element.FundInfo.TypeCode) {
+                                matchedFunds.push(element);
+                            }
+                            return value != element.FundInfo.TypeCode;
+                        });
+
+                        if (codeArray.length <= 0) {
+                            isFound = 1;
+                            return false;
+                        }
+                    });
+                }
+
+                var fundsToBasket = $.extend(true, [], matchedFunds);
+
+                if (isFound == 0 && basketFunds != null) {
+                    $(basketFunds).each(function (index, element) {
+                        codeArray = jQuery.grep(codeArray, function (value) {
+                            if (value == element.FundInfo.TypeCode) {
+                                matchedFunds.push(element);
+                            }
+                            return value != element.FundInfo.TypeCode;
+                        });
+
+                        if (codeArray.length <= 0) {
+                            isFound = 1;
+                            return false;
+                        }
+                    });
+                }
+
+
+                if (fundsToBasket.length > 0) {
+                    if (basketFunds == null) {
+                        basketState = $.extend(true, {}, GetInternalState($('#tab-fundCentre')));
+                        basketState.CachedModel.DataList = fundsToBasket;
+                        SetInternalState($('#AddedFunds_List'), basketState);
+                    }
+                    else {
+                        basketFunds = UpdateCacheDataList(fundsToBasket, basketFunds);
+                        basketState = GetInternalState($('#AddedFunds_List'));
+                        basketState.CachedModel.DataList = basketFunds;
+                        SetInternalState($('#AddedFunds_List'), basketState);
+                    }
+                }
+
+                model.CodesList = codeArray;
+                return matchedFunds;
+            }
+
+            function SetupTab(container, actionLocation, getModelFunction, fundInfo, hasPagingAndSorting) {
+                // TODO : take this logic out, it is too complex at this point. It was made like this because the logic was all over the place (3 files)
+                var containerWrapped = $(container);
+
+                //Subscribe for data table events
+
+                containerWrapped.onGetDataRequest(function (e) {
+
+                    var state = GetInternalState(fundInfo);
+                    if (hasPagingAndSorting) {
+                        state.PagingState.PageNo = e.newPageIndex;
+                        state.PagingState.PageSize = e.pageSize;
+                    }
+                    SetInternalState(fundInfo, state);
+                    var model = getModelFunction(fundInfo, state.PagingState, state.OrderByOptions);
+                    model.ToolId = $(container).attr('data-toolId');
+                    LoadTabData(model, $(container), actionLocation, fundInfo, null, undefined, hasPagingAndSorting, e.source);
+                });
+
+
+                container.LoadTabData = function (model, useCache, isFirstTime, source) {
+                    LoadTabData(model, containerWrapped, actionLocation, fundInfo, useCache, isFirstTime, hasPagingAndSorting, source);
+                };
+
+                container.ShowTabDataFromCache = function () {
+                    var state = GetInternalState(fundInfo);
+                    var model = state.CachedModel;
+
+                    if (model) {
+                        OnDataReceived(state.CachedModel, containerWrapped, fundInfo);
+                    }
+                };
+            }
+
+            //#region Helper Functions
+
+            //This funtion will be called by ajax request which is initiated by LoadTabData function
+            //renderOnly - Used to avoid multiple render in HTML Factsheet
+            function OnDataReceived(model, container, fundInfo, isFirstTime, source, renderOnly) {
+                // container.parent().parent().data("model", model);
+
+                if (model.ToolId == ToolIds.Shortlist || model.ToolId == ToolIds.Portfolio) {
+                    // Do nothing, till we get latest data
+                    if (model.Version != latestRequestVersion[getToolIdVarName(model.ToolId)]) {
+                        //console.log('Response dropped - Expected : ' +
+                        //    latestRequestVersion[getToolIdVarName(model.ToolId)] +
+                        //    '; Received : ' +
+                        //    model.Version);
+                        return;
+                    }
+                }
+
+                if (model.ToolId == ToolIds.FundCentreId) {
+                    var totalNumberOfElements = model.TotalRows;
+
+                    if (totalNumberOfElements > 1) {
+                        var textsTranslated = modelContents.GetTranslation("FundsReturned");
+                        $('#totalFundsObtained').text(totalNumberOfElements + " " + textsTranslated);
+                    }
+                    else {
+                        var textTranslated = modelContents.GetTranslation("FundReturned");
+                        $('#totalFundsObtained').text(totalNumberOfElements + " " + textTranslated);
+                    }
+                }
+
+                var state = GetInternalState(fundInfo);
+                state.CachedModel = model;
+                SetInternalState(fundInfo, state);
+                if (model.IsSuccessful) {
+                    FireEvent("OnDataReceived", fundInfo, model);
+                    if (model.DataList != undefined && model.DataList.length > 0) {
+                        container.renderDataTable(model, model.DataList, (modelContents.FundCentreAMEnabled || modelContents.IsSharedResponsiveURL));
+                        container.show();
+
+                        if (modelContents.ShowRSMFactsheet == "False") {
+                            $('.fe-icon-rsmrating').attr("title", "");
+                        }
+
+                        if (typeof SetResponsiveFactsheetHeader !== 'undefined' && model.DataList[0] != null && model.DataList[0].Common != null) {
+                            SetResponsiveFactsheetHeader(model.DataList[0].Common.Name);
+                        }
+                        if (modelContents.FundCentreAMEnabled || modelContents.IsSharedResponsiveURL) {
+                            $(container).find('> div:not(div[data-id=NoResultsMessage])').show();
+                            HideNoResult(container);
+                        } else {
+                            HideNoResult(container.parent());
+                            //TODO: Provide an event for me to hook on to.
+                            UpdateBasketView();
+                            // Update the add/remove icons on the fund centre page to match what items are currently shown in the Shortlist.
+                            UpdateFundCentreViewForShortlist();
+                            // Update the add/remove icons on the fund centre page to match what items are currently shown in the Portfolio.
+                            UpdateFundCentreViewForPortfolio();
+                            if (dynamicShortListFn) {
+                                // Update the add/remove icons on the fund centre page to match what items are currently shown in the dynamic shortlist.
+                                dynamicShortListFn.UpdateFundCentreViewForDynamicShortlist();
+                            }
+                            // fire the event without the timeout once, so the weight values are rendered (VSTS:47246) and not sure about the below logic, so carry on with that.
+                            FireEvent("OnTabRendered", fundInfo, container, isFirstTime);
+
+                            for (var retryCount = 0; retryCount < 5; retryCount++) {
+
+                                var width = $(document).width();
+                                var height = document.body.clientHeight + 30;
+
+                                setTimeout(function () {
+                                    FireEvent("OnTabRendered", fundInfo, container, isFirstTime);
+                                }, 1000);
+
+                                if (!(width == 0 && height == 30 && retryCount < 5)) {
+                                    break;
+                                }
+
+                            }
+                        }
+                    } else {
+                        HideFundTableAndShowNoResult(container.parent());
+                        HideFundListsAndShowNoResult(container);
+
+                        //If its a firsttime this will be true, when we dont want to send the height
+                        if (!isFirstTime && !modelContents.FundCentreAMEnabled) {
+                            // Update the add/remove icons on the fund centre page to match what items are currently shown in the Shortlist.
+                            UpdateFundCentreViewForShortlist();
+                            // Update the add/remove icons on the fund centre page to match what items are currently shown in the Portfolio.
+                            UpdateFundCentreViewForPortfolio();
+                            if (dynamicShortListFn) {
+                                // Update the add/remove icons on the fund centre page to match what items are currently shown in the dynamic shortlist.
+                                dynamicShortListFn.UpdateFundCentreViewForDynamicShortlist();
+                            }
+                            ToolkitUI.Common.ResizeIFrame();
+                        }
+                    }
+
+                    // TODO : this is nonsence! Then add the class in the generation of the table to have it always!
+                    if (browser.msie && parseInt(browser.version, 10) == 6) {
+                        ////in ie6, it doesn't like css selector e.g. .fe-datatable td:first-child
+                        ////we do a hack to work around the problem
+                        $(container).parent().find("table tbody tr td:first-child").addClass("firstchild");
+                    }
+
+                    FundCentre.AsAtDate.SetAsAtDate(model, container, fundInfo);
+                    if (model.ToolId === 1) {
+                        ///This setting help to ignore cache data and load from DB when spl unit is configured
+                        $('#tab-fundCentre').attr('isspecialunitconfigured', model.IsSpecialUnitConfigured ? 1 : 0);
+                    }
+                } else {
+                    $('html').hideLoading();
+                    $(this).showError(model.ResponseMessage && model.ResponseMessage.indexOf("channel timed out") > -1 ? model.ResponseMessage : "Sorry, an error occurred while processing your request.");
+                }
+
+                InitializeTextSection(container);
+                //The below method is in FundManager.js which will be included only with AM tools.
+                //the below logic verifies whether the method is available before making a call.
+                if (typeof InitializeShowAllManagers !== 'undefined') {
+                    InitializeShowAllManagers(container);
+                }
+
+                if (((model.ToolId == ToolIds.FundCentreAMId && modelContents.AMFundCentreAccordionEnabled) || (model.ToolId == ToolIds.AllFundsAMId && modelContents.AMAllFundsAccordionEnabled)) && typeof Accordion !== 'undefined') {
+                    var accordionfunction = new Accordion();
+                    accordionfunction.InitializeClickEvents(container);
+                    accordionfunction.InitializeSection(container, state.FundTabIndexesSelected);
+                } else {
+                    container.ShowLoadingInsideContainer();
+                }
+                var toolId = state.CachedModel.ToolId;
+
+                if (renderOnly === undefined) {
+                    var chartSectionInfos = GetTemplateAndSectionInfos(container, 'PerfChartSection', toolId);
+                    if (chartSectionInfos.TemplateIds != null && chartSectionInfos.TemplateIds.length > 0) {
+                        GenerateCharts(chartSectionInfos.TemplateIds,
+                            chartSectionInfos.SectionIds,
+                            container,
+                            model,
+                            state);
+                    }
+
+                    //The PerformanceAndRisk section data is loaded based on the following steps
+                    //1)If current tabs contains PerformanceAndRisk section, it will check all the PerformanceAndRisk template in the page to check whether Sector and Benchmark data need to load at once.
+                    //2)The loaded data is cached based on citicode and pageno (NOT based on the section id because it loads all the performance and risk data at once, so need to cache based on section id
+                    var performanceAndRiskSectionInfos =
+                        GetTemplateAndSectionInfos(container, 'PerformanceAndRiskSection', toolId);
+
+                    if (performanceAndRiskSectionInfos.TemplateIds != null &&
+                        performanceAndRiskSectionInfos.TemplateIds.length > 0) {
+                        LoadPerformanceAndRiskData(performanceAndRiskSectionInfos.SectionIds,
+                            container,
+                            model,
+                            GetInternalState(fundInfo));
+                    }
+
+                    var barChartSectionInfos = GetTemplateAndSectionInfos(container, 'PerfBarChartSection', toolId);
+                    if (barChartSectionInfos.TemplateIds != null && barChartSectionInfos.TemplateIds.length > 0) {
+                        GenerateBarCharts(barChartSectionInfos.TemplateIds,
+                            barChartSectionInfos.SectionIds,
+                            container,
+                            model,
+                            state);
+                    }
+                }
+
+                GenerateBreakdownsCharts(container, model);
+                $(".fe-accordion-expandcollapse-all", container).on('click', function () {
+                    GenerateBreakdownsCharts(container, model);
+                    $(this).off('click', arguments.callee);
+                });
+                toggleHelpTextForTool(toolId);
+
+                if (typeof DownloadTool !== 'undefined' && typeof DownloadTool.Download !== 'undefined' && renderOnly === undefined) {
+                    DownloadTool.Download.GetUnitPriceHistoryForAllFunds(model, container, state, isFirstTime);
+                }
+
+                if ($(container).parents("[class^='fe-mastertabs']").length > 0 && ($(container).parents("[class^='fe-mastertabs']").is(':visible') || $(container).parents("[class^='fe-mastertabs']").attr('class').indexOf($('.fe-menuTabs-list li a.selected').attr('id')) > -1)) {
+                    $('html').hideLoading();
+                    ToolkitUI.Common.ResizeIFrame();
+                } else if ($(container).parents("[class^='fe-mastertabs']").length == 0 || (model.ToolId == ToolIds.SavedPortfolios && modelContents.DisplayFundsOnLoad === "False")) {
+                    $('html').hideLoading();
+                }
+                if ((getParameterByNameIgnoreCase("defaulttool") == "shortlist" || getParameterByNameIgnoreCase("defaulttool") == "portfolio") && $(container).parents("[class^='fe-mastertabs']").attr('class').indexOf('fe-mastertabs-FundCentreMasterTab') > -1) {
+                    $('html').hideLoading();
+                }
+
+                if (modelContents.IsSharedResponsiveURL) {
+                    ToolkitUI.Common.ResizeIFrame();
+                }
+            }
+
+            function AddToBasketCache(recvdModel, fundInfo) {
+                var dataList = [];
+                var isFound = false;
+                var recvdState = GetInternalState(fundInfo);
+                recvdState.CachedModel = recvdModel;
+                SetInternalState(fundInfo, recvdState);
+                var receivedDataList = $.extend(true, [], recvdState.CachedModel.DataList);
+                var state = GetInternalState($('#AddedFunds_List'));
+
+                if (state == undefined) {
+                    SetInternalState($('#AddedFunds_List'), recvdState);
+                    var state = $.extend(true, {}, GetInternalState($('#AddedFunds_List')));
+                }
+                else {
+                    dataList = $.extend(true, [], GetInternalState($('#AddedFunds_List')).CachedModel.DataList);
+                }
+
+                if (dataList.length <= 0) {
+                    dataList = receivedDataList;
+                }
+                else {
+                    dataList = UpdateCacheDataList(receivedDataList, dataList);
+                }
+
+                state.CachedModel.DataList = dataList;
+                SetInternalState($('#AddedFunds_List'), state);
+
+                return state.CachedModel;
+            }
+
+            function UpdateCacheDataList(receivedDataList, dataList) {
+                var isFound = false;
+                $(receivedDataList).each(function (index, element) {
+                    for (i = 0; i < dataList.length; i++) {
+                        if (element.FundInfo.TypeCode == dataList[i].FundInfo.TypeCode) {
+                            isFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!isFound) {
+                        dataList.push(element);
+                    }
+                    else {
+                        isFound = false;
+                    }
+                });
+
+                return dataList;
+            }
+
+            function FireEvent(eventName, fundInfo, eventArgument, isFirstTime) {
+                var event = GetOptions(fundInfo)[eventName];
+                if (event != null && typeof (event) == "function") {
+                    event(fundInfo, eventArgument, isFirstTime);
+                }
+            }
+
+            function ShowTabDataFromCache(fundInfo) {
+                var activeContainer = GetInternalState(fundInfo).ActiveContainer[0];
+                if (activeContainer && activeContainer.ShowTabDataFromCache) {
+                    activeContainer.ShowTabDataFromCache();
+                }
+            }
+
+            return this.each(function () {
+                var $this = $(this);
+                var toolID;
+                var tabActionUrlControl;
+
+                SetInternalState($this, $.extend({}, internalState));
+
+                if (modelContents.FundCentreAMEnabled || modelContents.IsSharedResponsiveURL) {
+                    toolID = $(this).attr('data-toolId');
+                    tabActionUrlControl = 'div[data-tabActionUrl]';
+                } else {
+                    toolID = $('table', $this).attr('data-toolId');
+                    tabActionUrlControl = 'table[data-tabActionUrl]';
+                }
+
+                var tabOptions = {
+                    create: function (event, ui) {
+                        var activeContainer = $(ui.panel).find(".fe-datatable");
+
+                        if (activeContainer.length == 0)
+                            activeContainer = $(ui.panel);
+
+                        ui.tab.addClass("ui-tabs-selected");
+
+                        SetActiveContainer($this, activeContainer);
+                        ShowTabDataFromCache($this);
+                        SetNewIconAndOrdering(null,
+                            null,
+                            $this,
+                            (modelContents.SortingStyle == 2 ? 'true' : 'false')); // set new icon in this tab
+                    },
+                    activate: function (event, ui) {
+                        var activeContainer = $(ui.newPanel).find(".fe-datatable");
+
+                        if (activeContainer.length == 0)
+                            activeContainer = $(ui.newPanel);
+
+                        ui.newTab.removeClass("ui-tabs-selected").addClass("ui-tabs-selected");
+
+                        SetActiveContainer($this, activeContainer);
+                        ShowTabDataFromCache($this);
+                        SetNewIconAndOrdering(null,
+                            null,
+                            $this,
+                            (modelContents.SortingStyle == 2 ? 'true' : 'false')); // set new icon in this tab
+                        ToolkitUI.Common.ResizeIFrame();
+                        ui.newPanel.find('.fe-datatable').trigger('fe-datatable:shown');
+                    },
+                    beforeActivate: function (event, ui) {
+
+                        //The below is to store the funds displayed when accordion functionality is enabled.
+                        var selectedFundIndexes = [];
+                        ui.oldPanel.find(".fe-section-accordion-container").each(function (index) {
+                            if ($(this).is(':visible')) {
+                                selectedFundIndexes.push(index);
+                            }
+                        });
+
+                        ui.oldTab.removeClass("ui-tabs-selected");
+
+                        SetFundTabIndexesSelected($this, selectedFundIndexes);
+                        ClearActiveIcon($this, 'true'); // clear icon in old tab							
+                    }
+                };
+
+                if (modelContents.EnableScrollTabs) {
+                    tabOptions.scrollOptions = modelContents.scrollTabsOptions;
+                    $this.scrollTabs(tabOptions);
+                } else {
+                    $this.tabs(tabOptions);
+                }
+
+                var pluginOptions = SetOptions($this, $.extend(defaults, options));
+                pluginOptions.ToolId = toolID;
+
+                $this.find(tabActionUrlControl).each(function (i, dataContainer) {
+                    var actionUrl = dataContainer.attributes['data-tabActionUrl'].value;
+                    SetupTab(dataContainer, actionUrl, pluginOptions.GetModel, $this, pluginOptions.hasPagingAndSorting);
+                });
+            }); // each 		
+        },
+        FundInfoOrderBy: function (column, isAsc, isSortButton) {
+            var $this = this;
+
+            ClearActiveIcon($this, isSortButton);
+            SetNewIconAndOrdering(column, isAsc, $this, isSortButton);
+
+            $this.FundInfoLoadData(true, undefined, undefined, undefined, "sort");
+
+            return $this;
+        },
+        PortfolioScanOrderBy: function (element) {
+            var rowStyle = "even";
+            var currentElement = $("#" + element.id);
+            var table = $('#' + element.id).parents('table').eq(0)
+            //Portfolio and Benchmark row should be in the top of the table
+            var rows = table.find('tbody tr.odd, tbody tr.even').not('.fe-pscan-portfoliorow,.fe-pscan-benchmarkrow').toArray();
+            rows = rows.sort(comparer(currentElement.index(), table.attr('date-format'), currentElement.attr('data-name') == 'HoldingDate'));
+            var totalRow = table.find('tbody>.total').toArray();
+            currentElement.asc = (element.id != table.attr("OrderByElement")) || !(currentElement.attr("IsAscending") === 'true');
+            currentElement.attr("IsAscending", currentElement.asc);
+            table.attr("OrderByElement", element.id);
+            if (!currentElement.asc) { rows = rows.reverse() }
+            for (var i = 0; i < rows.length; i++) {
+                if (!rows[i].className.contains("total")) {
+                    table.append(rows[i]);
+                    rows[i].className = rowStyle;
+                }
+                rowStyle = rowStyle == "even" ? "odd" : "even";
+            }
+            //Total row should be in the bottom of the table
+            table.append(totalRow);
+        },
+        // the following method would load the data for the active tab, argument passed should be true if 
+        // the model should be taken again and data re-loaded (not to use the cache, even if it is there)
+        FundInfoLoadData: function (ignoreCache, resetPaging, isFirstTime, isClearButton, source) {
+            var $this = this;
+            if (this.length != 0) {
+
+                var state = GetInternalState($this);
+                var options = GetOptions($this);
+
+                if (ignoreCache || !state.CachedModel) {
+                    var pagingState = GetPagingState($this);
+                    if (resetPaging) {
+                        pagingState.PageNo = 1;
+                    }
+                    state.CachedModel = options.GetModel($this, pagingState, state.OrderByOptions, isClearButton);
+                    state.CachedModel.ToolId = options.ToolId;  
+                }
+                var toolId = state.CachedModel.ToolId;
+                if (isClearButton && state.CachedModel && state.CachedModel.FilteringOptions && ((modelContents.FundCentreClearBtnRetainUrlParams && toolId == 1) || (modelContents.AMFundCentreClearBtnRetainUrlParams && toolId == 14) || (modelContents.AMAllFundsClearBtnRetainUrlParams && toolId == 15))) {
+                    var urlParams = $('#searchform-' + toolId).data('urlparams');
+                    state.CachedModel.FilteringOptions.RangeId = urlParams.DefaultRangeCode ? urlParams.DefaultRangeCode : state.CachedModel.FilteringOptions.RangeId;
+                    state.CachedModel.FilteringOptions.CategoryId = urlParams.DefaultCategoryCode ? urlParams.DefaultCategoryCode : state.CachedModel.FilteringOptions.CategoryId;
+                    state.CachedModel.FilteringOptions.Category2Id = urlParams.DefaultCategoryCode2 ? urlParams.DefaultCategoryCode2 : state.CachedModel.FilteringOptions.Category2Id;
+                    state.CachedModel.FilteringOptions.PriipProductCode = urlParams.PriipProductCode ? urlParams.PriipProductCode : state.CachedModel.FilteringOptions.PriipProductCode;
+                    state.CachedModel.FilteringOptions.SectorCode = urlParams.SectorCode ? urlParams.SectorCode : state.CachedModel.FilteringOptions.SectorCode;
+                    state.CachedModel.FilteringOptions.ManagerCode = urlParams.ManagerCode ? urlParams.ManagerCode : state.CachedModel.FilteringOptions.ManagerCode;
+                }
+
+                if (state.ActiveContainer && state.ActiveContainer[0] &&
+                    state.ActiveContainer[0].LoadTabData) {
+                    state.ActiveContainer[0].LoadTabData(state.CachedModel, !ignoreCache, isFirstTime, source);
+                } else {
+                    throw "Unable to load the data!";
+                }
+            }
+        },
+
+        FundInformationGetActiveContainer: function () {
+            var $this = this;
+            if (this.length != 0) {
+                return GetActiveDataContainer($this);
+            } else {
+                return null;
+            }
+        }
+    });
+})(jQuery);
+
+function HideFundTablesAndShowNoResultInTool(toolContainer) {
+    if (toolContainer) {
+        toolContainer.find('.fe-tabs-datacontainer').each(function (i) {
+            HideFundTableAndShowNoResult(this);
+        });
+    }
+}
+
+function HideFundTableAndShowNoResult(tabContainer) {
+    HideFundTable(tabContainer);
+    ShowNoResult(tabContainer);
+}
+
+function HideFundListsAndShowNoResult(tabContainer) {
+    HideFundLists(tabContainer);
+    ShowNoResult(tabContainer);
+}
+
+function SetPositionOfAjaxLoader(container, isPageLoading) {
+    //if within iframe, we need to shift the loader up slighlty. Otherwise its styled to appear in the center of the window.
+    if (isPageLoading) {
+        if ($(container).parents("[class^='fe-mastertabs']").length > 0 && ($(container).parents("[class^='fe-mastertabs']").is(':visible') || $(container).parents("[class^='fe-mastertabs']").attr('class').indexOf($('.fe-menuTabs-list li a.selected').attr('id')) > -1)) {
+            $('html').showLoading();
+        } else if ($(container).parents("[class^='fe-mastertabs']").length == 0) {
+            $('html').showLoading();
+        }
+
+        var loader_ypos_increase = 0;
+        if (self !== top) loader_ypos_increase = 150;
+        $('.loading-indicator').css({ position: 'absolute', left: ($(window).width() - $('.loading-indicator').outerWidth()) / 2, top: (($(window).height() - $('.loading-indicator').outerHeight()) / 2) - loader_ypos_increase });
+    }
+    else {
+        var half_loader_image_size = 40
+        var imageLoading = '<div class="loading-indicator" style="position:relative;left:' + (($(container).width() / 2) - half_loader_image_size) + 'px;top:' + (($(container).height() / 2) - half_loader_image_size) + 'px;"></div>';
+        $(container).html(imageLoading);
+    }
+}
+
+function comparer(index, dateFormat, isDateColumn) {
+    return function (a, b) {
+        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        if (isDateColumn) {
+            dateFormat = dateFormat.toUpperCase();
+            var dateA = moment(valA, dateFormat).toDate();
+            var modifiedDateA = dateA == "Invalid Date" ? new Date(1900, 0, 1) : dateA;
+            var dateB = moment(valB, dateFormat).toDate();
+            var modifiedDateB = dateB == "Invalid Date" ? new Date(1900, 0, 1) : dateB;
+            return modifiedDateA - modifiedDateB;
+
+        }
+        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+    }
+}
+
+function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
+
+function HideFundTable(tabContainer) {
+    $('tbody tr', $(tabContainer).find('table.fe-datatable')).each(function () {
+        if ($(this).find('td').is('[class*="fe-columnheader-master-"]') || $(this).find('td').is('[class*="fe-columnheader-sub-"]')) {
+            // do not do anything. We loose master and sub header columns when fund is added to portfolio first time.
+        } else {
+            {
+                $(this).remove();
+            }
+        }
+    });
+
+    $(tabContainer).find('table.fe-datatable').hide();
+}
+
+function HideFundLists(tabContainer) {
+    $(tabContainer).find('div.minFsData').each(function () {
+        $(this).remove();
+    });
+
+    //gets the first level of child div's, 
+    //we should not be removing any div's inside the table
+    //which is rendered for Platform toolkit
+    $(tabContainer).find('> div:not(div[data-id=NoResultsMessage])').each(function () {
+        $(this).hide();
+    });
+}
+
+function ShowNoResult(tabContainer) {
+    $(tabContainer).find('div[data-id=NoResultsMessage]').removeClass('ui-helper-hidden');
+}
+
+function HideNoResult(tabContainer) {
+    $(tabContainer).find('div[data-id=NoResultsMessage]').addClass('ui-helper-hidden');
+}
+
+function InitializeTextSection(obj) {
+    $(".ellipsis", $(obj)).each(function () {
+        var showChar = $(this).attr("CharacterLimit");
+
+        if (showChar != "") {
+            var ellipsestext = "...";
+            var lesslink = "fe-readless";
+            var morelink = "fe-readmore";
+
+            $(this).shorten({
+                "showChars": showChar,
+                "ellipsesText": ellipsestext,
+                "moreLink": morelink
+            });
+
+            $(".fe-readmore", $(this)).on("click", function () {
+                $(this).toggleClass(lesslink, !$(this).hasClass(lesslink));
+                $(this).parent().prev().toggle("slow");
+                $(this).prev().toggle("slow", function () {
+                    if ($(this).css('display') == 'inline-block') {
+                        $(this).css('display', 'inline');
+                    }
+                    ToolkitUI.Common.ResizeIFrame();
+                });
+                return false;
+            });
+        }
+    });
+}
+
+
+function GenerateBarCharts(templateSectionIds, sectionids, obj, model, state) {
+    var toolId = state.CachedModel.ToolId;
+    var typeCodes = $.map(model.DataList, function (val) { return val.FundInfo.TypeCode; });
+
+    $.each(sectionids, function (count, sectionId) {
+
+        //Request for data list    
+        var chartFilters = $.map(model.DataList, function (v) {
+            return {
+                Name: v.FundInfo.Name,
+                TypeCode: v.FundInfo.TypeCode,
+                Currency: v.Price.Currency_UnitLevel,
+                BenchmarkCurrencyCode: v.FundInfo.BenchmarkCurrencyCode,
+                SectorCurrencyCode: v.FundInfo.SectorCurrencyCode,
+                CitiCode: v.FundInfo.CitiCode,
+                SectionId: sectionId,
+                SectorClassCode: v.FundInfo.SectorClassCode,
+                BenchmarkTypeCode: v.FundInfo.BenchmarkTypeCode,
+                Sector: v.FundInfo.Sector,
+                Benchmark: v.FundInfo.Benchmark,
+                BenchmarkBreakdowns: v.FundInfo == undefined || v.FundInfo.BenchmarkBreakdowns.length == 0 ? null: v.FundInfo.BenchmarkBreakdowns,
+                PriceType: v.Price.PriceType,
+                SpecialUnitTypeCode: v.FundInfo.DefaultSpecialUnitTypeCode,
+                SpecialUnitPriceType: v.FundInfo.DefaultSpecialUnitPriceType,
+                SpecialUnitName: v.FundInfo.DefaultSpecialUnitName,
+                SpecialUnitType: v.FundInfo.DefaultSpecialUnitType
+            };
+        });
+
+        if (state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo]) {
+            PlotBarChart(model, state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo], sectionId, chartFilters, obj, toolId);
+        }
+        else {
+
+            var searchModel = GetSearchModel(toolId, 0);
+            searchModel.RangeCode = model.RangeCode;
+            if (!searchModel.RangeCode && $("#RangeId-" + toolId)) {
+                searchModel.RangeCode = $("#RangeId-" + toolId).val();
+            }
+            var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+            $(this).sendJsonAsString(modelContents.FundDiscretePerformanceUrl, chartModel,
+                function (response) {
+                    //typeCodes are used as part of key as citicodes are already used for line chart cache
+                    state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo] = response;
+                    PlotBarChart(model, response, sectionId, chartFilters, obj, toolId);
+                }, null, chartFilters.length);
+        }
+    });
+
+
+    $.each(templateSectionIds, function (count, sectionId) {
+
+        if (($.inArray(sectionId, sectionids) == -1) && (!state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo])) {
+            //Request for data list    
+            var chartFilters = $.map(model.DataList, function (v) {
+                return {
+                    Name: v.FundInfo.Name,
+                    TypeCode: v.FundInfo.TypeCode,
+                    Currency: v.Price.Currency_UnitLevel,
+                    BenchmarkCurrencyCode: v.FundInfo.BenchmarkCurrencyCode,
+                    SectorCurrencyCode: v.FundInfo.SectorCurrencyCode,
+                    CitiCode: v.FundInfo.CitiCode,
+                    SectionId: sectionId,
+                    SectorClassCode: v.FundInfo.SectorClassCode,
+                    BenchmarkTypeCode: v.FundInfo.BenchmarkTypeCode,
+                    Sector: v.FundInfo.Sector,
+                    Benchmark: v.FundInfo.Benchmark,
+                    BenchmarkBreakdowns: v.FundInfo == undefined || v.FundInfo.BenchmarkBreakdowns.length == 0 ? null : v.FundInfo.BenchmarkBreakdowns,
+                    PriceType: v.Price.PriceType,
+                    SpecialUnitPriceType: v.FundInfo.DefaultSpecialUnitPriceType,
+                    SpecialUnitTypeCode: v.FundInfo.DefaultSpecialUnitTypeCode,
+                    SpecialUnitName: v.FundInfo.DefaultSpecialUnitName,
+                    SpecialUnitType: v.FundInfo.DefaultSpecialUnitType
+                };
+            });
+
+            var searchModel = GetSearchModel(toolId, 0);
+            searchModel.RangeCode = model.RangeCode;
+            if (!searchModel.RangeCode && $("#RangeId-" + toolId)) {
+                searchModel.RangeCode = $("#RangeId-" + toolId).val();
+            }
+
+            var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+            $(this).sendJsonAsString(modelContents.FundDiscretePerformanceUrl, chartModel,
+                function (response) {
+                    //typeCodes are used as part of key as citicodes are already used for line chart cache
+                    state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo] = response;
+                }, null, chartFilters.length);
+        }
+    });
+
+}
+
+function PlotBarChart(model, response, sectionId, chartFilters, container, toolId) {
+
+    $.each(chartFilters, function (i, chartFilter) {
+        var fundPerformance = response.DiscretePerformance != null ? $.map(response.DiscretePerformance, function (val) { if (val.TypeCode == chartFilter.TypeCode) return val; }) : null;
+        var fundData = $.map(model.DataList, function (val) { if (val.FundInfo.TypeCode == chartFilter.TypeCode) return val; });
+
+        if (!response.DiscretePerformance || response.DiscretePerformance.length == 0 || fundPerformance.length == 0) {
+            $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).empty();
+            $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).text(modelContents.GetTranslation('NoPerformanceChart'));
+            $("#PerfBarChartResetButton_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).hide();
+        }
+    });
+
+    if (response.DiscretePerformance == null || response.DiscretePerformance.length == 0) {
+        return;
+    }
+
+    $.each(chartFilters, function (i, chartFilter) {
+        ////When NAV unit is passed the ordinary and special unit has same typecode and different pricetype
+        var isNAVUnit = (chartFilter.SpecialUnitPriceType != null || chartFilter.SpecialUnitPriceType != '') && chartFilter.SpecialUnitPriceType != chartFilter.PriceType;
+        var fundPerformance = $.map(response.DiscretePerformance, function (val) { if (val.TypeCode == chartFilter.TypeCode && (isNAVUnit && val.FormattedTypeCode.indexOf('~' + chartFilter.PriceType) > 0 || !isNAVUnit)) return val; });
+        var specialUnitPerf = $.map(response.DiscretePerformance, function (val) { if (val.TypeCode == chartFilter.SpecialUnitTypeCode && (isNAVUnit && val.FormattedTypeCode.indexOf('~' + chartFilter.SpecialUnitPriceType) > 0 || !isNAVUnit)) return val; });
+        var sectorPerformance = $.map(response.DiscretePerformance, function (val) { if (val.TypeCode == chartFilter.SectorClassCode) return val; });
+        var benchmarkPerformance = $.map(response.DiscretePerformance, function (val) { if (val.TypeCode == chartFilter.BenchmarkTypeCode) return val; });
+
+        if (response.AutoloadBenchmarkBreakdown) {
+            var benchmarkBreakdownPerformances = new Array();
+            if (chartFilter.BenchmarkBreakdowns) {
+                for (i = 0; i < chartFilter.BenchmarkBreakdowns.length; i++) {
+                    benchmarkBreakdownPerformances.push($.map(response.DiscretePerformance,
+                        function(val) {
+                            if (val.TypeCode ==
+                                chartFilter.BenchmarkBreakdowns[i].BenchmarkInstrType +
+                                chartFilter.BenchmarkBreakdowns[i].BenchmarkCode) return val;
+                        }));
+                }
+            }
+        }
+
+        var fundData = $.map(model.DataList, function (val) { if (val.FundInfo.TypeCode == chartFilter.TypeCode) return val; });
+        if (model.RangeCode) {
+            fundData.TempData = {};
+            fundData.TempData.RangeCode = model.RangeCode;
+        }
+
+        $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).empty();
+        if (fundPerformance[0] == null || fundPerformance[0]['P12M'] == null) {
+            $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).text(modelContents.GetTranslation('No1YrPerformanceChartHistory'));
+            $("#PerfBarChartResetButton_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).hide();
+            return;
+        }
+
+        var fundChartData = null;
+        var specialUnitChartData = null;
+        var sectorChartData = null;
+        var benchmarkChartData = null;
+        var benchmarkBreakdownChartDatas = new Array();
+        var autoLoadUnit = response.AutoLoadUnit == null ? true : response.AutoLoadUnit;
+        if (fundPerformance.length > 0 && autoLoadUnit) {
+            //TODO: These harcoding of column names need to be addressed in IHUB-2044
+            var fundHistory = $.map(fundPerformance[0], function (value, key) {
+                if (value != null) {
+                    if (key.indexOf('P12') != -1 || key.indexOf('24') != -1 || key.indexOf('36') != -1 || key.indexOf('48') != -1 || key.indexOf('To60') != -1)
+                        return [{ name: key, y: value }];
+                }
+            });
+
+            fundChartData = {
+                name: fundData[0].FundInfo.Name,
+                data: fundHistory,
+                color: $(this).HighCharAddHashToColor(response.FundColour)
+            };
+        }
+
+        var highChartsHelper = new HighChartsHelper();
+        if (response.AutoLoadSpecialUnit) {
+            var isSpecialUnitSameAsOrdinaryUnit = chartFilter.TypeCode == chartFilter.SpecialUnitTypeCode && (chartFilter.PriceType == chartFilter.SpecialUnitPriceType || chartFilter.SpecialUnitPriceType == null || chartFilter.SpecialUnitPriceType == '');
+            var specialUnitHistory = null;
+            ///Normal unit is not same as special unit
+            if (!isSpecialUnitSameAsOrdinaryUnit || !autoLoadUnit) {
+                if (specialUnitPerf.length > 0) { //Show special unit
+                    specialUnitHistory = highChartsHelper.GetValidInstrumentHistory(fundPerformance, specialUnitPerf);
+                }
+
+                var specialUnitName = chartFilter.SpecialUnitName;
+                //Use Ordn Unit name 
+                var useOrdnUnitName = response.AutoLoadSpecialUnit && !response.AutoLoadUnit;
+                if (specialUnitName == null || specialUnitName == '' || useOrdnUnitName) {
+                    specialUnitName = fundData[0].FundInfo.Name;
+                }
+
+                if (isNAVUnit && !useOrdnUnitName) {
+                    specialUnitName = GetNavSpecialUnitName(specialUnitName, chartFilter.SpecialUnitType);
+                }
+
+                if (specialUnitHistory != null) {
+                    specialUnitChartData = {
+                        name: specialUnitName,
+                        data: specialUnitHistory,
+                        color: $(this).HighCharAddHashToColor(response.SpecialUnitColour)
+                    };
+                }
+            }
+        }
+
+        if (sectorPerformance.length > 0) {
+            var sectorHistory = highChartsHelper.GetValidInstrumentHistory(fundPerformance, sectorPerformance);
+
+            sectorChartData = {
+                name: fundData[0].FundInfo.Sector,
+                data: sectorHistory,
+                color: $(this).HighCharAddHashToColor(response.SectorColour)
+            };
+        }
+
+        if (benchmarkPerformance.length > 0) {
+            var benchmarkHistory = highChartsHelper.GetValidInstrumentHistory(fundPerformance, benchmarkPerformance);
+
+            benchmarkChartData = {
+                name: fundData[0].FundInfo.Benchmark,
+                data: benchmarkHistory,
+                color: response.AutoloadBenchmarkBreakdown ? (response.BenchmarkBreakdownColours.split(",").length > 0 ? response.BenchmarkBreakdownColours.split(",")[0] : "#000000") : $(this).HighCharAddHashToColor(response.BenchmarkColour)
+            };
+        }
+        if (response.AutoloadBenchmarkBreakdown && benchmarkBreakdownPerformances != undefined) {
+            for (i = 0; i < benchmarkBreakdownPerformances.length; i++) {
+                var benchmarkBreakdownHistory = highChartsHelper.GetValidInstrumentHistory(fundPerformance, benchmarkBreakdownPerformances[i]);
+
+                benchmarkBreakdownChartDatas.push({
+                    name: fundData[0].FundInfo.BenchmarkBreakdowns[i].BenchmarkName,
+                    data: benchmarkBreakdownHistory,
+                    color: $(this).HighCharAddHashToColor(response.BenchmarkBreakdownColours.split(",").length > i + 1 ? response.BenchmarkBreakdownColours.split(",")[i + 1] : "#000000")
+                });
+            }
+        }
+
+
+        var dataToPlot = [];
+        if (fundChartData != null) {
+            dataToPlot.push(fundChartData);
+        }
+
+        if (specialUnitChartData != null) {
+            dataToPlot.push(specialUnitChartData);
+        }
+
+        if (sectorChartData != null) {
+            dataToPlot.push(sectorChartData);
+        }
+
+        if (benchmarkChartData != null) {
+            dataToPlot.push(benchmarkChartData);
+        }
+
+        if (response.AutoloadBenchmarkBreakdown && benchmarkBreakdownChartDatas != undefined) {
+            for (i = 0; i < benchmarkBreakdownChartDatas.length; i++) {
+                dataToPlot.push(benchmarkBreakdownChartDatas[i]);
+            }
+        }
+
+        var options = GetBarChartSettings(response, fundData, sectionId, toolId, dataToPlot);
+
+
+        $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).highcharts(options);
+
+        $("#PerfBarChartResetButton_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).on("click", function () {
+
+            //Reseting the visibility based on drill down changes from user.
+            var chart = $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).highcharts();
+            $.each(chart.series, function (index, s) {
+                options.series[index].visible = s.visible;
+            });
+
+            $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).highcharts(options);
+
+        });
+    });
+}
+
+function GetBarChartSettings(response, fundData, sectionId, toolId, dataToPlot) {
+    return {
+        chart: {
+            type: 'column',
+            height: response.ChartHeight ? response.ChartHeight : ChartDefaults.Height
+        },
+        xAxis: {
+            categories: response.TimePeriodTranslated,
+            labels: {
+                style: {
+                    fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            labels: {
+                style: {
+                    fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+                },
+                format: '{value:.' + response.NumberOfDecimal+'f}' 
+            }
+        },
+        tooltip: {
+            useHTML: true,
+            formatter: function () {
+                return this.series.name +
+                    "<br>" +
+                    this.x +
+                    " </b> : <b> " +
+                    this.y.toFixed(response.NumberOfDecimal);
+            }
+        },
+        title: {
+            text: response.ShowAsAtDate == 1 ? modelContents.GetTranslation('AsAt') + ' ' + response.AsAtDate : '',
+            align: 'left',
+            //x: 70,
+            style: {
+                fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+            }
+        },
+        subtitle: {
+            text: '',
+            style: {
+                fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+            }
+        },
+        legend: {
+            enabled: true,
+            itemStyle: {
+                fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: response.ShowDataLabels == 1 ? true : false,
+                    formatter: function () {
+                        return this.y ? this.y.toFixed(response.NumberOfDecimal ? 2 : response.NumberOfDecimal) : this.y;
+                    },
+                    style: {
+                        fontSize: (response.ChartFontSize ? response.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+                    }
+                }
+            },
+            column: {
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function (e) {
+                            // This can be handled in the drilldown event but our requirements with drilldown need this event implementation
+                            SetChart(e, fundData, sectionId, toolId);
+                        }
+                    }
+                }
+            }
+        },
+        series: dataToPlot
+    };
+}
+
+function SetChart(e, fundData, sectionId, toolId) {
+    if (!e.seriesOptions) {
+        var chart = $("#PerfBarChartSection_" + sectionId + "_" + fundData[0].FundInfo.CitiCode).highcharts();
+
+        //Collecting the index of series hidden by user by clicking on the legend icon.
+        var hiddenSeriesIndexes = [];
+        $.each(chart.series, function (index, s) {
+            if (!s.visible) {
+                hiddenSeriesIndexes.push(index);
+            }
+        });
+
+        //Request for data list    
+        var chartFilters = $.map(fundData, function (v) {
+            return {
+                Name: fundData[0].FundInfo.Name,
+                TypeCode: fundData[0].FundInfo.TypeCode,
+                Currency: fundData[0].Price.Currency_UnitLevel,
+                BenchmarkCurrencyCode: v.FundInfo.BenchmarkCurrencyCode,
+                SectorCurrencyCode: v.FundInfo.SectorCurrencyCode,
+                CitiCode: fundData[0].FundInfo.CitiCode,
+                SectionId: sectionId,
+                SectorClassCode: fundData[0].FundInfo.SectorClassCode,
+                BenchmarkTypeCode: fundData[0].FundInfo.BenchmarkTypeCode,
+                Sector: fundData[0].FundInfo.Sector,
+                Benchmark: fundData[0].FundInfo.Benchmark,
+                BenchmarkBreakdowns: v.FundInfo == undefined || v.FundInfo.BenchmarkBreakdowns.length == 0 ? null : v.FundInfo.BenchmarkBreakdowns,
+                PriceType: fundData[0].Price.PriceType,
+                TimePeriodString: e.point.name,
+                SpecialUnitPriceType: fundData[0].FundInfo.DefaultSpecialUnitPriceType,
+                SpecialUnitTypeCode: fundData[0].FundInfo.DefaultSpecialUnitTypeCode,
+                SpecialUnitName: fundData[0].FundInfo.DefaultSpecialUnitName,
+                SpecialUnitType: fundData[0].FundInfo.DefaultSpecialUnitType
+            };
+        });
+
+        var searchModel = GetSearchModel(toolId, 0);
+        if (fundData.TempData) {
+            searchModel.RangeCode = fundData.TempData.RangeCode;
+        }
+        if (!searchModel.RangeCode && $("#RangeId-" + toolId)) {
+            searchModel.RangeCode = $("#RangeId-" + toolId).val();
+        }
+
+        var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+        $(this).sendJsonAsString(modelContents.FundDiscretePerformanceUrl, chartModel,
+            function (drilldownResponse) {
+                ////When NAV unit is passed the ordinary and special unit has same typecode and different pricetype
+                var isNAVUnit = (chartFilters[0].SpecialUnitPriceType != null || chartFilters[0].SpecialUnitPriceType != '') && chartFilters[0].SpecialUnitPriceType != chartFilters[0].PriceType;
+                var ddfundPerformance = $.map(drilldownResponse.DiscretePerformance, function (val) { if (val.TypeCode == chartFilters[0].TypeCode && (isNAVUnit && val.FormattedTypeCode.indexOf('~' + chartFilters[0].PriceType) > 0 || !isNAVUnit)) return val; });
+                var ddSpecialUnitPerformance = $.map(drilldownResponse.DiscretePerformance, function (val) { if (val.TypeCode == chartFilters[0].SpecialUnitTypeCode && (isNAVUnit && val.FormattedTypeCode.indexOf('~' + chartFilters[0].SpecialUnitPriceType) > 0 || !isNAVUnit)) return val; });
+                var ddsectorPerformance = $.map(drilldownResponse.DiscretePerformance, function (val) { if (val.TypeCode == chartFilters[0].SectorClassCode) return val; });
+                var ddbenchmarkPerformance = $.map(drilldownResponse.DiscretePerformance, function (val) { if (val.TypeCode == chartFilters[0].BenchmarkTypeCode) return val; });
+                var ddBenchmarkBreakdownPerformances = new Array();
+               if (drilldownResponse.AutoloadBenchmarkBreakdown) {
+                   if (chartFilters[0].BenchmarkBreakdowns) {
+                        for (i = 0; i < chartFilters[0].BenchmarkBreakdowns.length; i++) {
+                            ddBenchmarkBreakdownPerformances.push($.map(drilldownResponse.DiscretePerformance,
+                                function(val) {
+                                    if (val.TypeCode ==
+                                        chartFilters[0].BenchmarkBreakdowns[i].BenchmarkInstrType +
+                                        chartFilters[0].BenchmarkBreakdowns[i].BenchmarkCode) return val;
+                                }));
+                        }
+                    }
+                }
+
+
+                var fundDrilldownData = null;
+                var splUnitDrilldownData = null;
+                var sectorDrilldownData = null;
+                var benchmarkDrilldownData = null;
+                var benchmarkBreakdownDrilldownData = new Array();
+
+  
+                var autoLoadUnit = drilldownResponse.AutoLoadUnit == null ? true : drilldownResponse.AutoLoadUnit;
+
+                if (ddfundPerformance.length > 0) {
+                    var ddfundHistory = $.map(ddfundPerformance[0], function (value, key) {
+                        if (value != null && (key.indexOf('1M') != -1 || key.indexOf('To2M') != -1 || key.indexOf('3M') != -1 || key.indexOf('4M') != -1
+                            || key.indexOf('5M') != -1 || key.indexOf('6M') != -1 || key.indexOf('7M') != -1 || key.indexOf('8M') != -1
+                            || key.indexOf('8M') != -1 || key.indexOf('9M') != -1 || key.indexOf('10M') != -1 || key.indexOf('11M') != -1 || key.indexOf('11To12M') != -1))
+                            return [[key, value]];
+                    });
+
+                    fundDrilldownData = {
+                        name: fundData[0].FundInfo.Name,
+                        data: ddfundHistory.reverse(),
+                        color: $(this).HighCharAddHashToColor(drilldownResponse.FundColour)
+                    };
+                 }
+
+                if (drilldownResponse.AutoLoadSpecialUnit) {
+                    var isSpecialUnitSameAsOrdinaryUnit = chartFilters[0].TypeCode == chartFilters[0].SpecialUnitTypeCode && (chartFilters[0].PriceType == chartFilters[0].SpecialUnitPriceType || chartFilters[0].SpecialUnitPriceType == null || chartFilters[0].SpecialUnitPriceType == '');
+                    if ((!isSpecialUnitSameAsOrdinaryUnit || !autoLoadUnit) && ddSpecialUnitPerformance.length > 0) {
+                        var ddSplUnitHistory = $.map(ddSpecialUnitPerformance[0], function (value, key) {
+                            //TODO: These harcoding of column names need to be addressed in IHUB-2044
+                            if (value != null && (key.indexOf('1M') != -1 || key.indexOf('To2M') != -1 || key.indexOf('3M') != -1 || key.indexOf('4M') != -1
+                                || key.indexOf('5M') != -1 || key.indexOf('6M') != -1 || key.indexOf('7M') != -1 || key.indexOf('8M') != -1
+                                || key.indexOf('8M') != -1 || key.indexOf('9M') != -1 || key.indexOf('10M') != -1 || key.indexOf('11M') != -1 || key.indexOf('11To12M') != -1))
+                                return [[key, value]];
+                        });
+
+                        var specialUnitName = fundData[0].FundInfo.DefaultSpecialUnitName;
+                        var useOrdnUnitName = drilldownResponse.AutoLoadSpecialUnit && !drilldownResponse.AutoLoadUnit;
+                        if (specialUnitName == null || specialUnitName == '' || useOrdnUnitName) {
+                            specialUnitName = fundData[0].FundInfo.Name;
+                        }
+                        if (isNAVUnit && !useOrdnUnitName) {
+                            specialUnitName = GetNavSpecialUnitName(specialUnitName, fundData[0].FundInfo.DefaultSpecialUnitType);;
+                        }
+
+                        splUnitDrilldownData = {
+                            name: specialUnitName,
+                            data: ddSplUnitHistory.reverse(),
+                            color: $(this).HighCharAddHashToColor(drilldownResponse.SpecialUnitColour)
+                        };
+                    }
+                }
+
+
+                if (ddsectorPerformance.length > 0) {
+                    var ddsectorHistory = $.map(ddsectorPerformance[0], function (value, key) {
+                        //TODO: These harcoding of column names need to be addressed in IHUB-2044
+                        if (value != null && (key.indexOf('1M') != -1 || key.indexOf('To2M') != -1 || key.indexOf('3M') != -1 || key.indexOf('4M') != -1
+                            || key.indexOf('5M') != -1 || key.indexOf('6M') != -1 || key.indexOf('7M') != -1 || key.indexOf('8M') != -1
+                            || key.indexOf('8M') != -1 || key.indexOf('9M') != -1 || key.indexOf('10M') != -1 || key.indexOf('11M') != -1 || key.indexOf('11To12M') != -1))
+                            return [[key, value]];
+                    });
+
+                    sectorDrilldownData = {
+                        name: fundData[0].FundInfo.Sector,
+                        data: ddsectorHistory.reverse(),
+                        color: $(this).HighCharAddHashToColor(drilldownResponse.SectorColour)
+                    };
+                }
+
+                if (ddbenchmarkPerformance.length > 0) {
+                    var ddbenchmarkHistory = $.map(ddbenchmarkPerformance[0], function (value, key) {
+                        if (value != null && (key.indexOf('1M') != -1 || key.indexOf('To2M') != -1 || key.indexOf('3M') != -1 || key.indexOf('4M') != -1
+                            || key.indexOf('5M') != -1 || key.indexOf('6M') != -1 || key.indexOf('7M') != -1 || key.indexOf('8M') != -1
+                            || key.indexOf('8M') != -1 || key.indexOf('9M') != -1 || key.indexOf('10M') != -1 || key.indexOf('11M') != -1 || key.indexOf('11To12M') != -1))
+                            return [[key, value]];
+                    });
+
+                    benchmarkDrilldownData = {
+                        name: fundData[0].FundInfo.Benchmark,
+                        data: ddbenchmarkHistory.reverse(),
+                        color: $(this).HighCharAddHashToColor(drilldownResponse.BenchmarkColour)
+                    };
+                }
+
+                if (ddBenchmarkBreakdownPerformances.length > 0) {
+                    var ddBenchmarkBreakdownHistory = new Array();
+                    for (i = 0; i < ddBenchmarkBreakdownPerformances.length; i++) {
+                        //var ddBenchmarkBreakdownPerformancesValue = ddBenchmarkBreakdownPerformances[i];
+                        ddBenchmarkBreakdownHistory = $.map(ddBenchmarkBreakdownPerformances[i][0], function(value, key) {
+                            if (value != null && (key.indexOf('1M') != -1 || key.indexOf('To2M') != -1 || key.indexOf('3M') != -1 || key.indexOf('4M') != -1
+                                || key.indexOf('5M') != -1 || key.indexOf('6M') != -1 || key.indexOf('7M') != -1 || key.indexOf('8M') != -1
+                                || key.indexOf('8M') != -1 || key.indexOf('9M') != -1 || key.indexOf('10M') != -1 || key.indexOf('11M') != -1 || key.indexOf('11To12M') != -1))
+                                return [[key, value]];
+                        });
+
+                        benchmarkBreakdownDrilldownData[i] = {
+                            name: fundData[0].FundInfo.BenchmarkBreakdowns[0].BenchmarkName,
+                            data: ddBenchmarkBreakdownHistory,
+                            color: $(this).HighCharAddHashToColor(drilldownResponse.BenchmarkBreakdownColours.split(",").length > i + 1 ? drilldownResponse.BenchmarkBreakdownColours.split(",")[i + 1] : "#000000")
+                        };
+                    
+                    };
+                }
+
+                var drilldownCategory = e.point.category;
+
+                if (chart.series.length > 3)
+                    chart.series[3].remove(false);
+                if (chart.series.length > 2)
+                    chart.series[2].remove(false);
+                if (chart.series.length > 1)
+                    chart.series[1].remove(false);
+                if (chart.series.length > 0)
+                    chart.series[0].remove(false);
+
+                var categories = drilldownResponse.MonthsTranslated;
+                chart.xAxis[0].setCategories(categories, false);
+                chart.options.plotOptions.series.dataLabels.enabled = false;
+                chart.options.plotOptions.column.point.events.click = null;
+
+                // order of plot is fund, sector and benchmark. If there is no data to plot, key is not shown. Set second key to benchmark
+                // when there is no sector to plot.
+                if (autoLoadUnit) {
+                    chart.addSeries(fundDrilldownData);
+                }
+
+                if (splUnitDrilldownData != null) {
+                    chart.addSeries(splUnitDrilldownData);
+                }
+
+                if (sectorDrilldownData != null && benchmarkDrilldownData != null) {
+                    chart.addSeries(sectorDrilldownData);
+                    chart.addSeries(benchmarkDrilldownData);
+                }
+                else if (sectorDrilldownData != null && benchmarkDrilldownData == null) {
+                    chart.addSeries(sectorDrilldownData);
+                }
+                else if (sectorDrilldownData == null && benchmarkDrilldownData != null) {
+                    chart.addSeries(benchmarkDrilldownData);
+                }
+
+                if (benchmarkBreakdownDrilldownData != null) {
+                    for (i = 0; i < benchmarkBreakdownDrilldownData.length; i++) {
+                        chart.addSeries(benchmarkBreakdownDrilldownData[i]);
+
+                    }
+                }
+
+                chart.setTitle(undefined, { text: drilldownCategory });
+
+                //Reseting the series visibility option.
+                $.each(hiddenSeriesIndexes, function (i, value) {
+                    chart.series[value].hide();
+                });
+
+                chart.redraw();
+            }, null, chartFilters.length);
+    }
+}
+
+function ShowLoadingForSearchedElement(searchText, container) {
+    $(searchText, container).each(function () {
+        if ($(this).is(':empty')) {
+            SetPositionOfAjaxLoader(this);
+        }
+    });
+}
+
+function GetTemplateAndSectionInfos(container, searchText, toolId) {
+    var sectionIds = $('div[id^="' + searchText + '_"]', container).map(function (index) {
+        return this.id.split('_')[1];
+    });
+
+    sectionIds = $.uniqueSort(sectionIds);
+
+    var templateIds = $('[id^="template_' + toolId + '_' + searchText + '_"]').map(function (index) {
+        return this.id.split('_')[3];
+    });
+
+    templateIds = $.uniqueSort(templateIds);
+
+    return { SectionIds: sectionIds, TemplateIds: templateIds };
+}
+
+function GenerateCharts(templateSectionIds, sectionids, obj, model, state) {
+    var toolId = state.CachedModel.ToolId;
+    var citicodes = $.map(model.DataList, function (val) { return val.FundInfo.CitiCode; });
+    var citiCodesForPlotCharts = $.map(model.DataList, function (val) { return val.FundInfo.CitiCode; });
+    var typeCodes = $.map(model.DataList, function (val) { return val.FundInfo.TypeCode; });
+
+    var isLessThanSuppressPerformanceMonthsHistory = false;
+    if (model.ToolId === ToolIds.ResponsiveFactsheetId && model.DataList.length > 0 && model.SuppressPerformanceOptions !== 0) {
+        isLessThanSuppressPerformanceMonthsHistory =
+            model.SuppressPerformanceMonths !== 0 &&
+        monthDiff(moment.utc(model.DataList[0].FundInfo.UnitLaunchDate).toDate(), new Date()) <
+            model.SuppressPerformanceMonths;
+    } else {
+        $.each(sectionids,
+            function (count, sectionId) {
+                $.each(model.DataList,
+                    function (i, data) {
+                        if (model.SuppressPerformanceOptions !== 0 && model.SuppressPerformanceMonths !== 0 &&
+                            monthDiff(moment.utc(data.FundInfo.UnitLaunchDate).toDate(), new Date()) <
+                            model.SuppressPerformanceMonths) {
+                            $("#PerfChartSection_" + sectionId + "_" + data.FundInfo.CitiCode)
+                                .text(modelContents.GetTranslation('No1YrPerformanceChartHistory'));
+                            $("#PerfChartResetButton_" + sectionId + "_" + data.FundInfo.CitiCode).hide();
+                            citiCodesForPlotCharts.remove(data.FundInfo.CitiCode);
+                        }
+                    });
+            });
+    }
+
+    if (isLessThanSuppressPerformanceMonthsHistory) {
+        $.each(sectionids,
+            function (count, sectionId) {
+                $.each(citicodes,
+                    function (i, citicode) {
+                        $("#PerfChartSection_" + sectionId + "_" + citicode)
+                            .text(modelContents.GetTranslation('No1YrPerformanceChartHistory'));
+                        $("#PerfChartResetButton_" + sectionId + "_" + citicode).hide();
+                    });
+            });
+    } else {
+        $.each(sectionids,
+            function (count, sectionId) {
+                if (state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo]) {
+                    PlotChart(state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo],
+                        sectionId,
+                        citiCodesForPlotCharts,
+                        obj,
+                        model);
+                } else {
+                    //Request for data list    
+                    var chartFilters = $.map(model.DataList,
+                        function (v) {
+                            return {
+                                Name: v.FundInfo.Name,
+                                TypeCode: v.FundInfo.TypeCode,
+                                Currency: v.Price.Currency_UnitLevel,
+                                BenchmarkCurrencyCode: v.FundInfo.BenchmarkCurrencyCode,
+                                SectorCurrencyCode: v.FundInfo.SectorCurrencyCode,
+                                CitiCode: v.FundInfo.CitiCode,
+                                SectionId: sectionId,
+                                SectorClassCode: v.FundInfo.SectorClassCode,
+                                BenchmarkTypeCode: v.FundInfo.BenchmarkTypeCode,
+                                Sector: v.FundInfo.Sector,
+                                Benchmark: v.FundInfo.Benchmark,
+                                BenchmarkBreakdowns: v.FundInfo.BenchmarkBreakdowns,
+                                PriceType: v.Price.PriceType,
+                                SpecialUnitPriceType: v.FundInfo.DefaultSpecialUnitPriceType,
+                                SpecialUnitTypeCode: v.FundInfo.DefaultSpecialUnitTypeCode,
+                                SpecialUnitName: v.FundInfo.DefaultSpecialUnitName,
+                                SpecialUnitType: v.FundInfo.DefaultSpecialUnitType
+                            };
+                        });
+
+                    var searchModel = GetSearchModel(toolId, 0);
+                    searchModel.RangeCode = model.RangeCode;
+                    if (!searchModel.RangeCode && $("#RangeId-" + toolId)) {
+                        searchModel.RangeCode = $("#RangeId-" + toolId).val();
+                    }
+
+                    var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+                    $(this).sendJsonAsString(modelContents.InstrumentHistoryUrl,
+                        chartModel,
+                        function (response) {
+                            ////Set Rangecode as it is needed in zoom chart
+                            response.RangeCode = searchModel.RangeCode;
+                            state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo] =
+                                response;
+                            PlotChart(response, sectionId, citiCodesForPlotCharts, obj, model);
+                        },
+                        null,
+                        chartFilters.length);
+                }
+                $('.jqplot-highlighter-tooltip').addClass('fe-jqplot-tooltip');
+            });
+
+        $.each(templateSectionIds,
+            function (count, sectionId) {
+                if (($.inArray(sectionId, sectionids) == -1) &&
+                    (!state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo])) {
+                    //Request for data list    
+                    var chartFilters = $.map(model.DataList,
+                        function (v) {
+                            return {
+                                Name: v.FundInfo.Name,
+                                TypeCode: v.FundInfo.TypeCode,
+                                Currency: v.Price.Currency_UnitLevel,
+                                BenchmarkCurrencyCode: v.FundInfo.BenchmarkCurrencyCode,
+                                SectorCurrencyCode: v.FundInfo.SectorCurrencyCode,
+                                CitiCode: v.FundInfo.CitiCode,
+                                SectionId: sectionId,
+                                SectorClassCode: v.FundInfo.SectorClassCode,
+                                BenchmarkTypeCode: v.FundInfo.BenchmarkTypeCode,
+                                Sector: v.FundInfo.Sector,
+                                Benchmark: v.FundInfo.Benchmark,
+                                BenchmarkBreakdowns: v.FundInfo == undefined || v.FundInfo.BenchmarkBreakdowns.length == 0 ? null : v.FundInfo.BenchmarkBreakdowns,
+                                PriceType: v.Price.PriceType,
+                                SpecialUnitPriceType: v.FundInfo.DefaultSpecialUnitPriceType,
+                                SpecialUnitTypeCode: v.FundInfo.DefaultSpecialUnitTypeCode,
+                                SpecialUnitName: v.FundInfo.DefaultSpecialUnitName,
+                                SpecialUnitType: v.FundInfo.DefaultSpecialUnitType
+                            };
+                        });
+
+                    var searchModel = GetSearchModel(toolId, 0);
+                    searchModel.RangeCode = model.RangeCode;
+                    if (!searchModel.RangeCode && $("#RangeId-" + toolId)) {
+                        searchModel.RangeCode = $("#RangeId-" + toolId).val();
+                    }
+
+                    var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+                    $(this).sendJsonAsString(modelContents.InstrumentHistoryUrl,
+                        chartModel,
+                        function (response) {
+                            response.RangeCode = searchModel.RangeCode;
+                            state.ChartCachedModel[typeCodes.toString() + sectionId + state.PagingState.PageNo] =
+                                response;
+                        },
+                        null,
+                        chartFilters.length);
+                }
+            });
+    }
+}
+
+function LoadPerformanceAndRiskData(sectionids, obj, model, state) {
+    var toolId = state.CachedModel.ToolId;
+    var citicodes = $.map(model.DataList, function (val) { return val.FundInfo.CitiCode; });
+    var sutDropdown = model.SelectedSpecialUnitType;
+    sutDropdown = sutDropdown == null ? "DEFAULT" : sutDropdown;
+
+
+    if (state.PerformanceAndRiskDataCachedModel[citicodes.toString() + state.PagingState.PageNo + sutDropdown]) {
+        $.each(sectionids, function (count, sectionId) {
+            ShowPerformanceAndRiskData(state.PerformanceAndRiskDataCachedModel[citicodes.toString() + state.PagingState.PageNo + sutDropdown], sectionId, citicodes, obj, toolId);
+        });
+    }
+    else {
+        //Request for data list    
+        var performanceAndRiskInputModel = {
+            TypeCodesInformations: $.map(model.DataList, function (v) {
+                return {
+                    FundsLocalCurrency: v.Price.Currency_UnitLevel,
+                    FundTypeCode: v.FundInfo.TypeCode,
+                    CitiCode: v.FundInfo.CitiCode,
+                    SectorClassCode: v.FundInfo.SectorClassCode,
+                    BenchmarkTypeCode: v.FundInfo.BenchmarkTypeCode
+                };
+            })
+        };
+
+        if (toolId == 18) {
+            var fundPriceType = model.DataList != null && model.DataList.length === 1 && model.DataList[0].Price != null ? model.DataList[0].Price.PriceType : null;
+            performanceAndRiskInputModel = $.extend(performanceAndRiskInputModel, { SelectedSpecialUnitType: (modelContents.ResponsiveFactsheetSpecialUnitType ? modelContents.ResponsiveFactsheetSpecialUnitType : null), PriceType: fundPriceType });
+        } else if (toolId == 14 || toolId == 15) {
+
+            performanceAndRiskInputModel = $.extend(performanceAndRiskInputModel, { SelectedSpecialUnitType: model.SelectedSpecialUnitType });
+        }
+        var searchModel = GetSearchModel(toolId, 0);
+        searchModel.RangeCode = model.RangeCode;
+
+        var performanceAndRiskModel = $.extend(searchModel, { PerformanceAndRiskInputModel: performanceAndRiskInputModel });
+
+        $(this).sendJsonAsString(modelContents.PerformanceAndRiskDataUrl, performanceAndRiskModel,
+            function (response) {
+                if (state.PerformanceAndRiskDataCachedModel.length > 5) {
+                    state.PerformanceAndRiskDataCachedModel[state.PerformanceAndRiskDataCachedModel.length - 5] = null;
+                }
+
+                state.PerformanceAndRiskDataCachedModel[citicodes.toString() + state.PagingState.PageNo + sutDropdown] = response;
+                $.each(sectionids, function (count, sectionId) {
+                    ShowPerformanceAndRiskData(response, sectionId, citicodes, obj, toolId);
+                });
+            }, null, performanceAndRiskInputModel.TypeCodesInformations.length);
+    }
+}
+
+function monthDiff(d1, d2) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth() + 1;
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+}
+
+function enableAccessibilityFeatures(seriesConfig, seriesNumber) {
+    if (!modelContents.HigChartAccessibilitySettings) {
+        return;
+    }
+    if (modelContents.HigChartAccessibilitySettings.ShowBrokenLine) {
+        var dashStyleOptions = [ 'Dash', 'DashDot', 'Dot', 'LongDash', 'LongDashDot', 'LongDashDotDot', 'ShortDash', 'ShortDashDot', 'ShortDashDotDot', 'ShortDot' ];
+        seriesConfig.dashStyle = dashStyleOptions[seriesNumber % dashStyleOptions.length];
+    }
+    if (modelContents.HigChartAccessibilitySettings.EnableKeyboardNavigation) {
+        seriesConfig.accessibility = {
+            enabled: true,
+            exposeAsGroupOnly: false,
+            keyboardNavigation: {
+                enabled: true
+            }
+        };
+    }
+}
+
+function PlotChart(model, sectionId, citicodes, container, unitmodel) {
+    $.each(citicodes, function (i, citicode) {
+        var matchedHistory = GetMatchedFundData(model.InstrumentHistoryDetail, citicode);
+
+        if (!model.InstrumentHistoryDetail || model.InstrumentHistoryDetail.length == 0 || !matchedHistory || !matchedHistory.FundHistory || matchedHistory.FundHistory.length == 0) {
+            $("#PerfChartSection_" + sectionId + "_" + citicode).text(modelContents.GetTranslation('NoPerformanceChart'));
+            $("#PerfChartResetButton_" + sectionId + "_" + citicode).hide();
+
+            var index = model.InstrumentHistoryDetail.indexOf(matchedHistory);
+            if (index != -1) {
+                model.InstrumentHistoryDetail.splice(index, 1);
+            }
+        }
+    });
+
+    if (model.InstrumentHistoryDetail == null || model.InstrumentHistoryDetail.length == 0) {
+        return;
+    }
+
+    $.each(model.InstrumentHistoryDetail, function (i, item) {
+        //// no chart container will present when citicode is null. So ingore such codes for creating chart
+        if (item.CitiCode == null || citicodes.indexOf(item.CitiCode) == -1) {
+            return;
+        }
+
+        var fundHistory = null;
+        var specialUnitHistory = null;
+        var sectorHistory = null;
+        var benchmarkHistory = null;
+        var benchmarkBreakdownHistory = new Array();
+        var autoLoadUnit = model.AutoLoadUnit == null ? true : model.AutoLoadUnit;
+
+        if (autoLoadUnit) {
+            fundHistory = $.map(item.FundHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (model.AutoLoadSpecialUnit && (item.TypeCode != item.SpecialUnitFormattedTypeCode || !autoLoadUnit)) {
+            specialUnitHistory = $.map(item.SpecialUnitHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (item.SectorHistory) {
+            sectorHistory = $.map(item.SectorHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (item.BenchmarkCode != null && item.BenchmarkHistory) {
+            benchmarkHistory = $.map(item.BenchmarkHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (item.BenchmarkBreakdownsHistory) {
+            for (i = 0; i < item.BenchmarkBreakdownsHistory.length; i++) {
+                benchmarkBreakdownHistory.push($.map(item.BenchmarkBreakdownsHistory[i].InstrumentHistory, function (n, i) {
+                    return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+                }));
+            }
+        }
+
+        var width = $("#PerfChartSection_" + sectionId + "_" + item.CitiCode).parent().parent().width();
+
+        var highchartsettings = GetHighChartSettings(model, model.FundColour, sectionId, item, fundHistory);
+
+        var legandaltersettings = ChangeLegandDisplayWidth();
+
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $.extend(highchartsettings, legandaltersettings);
+        }
+
+        $("#PerfChartSection_" + sectionId + "_" + item.CitiCode).empty();
+        $("#PerfChartSection_" + sectionId + "_" + item.CitiCode).highcharts(highchartsettings);
+        var hChart = $("#PerfChartSection_" + sectionId + "_" + item.CitiCode).highcharts();
+
+        var seriesNumber = 0;
+        var dataToPlot, seriesColor = null;
+        // order of plot is fund, sector and benchmark. If there is no data to plot, key is not shown. Set second key to benchmark
+        // when there is no sector to plot.
+        var secondSeriesLabel = sectorHistory ? item.Sector : item.Benchmark;
+        if (fundHistory != null) {
+            var seriesConfig_fundHistory = {
+                name: item.Name,
+                color: $(this).HighCharAddHashToColor(model.FundColour),
+                data: fundHistory
+            };
+            enableAccessibilityFeatures(seriesConfig_fundHistory, seriesNumber++);
+            hChart.addSeries(seriesConfig_fundHistory, false);
+        }
+
+        var specialUnitName = item.SpecialUnitName;
+        var useOrdnUnitname = model.AutoLoadSpecialUnit && !model.AutoLoadUnit; // Jira: IHUB-3297
+        specialUnitName = specialUnitName != null && specialUnitName != '' && !useOrdnUnitname ? specialUnitName : item.Name;
+        if (item.InstrumentTypeCode == item.SpecialUnitTypeCode && item.PriceType != item.SpecialUnitPriceType && !useOrdnUnitname) {
+            specialUnitName = GetNavSpecialUnitName(specialUnitName, item.SpecialUnitType);
+        }
+
+        if (specialUnitHistory != null) {
+            var seriesConfig_specialUnitHistory = {
+                name: specialUnitName,
+                color: $(this).HighCharAddHashToColor(model.SpecialUnitColour),
+                data: specialUnitHistory
+            };
+            enableAccessibilityFeatures(seriesConfig_specialUnitHistory, seriesNumber++);
+            hChart.addSeries(seriesConfig_specialUnitHistory, false);
+        }
+
+        if (sectorHistory != null) {
+            var seriesConfig_sectorHistory = {
+                name: item.Sector,
+                color: $(this).HighCharAddHashToColor(model.SectorColour),
+                data: sectorHistory
+            };
+            enableAccessibilityFeatures(seriesConfig_sectorHistory, seriesNumber++);
+            hChart.addSeries(seriesConfig_sectorHistory, false);
+        }
+
+        if (benchmarkHistory != null) {
+            var seriesConfig_benchmarkHistory = {
+                name: item.Benchmark,
+                color: model.AutoloadBenchmarkBreakdown ? (model.BenchmarkBreakdownColours.split(",").length > 0 ? model.BenchmarkBreakdownColours.split(",")[0] : "#000000") : $(this).HighCharAddHashToColor(model.BenchmarkColour),
+                data: benchmarkHistory
+            };
+            enableAccessibilityFeatures(seriesConfig_benchmarkHistory, seriesNumber++);
+            hChart.addSeries(seriesConfig_benchmarkHistory, false);
+        }
+        var seriesConfig_benchmarkBreakdownHistory = {};
+        if (benchmarkBreakdownHistory.length > 0) {
+            for (j = 0; j < item.BenchmarkBreakdowns.length; j++) {
+                seriesConfig_benchmarkBreakdownHistory = {
+                    name: item.BenchmarkBreakdowns[j].BenchmarkName,
+                    color: $(this).HighCharAddHashToColor(model.BenchmarkBreakdownColours.split(",").length > j + 1 ? model.BenchmarkBreakdownColours.split(",")[j + 1] : "#000000"),
+                    data: benchmarkBreakdownHistory[j]
+                };
+                enableAccessibilityFeatures(seriesConfig_benchmarkBreakdownHistory, seriesNumber++);
+                hChart.addSeries(seriesConfig_benchmarkBreakdownHistory, false);
+            }
+        }
+        if (modelContents.HigChartAccessibilitySettings.ShowBrokenLine) {
+            hChart.options.legend.symbolWidth = 40;
+        }
+
+        // Initiate highchart to draw, once all series are added      
+        hChart.redraw();
+
+        $("#PerfChartResetButton_" + sectionId + "_" + item.CitiCode).on("click", function () {
+            var zoomChart = $("#PerfChartSection_" + sectionId + "_" + item.CitiCode).highcharts();
+            zoomChart.xAxis[0].setExtremes();
+        });
+    });
+}
+
+function ShowPerformanceAndRiskData(model, sectionId, citicodes, container, toolId) {
+    $.each(citicodes, function (i, citicode) {
+        var matchedFundData = GetMatchedFundData(model.DataList, citicode);
+        var idReference = "#PerformanceAndRiskSection_" + sectionId + "_" + citicode;
+        $(idReference).empty();
+        if (matchedFundData) {
+            $("#template_" + toolId + "_PerformanceAndRiskSection_" + sectionId).tmpl(matchedFundData.FundDataList).appendTo(idReference);
+        } else {
+            ////Just to skip showing loader icon when perf & risk section is rendered and Perf data is not available for specific fund.
+            ////Note: Loader icon set when the content is empty
+            $('<div style="display:none">I\'m not empty</div>').appendTo(idReference);
+        }
+    });
+
+    if (citicodes != null && citicodes.length > 0) {
+        ToolkitUI.Common.ResizeIFrame();
+    }
+}
+
+function GetHighChartSettings(model, fundColour, sectionId, item, fundHistory) {
+    return {
+        chart: {
+            zoomType: 'x',
+            height: model.ChartHeight ? model.ChartHeight : ChartDefaults.Height,
+            resetZoomButton: {
+                theme: {
+                    visibility: 'hidden'
+                }
+            },
+            backgroundColor: null
+        },
+        credits: {
+            enabled: false
+        },
+        //        legend: {
+        //            itemStyle: {                
+        //                fontWeight: 'bold',
+        //                fontSize: (model.ChartFontSize ? model.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+        //            }
+        //        }, 
+        title: { // Display the Performance Chart "as at date" value.
+            text: model.ShowAsAtDate == 1 ? modelContents.GetTranslation('AsAt') + ' ' + model.AsAtDate : '',
+            align: 'left',
+            style: {
+                fontSize: (model.ChartFontSize ? model.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            minRange: 30 * 24 * 3600000,
+            labels: {
+                style: {
+                    fontSize: (model.ChartFontSize ? model.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+                }
+            },
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%b, %Y',
+                day: '%b %e, %Y',
+                week: '%b %e, %Y',
+                year: '%Y'
+            },
+            title: {
+                text: ''
+            },
+            tickPositioner: function () {
+                if (this.dataMin && this.dataMax) {
+                    this.min = this.dataMin;
+                    this.max = this.dataMax;
+                }
+            },
+            min: moment.utc(item.MinHistoryDate).valueOf(),
+            max: moment.utc(item.MaxHistoryDate).valueOf(),
+            events: {
+                setExtremes: function (e) {
+                    //e.preventDefault();
+                    ReplotHighChart(sectionId, item.CitiCode, model, e.min, e.max);
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            labels: {
+                style: {
+                    fontSize: (model.ChartFontSize ? model.ChartFontSize + 'pt' : ChartDefaults.FontSize)
+                },
+                format: '{value:.' + model.ChartAxisDecimalPlace+'f}'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataGrouping: {
+                    enabled: false
+                },
+                turboThreshold: 10000
+            },
+            series: {
+                marker: {
+                    enabled: false
+                },
+                animation: {
+                    duration: (modelContents.IsSharedResponsiveURL ? 2000 : 4000)
+                }
+            }
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: '{point.x:%b %e, %Y}: {point.y:.' +model.ChartAxisDecimalPlace+'f}',
+            hideDelay: 0
+        }
+    };
+}
+
+function ChangeLegandDisplayWidth() {
+    return {
+        legend: {
+            itemStyle: {
+                width: '200px'
+            }
+        }
+    };
+}
+
+
+function ReplotHighChart(sectionId, citicode, model, zoomStartTime, zoomEndTime) {
+    var instrumentDetail = $.grep(model.InstrumentHistoryDetail, function (item) { return item.CitiCode == citicode });
+
+    if (zoomStartTime < zoomEndTime) { // zooming by left-to-right drag 
+        var zoomStartTimeInMS = zoomStartTime; // start 
+        var zoomEndTimeInMS = zoomEndTime; // end 
+    }
+    else { // zooming by right-to-left drag 
+        var zoomStartTimeInMS = zoomStartTime; // start 
+        var zoomEndTimeInMS = zoomEndTime; // end 
+    }
+
+    //Request for data list    
+    var chartFilters = $.map(instrumentDetail, function (v) {
+        return {
+            Name: v.Name,
+            TypeCode: v.InstrumentTypeCode,
+            Currency: v.Currency,
+            BenchmarkCurrencyCode: v.BenchmarkCurrencyCode,
+            SectorCurrencyCode: v.SectorCurrencyCode,
+            CitiCode: v.CitiCode,
+            SectionId: sectionId,
+            SectorClassCode: v.SectorClassCode,
+            BenchmarkTypeCode: v.BenchmarkCode,
+            Sector: v.Sector,
+            Benchmark: v.Benchmark,
+            BenchmarkBreakdowns: v.BenchmarkBreakdowns == null ? null : v.BenchmarkBreakdowns,
+            PriceType: v.PriceType,
+            StartDate: isNaN(zoomStartTimeInMS) ? null : moment.utc(zoomStartTimeInMS).toISOString(),
+            EndDate: isNaN(zoomEndTimeInMS) ? null : moment.utc(zoomEndTimeInMS).toISOString(),
+            SpecialUnitPriceType: v.SpecialUnitPriceType,
+            SpecialUnitTypeCode: v.SpecialUnitTypeCode,
+            SpecialUnitName: v.SpecialUnitName,
+            SpecialUnitType: v.SpecialUnitType
+        };
+    });
+
+    var searchModel = GetSearchModel(model.ToolId, 0);
+    searchModel.RangeCode = model.RangeCode;
+    if (!searchModel.RangeCode && $("#RangeId-" + model.ToolId)) {
+        searchModel.RangeCode = $("#RangeId-" + model.ToolId).val();
+    }
+
+    var chartModel = $.extend(searchModel, { ChartFilters: chartFilters });
+
+    PlotHighChart(chartModel, sectionId);
+}
+
+function PlotHighChart(chartModel, sectionId) {
+
+    var model = $(this).getDataFromJsonString(modelContents.InstrumentHistoryUrl, chartModel);
+
+    if (model != null && model.InstrumentHistoryDetail.length > 0) {
+
+        var fundHistory = $.map(model.InstrumentHistoryDetail[0].FundHistory, function (n, i) {
+            return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+        });
+
+        var specialUnitHistory = null;
+        var sectorHistory = null;
+        var benchmarkHistory = null;
+        var benchmarkBreakdownHistory = new Array();
+
+        if (model.InstrumentHistoryDetail[0].SpecialUnitHistory) {
+            specialUnitHistory = $.map(model.InstrumentHistoryDetail[0].SpecialUnitHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (model.InstrumentHistoryDetail[0].SectorHistory) {
+            sectorHistory = $.map(model.InstrumentHistoryDetail[0].SectorHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (model.InstrumentHistoryDetail[0].BenchmarkHistory) {
+            benchmarkHistory = $.map(model.InstrumentHistoryDetail[0].BenchmarkHistory, function (n, i) {
+                return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+            });
+        }
+
+        if (model.InstrumentHistoryDetail[0].BenchmarkBreakdownsHistory) {
+            for (i = 0; i < model.InstrumentHistoryDetail[0].BenchmarkBreakdownsHistory.length; i++) {
+                benchmarkBreakdownHistory.push($.map(model.InstrumentHistoryDetail[0].BenchmarkBreakdownsHistory[i].InstrumentHistory, function (n, i) {
+                    return [[moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]];
+                }));
+            }
+        }
+
+        var item = model.InstrumentHistoryDetail[0];
+        var hChart = $("#PerfChartSection_" + sectionId + "_" + model.InstrumentHistoryDetail[0].CitiCode).highcharts();
+        var autoLoadUnit = model.AutoLoadUnit == null ? true : model.AutoLoadUnit;
+        var seriesId = 0;
+        if (autoLoadUnit) {
+            hChart.series[seriesId++].setData(fundHistory, false);
+        }
+
+        if (model.AutoLoadSpecialUnit && (item.TypeCode != item.SpecialUnitFormattedTypeCode || !autoLoadUnit)) {
+            hChart.series[seriesId++].setData(specialUnitHistory, false);
+        }
+
+        if (sectorHistory) {
+            hChart.series[seriesId++].setData(sectorHistory, false);
+        }
+
+        if (benchmarkHistory) {
+            hChart.series[seriesId++].setData(benchmarkHistory, false);
+        }
+
+        if (benchmarkBreakdownHistory.length > 0) {
+            for (var i = 0; i < benchmarkBreakdownHistory.length; i++) {
+                hChart.series[seriesId++].setData(benchmarkBreakdownHistory[i], false);
+            }
+        }
+
+        // Allow the chart redraw after a timeout, because this method is called when setExtremes is triggered,..
+        // Which also triggers a redraw with wrong values
+        setTimeout(function () {
+            hChart.redraw();
+        },
+            100);
+    }
+}
+
+function GetMatchedFundData(fundList, citicode) {
+    if (fundList) {
+        var matches = $.grep(fundList, function (item) { return (item.CitiCode == citicode) });
+        if (matches.length) {
+            return matches[0];
+        }
+    }
+}
+
+function GetFormattedDate(date) {
+    var str = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth() + 1) + "-" + getFormattedPartTime(date.getDate());
+    return str;
+}
+
+function getFormattedPartTime(partTime) {
+    if (partTime < 10)
+        return "0" + partTime;
+    return partTime;
+}
+
+function GenerateBreakdownsCharts(container, model) {
+    $.each($('.breakdownsChart', container), function (index) {
+        $chart = $(this);
+
+        var chartId = $chart.attr('id');
+
+        // give the chart an ID if it doesn't have one	
+        if (chartId === undefined) {
+            chartId = 'breakdownsChart_' + index;
+            $chart.attr('id', chartId);
+        }
+
+        // If the chart hasn't already been drawn
+        if ($chart.children().length == 0) {
+
+            // Draw the chart if it's container is visible
+            if ($chart.closest(".fe-section-accordion-container").length == 0 || $chart.closest(".fe-section-accordion-container").is(':visible')) {
+                RenderBreakdownsChart(model, chartId, $chart);
+
+            } else {
+                $chart.closest(".minFsData").find(".fe-section-accordion-header").on('click', function () {
+                    GenerateBreakdownsCharts(container, model);
+                    $(this).unbind('click', arguments.callee);
+                });
+            }
+        }
+    });
+}
+
+function RenderBreakdownsChart(model, chartId, $chart) {
+
+    // Get the index of the wrapping minFsData div.  This will be the index in the data to get the breakdown
+    var index = $chart.closest('.minFsData').index();
+
+    // Get the data for the chart
+    var breakdowns = [];
+    var sliceMarginWidth = 0;
+    var innerSize = 0;
+    var showDataLabels = false;
+    var data = [];
+    var colours = [];
+    var drawChart = true;
+
+    if ($chart.hasClass('assetBreakdowns')) {
+        if (!model.DataList[index].AssetBreakdowns.HasValidWeights) {
+            $chart.parent().find(".BreakdownKey").hide();
+            drawChart = false;
+        } else {
+            breakdowns = model.DataList[index].AssetBreakdowns.Breakdowns;
+            sliceMarginWidth = model.DataList[index].AssetBreakdowns.ChartSliceMargin;
+            showDataLabels = model.DataList[index].AssetBreakdowns.ShowLabelsOnChart;
+            innerSize = model.DataList[index].AssetBreakdowns.ChartInnerSize;
+        }
+    } else if ($chart.hasClass('areaBreakdowns')) {
+        if (!model.DataList[index].AreaBreakdowns.HasValidWeights) {
+            $chart.parent().find(".BreakdownKey").hide();
+            drawChart = false;
+        } else {
+            breakdowns = model.DataList[index].AreaBreakdowns.Breakdowns;
+            sliceMarginWidth = model.DataList[index].AreaBreakdowns.ChartSliceMargin;
+            showDataLabels = model.DataList[index].AreaBreakdowns.ShowLabelsOnChart;
+            innerSize = model.DataList[index].AreaBreakdowns.ChartInnerSize;
+        }
+    } else if ($chart.hasClass('sectorBreakdowns')) {
+        if (!model.DataList[index].SectorBreakdowns.HasValidWeights) {
+            $chart.parent().find(".BreakdownKey").hide();
+            drawChart = false;
+        } else {
+            breakdowns = model.DataList[index].SectorBreakdowns.Breakdowns;
+            sliceMarginWidth = model.DataList[index].SectorBreakdowns.ChartSliceMargin;
+            showDataLabels = model.DataList[index].SectorBreakdowns.ShowLabelsOnChart;
+            innerSize = model.DataList[index].SectorBreakdowns.ChartInnerSize;
+        }
+    }
+
+    // Bind the data into the correct format and assign colours
+    if (breakdowns.length > 0 && drawChart) {
+        for (var i = 0; i < breakdowns.length; i++) {
+            data.push([breakdowns[i].BreakdownName, breakdowns[i].ItemWeight]);
+            colours.push(breakdowns[i].BreakdownKey);
+        }
+
+        // Draw the chart									
+        $chart.highcharts({
+            chart: {
+                type: 'pie',
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.2f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    borderWidth: sliceMarginWidth,
+                    cursor: 'pointer',
+                    colors: colours,
+                    innerSize: innerSize + '%',
+                    dataLabels: {
+                        enabled: showDataLabels,
+                        format: '{point.percentage:.2f} %'
+                    }
+                }
+            },
+            series: [{
+                point: {
+                    events: {
+                        click: function () {
+                            var rows = $chart.parent().find('.fe-section-breakdowndata-row');
+                            rows.each(function () { $(this).removeClass('selected-breakdown'); });
+                            if (!this.selected) {   // this is set after click so we want the inverse
+                                var idx = $.inArray(this, this.series.data);
+                                $(rows[idx]).addClass('selected-breakdown');
+                            }
+                        }
+                    }
+                },
+                data: data
+            }]
+        });
+
+        var chart = $chart.highcharts();
+        $chart.parent().find('.fe-section-breakdowndata-row').on('click', function () {
+            if (!$(this).hasClass('selected-breakdown')) {
+                $chart.parent().find('.fe-section-breakdowndata-row').each(function () { $(this).removeClass('selected-breakdown'); });
+                $(this).addClass('selected-breakdown');
+            }
+            else { $chart.parent().find('.fe-section-breakdowndata-row').each(function () { $(this).removeClass('selected-breakdown'); }); }
+            var idx = $.inArray(this, $chart.parent().find('.fe-section-breakdowndata-row'));
+            chart.series[0].data[idx].select();
+            return;
+        });
+
+    } else {
+
+        // If there's no data, remove the chart and make the table full width
+        $chart.next().css('width', '100%');
+        $chart.remove();
+    }
+}
+if (modelContents.FundCentreAMEnabled) {
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
+}
+////This function will see if any container contains performance line chart, barchart and Performance and risk section to set the loading image before data load.
+//// if any section needs to have loader image, please add the section id  here
+jQuery.fn.ShowLoadingInsideContainer = function () {
+    ShowLoadingForSearchedElement('div[id^="PerfChartSection_"],div[id^="PerformanceAndRiskSection_"],div[id^="PerfBarChartSection_"]', $(this));
+}
+
+function SpanDivKeypress() {
+    $('span,div').on("keypress", function (e) {
+        var key = e.which;
+        if (key == 13) {
+            var source = e.srcElement == undefined ? e.target : e.srcElement;
+            if (source.className != undefined && source.className.indexOf('selected-option') > -1) {
+                return false;
+            }
+            if (!source.id.contains('chk') && !source.id.contains('rdo')) {
+                $(source).trigger("click");
+            }
+            return false;
+        }
+    });
+}

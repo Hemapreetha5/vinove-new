@@ -1,0 +1,763 @@
+$.widget('custom.barchart', {
+    options: {
+        labelFontSize: '10pt',
+        axisFontSize: '10pt',
+        valueFontSize: '8pt',
+        fontFamily: 'Arial',
+        textColor: '#333',
+        axisColor: '#000',
+        gridLinesColor: '#ddd',
+        valuePlacement: '',
+        wrapLabels: true,
+        drawXAxis: true,
+        drawGridLines: true,
+        axisTickness: 1,
+        gridLineTickness: 1,
+        borderRadius: null,
+        padding: null,
+        enableAnimation: true,
+        decimalPlaces: 1,
+        decimalSeparator: '.',
+        xAxisPostfix: '',
+        xAxisPrefix: '',
+        valueAxisPostfix: '',
+        valueAxisPrefix: '',
+        mergeGroups: false,
+        groupSpacing: 4,
+        barSize: 0,
+        groups: [],
+        data: [],
+        zeroScaleText: null,
+        maxScaleText: null,
+        minScaleText: null,
+        axisFontWeight: 'normal',
+        alwaysShowZero: false,
+        labelPlacement : ''
+    },
+    labelRightPadding: 5,
+    labelSpacing: 2,
+    tickLength: 3,
+    data: null,
+    hideMaxScaleText: false,
+    hideMinScaleText: false,
+
+    _getTextHeight: function (fontFamily, fontSize, fontWeight) {
+        var fontDraw = document.createElement("canvas");
+        var ctx = fontDraw.getContext('2d');
+        ctx.fillRect(0, 0, fontDraw.width, fontDraw.height);
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = 'white';
+        ctx.font = fontWeight + ' ' + fontSize + ' ' + fontFamily;
+        ctx.fillText('gM', 0, 0);// ‘M’ is likely to be the tallest in any font. g often extends to the bottom of baseline in many fonts. Together we can get the height of each character should be.
+        var pixels = ctx.getImageData(0, 0, fontDraw.width, fontDraw.height).data;
+        var start = -1;
+        var end = -1;
+        for (var row = 0; row < fontDraw.height; row++) {
+            for (var column = 0; column < fontDraw.width; column++) {
+                var index = (row * fontDraw.width + column) * 4;
+                if (pixels[index] === 0) {
+                    if (column === fontDraw.width - 1 && start !== -1) {
+                        end = row;
+                        row = fontDraw.height;
+                        break;
+                    }
+                    continue;
+                }
+                else {
+                    if (start === -1) {
+                        start = row;
+                    }
+                    break;
+                }
+            }
+        }
+        return end - start;
+    },
+
+    _calculateTextWidth: function (fontFamily, fontSize, val, fontWeight) {
+        var fontDraw = document.createElement("canvas");
+        var ctx = fontDraw.getContext('2d');
+        ctx.font = fontWeight + ' ' + fontSize + ' ' + fontFamily;
+        return ctx.measureText(val).width;
+    },
+
+    _isNullOrWhiteSpace: function (val) {
+        return val == null || $.trim(val) == "";
+    },
+
+    _create: function () {
+        var w = this;
+        w.width = w.element.width();
+        w.ctx = w.element[0].getContext("2d");
+        w.ctx.font = w.options.labelFontSize + ' ' + w.options.fontFamily;
+        w.labelLineHeight = w._getTextHeight(w.options.fontFamily, w.options.labelFontSize, 'normal');
+        if (w.options.borderRadius == null || w.options.borderRadius > w.labelLineHeight / 2)
+            w.options.borderRadius = w.labelLineHeight / 2;
+        w.ctx.font = w.options.axisFontSize + ' ' + w.options.fontFamily;
+        w.xLabelWidth = w.ctx.measureText('-00%').width;
+        w.axisLineHeight = w._getTextHeight(w.options.fontFamily, w.options.axisFontSize, w.options.axisFontWeight);
+        w.ctx.font = w.options.valueFontSize + ' ' + w.options.fontFamily;
+        w.valueLineHeight = w._getTextHeight(w.options.fontFamily, w.options.valueFontSize, '');
+        var maxSpaceLeft = 0;
+        var maxSpaceRight = 0;
+
+        if (w.options.mergeGroups) {
+            $.each(w._getData(), function (index, mergeGroup) {
+                $.each(mergeGroup.dataItems, function (index, dataItem) {
+                    var text = w.options.valueAxisPrefix + dataItem.value.toFixed(w.options.decimalPlaces) + w.options.valueAxisPostfix;
+                    var valueWidth = w.ctx.measureText(text).width;
+                    if (w.options.valuePlacement.toLowerCase() == 'with label') {
+                        if (valueWidth > maxSpaceLeft)
+                            maxSpaceLeft = valueWidth;
+                    } else {
+                        if (dataItem.value >= 0 && valueWidth > maxSpaceRight) {
+                            maxSpaceRight = valueWidth
+                        } else if (valueWidth > maxSpaceLeft) {
+                            maxSpaceLeft = valueWidth;
+                        }
+                    }
+                });
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                var text = w.options.valueAxisPrefix + dataItem.value.toFixed(w.options.decimalPlaces) + w.options.valueAxisPostfix;
+                var valueWidth = w.ctx.measureText(text).width;
+                if (w.options.valuePlacement.toLowerCase() == 'with label') {
+                    if (valueWidth > maxSpaceLeft)
+                        maxSpaceLeft = valueWidth;
+                } else {
+                    if (dataItem.value >= 0 && valueWidth > maxSpaceRight) {
+                        maxSpaceRight = valueWidth
+                    } else if (valueWidth > maxSpaceLeft) {
+                        maxSpaceLeft = valueWidth;
+                    }
+                }
+            });
+        }
+
+        if (w.options.padding == null)
+            w.options.padding = w.labelLineHeight / 3;
+        w.yLabelWidth = w.width / 12;// Labels may take up 1/12 of the total width. This will get re-adjusted inside _calculateWidthAndHeight if we have any long words.
+        w._calculateWidthAndHeight();
+
+        if (w.options.labelPlacement.toLowerCase() == 'top') {
+            w.chartOfset = 0;
+        }
+        else
+        w.chartOfset = w.yLabelWidth + w.labelRightPadding + maxSpaceLeft;
+
+        w.chartWidth = w.width - w.chartOfset - (w.xLabelWidth / 2) - maxSpaceRight;		// Chart takes up the rest (- padding) 
+
+        //Chart Width has to be re-set if the zero axis text or max axis text has to be displayed. These labels
+        //might have to be displayed at the last scale with the label centered on the scale. Under this case
+        //Chart width has to be reduced to create space in the canvas to draw the labels.
+        if (!w._isNullOrWhiteSpace(w.options.zeroScaleText) ||
+            !w._isNullOrWhiteSpace(w.options.minScaleText) ||
+            !w._isNullOrWhiteSpace(w.options.maxScaleText)) {
+
+            var zeroScaleTextWidth = w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.zeroScaleText, w.options.axisFontWeight);
+            var maxScaleTextWidth = w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.maxScaleText, w.options.axisFontWeight);
+
+            var minmaxValue = w._getMinMaxValue();
+            var range = minmaxValue.maxValue - minmaxValue.minValue;
+            var scale = w.chartWidth / range;
+
+            //Zero scale text has to be displayed all the time, if it exists.
+            //If the Zero scale text overlaps Max scale text, do not render Max scale text
+            var zeroScaleTextPosition = scale * Math.abs(minmaxValue.minValue);
+            var maxScaleTextPosition = scale * Math.abs(minmaxValue.minValue) + scale * Math.abs(minmaxValue.maxValue);
+            var zeroScaleTextEndPosition = zeroScaleTextPosition + zeroScaleTextWidth;
+            var maxScaleTextStartPosition = maxScaleTextPosition - (maxScaleTextWidth / 2);
+            if (zeroScaleTextWidth > 0 && zeroScaleTextEndPosition > maxScaleTextPosition) {
+                w.chartWidth = w.chartWidth - (zeroScaleTextEndPosition - maxScaleTextPosition)
+                w.hideMaxScaleText = true;
+            } else if (zeroScaleTextWidth > 0 && maxScaleTextWidth > 0 && maxScaleTextStartPosition > (zeroScaleTextEndPosition + 5))
+                w.chartWidth = w.chartWidth - (maxScaleTextWidth / 2)
+
+            //If the Zero scale text overlaps Min scale text, do not render Min scale text
+            var minScaleTextWidth = w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.minScaleText, w.options.axisFontWeight);
+            //under weight label has to be printed with the centre of the label at the start of the chart
+            //if benchmark label overlaps the under weight label hide under weight label.
+            if ((minScaleTextWidth / 2) > (zeroScaleTextPosition - (zeroScaleTextWidth / 2) - 5))
+                w.hideMinScaleText = true;
+        }
+        w._drawAxis();
+        w._drawLabels();
+        w._drawBars(0);
+        if (w.options.valuePlacement.toLowerCase() == 'with label')
+            w._drawValues();
+        w._drawGroupKey();
+    },
+
+    // returns the data either in the data option or by amalgamating them from the groups
+    _getData: function () {
+        var w = this;
+
+        if (w.data == null) {
+            if (w.options.groups == null || w.options.groups.length == 0) {
+                w.data = w.options.data;
+            } else {
+                var data = [];
+                var mergedGroups = [];
+                $.each(w.options.groups, function (index, groupItem) {
+                    $.each(groupItem.data, function (index, dataItem) {
+                        dataItem.color = groupItem.color;
+                        var mergedGroup = $.grep(mergedGroups, function (g) { return g.label == dataItem.label; });
+                        if (mergedGroup.length == 0) {
+                            mergedGroups.push({ label: dataItem.label, dataItems: [dataItem] });
+                        } else {
+                            mergedGroup[0].dataItems.push(dataItem);
+                        }
+                        data.push(dataItem);
+                    });
+                });
+
+                if (w.options.mergeGroups) {
+                    w.data = mergedGroups;
+                } else {
+                    w.data = data;
+                }
+            }
+        }
+
+        return w.data;
+    },
+
+    // Works out which labels will wrap and calculates width based on long words. Also calculates the total height of them and sets the canvas height accordingly
+    _calculateWidthAndHeight: function () {
+        var w = this;
+        w.ctx.font = w.options.labelFontSize + ' ' + w.options.fontFamily;
+        var x = 0;
+        var y = 0;
+        var quarterWidth = (w.width / 3);
+        if (w.options.mergeGroups) {
+
+            $.each(w._getData(), function (index, mergeGroup) {
+                var groupHeight = (mergeGroup.dataItems.length * (w.labelLineHeight + w.options.barSize + w.options.groupSpacing)) - w.options.groupSpacing;
+                var labelHeight = 0;
+                var words = mergeGroup.label.split(' ');
+                var line = '';
+                for (var n = 0; n < words.length; n++) {
+                    var testLine = line + words[n] + ' ';
+                    if (w.ctx.measureText(testLine).width > w.yLabelWidth) {
+
+                        if (!w.options.wrapLabels)
+                            break;
+                        //When we have long word we should re-adjust the whole of label width else it will write over the chart.
+                        if ((w.yLabelWidth + w.ctx.measureText(line).width) > quarterWidth)
+                            w.yLabelWidth = quarterWidth;
+                        else {
+                            w.yLabelWidth = w.yLabelWidth + w.ctx.measureText(line).width;
+                        }
+                        line = words[n] + ' ';
+
+                    } else {
+                        line = testLine;
+                    }
+                }
+                if (w.ctx.measureText(testLine).width > w.yLabelWidth) //When we have long word we should re-adjust the whole of label width else it will write over the chart.
+                    if ((w.yLabelWidth + w.ctx.measureText(line).width) > quarterWidth)
+                        w.yLabelWidth = quarterWidth;
+                    else
+                        w.yLabelWidth = w.yLabelWidth + w.ctx.measureText(line).width;
+                labelHeight += w.labelLineHeight;
+                var groupHeight = groupHeight > labelHeight ? groupHeight : labelHeight;
+                mergeGroup.height = groupHeight;
+                mergeGroup.labelHeight = labelHeight;
+                y += groupHeight + (w.options.padding * 2);
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                y += w.options.padding + w.options.barSize;
+                var words = dataItem.label.split(' ');
+                var line = '';
+                for (var n = 0; n < words.length; n++) {
+                    var testLine = line + words[n] + ' ';
+                    if (w.ctx.measureText(testLine).width > w.yLabelWidth) {
+                        if (!w.options.wrapLabels)
+                            break;
+                        //When we have long word we should re-adjust the whole of label width else it will write over the chart.
+                        if ((w.yLabelWidth + w.ctx.measureText(line).width) > quarterWidth) {
+                            w.yLabelWidth = quarterWidth;
+                            line = words[n] + ' ';
+                            y += w.labelLineHeight + w.labelSpacing;
+                        }
+                        else {
+                            w.yLabelWidth = w.yLabelWidth + w.ctx.measureText(line).width;
+                            line = testLine;
+                        }
+                    } else {
+                        line = testLine;
+                    }
+                }
+
+                if (w.ctx.measureText(testLine).width > w.yLabelWidth) //When we have long word we should re-adjust the whole of label width else it will write over the chart.
+                {
+                    if ((w.yLabelWidth + w.ctx.measureText(line).width) > quarterWidth)
+                            w.yLabelWidth = quarterWidth;
+                    else
+                        w.yLabelWidth = w.yLabelWidth + w.ctx.measureText(line).width;
+                }
+                y += w.labelLineHeight + w.options.padding + w.options.barSize;
+            });
+        }
+
+        w.chartHeight = y + 1;
+
+        // Account for x-axis
+        if (w.options.drawXAxis)
+            y = w.chartHeight + w.tickLength + w.axisLineHeight + 3;	// Total chart height + x axis space				
+
+        // Account for the group keys	
+        if (w.options.groups != null) {
+            x = 10;
+            y += w.labelLineHeight + w.options.padding;
+            $.each(w.options.groups, function (index, groupItem) {
+                var keyWidth = w.ctx.measureText(groupItem.name).width + w.labelLineHeight + 6;
+                if (x + keyWidth > w.width) {
+                    x = 10;
+                    y += w.labelLineHeight + w.options.padding;
+                }
+                groupItem.x = x;
+                groupItem.y = y;
+                x += keyWidth + 10;
+            });
+            y += w.options.padding;
+        }
+
+        if (!w._isNullOrWhiteSpace(w.options.zeroScaleText) ||
+            !w._isNullOrWhiteSpace(w.options.minScaleText) ||
+            !w._isNullOrWhiteSpace(w.options.maxScaleText)) {
+            y = y + w.axisLineHeight;
+        }
+
+        w.height = y + 7;
+        w.element[0].height = w.height;
+    },
+
+    // Draws the y axis labels and wraps them as necessary
+    _drawLabels: function () {
+        var w = this;
+        w.ctx.font = w.options.labelFontSize + ' ' + w.options.fontFamily;
+        w.ctx.fillStyle = w.options.textColor;
+        var x = 0;
+        var y = 0;
+
+        if (w.options.mergeGroups) {
+            $.each(w._getData(), function (index, mergeGroup) {
+                var inity = y;
+                var y1 = y;
+                if (w.options.labelPlacement != '' && w.options.labelPlacement.toLowerCase() == 'left') {
+                    y += w.options.padding;
+                    if (mergeGroup.height > mergeGroup.labelHeight)
+                        y += (mergeGroup.height - mergeGroup.labelHeight) / 2;
+                    var words = mergeGroup.label.split(' ');
+                    var line = '';
+                    for (var n = 0; n < words.length; n++) {
+                        var testLine = line + words[n] + ' ';
+                        if (w.ctx.measureText(testLine).width > w.yLabelWidth && n > 0) {
+                            if (!w.options.wrapLabels)
+                                break;
+                            w.ctx.fillText(line, x, y + w.labelLineHeight);
+                            line = words[n] + ' ';
+                            y += w.labelLineHeight + w.labelSpacing;
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    w.ctx.fillText(line, x, y + w.labelLineHeight);
+                    y = inity + mergeGroup.height;
+                    y += w.options.padding;
+                    $.each(mergeGroup.dataItems, function (index, dataItem) {
+                        barHeight = w.labelLineHeight + w.options.barSize;
+                        dataItem.y = y1 + (barHeight / 2)
+                        y1 += barHeight + w.options.groupSpacing;
+                    });
+                    y1 -= w.options.groupSpacing;
+                }
+                else if (w.options.labelPlacement.toLowerCase() == 'top'){
+                    x = w.axisOfset;
+                    
+                    var words = mergeGroup.label.split(' ');
+                    var line = '';
+                    for (var n = 0; n < words.length; n++) {
+                        var testLine = line + words[n] + ' ';
+                        if (w.ctx.measureText(testLine).width > (w.width - 50) && n > 0) {
+                            if (!w.options.wrapLabels)
+                                break;
+                            w.ctx.fillText(line, x, y + w.labelLineHeight);
+                            line = words[n] + ' ';
+                            y += w.labelLineHeight + w.labelSpacing;
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    w.ctx.fillText(line, x, y + w.labelLineHeight);
+                    y += (w.options.padding + mergeGroup.height + w.options.padding)
+                    $.each(mergeGroup.dataItems, function (index, dataItem) {
+                        barHeight = w.labelLineHeight + w.options.barSize;
+                        dataItem.y = y1 + (barHeight / 2)
+                        y1 += barHeight + w.options.groupSpacing;
+                    });
+                    y1 -= w.options.groupSpacing;
+                }
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                if (w.options.labelPlacement != '' && w.options.labelPlacement.toLowerCase() == 'left') {
+                    y += w.options.padding + w.options.barSize;
+                    var labelTopY = y;
+                    var words = dataItem.label.split(' ');
+                    var line = '';
+                    for (var n = 0; n < words.length; n++) {
+                        var testLine = line + words[n] + ' ';
+                        if (w.ctx.measureText(testLine).width > w.yLabelWidth && n > 0) {
+                            if (!w.options.wrapLabels)
+                                break;
+                            w.ctx.fillText(line, x, y + w.labelLineHeight);
+                            line = words[n] + ' ';
+                            y += w.labelLineHeight + w.labelSpacing;
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    w.ctx.fillText(line, x, y + w.labelLineHeight);
+                    var labelBottomY = y + w.labelLineHeight;
+                    dataItem.y = labelTopY + (labelBottomY - labelTopY) / 2;
+                    y += w.labelLineHeight + w.options.padding + w.options.barSize;
+                    previousLabel = dataItem.label;
+                }
+                else if (w.options.labelPlacement.toLowerCase() == 'top') {
+                    x = w.axisOfset;
+					var labelTopY = y;
+                    var words = dataItem.label.split(' ');
+                    var line = '';
+                    for (var n = 0; n < words.length; n++) {
+                        var testLine = line + words[n] + ' ';
+                        if (w.ctx.measureText(testLine).width > (w.width - 50) && n > 0) {
+                            if (!w.options.wrapLabels)
+                                break;
+                            w.ctx.fillText(line, x, y + w.labelLineHeight);
+                            line = words[n] + ' ';
+                            y += w.labelLineHeight + w.labelSpacing;
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    w.ctx.fillText(line, x, y + w.labelLineHeight);
+                    var labelBottomY = y + w.labelLineHeight;
+					y += (w.options.padding + w.labelLineHeight + w.options.padding)
+                    dataItem.y = labelTopY + (labelBottomY - labelTopY);
+                    
+                    previousLabel = dataItem.label;
+
+                }
+                });
+        }
+    },
+
+    _getMinMaxValue: function () {
+        var w = this;
+        var minValue = 0;
+        var maxValue = 0;
+
+        if (w.options.mergeGroups) {
+            $.each(w._getData(), function (index, mergeGroup) {
+                $.each(mergeGroup.dataItems, function (index, dataItem) {
+                    if (dataItem.value > maxValue)
+                        maxValue = dataItem.value;
+                    if (dataItem.value < minValue)
+                        minValue = dataItem.value;
+                });
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                if (dataItem.value > maxValue)
+                    maxValue = dataItem.value;
+                if (dataItem.value < minValue)
+                    minValue = dataItem.value;
+            });
+        }
+        maxValue = minValue < -5 || maxValue > 5 ? Math.ceil(maxValue / 10) * 10 : Math.ceil(maxValue);
+        minValue = minValue < -5 || maxValue > 5 ? Math.floor(minValue / 10) * 10 : Math.floor(minValue);
+        return { minValue: minValue, maxValue: maxValue };
+    },
+    // Draws the axis, offsetting the y for negatives and draws the x axis labels
+    _drawAxis: function () {
+        var w = this;
+        w.ctx.beginPath();
+        w.ctx.strokeStyle = w.options.axisColor;
+        w.ctx.lineWidth = w.options.axisTickness;
+        var minmaxValue = w._getMinMaxValue();
+        var minValue = minmaxValue.minValue;
+        var maxValue = minmaxValue.maxValue;
+        var range = maxValue - minValue;
+
+        w.scale = w.chartWidth / range;
+
+        // Draw y axis
+        w.axisOfset = w.scale * Math.abs(minValue);
+        if (w.options.labelPlacement.toLowerCase() == 'top') {
+            if (minValue >= 0) {
+                w.ctx.moveTo(0, 0);
+				w.ctx.lineTo(0, w.chartHeight);
+            }
+            else {
+                w.ctx.moveTo(w.axisOfset, 0);
+				w.ctx.lineTo(w.axisOfset, w.chartHeight);
+            }
+        }
+        else {
+            w.ctx.moveTo(w.chartOfset + w.axisOfset, 0);
+            w.ctx.lineTo(w.chartOfset + w.axisOfset, w.chartHeight);
+        }
+        w.ctx.stroke();
+        w.ctx.closePath();
+
+        // Draw grid lines
+        //var xAxisLabelWidth = 
+        var tickStep = 10;
+        if (w.options.alwaysShowZero && range % 2 != 0) {
+            if (range <= 10)
+                tickStep = range % 2;
+            else if (range <= 20 && range % 4 != 0)
+                tickStep = range % 4;
+            else if (range <= 20)
+                tickStep = 4;
+            else if (range <= 40)
+                tickStep = 5;
+        } else {
+            if (range <= 10)
+                tickStep = 2;
+            else if (range <= 20)
+                tickStep = 4;
+            else if (range <= 40)
+                tickStep = 5;
+        }
+        var tickInterval = w.scale * tickStep;
+        var tickOfset = 0;
+
+        if (w.options.drawGridLines) {
+
+            w.ctx.strokeStyle = w.options.gridLinesColor;
+            w.ctx.lineWidth = w.options.gridLineTickness;
+
+            for (var i = 0; i <= range / tickStep; i++) {
+                if (tickOfset != w.axisOfset) {
+                    w.ctx.beginPath();
+                    w.ctx.moveTo(w.chartOfset + tickOfset, 0);
+                    w.ctx.lineTo(w.chartOfset + tickOfset, w.chartHeight);
+                    w.ctx.stroke();
+                    w.ctx.closePath();
+                }
+                tickOfset += tickInterval;
+            }
+        }
+
+        // Draw x axis
+        if (!w.options.drawXAxis)
+            return;
+
+        w.ctx.strokeStyle = w.options.axisColor;
+        w.ctx.lineWidth = w.options.axisTickness;
+        w.ctx.beginPath();
+        w.ctx.moveTo(w.chartOfset, w.chartHeight);
+        w.ctx.lineTo(w.chartOfset + w.chartWidth, w.chartHeight);
+        w.ctx.stroke();
+        w.ctx.closePath();
+
+        tickOfset = 0;
+        w.ctx.font = w.options.axisFontSize + ' ' + w.options.fontFamily;
+        w.ctx.fillStyle = w.options.textColor;
+        var labels = [];
+        for (var i = 0; i <= range / tickStep; i++) {
+            w.ctx.beginPath();
+            w.ctx.moveTo(w.chartOfset + tickOfset, w.chartHeight);
+            w.ctx.lineTo(w.chartOfset + tickOfset, w.chartHeight + w.tickLength);
+            w.ctx.stroke();
+            w.ctx.closePath();
+
+            var value = minValue + (i * tickStep);
+            var text = w.options.xAxisPrefix + value + w.options.xAxisPostfix;
+            var labelWidth = w.ctx.measureText(text).width;
+            labels.push({
+                value: value,
+                text: text,
+                x: w.chartOfset + tickOfset - (labelWidth / 2),
+                y: w.chartHeight + w.tickLength + w.axisLineHeight
+            })
+            tickOfset += tickInterval;
+        }
+
+        // Draw the labels
+        $.each(labels, function (i, label) {
+            if (w.xLabelWidth < tickInterval 		// Add all labels if they fit						
+                || i == 0 							// Always add the first
+                || i == range / tickStep			// Always add the last
+                || (label.value == 0 && w.xLabelWidth / 2 < (tickInterval * i) - (w.xLabelWidth / 2)) 	// Add zero if it fits
+            )
+                w.ctx.fillText(label.text, label.x, label.y);
+        });
+        w.ctx.font = w.options.axisFontWeight + ' ' + w.options.axisFontSize + ' ' + w.options.fontFamily;
+        //Draw zero scale text
+        if (!w._isNullOrWhiteSpace(w.options.zeroScaleText))
+            w.ctx.fillText(w.options.zeroScaleText, (w.chartOfset + w.axisOfset) - (w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.zeroScaleText, w.options.axisFontWeight) / 2), labels[0].y + w.axisLineHeight);
+
+        //Draw min scale text
+        if (!w.hideMinScaleText && !w._isNullOrWhiteSpace(w.options.minScaleText))
+            w.ctx.fillText(w.options.minScaleText, labels[0].x - (w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.minScaleText, w.options.axisFontWeight) / 2), labels[0].y + w.axisLineHeight);
+
+        //Draw max scale text
+        if (!w.hideMaxScaleText && !w._isNullOrWhiteSpace(w.options.maxScaleText))
+            w.ctx.fillText(w.options.maxScaleText, labels[labels.length - 1].x - (w._calculateTextWidth(w.options.fontFamily, w.options.axisFontSize, w.options.maxScaleText, w.options.axisFontWeight) / 2), labels[0].y + w.axisLineHeight);
+    },
+
+    // Draws the bars and applies border radius as required
+    _drawBars: function (step) {
+        var w = this;
+
+        if (w.options.enableAnimation) {
+            step += 5;
+        } else {
+            step = 100;
+        }
+
+        if (w.options.mergeGroups) {
+            $.each(w._getData(), function (index, mergeGroup) {
+                $.each(mergeGroup.dataItems, function (index, dataItem) {
+                    w._drawBar(dataItem, step);
+                });
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                w._drawBar(dataItem, step);
+            });
+        }
+
+        if (w.options.enableAnimation && step < 100) {
+            window.setTimeout(function () {
+                w._drawBars(step);
+            }, 1000 / 60);
+        } else if (w.options.valuePlacement.toLowerCase() != 'with label') {
+            w._drawValues();
+        }
+    },
+
+    _drawBar: function (dataItem, step) {
+        var w = this;
+        if (dataItem.value != 0) {
+            var y1 = 0;
+            var y2 = 0;
+
+            if (w.options.labelPlacement.toLowerCase() == 'top') {
+                y1 = dataItem.y + ((w.labelLineHeight + w.options.barSize) + 4);
+                y2 =  y1 + (w.labelLineHeight + w.options.barSize);
+            }
+            else {
+                 y1 = dataItem.y - ((w.labelLineHeight + w.options.barSize) / 2);
+                 y2 = dataItem.y + ((w.labelLineHeight + w.options.barSize) / 2);
+            }
+
+            var x1 = w.chartOfset + w.axisOfset + (dataItem.value > 0 ? 1 : -1);
+            var x2 = x1 + ((w.scale / 100 * step) * dataItem.value);
+            w.ctx.lineWidth = 1;
+            w.ctx.beginPath();
+            w.ctx.strokeStyle = dataItem.color;
+            if (w.options.borderRadius > 0 && Math.abs(x2 - x1) >= w.options.borderRadius) {
+                w.ctx.moveTo(x1, y1);
+                if (dataItem.value > 0) {
+                    w.ctx.lineTo(x2 - w.options.borderRadius, y1);
+                } else {
+                    w.ctx.lineTo(x2 + w.options.borderRadius, y1);
+                }
+                w.ctx.arcTo(x2, y1, x2, y1 + w.options.borderRadius, w.options.borderRadius)
+                if (y1 + (w.options.borderRadius * 2) < y2)
+                    w.ctx.lineTo(x2, y2 - w.options.borderRadius);
+                if (dataItem.value > 0) {
+                    w.ctx.arcTo(x2, y2, x2 - w.options.borderRadius, y2, w.options.borderRadius)
+                } else {
+                    w.ctx.arcTo(x2, y2, x2 + w.options.borderRadius, y2, w.options.borderRadius)
+                }
+                w.ctx.lineTo(x1, y2);
+                w.ctx.lineTo(x1, y1);
+            } else {
+                w.ctx.moveTo(x1, y1);
+                w.ctx.lineTo(x2, y1);
+                w.ctx.lineTo(x2, y2);
+                w.ctx.lineTo(x1, y2);
+                w.ctx.lineTo(x1, y1);
+            }
+            w.ctx.stroke();
+            w.ctx.fillStyle = dataItem.color;
+            w.ctx.fill();
+            w.ctx.closePath();
+
+            dataItem.x = x2;
+        } else {
+            dataItem.x = w.chartOfset + w.axisOfset;
+        }
+    },
+
+    // Draws the value labels either next to the chart or next to each bar
+    _drawValues: function () {
+        var w = this;
+        w.ctx.font = w.options.valueFontSize + ' ' + w.options.fontFamily;
+        w.ctx.fillStyle = w.options.textColor;
+
+        if (w.options.mergeGroups) {
+            $.each(w._getData(), function (index, mergeGroup) {
+                $.each(mergeGroup.dataItems, function (index, dataItem) {
+                    var text = w.options.valueAxisPrefix + dataItem.value.toFixed(w.options.decimalPlaces).replace('.', w.options.decimalSeparator) + w.options.valueAxisPostfix;
+                    var valueWidth = w.ctx.measureText(text).width;
+                    if (w.options.valuePlacement.toLowerCase() == 'with label') {
+                        // Right aligned
+                        w.ctx.fillText(text, w.chartOfset - 5 - valueWidth, dataItem.y + (w.valueLineHeight / 2));
+                    }
+                    else if (w.options.valuePlacement.toLowerCase() == 'with bar') {
+                        w.ctx.fillText(text, w.width - valueWidth, dataItem.y + (w.valueLineHeight * 2));
+                    }
+                    else {
+                        if (dataItem.value >= 0) {
+                            w.ctx.fillText(text, dataItem.x + 3, dataItem.y + (w.valueLineHeight / 2));
+                        } else {
+                            w.ctx.fillText(text, dataItem.x - 3 - valueWidth, dataItem.y + (w.valueLineHeight / 2));
+                        }
+                    }
+                });
+            });
+        } else {
+            $.each(w._getData(), function (index, dataItem) {
+                var text = w.options.valueAxisPrefix + dataItem.value.toFixed(w.options.decimalPlaces).replace('.', w.options.decimalSeparator) + w.options.valueAxisPostfix;
+                var valueWidth = w.ctx.measureText(text).width;
+                if (w.options.valuePlacement.toLowerCase() == 'with label') {
+                    // Right aligned
+                    w.ctx.fillText(text, w.chartOfset - 5 - valueWidth, dataItem.y + (w.valueLineHeight / 2));
+                }
+                else if (w.options.valuePlacement.toLowerCase() == 'with bar') {
+                    w.ctx.fillText(text, w.width - valueWidth, dataItem.y + (w.valueLineHeight * 2));
+                }
+                else {
+                    if (dataItem.value >= 0) {
+                        w.ctx.fillText(text, dataItem.x + 3, dataItem.y + (w.valueLineHeight / 2));
+                    } else {
+                        w.ctx.fillText(text, dataItem.x - 3 - valueWidth, dataItem.y + (w.valueLineHeight / 2));
+                    }
+                }
+            });
+        }
+    },
+
+    // Draws the group keys if required
+    _drawGroupKey: function () {
+        var w = this;
+        if (w.options.groups != null) {
+            w.ctx.font = w.options.labelFontSize + ' ' + w.options.fontFamily;
+            $.each(w.options.groups, function (index, groupItem) {
+                w.ctx.fillStyle = groupItem.color;
+                w.ctx.fillRect(groupItem.x, (groupItem.y - w.labelLineHeight) + 6, w.labelLineHeight, w.labelLineHeight);
+                w.ctx.fillStyle = w.options.textColor;
+                w.ctx.fillText(groupItem.name, groupItem.x + w.labelLineHeight + 6, groupItem.y + 6);
+            });
+        }
+    }
+});

@@ -1,0 +1,267 @@
+:root {
+	--primary: #a11c35;
+	--secondary: #c3a284;
+	--header: var(--black);
+	--headerbg: rgb(241, 242, 242);
+	--parabg: rgb(241, 242, 242);
+	--black: #000000;
+	--white: #ffffff;
+	--red: #E60000;
+	--border: var(--black);
+	--tableborder: var(--black);
+	--tableheader: var(--white);
+	--tablerowheader: var(--white);
+	--tableheaderbg: var(--primary);
+	--tablesubheaderbg: rgba(0, 156, 166, 0.05);
+	--altrow: #E6EBED;
+	--alert: var(--black);
+	--warningfont: 12pt;
+	--ratingbg: var(--white);
+	--ratingborder: var(--black);
+	--ratingselected: #005231;
+	--bodyfont: 9pt;
+	--bodycolor: var(--black);
+	--footerfont: 8pt;
+	--lineheight: 1.2;
+	--h2: 9pt;
+	--h3: 8pt;
+	--fontRegular: 'Arial';
+	--fontLight: 'Arial';
+	--fontBold: 'Arial';
+	--fontUBSTitle: 'Arial';
+}
+
+/**/
+body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	font-size: 7pt;
+}
+
+table th {
+	font-family: var(--fontBold);
+	font-weight: 700;
+	text-align: left;
+	page-break-inside: avoid;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+}
+
+table td {
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+table th.tableheader,
+table .tableHeader th {
+	border: 0 !important;
+}
+
+h2 {
+	font-family: var(--fontBold);
+	font-weight: 700;
+	font-size: var(--h2);
+	color: var(--header);
+	padding: 0mm 0mm 0.4mm;
+	margin-bottom: 0.3cm;
+	border-bottom: 0.5pt solid var(--border);
+}
+
+p:empty,
+h2:empty {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	max-width: inherit;
+	min-height: inherit;
+	width: auto;
+	height: auto;
+}
+
+table th:empty {
+	padding: 0;
+}
+
+table th.tableheader {
+	border: 0;
+}
+
+p {
+	padding: 0 0 0.2cm;
+}
+
+b {
+	font-family: var(--fontRegular);
+}
+
+h2 {
+	bookmark-level: 1;
+}
+
+.clear {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+.subheader p {
+	bookmark-level: 2;
+}
+
+/* page styles*/
+.page {
+	width: 19cm;
+	height: auto;
+	padding: 0cm 0.5cm 0cm 0.5cm;
+	position: relative;
+}
+
+.page1 {
+	background: url(images/swiss_life_logo.svg);
+	background-size: 2.92cm 2.39cm;
+	background-position: 16.5cm 0;
+	background-repeat: no-repeat;
+	padding-top: 2cm;
+}
+
+.page1>.row1 .contentSection h2 {
+	font-size: 25pt;
+	font-weight: 100;
+	color: var(--black);
+	border: 0;
+}
+
+.page1 .row2 .contentSection .item3 {
+	font-family: var(--fontBold);
+	font-weight: 700;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1 {
+	width: 60%;
+	margin-right: 1%;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column2 {
+	width: 39%;
+}
+
+.discreteChart {
+	height: 250px;
+	padding-left: 13px;
+}
+
+.groupHeaderDiv1 th {
+	background: var(--tableheaderbg);
+	color: var(--white);
+	border-color: var(--primary) !important;
+}
+
+.groupHeaderDiv1 th,
+.groupRowDiv1 td {
+	padding: 1mm;
+	border-right: 0.5pt solid var(--tableborder);
+	border-bottom: 0.5pt solid var(--tableborder);
+	text-align: left;
+	/* width: auto; */
+	width: 5mm;
+	text-align: center;
+}
+
+.groupHeaderDiv1 tr:first-child th {
+	border-top: 0.5pt solid var(--tableborder);
+}
+
+.groupHeaderDiv1 table th:first-child,
+.groupRowDiv1 table td:first-child {
+	border-left: 0.5pt solid var(--tableborder);
+}
+
+.groupHeaderDiv1 th.keycell,
+.groupRowDiv1 td.keycell {
+	width: 4.2%;
+	text-align: left;
+}
+
+.groupHeaderDiv1 th.rowheader,
+.groupRowDiv1 td.rowheader {
+	text-align: left;
+	width: 11%;
+}
+
+.pagenumbers .footer,
+.pagenumbers .Pagination {
+	margin: 0.1cm 0cm 0.1cm 0 !important;
+	float: right;
+	font-size: var(--footerfont);
+	position: relative;
+	z-index: 1;
+	display: none;
+}
+
+.contentSection.pagenumbers .footer p,
+.contentSection.pagenumbers .Pagination p {
+	position: running(pageNum);
+	text-align: right;
+}
+
+/* @page styles */
+@page {
+	margin: 0.5cm 0.5cm 0.5cm 0.5cm;
+	padding: 0;
+
+	@bottom-right {
+		content: element(pageNum);
+		margin: 0 1cm 1cm;
+		padding: 0.15cm 0 0cm;
+		font-size: var(--footerfont);
+		font-family: var(--fontLight);
+		font-weight: 100;
+		color: var(--bodycolor);
+		width: 5cm;
+	}
+}
+.highcharts-axis-labels span {
+    font-family: var(--fontRegular) !important;
+}
+.performancetable table tr td.keycell div {
+    vertical-align: middle;
+}
+#priipPastPerfChartBenchmarks ul,#priipPastPerfChartBenchmarks ul li {
+    list-style: none;
+}
+/* theme name:SwissLife_P*/

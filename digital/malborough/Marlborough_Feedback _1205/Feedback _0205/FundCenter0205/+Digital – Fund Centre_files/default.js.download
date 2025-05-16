@@ -1,0 +1,765 @@
+﻿// <copyright file="default.js" company="FE">
+//   Copyright © FE 2011. All rights reserved.
+// </copyright>
+
+//NOTE: If you are writting any shared code then please move or write the funtion in
+//      global.js file in assets project or in your project shared js file so that it can be shared 
+//      accross the project(s).
+//      Also if you need global variable on project level then it should be in <projectname>.js file unless 
+//		they are global to specific file. If they are local to each file then kindly keep them
+//      in the "Local Global Variables" section within specific file
+//
+//******************************************************************************
+// This script file only containing functions for following modules/functionality
+// Default Project 
+//******************************************************************************
+
+//#region References
+//http: //jsoutlining.codeplex.com/
+//#endregion
+
+var suppressSearch = false;
+
+//#region Document Ready Function
+$(function () {
+
+    InitializeUIControls();
+
+    $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentre').on("click", function () {
+
+        if ($(this).is(':checked')) {
+            $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentre').prop('checked', true);
+        }
+        else {
+			$(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentre').prop('checked', false);
+        }
+
+        Search();
+    });
+
+    // Moved to setup.js
+    //if ($(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').length > 0) {
+    //    $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').attr('checked', 'checked');
+    //}
+
+    //if ($(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').length > 0) {
+    //    $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').attr('checked', 'checked');
+    //}
+
+    $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').on("click", function () {
+
+        if ($(this).is(':checked')) {
+			$(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').prop('checked', true);
+        }
+        else {
+			$(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').prop('checked', false);
+        }
+
+        Search(ToolIds.FundCentreAMId);
+    });
+
+    $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').on("click", function () {
+
+        if ($(this).is(':checked')) {
+			$(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').prop('checked', true);
+        }
+        else {
+			$(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').prop('checked', false);
+        }
+
+        Search(ToolIds.AllFundsAMId);
+    });
+
+    //Load default tab data
+    var advSearchContainer = $('#advancedSearchContainer');
+    if (advSearchContainer.length == 0 || ($(advSearchContainer).attr('data-filter-loaded') == 'True')) {
+        executeFundCentreLoadOnFilterReady();
+    }
+
+    // shortlist specific - move away along with other shortlist stuff
+    // TODO : figure this out 
+    // $('#menuTabs').bind("tabsselect", MasterTabSelected);   
+
+    // glossary tab specific - creates custom tab with in glosaary tab
+    if (modelContents.EnableScrollTabs) {
+        $("#tabs.tabGlossaryContainer").scrollTabs({
+            create: function (event, ui) {
+                ui.tab.addClass("ui-tabs-selected");
+            }
+        });
+    } else {
+        $("#tabs.tabGlossaryContainer").tabs({
+            create: function (event, ui) {
+                ui.tab.addClass("ui-tabs-selected");
+            }
+        });
+    }
+    
+});
+
+var invalidXmlCookieName = modelContents.ProjectName + '_xmlInvalidCodes';
+function displayInvalidFundsWarningInXMLImport() {
+    var invalidCodes = readCookie(invalidXmlCookieName);
+    if (invalidCodes) {
+        eraseCookie(invalidXmlCookieName);
+        var formattedCodes = formatInvalidInstruments(invalidCodes);
+        ShowErrorDialog(modelContents.GetTranslation("XMLImportFailureWarningTitle"), (modelContents.GetTranslation("XMLImportFailureWarningMessage") + formattedCodes));
+    }
+}
+
+function formatInvalidInstruments(codes) {
+    codes = codes.split(',');
+    var html = '';
+    if (codes.length > 0) {
+        var ulTag = $("<ul/>", { id: "xmlImportInvalidCodes", "class": "xmlImportInvalidCodesList" });
+        for (var i = 0; i < codes.length; i++) {
+            $('<li />', { html: codes[i] , "class" : "item"+i }).appendTo(ulTag);
+        }
+        
+        html = $('<div>').append($(ulTag).clone()).html();
+    }
+    
+    return html;
+}
+
+function executeFundCentreLoadOnFilterReady()
+{
+    if ((modelContents.DisplayFundsOnLoad == "True" || modelContents.DisplayFundForUrlParam) && ($('#advancedSearchContainer').length == 0 || $('#advancedSearchContainer').attr('data-filter-loaded') == "True")) {
+        var keys = Object.keys(ToolIdMaps);
+        var searchExecuted = false;
+        $.each($('.fe-search-fileters-dropdown'), function (j, filter) {
+            if ($(filter).val() != '' && $(filter).attr("name") != "PerformanceOperator" && !modelContents.DisplayFundForUrlParam) {
+                searchExecuted = true;
+                return false;
+            }
+        });
+
+        for (var i = 0; i < keys.length; i++) {
+            if (!(searchExecuted && keys[i] == 1)) {
+                Search(keys[i]);
+            }
+        }
+    }
+    else {
+        DisplayFunds(false);
+    }
+
+    DisplayCaveat(modelContents.DisplayCaveatOnLoad == "True" || modelContents.DisplayFundsOnLoad == "True" || modelContents.DisplayFundForUrlParam);
+}
+
+//Basic search function
+function Search(toolId, resetPaging, isClearButton, source) {
+    if (typeof resetPaging == "undefined" || resetPaging) {
+        resetPaging = true;
+    }
+    var control = ToolIdMaps[toolId];
+       
+    if (!control)
+        control = ToolIdMaps[ToolIds.FundCentreId];
+
+    if (!suppressSearch) {
+        DisplayFunds(true);
+        DisplayCaveat(true);
+        if ($(control).length > 0) {
+            $(control).FundInfoLoadData(true, resetPaging, false, isClearButton, source);
+        }
+    }
+
+}
+
+function SearchByListitem(toolId, resetPaging, isClearButton, source, showAllAsOption, isAutoSearch) {
+    if ($(source).is(':checkbox')) {
+        var checked = $('input[type=checkbox]:checked', $(source).closest('.fe-filterlist-content')).not('input[id$="' + $(source).closest('.fe-filterlist-content').attr('id') + 'All"]').length;
+
+        if (showAllAsOption) {
+            if (checked == 0) {
+                $('input[type=button]', $(source).closest('.fe-filterlist-content')).prop("disabled", true);
+            } else {
+                $('input[type=button]', $(source).closest('.fe-filterlist-content')).prop("disabled", false);
+            }
+        } else {
+            if (checked == 0) {
+                $(source).prop("checked", true);
+                $(source).closest('label').toggleClass("checked", true);
+                return;
+            }
+        }
+    }
+    else if ($(source).is(':radio')) {
+        $('input[type=button]', $(source).closest('.fe-filterlist-content')).prop("disabled", false);
+        $('label', $(source).closest('.fe-filterlist-content')).toggleClass("checked", false);
+        $(source).closest('label').toggleClass("checked", true);
+    }
+
+    if ($(source).closest('.fe-filterlist-content').is('[data-isCascading]')) {
+        var projectToolId = $(source).closest("form").attr("data-projectToolId");
+        FundCentre.AdvancedSearchFilters.GetFilterData($(source).closest('.fe-filterlist-content').prop('id'), false, toolId, projectToolId);
+    }
+
+    if (isAutoSearch) {
+        Search(toolId, resetPaging, isClearButton, source);
+    }
+}
+
+function clearSelection(source, toolid, isAutoSearch, showAllAsOption) {
+    $('input[type=checkbox],input[type=radio]', $(source).closest('.fe-filterlist-content')).prop('checked', false);
+    $('label.checked', $(source).closest('.fe-filterlist-content')).removeClass('checked');
+    $(source).prop("disabled", true);
+    SearchByListitem(toolid, false, false, source, showAllAsOption, isAutoSearch);
+
+}
+
+//#endregion
+
+//#region Helper Functions
+
+function UpdateManagersFilter(managerCode) {
+    var managerDropDown = $('#ManagerCode');
+    if (managerDropDown.length > 0) {
+        managerDropDown.val(managerCode);
+
+        if (managerDropDown.val()) {
+            managerDropDown.prop("disabled", true);
+        }
+    }
+}
+
+function GetFundCentreModel(fundInfo, pagingState, sortingState, isClearButton) {
+    var toolid = fundInfo.GetToolIdbyToolControl();
+    var model = {};
+
+    var filteringOptions;
+    if (readCookie('FromBackButton') == 'yes') {
+        filteringOptions = JSON.parse('[' + readCookie('RetainFilterData_' + toolid) + ']');
+    }
+    if (filteringOptions && filteringOptions[0] != null) {
+        model.FilteringOptions = filteringOptions[0];
+    }
+    else {
+        if (isClearButton == undefined)
+            isClearButton = false;
+        model.FilteringOptions = FundCentre.AdvancedSearchFilters.GetFilteringOptions(toolid, isClearButton);
+        GetShowMainUnits(toolid, model.FilteringOptions);
+
+    }
+
+    AddBasicModelInformation(model, pagingState, sortingState);
+    if (fundInfo.data('selectedspecialunittype') != 'DEFAULT') {
+        model.SelectedSpecialUnitType = fundInfo.data('selectedspecialunittype');
+    }
+
+    return model;
+}
+
+function GetShowMainUnits(toolid, filteringOptions) {
+
+    if (toolid == ToolIds.FundCentreId)
+        filteringOptions.ShowMainUnits = $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentre').is(':checked');
+    else if (toolid == ToolIds.FundCentreAMId)
+        filteringOptions.ShowMainUnits = $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').is(':checked');
+    else if (toolid == ToolIds.AllFundsAMId)
+        filteringOptions.ShowMainUnits = $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').is(':checked');
+    // This is a fix for browsers that don't support the HTML5 placeholder functionality.
+    if (filteringOptions.SearchText) {
+        if ((browser.msie || typeof ($('#SearchText-' + toolid)[0].placeholder == "undefined")) &&
+            $('#SearchText-' + toolid).val() === $('#SearchText-' + toolid).attr("placeholder")) {
+            filteringOptions.SearchText = "";
+        }
+    }
+}
+function AddBasicModelInformation(model, pagingState, sortingState) {
+    model.ProjectName = modelContents.ProjectName;
+    model.LanguageCode = modelContents.LanguageCode;
+    model.LanguageId = modelContents.LanguageId;
+    model.Theme = modelContents.Theme;
+    model.SortingStyle = modelContents.SortingStyle; // this is not required imo
+
+    model.PageNo = pagingState.PageNo;
+    model.PageSize = pagingState.PageSize;
+    model.OrderBy = sortingState.OrderByColumn;
+    model.IsAscOrder = sortingState.IsOrderByAsc;
+    model.OverrideDocumentCountryCode = getParameterByNameIgnoreCase('DocumentCountry');
+
+    var filteringOptions = {};
+
+    if (model.FilteringOptions)
+    {
+        filteringOptions = model.FilteringOptions;
+        filteringOptions.MPCategoryCode = filteringOptions.MPCategoryCode ? filteringOptions.MPCategoryCode : getParameterByNameIgnoreCase('MPCategoryCode');
+    }
+    else {
+        filteringOptions.MPCategoryCode = filteringOptions.MPCategoryCode ? filteringOptions.MPCategoryCode : getParameterByNameIgnoreCase('MPCategoryCode');
+        filteringOptions.CategoryId = getParameterByNameIgnoreCase('category');
+        filteringOptions.Category2Id = getParameterByNameIgnoreCase('category2');
+    }
+
+    model.FilteringOptions = filteringOptions;
+}
+
+function MasterTabSelected(event, ui) {
+    // TODO : figure this out later, menuTabs is considered selected for EVERY tab
+    if (this.id == "menuTabs") {
+        // $(this).unbind("tabsselect", MasterTabSelected);		
+    }
+}
+
+function LoadTool(filePath, event) {
+    LoadDocument(filePath, event, 1);
+}
+
+function LoadOriginalDoc(filePath, event) {
+    LoadDocument(filePath, event, 2);
+}
+
+//Refactoring: Download Tool uses a similar method above need find possible ways to merge with this method.
+function LoadDocument(filePath, event, loaderIdentifier) {
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj != null) {
+        eventObj.preventDefault();
+    }
+    var openWindowMethod = "";
+    if (eventObj && (eventObj.target) && ($(eventObj.target).attr('target'))) {
+        openWindowMethod = eventObj.target.attributes['target'].value;
+    }
+
+    if (eventObj && (eventObj.currentTarget) && (eventObj.currentTarget.className == "fe-icon-chart" || eventObj.currentTarget.className == "fe-icon-factsheet") && (eventObj.target.attributes['target'] != undefined && eventObj.target.attributes['target'].value == '_blank') && typeof GetFilteringOptions !== 'undefined' && $("[id^='searchform-']").length > 0) {
+        var toolId = $("[id^='searchform-']").attr('data-toolid');
+        var filteringOptions = GetFilteringOptions(toolId, false);
+        GetShowMainUnits(toolId, filteringOptions);
+        createCookie(("RetainFilterData_" + toolId), JSON.stringify(filteringOptions));
+    }
+
+    if (ToolkitUI.disclaimerAgreed && loaderIdentifier === 1) {
+        var loc = getLocation(filePath);
+        // Append parameter only for cross domain urls
+        if (location.host.toLowerCase() !== loc.host.toLowerCase()) {
+            filePath = filePath + (loc.search ? '&dc=1' : '?dc=1');
+        }
+    }
+        
+    // encodeURIComponent = encodeURI + encodes the following characters: , / ? : @ & = + $ #
+    var absolutePath = '/' + GetLoader(loaderIdentifier) + '?FilePath=' + encodeURIComponent(filePath) + "&themeName=" + modelContents.Theme + "&projectName=" + modelContents.ProjectName;
+    if (!(eventObj) || !(eventObj.target) || !(eventObj.currentTarget) ||
+        (eventObj.currentTarget.className != "fe-icon-chart"))
+        window.open(absolutePath, (openWindowMethod == "" ? '_blank' : openWindowMethod));
+    else {
+        window.open(absolutePath, (openWindowMethod == "" ? '_self' : openWindowMethod));
+    }
+}
+
+function GetLoader(loaderTypeId) {
+    /**
+    1 - FE tools
+    2 - Documents
+    3 - Custom URL (need to implement)
+    **/
+    switch(loaderTypeId)
+    {
+        case 1:
+            return "LoadTool";
+            break;
+        case 2:
+            return "LoadDocuments";
+            break;
+        default:
+            return "LoadDoc";
+            break;
+    }
+}
+
+function LoadDocumentWithProgress(filePath, interval, windowName) {
+    // encodeURIComponent = encodeURI + encodes the following characters: , / ? : @ & = + $ #
+    var absolutePath = '/Assets/Html/Static/LoadDocWithProgressBar.htm?FilePath=' + encodeURIComponent(filePath) + "&length=" + interval;
+    if (windowName) {
+        window.open(absolutePath, windowName);
+
+    } else {
+        window.open(absolutePath);
+
+    }
+}
+
+function LoadMercerDocument(value, event) {
+    //SendEventTrackingData('Document', 'Download', 'Mercer');
+    var citiCode = $(event.currentTarget || event.srcElement).attr("data-CitiCode");
+    var docCode = $(event.currentTarget || event.srcElement).attr("data-doccode");
+
+    var model = $.extend({ "Value1": docCode }, { "Value2": citiCode });
+
+    //Does the name already exist
+    $(this).sendJsonAsString(modelContents.GetMercerDocumentUrl, model,
+        function (result) {
+            if (result.success) {
+                location.href = result.documentUrl;
+            } else {
+                ShowErrorDialog("Load Document", "An Error has occured whilst processing your request");
+            }
+        });
+}
+
+function LoadUSDocument(value, event) {
+    //SendEventTrackingData('Document', 'Download', 'US');
+    var citiCode = $(event.currentTarget || event.srcElement).attr("data-CitiCode");
+    var docCode = $(event.currentTarget || event.srcElement).attr("data-doccode");
+
+    var parameters = "?documentCode=" + docCode + "&citiCode=" + citiCode + "#startofdoc";
+    var win = window.open(modelContents.GetUSDocument + parameters);
+}
+
+function LoadMercerProfileDocument(value, event) {
+    var typeCode = $(event.currentTarget || event.srcElement).attr("data-typecode");
+
+    var inputObj = { 'Value1': typeCode };
+
+    //Does the name already exist
+    $(this).sendJsonAsString(modelContents.GetMercerProfileDocumentUrl, inputObj,
+        function (result) {
+            if (result.success) {
+                window.open(result.documentUrl);
+            } else {
+                ShowErrorDialog("Load Document", "An Error has occured whilst processing your request");
+            }
+        });
+}
+
+
+function LoadManagerFundReports(value, event) {
+
+    var citiCode = $(event.currentTarget || event.srcElement).attr("data-code");
+    var container = $('#ManagerReportsDlg');
+    container.dialog({
+        height: 200,
+        width: 300,
+        position: [event.clientX, event.clientY],
+        close: function () {
+            container.html('<p>&nbsp;</p>');
+        }
+    });
+
+    var inputObj = { 'Value1': citiCode };
+
+    $(this).sendJsonAsString(modelContents.FundCentreManagerReportsActionUrl, inputObj,
+        function (response, status, xhr) {
+            container.html(response);
+        });
+}
+
+function OpenDownloadTool(filePath, event) {
+    RefreshHistory(this, "#priceHtmlContainer", "#btnPriceHistory");
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) {
+        eventObj.preventDefault();
+    }
+    var citicode = event ? $(event.currentTarget || event.srcElement).attr("data-code") : null;
+    var tab = $('#menuTabs');
+    var selectedTab = tab.find('.fe-menuTabs-list li a')[modelContents.EnableScrollTabs
+        ? tab.scrollTabs('option', 'active')
+        : tab.tabs('option', 'active')];
+    var selectedTabId = selectedTab ? selectedTab.id : null;  // Use unique Id of the Selected Tab.
+    var isPortfolioToolLevelDownload = $(event.currentTarget || event.srcElement).attr("id") == "btn-portfolio-downloadTool";
+    var onlyStatementTabConfigured = ($('.fe-price-container').length +
+            $('.fe-dividend-container').length +
+            $('.fe-documents-container').length) === 0;
+    $('#pricefundOptions').empty();
+    $('#dividendfundOptions').empty();
+    $('#documentsfundOptions').empty();
+    $('#statementfundOptions').empty();
+    if (!onlyStatementTabConfigured) {
+        if (isPortfolioToolLevelDownload) {
+            DownloadTool.Download.GetFundOptions(citicode,
+                null,
+                null,
+                selectedTabId == "PortfolioMasterTab" ? 7 : null);
+        } else if (!modelContents.ShowAllFunds) {
+            var priipProductCode = getParameterByNameFromURLIgnoreCase('PriipProductCode', filePath);
+            if (priipProductCode) {
+                priipProductCode = $.trim(priipProductCode);
+            }
+            DownloadTool.Download.GetFundOptions(citicode, null, null, null, null, priipProductCode);
+        } else {
+            var rangeCode = getParameterByNameFromURLIgnoreCase('rangecode', filePath);
+            if (rangeCode) {
+                rangeCode = $.trim(rangeCode);
+            }
+            var category = getParameterByNameFromURLIgnoreCase('category', filePath);
+            if (category) {
+                category = $.trim(category);
+            }
+            var category2 = getParameterByNameFromURLIgnoreCase('category2', filePath);
+            if (category2) {
+                category2 = $.trim(category2);
+            }
+
+            var forSaleIn = getParameterByNameFromURLIgnoreCase('forsalein', filePath);
+            if (forSaleIn) {
+                forSaleIn = $.trim(forSaleIn);
+            }
+            var priipProductCode = getParameterByNameFromURLIgnoreCase('PriipProductCode', filePath);
+            if (priipProductCode) {
+                priipProductCode = $.trim(priipProductCode);
+            }
+
+            DownloadTool.Download.GetFundOptions(citicode, rangeCode, category, null, forSaleIn, priipProductCode, category2);
+        }
+    }
+
+    $('#DownloadToolContainer').dialog({
+        resizable: true,
+        draggable: false,
+        width: 820,
+        height: 'auto',
+        dialogClass: "fe-ui-dialog fe-ui-form-dialog fe-dialog-createDownloadTool-container",
+        title: modelContents.GetTranslation("DownloadToolName"),
+        open: function () {
+            MakeCloseButtonWorking($(".fe-dialog-createDownloadTool-container"));
+            if ($('.fe-statement-container').length > 0) {
+                GenerateAutoComplete(ToolIds.DownloadToolId, DownloadTool.Download.SelectFundFromAutoComplete, DownloadTool.Download.OnAutoCompleteTextChange, true);
+            }
+        },
+        close: function() {
+            if ($('.fe-statement-container').length > 0) {
+                $('.fe-statement-container input:text').val('');
+                if (StatementData != null) {
+                    StatementData.LastAdded = '';
+                }
+            }
+        }
+    });
+
+    if (modelContents.ShowAllFunds && citicode) {
+        $(".downloadtool_funds").each(function (index) {
+            $(this).val(citicode.toUpperCase());
+        });
+
+        $('form.mfs').mfs('refresh');
+    }
+}
+
+//The below code does most of the things same as the existing LoadDocument method below need to find out why
+//we need this method seperately and if possible combine it with LoadDcoument method.
+function OpenDownloadToolNewWindow(filePath, event) {
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) {
+        eventObj.preventDefault();
+    }
+    // encodeURIComponent = encodeURI + encodes the following characters: , / ? : @ & = + $ #
+    var absolutePath = '/LoadTool?FilePath=' + encodeURIComponent(filePath) + "&ThemeName=" + modelContents.Theme;
+    window.open(absolutePath);
+}
+
+function GetActiveMasterTab() {
+    var masterTabs = $('.fe-menuTabs-list');
+    return masterTabs.getActiveTab(masterTabs);
+}
+
+// TODO : If those methods is not in use (as I expect) - remove them
+function GetSelectedDataContainerId() {
+    return GetActiveFundInformationTab().attr("data-containerId");
+}
+
+function GetActiveFundInformationTab() {
+    var toolContainer = GetActiveMasterTab().getTabContainer();
+    return toolContainer.getActiveTab(toolContainer);
+}
+
+function GetActiveFundInformationTabId() {
+    GetActiveFundInformationTab().attr('id');
+}
+
+// Display funds and tabs only if 'display funds on initial load' project level setting is enabled and search is performed
+function DisplayFunds(showFunds) {
+    if (showFunds == true) {
+        $(".fundCentreContent").show();
+        $("#selectSearchCriteria").hide();
+    }
+    else {
+        $(".fundCentreContent").hide();
+        $("#selectSearchCriteria").show();
+    }
+}
+
+function DisplayCaveat(showCaveat)
+{
+    if (showCaveat) $("[data-id=fe-footer-container]").show();
+    else $("[data-id=fe-footer-container]").hide();
+}
+
+function DisplayDisclaimerPopup() {
+    if (modelContents.DisplayDisclaimer) {
+        _localStorageHelper.getByLang('disclaimer', 'accept', function(res) {
+            if (!res) {
+                $(".disclaimer-popup-container").dialog({
+                    dialogClass: "disclaimer-popup-main",
+                    modal: true,
+                    height: 'auto',
+                    width: 'auto'
+                });
+            } else {
+                ToolkitUI.disclaimerAgreed = true;
+            }
+        });
+    }
+
+    $(".btn-diclaimer-disagree").on("click", function() {
+        window.location.href = $(this).attr("data-returnUrl");
+    });
+
+    $(".btn-diclaimer-agree").on("click", function () {
+        _localStorageHelper.setByLang('disclaimer', 'accept', true, function(res) {
+            ToolkitUI.disclaimerAgreed = true;
+            $(".disclaimer-popup-container").dialog('close');
+            window.scrollTo(0, 0);
+        });
+    });
+}
+
+_localStorageHelper = {
+    getByLang: function(moduleName, propertyName, callback) {
+        var langCode = modelContents.LanguageCode;
+        var keyName = this.getKeyName(moduleName);
+        localforage.getItem(keyName).then(function(storageModel) {
+                if (storageModel == null) {
+                    storageModel = {};
+                }
+                var langResult = storageModel[langCode];
+                var langModel = {};
+                if (langResult != null) {
+                    langModel = storageModel[langCode];
+                }
+
+                var value = langModel[propertyName];
+
+                if (callback) {
+                    callback(value);
+                }
+            },
+            function(err, value) {
+                console.log(err);
+            });
+    },
+    setByLang: function(moduleName, propertyName, value, callback) {
+        var langCode = modelContents.LanguageCode;
+        var keyName = this.getKeyName(moduleName);
+        localforage.getItem(keyName).then(function(storageModel) {
+                if (storageModel == null) {
+                    storageModel = {};
+                }
+                var langResult = storageModel[langCode];
+                var langModel = {};
+                if (langResult != null) {
+                    langModel = storageModel[langCode];
+                }
+
+                langModel[propertyName] = value;
+                storageModel[langCode] = langModel;
+                localforage.setItem(keyName, storageModel).then(function(model) {
+                    if (callback) {
+                        callback(model);
+                    }
+                }).catch(function(err) {
+                    console.log(err);
+                });
+            },
+            function(err, value) {
+                console.log(err);
+            });
+    },
+    getKeyName: function(moduleName) {
+        var projName = modelContents.ProjectName;
+        return (projName + '_' + moduleName).toLowerCase();
+    }
+};
+
+function isSameSiteCookieSupported() {
+    var agent = getAgentDetails();
+
+    //Samesite=none not supported for mac OS version 10 and google chrome version lesser than 67
+    if ((agent.os.name == "Macintosh" && agent.os.version < 11)
+        || ((agent.os.name == "iPhone" || agent.os.name == "iPad") && agent.os.version < 13)
+        || (agent.browser.name == "Chrome" && agent.browser.version < 67)
+        || (agent.browser.name == "Safari" && agent.browser.version < 13))
+        return false;
+
+    return true;
+}
+
+function getAgentDetails() {
+    'use strict';
+
+    var module = {
+        options: [],
+        header: [navigator.platform, navigator.userAgent, navigator.appVersion, navigator.vendor, window.opera],
+        dataos: [
+            { name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
+            { name: 'Windows', value: 'Win', version: 'NT' },
+            { name: 'iPhone', value: 'iPhone', version: 'OS' },
+            { name: 'iPad', value: 'iPad', version: 'OS' },
+            { name: 'Kindle', value: 'Silk', version: 'Silk' },
+            { name: 'Android', value: 'Android', version: 'Android' },
+            { name: 'PlayBook', value: 'PlayBook', version: 'OS' },
+            { name: 'BlackBerry', value: 'BlackBerry', version: '/' },
+            { name: 'Macintosh', value: 'Mac', version: 'OS X' },
+            { name: 'Linux', value: 'Linux', version: 'rv' },
+            { name: 'Palm', value: 'Palm', version: 'PalmOS' }
+        ],
+        databrowser: [
+            { name: 'Chrome', value: 'Chrome', version: 'Chrome' },
+            { name: 'Firefox', value: 'Firefox', version: 'Firefox' },
+            { name: 'Safari', value: 'Safari', version: 'Version' },
+            { name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
+            { name: 'Opera', value: 'Opera', version: 'Opera' },
+            { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
+            { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' }
+        ],
+        init: function () {
+            var agent = this.header.join(' '),
+                os = this.matchItem(agent, this.dataos),
+                browser = this.matchItem(agent, this.databrowser);
+
+            return { os: os, browser: browser };
+        },
+        matchItem: function (string, data) {
+            var i = 0,
+                j = 0,
+                html = '',
+                regex,
+                regexv,
+                match,
+                matches,
+                version;
+
+            for (i = 0; i < data.length; i += 1) {
+                regex = new RegExp(data[i].value, 'i');
+                match = regex.test(string);
+                if (match) {
+                    regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+                    matches = string.match(regexv);
+                    version = '';
+                    if (matches) { if (matches[1]) { matches = matches[1]; } }
+                    if (matches) {
+                        matches = matches.split(/[._]+/);
+                        for (j = 0; j < matches.length; j += 1) {
+                            if (j === 0) {
+                                version += matches[j] + '.';
+                            } else {
+                                version += matches[j];
+                            }
+                        }
+                    } else {
+                        version = '0';
+                    }
+                    return {
+                        name: data[i].name,
+                        version: parseFloat(version)
+                    };
+                }
+            }
+            return { name: 'unknown', version: 0 };
+        }
+    };
+
+    var e = module.init(),
+        debug = '';
+
+    return e;
+}

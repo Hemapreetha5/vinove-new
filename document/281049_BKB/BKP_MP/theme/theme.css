@@ -1,0 +1,333 @@
+@font-face {
+  font-family: "frutiger";
+  src: url("./images/frutiger-45-light-regular.ttf") format("truetype"), url("./images/frutiger-45-light-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "frutiger";
+  src: url(./images/Frutiger\ 65\ Bold.otf) format("opentype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "UBSHeadline";
+  src: url("images/UBSHeadline.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --secondary: #BEBEBE;
+  --black: #000000;
+  --tableborder: var(--black);
+  --tableheaderbg: #f2f2f2;
+  --font-family: "frutiger";
+  --fontUBSTitle: "UBSHeadline";
+}
+
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+  font: 9pt var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h2:empty {
+  display: none;
+}
+
+ul li {
+  list-style: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font: bold 14pt var(--font-family);
+  color: #1B1B1B;
+  margin: 1.4mm 0 0 0;
+  padding: 0.5mm 0 0.06cm 0;
+}
+
+/*p{
+   @include paraAlingments(true);
+ }
+ */
+p,
+.description {
+  font: 9pt var(--font-family);
+  color: #231F20;
+  margin: 0 0 0.1cm 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.subheader p {
+  font: 9pt var(--font-family);
+  color: #231F20;
+}
+
+.header1 p,
+.header2 p {
+  font: 14pt var(--font-family);
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 14pt var(--font-family);
+  color: #231F20;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen {
+  .page {
+    width: 18cm;
+  }
+}
+.page1 {
+  position: relative;
+  padding: 1.8cm 0 0 0;
+  background: url(images/Basler_Kantonalbank.jpg);
+  background-size: 4cm auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.page2,
+.page3 {
+  position: relative;
+  padding: 0cm 1cm 0cm 1cm;
+  height: auto;
+}
+
+.contentSection h2 {
+  border-top: 0.01cm solid #000000;
+  font: bold 9pt var(--font-family);
+}
+
+.page1 > .row2 > .contentSection .item3 {
+  font-weight: bold;
+  width: 95%;
+  text-align: left;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font: 25pt var(--font-family);
+  color: #000000;
+  margin: 0mm 0 0 0;
+  border-top: 0px !important;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+@page {
+  margin: 1cm 1cm 0.8cm 1cm;
+  padding: 0cm;
+  @bottom-right {
+    content: element(pgnum);
+    width: 4cm;
+    position: relative;
+    z-index: 1;
+    margin: 0cm 0 0cm 0;
+  }
+}
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination {
+  display: none;
+}
+
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 {
+  width: 69% !important;
+  height: auto;
+}
+
+.page1 .row4 > .composite1 .compositebody > .row3 .column1 .row2 {
+  margin-top: 0.4cm;
+}
+
+.page1 .row4 > .composite1 .compositebody > .row3 .column2 {
+  width: 25% !important;
+  background: #bebebe;
+  padding: 0.25cm 0.4cm 0.5cm 0.4cm;
+  margin-left: 7px;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 2;
+  column-gap: 0.5cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.MonthlyPerformanceTable > table {
+  table-layout: fixed;
+}
+.MonthlyPerformanceTable .SubheaderData th,
+.MonthlyPerformanceTable .headerData th {
+  font-size: 5pt;
+  border: 0.1pt solid #000;
+  word-wrap: break-word;
+  padding: 1mm 0.2mm;
+}
+.MonthlyPerformanceTable .headerData th {
+  font-size: 8pt;
+}
+.MonthlyPerformanceTable .SubheaderData th {
+  border-bottom: 0;
+}
+.MonthlyPerformanceTable td {
+  font-size: 6pt;
+  border: 0.1pt solid #000;
+  padding: 1mm 0;
+  text-align: center;
+}
+
+.groupRowDiv1 td {
+  width: 53px;
+  text-align: center;
+}
+
+.pdfperformancechart.PastPerformanceChart {
+  width: 100%;
+}
+
+.discreteChart {
+  height: 250px;
+}
+
+p {
+  text-align: justify;
+}
+
+.page1 > .row1 .contentSection h2 {
+  font-size: 25pt;
+  font-family: "UBSHeadline";
+  margin-bottom: 0.3cm;
+}
+
+.TextSection p {
+  font-size: 9pt;
+}
+
+.contentSection h2 {
+  color: var(--h2-color);
+  font-size: 9pt;
+}
+
+.FooterCSS {
+  width: 20cm;
+  padding: 0px 0px 0px 4px;
+  position: absolute;
+  bottom: 0.3cm;
+  left: 0;
+  z-index: 1;
+  border-top: 0.5px solid #909090;
+  font-size: 7.5pt;
+}
+
+.FooterCSS .content {
+  margin-right: 0cm;
+  position: relative;
+  overflow: visible;
+}
+
+.FooterCSS .row {
+  margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+  height: 23px;
+}
+
+.FooterCSS .content:before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background-color: #a7a5a6;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+
+/* Theme name BKB_M */
+

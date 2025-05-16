@@ -1,0 +1,238 @@
+/* @font-face {
+	font-family: Friends Life Dagny Bold;
+	src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+    src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"), 
+	url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+} */
+@font-face {
+    font-family:"VerlagOffice-Regular";
+    src: url("./images/VerlagOffice-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family:"VerlagOffice-Bold";
+    src: url("./images/VerlagOffice-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+:root{
+    --Julius-Baer-Blue:#001cff;
+    --Julius-Baer-Stone:#c1ca8d;
+    --Julius-Baer-Persian-Blue:#00c9b6;
+    --Julius-Baer-Mulberry-Purple:#560aa3;
+    --Julius-Baer-Forest-Green:#00d758;
+    --black:#000;
+    --FontFamilyRegular:"VerlagOffice-Regular";
+    --FontFamilyBold:"VerlagOffice-Bold";
+}
+
+/* body { font-family: Georgia, serif; font-size: 9pt; } */
+.page  { position: relative; width: 17cm; height: 24.7cm;
+    /* padding:12.5mm 20mm 8mm; */
+ }
+.row { margin-bottom: 0.5cm; }
+.column > .section { margin-left: 0.5cm; }
+.column:first-child > .section { margin-left: 0; }
+h1, h2, h3 { margin:0; color: #3399FF; }
+p { margin: 0; margin-bottom: 0.25cm; }
+.vertical-list div { margin-bottom: 0.25cm; }
+.vertical-list div span:first-child { color: #3399FF; }
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page > .row1 h2 { padding-left: 3cm; min-height: 2cm; background-image: url('./Images/logo.png'); background-repeat: no-repeat; margin-bottom: 0.5cm; }
+.page1 > .row2 > .column2 > .section { background-color: #efefef; border-radius: 0.25cm; padding: 0.25cm; }
+
+.tabs.breakdowns { border: none; margin: 10px; }
+.tabs.breakdowns > .tabpanes { border: none; }
+.tabs.breakdowns > .tabpanes > .slider > .tab  { padding-bottom: 20px; }
+.tabs.breakdowns > .tabbuttons { position: absolute; bottom: 5px; z-index: 10000; }
+.tabs.breakdowns > .tabbuttons > .tab { border: none; background-color: #000; height: 10px; width: 10px; border-radius: 10px; overflow: hidden; margin-right: 10px; text-indent: -10000px; }
+.cler {font-size:24pt;}
+.reportheader {font-size:34pt;color: rgb(253, 226, 17);padding-left:0.5cm;}
+.headerbackground{background-color: rgb(138, 216, 216); height:10cm; background-image:url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');background-repeat: no-repeat;background-size: 100%;}
+.bottomrightheaderpage{margin-top: 10cm;}
+.compositepadding{padding-left: 1cm;background-color: rgb(138, 216, 216);margin-left: 1cm;margin-right: 1cm;padding-bottom: 1.6cm;}
+
+.securityaccount{background-color: rgb(138, 216, 216); padding-top: 7cm;font-size: 34pt;padding-bottom: .5cm;}
+.esgdata {background-color: rgb(167, 179, 179); padding-top: 4cm;font-size: 34pt;padding-bottom:3cm}
+
+.FooterCSS .column1{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column2{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column3{
+	width:15%;
+	float:left;
+}
+
+.FooterCSS .column5{
+	width:15%;
+	float:left;
+}
+
+
+.FooterCSS .column4{
+	width:40%;
+	float:left;
+	text-align:center;
+}
+
+
+footer {
+position: running(footerIdentifier)
+}
+@page {
+    padding:12.5mm 20mm 8mm;
+@bottom-left {
+content: element(footerIdentifier)
+}
+}
+
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+
+    .compositefooter .content {
+        margin-right: 0cm;
+        position: relative;
+        overflow: visible;
+    }
+
+        .compositefooter .content:before {
+            content: '';
+            width: 1px;
+            height: 100px;
+            background-color: #a7a5a6;
+            position: absolute;
+            top: 0;
+            left: -3px;
+        }
+
+
+/* @page:first {
+
+@bottom-left {
+content: "";
+}
+} */
+.FooterCSS {
+
+    width: 20cm;
+
+    padding: 0px 0px 0px 4px;
+
+    position: absolute;
+
+    bottom: 0.3cm;
+
+    left: 0;
+
+    z-index: 1;
+
+    border-top: 0.5px solid #909090;
+
+    font-size: 7.5pt;
+
+}
+
+
+
+    .FooterCSS .content {
+
+        margin-right: 0cm;
+
+        position: relative;
+
+        overflow: visible;
+
+    }
+
+.FooterCSS .row{
+	margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection{
+height: 23px;
+}
+        .FooterCSS .content:before {
+
+            content: '';
+
+            width: 1px;
+
+            height: 60px;
+
+            background-color: #a7a5a6;
+
+            position: absolute;
+
+            top: 0;
+
+            left: 1px;
+
+        }
+
+		.EsgCoverPageImage{
+width: 100%;
+}
+
+
+.EsgCoverPage{
+	width:100%
+}
+h1{
+    font: bold 11pt/13pt var(--FontFamilyBold);
+    text-transform: uppercase;
+}
+h2{
+    font: 300 11pt/13pt var(--FontFamilyRegular);
+    text-transform: uppercase;
+    color:var(--Julius-Baer-Blue);
+}
+h3{
+    font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+    text-transform: uppercase;
+    color:var(--Julius-Baer-Blue);
+}
+h4{
+    font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+    color:var(--Julius-Baer-Blue);
+}
+h5{
+    font: bold 8.5pt/9.5pt var(--FontFamilyBold);
+    color:var(--black);
+}
+body{
+    font: 300 8.5pt/9.5pt var(--FontFamilyRegular);
+    color:var(--black);
+}
+.page1{
+    background-image:url('./images/logo-image.png');
+    background-repeat: no-repeat;
+    background-size: 35mm auto;
+    background-position: top 13mm center;
+}
+.page1 > .row1.row.section {
+    /* padding-top: 33.297mm;  */
+    padding-bottom: 10mm;
+}
+.logo{
+    height:auto !important;
+    width:auto !important;
+}
+.page1 > .row1.row.section .DocumentDate {
+    text-align: right;
+}

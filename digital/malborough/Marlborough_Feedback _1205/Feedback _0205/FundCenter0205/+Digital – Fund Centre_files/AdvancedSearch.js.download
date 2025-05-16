@@ -1,0 +1,913 @@
+﻿var FundCentre = FundCentre || {}
+
+FundCentre.AdvancedSearchFilters = function () {
+    var qsCategory = null;
+    var qsDefaultRangeCode = null;
+    var qsDefaultRangeName = null;
+    var qsCustomLogic = null;
+    var qsCustomLogicValue = '1';
+
+    InitializeFilters = function () {
+        //Basic search click event. 
+        $(".basicSearch-" + ToolIds.FundCentreId).on("click", function (e) {
+            Search(ToolIds.FundCentreId);
+            e.preventDefault();
+        });
+
+        //Basic search click event. 
+        $(".basicSearch-" + ToolIds.FundCentreAMId).on("click", function (e) {
+            Search(ToolIds.FundCentreAMId);
+            e.preventDefault();
+        });
+
+        //Basic search click event. 
+        $(".basicSearch-" + ToolIds.AllFundsAMId).on("click", function (e) {
+            Search(ToolIds.AllFundsAMId);
+            e.preventDefault();
+        });
+
+        $(".advanceSearch-" + ToolIds.FundCentreId).on("click", function (e) {
+            // Function is called after the toggle finishes as we need the width after expansion
+            $(".advance-" + ToolIds.FundCentreId).slideToggle("slow", "swing", function () {
+                ToolkitUI.Common.ResizeIFrame();
+            });
+            e.preventDefault();
+            SetAriaLabelForFilerSlider();
+        });
+
+        $(".advanceSearch-" + ToolIds.FundCentreAMId).on("click", function (e) {
+            $(".advance-" + ToolIds.FundCentreAMId).slideToggle("slow", "swing", function () {
+                ToolkitUI.Common.ResizeIFrame();
+            });
+            e.preventDefault();
+            SetAriaLabelForFilerSlider();
+        });
+
+        $(".advanceSearch-" + ToolIds.AllFundsAMId).on("click", function (e) {
+            $(".advance-" + ToolIds.AllFundsAMId).slideToggle("slow", "swing", function () {
+                ToolkitUI.Common.ResizeIFrame();
+            });
+            e.preventDefault();
+            SetAriaLabelForFilerSlider();
+        });
+
+        $(".clearFilteringBtn-" + ToolIds.FundCentreId).on("click", function (e) {
+            e.preventDefault();
+            clearFilters(ToolIds.FundCentreId);
+        });
+
+        $(".clearFilteringBtn-" + ToolIds.FundCentreAMId).on("click", function (e) {
+            e.preventDefault();
+            clearFilters(ToolIds.FundCentreAMId);
+        });
+
+        $(".clearFilteringBtn-" + ToolIds.AllFundsAMId).on("click", function (e) {
+            e.preventDefault();
+            clearFilters(ToolIds.AllFundsAMId);
+        });
+
+        $("#SearchText-" + ToolIds.FundCentreId).on("keydown", function (event) {
+            if (event.keyCode == 13) {
+                $(".basicSearch-" + ToolIds.FundCentreId).trigger("click");
+                return false;
+            }
+        });
+
+        $("#SearchText-" + ToolIds.FundCentreAMId).on("keydown", function (event) {
+            if (event.keyCode == 13) {
+                $(".basicSearch-" + ToolIds.FundCentreAMId).trigger("click");
+                return false;
+            }
+        });
+
+        $("#SearchText-" + ToolIds.FundCentreAMId).on("keydown", function (event) {
+            if (event.keyCode == 13) {
+                $(".basicSearch-" + ToolIds.AllFundsAMId).trigger("click");
+                return false;
+            }
+        });
+
+        var advSearchCont = $('#advancedSearchContainer');
+        if ($(advSearchCont).attr('data-filter-loaded') == 'False') {
+            var getDataWithNoFiltering = false;
+            var projectToolId = $(advSearchCont).closest("form").attr("data-projectToolId");
+            var toolId = $(advSearchCont).closest("form").attr("data-toolId");
+            var displayFundsOnInitialLoad = modelContents.DisplayFundsOnLoad == "True" || modelContents.DisplayFundForUrlParam;
+            if (!displayFundsOnInitialLoad)
+            {
+                DisplayFunds(false);
+            }            
+            FundCentre.AdvancedSearchFilters.GetFilterData(null, getDataWithNoFiltering, toolId, projectToolId, undefined, 'GetFilterValues');
+            if(displayFundsOnInitialLoad)
+            {
+                $("div .fe-tabs-datacontainer[aria-hidden='false']").find('table').StyleTableRows();
+                SetPositionOfAjaxLoader($(this), true);
+            }
+        }
+
+        FiltersCascading = function (control) {
+            if ($(control).is('[data-isCascading]')) {
+                var getDataWithNoFiltering = false;
+                var projectToolId = $(control).closest("form").attr("data-projectToolId");
+                var toolId = $(control).closest("form").attr("data-toolId");
+                FundCentre.AdvancedSearchFilters.GetFilterData(control.id, getDataWithNoFiltering, toolId, projectToolId);
+            }
+        };
+
+        $('.fe-search-fileters-dropdown').on("change", function (e) {
+            FiltersCascading(this);
+        });
+
+        //Filters change event is triggered as the dropdown will have value on load because of URL search and if ALL option is not configured
+        //We want cascading to work when the page finishes loading
+        if (advSearchCont && $(advSearchCont).attr('data-filter-loaded') == 'True') {
+            executeFilterLoadOnFilterReady();
+        }
+
+
+        $(".fe-search-performance-filter-value").on("keypress", function (e) {
+
+            //if the letter is not digit then display error and don't type anything
+            var allowPeriod = ($(this).val().indexOf(".") < 0);
+
+            if ((e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46 && e.which != 45) || (e.which == 46 && allowPeriod == false)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    },
+
+    GetFilterValuePasedInUrl = function(filterOptions, filterId) {
+        var value = null;
+        try {
+            value = eval("filterOptions." + filterId);
+        } catch (e) {
+            // do nothing
+        }
+
+        return value;
+    },
+
+    GetFilterData = function (sourceFilterId, getDataWithNoFiltering, toolId, projectToolId, isClearButton, functionName) {
+        var url = functionName == undefined ? modelContents.CascadingDropDownValuesUrl : modelContents.CascadingDropDownValuesUrl.replace('GetCascadingFilterValues', 'GetFilterValues');
+        OnGetDataStart(toolId);
+        var urlModel = functionName == undefined ? GetSearchModel(toolId, projectToolId, isClearButton) : GetModelForFilterData(toolId, projectToolId, isClearButton);
+        if (functionName == undefined)
+        {
+            var defaultCode = GetModelForFilterData(toolId, null, null);
+            urlModel.FilteringOptions.DefaultRangeCode = defaultCode.DefaultRangeCode;
+            urlModel.FilteringOptions.DefaultRangeName = defaultCode.DefaultRangeName;
+            urlModel.FilteringOptions.DefaultCategoryCode = defaultCode.DefaultCategoryCode;
+            urlModel.FilteringOptions.DefaultCategoryCode2 = defaultCode.DefaultCategoryCode2;
+        }
+
+        $(this).sendJsonAsString(url, urlModel,
+             function (result) {
+                 if (result) {
+                     var advSearchCont = $('#advancedSearchContainer');
+                     var FilterDataNotLoaded = advSearchCont && $(advSearchCont).attr('data-filter-loaded') == 'False';
+                     //var urlModel = GetModelForFilterData(toolId, projectToolId, isClearButton);
+
+                    $.each(result, function (index, filter) {
+                        if (filter == null) {
+                            return ;
+                        }
+
+                        var currentFilterId = filter.Id + '-' + toolId;
+                        var originalFilterVal = $('#' + currentFilterId).val();
+                        var isListfilter = false;
+
+                        if ($('#' + currentFilterId).length == 0) {
+                            isListfilter = $('#' + currentFilterId + '-').is('div') && $('#' + currentFilterId + '-').attr('data-filtertype') == "List";
+                        }
+
+                        if (isListfilter && currentFilterId + '-' != sourceFilterId) {
+                            BindModelToList(filter, toolId, GetFilterValuePasedInUrl(urlModel, filter.Id));
+                        }
+                        // Dont data bind the invoking dropdown
+                        else if (currentFilterId != sourceFilterId || getDataWithNoFiltering) {
+
+                            // If a group dropdown, we need seperate rendering logic
+
+
+                            switch (filter.SearchFilterType) {
+                                case 2:
+                                    {
+                                        BindModelToGroupDropdown(filter, toolId);
+                                    }
+                                    break;
+                                case 3:
+                                    {
+                                        BindModelToRangeSlider(filter, toolId);
+                                    }
+                                    break;
+                                case 4:
+                                    {
+                                        filter.Id = "PerformanceOption";
+                                        BindModelToDropdown(filter, toolId);
+                                    }
+                                    break;
+                                default:
+                                    {
+                                        BindModelToDropdown(filter, toolId);
+                                    }
+                                    break;
+
+                            }
+
+                            if (!FilterDataNotLoaded)
+                            {
+                            // Now we have the data, maintain the current selection.
+                            if (!getDataWithNoFiltering)
+                                $('#' + currentFilterId).val(originalFilterVal);
+                            }
+                            else
+                            {
+                                originalFilterVal = $('#' + currentFilterId).val();
+                                if (filter.Id.toLowerCase().indexOf("range") > -1 && urlModel.DefaultRangeCode) {
+                                    originalFilterVal = urlModel.DefaultRangeCode;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("category") > -1 && urlModel.DefaultCategoryCode) {
+                                    originalFilterVal = urlModel.DefaultCategoryCode;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("sector") > -1 && urlModel.SectorCode) {
+                                    originalFilterVal = urlModel.SectorCode;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("manager") > -1 && urlModel.ManagerCode) {
+                                    originalFilterVal = urlModel.ManagerCode;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("bespokecolumn1") > -1 && urlModel.BespokeColumn1) {
+                                    originalFilterVal = urlModel.BespokeColumn1;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("bespokecolumn2") > -1 && urlModel.BespokeColumn2) {
+                                    originalFilterVal = urlModel.BespokeColumn2;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("bespokecolumn3") > -1 && urlModel.BespokeColumn3) {
+                                    originalFilterVal = urlModel.BespokeColumn3;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("bespokecolumn4") > -1 && urlModel.BespokeColumn4) {
+                                    originalFilterVal = urlModel.BespokeColumn4;
+                                }
+                                else if (filter.Id.toLowerCase().indexOf("bespokecolumn5") > -1 && urlModel.BespokeColumn5) {
+                                    originalFilterVal = urlModel.BespokeColumn5;
+                                }
+
+                                $('#' + currentFilterId).val(originalFilterVal);
+                            }
+                        }
+                    });
+
+                    GenerateSliders();
+
+                    if (isClearButton) {
+                        RetainUrlParametersOnClear(toolId);
+                        if (modelContents.FundCentreAMEnabled) {
+                            $(".select2SearchForm .select2FilterContainer .fe-search-fileters-dropdown").each(function () {
+                                if (this.id) {
+                                    $("#" + this.id).select2("destroy");
+                                    $("#" + this.id).select2({
+                                        debug: true,
+                                        formatSelectionCssClass: function(data, container) {
+                                            $(container).attr('class', "select2-chosen");
+                                            return data.css;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+
+                    OnGetDataComplete(toolId);
+                   
+                    if (FilterDataNotLoaded) {
+                        $(advSearchCont).attr('data-filter-loaded', 'True');
+                        executeFilterLoadOnFilterReady();
+                        executeFundCentreLoadOnFilterReady();
+                    }
+                }
+                else {
+                    alert('failed');
+                }
+
+
+            });
+    },
+    HasToSetFixedCategory = function (categoryParamName) {
+        qsCustomLogic = getParameterByNameIgnoreCase('customlogic');
+        if (qsCustomLogic != null && qsCustomLogic == qsCustomLogicValue) {
+            qsCategory = getParameterByNameIgnoreCase(categoryParamName);
+            qsDefaultRangeCode = getParameterByNameIgnoreCase('defaultrangecode');
+            qsDefaultRangeName = getParameterByNameIgnoreCase('defaultrangename');
+            return (qsDefaultRangeCode != null || qsDefaultRangeName != null) && qsCategory != null;
+        }
+        return false;
+    },
+    GetFilteringOptions = function (toolId, isClearButton) {
+        var filteringOptions = {};
+
+        if (!isClearButton ||
+            (isClearButton && ((modelContents.FundCentreClearBtnRetainUrlParams && toolId == 1) || (modelContents.AMFundCentreClearBtnRetainUrlParams && toolId == 14) || (modelContents.AMAllFundsClearBtnRetainUrlParams && toolId == 15)))) {
+            GetFilterOptionFromurlParam(filteringOptions);
+        }
+
+        filteringOptions = $('#searchform-' + toolId).getJsonData();
+        $.each(filteringOptions, function (key, value) {
+            if (Array.isArray(value)) {
+                filteringOptions[key] = value.join();
+            }
+        })
+        if (filteringOptions.RangeName) {
+            var rangeInfo = filteringOptions.RangeName.split('&&');
+            filteringOptions.RangeId = rangeInfo[0];
+            filteringOptions.RangeName = GetRangeNameFromControl(toolId);
+        } else {
+            filteringOptions.RangeId = filteringOptions.RangeId ? filteringOptions.RangeId : GetRangeCode(toolId);
+            filteringOptions.RangeName = GetRangeName(toolId);
+        }
+        
+        filteringOptions.CategoryId = filteringOptions.CategoryId ? filteringOptions.CategoryId : getParameterByNameIgnoreCase('category');
+        filteringOptions.Category2Id = filteringOptions.Category2Id ? filteringOptions.Category2Id : getParameterByNameIgnoreCase('category2');
+        filteringOptions.PriipProductCode = filteringOptions.PriipProductCode ? filteringOptions.PriipProductCode : getParameterByNameIgnoreCase('PriipProductCode');
+        filteringOptions.DefaultCategoryId = getParameterByNameIgnoreCase('defaultcategorycode');
+        filteringOptions.DefaultCategory2Id = getParameterByNameIgnoreCase('defaultcategorycode2');
+        filteringOptions.DefaultCategoryId = filteringOptions.DefaultCategoryId == '' ? null : filteringOptions.DefaultCategoryId;
+        filteringOptions.DefaultCategory2Id = filteringOptions.DefaultCategory2Id == '' ? null : filteringOptions.DefaultCategory2Id;
+
+        filteringOptions.DefaultCategoryId = filteringOptions.DefaultCategoryId == '' ? null : filteringOptions.DefaultCategoryId;
+        filteringOptions.CategoryId = filteringOptions.CategoryId == '' ? null : filteringOptions.CategoryId;
+        filteringOptions.Category2Id = filteringOptions.Category2Id == '' ? null : filteringOptions.Category2Id;
+        filteringOptions.PriipProductCode = filteringOptions.PriipProductCode == '' ? null : filteringOptions.PriipProductCode;
+
+        if (HasToSetFixedCategory('category')) {
+            if ((typeof qsDefaultRangeCode != 'undefined' && qsDefaultRangeCode != null && filteringOptions['RangeId'] && filteringOptions['RangeId'].toLowerCase() == qsDefaultRangeCode.toLowerCase()) || (typeof qsDefaultRangeName != 'undefined' && qsDefaultRangeName != null && filteringOptions['RangeName'] && filteringOptions['RangeName'].toLowerCase() == qsDefaultRangeName.toLowerCase())) {
+                filteringOptions['CategoryId'] = qsCategory;
+            } else {
+                filteringOptions['CategoryId'] = null;
+            }
+        }
+        if (HasToSetFixedCategory('category2')) {
+            if ((typeof qsDefaultRangeCode != 'undefined' && qsDefaultRangeCode != null && filteringOptions['RangeId'] && filteringOptions['RangeId'].toLowerCase() == qsDefaultRangeCode.toLowerCase()) || (typeof qsDefaultRangeName != 'undefined' && qsDefaultRangeName != null && filteringOptions['RangeName'] && filteringOptions['RangeName'].toLowerCase() == qsDefaultRangeName.toLowerCase())) {
+                filteringOptions['Category2Id'] = qsCategory2;
+            } else {
+                filteringOptions['Category2Id'] = null;
+            }
+        }
+        filteringOptions.ForSaleIn = filteringOptions.ForSaleIn ? filteringOptions.ForSaleIn : getParameterByNameIgnoreCase('forSaleIn');
+        if (filteringOptions.ForSaleIn) {
+            filteringOptions.ForSaleIn = $.trim(filteringOptions.ForSaleIn);
+            filteringOptions.FSIexclCT = filteringOptions.FSIexclCT ? filteringOptions.FSIexclCT : getParameterByNameIgnoreCase('FSIexclCT');
+            if (filteringOptions.FSIexclCT)
+                filteringOptions.FSIexclCT = $.trim(filteringOptions.FSIexclCT);
+        }
+
+        for (var property in filteringOptions) {
+            if (Array.isArray(filteringOptions[property]) && $.inArray("nullValue", filteringOptions[property]) > -1) {
+                filteringOptions[property] = null;
+            }
+        }
+
+        if (isClearButton == undefined)
+            isClearButton = false;
+
+        if (!isClearButton ||
+            (isClearButton && ((modelContents.FundCentreClearBtnRetainUrlParams && toolId == 1) || (modelContents.AMFundCentreClearBtnRetainUrlParams && toolId == 14) || (modelContents.AMAllFundsClearBtnRetainUrlParams && toolId == 15)))) {
+            GetFilterOptionFromurlParam(filteringOptions);
+        }
+        if ($("#CategoryId-" + toolId).length > 0) {
+            var selectedCategory = $("#CategoryId-" + toolId).val();
+            if (selectedCategory !== null && selectedCategory.replace(/All/g, '') === '') {
+                filteringOptions.CategoryId = null;
+                filteringOptions.DefaultCategoryId = null;
+            }
+        }
+
+        if ($("#Category2Id-" + toolId).length > 0) {
+            var selectedCategory = $("#Category2Id-" + toolId).val();
+            if (selectedCategory !== null && selectedCategory.replace(/All/g, '') === '') {
+                filteringOptions.Category2Id = null;
+                filteringOptions.DefaultCategory2Id = null;
+            }
+        }
+        if ($("#Category2Id-" + toolId).length > 0) {
+            var selectedCategory = $("#Category2Id-" + toolId).val();
+            if (selectedCategory !== null && selectedCategory.replace(/All/g, '') === '') {
+                filteringOptions.Category2Id = null;
+                filteringOptions.DefaultCategory2Id = null;
+            }
+        }
+        
+        return filteringOptions;
+    },
+    GetRangeCode = function (toolId) {
+        var rangeCode = null;
+        
+        if(getParameterByNameIgnoreCase('rangecode'))
+        {
+            rangeCode = getParameterByNameIgnoreCase('rangecode');
+        }
+        else if ($('#searchform-' + toolId).data('projectrangeid') != '')
+        {
+            rangeCode = $('#searchform-' + toolId).data('projectrangeid');
+        }
+        
+        return rangeCode;
+    },
+
+    GetRangeName = function (toolId) {
+         var rangeName = $('#searchform-' + toolId).data('projectrangename');
+         return rangeName ? rangeName.toLowerCase() : rangeName;
+     },
+    GetRangeNameFromControl = function (toolId) {
+        return $("#RangeId-" + toolId + " option:selected").text().replace(/ /g, '').toLowerCase();
+    },
+    GetSearchModel = function (toolId, projectToolId, isClearButton) {
+        var model = {};
+        model.FilteringOptions = GetFilteringOptions(toolId, isClearButton);
+        model.GrsProjectId = modelContents.GrsProjectId;
+        model.ProjectName = modelContents.ProjectName;
+        model.ToolId = toolId;
+        model.ProjectToolId = projectToolId;
+        model.LanguageId = modelContents.LanguageId;
+        model.LanguageCode = modelContents.LanguageCode;
+        model.CustomLogic = getParameterByNameIgnoreCase('customlogic');
+
+        if (isClearButton && ((modelContents.FundCentreClearBtnRetainUrlParams && toolId == 1) || (modelContents.AMFundCentreClearBtnRetainUrlParams && toolId == 14) || (modelContents.AMAllFundsClearBtnRetainUrlParams && toolId == 15))) {
+            var urlParams = $('#searchform-' + toolId).data('urlparams');
+            model.FilteringOptions.RangeId = urlParams.DefaultRangeCode ? urlParams.DefaultRangeCode : model.FilteringOptions.RangeId;
+            model.FilteringOptions.CategoryId = urlParams.DefaultCategoryCode ? urlParams.DefaultCategoryCode : model.FilteringOptions.CategoryId;
+            model.FilteringOptions.Category2Id = urlParams.DefaultCategoryCode2 ? urlParams.DefaultCategoryCode2 : model.FilteringOptions.Category2Id;
+            model.FilteringOptions.PriipProductCode = urlParams.PriipProductCode ? urlParams.PriipProductCode : model.FilteringOptions.PriipProductCode;
+            model.FilteringOptions.SectorCode = urlParams.SectorCode ? urlParams.SectorCode : model.FilteringOptions.SectorCode;
+            model.FilteringOptions.ManagerCode = urlParams.ManagerCode ? urlParams.ManagerCode : model.FilteringOptions.ManagerCode;
+        }
+        return model;
+    },
+
+    GetFilterOptionFromurlParam = function (filteringOptions) {
+        SetFilterValue(filteringOptions, "RangeId", 'defaultrangecode');
+        SetFilterValue(filteringOptions, "CategoryId", 'defaultcategorycode');
+        SetFilterValue(filteringOptions, "Category2Id", 'defaultcategorycode2');
+        SetFilterValue(filteringOptions, "RangeName", 'defaultrangename');
+        SetFilterValue(filteringOptions, "ManagerCode");
+        SetFilterValue(filteringOptions, "SectorCode");
+        SetFilterValue(filteringOptions, "BespokeColumn1");
+        SetFilterValue(filteringOptions, "BespokeColumn2");
+        SetFilterValue(filteringOptions, "BespokeColumn3");
+        SetFilterValue(filteringOptions, "BespokeColumn4");
+        SetFilterValue(filteringOptions, "BespokeColumn5");
+        SetFilterValue(filteringOptions, "PriipProductCode");
+    },
+
+    SetFilterValue = function(targetObject,property,urlparameter) {
+        if (urlparameter == null) {
+            urlparameter = property;
+        }
+
+        var parameterValue = getParameterByNameIgnoreCase(urlparameter);
+        ///If the URL parameter Value is empty, don't set the value to ''.
+        ///Because when the value is empty, MVC consider the value posted in GetUnitData is null,
+        ///But for fund data service, the data is converted into string empty values is considered as a value.
+        ///It cause different result between fund service and GFMD request
+        if (eval("targetObject." + property) == null && parameterValue != null && parameterValue != '') {
+            eval("targetObject." + property + "='" + parameterValue + "'");
+        }
+    },
+
+  GetModelForFilterData = function (toolId, projectToolId, isClearButton) {
+      var model = {};
+      model.GrsProjectId = modelContents.GrsProjectId;
+      model.ProjectName = modelContents.ProjectName;
+      model.ToolName = toolId;
+      model.ProjectToolId = projectToolId;
+      model.LanguageId = modelContents.LanguageId;
+      model.LangCode = modelContents.LanguageCode;
+      model.CustomLogic = getParameterByNameIgnoreCase('customlogic');
+      model.RangeName = getParameterByNameIgnoreCase('rangename');
+      model.DefaultRangeName = getParameterByNameIgnoreCase('defaultrangename');
+      model.RangeCode = getParameterByNameIgnoreCase('rangecode');
+      model.DefaultRangeCode = getParameterByNameIgnoreCase('defaultrangecode');
+      model.Category = getParameterByNameIgnoreCase('category');
+      model.Category2 = getParameterByNameIgnoreCase('category2');
+      model.ForSaleIn = getParameterByNameIgnoreCase('forsalein');
+      model.FSIexclCT = getParameterByNameIgnoreCase('fsiexclct');
+      model.DefaultCategoryCode = getParameterByNameIgnoreCase('defaultcategorycode');
+      model.DefaultCategoryCode2 = getParameterByNameIgnoreCase('defaultcategorycode2');
+      model.SectorCode = getParameterByNameIgnoreCase('sectorcode');
+      model.ManagerCode = getParameterByNameIgnoreCase('managercode');
+      model.BespokeColumn1 = getParameterByNameIgnoreCase('bespokecolumn1');
+      model.BespokeColumn2 = getParameterByNameIgnoreCase('bespokecolumn2');
+      model.BespokeColumn3 = getParameterByNameIgnoreCase('bespokecolumn3');
+      model.BespokeColumn4 = getParameterByNameIgnoreCase('bespokecolumn4');
+      model.BespokeColumn5 = getParameterByNameIgnoreCase('bespokecolumn5');
+      model.PriipProductCode = getParameterByNameIgnoreCase('PriipProductCode');
+      return model;
+  },
+
+CheckNullEmpty = function(paramValue, existingValue)
+{
+    if (paramValue)
+    {
+       return paramValue;
+
+    } else { return existingValue }
+},
+
+    OnGetDataStart = function (toolId) {
+        $(".advance-" + toolId).css('opacity', 0.3);
+    },
+
+    OnGetDataComplete = function (toolId) {
+        $(".advance-" + toolId).mfs('refresh');
+        $(".advance-" + toolId).css('opacity', 1);
+    },
+
+    BindModelToList = function (filter, toolId, passedInurl) {
+        var currentFilterId = filter.Id + '-' + toolId + '-';
+
+        var isMultiSelect = $('#' + currentFilterId).attr("data-ismultiselection");
+        var showAllasoption = $('#' + currentFilterId).attr("data-showallasoption");
+        var isAutoSearch = $('#' + currentFilterId).attr("data-isautosearch");
+        var idWithPrefix = (isMultiSelect == "true" ? "chk" : "rdo") + currentFilterId;
+        var type = isMultiSelect == "true" ? "checkbox" : "radio";
+        var labelCss = isMultiSelect == "true" ? "checkbox" : "radiobutton";
+        var selected = [];
+
+        $('input[id*="' + currentFilterId + '"]:checked').each(function (id, item) {
+            selected.push(item.value);
+        });
+
+        if (passedInurl != null) {
+            passedInurl = passedInurl.toLowerCase().trim();
+            $.each(passedInurl.split(','),
+                function(i, v) {
+                    if ($.inArray(v, selected) == -1) {
+                        selected.push(v);
+                    }
+                });
+        }
+
+
+        $('input[id*="' + currentFilterId + '"]').not('input[id$="' + currentFilterId + 'All"]').removeAttr('disabled');
+        var oldfilterArray = [];
+        $("fieldset legend", '#' + currentFilterId).each(function (id, legend) {
+            oldfilterArray.push({
+                Value: "group",
+                DisplayText: legend.innerHTML
+            });
+        });
+        $.each($('input[id*="' + currentFilterId + '"]'), function (index, control) {
+            oldfilterArray.push({
+                Value: $(control).val(),
+                DisplayText: $(control).attr("data-displaytext"),
+                GroupName: $(control).attr("data-GroupName")
+            });
+        });
+
+        $.merge(oldfilterArray, filter.Data);
+
+
+        var UniqueFilterData = [];
+
+
+        $.each(oldfilterArray, function (index, item) {
+            var value = $.grep(UniqueFilterData, function (ele) { return ele.Value.toLowerCase() == item.Value.toLowerCase() && decode(ele.DisplayText) == decode(item.DisplayText); });
+            if (value.length == 0) {
+                UniqueFilterData.push({
+                    Value: item.Value,
+                    DisplayText: item.DisplayText,
+                    GroupName: item.GroupName
+                });
+            }
+        });
+
+        if (filter.SearchFilterType == 1) {
+            $(".fe-filterlist-content-list", '#' + currentFilterId).empty();
+
+            $.each(UniqueFilterData, function (index, obj) {
+                if (obj.Value != "group") {
+                    $(".fe-filterlist-content-list", '#' + currentFilterId)
+                        .append($("<div class = 'filterlistitem-container'></div>")
+                            .append($("<label class='" + labelCss + "' for='" + idWithPrefix + (index + 1) + "'></label>")
+                                .append($("<input data-displaytext='" + obj.DisplayText + "' id='" + idWithPrefix + (index + 1) + "' name='" + filter.Id + "' onchange ='SearchByListitem(" + toolId + ",true,false,this," + showAllasoption + "," + isAutoSearch + ");' type='" + type + "' value='" + obj.Value + "'" + ($.inArray(obj.Value.trim(), selected) != -1 ? " checked" : "") + " />"))
+                                .append($("<a class='advance-search-a' role='button' title='" + obj.DisplayText + "'><span class='label-text' id='lbl" + idWithPrefix + (index + 1) + "' >" + obj.DisplayText + "</span></a>")))
+                        );
+                }
+            });
+        } else {
+
+            var GroupArray = [];
+
+
+            $(".fe-filterlist-content-list", '#' + currentFilterId).empty();
+
+            $.each(UniqueFilterData, function (index, item) {
+                if (item.Value == "group") {
+                    GroupArray.push(item);
+                }
+            });
+
+            var groupFilterArray = [];
+            $.each(GroupArray, function (index, item) {
+                var DataArray = [];
+                var value = $.grep(UniqueFilterData, function (ele) { return ele.GroupName == item.DisplayText; });
+                if (value.length > 0) {
+                    DataArray = value;
+                    DataArray.sort(SortByName);
+                }
+                groupFilterArray.push({
+                    Key: item.DisplayText,
+                    Data: DataArray
+                });
+            });
+
+
+            // $(".fe-filterlist-content-list", '#' + currentFilterId)
+
+            $.each(groupFilterArray, function (id, item) {
+                var field = $("<fieldset class='fe-fieldset-content-list" + (id + 1) + "'></fieldset>").append($("<legend>" + item.Key + "</legend>"));
+                $.each(item.Data, function (index, obj) {
+
+                    $(field).append($("<div class = 'filterlistitem-container'></div>")
+                        .append($("<label class='" + labelCss + "' for='" + idWithPrefix + (index + 1) + "'></label>")
+                            .append($("<input data-displaytext='" + obj.DisplayText + "' data-groupname='" + item.Key + "' id='" + idWithPrefix + (index + 1) + "' name='" + filter.Id + "' onchange='SearchByListitem(" + toolId + ",true,false,this," + showAllasoption + "," + isAutoSearch + ");' type='" + type + "' value='" + obj.Value + "'" + ($.inArray(obj.Value, selected) != -1 ? " checked" : "") + "/>"))
+                            .append($("<a class='advance-search-a' role= 'button' title= '" + obj.DisplayText + "' ><span class='label-text' id='lbl" + idWithPrefix + (index + 1) + "' >" + obj.DisplayText +"</span></a>")))
+                        );
+                });
+                $(field).appendTo($(".fe-filterlist-content-list", '#' + currentFilterId));
+            }
+            );
+        }
+        $('input[type=checkbox],input[type=radio]').on("focusin", function () {
+            nextfocusin(this.id);
+
+        });
+        $('input[type=checkbox],input[type=radio]').on("focusout", function () {
+            nextfocusout(this.id);
+        });
+        var anyChecked = false;
+        $.each($('input[id*="' + currentFilterId + '"]').not('input[id$="' + currentFilterId + 'All"]'), function (index, control) {
+            ///if the value not present in array disable the control
+            var value = $.grep(filter.Data, function (ele) { return ele.Value == $(control).val(); });
+            if (value.length == 0) {
+                $(control).prop('disabled', true);
+                $(control).prop('checked', false);
+            } else {
+                anyChecked = true;
+            }
+
+        });
+
+        if (!anyChecked) {
+            $('div[id = "' + currentFilterId + '"]').find('.filter-clearall input').prop('disabled', true);
+        }
+
+        $('input[id*="' + currentFilterId + '"]').checkboxradio();
+        $('.advance-' + toolId).trigger('refresh');
+    },
+
+  SortByName = function (a, b) {
+      var aName = a.DisplayText.toLowerCase();
+      var bName = b.DisplayText.toLowerCase();
+      return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+  },
+
+    BindModelToDropdown = function (filter, toolId) {
+        var currentFilterId = filter.Id + '-' + toolId;
+        var tokenisedText = $('#advancedSearchContainer').attr('data-tokenised-loading-text');
+        $('option', '#' + currentFilterId).each(function () {
+            if ($(this).val() != '' || ($(this)[0].innerHTML == tokenisedText && $(this).val() == '')) {
+                $(this).remove();
+            }
+        });
+
+        $.each(filter.Data, function (index, option) {            
+                $('#' + currentFilterId).append($('<option></option>').val(option.Value).html(option.DisplayText));
+        });
+        $('#' + currentFilterId).mfs('refresh');
+    },
+
+      BindModelToRangeSlider = function (filter, toolId) {
+          var currentFilterId = filter.Id + '-' + toolId;
+          var maxBoundDispValue = "";
+          var minBoundDispValue = "";
+          var isMaxBoundOpen = "";
+          var isMinBoundOpen = "";
+
+          $.each(filter.Data, function (index, option) {
+              if (option.Value == "IsMaximumBoundryOpen" && option.DisplayText == "True")
+              {
+                  $('#' + currentFilterId).attr('data-maxopen', 'true');
+                  isMaxBoundOpen = 'True';
+              }
+              else if (option.Value == "IsMinimumBoundryOpen" && option.DisplayText == "True")
+              {
+                  $('#' + currentFilterId).attr('data-minopen', 'true');
+                  isMinBoundOpen = 'True';
+              }
+              else if (option.Value == "MaximumBoundryDisplayValue" && option.DisplayText != null && option.DisplayText != "")
+              {
+                  maxBoundDispValue = option.DisplayText;
+              }
+              else if (option.Value == "MinimumBoundryDisplayValue" && option.DisplayText != null && option.DisplayText != "") {
+                  minBoundDispValue = option.DisplayText;
+              }
+              else if (option.Value == "data-metric" && option.DisplayText == null) {
+                  $('#' + currentFilterId).attr(option.Value, "");
+              }
+              else
+              {
+                  $('#' + currentFilterId).attr(option.Value, option.DisplayText);
+              }
+          });
+
+          if (isMaxBoundOpen && maxBoundDispValue != "")
+          {
+          $('#' + currentFilterId).attr('data-maxboundrydisplay', maxBoundDispValue);
+          }
+
+          if (isMinBoundOpen && minBoundDispValue != "") {
+              $('#' + currentFilterId).attr('data-minboundrydisplay', minBoundDispValue);
+          }
+      },
+
+    BindModelToGroupDropdown = function (filter, toolId) {
+        var currentFilterId = filter.Id + '-' + toolId;
+        var tokenisedText = $('#advancedSearchContainer').attr('data-tokenised-loading-text');
+        $('option', '#' + currentFilterId).each(function () {
+            if ($(this).val() != '' || ($(this)[0].innerHTML == tokenisedText && $(this).val() == '')) {
+                $(this).remove();
+            }
+        });
+
+        $('optgroup', '#' + currentFilterId).remove();
+
+        $.each(filter.Data, function (index, option) {
+            var no_of_options = filter.Data.length;
+            if (option.Value == "Group") {
+                if (index == 0) {
+                    $('#' + currentFilterId).append($("<optgroup>").attr("label", option.DisplayText));
+                }
+                else {
+                    $('#' + currentFilterId).append($("</optgroup><optgroup>").attr("label", option.DisplayText));
+                }
+            }
+            else {
+                if (index == no_of_options - 1) {
+                    $('#' + currentFilterId).append($('<option></option>').val(option.Value).html('&nbsp;&nbsp;' + option.DisplayText)).append('</optgroup>');
+                }
+                else {
+                    $('#' + currentFilterId).append($('<option></option>').val(option.Value).html('&nbsp;&nbsp;' + option.DisplayText));
+
+                }
+            }
+        });
+    },
+
+    // To display all the advance search options if search button and advance search button are not rendered.
+    SearchFiltersRule = function () {
+        SearchToolFiltersRule(ToolIds.FundCentreId);
+        SearchToolFiltersRule(ToolIds.FundCentreAMId);
+        SearchToolFiltersRule(ToolIds.AllFundsAMId);
+    },
+
+    // To display all the advance search options if search button and advance search button are not rendered.
+    SearchToolFiltersRule = function (toolId) {
+        if ($(".basicSearch-" + toolId) != null && $(".basicSearch-" + toolId).length <= 0) {
+            $('.advance-' + toolId).show();
+        }
+    },
+
+    clearFilters = function (toolId) {
+        ClearControls('advancedSearchContainer-' + toolId, toolId);
+
+        var anyCascadingDropdwownExists = false;
+        ///Check for dropdowns
+        $('.fe-search-fileters-dropdown', '.advancedSearchContainer-' + toolId).each(function () {
+            if ($(this).is('[data-isCascading]')) {
+                anyCascadingDropdwownExists = true;
+            }
+        });
+
+        ///Check for list
+        if (!anyCascadingDropdwownExists) {
+            $('.fe-filterlist-content', '.advancedSearchContainer-' + toolId).each(function () {
+                if ($(this).is('[data-isCascading]')) {
+                    anyCascadingDropdwownExists = true;
+                }
+            });
+        }
+
+        if (anyCascadingDropdwownExists) {
+            var projectToolId = $('.advancedSearchContainer-' + toolId).closest("form").attr("data-projectToolId");
+            FundCentre.AdvancedSearchFilters.GetFilterData(null, true, toolId, projectToolId, true);
+        }
+    }
+
+    return {
+        GetFilterData: GetFilterData,
+        InitializeFilters: InitializeFilters,
+        GetFilteringOptions: GetFilteringOptions
+    };
+} ();
+
+$(function () {
+    var filterEnabledTools = [1, 14, 15];
+
+    ///Eanble accordion for filter
+    var filteracc = new FilterAccordion();
+    for (var i = 0; i < filterEnabledTools.length; i++) {
+        var filterSelector = '.advance-' + filterEnabledTools[i];
+        filteracc.InitFilterClick($(filterSelector));
+        filteracc.InitFilter($(filterSelector));
+
+        ///Style radion/checkboxes
+        $(filterSelector).on("enhance", function () {
+            $("body").addClass("enhanced");
+        });
+
+        $(filterSelector).trigger("enhance");
+    }
+
+    $('input[type=checkbox],input[type=radio]').on("focusin", function () {
+        nextfocusin(this.id);
+       
+    });
+    $('input[type=checkbox],input[type=radio]').on("focusout", function () {
+        nextfocusout(this.id);
+    });
+    SpanDivKeypress();
+    ///Select all checkbox handling
+    $("[id^='chk'][id$='-All']").on('change', function () {
+        var isChecked = $(this).prop('checked');
+        var controlId = $(this).prop('id').replace('All', '');
+        $("[id ^='" + controlId + "']").prop('checked', isChecked);
+        if (isChecked) {
+            $("[id ^='" + controlId + "']").closest('label').removeClass("checked").addClass("checked");
+        }
+        else {
+            $("[id ^='" + controlId + "']").closest('label').removeClass("checked");
+        }
+    });
+
+    FundCentre.AdvancedSearchFilters.InitializeFilters();
+
+    // Display the search filters if Search and advance search button are not rendered on the page.
+    SearchFiltersRule();
+
+    
+});
+
+function nextfocusin(id) {
+    id = 'lbl' + id;
+    $('#' + id).addClass('spanFocus');
+}
+function nextfocusout(id) {
+     id = 'lbl' + id;
+     $('#' + id).removeClass('spanFocus');
+}
+
+function executeFilterLoadOnFilterReady()
+{
+    var j = 0;
+    $.each($('.fe-search-fileters-dropdown'), function (i, filter) {
+        if ($(filter).val() != '' && $(filter).attr("name") != "PerformanceOperator") {
+            if (j == 0) {
+                $(filter).trigger('change');
+            } else {
+                FiltersCascading(filter);
+            }
+            j++;
+        }
+    });
+
+    $.each($('.fe-filterlist-content-list'), function (i, container) {
+        $('input', container).each(function (j, filter) {
+            if (filter && filter.checked) {
+                $(filter).trigger('change');
+                return false;
+            }
+        });
+    });
+}
+
+function decode(input) {
+    return $('<div/>').html(input).text();
+}
+
+function SetAriaLabelForFilerSlider() {
+    $('.ui-slider-handle').each(function (i) {
+        if (isEven(i)) {
+            $(this).attr("aria-label", "minimum");
+        } else {
+            $(this).attr("aria-label", "maximum");
+        }
+    })
+}
+
+function isEven(value) {
+    if (value % 2 == 0)
+        return true;
+    else
+        return false;
+}

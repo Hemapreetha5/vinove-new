@@ -1,0 +1,1116 @@
+(function () {
+    "use strict";
+    var d = document,
+        visible = false,
+        main,
+        tab,
+        mobileTab,
+        bubble,
+        toggling = false,
+        elements = [],
+        speed,
+        pos,
+        go_to,
+        prevHeight,
+        debounceTimer,
+        //configuration
+        config = {
+            "graceTime": 0.25,
+            "animationTime": 0.6,
+            "tabOffset": "108px",
+            "closeIcon": "/~/media/Images/P/Phoenix-HWU-V3/feedback-images/close-icon", // close icon
+            "star-outline": "/~/media/Images/P/Phoenix-HWU-V3/feedback-images/star-outline",
+            "star-filled": "/~/media/Images/P/Phoenix-HWU-V3/feedback-images/star-filled",
+            "colours": {
+                "primaryBackground": "#c90062",
+                "tabBackground": "#F9F9F9",
+                "tabBackgroundHover": "#F9F9F9",
+                "fieldBorder": "#E1E1E1",
+                "fieldFocusBorder": "#c90062",
+                "submitBackground1": "#c90062",
+                "submitBackground2": "#009cef",
+                "title": "#363534"
+
+            },
+              "messaging": {
+                "title": "We’d love to hear your feedback",
+                "subtitle": `Overall, how would you rate your experience on our website today<span class="fnClass">?</span>`,
+                "scaleHint": "Please let us know why you selected that score. <br />(Please don’t include any personal details like a policy number or bank details).", 
+                "thankyou": "Thank you",
+                "thankyouSub": "We appreciate you taking the time to complete this feedback.",
+                "failed": "Sending failed! Please check that you are still connected to the internet.<br/>We'll let you try again in a bit.", // Fail text,
+                "send": "Send feedback",
+                "sendHint": "Send feedback",
+                "failHint": "Please wait",
+                "error": {
+                    "comment": "Please give us a reason for your score",
+                }
+            },
+            "includeURL": "URL",
+            "minScoreBound": 1,
+            "maxScoreBound": 5,
+            "fields": [{
+                "type": "comment",
+                "verbatim": "",
+                "required": false,
+                "mapping": "comment"
+            },]
+        },
+        slide = {
+            "moving": false,
+            "original": 0,
+            "dx": 0,
+            "offset": 0,
+            "prev": 0,
+            "start": 0,
+            "max": 0,
+            "moveStart": function (e) {
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                }
+                var handle = d.getElementById("rnr-widget-handle");
+                var rail = d.getElementById("rnr-widget-rail");
+
+                if (!slide.moving) {
+                    slide.moving = true;
+                    slide.start = (e.touches && e.touches[0].pageX) || e.pageX || e.clientX;
+                    slide.max = rail.clientWidth - handle.clientWidth + 28;
+                    slide.dx = slide.start - handle.offsetLeft - 14;
+                    slide.offset = handle.offsetLeft;
+                    slide.prev = handle.offsetLeft;}
+            },
+            "move": function (e) {
+                var handle = d.getElementById("rnr-widget-handle"),
+                    now,
+                    at;
+                if (slide.moving) {
+                    now = ((e.touches && e.touches[0].pageX) || e.pageX || e.clientX) - slide.dx - slide.offset + slide.prev;
+                    now = Math.max(12, Math.min(now, slide.max - 14));
+                    css.call(handle, "left", now + "px");
+                    at = config.minScoreBound + Math.round(((now - 12) / (slide.max - 26)) * (config.maxScoreBound - config.minScoreBound));
+                    handle.innerHTML = at;
+                    e.preventDefault && e.preventDefault();
+                }
+            },
+            "end": function (e) {
+                var handle = d.getElementById("rnr-widget-handle"),
+                    current,
+                    target,
+                    distance,
+                    animate;
+                if (!handle || slide.moving === false) { return; }
+
+                slide.moving = false;
+                if (go_to) {
+                    clearTimeout(go_to);
+                }
+                current = 14 + handle.offsetLeft;
+                target = 13 + (((parseInt(handle.innerHTML, 10) - config.minScoreBound) / (config.maxScoreBound - config.minScoreBound)) * (slide.max - 26));
+
+                pos = current;
+                speed = 2;
+
+                animate = function () {
+                    if (Math.abs(target - pos) > 0.1) {
+                        if (pos > target) {
+                            pos -= 1 * speed;
+                            speed *= 0.9;
+                            css.call(handle, "left", pos + "px");
+                            setTimeout(animate, 1000 / 60);
+                        }
+                        if (pos < target) {
+                            pos += 1 * speed;
+                            speed *= 0.9;
+                            css.call(handle, "left", pos + "px");
+                            setTimeout(animate, 1000 / 60);
+                        }
+                    }
+                }
+                animate();}
+        },
+        //utility functions
+        supportsInputPlaceholder = function () {
+            return document.createElement('input').placeholder !== undefined;
+        },
+        css = function (prop, val) {
+            var thing, text = "";
+
+            if (val) {
+                this.style[prop] = val;
+            } else {
+                for (thing in prop) {
+                    if (prop.hasOwnProperty(thing)) {
+                        text += thing + ":" + prop[thing] + ";";
+                    }
+                }
+                this.style.cssText = text;
+            }
+        },
+        bind = function (el, event, callback) {
+            if (d.addEventListener) {
+                return el.addEventListener(event, callback);
+            } else {
+                return el.attachEvent("on" + event, callback);
+            }
+        },
+        placeholder = function (string) {
+            var self = this,
+                range;
+
+            this.value = string;
+            this.style.color = "#363534";
+
+            bind(this, "focus", function () {
+                if ((self.value === string) || (self.value.replace(/\s+/g, "") === "")) {
+                    self.value = "";
+                    self.style.color = "#363534";
+                    self.value = string;
+                }
+            });
+            bind(this, "blur", function () {
+                if ((self.value === string) || (self.value.replace(/\s+/g, "") === "")) {
+                    self.value = string;
+                    self.style.color = "#363534";
+                }
+            });
+            bind(this, "keydown", function () {
+                if ((self.value === string) || (self.value.replace(/\s+/g, "") === "")) {
+                    self.value = "";
+                }
+                self.style.color = "black";
+            });
+        },
+        getAbsoluteOffset = function (el) {
+            var total = 0,
+                at = el;
+
+            while (true) {
+
+                total += at.offsetLeft;
+
+                if (at.id === "rnr-feedback") {
+                    break;
+                }
+                at = at.parentNode;
+            }
+            return total;
+        },
+        debounce = function () {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+            }
+            debounceTimer = setTimeout(function () {
+                debounceTimer = null;
+                return adjustSize();
+            }, 50);
+        },
+        showError = function (el, msg) {
+            var prev = d.createElement("div");
+
+            prev.id = "rnr-widget-validation";
+            prev.innerHTML = msg;
+            css.call(prev, {
+                "text-align": "left",
+                "width": "284px",
+                "margin-top": "3px",
+                "font-size": "14px",
+                "color": "#bc0101"
+            });
+
+            el.parentNode.insertBefore(prev, el.nextSibling);
+        },
+        isFormValid = function (stuff) {
+            var i,
+                el = elements,
+                len = el.length,
+                val = "",
+                type,
+                mandatory,
+                prev,
+                mapping,
+
+                reg = {
+                    "email": /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/,
+                    "telephone": /[0-9]{9}/
+                },
+
+                //this is the list of error messages to display,
+                err = config.messaging.error;
+
+            //delete any previous error messages;
+            prev = d.getElementById("rnr-widget-validation");
+            if (prev) {
+                prev.parentNode.removeChild(prev);
+            }
+
+            for (i = 0; i < len; i += 1) {
+                val = stuff[i].value;
+                type = stuff[i].getAttribute("data-type");
+                mandatory = stuff[i].getAttribute("data-required");
+                mapping = stuff[i].getAttribute("data-mapping");
+
+                //innocent until proven guilty
+                stuff[i].style.borderColor = "#E1E1E1";
+
+                //if it's blank and mandatory, fail
+                if ((mandatory === "true") && ((val.replace(/\s+/g, "") === "") || (val === config.fields[i].verbatim))) {
+                    showError(stuff[i], err[mapping] || err[type]);
+                    stuff[i].style.borderColor = "#bc0101";
+
+                    return false;
+                } else {
+                    //it's not mandatory, but filled in anyway
+                    //if we have a type for it, check against it
+                    if (type === "telephone") { val = val.replace(/ /g, ''); stuff[i].value = val; };
+                    if ((val.replace(/\s+/g, "") !== "") && (val !== config.fields[i].verbatim) && (reg[type] && !val.match(reg[type]))) {
+                        showError(stuff[i], err[mapping] || err[type]);
+                        stuff[i].style.borderColor = "#bc0101";
+
+                        return false;
+                    }
+                }
+            }
+            // Check if rating is selected
+            var ratingValue = parseInt(document.getElementById('rating-value').value);
+            if (isNaN(ratingValue) || ratingValue < 1) {
+                // alert("Please select a rating before sending feedback.");
+                return false;
+            }
+            return true;
+        },
+
+        adjustSize = function () {
+            var content = d.getElementById("rnr-feedback-inner"),
+                //inner = window.innerHeight || d.documentElement.clientHeight,
+                responsive = window.innerWidth || d.documentElement.clientWidth;
+            var rail = d.getElementById("rnr-widget-rail");
+
+            /* RESPONSIVE "STYLE" */
+            // check for mobile resolution
+            if (responsive < 480) {
+                //make main full screen
+                if (visible) {
+                    //make main full screen
+                    main.style.position = "fixed";
+                    //main.style.left = 0;
+                    main.style.right = 0;
+                    main.style.top = 0;
+                    main.style.bottom = 0;
+                    main.style.width = "100%";
+                    main.style.height = "100%";
+                    main.style.overflowY = "auto";
+                    main.style.marginRight = 0;
+                    bubble.style.height = "100%";
+                    bubble.style.width = "100%";
+                }
+                else {
+                    main.style.right = "-467px";
+                }
+                tab.style.display = "none";
+                mobileTab.style.display = "block";
+            }
+            else {
+                //tab.style.height = "105px";
+
+                tab.style.display = "block";
+                mobileTab.style.display = "none";
+
+                //change the main container to fixed
+                main.style.position = "fixed";
+                main.style.width = "467px";
+                bubble.style.height = "auto";
+                bubble.style.width = "432px";
+
+                //main.style.left = "auto";
+                // main.style.overflowY = "hidden";
+                content.style.overflowY = "hidden";
+                main.style.bottom = "auto";
+
+                if (visible) {
+                    main.style.right = 0;
+                } else {
+                    main.style.right = "-432px";
+                }
+            }
+            return adjustHeight();
+        },
+        adjustHeight = function () {
+            var fitHeight = window.innerHeight || d.documentElement.clientHeight;
+            var content = d.getElementById("rnr-feedback-inner");
+            var hoffset = main.scrollHeight + main.offsetTop;
+            // check if it fits in height
+            main.style.height = "auto";
+            if (fitHeight < hoffset) {
+                if ((fitHeight - hoffset) < 0) {
+                    main.style.top = Math.max(0, (fitHeight - hoffset)) + "px";
+                    main.style.top = 0;
+                    main.style.bottom = "42px";
+                    main.style.overflowY = "visible";
+
+                    content.style.height = "100%";
+                    content.style.overflowY = "scroll";
+                }
+                else {
+                    main.style.bottom = "inherit";
+                    main.style.overflowY = "hidden";
+
+                    content.style.height = prevHeight || "auto";
+                    content.style.overflowY = "hidden";
+                }
+
+            }
+            else {
+                main.style.top = Math.min(parseInt(config.tabOffset), ((fitHeight - main.clientHeight) / 2)) + "px";
+            }
+        },
+
+        thankYou = function () {
+            //this is essentially a duplicate of createContent's top bit
+            //the reason why it's copied over is because in this case it's the same
+            //but it doesn't have to be
+
+            var f = d.createDocumentFragment(),
+                // close = d.createElement("div"),
+                close = d.createElement("img"),
+                logo = d.createElement("img"),
+                box = d.createElement("div"),
+                power = d.createElement("img"),
+                a = d.createElement("a"),
+                m,
+                h;
+
+            //before clearing the content, get set the bubble height to fixed
+            //bubble.style.height = (bubble.offsetHeight - 40) + "px";
+            destroyContent();
+
+            //add a close button
+            // close.innerHTML = "&times;";
+            close.src = config.closeIcon;
+            // accessibility 
+            close.setAttribute("alt", "Close feedback form");
+            close.setAttribute("role", "button");
+            close.setAttribute("tabindex", "0");
+            close.setAttribute("aria-label", "Close feedback form");
+            // end accessibility 
+            css.call(close, "margin", "0 auto");
+            f.appendChild(close);
+
+            css.call(close, {
+                "position": "absolute",
+                "right": "20px",
+                "top": "25px",
+                "cursor": "pointer",
+            });
+
+            bind(close, "tap", tabToggle);
+            bind(close, "click", tabToggle);
+            // accessibility 
+            bind(close, "tap", tabToggle);
+            bind(close, "keypress", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    tabToggle();
+                }
+            });// end accessibility 
+            f.appendChild(close);
+
+            //add the messaging
+            //title
+            m = document.createElement("p");
+            css.call(m, {
+                "font-size": "24px",
+                "font-weight": "400",
+                "line-height": "28px",
+                "margin-top": 0,
+                "margin-bottom": "24px",
+                "color": config.colours.title
+            });
+            m.innerHTML = config.messaging.thankyou;
+            f.appendChild(m);
+            //subtitle
+            m = document.createElement("p");
+            css.call(m, {
+                "margin": 0,
+                "font-size": "18px",
+                "line-height": "21px",
+                "font-weight": "400",
+                "color": "#363534",
+                "margin-bottom": "0",
+                "padding-bottom": "31px",
+            });
+            m.innerHTML = config.messaging.thankyouSub;
+            f.appendChild(m);
+
+
+            m = document.createElement("p");
+            css.call(m, {
+                "margin": 0,
+                "font-size": "18px",
+                "line-height": "21px",
+                "font-weight": "400",
+                "color": "#363534",
+                "margin-bottom": "0",
+                "padding-bottom": "31px",
+            });
+            bubble.appendChild(f);
+
+            prevHeight = bubble.style.height;
+            adjustSize();
+
+        },
+        Oops = function () {
+            var btn = d.getElementById("rnr-widget-send"),
+                elem,
+                prev;
+
+            btn.innerHTML = config.messaging.failHint;
+            showError(btn.previousSibling, "<br/>" + config.messaging.failed);
+
+            //reset elements after timeout
+            setTimeout(function () {
+                elem = elements;
+                for (var i = 0; i < elem.length; i += 1) {
+                    elem[i].disabled = false;
+                }
+                btn.disabled = false;
+                btn.innerHTML = config.messaging.send;
+
+                css.call(btn, {
+                    "background-color": "#c90062",
+                    "color": "white",
+                    "padding": "7px",
+                    "font-size": "18px",
+                    "font-weight": "400",
+                    "line-height": "28px",
+                    "font-family": "inherit",
+                    "border": "1px solid #c90062",
+                    "border-radius": "2px",
+                    //"margin": "5% 0 2.5% 0",
+                    "cursor": "pointer",
+                    "display": "block",
+                    "width": "100%",
+                    "box-shadow": "0 4px 0 #91004b, 0 5px 0 #662046",
+                    "margin-top": "24px",
+                });
+
+                //delete any previous error messages;
+                prev = d.getElementById("rnr-widget-validation");
+                if (prev) {
+                    prev.parentNode.removeChild(prev);
+                }
+                return adjustSize();
+
+            }, 10000);
+            adjustHeight();
+        },
+
+        //sends the ajax request
+        sendForm = function (query_string) {
+            var ajax,
+                uri = "https://demo.rantandrave.co.uk/RantAndRaveCCI/CaptureItem.do" + query_string;
+            if (!window.XDomainRequest) {
+                ajax = new XMLHttpRequest();
+
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState === 4) {
+                        if (ajax.status === 200) {
+                            return thankYou();
+                        } else {
+                            return Oops();
+                        }
+                    }
+                };
+
+                //fire away!
+                ajax.open("GET", uri, true);
+                ajax.setRequestHeader("Authorization", "Basic " + btoa("pl_cci_widget_user:February2024*!"));
+                ajax.send();
+            } else {
+                ajax = new XDomainRequest();
+
+                ajax.onload = thankYou;
+                ajax.onerror = ajax.ontimeout = Oops;
+
+                //fire away!
+                ajax.open("GET", uri + "&userid=pl_cci_widget_user&password=February2024*!");
+                ajax.send();
+            }
+        },
+
+        //this gets called when the button is pressed
+        prepareForm = function (e) {
+            var i,
+                el = elements,
+                len = el.length,
+                query = "?location=Web&workflow=WebWidget&channel=3&score=" + d.getElementById("rnr-widget-handle").innerHTML,
+                self = e.target || e.srcElement;
+
+            //disable the send button immediately
+            self.disabled = true;
+
+            //before we do anything else, check if the form is valid
+            if (isFormValid(el)) {
+
+                //ok good, lock the elements
+                self.innerHTML = config.messaging.sendHint;
+                self.style.color = "#ffffff";
+                self.style.background = "#c90062";
+
+                // include url?
+
+                if (config.includeURL !== "") {
+                    query += "&" + config.includeURL + "=" + encodeURIComponent(window.location);
+                }
+
+                //go through the form elements and disable them
+                for (i = 0; i < len; i += 1) {
+                    el[i].disabled = true;
+                    query += "&" + [el[i].getAttribute("data-mapping")] + "=" + encodeURIComponent(el[i].value);
+                }
+
+                sendForm(query);
+            } else {
+                self.disabled = false;
+            }
+
+        },
+
+        //create the slider
+        createSlider = function () {
+            var f = d.createDocumentFragment(),
+                image,
+                box_left = f.appendChild(d.createElement("div")),
+                box_center = f.appendChild(d.createElement("div")),
+                box_right = f.appendChild(d.createElement("div")),
+                rail = box_center.appendChild(d.createElement("div")),
+                handle = rail.appendChild(d.createElement("div")),
+
+                // star rating
+
+                ratingBox = f.appendChild(d.createElement("div")),
+                hiddenInput = ratingBox.appendChild(d.createElement("input"));
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "rating";
+            hiddenInput.id = "rating-value";
+            ratingBox.id = "rating-container";
+            let errormsg = document.createElement("p");
+            errormsg.className = "errormsg";
+            errormsg.id = "errormsg";
+            errormsg.textContent = "A rating is required for feedback";
+            css.call(ratingBox, {
+                "display": "flex",
+                "justify-content": "space-between",
+                "width": "100%",
+                "margin-top": "24px",
+            });
+
+            var ratingLevels = ["V. poor", "Poor", "Fair", "Good", "Great"];
+
+            for (let i = 1; i <= 5; i++) {
+                let starBox = ratingBox.appendChild(document.createElement("span"));
+                starBox.className = "starInner";
+                starBox.setAttribute("data-value", i);
+
+                let starText = document.createElement("p");
+                starText.className = "starPara";
+                starText.textContent = ratingLevels[i - 1];
+                starText.style.display = "block";
+                starText.style.fontSize = "12px";
+
+                css.call(starText, {
+                    "font-size": "14px",
+                    "line-height": "22px",
+                    "font-weight": "400",
+                    "margin": "0",
+                    "position": "relative",
+                    "top": "36px",
+                    "padding-right": "6px",
+                    "padding-top": "3px",
+                    "color": "#000000",
+                });
+
+                starBox.appendChild(starText);
+                css.call(starBox, {
+                    // "width": "30px",
+                    // "height": "30px",
+                    "display": "block",
+                    "background": "url(/~/media/Images/P/Phoenix-HWU-V3/feedback-images/star-outline) center no-repeat",
+                    "cursor": "pointer",
+                    "transition": "background-image 0.2s",
+                    "margin-top": "3px",
+                });
+                // Set tabindex to 0 for accessibility
+                starBox.setAttribute('tabindex', '0');
+            };
+
+            ratingBox.appendChild(errormsg);
+            let stars = ratingBox.querySelectorAll('.starInner');
+            let rating = 0;
+            stars.forEach(function (star) {
+
+              // Keyboard accessibility
+       
+                star.addEventListener('keydown', function (e) {
+                    if (e.key === "Enter" || e.key === " ") {
+                        rating = parseInt(this.getAttribute('data-value'));
+                        highlightStars(rating);
+                        document.getElementById('rating-value').value = rating; // Update hidden input value
+                        this.setAttribute("aria-checked", "true"); // Mark as checked
+                    }
+                });
+
+                star.addEventListener('mouseover', function () {
+                    var value = parseInt(this.getAttribute('data-value'));
+                    highlightStars(value);
+                });
+
+                star.addEventListener('mouseout', function () {
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('click', function () {
+                    rating = parseInt(this.getAttribute('data-value'));
+                    highlightStars(rating);
+                    document.getElementById('rating-value').value = rating; // Update hidden input value
+                });
+                // Focus accessibility
+                star.addEventListener('focus', function () {
+                    var value = parseInt(this.getAttribute('data-value'));
+                    highlightStars(value);
+                });
+
+                star.addEventListener('blur', function () {
+                    highlightStars(rating);
+                });
+            });
+
+            function highlightStars(value) {
+                stars.forEach(function (star) {
+                    if (parseInt(star.getAttribute('data-value')) <= value) {
+                        star.classList.add('selected');
+                        star.style.background = "url(/~/media/Images/P/Phoenix-HWU-V3/feedback-images/star-filled) center no-repeat";
+                    } else {
+                        star.classList.remove('selected');
+                        star.style.background = "url(/~/media/Images/P/Phoenix-HWU-V3/feedback-images/star-outline) center no-repeat";
+                    }
+                });
+            }
+
+
+            // end star rating
+
+            rail.id = "rnr-widget-rail";
+            handle.id = "rnr-widget-handle";
+
+            image = d.createElement("img");
+            // image.src = config.path + "/" + config.rant;
+            image.width = 42;
+            image.height = 57;
+
+            css.call(image, {
+                "position": "relative",
+                "top": "19px",
+                "left": "2px",
+                "display": "none" // hide prev data
+            });
+            css.call(box_left, {
+                "width": "42px",
+                "height": "100%",
+                "display": "inline-block",
+                "vertical-align": "top",
+                "display": "none" // hide prev data
+            });
+            box_left.appendChild(image);  // hide prev data
+
+            css.call(box_center, {
+                "width": "200px",
+                "height": "100%",
+                "display": "inline-block",
+                "vertical-align": "top",
+                "position": "relative",
+                "display": "none" // hide prev data
+            });
+            css.call(rail, {
+                "background": "#e7e7e7",
+                "height": "6px",
+                "width": "174px",
+                "position": "absolute",
+                "top": "50%",
+                "left": "13px",
+                "border-radius": "6px",
+                "border": "1px solid #d9d9d9"
+            });
+            css.call(handle, {
+                "width": "28px",
+                "height": "28px",
+                "position": "relative",
+                "margin-top": "-12px",
+                "margin-left": "-14px",
+                "border-radius": "28px",
+                "border": "1px solid #cccccc",
+                "background-color": "#dddddd",
+                "background-image": "linear-gradient(#ffffff, #dddddd)",
+                "box-shadow": "0px 1px 2px rgba(0,0,0,0.14)",
+                "left": "50%",
+                "text-align": "center",
+                "line-height": "28px",
+                "font-size": "15px",
+                "font-weight": "bold",
+                "text-shadow": "0 1px 0 rgba(255,255,255,0.65)",
+                "cursor": "pointer",
+                "color": "#01520c"
+            });
+
+            handle.innerHTML = config.minScoreBound + Math.round((config.maxScoreBound - config.minScoreBound) / 2);
+            handle.onselectstart = function () { return false; };
+
+            //mouse
+            bind(handle, "mousedown", slide.moveStart);
+            bind(main, "mousemove", slide.move);
+            bind(document, "mouseup", slide.end);
+            // touch
+            bind(handle, "touchstart", slide.moveStart);
+            bind(main, "touchmove", slide.move);
+            bind(document, "touchend", slide.end);
+
+            image = d.createElement("img");
+            // image.src = config.path + "/" + config.rave;
+            image.width = 42;
+            image.height = 57;
+            image.className = "noImg";
+
+            css.call(image, {
+                "position": "relative",
+                "top": "34px"
+            });
+            css.call(box_right, {
+                "width": "42px",
+                "height": "100%",
+                "display": "inline-block",
+                "vertical-align": "top",
+                "display": "none" // hide prev data
+            });
+            box_right.appendChild(image);
+
+            return f;
+        },
+
+        //create a field
+        createField = function (field_object) {
+            var f, style = {
+                "font-family": "inherit",
+                "font-size": "15px",
+                "min-height": "30px",
+                "border-radius": "4px",
+                "border": "1px solid #E1E1E1",
+                "outline": "none",
+                "display": "block",
+                "width": "100%",
+                "min-height": "122px",
+                "background": "#FBFBFB"
+            };
+
+            if (field_object.type.toLowerCase() === "comment") {
+                f = d.createElement("textarea");
+                f.rows = 4;
+                style["line-height"] = "15px";
+                style.padding = "8px";
+                style.resize = "vertical";
+            } else {
+                f = d.createElement("input");
+                style["line-height"] = "30px";
+                style.padding = "0 8px";
+            }
+
+            css.call(f, style);
+            if (!supportsInputPlaceholder()) {
+                placeholder.call(f, field_object.verbatim);
+            }
+
+            f.setAttribute("placeholder", field_object.verbatim);
+            f.setAttribute("data-mapping", field_object.mapping);
+            f.setAttribute("data-required", field_object.required);
+            f.setAttribute("data-type", field_object.type);
+
+            f.onfocus = function () {
+                this.style.borderColor = config.colours.fieldFocusBorder;
+            };
+            f.onblur = function () {
+                this.style.borderColor = config.colours.fieldBorder;
+            };
+
+            elements.push(f);
+            return f;
+        },
+
+        //creates the content inside the bubble
+        createContent = function (callback) {
+            var f = d.createDocumentFragment(),
+                close = d.createElement("img"),
+                logo = d.createElement("img"),
+                box = d.createElement("div"),
+                fields = config.fields,
+                len = fields.length,
+                button = d.createElement("button"),
+                i,
+                m;
+
+            //add a close button
+            close.src = config.closeIcon;
+            // accessibility essibility 
+            close.setAttribute("alt", "Close feedback form");
+            close.setAttribute("role", "button");
+            close.setAttribute("tabindex", "0");
+            close.setAttribute("aria-label", "Close feedback form");
+            // end accessibility essibility 
+            css.call(close, "margin", "0 auto");
+            f.appendChild(close);
+
+            // close.innerHTML = "&times;";
+            css.call(close, {
+                "position": "absolute",
+                "right": "13px",
+                "top": "25px",
+                "cursor": "pointer",
+            });
+            bind(close, "tap", tabToggle);
+            bind(close, "click", tabToggle);
+            // Bind close button events
+
+            // accessibility  
+            bind(close, "tap", tabToggle);
+            bind(close, "keypress", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    tabToggle();
+                }
+            });
+            // end accessibility 
+
+            f.appendChild(close);
+            //add the messaging
+            //title
+            m = document.createElement("p");
+            css.call(m, {
+                "font-size": "24px",
+                "font-weight": "400",
+                "line-height": "28px",
+                "margin-top": 0,
+                "margin-bottom": "24px",
+                "color": config.colours.title
+            });
+            m.innerHTML = config.messaging.title;
+            f.appendChild(m);
+
+            //subtitle
+            m = document.createElement("p");
+            css.call(m, {
+                "margin": 0,
+                "font-size": "18px",
+                "line-height": "21px",
+                "font-weight": "400",
+                "color": "#363534",
+                "margin-bottom": "24px",
+            });
+            m.innerHTML = config.messaging.subtitle.replace(/\%scale\%/g, config.minScoreBound + "-" + config.maxScoreBound);
+            f.appendChild(m);
+
+            //add a blank box instead of the score (for now)
+            css.call(box, {
+                "width": "284px",
+                "height": "84px",
+                //"margin": "0px 13px 4px 13px",
+                "-moz-user-select": "none",
+                "-khtml-user-select": "none",
+                "-webkit-user-select": "none",
+                "margin-top": 0,
+            });
+            box.appendChild(createSlider());
+            f.appendChild(box);
+            //hint
+            m = document.createElement("p");
+            css.call(m, {
+                "margin": 0,
+                "font-size": "18px",
+                "line-height": "21px",
+                "font-weight": "400",
+                "color": "#363534",
+                "margin-bottom": "24px",
+                "margin-top": "6px",
+            });
+            m.innerHTML = config.messaging.scaleHint.replace(/\%scale1\%/g, config.minScoreBound).replace(/\%scale2\%/g, config.maxScoreBound);
+            f.appendChild(m);
+            //add the required fields, in the order they appear
+            for (i = 0; i < len; i += 1) {
+                f.appendChild(createField(fields[i]));
+            }
+            //add the button
+            button.innerHTML = config.messaging.send;
+            button.id = "rnr-widget-send";
+            css.call(button, {
+                "background-color": config.colours.submitBackground1,
+                "color": "white",
+                "padding": "7px",
+                "font-size": "18px",
+                "font-weight": "400",
+                "line-height": "28px",
+                "font-family": "inherit",
+                "border": "1px solid " + config.colours.fieldFocusBorder,
+                "border-radius": "2px",
+                "cursor": "pointer",
+                "display": "block",
+                "width": "100%",
+                "box-shadow": "0 4px 0 #91004b, 0 5px 0 #662046",
+                "margin-top": "24px",
+
+            });
+            f.appendChild(button);
+            bind(button, "tap", prepareForm);
+            bind(button, "click", prepareForm);
+            //finally, add the fragment in
+            bubble.appendChild(f);
+
+            //before we slide the thing into position, make sure it fits on screen
+            prevHeight = 0;
+            adjustSize();
+
+            //we are done creating everything inside the bubble
+            //let the slider do its thing
+            return callback();
+        },
+        //clears the content inside the bubble
+        destroyContent = function () {
+            elements = [];
+            bubble.innerHTML = "";
+            toggling = false;
+        },
+
+        //makes the bubble toggle when you click on it
+        tabToggle = function () {
+            if (toggling) {
+                return;
+            }
+            toggling = true;
+            if (visible) {
+                css.call(main, "right", "-312px");
+                bubble.style.height = "auto";
+                main.style.width = "467px";
+                setTimeout(destroyContent, config.animationTime * 1000);
+                setTimeout(adjustSize, config.animationTime * 2);
+            } else {
+                createContent(function () {
+                    css.call(main, "right", "0px");
+                });
+                setTimeout(adjustSize, config.animationTime * 2);
+                setTimeout(function () { toggling = false; }, config.animationTime * 1000);
+            }
+            visible = !visible;
+        },
+
+        //creates widget dom element
+        createBubble = function () {
+            //create the main window
+            //reuse it if we've got it, but clear everything
+            main = main || d.getElementById("rnr-feedback") || d.body.appendChild(d.createElement("div"));
+            main.id = "rnr-feedback";
+            main.className = "rnr-feedback";
+            // accessibility 
+            main.setAttribute("role", "dialog");
+            main.setAttribute("aria-labelledby", "feedback-tab");
+            main.setAttribute("aria-hidden", "true");
+            // end accessibility 
+            main.innerHTML = "";
+
+            css.call(main, {
+                "position": "fixed",
+                "right": "-342px",
+                "top": config.tabOffset,
+                "width": "467px",
+                "transition": "all " + config.animationTime + "s cubic-bezier(0.23, 1, 0.32, 1) 0s, margin " + config.animationTime + "s cubic-bezier(0.23, 1, 0.32, 1) 0s",
+                "font-family": "Open Sans, Arial, Helvetica, sans-serif",
+                "z-index": "200"
+            });
+            //ok, now add the tab and the bubble
+            tab = main.appendChild(d.createElement("div"));
+            tab.className = "feedback-icon";
+            // accessibility 
+            tab.setAttribute("role", "button");
+            tab.setAttribute("aria-expanded", "false");
+            tab.setAttribute("tabindex", "0");
+            tab.setAttribute("aria-label", "Open feedback form");
+            // end accessibility 
+            css.call(tab, {
+                "width": "36px",
+                "height": "106px",
+                "position": "absolute",
+                "left": 0,
+                "top": 0,
+                "border-radius": "3px 0 0 3px",
+                "background": "url(/~/media/Images/P/Phoenix-HWU-V3/feedback-images/feedback-svg-icon) center no-repeat",
+                "cursor": "pointer"
+            });
+            //append mobile tab handler
+            mobileTab = main.parentNode.appendChild(d.createElement("div"));
+            mobileTab.className = "feedback-icon-mobile";
+            // accessibility
+            mobileTab.setAttribute("role", "button");
+            mobileTab.setAttribute("aria-expanded", "false");
+            mobileTab.setAttribute("tabindex", "0");
+            mobileTab.setAttribute("aria-label", "Open feedback form");
+            // end accessibility 
+            css.call(mobileTab, {
+                "width": "36px",
+                "height": "106px",
+                "position": "absolute",
+                "line-height": "25px",
+                "right": "0",
+                "top": config.tabOffset,
+                "border-radius": "3px 0 0 3px",
+                "background": "url(/~/media/Images/P/Phoenix-HWU-V3/feedback-images/feedback-svg-icon) center no-repeat",
+                "cursor": "pointer",
+                "transition": "width " + config.animationTime + "s cubic-bezier(0.23, 1, 0.32, 1) 0s",
+            });
+            bind(mobileTab, "tap", tabToggle);
+            bind(mobileTab, "click", tabToggle);
+
+            bubble = main.appendChild(d.createElement("div"));
+            bubble.id = "rnr-feedback-inner";
+            bubble.className = "feedback-inner-wrapper";
+            css.call(bubble, {
+                "width": "432px",
+                "height": "auto",
+                "float": "right",
+                "min-height": "105px",
+                "background": "white",
+                "position": "relative",
+                "border": "1px solid #e3e3e3",
+                "padding": "20px",
+                "margin-top": 0,
+                "box-shadow": "0px 4px 4px 0px rgb(0 0 0 / 25%)",
+
+                // "border-bottom-left-radius": "14px"
+            });
+            //add the event handler for the tab, so it shows/hides when you press it
+            bind(tab, "tap", tabToggle);
+            bind(tab, "click", tabToggle);
+            // accessibility 
+            bind(tab, "keypress", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    tabToggle();
+                }
+            });
+            // end accessibility 
+            adjustSize();
+        },
+        //main initialization
+        widget = function () {
+            createBubble();
+            bind(window, "resize", debounce);
+            createContent(adjustHeight);
+            setTimeout(destroyContent, config.animationTime * 1000);
+
+            //allright everything done, we may now show the handle
+            setTimeout(function () { css.call(main, "right", "-312px"); adjustSize() }, config.graceTime * 1000);
+        };
+
+    window.rnr_widget_load = widget;
+}());
+rnr_widget_load();

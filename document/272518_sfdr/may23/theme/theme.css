@@ -1,0 +1,661 @@
+@font-face {
+	font-family: 'MavenPro-Bold';
+	src: url('images/mavenpro-bold.ttf')format("truetype");
+}
+@font-face {
+	font-family: 'MavenPro-Bolditalic';
+	src: url('images/mavenpro-bold.ttf')format("truetype");
+	font-style:italic;
+}
+@font-face {
+	font-family: 'MavenPro-Regular';
+	src: url('images/mavenpro-regular.ttf')format("truetype");
+}
+@font-face {
+	font-family: 'MavenPro-italic';
+	src: url('images/mavenpro-regular.ttf')format("truetype");
+	font-style:italic;
+}
+@font-face {
+	font-family: 'MavenPro-Medium';
+	src: url('images/mavenpro-medium.ttf')format("truetype");
+}
+
+body { font-family: Georgia, serif; font-size: 9pt; }
+.page  { position: relative; width: 20cm; height: 24.7cm; padding: 0cm; }
+.row { margin-bottom: 0.3cm; }
+.column > .section { margin-left: 0.3cm; }
+.column:first-child > .section { margin-left: 0; }
+h1, h2, h3 { margin:0; color: #3399FF; }
+p { margin: 0; margin-bottom: 0.25cm; }
+.vertical-list div { margin-bottom: 0.25cm; }
+.vertical-list div span:first-child { color: #3399FF; }
+.horizontal-list span.value{
+	float:left !important;
+}
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page > .row1 h2 { font-size: 24pt; padding-left: 3cm; min-height: 2cm; background-image: url('./Images/logo.png'); background-repeat: no-repeat; margin-bottom: 0.5cm; }
+.page1 > .row2 > .column2 > .section { padding: 0.25cm; }
+
+.tabs.breakdowns { border: none; margin: 10px; }
+.tabs.breakdowns > .tabpanes { border: none; }
+.tabs.breakdowns > .tabpanes > .slider > .tab  { padding-bottom: 20px; }
+.tabs.breakdowns > .tabbuttons { position: absolute; bottom: 5px; z-index: 10000; }
+.tabs.breakdowns > .tabbuttons > .tab { border: none; background-color: #000; height: 10px; width: 10px; border-radius: 10px; overflow: hidden; margin-right: 10px; text-indent: -10000px; }
+.cler {font-size:24pt;}
+.reportheader {font-size:34pt;color: rgb(253, 226, 17);padding-left:0.5cm;}
+.headerbackground{background-color: rgb(138, 216, 216); height:10cm; background-image:url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');background-repeat: no-repeat;background-size: 100%;}
+.bottomrightheaderpage{margin-top: 10cm;}
+.compositepadding{padding-left: 1cm;background-color: rgb(138, 216, 216);margin-left: 1cm;margin-right: 1cm;padding-bottom: 1.6cm;}
+
+.securityaccount{background-color: rgb(138, 216, 216); padding-top: 7cm;font-size: 34pt;padding-bottom: .5cm;}
+.esgdata {background-color: rgb(167, 179, 179); padding-top: 4cm;font-size: 34pt;padding-bottom:3cm}
+.icon{
+	width:12px;
+	margin-left: 36px;
+	padding: 0.2cm;
+	}
+.row6 .icon,.row7 .icon,.row8 .icon{
+	/* margin-left: 63px; */
+}	
+.InfoBox{
+	width:100%;
+	height:auto;
+	background:#ebf6e6;
+}
+.InfoBoxDark *{
+	font-family: 'MavenPro-Bold';
+    font-size: 7.5pt;
+}
+.page1>.row2>.column2>.row4,.page1 > .row2 > .column2 > .section.row3 {
+    background: #B0E0A7;
+    border-radius: 0;
+}
+body > div.page1 > div.section.row.row2 > div.section.column.column2 > div.section.row.row1{
+	margin-bottom:0;
+}
+/*.page1>.row9>.column1>.row2,.page1>.row8>.column1>.row2,.page1>.row7>.column1>.row2,.page1>.row7>.column1>.row3,.page1>.row2>.column1>.row2,.page1>.row2>.column1>.row3,.page1>.row3>.column1>.row2,.page1>.row3>.column1>.row3,.page1>.row5>.column1>.row2,.page1>.row5>.column1>.row3,.page1>.row6>.column1>.row2,.page1>.row6>.column1>.row3{*/
+.Definition{
+	background: #f2f2f2;
+	padding:0.2cm 0.2cm 0.2cm 0.2cm;
+	font-family:'MavenPro-italic';
+	font-size:7.5pt;
+}
+
+@page{
+	margin: 1cm 1cm 1cm 0cm;
+	/*border:1px solid blue;*/
+}
+.page1>.row2>.column2>.row5,.page1>.row2>.column2>.row6,.page1>.row2>.column2>.row7,.page1>.row2>.column2>.row8,.page1>.row2>.column2>.row9{
+	background: #EBF6E6;
+	margin-bottom:0;
+	border-radius:0;
+}
+.page1>.row4>.column2,.page1>.row5>.column2,.page1>.row6>.column2,.page1>.row9>.column2{
+	margin-left:0.5cm;
+	width:77.5%;
+}
+.page1>.row3>.column2{
+    margin-left: 2.5%;
+    width: 72% !important;
+	float:left;
+}
+.page1>.row2>.column2>.row3,.page1>.row2>.column2>.row4,div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column1>.row1,
+div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column2>.row1,
+div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column3>.row1,
+div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column4>.row1,
+.page1 > div.row2 > div.column2 > div.row5 > .column4 > div.row1 > .InfoBox > p,
+.page1 > div.row2 > div.column2 > div.row5 > .column4 > div.row1,
+.page1 >.row2 >.column2>.row5 .InfoBox p,
+.page1 >.row2 >.column2>.row6 .InfoBox p,
+.page1 >.row2 >.column2>.row7 .InfoBox p,
+.page1 >.row2 >.column2>.row8 .InfoBox p,
+.page1 >.row2 >.column2>.row9 .InfoBox p,
+.page1 > .row2 > .column2 > .row8 >.column3 > div.row1
+ {
+	margin-bottom:0;
+}
+.page1 >.row2 >.column2>.row5 .InfoBox p,
+.page1 >.row2 >.column2>.row6 .InfoBox p,
+.page1 >.row2 >.column2>.row7 .InfoBox p,
+.page1 >.row2 >.column2>.row8 .InfoBox p,
+.page1 >.row2 >.column2>.row9 .InfoBox p{
+	padding-bottom:0;
+}
+.page1 > .row2 > .column2 > .row4 > .column1,.page1 > .row2 > .column2 > .row4 > .column3
+{
+		width:10%;
+}
+.page1 > .row2 > .column2 > .row4 > .column2,.page1 > .row2 > .column2 > .row4 > .column4{
+		width:40%;
+}
+.page1 > .row2 > .column2 > .row4 > .column2 p,.page1 > .row2 > .column2 > .row4 > .column4 p{
+		vertical-align:
+		baseline;
+		margin-bottom: 0;
+		padding: 0.2cm;
+}
+.page1 > .row2 > .column2 > .row5 > .column1 .icon,
+.page1 > .row2 > .column2 > .row9 > .column1 .icon,
+.page1 > .row2 > .column2 > .row6 > .column1 .icon,
+.page1 > .row2 > .column2 > .row7 > .column1 .icon,
+.page1 > .row2 > .column2 > .row8 > .column1 .icon{
+	margin-left:0;
+}
+
+.page1 > .row2 > .column2 > .row5 > .column3 .icon,
+.page1 > .row2 > .column2 > .row9 > .column3 .icon,
+.page1 > .row2 > .column2 > .row6 > .column3 .icon,
+.page1 > .row2 > .column2 > .row7 > .column3 .icon,
+.page1 > .row2 > .column2 > .row8 > .column3 .icon{
+	margin-left:0;
+}
+.page1 > .row2 > .column2 > .row5 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row9 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row6 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row7 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row8 > .column3 > .row1{
+	width:auto;
+	display:inline-block;
+}
+
+.page1 > .row2 > .column2 > .row5 > .column4 > .row1,
+.page1 > .row2 > .column2 > .row9 > .column4 > .row1,
+.page1 > .row2 > .column2 > .row6 > .column4 > .row1,
+.page1 > .row2 > .column2 > .row7 > .column4 > .row1,
+.page1 > .row2 > .column2 > .row8 > .column4 > .row1{
+   margin-left:0;
+}
+
+.page1 > .row2 > .column2 > .row5 > .column1,
+.page1 > .row2 > .column2 > .row9 > .column1,
+.page1 > .row2 > .column2 > .row6 > .column1,
+.page1 > .row2 > .column2 > .row7 > .column1,
+.page1 > .row2 > .column2 > .row8 > .column1,
+.page1 > .row2 > .column2 > .row9 > .column1{
+	width:5%;
+}
+
+.page1 > .row2 > .column2 > .row5 > .column2,
+.page1 > .row2 > .column2 > .row6 > .column2,
+.page1 > .row2 > .column2 > .row7 > .column2,
+.page1 > .row2 > .column2 > .row8 > .column2,
+.page1 > .row2 > .column2 > .row9 > .column2{
+	width:40%;
+}
+
+.page1 > .row2 > .column2 > .row5 > .column3,
+.page1 > .row2 > .column2 > .row9 > .column3,
+.page1 > .row2 > .column2 > .row6 > .column3,
+.page1 > .row2 > .column2 > .row7 > .column3,
+.page1 > .row2 > .column2 > .row8 > .column3{
+	width:8%;
+}
+.page1 > .row2 > .column2 > .row5 > .column4,
+.page1 > .row2 > .column2 > .row6 > .column4,
+.page1 > .row2 > .column2 > .row7 > .column4,
+.page1 > .row2 > .column2 > .row8 > .column4,
+.page1 > .row2 > .column2 > .row9 > .column4{
+	width:47%;
+}
+
+/*inner questions in infobox*/
+.page1 > .row2 > .column2 > .row6,
+.page1 > .row2 > .column2 > .row7,
+.page1 > .row2 > .column2 > .row8
+{
+	padding-top:0.1cm;
+	padding-bottom:0.1cm;
+}
+.page1 > .row2 > .column2 > .row7 > .column1,
+.page1 > .row2 > .column2 > .row8 > .column1,
+.page1 > .row2 > .column2 > .row6 > .column1{
+	width:15%;
+}
+
+
+.page1 > .row2 > .column2 > .row7 > .column2,
+.page1 > .row2 > .column2 > .row8 > .column2,
+.page1 > .row2 > .column2 > .row6 > .column2{
+	width:30%;
+}
+
+
+.page1 > .row2 > .column2 > .row6 > .column3,
+.page1 > .row2 > .column2 > .row7 > .column3,
+.page1 > .row2 > .column2 > .row8 > .column3{
+	width:15%;
+}
+
+.page1 > .row2 > .column2 > .row7 > .column4,
+.page1 > .row2 > .column2 > .row8 > .column4,
+.page1 > .row2 > .column2 > .row6 > .column4{
+	width:35%;
+}
+
+.page1 > .row2 > .column2 > .row7 > .column1 > .row1,
+.page1 > .row2 > .column2 > .row8 > .column1 > .row1,
+.page1 > .row2 > .column2 > .row6 > .column1 > .row1,
+.page1 > .row2 > .column2 > .row6 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row7 > .column3 > .row1,
+.page1 > .row2 > .column2 > .row8 > .column3 > .row1{
+	float:right;
+}
+/*inner questions in infobox*/
+.page1 > .row8 > .column2 > .row2 > .column1,
+.page1 > .row8 > .column2 > .row1 > .column1,
+.page1 > .row7 > .column2 > .row1 > .column1,
+.page1 > .row8 > .column2 > .row3 > .column1{
+	width:8%;
+}
+.page1 > .row8 > .column2 > .row2 > .column2,
+.page1 > .row8 > .column2 > .row1 > .column2,
+.page1 > .row7 > .column2 > .row1 > .column2,
+.page1 > .row8 > .column2 > .row3 > .column2{
+	width:92%;
+}
+
+
+.page1 > .row2 > .column2 > .row6 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row6 > .column4 >.row1,
+.page1 > .row2 > .column2 > .row7 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row7 > .column4 >.row1{
+	margin-bottom:0;
+}
+.page1 > .row2 > .column2 > .row9{
+	padding-top:0.1cm;
+}
+.page1 > .row2 > .column2 > .row5{
+	padding-bottom:0.1cm;
+}
+.page1 > .row2 > .column2 > .row8 > .column4 >.row1{
+	margin-bottom:0.2cm;
+}
+
+.MainHeader *{
+	color:#00a5b4;
+	font-size:18pt;
+	font-family:'MavenPro-Medium';
+	text-align:center;
+
+}
+.page1>.row1>.LegalText{
+	width:80%;
+	margin:0 auto;
+	text-align:center;
+}
+.LegalText * {
+	font-family:'MavenPro-Bold';
+	font-size:11pt;
+	color:#000000;
+}
+.MainQuestion * {
+	font-family:'MavenPro-Bold';
+	font-size:7.5pt;
+	color:#000000;
+}
+.SubQuestion * {
+	font-family:'MavenPro-Bolditalic';
+	font-size:7.5pt;
+	color:#000000;
+	font-style:italic;
+		/*page-break-inside:avoid;*/
+}
+.SubSubQuestion * {
+	font-family:'MavenPro-italic';
+	font-size:7.5pt;
+	color:#000000;
+	font-style:italic;
+	/*page-break-inside:avoid;*/
+}
+.page1>.row2>.column2 .InfoBox{
+	background:transparent;
+}
+.InfoBox *{
+	font-family:'MavenPro-italic';
+	font-size:7.5pt;
+	color:#000000;
+	font-style:italic;
+	padding:0.2cm;
+}
+.InfoBox b{
+	padding:0;
+}
+.Answer *{
+	font-family:'MavenPro-Regular';
+	font-size:7.5pt;
+	color:#8FA0A2;
+	
+}
+.page1>.row4>.column2>.row2>.column1>.row1 .icon{
+	padding:0;
+	margin-left: 70px;
+}
+.page1>.row4>.column2>.row2>.column1>.row1,.page1>.row4>.column2>.row2{
+	margin-bottom:0;
+}
+/*.page1>.row4>.column2>.row3>.column1>.row1{
+	background:url(images/checkbox.svg);
+	background-size: auto;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	width: 12px;
+    height: 12px;
+    margin: 0 0 0 70px;
+}*/
+.page1>.row4>.column2>.row3>.column1>.row1 .icon{
+  padding:0;
+  margin-left: 70px;
+}
+.SubQuestion:before{
+	content:'';
+	display:inline-block;
+	width: 15px;
+	height: 15px;
+	background:url(images/Assetcircle.svg);
+	background-size: auto;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	float: left;
+	margin-right: 0.35cm;
+	margin-top: 0.01cm;
+	page-break-before:avoid;
+	page-break-after:avoid;
+}
+.SubQuestion{
+	width: 90%;
+	float: left;
+	margin-left: 0px;
+		/*page-break-inside:avoid;*/
+}
+.page1 > .row2 > .column2 > .row6 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row5 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row4 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row3 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row7 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row8 > .column2 >.row1,
+.page1 > .row2 > .column2 > .row9 > .column2 >.row1
+{
+	margin-left:0;
+}
+.page1 > .row3 > .column2 > .row9 > .column2{
+	width:90%;
+	display:block;
+	float:right;
+}
+.page1 > .row3 > .column2 > .row9 > .column1{
+	width:10%;
+	/*display:block;*/
+	float:left;
+}
+
+/*.page1 > .row3 > .column2 > .row9 > .column1 >.row1:before{
+	content:'';
+	display:inline-block;
+	width: 2px;
+	height: 0;
+	background: url(images/Assetvertical.svg);
+	background-size: cover;
+	background-position: 0;
+	background-repeat: repeat;
+}*/
+div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column1>.row1{
+	background: url(images/Assetgreencircle.svg),url(images/Assetgreencircle.svg);
+	background-repeat: no-repeat,no-repeat;
+	background-size: 12px 12px,12px 12px;
+	background-position: 6px 9px ,20px 9px;
+}
+ div.section.row.row2 > div.section.column.column2 > div.section.row.row4 > div.section.column.column3>.row1{
+	background: url(images/Assetgreencircle.svg),url(images/Assetwhitecircle.svg);
+	background-repeat: no-repeat,no-repeat;
+	background-size:12px 12px,12px 12px;
+	background-position: 6px 9px ,21px 9px;
+ }
+ 
+/*.page1 > .row3 > .column2 > .row7 *,
+.page1 > .row3 > .column2 > .row8 *,
+.page1 > .row3 > .column2 > .row9 >.column2>.row1 *,
+.page1 > .row3 > .column2 > .row9 >.column2>.row3 *,
+.page1 > .row3 > .column2 > .row9 >.column2>.row2 *,
+.page1 > .row3 > .column2 > .row9 >.column2>.row2 ,
+.page1 > .row3 > .column2 > .row9 >.column2>.row3 ,
+.page1 > .row3 > .column2 > .row9 >.column2>.row1 
+{
+	page-break-inside:avoid;
+}*/
+
+/*.page1 > .row3 > .column2 > .row5,.page1 > .row3 > .column2 > .row4,.page1 > .row3 > .column2 > .row3,.page1 > .row3 > .column2 > .row2,.page1 > .row3 > .column2 > .row6,
+.page1 > .row3 > .column2 > .row2 *,
+.page1 > .row3 > .column2 > .row4 *,
+.page1 > .row3 > .column2 > .row6 *
+ {
+	page-break-before:auto;
+	page-break-inside:auto;
+	page-break-after:auto;
+}	*/
+
+/*.page1 > .row3 > .column2 > .row7{
+	page-break-before:always;
+}	*/
+/*.page1 > .row3 > .column2 > .row6{
+	page-break-before:avoid;
+}*/
+
+/*.page1 > .row3 > .column2 > .row9 > .column2 >.row3 > .SubSubQuestion > p:before,
+.page1 > .row3 > .column2 > .row9 > .column2 >.row1 > .SubSubQuestion > p:before{
+    position: relative;
+    content: '';
+    left: -12%;
+    top: 10px;
+    display: block;
+    width: 57px;
+    height: 2px;
+    background: url(images/Assethorizon.svg);
+    background-size: 41%;
+    background-position: -28px 0;
+    background-repeat: repeat-x;
+}*/
+/*.page1 > .row3 > .column2 > .row7 > .SubQuestion > p:before{
+    content: '';
+    display: block;
+    position: absolute;
+    margin-top: 15px;
+	margin-left:-25px;
+    width: 5px;
+    height: 233px;
+    background: url(images/Assetvertical.png);
+    background-size: 25%;
+    background-position: 4px 0px;
+    background-repeat: repeat-y;
+}*/
+ .page1 > .row8 >.column1,.page1 > .row7 >.column1{
+	background: #f2f2f2;
+}
+.page1>.row7{
+	margin-bottom:0;
+}
+.page1 >.row6 > .column2 > .row3,.page1 >.row6 > .column2 > .row4,.page1 >.row6 > .column2 > .row4 p{
+	margin-bottom:0;
+	background:#ebf6e6;
+
+}
+.page1 > .row3 > .column2 > .row4 .Answer,
+.page1 > .row3 > .column2 > .row6 .Answer,
+.page1 > .row3 > .column2 > .row8 .Answer,
+.page1 > .row5 > .column2 > .row4 .Answer,
+.page1 > .row5 > .column2 > .row6 .Answer,
+.page1 > .row5 > .column2 > .row8 .Answer,
+.page1 > .row6 > .column2 > .row7 .Answer,
+.page1 > .row9 > .column2 > .row4 .Answer,
+.page1 > .row9 > .column2 > .row6 .Answer,
+.page1 > .row9 > .column2 > .row8 .Answer,
+.page1 > .row9 > .column2 > .row10 .Answer,
+.page1 > .row7 > .column2 > div > .column2 > .row7 > .Answer
+{
+	margin-left: 0.7cm;
+}
+/*pie chart alignment fixing  -<<<*/
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 {
+  /* background: #ebf6e6; */
+  margin-bottom:0;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column:first-child {
+	margin-left: 0;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column {
+	/* width:48%; */
+	/* padding-top:0.5cm; */
+	margin-left:1.3%;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row5{
+	margin-bottom: 0;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column  .Answer p,
+.page1>.row7>.column2>.row1>.column2>.row6>.column2 .Answer p,
+.page1>.row7>.column2>.row1>.column2>.row5>.column2 .Answer p,
+.page1>.row7>.column2>.row1>.column2>.row5>.column4 .Answer p{
+	margin-top:8px;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column .icon,
+.page1>.row7>.column2>.row1>.column2>.row6>.column1 .icon,
+.page1>.row7>.column2>.row1>.column2>.row5>.column1 .icon,
+.page1>.row7>.column2>.row1>.column2>.row5>.column3 .icon{
+	margin-left: 0;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column1,.page1>.row7>.column2>.row1>.column2>.row6>.column1,
+.page1>.row7>.column2>.row1>.column2>.row5>.column1,
+.page1>.row7>.column2>.row1>.column2>.row5>.column3{
+	width:4%;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column > .row,
+.page1>.row7>.column2>.row1>.column2>.row6>.column2 > .section,
+.page1>.row7>.column2>.row1>.column2>.row5>.column2 > .section {
+	margin-left: 0;
+}
+.page1>.row7>.column2>.row1>.column2>.row6>.column2,.page1>.row7>.column2>.row1>.column2>.row5>.column4,.page1>.row7>.column2>.row1>.column2>.row5>.column2{
+	margin-left: 1.3%;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column .donutchart, .page.page1 > .row7 > .column2 > div > .column2 > .row4 .column .donutchart .chart{
+	height:240px !important;
+	width: 256px !important;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column .donutchart .highcharts-container .highcharts-title
+{
+	font-family: 'MavenPro-italic' !important;
+    font-size: 7.5pt !important;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row4 .column .donutchart .highcharts-container .highcharts-legend-item text {
+	font-family: 'MavenPro-italic' !important;
+    font-size: 5.5pt !important;
+}
+.page.page1 > .row7 > .column2 > div > .column2 > .row3,.page.page1 > .row7 > .column2 > div > .column2 > .row3 p {
+	margin-bottom:0;
+  }
+  /*pie chart alignment fixing  ->>>*/
+.TaxonomyPie .highcharts-container .highcharts-data-labels * {
+	font-family: 'MavenPro-bold' !important;
+	font-size: 5px !important;
+	font-weight: 100 !important;
+	stroke-width: 1px;
+	min-width: 100px !important;
+	white-space: nowrap;
+	overflow: visible !important;
+}
+.highcharts-text-outline {
+	display: none;
+}
+p.allocation_tree{
+	margin-bottom:0;
+}
+p.allocation_tree .clientRating {
+	width:97%;
+}
+.page2{
+	height:auto;
+}
+.page2 .row{
+	margin:0;
+}
+
+.page1>.row7>.column2>.row1>.column2>.row3>.column1,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column1,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column3,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column4
+	.page1>.row7>.column2>.row1>.column2>.row5>.column1{
+		width: 4%;
+	}
+	.page1>.row7>.column2>.row1>.column2>.row3>.column1 .icon,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column1 .icon,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column3 .icon,
+	.page1>.row7>.column2>.row1>.column2>.row5>.column1 .icon
+	{
+		margin-left: 0;
+	}
+	.page1>.row7>.column2>.row1>.column2>.row3>.column2,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column2,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column4,
+	.page1>.row7>.column2>.row1>.column2>.row5>.column2{
+		margin-left: 1.3%;
+	}
+	.page1>.row7>.column2>.row1>.column2>.row3>.column2 .Answer p,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column2 .Answer p ,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column4 .Answer p,
+	.page1>.row7>.column2>.row1>.column2>.row5>.column2 .Answer p{
+		margin-top: 8px;
+	}
+	.page1>.row7>.column2>.row1>.column2>.row3>.column2>.section,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column2>.section,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column3 >.section,
+	.page1>.row7>.column2>.row1>.column2>.row4>.column4> .section,
+	.page1>.row7>.column2>.row1>.column2>.row5>.column2 > .section{
+		margin-left: 0;
+	}
+
+
+
+
+	/* g.highcharts-series-group{
+		width: 200px !important;
+		height: 200px !important;
+		background: red;
+	}
+	g.highcharts-series.highcharts-series-0.highcharts-pie-series.highcharts-tracker,
+	rect.highcharts-plot-border {
+		width: 200px !important;
+		height: 200px !important;
+		background: red;
+	} */
+
+	.page1 .donutchart .chart {
+		width: 280px;
+		height: 230px;
+	}
+	.highcharts-legend-item text {
+		font-size: 7px !important;
+		font-weight: normal !important;
+	}
+	text.highcharts-title {
+		font-size: 11px !important;
+	}
+	.column > .section.section.row.row9 {
+		margin-left: 0 !important;
+	}
+	.page1 text.highcharts-credits {
+		display: none !important;
+	}
+	.page.page1 > .row7 > .column2 > div > .column2 > .row4 .row.row1,.page.page1 > .row7 > .column2 > div > .column2 > .row5 .row.row1,.page.page1 > .row7 > .column2 > div > .column2 > .row6 .row.row1 {
+		margin-bottom: 0;
+	}
+	.page.page1 > .row7 .icon {
+		padding-bottom: 0;
+	}
+	.page.page1 > .row7 .row4 .Answer p.item2, .page.page1 > .row7 .row5 .Answer p.item2, .page.page1 > .row7 .row6 .Answer p.item2 {
+		margin: 0;
+	}
+	.page1 > .row7 > .column2 > .row1 > .column2 .section.row.row2 {
+		margin-bottom: 0;
+	}
+	.page1 > .row7 > .column2 > .row1 > .column2 .section.row.row1 {
+		margin-bottom: 0;
+	}
+/*SFDR_RTS_Neutral_prec8*/

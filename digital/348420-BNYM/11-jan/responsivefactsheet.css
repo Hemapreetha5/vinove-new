@@ -1,0 +1,626 @@
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arial.ttf')  format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Arial';
+	src: url('fe_img/arialbd.ttf')  format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'akkurat_proregular';
+    src: url('fe_img/akkuratpro-regular-webfont.woff2') format('woff2'),
+         url('fe_img/akkuratpro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: "Publico Pro Web";
+	src: url("fe_img/PublicoPro-Bold-Web.woff2") format("woff2"),
+		     url("fe_img/PublicoPro-Bold-Web.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	}
+:root{
+	  --primary:#00485E;
+	  --secondary:#353535;
+	  --orange:#FF6120;
+	  --lightblue:#6ABDC6;
+	  --highlightpink:#FF00A0;
+	  --yellow:#F5E02E;
+      --lightgray:#E3EBED;
+      --white:#FFF;
+      --black:#000;
+      --fontDrukBold:"Druk-Bold";
+      --fontHeadings:"Publico Pro Web";
+      --bodyFont:"akkurat_proregular";
+      --font:"Arial";
+}
+*{
+	box-sizing: border-box;
+}
+body {
+      font-family: var(--bodyFont);
+      color: var(--secondary);
+      font-size:12px;
+      font-weight: 100;
+      padding: 0px;
+      margin: 0px;
+}
+/* h1{
+    font-family: var(--fontDrukBold);
+}
+h2,h3,h4,h5,h6{
+    font-family: var(--fontHeadings);
+} */
+.page {
+    width: 900px !important;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #d8d9db;
+    background: #d8d9db;
+    font-weight: normal;
+    color: var(--secondary);
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+	color: var(--secondary);
+}
+a:focus, li:focus, span:focus, input:focus, button:focus {
+    outline:none !important;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li,.ui-tabs .ui-tabs-nav li {
+    margin: 0;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none;
+    background: transparent;
+}
+.ui-widget-header{
+	border: none;
+    background: transparent;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected{
+	margin-bottom: 0;
+	border: 1px solid #d8d9db;
+    background: #d8d9db;
+}
+.fundCentreContent{
+	position: relative;
+}
+.fe-fundcentre-content::before {
+    /* content: "";
+    background-image: url('fe_img/logo-image.png');
+    background-size: auto 67px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 67px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9; */
+}
+.fe-helptext-switch{
+    display: none !important;
+}
+.fe-cover.fe-fundInformationTools{
+    position: relative;
+}
+.fe-cover.fe-fundInformationTools::before {
+    /* content: "";
+    background-image: url("fe_img/banner-image.jpg");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 9;
+    background-position: center center; */
+}
+.fe-tabs-container-FundCentre{
+	position: relative;
+	/* padding-top: 225px; */
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 16px 10px;
+    font-size: 13px;
+}
+button.fe-button.fe-search-button.fe-button-chartall {
+    position: relative;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    font-size: 12px;
+    color: var(--white);
+}
+.fe-datatable {
+    border-spacing: 0;
+}
+.fe-datatable th {
+    background: #E6E6E6;
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 0;
+}
+.ui-widget-header {
+    border: none;
+    background: transparent;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav {
+    padding: 0;
+    border-top: 1px solid var(--lightgray);
+    border-bottom: 1px solid var(--lightgray);
+    display: flex;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    flex-basis: 100%;
+    background: #ffffff;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 2.5mm;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected {
+    margin-bottom: 0;
+    padding: 0;
+    background: #d8d9db;
+}
+.ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected .ui-tabs-anchor {
+    color: #454545;
+}
+.fe-section-vertical.section_3_1, 
+.fe-section-vertical.section_3_2, 
+.fe-section-vertical.section_3_3 {
+    width: 100% !important;
+    margin-bottom: 0.7cm;
+    border-right: 0;
+    background-color: #F6F6F6;
+    padding: 18px;
+    border: none;
+}
+.fe-section-vertical.section_3_1 h5, 
+.fe-section-vertical.section_3_2 h5, 
+.fe-section-vertical.section_3_3  h5 {
+    font-size: 20px;
+    font-family: var(--fontHeadings);
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+.fe-section-vertical-wrap .fe-section-vertical-val {
+    font: 12px/1.2 var(--bodyFont);
+    background-color: transparent;
+    color: var(--secondary);
+}
+.fe-tabs-container-ResponsiveFactsheet {
+    padding-top: 100px;
+}
+.fe-section-horizontal-wrap {
+    padding: 10px 0 10px;
+}
+.fe-section-horizontal-wrap:last-child{
+    border-bottom:none;
+}
+.fe-section-vertical.section_1_1 {
+    position: absolute;
+    top: -150px;
+    border: 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 57% !important;
+}
+.fe-section-vertical.section_1_1 h5{
+    width: 100%;
+    margin: 0 0 10px;
+}
+.Price.fe-section-vertical-wrap,
+.Change_.fe-section-vertical-wrap,
+.Yield.fe-section-vertical-wrap{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.fe-section-vertical-wrap .fe-section-vertical-name {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 26px;
+    font-family: var(--bodyFont);
+    font-size: 12px;
+}
+.fe-helptext-image {
+    width: 20px;
+    cursor: help;
+}
+.fe-helptext-image:empty{
+    display: none;
+}
+.fe-section-vertical.section_1_1 .fe-section-vertical-wrap .fe-section-vertical-val{
+    font-weight: 700;
+    background: transparent;
+    font-family: var(--fontHeadings);
+    /* font-size: 35px; */
+    font-size: 20px;
+}
+.fe-section-horizontal {
+    float: left;
+    width: 100% !important;
+    padding: 18px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    background-color: #F6F6F6;
+}
+.fe-section-horizontal.section_2_2,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_2_3,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_2_3
+{
+    border: none;
+    background-color: #4D4D4D;
+    color: #fff;
+    padding: 9px;
+    width: 240px !important;
+    float: right;
+    text-align: left;
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+.fe-section-horizontal h5 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    font-family: var(--fontHeadings);
+}
+.fe-section-horizontal.section_1_2 {
+    position: absolute;
+    top: -150px;
+    right: 0;
+    background: transparent;
+    width: 350px !important;
+    padding: 0;
+    margin: 0;
+}
+.fe-section-horizontal.section_1_2 h5{
+    margin-top: 0;
+}
+.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap{
+    border-bottom:none;
+}
+.fe-section-text.section_2_1 {
+    /* width: 100% !important; */
+    /* border-bottom: 1px solid var(--lightgray); */
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-name {
+    font-size: 13px;
+    /* font-weight: 100; */
+    font-family: var(--bodyFont);
+    padding-right: 5px;
+}
+.fe-section-horizontal.section_2_2 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-section-horizontal.section_2_2 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_2_3 .fe-section-horizontal-name,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_2_3 .fe-section-horizontal-name,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_2_3 .fe-section-horizontal-val,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_2_3 .fe-section-horizontal-val{
+    font-size: 12px !important;
+}
+.fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-val{
+    font-size: 13px;
+}
+.fe-tab-container-Documents .fe-section-horizontal-wrap .fe-section-horizontal-name, 
+.fe-tab-container-Documents1 .fe-section-horizontal-wrap .fe-section-horizontal-name 
+{
+	font-size: 15px !important;
+}
+.fe-section-horizontal-wrap .fe-section-horizontal-val{
+    font-family: var(--bodyFont);
+    text-align: left;
+    font-size: 13px;
+}
+.fe-tab-container-Performance .fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-name
+{
+    font-size: 15px;
+    font-weight: 600;
+}
+.fe-tab-container-KeyFactsandCharges .fe-section-horizontal.section_4_1 .fe-section-horizontal-name,
+.fe-tab-container-KeyFactsandCharges .fe-section-horizontal.section_4_1 .fe-section-horizontal-val
+{
+	font-size:13px;
+}
+.fe-tab-container-Performance .fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_4_1 .fe-section-horizontal-wrap .fe-section-horizontal-val
+{
+    font-size: 15px;
+}
+.fe-section-chart {
+    float: left;
+    padding: 0 1%;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    border-right: 0;
+    margin-top: 5px;
+    width: 100% !important;
+}
+span.fe-section-vertical-val.fe-change-negative {
+    /* color: red; */
+    color: var(--orange);
+    /* margin-left: 8px; */
+    position: relative;
+}
+span.fe-section-vertical-val.fe-change-negative::before,
+span.fe-section-vertical-val.fe-change-positive:before{
+    content: "";
+    position: absolute;
+    left: 3px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px;
+    border-image: none;
+    bottom: 8px;
+}
+span.fe-section-vertical-val.fe-change-negative::before{
+    border-color: var(--orange) transparent transparent;
+}
+span.fe-section-vertical-val.fe-change-positive {
+    color: #43B02A;
+    position: relative;
+}
+span.fe-section-vertical-val.fe-change-positive::before {
+    border-color: transparent transparent #43B02A;
+    bottom: 20px;
+}
+.fe-responsivefactsheet-title {
+    line-height: 52px;
+    font-size: 27px;
+    font-family: var(--fontHeadings);
+    font-weight:bold
+}
+.ui-widget{
+	font-family: var(--bodyFont);
+}
+.fe-section-text h5{
+	font-size: 20px;
+	font-family:var(--fontHeadings);
+	margin: 9px 0 15px;
+}
+.fe-section-text {
+    font: 12px/18px var(--bodyFont);
+    font-weight:100;
+    width: 100% !important;
+    border-bottom: 1px solid var(--lightgray);
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+}
+.fe-fund-tableBody .fe-section-vertical .perfomanceAndRiskSectionHeight > .fe-section-vertical-wrap:first-child .fe-section-vertical-val, .fe-fund-tableBody .fe-section-vertical .perfomanceAndRiskSectionHeight .clear + .fe-section-vertical-wrap .fe-section-vertical-val
+{
+    text-align: left;
+    font-weight: 700 !important;
+}
+.fe-tab-container-Performance .fe-fund-tableBody .fe-section-vertical > .fe-section-vertical-wrap,
+.fe-tab-container-Performance1 .fe-fund-tableBody .fe-section-vertical > .fe-section-vertical-wrap
+{
+	min-height: 29px;
+	border-bottom: 1px solid var(--lightgray);
+}
+.Price.fe-section-vertical-wrap,
+.Change_.fe-section-vertical-wrap,
+.Yield.fe-section-vertical-wrap{
+    border: 0 !important;
+}
+.fe-chart-caveat.fe-caveat {
+    background: none repeat scroll 0 0 #F7F7F7;
+    font-weight: 800;
+    border: 0;
+    margin: 0px 0 20px;
+    padding: 20px;
+    box-sizing:border-box;
+    line-height: 1.3;
+    width: 655px;
+}
+.fe-chart-caveat.fe-caveat br {
+	/* display: block!important; */
+	/* font-weight: 400; */
+	margin-bottom: 15px;
+	display: block;
+	content: "";
+}
+.minFsData {
+    width: 655px;
+    padding: 0 10px 10px 0;
+}
+.fe-section-horizontal.section_2_1 {
+    width: 100% !important;
+}
+.fe-section-chart-wrap {
+    margin-bottom: 0px;
+}
+.fe-section-chart.section_2_1 {
+    margin-bottom: 15px;
+}
+button.fe-section-chart-reset {
+    display: none;
+}
+.fe-section-horizontal.section_4_1 {
+    width: 100% !important;
+}
+.fe-section-text.section_5_1 {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.fe-fund-document-icon{
+	    background-image: url("fe_img/pdfIcon.png");
+	    width: 18px;
+	    height: 18px;
+}
+.fe-tab-container-Overview .fe-section-text.section_4_1{
+	padding-bottom:0;
+	border-bottom:0;
+}
+.fe-section-horizontal.section_5_1 {
+    width: 100% !important;
+}
+.fe-tab-container-Documents .fe-section-horizontal.section_4_1{
+	margin-bottom:0;
+}
+.fe-tab-container-Documents1 .fe-section-horizontal.section_4_3,.fe-tab-container-Documents1 .fe-section-horizontal.section_5_2 ,
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_3,.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_5_2,
+.fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_4_3,.fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_5_2,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_5_4,.fe-tab-container-Performance1 .fe-section-horizontal.section_6_4,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_5_4,.fe-tab-container-Overview1 .fe-section-horizontal.section_4_3{
+    display: none;
+}
+.fe-tab-container-Documents1 .fe-section-horizontal.section_3_2,
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_3_2,
+.fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_3_2,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_4_3,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_3_3{
+    right: 0;
+    top: 335px;
+    width: 240px !important;
+    float: right;
+    text-align: left;
+    position: absolute;
+    z-index: 99;
+}
+.fe-tab-container-Documents1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_4_3 .fe-section-horizontal-wrap .fe-section-horizontal-val,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_3_3 .fe-section-horizontal-wrap .fe-section-horizontal-val {
+    width: 15%;
+}
+.fe-tab-container-Documents1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_3_2 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-tab-container-Performance1 .fe-section-horizontal.section_4_3 .fe-section-horizontal-wrap .fe-section-horizontal-name,
+.fe-tab-container-Overview1 .fe-section-horizontal.section_3_3 .fe-section-horizontal-wrap .fe-section-horizontal-name{
+    width: 85%;
+}
+.fe-fund-tableBody .fe-section-horizontal.section_1_2 .fe-section-horizontal-wrap {
+    padding: 10px 0 4px;
+}
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_2 {
+    background-color: transparent;
+    padding: 0;
+    /* position: absolute;
+    bottom: 10px;
+    left: 0;
+    z-index: 1; */
+    margin-bottom: 13px;
+}
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_2 span, .fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_2 .fe-section-horizontal-val {
+    width: auto;
+    float: left;
+    line-height: normal;
+    font-weight: normal;
+    font-size: 12px;
+}
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_2 .fe-section-horizontal-wrap {
+    border-bottom: none;
+}
+
+.fe-fund-tableBody .fe-helptext-div-css .help-text-callout-middle {
+    background: #4D4D4D;
+    border: 2px solid #4D4D4D;
+    position: relative;
+    box-shadow: 0 0 4px #535353;
+}
+.fe-fund-tableBody .fe-helptext-div-css .help-text-callout-top,
+.fe-fund-tableBody .fe-helptext-div-css .help-text-callout-bottom{
+    display: none;
+}
+.fe-fund-tableBody .fe-helptext-div-css .help-text-callout-middle div{
+    padding:10px;
+    color: #fff;
+    font-weight:normal;
+    line-height: 14px;
+}
+.fe-fund-tableBody .fe-helptext-div-css {
+    width: 480px;
+    left:-234px;
+    top:30px;
+}
+.fe-fund-tableBody .help-text-callout-middle:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #4D4D4D;
+    position: absolute;
+    top: -12px;
+    z-index: 9;
+    left: calc(50% - 6px);
+}
+.fe-fund-tableBody .fe-helptext-image {
+    position: relative;
+}
+.fe-fund-tableBody .fe-helptext-div-css  br {
+    content: "";
+    margin: 6px 0;
+    display: block;
+    height: 6px;
+}
+.fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_4_2 h5 {
+    font-size: 12px;
+    font-family: var(--bodyFont);
+}
+.fe-tab-container-Performance1 .fe-section-chart.section_2_1 {
+    position: relative;
+    /* margin-top:45px; */
+    border-top:none;
+}
+/* .fe-tab-container-Performance1 .fe-section-chart.section_2_1:before {
+    content: "Past performance is not a guide to future performance. The value of investments can fall. Investors may not get back the amount invested. Income from investments may vary and is not guaranteed.";
+    position: relative;
+    top: -40px;
+    z-index: 1;
+    font: 12px/1.2 var(--bodyFont);
+} */
+.fe-tab-container-Performance1 .fe-section-chart.section_2_1 h5{
+    font: 12px/1.2 var(--bodyFont);
+    border-bottom: 1px solid #d5d5d5;
+    padding-bottom:10px;
+    margin: 0 0 30px 0;
+}
+/* .fe-tab-container-KeyFactsandCharges1 .minFsData .fe-section-horizontal.section_5_1 {
+    margin-bottom: 100px;
+} */
+@media(max-width:767px){
+    .fe-section-horizontal.section_2_2, .fe-tab-container-Overview1 .fe-section-horizontal.section_2_3, .fe-tab-container-Performance1 .fe-section-horizontal.section_2_3,
+    .fe-tab-container-Documents1 .fe-section-horizontal.section_3_2, .fe-tab-container-KeyFactsandCharges1 .fe-section-horizontal.section_3_2, .fe-tab-container-InvestmentManager1 .fe-section-horizontal.section_3_2, .fe-tab-container-Performance1 .fe-section-horizontal.section_4_3, .fe-tab-container-Overview1 .fe-section-horizontal.section_3_3{
+        position: static;
+        width: 100% !important;
+    }
+    .minFsData,.fe-chart-caveat.fe-caveat {
+        width: 100%;
+    }
+}
+/*BNYM - ResponsiveFactsheet*/

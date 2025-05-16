@@ -1,0 +1,1118 @@
+// Helpful Link 1: http://youmightnotneedjquery.com/
+// Note: Whenever there is change in configuration it adviced to have a different cookie name so that we can reconsent
+// eslint-disable-next-line no-undef
+var CookieConsent = function CookieConsent({
+	beforeInit = () => {},
+	onPreferenceChange = () => {},
+}) {
+	const configLocation = "https://assets.investisdigital.com/cookiemanager/v3.1/latest/json/invd-cm-config.json";
+		//"https://dev-assets.investisdigital.com/cookiemanager/v3/latest/json/invd-cm-config.json";
+
+	const apiURL =  "https://cookiemanager.investisdigital.com"; // "https://pw0dk8y7pe.execute-api.eu-west-1.amazonaws.com/stage"; //"http://localhost:4001";
+	const debug = false;
+	let isGPCEnabled = false;
+	let isGPCBoxClosed = false;
+	const cookieCategories = [
+		"necessaryCookie",
+		"marketingCookies",
+		"performanceCookies",
+		"analyticsCookies",
+		"targetingCookies",
+		"functionalCookies",
+	];
+	var consentRecord = true;
+	let config = {};
+	let clientConfig = {};
+
+	globalConfig = {
+		//expiry: 180,
+		cookieName: "__CookieConsentV300",
+		legacyCookieName: "__CookieConsentV200",
+	};
+	var googleConsentDetails = {
+		ad_storage: "denied",
+		ad_user_data: "denied",
+		ad_personalization: "denied",
+		analytics_storage: "denied",
+	};
+	// Global Categories object to use plugin wise
+	this.categories = {};
+
+	// Add a method to get current version
+	this.version = () => "3.0.0";
+
+	// euCheck Variable for detecting if a user is in eu or not
+	let euCheck = false;
+
+	this.setConfiguration = function (inputConfig) {
+		clientConfig = inputConfig;
+		if (Object.keys(config).length) {
+			mergeTranslations();
+			mergeClientConfig(clientConfig);
+			euCheck = config.isOptInEnabled;
+			init();
+		} else {
+			loadDefaultConfig();
+			mergeTranslations();
+			mergeClientConfig(clientConfig);
+		}
+		if (isGPCEnabled) {
+			performDeclientForGPC();
+		}
+	};
+
+	window.dataLayer = window.dataLayer || [];
+	// To initialize gtag function to execute Google Concent
+	const gtag = function () {
+		dataLayer.push(arguments);
+	};
+	const checkGPC = () => {
+		const gpcValue = navigator.globalPrivacyControl;
+		if (gpcValue) {
+			isGPCEnabled = true;
+		}
+	};
+
+	const loadDefaultConfig = function () {
+		var request = new XMLHttpRequest();
+		request.open("GET", configLocation, false); //
+		request.send(null);
+
+		if (request.status === 200) {
+			config = JSON.parse(request.responseText);
+			euCheck = config.isOptInEnabled;
+		}
+	};
+
+	const mergeTranslations = function () {
+		const lang = document.documentElement.lang;
+		const defaultConfigKeys = Object.keys(config);
+		const translations =
+			window["cookieManagerTranslations"] &&
+			window["cookieManagerTranslations"][lang];
+		if (translations) {
+			for (const [key, value] of Object.entries(translations)) {
+				if (defaultConfigKeys.includes(key)) {
+					config[key] = get(translations, key, value);
+				} else if (cookieCategories.includes(key)) {
+					const index = config.categories.findIndex((el) => el.name === key);
+
+					let clientCategoryProps = Object.entries(translations[key]);
+					for (const [catKey, catValue] of clientCategoryProps) {
+						config.categories[index][catKey] = get(
+							translations,
+							`${key}.${catKey}`,
+							catValue
+						);
+					}
+				}
+			}
+		}
+	};
+
+	const mergeClientConfig = function (clientConfig) {
+		const overwritableConfig = [
+			"title",
+			"description",
+			"acceptAllBtnText",
+			"cookieSettingBtnText",
+			"saveBtnText",
+			"categoriesTitle",
+			"categories",
+			"noticeText",
+			"noticeButtonText",
+			"disableOptionalBtnText",
+			"isOptInEnabled",
+			"preferenceTitle",
+			"preferenceDescription",
+			"expiry",
+			"isGtagConfigured",
+		];
+
+		const extensibleConfig = ["excludePages"];
+
+		const defaultConfigKeys = Object.keys(config);
+
+		// Check if the input param is valid and whether it is overwritable or not
+		for (const [key, value] of Object.entries(clientConfig)) {
+			if (defaultConfigKeys.includes(key) && overwritableConfig.includes(key)) {
+				config[key] = value;
+			} else if (
+				defaultConfigKeys.includes(key) &&
+				extensibleConfig.includes(key)
+			) {
+				config[key].push(...value);
+			} else if (cookieCategories.includes(key)) {
+				const index = config.categories.findIndex((el) => el.name === key);
+
+				let clientCategoryProps = Object.entries(clientConfig[key]);
+				for (const [catKey, catValue] of clientCategoryProps) {
+					if (catKey === "cookieList") {
+						//Extend
+						config.categories[index][catKey].push(...catValue);
+					} else if (catKey === "removeCookies") {
+						// Remove configured cookies from the default list
+						config.categories[index].cookieList = config.categories[
+							index
+						].cookieList.filter((item) => !catValue.includes(item));
+					} else {
+						//Overwrite
+						config.categories[index][catKey] = catValue;
+					}
+				}
+			}
+		}
+		config.categories = this.categories = config.categories.filter(
+			(x) => x.enabled
+		);
+		//config.categories = config.categories.filter(x => x.enabled)
+	};
+
+	var get = function (obj, path, def) {
+		/**
+		 * If the path is a string, convert it to an array
+		 * @param  {String|Array} path The path
+		 * @return {Array}             The path array
+		 */
+		var stringToPath = function (path) {
+			// If the path isn't a string, return it
+			if (typeof path !== "string") return path;
+			// Create new array
+			var output = [];
+			// Split to an array with dot notation
+			path.split(".").forEach(function (item, index) {
+				// Split to an array with bracket notation
+				item.split(/\[([^}]+)\]/g).forEach(function (key) {
+					// Push to the new array
+					if (key.length > 0) {
+						output.push(key);
+					}
+				});
+			});
+			return output;
+		};
+
+		// Get the path as an array
+		path = stringToPath(path);
+		// Cache the current object
+		var current = obj;
+
+		// For each item in the path, dig into the object
+		for (var i = 0; i < path.length; i++) {
+			// If the item isn't found, return the default (or null)
+			if (!current[path[i]]) return def;
+
+			// Otherwise, update the current  value
+			current = current[path[i]];
+		}
+		return current;
+	};
+
+	// getCookies() to getCookieName whole cookie from document
+	const getCookies = () => {
+		const cookieStrings = document.cookie.split(";");
+		const cookies = [];
+		const regex = new RegExp("^\\s*([^=]+)\\s*=\\s*(.*?)$");
+		cookieStrings.forEach((value, index) => {
+			const cookieStr = value;
+			const match = regex.exec(cookieStr);
+			if (match !== null) {
+				cookies.push({
+					name: match[1],
+					value: match[2],
+				});
+			}
+		});
+		debug && console.log(`cookie values are: ${JSON.stringify(cookies)}`);
+		return cookies;
+	};
+
+	// getCookie() to get individual cookie from whole document cookie
+	const getCookie = (name) => {
+		const cookies = getCookies();
+		for (let i = 0; i < cookies.length; i++) {
+			if (cookies[i].name === name) {
+				return cookies[i];
+			}
+		}
+		return null;
+	};
+
+	// deleteCookie() to delete cookie
+	const deleteCookie = (name, path, domain) => {
+		const cookieString = `${name}=; Max-Age=-99999999;${
+			path !== undefined ? ` path=${path};` : " path=/;"
+		}`;
+		if (domain !== undefined) {
+			document.cookie = `${cookieString} domain=${domain};`;
+			return;
+		}
+		// if domain is not defined, try to delete cookie on multiple default domains
+		document.cookie = cookieString;
+		// eslint-disable-next-line no-undef
+		document.cookie = `${cookieString} domain=.${location.hostname};`;
+		// handle subdomains
+		// eslint-disable-next-line no-undef
+		document.cookie = `${cookieString} domain=.${location.hostname
+			.split(".")
+			.slice(-2)
+			.join(".")};`;
+		document.cookie = ""
+			.concat(cookieString, " domain=.")
+			.concat(location.hostname.split(".").slice(-3).join("."), ";");
+	};
+
+	const deleteCookieIfGPCDisabled = () => {
+		if (
+			config !== undefined &&
+			config.categories !== undefined &&
+			config.categories.length > 0
+		) {
+			config.categories.forEach((item) => {
+				if (
+					item.cookieList != null &&
+					item.cookieList !== undefined &&
+					item.cookieList.length > 0
+				) {
+					item.cookieList.forEach((value) => {
+						deleteCookie(value);
+					});
+				}
+			});
+		}
+	};
+
+	// setCookie() to set cookie on document
+	const setCookie = (name, value, days) => {
+		debug && console.log("SetCookie Called");
+		let expires = "";
+		if (days) {
+			const date = new Date();
+			date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie =
+			name + "=" + (value || "") + expires + "; path=/; SameSite=Lax; secure";
+	};
+
+	// Used for Recording consent
+	const consentRecorder = (action) => {
+		// eslint-disable-next-line no-undef
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if (this.readyState === 4 && this.status === 200) {
+				return xhr.responseText;
+			}
+		};
+		xhr.open("POST", apiURL, true);
+		xhr.onload = function (response) {
+			setUniqueID(JSON.parse(response.srcElement.response).id);
+		};
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.send(
+			config.isGtagConfigured
+				? JSON.stringify({
+						operation: action,
+						consent: JSON.parse(getCookie(globalConfig.cookieName).value)
+							.consent,
+						googleConsent: googleConsentDetails,
+						id: getUniqueId(),
+						expiry: new Date(Date.now() + config.expiry * 24 * 60 * 60 * 1000),
+				  })
+				: JSON.stringify({
+						operation: action,
+						consent: JSON.parse(getCookie(globalConfig.cookieName).value)
+							.consent,
+						id: getUniqueId(),
+						expiry: new Date(Date.now() + config.expiry * 24 * 60 * 60 * 1000),
+				  })
+		);
+	};
+
+	// To provide google concent
+	const googleConsent = (categ) => {
+		if (config.isGtagConfigured) {
+			var isMarkettingAllwed =
+				categ.marketingCookies == true ? "granted" : "denied";
+			var ad_storage_Consent = isMarkettingAllwed;
+			var ad_user_data_Consent = isMarkettingAllwed;
+			var ad_personalization_Consent = isMarkettingAllwed;
+			gtag("consent", "update", {
+				ad_storage: ad_storage_Consent,
+				ad_user_data: ad_user_data_Consent,
+				ad_personalization: ad_personalization_Consent,
+				analytics_storage: "denied",
+			});
+			setGoogleConsentToCookie(
+				ad_storage_Consent,
+				ad_user_data_Consent,
+				ad_personalization_Consent
+			);
+		}
+	};
+
+	const setGoogleConsentToCookie = (
+		ad_storage_Con,
+		ad_user_data_Con,
+		ad_personalization_Con
+	) => {
+		googleConsentDetails.ad_storage = ad_storage_Con;
+		googleConsentDetails.ad_user_data = ad_user_data_Con;
+		googleConsentDetails.ad_personalization = ad_personalization_Con;
+	};
+
+	// Cookie Consent Enabled check
+	const isCCEnabled = () => {
+		if (getCookie(globalConfig.cookieName) == null) {
+			debug && console.log(`isCCEnabled() is ${euCheck}`);
+			return euCheck;
+		} else {
+			debug && console.log("isCCEnabled() is true");
+			// TODO: Possibly we can check here whether there is change in location of user and we could delete cookie
+			return true;
+		}
+	};
+
+	// To check whether Cookie Notice is accepted
+	const isCNAccepted = () => {
+		if (getCookie(globalConfig.cookieName) !== null) {
+			debug &&
+				console.log(
+					"isCNAccepted(): ",
+					JSON.parse(getCookie(globalConfig.cookieName).value).accepted
+				);
+			return JSON.parse(getCookie(globalConfig.cookieName).value).accepted;
+		}
+		debug && console.log("isCNAccepted(): ", false);
+		return false;
+	};
+
+	const setUniqueID = (value) => {
+		const cookieValue = JSON.parse(getCookie(globalConfig.cookieName).value);
+		cookieValue.id = value;
+		storeCookieValue(cookieValue);
+	};
+
+	const getUniqueId = () => {
+		if (getCookie(globalConfig.cookieName) !== null) {
+			return JSON.parse(getCookie(globalConfig.cookieName).value).id;
+		} else {
+			return "";
+		}
+	};
+
+	const storeCookieValue = (value) => {
+		debug && console.log(`value: ${JSON.stringify(value)} `);
+		setCookie(globalConfig.cookieName, JSON.stringify(value), config.expiry);
+	};
+	// Deleting old cookie
+	if (globalConfig.legacyCookieName !== "") {
+		debug &&
+			console.log("Deleting legacy cookie: ", globalConfig.legacyCookieName);
+		deleteCookie(globalConfig.legacyCookieName);
+	}
+
+	// Closing popup when user clicks on background
+	// const userCookiePopupClose = () => {
+	// 	debug && console.log("Binding User click on background");
+	// 	if (getCookie(globalConfig.cookieName) !== null) {
+	// 		document.querySelector("#__cookieWrapper").addEventListener(
+	// 			"click",
+	// 			function () {
+	// 				document.querySelector("#__cookieWrapper").outerHTML = "";
+	// 				if (!euCheck) {
+	// 					//cookiePresent()
+	// 					createWrapper();
+	// 					detailsBox();
+	// 				}
+	// 			},
+	// 			false
+	// 		);
+	// 		document.onkeydown = function (evt) {
+	// 			evt = evt || window.event;
+	// 			var isEscape = false;
+	// 			if ("key" in evt) {
+	// 				isEscape = evt.key === "Escape" || evt.key === "Esc";
+	// 			} else {
+	// 				isEscape = evt.keyCode === 27;
+	// 			}
+	// 			if (isEscape) {
+	// 				document.querySelector("#__cookieWrapper .cookieModal").outerHTML =
+	// 					"";
+	// 				if (!euCheck) {
+	// 					//cookiePresent()
+	// 					createWrapper();
+	// 					detailsBox();
+	// 				}
+	// 			}
+	// 		};
+	// 	} else {
+	// 		debug &&
+	// 			console.log(
+	// 				"User Click Not binned as Cookie Consent is not yet accepted even once."
+	// 			);
+	// 	}
+	// };
+
+	this.show = function () {
+		document.querySelector("#__cookieWrapper").innerHTML = "";
+		detailsBox();
+	};
+
+	// callback function called before anything is initiated in plugin
+	beforeInit();
+
+	performDeclientForGPC = () => {
+		if (
+			getCookie(globalConfig.cookieName) == null ||
+			(getCookie(globalConfig.cookieName) !== null &&
+				JSON.parse(getCookie(globalConfig.cookieName).value).gpcEnabled ==
+					undefined)
+		) {
+			deleteCookieIfGPCDisabled();
+			execute(false, true);
+			consentRecorder("DisableAll");
+		}
+	};
+
+	isGPCClosed = () => {
+		if (
+			getCookie(globalConfig.cookieName) != null &&
+			getCookie(globalConfig.cookieName) != undefined &&
+			JSON.parse(getCookie(globalConfig.cookieName).value).isGPCBoxClosed !=
+				null &&
+			JSON.parse(getCookie(globalConfig.cookieName).value).isGPCBoxClosed !=
+				undefined
+		) {
+			return true;
+		}
+		return false;
+	};
+	// init function is used to init plugin
+	const init = () => {
+		checkGPC();
+		if (isGPCEnabled) {
+			if (
+				config == null ||
+				config == undefined ||
+				config.categories == undefined ||
+				config.categories == null
+			) {
+				loadDefaultConfig();
+				mergeTranslations();
+			}
+			const cookieConsentType = "__cookieWrapper";
+			if (document.getElementById(cookieConsentType) != null) {
+				document.getElementById(cookieConsentType).innerHTML = "";
+			}
+			createWrapper();
+			if (!isGPCClosed()) {
+				gpcMsgBox();
+			}
+
+			if (getCookie(globalConfig.cookieName) == null) {
+				performDeclientForGPC();
+			} else if (
+				getCookie(globalConfig.cookieName) !== null &&
+				JSON.parse(getCookie(globalConfig.cookieName).value).accepted
+			) {
+				deleteCookie(globalConfig.cookieName);
+				performDeclientForGPC();
+			}
+		} else if (Object.keys(config).length) {
+			const cookieConsentType = "__cookieWrapper";
+			if (document.getElementById(cookieConsentType) != null) {
+				document.getElementById(cookieConsentType).innerHTML = "";
+			}
+			let excluded = false;
+			// TODO: Need to understand this
+			if (isCCEnabled()) {
+				const __currURL = window.location.pathname + window.location.search;
+				// TODO: find the exclude page bug and fix that.
+				if (config.excludePages) {
+					config.excludePages.forEach((value) => {
+						if (__currURL.indexOf(value) > -1) {
+							debug && console.log("exclude page");
+							excluded = true;
+						}
+					});
+				}
+				execute();
+			} else {
+				execute(true);
+			}
+			if (!excluded) {
+				if (
+					getCookie(globalConfig.cookieName) == null ||
+					(config.isGtagConfigured &&
+						getCookie(globalConfig.cookieName) != null &&
+						JSON.parse(getCookie(globalConfig.cookieName).value).googleConsent === undefined) ||
+					(!isCNAccepted() && !euCheck)
+				) {
+					createWrapper();
+					detailsBox();
+					if (config.isGtagConfigured) {
+						gtag("consent", "default", {
+							ad_storage: "denied",
+							ad_user_data: "denied",
+							ad_personalization: "denied",
+							analytics_storage: "denied",
+						});
+					}
+				}
+				//getCookie(globalConfig.cookieName) == null ? detailsBox() : cookiePresent(!excluded)
+			} else {
+				let _noticeElement = document.querySelector(
+					"#__cookieWrapper .__cookieNotice"
+				);
+				if (_noticeElement) {
+					isCCEnabled;
+					_noticeElement.outerHTML = "";
+				}
+			}
+		} else {
+			loadDefaultConfig();
+			mergeTranslations();
+			init();
+		}
+	};
+	const createWrapper = () => {
+		let _element = document.querySelector("#__cookieWrapper");
+		if (_element == null) {
+			const cookieConsentType = "__cookieWrapper";
+			_element = document.createElement("div");
+			_element.id = cookieConsentType;
+			_element.className = cookieConsentType + " custom-cookie";
+			_element.innerHTML = "";
+			document.querySelector("body").prepend(_element);
+		}
+	};
+
+	const gpcMsgBox = () => {
+		let _element = document.querySelector("#__cookieWrapper");
+		_element.innerHTML +=
+			'<div class="__cookieNotice has-access"><div class="__cookieNoticeBody"><div class="gpc-close-btn" id="gpc-close-btn">x</div><div class="container"><div class="row"><div class="col-lg-12"><div class="gpc-box"><div><p>All Cookies (except strictly necessary cookies) are blocked as Global Privacy Control has been detected in your browser. To know more about Global Privacy Control, <br> visit - <a href="https://globalprivacycontrol.org" title="Opens in a new window" target="_blank">https://globalprivacycontrol.org</a> </p> </div></div></div></div></div></div></div>';
+	};
+
+	const detailsBox = (tobeAccepted) => {
+		let _element = document.querySelector("#__cookieWrapper");
+		var hasAccessClass = !config.isOptInEnabled ? " has-access" : "";
+		if (tobeAccepted) {
+			_element.innerHTML =
+				'<div class="modal fade modal-cookie custom-cookie-modal" id="myModal" role="dialog" style="display:flex;"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' +
+				config.preferenceTitle +
+				'</h4><button type="button" class="close">&times;</button></div><div class="modal-body">';
+		} else {
+			_element.innerHTML +=
+				'<div class="__cookieNotice' +
+				hasAccessClass +
+				'"><div class="__cookieNoticeBody"><div class="container"><div class="row"><div class="col-lg-12"><div class="custom-cookie-in"><div><p>' +
+				config.description +
+				'</p></div><div class="cookie-btn"><button name="cookieAgree" id="cc-acceptAll-btn" class="ccBtn" type="button"><span><span>' +
+				config.acceptAllBtnText +
+				'</span></span></button><button id="cc-reject-Btn" class="ccBtn" type="button"><span><span>' +
+				config.disableOptionalBtnText +
+				'</span></span></button><button id="cc-CookieSettingPreference" class="ccBtn ccBtnOpenBox" data-toggle="modal" data-target="#myModal" type="button"><span><span>' +
+				config.cookieSettingBtnText +
+				'</span></span></button></div></div></div></div></div></div></div><div class="modal fade modal-cookie custom-cookie-modal" id="myModal" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' +
+				config.preferenceTitle +
+				'</h4><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body">';
+		}
+		let _categories = "";
+		this.categories = {};
+		let cookieFound = false;
+
+		if (getCookie(globalConfig.cookieName) !== null) {
+			cookieFound = true;
+			this.categories = JSON.parse(
+				getCookie(globalConfig.cookieName).value
+			).consent;
+		}
+		if (
+			config.preferenceDescription !== undefined &&
+			config.preferenceDescription !== null &&
+			config.preferenceDescription !== ""
+		) {
+			_element = document.createElement("div");
+			_element.className = "mb-15";
+			_element.innerHTML = config.preferenceDescription + '<button type="button" id="cc-acceptAll-btn-modal" class="btn btn-default" data-dismiss="modal">' +
+			config.acceptAllBtnText +
+			'</button><button type="button" id="cc-reject-Btn-modal" class="btn btn-default" data-dismiss="modal">' +
+			config.disableOptionalBtnText +
+			'</button>' + '<h3 class="optional-cookies">Optional cookies</h3>';
+			document.querySelector(".modal-body").append(_element);
+		}
+		config.categories.forEach((i) => {
+			if (i.enabled) {
+				if (!cookieFound) {
+					let state = false;
+					if (i.required) {
+						state = true;
+					} else {
+						state = i.defaultState;
+					}
+					//this.categories[i.name] = state
+					this.categories[i.name] = state;
+				}
+				_categories += appItem(i);
+				//this.categories[i.name] = i.enabled
+			}
+		});
+		_element = document.createElement("div");
+		_element.innerHTML = _categories;
+		document.querySelector(".modal-body").append(_element);
+		let _elementModelFooter =
+			'<div class="modal-footer text-align-center"><button type="button" id="cc-cookieAgree" class="btn btn-default ccBtnSave" data-dismiss="modal">' +
+			config.saveBtnText +
+			"</button></div></div></div></div>";
+		document.querySelector(".modal-content").innerHTML += _elementModelFooter;
+
+		const setCustomPreferenceBtn = document.querySelector(
+			"#__cookieWrapper .ccBtnSave"
+		);
+		setCustomPreferenceBtn.addEventListener(
+			"click",
+			() => {
+				config.categories.forEach((i) => {
+					if (document.querySelector("#app-item-" + i.name) !== null) {
+						this.categories[i.name] = document.querySelector(
+							"#app-item-" + i.name
+						).checked;
+					}
+				});
+				if (config.isGtagConfigured) {
+					storeCookieValue({
+						consent: this.categories,
+						googleConsent: googleConsentDetails,
+						accepted: tobeAccepted || isCNAccepted(),
+						id: getUniqueId(),
+					});
+				} else {
+					storeCookieValue({
+						consent: this.categories,
+						accepted: tobeAccepted || isCNAccepted(),
+						id: getUniqueId(),
+					});
+				}
+				//	TF-26077 Commnet code For duplicate API call
+				//consentRecord && consentRecorder("Custom Preference");
+				execute();
+			},
+			false
+		);
+		const accordions = document.getElementsByClassName("appTitleClick");
+		for (let i = 0; i < accordions.length; i++) {
+			accordions[i].onclick = function () {
+				this.classList.toggle("is-open");
+				const content = this.parentElement.nextElementSibling;
+				if (content.style.display !== "block") {
+					content.style.display = "block";
+				} else {
+					content.style.display = "none";
+				}
+			};
+		}
+		//userCookiePopupClose()
+	};
+
+	// Categories Dynamic rendering with toggle button
+	const appItem = (item) => {
+		let first = "<h4>" + item.title + '<span class="switch switch-xs">';
+		const checked = this.categories[item.name] === true ? " checked" : "";
+		const disabled = item.required === true ? "disabled" : "";
+		first +=
+			'<input type="checkbox" ' +
+			disabled +
+			" " +
+			checked +
+			' class="switch" id="app-item-' +
+			item.name +
+			'">';
+
+		first +=
+			'<label for="app-item-' +
+			item.name +
+			'"></label></span></h4><p>' +
+			item.description +
+			"</p>";
+		return first;
+	};
+
+	const execute = (acceptAll, gpcEnabled) => {
+		debug && console.log("acceptAll: ", acceptAll);
+		if (acceptAll !== undefined) {
+			config.categories.forEach((i) => {
+				if (i.enabled) {
+					this.categories[i.name] = !!acceptAll || !!i.required;
+				}
+			});
+			if (gpcEnabled !== undefined) {
+				if (config.isGtagConfigured) {
+					storeCookieValue({
+						consent: this.categories,
+						googleConsent: googleConsentDetails,
+						accepted: acceptAll || isCNAccepted(),
+						gpcEnabled: true,
+						id: getUniqueId(),
+					});
+				} else {
+					storeCookieValue({
+						consent: this.categories,
+						accepted: acceptAll || isCNAccepted(),
+						gpcEnabled: true,
+						id: getUniqueId(),
+					});
+				}
+			} else {
+				if (config.isGtagConfigured) {
+					googleConsent(this.categories);
+					storeCookieValue({
+						consent: this.categories,
+						googleConsent: googleConsentDetails,
+						accepted: acceptAll || isCNAccepted(),
+						id: getUniqueId(),
+					});
+				} else {
+					storeCookieValue({
+						consent: this.categories,
+						accepted: acceptAll || isCNAccepted(),
+						id: getUniqueId(),
+					});
+				}
+			}
+		} else if (getCookie(globalConfig.cookieName) !== null) {
+			this.categories = JSON.parse(
+				getCookie(globalConfig.cookieName).value
+			).consent;
+		} else {
+			config.categories.forEach((i) => {
+				if (i.enabled) {
+					let state = false;
+					if (i.required) {
+						state = true;
+					} else {
+						state = i.defaultState;
+					}
+					this.categories[i.name] = state;
+				}
+			});
+		}
+		let objectCount = -1;
+		for (const key in this.categories) {
+			objectCount++;
+			if (this.categories[key]) {
+				document
+					.querySelectorAll("script[data-name=" + key + "]")
+					.forEach(function (i) {
+						if (!i.hasAttribute("data-processed")) {
+							if (i.innerHTML.trim() !== "") {
+								// TODO: find a better way to do this
+								// eslint-disable-next-line no-eval
+								eval(i.innerHTML);
+							}
+							if (i.src !== "") {
+								const script = document.createElement("script");
+								script.type = "text/javascript";
+								script.src = i.src;
+								i.insertAdjacentElement("afterend", script);
+							}
+							i.setAttribute("data-processed", "true");
+						}
+					});
+			} else {
+				document
+					.querySelectorAll("script[data-name=" + key + "]")
+					.forEach(function (i) {
+						i.removeAttribute("data-processed");
+					});
+				if (
+					config.categories[objectCount] !== undefined &&
+					config.categories[objectCount].enabled &&
+					config.categories[objectCount].cookieList
+				) {
+					config.categories[objectCount].cookieList.forEach((value) => {
+						deleteCookie(value);
+					});
+				}
+			}
+		}
+		setTimeout(() => {
+			onPreferenceChange();
+		}, 500);
+	};
+
+	// This is executed at start
+
+	init();
+
+	/**
+	 *  This function will get the translation value from registerd culture specific js file.
+	 *  If token is not found in culture specific file then it will check in the language specific file,
+	 *  i.e if not found in en-US.js then it will check in en.js file.
+	 *  If token is not availabe in both the files then it will returns the default value passed in parameter.
+	 *  If default value is not passed in parameter then it will return token value (non-translated).
+	 */
+	this.getTranslation = function (
+		translations,
+		token,
+		defaultTranslation,
+		_culture
+	) {
+		//const translations = get(window, 'cookieManagerTranslations');
+		const culture = _culture.replace(/-/g, "_").toLowerCase();
+
+		if (translations) {
+			return (
+				get(translations, `${culture}.${token}`, defaultTranslation) ||
+				// if not found by full culture then try to get by lang code.
+				// example: from en-GB to en.
+				get(
+					translations,
+					`${culture.substring(0, 2)}.${token}`,
+					defaultTranslation
+				) ||
+				// if not found in translations object then return defaultTransaltion value from parameter.
+				defaultTranslation ||
+				// default return token name itsetlf.
+				token
+			);
+		} else {
+			return defaultTranslation || token;
+		}
+	};
+
+	document.addEventListener(
+		"click",
+		function (e) {
+			for (
+				var target = e.target;
+				target && target !== this;
+				target = target.parentNode
+			) {
+				if (target.id === "cc-CookieSetting") {
+					e.preventDefault();
+					debug && console.log("cc-CookieSetting is clicked");
+					const cookieConsentType = "__cookieWrapper";
+					if (document.getElementById(cookieConsentType) == null) {
+						createWrapper();
+					}
+					if (isGPCEnabled && !isGPCClosed()) {
+						gpcMsgBox();
+						document
+							.querySelector(".gpc-close-btn")
+							.addEventListener("click", function () {
+								document.querySelector(".__cookieNotice").remove();
+							});
+					} else {
+						detailsBox(true);
+					}
+
+					break;
+				} else if (target.className === "close") {
+					document.getElementById("myModal").style.display = "none";
+					break;
+				} else if (target.id === "cc-openBoxBtn") {
+					debug && console.log("btnDetailsBox clicked");
+					document.querySelector("#__cookieWrapper .__cookieNotice").outerHTML =
+						"";
+					detailsBox(!euCheck);
+					break;
+				} else if (target.id === "cc-acceptAll-btn") {
+					execute(true);
+					consentRecord && consentRecorder("AcceptAll");
+					document.querySelector("#__cookieWrapper").outerHTML = "";
+					break;
+				} else if (target.id === "cc-acceptAll-btn-modal") {
+					execute(true);
+					consentRecord && consentRecorder("AcceptAll");
+					document.querySelector("#__cookieWrapper").outerHTML = "";
+					break;
+				} else if (target.id === "cc-reject-Btn") {
+					execute(false);
+					consentRecord && consentRecorder("DisableAll");
+					document.querySelector("#__cookieWrapper").outerHTML = "";
+					break;
+				} else if (target.id === "cc-reject-Btn-modal") {
+					execute(false);
+					consentRecord && consentRecorder("DisableAll");
+					document.querySelector("#__cookieWrapper").outerHTML = "";
+					break;
+				} else if (target.id === "cc-cookieAgree") {
+					document.querySelector("#__cookieWrapper").outerHTML = "";
+					const cookieValue = JSON.parse(
+						getCookie(globalConfig.cookieName).value
+					).consent;
+					googleConsent(cookieValue);
+					if (config.isGtagConfigured) {
+						storeCookieValue({
+							consent: cookieValue,
+							googleConsent: googleConsentDetails,
+							accepted: true,
+							id: getUniqueId(),
+						});
+					} else {
+						storeCookieValue({
+							consent: cookieValue,
+							accepted: true,
+							id: getUniqueId(),
+						});
+					}
+					consentRecord && consentRecorder("Consent Accepted");
+					break;
+				} else if (target.id === "gpc-close-btn") {
+					isGPCBoxClosed = true;
+					if (
+						getCookie(globalConfig.cookieName) != null &&
+						getCookie(globalConfig.cookieName) != undefined
+					) {
+						var cookieValue = JSON.parse(
+							getCookie(globalConfig.cookieName).value
+						);
+						cookieValue.isGPCBoxClosed = isGPCBoxClosed;
+						storeCookieValue(cookieValue);
+					}
+					break;
+				}
+			}
+		},
+		false
+	);
+
+	var cookieEvent = new CustomEvent("cookieChanged", {
+		bubbles: true,
+		detail: {
+			cookieValue: document.cookie,
+			checkChange: function () {
+				if (cookieEvent.detail.cookieValue != document.cookie) {
+					cookieEvent.detail.cookieValue = document.cookie;
+					return 1;
+				} else {
+					return 0;
+				}
+			},
+			listenCheckChange: function () {
+				setInterval(function () {
+					if (cookieEvent.detail.checkChange() == 1) {
+						cookieEvent.detail.changed = true;
+						if (cookieEvent !== null) {
+							cookieEvent.target.dispatchEvent(cookieEvent);
+						}
+					} else {
+						cookieEvent.detail.changed = false;
+					}
+					execute();
+				}, 1000);
+			},
+			changed: false,
+		},
+	});
+
+	(function () {
+		function CustomEvent(event, params) {
+			params = params || {
+				bubbles: false,
+				cancelable: false,
+				detail: undefined,
+			};
+			var evt = document.createEvent("CustomEvent");
+			//document.dispatchEvent(cookieEvent);
+			//below funciton is depreciated. Abouve code is an alternative
+			evt.initCustomEvent(
+				event,
+				params.bubbles,
+				params.cancelable,
+				params.detail
+			);
+			return evt;
+		}
+		CustomEvent.prototype = window.Event.prototype;
+		window.CustomEvent = CustomEvent;
+	})();
+
+	document.addEventListener("DOMContentLoaded", function (e) {
+		e.target.dispatchEvent(cookieEvent);
+
+		if (isGPCEnabled && !isGPCClosed()) {
+			document
+				.querySelector(".gpc-close-btn")
+				.addEventListener("click", function () {
+					document.querySelector(".__cookieNotice").remove();
+				});
+		} else {
+			var modal = document.getElementById("myModal");
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("cc-CookieSettingPreference");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal
+			if (btn != null) {
+				btn.onclick = function () {
+					if (modal != null) {
+						modal.style.display = "block";
+					}
+				};
+			}
+			// When the user clicks on <span> (x), close the modal
+			if (span != null) {
+				span.onclick = function () {
+					if (modal != null) {
+						modal.style.display = "none";
+					}
+				};
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			};
+		}
+	});
+	document.addEventListener("cookieChanged", function (e) {
+		e.detail.listenCheckChange();
+		if (e.detail.changed === true) {
+			if (e.detail.cookieValue !== "" && e.detail.cookieValue !== "undefined") {
+				if (getCookie(globalConfig.cookieName) != null) {
+					var cookieConsent = JSON.parse(
+						getCookie(globalConfig.cookieName).value
+					).consent;
+					var keys = Object.keys(cookieConsent);
+					keys.forEach(function (i) {
+						if (cookieConsent[i] === false) {
+							config.categories.forEach(function (j) {
+								if (j.name.toLowerCase() === i.toLowerCase()) {
+									j.cookieList.forEach(function (k) {
+										if (getCookie(k) !== null) {
+											console.log("Cookie to be deleted=>" + k);
+											document.cookie =
+												k +
+												"=; max-age=-99999999; path=/; domain=." +
+												window.location.hostname +
+												";";
+											var domainArr = location.hostname.split(".").reverse();
+											var domainName = "";
+											domainArr.forEach(function (l) {
+												domainName = "." + l + domainName;
+												document.cookie =
+													k +
+													"=; max-age=-99999999; path=/; domain=" +
+													domainName +
+													";";
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			}
+		}
+	});
+	//Cookie Manager 2.0 - TF-19500 end
+};
+window.CookieConsent = new CookieConsent({});

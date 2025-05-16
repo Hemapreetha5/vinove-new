@@ -1,0 +1,74 @@
+﻿////////////////////////////////////////
+// Cross-Browser Console Output
+////////////////////////////////////////
+if (Function.prototype.bind && console && typeof console.log == "object") { ["log", "info", "warn", "error", "assert", "dir", "clear", "profile", "profileEnd"].forEach(function (method) { console[method] = this.call(console[method], console); }, Function.prototype.bind); }
+if (!window.log) {
+    window.log = function () {
+        log.history = log.history || []; log.history.push(arguments); if (typeof console != 'undefined' && typeof console.log == 'function') {
+            if (window.opera) { var i = 0; while (i < arguments.length) { console.log("Item " + (i + 1) + ": " + arguments[i]); i++; } }
+            else if ((Array.prototype.slice.call(arguments)).length == 1 && typeof Array.prototype.slice.call(arguments)[0] == 'string') { console.log((Array.prototype.slice.call(arguments)).toString()); }
+            else { console.log(Array.prototype.slice.call(arguments)); } 
+        }
+        else if (!Function.prototype.bind && typeof console != 'undefined' && typeof console.log == 'object') { Function.prototype.call.call(console.log, console, Array.prototype.slice.call(arguments)); }
+        else {
+            if (!document.getElementById('firebug-lite')) { var script = document.createElement('script'); script.type = "text/javascript"; script.id = 'firebug-lite'; script.src = 'https://getfirebug.com/firebug-lite.js'; document.getElementsByTagName('HEAD')[0].appendChild(script); setTimeout(function () { log(Array.prototype.slice.call(arguments)); }, 2000); }
+            else { setTimeout(function () { log(Array.prototype.slice.call(arguments)); }, 500); } 
+        } 
+    } 
+}
+
+///////////////////
+// Resource Check
+///////////////////
+if (typeof ($) == 'undefined') {
+    console.log("**jQuery and the 'pm' plugin are both required for postmessaging**");
+}
+if (typeof (pm) == 'undefined') {
+    console.log("**jQuery and the 'pm' plugin are both required for postmessaging**");
+}
+
+var debug = {
+    ToBody: false,
+    ToConsole: true,
+    ToAlert: false
+};
+function DebugAlert(msg) {
+    var now = new Date();
+    now = "" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+    if (debug.ToConsole) {
+        console.log(msg);
+    }
+    if (debug.ToBody) {
+        $("#debugConsole").show();
+        $("#debugConsole").append("<li>" + now + ":" + msg + "</li>");
+    }
+    if (debug.ToAlert) {
+        alert(msg);
+    }
+}
+
+
+
+//////////////////////////////////////////////
+// Create a set of options for a PostMessage
+//////////////////////////////////////////////
+var parentUrl = null, pmOptions = null;
+
+$(document).ready(function () {
+    DebugAlert('CHILD:document.ready()');
+    // Create PM Settings
+    postMessaging.SetupPostMessagingEvents();
+    pm.bind(
+		    "ParentURL",
+		    function (data) {
+		        postMessaging.OnParentURLReceived(data);
+		    },
+		    "*"
+	    );
+});
+
+
+
+
+
+

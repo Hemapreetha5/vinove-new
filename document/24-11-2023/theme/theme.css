@@ -1,0 +1,824 @@
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Black-Web.woff2') format('woff2'),
+       url('images/StagSans-Black-Web.woff') format('woff');
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-BoldItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-BoldItalic-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Bold-Web.woff2') format('woff2'),
+       url('images/StagSans-Bold-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-SemiboldItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-SemiboldItalic-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Semibold-Web.woff2') format('woff2'),
+       url('images/StagSans-Semibold-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-MediumItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-MediumItalic-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Medium-Web.woff2') format('woff2'),
+       url('images/StagSans-Medium-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-BookItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-BookItalic-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Book-Web.woff2') format('woff2'),
+       url('images/StagSans-Book-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-LightItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-LightItalic-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Light-Web.woff2') format('woff2'),
+       url('images/StagSans-Light-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-ThinItalic-Web.woff2') format('woff2'),
+       url('images/StagSans-ThinItalic-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('images/StagSans-Thin-Web.woff2') format('woff2'),
+       url('images/StagSans-Thin-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+:root {
+  --primary-red: rgb(215, 38, 48);
+  --black: #000000;
+  --white: #ffffff;
+  --performance-th-bg: #f0c5b5;
+  --font-family: 'Stag Sans Web';
+  --fw-light: 300;
+  --fw-book: 400;
+  --fw-semi-bold: 500;
+  --table-cell-padding: 0.15cm 0.1cm;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--black);
+  font-size: 7pt;
+  line-height: 1.1;
+ 
+}
+p{
+  font-weight: var(--fw-book);
+}
+
+b{
+  font-weight: 600;
+}
+.highcharts-axis-labels text {
+  font-size: 6pt !important;
+}
+
+.highcharts-yaxis-labels {
+  position: relative;
+  top: -2pt;
+}
+
+@page {
+  margin: 1cm 1.4cm 1cm 1.4cm;
+  @bottom-center {
+    content: element(FooterCompositebody);
+  }
+  @footnote {
+    border-top: 0;
+  }
+}
+.page {
+  position: relative;
+  width: 18.2cm;
+  /* height: auto; */
+  padding: 0;
+}
+.page .FooterCompositebody {
+  position: running(FooterCompositebody);
+}
+
+.page1 > .row1 {
+  margin-bottom: 0;
+}
+.page1 > .row3,
+.page1 > .row5 {
+  display: flex;
+  gap: 0.5cm;
+}
+.page1 > .row3 > .clear,
+.page1 > .row5 > .clear {
+  display: none;
+}
+.page1 > .row3 .column > .section,
+.page1 > .row5 .column > .section {
+  margin-left: 0;
+}
+.page1 > .row5 {
+  display: flex;
+ }
+.page1 > .row5 > .column {
+  width: auto;
+ 
+ }
+.page1 > .row5 > .column2 {
+ flex: 1;
+}
+.page1 > .row5 > .column2 p{
+ text-align: right;
+}
+.page1 > .row5 .row {
+  margin-bottom: 0;
+}
+.page1 > .row6 {
+  margin-bottom: 0.2cm;
+}
+
+.page2 > .row2 {
+  margin-bottom: 0;
+}
+.page2 > .row2 .row {
+  margin-bottom: 0;
+}
+.page2 > .row2 > .column2 img {
+  max-width: 2cm;
+}
+.page2 > .row2 > .column2 .OtherStickerWB img {
+  max-width: 1.5cm;
+}
+.page2 > .row3 {
+  margin-bottom: 0;
+}
+.page2 h2 {
+  margin-bottom: 0.1cm;
+}
+
+.PlatformAvailabilityComposite, .Page2Compositebody > .row3 {
+/*   background-color: #cccccc; */
+  padding:0;
+}
+.PlatformAvailabilityComposite h2, .Page2Compositebody > .row3 h2 {
+  /* color: var(--black); */
+  text-transform: capitalize;
+  border-style: solid;
+  border-width: 1px 0;
+  /* border-color: var(--black); */
+}
+.Page2Compositebody > .row3 p{
+  font-size: 12px;
+  padding-top: 0.2cm;
+  /* line-height: 0.8; */
+}
+.clientRating {
+  max-width: 150px;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+.DynamicPlannerWB .clientRating {
+  width: 4cm;
+}
+
+.DefaqtoWB img {
+  width: 2cm;
+}
+
+.FinancialPromotionWarning {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 0.1cm;
+}
+
+.Page2Compositebody {
+  float: footnote;
+}
+.Page2Compositebody > .row2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.1cm;
+  place-items: center;
+}
+.Page2Compositebody > .row2 > .column2 .row,
+.Page2Compositebody > .row2 > .column2 p {
+  margin: 0;
+}
+.Page2Compositebody > .row3 > .row2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.1cm;
+}
+.Page2Compositebody>.row4{
+  display: flex;
+  border-top:1px solid black;
+  padding-top: 2mm;
+}
+.Page2Compositebody>.row4 .PRIImage img{
+  display: none;
+}
+.Page2Compositebody>.row4 .PRIImage p{
+  background: url(./images/PRI.png) top left no-repeat;
+  background-size: 120px auto;  
+  width:120px;
+  height: 45px;
+}
+.Page2Compositebody>.row4 .PRIText{
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+}
+.Page2Compositebody>.row4 .PRIText p{
+  margin:0;
+}
+.Page2Compositebody > .row3 > .row2 .row {
+  margin-left: auto;
+}
+.Page2Compositebody > .row6 {
+  display: none;
+}
+.Page2Compositebody::footnote-call {
+  font-size: 0;
+}
+.Page2Compositebody::footnote-marker {
+  display: none;
+}
+
+.OtherStickerWB {
+  margin-bottom: 0;
+}
+
+.row {
+  margin-bottom: 0.15cm;
+}
+.row .row{
+   /* margin: 0; */
+}
+.column > .section {
+  margin-left: 0.5cm;
+}
+
+.column:first-child > .section {
+  margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.1cm;
+}
+
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+  color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page1 > .row2 > .column2 > .section {
+  background-color: #efefef;
+  border-radius: 0.25cm;
+  padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+  border: none;
+  margin: 10px;
+}
+
+.tabs.breakdowns > .tabpanes {
+  border: none;
+}
+
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+  padding-bottom: 20px;
+}
+
+.tabs.breakdowns > .tabbuttons {
+  position: absolute;
+  bottom: 5px;
+  z-index: 10000;
+}
+
+.tabs.breakdowns > .tabbuttons > .tab {
+  border: none;
+  background-color: #000;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  text-indent: -10000px;
+}
+
+.cler {
+  font-size: 24pt;
+}
+
+.reportheader {
+  font-size: 34pt;
+  color: #fde211;
+  padding-left: 0.5cm;
+}
+
+.headerbackground {
+  background-color: #8ad8d8;
+  height: 10cm;
+  background-image: url("ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bottomrightheaderpage {
+  margin-top: 10cm;
+}
+
+.compositepadding {
+  padding-left: 1cm;
+  background-color: #8ad8d8;
+  margin-left: 1cm;
+  margin-right: 1cm;
+  padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+  background-color: #8ad8d8;
+  padding-top: 7cm;
+  font-size: 34pt;
+  padding-bottom: 0.5cm;
+}
+
+.esgdata {
+  background-color: #a7b3b3;
+  padding-top: 4cm;
+  font-size: 34pt;
+  padding-bottom: 3cm;
+}
+
+.HeaderCompositebody {
+  text-align: center;
+  border-top: 1px solid var(--primary-red);
+  padding-top: 0.25cm;
+}
+.HeaderCompositebody > .row {
+  margin-bottom: 0.2cm;
+}
+.HeaderCompositebody .RangeWB,
+.HeaderCompositebody .NameWB {
+  font-weight: var(--fw-light);
+  margin-bottom: 0;
+}
+.HeaderCompositebody .RangeWB {
+  color: var(--primary-red);
+  font-size: 15pt;
+}
+.HeaderCompositebody .NameWB {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.logo1 {
+  width: 365.67px;
+  display: inline-block;
+  background: url(./images/RAVENSCROFT_MASTER_LOGO_RGB_1795_BLACK_SEPTEMBER_2018.jpg) center center no-repeat;
+  background-size: contain;
+  height: 1.9cm;
+}
+
+h2 {
+  font-size: 10pt;
+  border-top: 1px solid var(--primary-red);
+  border-bottom: 1px solid var(--primary-red);
+  color: var(--primary-red);
+  padding: 0.05cm 0;
+}
+h2 span {
+  font-size: 9pt;
+  font-weight: var(--fw-book);
+}
+
+.DiscretePerformanceTable > h2 {
+  display: none;
+}
+
+.AimsAndObjectives {
+  background-color: var(--primary-red);
+  color: var(--white);
+  padding: 6pt 9pt;
+}
+.AimsAndObjectives h2 {
+  color: inherit;
+  font-size: 13px;
+  font-weight: var(--fw-semi-bold);
+  padding: 0;
+}
+.AimsAndObjectives .ObjectiveText {
+  margin: 0.1cm 0;
+}
+
+.FinancialPromotionWarning p {
+  background-color: var(--primary-red);
+  color: var(--white);
+  font-size: 12px;
+  text-align: center;
+  padding: 0.2cm 0;
+}
+
+.page1 > .row3 > .column1 > .row1 > .breakdown1 .chart {
+  width: 157px;
+}
+.breakdown1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.breakdown1 h2 {
+  align-self: stretch;
+}
+.breakdown1 thead .Weight {
+  color: var(--black);
+}
+.breakdown1 tbody tr {
+  position: relative;
+}
+
+.breakdown1 th:nth-of-type(5),
+.breakdown1 th:nth-of-type(6),
+.breakdown1 th:nth-of-type(7){
+  display: none;
+}
+.breakdown1 .Key {
+  position: relative;
+  /* right: -28px; */
+  right: -24px;
+  padding: 0;
+  width: 6mm;
+}
+.breakdown1 th.Weight{
+  right: -90px;
+  position: relative;
+}
+.breakdown1 th.Name{
+  right: -90px;
+  position: relative;
+}
+.breakdown1 .Weight {
+  width: 22px;
+  height: 18px;
+  z-index: 0;
+  position: relative;
+  text-align: center;
+  color: var(--white);
+  font-weight: var(--fw-semi-bold);
+}
+.breakdown1 .Name {
+  text-align: left;
+  /* width: 110px; */
+}
+
+.label {
+  line-height: 3mm;
+  margin-left: 0;
+}
+
+.DiscretePerformanceTableHeader h2 {
+  display: flex;
+  justify-content: space-between;
+}
+.DiscretePerformanceTableHeader p:empty {
+  display: none;
+}
+
+.PerformanceChart {
+  --label-dimension: 3mm;
+}
+.PerformanceChart .chart {
+  height: 170px;
+}
+.PerformanceChart .keyContainer {
+  height: var(--label-dimension);
+}
+.PerformanceChart .key-color {
+  width: var(--label-dimension);
+  height: var(--label-dimension);
+}
+.PerformanceChart .label {
+  line-height: var(--label-dimension);
+  margin-left: 3pt;
+}
+
+.CommentaryWB {
+  padding-bottom: 0.01cm;
+}
+.CommentaryWB ~ p {
+  text-align: justify;
+}
+.CommentaryWB ~ p:empty {
+  display: none;
+}
+
+.performancetable1 > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.performancetable1 th {
+  color: var(--primary-red);
+}
+.performancetable1 th,
+.performancetable1 .rowheader {
+  background-color: var(--performance-th-bg);
+}
+.performancetable1 th,
+.performancetable1 td {
+  border: 1px solid var(--black);
+  font-size: 8pt;
+  line-height: 15px;
+}
+.performancetable1 td {
+  text-align: center;
+}
+.performancetable1 .rowheader {
+  text-align: left;
+  padding-left: 2pt;
+}
+
+.CumulativePerformanceTable h2 {
+  margin-bottom: 0.2cm;
+}
+
+.AnnualCharge {
+  width: 50px;
+}
+
+.MinimumSingleInvestment {
+  width: 70px;
+}
+
+.Top10Holdings {
+  margin-bottom: 0.2cm;
+}
+.Top10Holdings.holding1 th {
+  height: 23px;
+  text-align: left
+}
+.Top10Holdings.holding1 .Weight,
+.page2 > .row1 .breakdown .Weight{
+  text-align: left;
+}
+.Top10Holdings.holding1 .Name,
+.page2 > .row1 .breakdown .Name{
+  padding-left: 0.1cm;
+}
+.Classesbody table,
+.Top10Holdings table,
+.page2 > .row1 .breakdown table{
+  border-collapse: collapse;
+  width: 100%;
+}
+.Classesbody tr,
+.Top10Holdings tr,
+.page2 > .row1 .breakdown tr {
+  border-bottom: 1px solid var(--black);
+}
+.Classesbody tr:nth-child(odd),
+.Top10Holdings tr:nth-child(odd),
+.page2 > .row1 .breakdown tr:nth-child(even) {
+  background-color: #e4e4e4;
+}
+.Classesbody td,
+.Top10Holdings td,
+.page2 > .row1 .breakdown td {
+  font-size: 8pt;
+  padding: var(--table-cell-padding);
+  color: black;
+  font-weight: normal;
+  width: auto;
+  height: auto;
+}
+.HoldingsCaveat p{
+  margin: 0 0 0.2cm;
+  }
+.Classesbody td:not(:first-child),
+.Top10Holdings td:not(:first-child) {
+  text-align: center;
+}
+.Classesbody tr:first-child,
+.Top10Holdings tr:first-child,
+.page2 > .row1 .breakdown table thead > tr:first-child {
+  background-color: var(--primary-red);
+  color: var(--white);
+}
+.Classesbody th,
+.Top10Holdings th,
+.page2 > .row1 .breakdown th {
+  border: 1px solid var(--primary-red);
+}
+.Classesbody + .footer,
+.Top10Holdings + .footer {
+  margin-top: 0.1cm;
+}
+
+.DividendSection {
+  position: relative;
+  top: -0.1cm;
+}
+.DividendSection table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.DividendSection tr {
+  border-bottom: 1px solid var(--black);
+}
+.DividendSection tr:nth-child(odd) {
+  background-color: #e4e4e4;
+}
+.DividendSection td {
+  font-size: 8pt;
+  padding: var(--table-cell-padding);
+}
+.DividendSection td:not(:first-child) {
+  text-align: center;
+}
+.DividendSection h2 {
+  display: none;
+}
+.DividendSection tr:first-child {
+  border-top: 1px solid var(--black);
+}
+.DividendSection th {
+  font-size: 8pt;
+}
+.DividendSection td {
+  padding: 0.15cm 0.1cm;
+}
+
+.DividendSectionHeader h2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DataAsAtDate {
+  display: flex;
+}
+.DataAsAtDate::after {
+  content: counter(page);
+  width: 2cm;
+  text-align: center;
+}
+
+.FooterCompositebody {
+  border-top: 1px solid var(--primary-red);
+  padding-top: 8pt;
+  text-transform: uppercase;
+  font-size: 8pt;
+}
+.FooterCompositebody > .row {
+  display: flex;
+  justify-content: space-between;
+}
+.FooterCompositebody .clear {
+  display: none;
+}
+.FooterCompositebody .NameWB span {
+  color: var(--primary-red);
+}
+
+.DisclaimerText p {
+  background-color: var(--primary-red);
+  color: var(--white);
+  padding: 6pt 9pt;
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+
+.DisclaimerCompositebody > .row {
+  margin-bottom: 0;
+}
+
+.FundDetails > div {
+  display: grid;
+  grid-template-columns: 2.5cm 1fr;
+}
+.FundDetails > div:last-child {
+  margin-bottom: 0.1cm;
+}
+
+.KeyParties > div {
+  display: grid;
+  grid-template-columns: 2cm 1fr;
+}
+
+.KeyPartiesCaveat {
+  font-style: italic;
+}
+.page2 > .row1 .breakdown th.Name,
+.page2 > .row1 .breakdown th.Weight {
+  right: 0px !important;
+  color: white;
+  font-weight: bold;
+}
+.page1>.row3>.column1>.row1>.row1>.breakdown1.AssetClass .chart,
+.page1>.row3>.column1>.row1>.row1>.breakdown1.Sector .chart{
+  width: 50%;
+  float: left;
+}
+.key-color {
+  display: block;
+  width: 6mm;
+  height: 4.5mm;
+}
+.breakdown1 th:empty {
+  /* display: none; */
+}
+.DividendSectionHeader p.Yield {
+    font-size: 10pt;
+    border-top: 1px solid var(--primary-red);
+    border-bottom: 1px solid var(--primary-red);
+    color: var(--primary-red);
+    padding: 0.05cm 0;
+    font-weight: bold;
+}
+.breakdown1 tr * {
+  box-sizing: border-box;
+}
+
+/* Ravenscroft */

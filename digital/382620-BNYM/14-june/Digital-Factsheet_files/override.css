@@ -1,0 +1,710 @@
+@font-face {
+    font-family: "Arial";
+    src: url("fe_img/arial.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Arial";
+    src: url("fe_img/arialbd.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "akkurat_proregular";
+    src: url("fe_img/akkuratpro-regular-webfont.woff2") format("woff2"),
+      url("fe_img/akkuratpro-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'AvenirNextLTPro_Regular';
+    src: url('fe_img/avenirnextltpro-regular.ttf') format('truetype'), url('fe_img/avenirnextltpro-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AvenirNextLTPro_Medium';
+    src: url('fe_img/avenirnextltpro-medium.ttf') format('truetype'), url('fe_img/avenirnextltpro-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+  :root {
+    --primary: #00485e;
+    --brown: #a29060;
+    --secondary: #353535;
+    --orange: #ff6120;
+    --lightblue: #6abdc6;
+    --highlightpink: #ff00a0;
+    --yellow: #f5e02e;
+    --lightgray: #e6e6e6;
+    --white: #fff;
+    --black: #000;
+    --green:#013F54;
+    --fontDrukBold: "Druk-Bold";
+    --fontHeadings: "Publico-Headline-Roman-Regular";
+    --bodyFont: "akkurat_proregular";
+    --font: "Arial";
+    --fontRegular: 'AvenirNextLTPro_Regular';
+	--fontLight: 'AvenirNextLTPro_Regular';
+	--fontBold: 'AvenirNextLTPro_Medium';
+	--fontItalic: 'AvenirNextLTPro_Regular';
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--fontRegular);
+    color: var(--secondary);
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  /* h1{
+      font-family: var(--fontDrukBold);
+  }
+  h2,h3,h4,h5,h6{
+      font-family: var(--fontHeadings);
+  } */
+  .ui-state-active,
+  .ui-widget-content .ui-state-active,
+  .ui-widget-header .ui-state-active,
+  a.ui-button:active,
+  .ui-button:active,
+  .ui-button.ui-state-active:hover {
+    border: 1px solid #d8d9db;
+    background: #d8d9db;
+    font-weight: normal;
+    color: var(--secondary);
+  }
+  
+  .ui-state-active a,
+  .ui-state-active a:link,
+  .ui-state-active a:visited {
+    color: var(--secondary);
+  }
+  
+  a:focus,
+  li:focus,
+  span:focus,
+  input:focus,
+  button:focus {
+    outline: none !important;
+  }
+  
+  .ui-scroll-tabs-header ul.ui-tabs-nav li,
+  .ui-tabs .ui-tabs-nav li {
+    margin: 0;
+  }
+  
+  .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+  }
+  
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default,
+  .ui-button,
+  html .ui-button.ui-state-disabled:hover,
+  html .ui-button.ui-state-disabled:active {
+    border: none;
+    background: transparent;
+  }
+  
+  .ui-widget-header {
+    border: none;
+    background: transparent;
+  }
+  
+  .ui-scroll-tabs-header ul.ui-tabs-nav li.ui-tabs-selected {
+    margin-bottom: 0;
+    border: 1px solid var(--lightgray);
+    background: var(--lightgray);
+  }
+  
+  .fundCentreContent {
+    position: relative;
+  }
+  
+  .fe-fundcentre-content::before {
+    /* content: "";
+      background-image: url('fe_img/logo-image.png');
+      background-size: auto 67px;
+      background-position: top left;
+      background-repeat: no-repeat;
+      width: 500px;
+      height: 67px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 9; */
+  }
+  
+  .fe-helptext-switch {
+    display: none !important;
+  }
+  
+  .fe-cover.fe-fundInformationTools {
+    position: relative;
+  }
+  
+  .fe-cover.fe-fundInformationTools::before {
+    /* content: "";
+      background-image: url("fe_img/banner-image.jpg");
+      background-size: cover;
+      background-position: top left;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      top: 90px;
+      left: 0;
+      z-index: 9;
+      background-position: center center; */
+  }
+  
+  .fe-tabs-container-FundCentre {
+    position: relative;
+    /* padding-top: 225px; */
+  }
+  
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 16px 10px;
+    font-size: 12px;
+  }
+  
+  button.fe-button.fe-search-button.fe-button-chartall {
+    position: relative;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    font-size: 12px;
+    color: var(--white);
+  }
+  
+  .fe-datatable {
+    border-spacing: 0;
+  }
+  
+  .fe-datatable th {
+    background: var(--secondary);
+    padding: 15px 10px;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  
+  .ui-tabs .ui-tabs-nav {
+    padding: 0;
+  }
+  
+  .ui-tabs .ui-tabs-panel {
+    padding: 1em 0;
+  }
+  
+  .fe-datatable td {
+    padding: 10px 5px 5px;
+  }
+  
+  td.fe-column-name {
+    /* display: flex; */
+    align-items: center;
+    /* min-height: 43px; */
+    /* min-height: 55px; */
+  }
+  /* td.fe-column-name > a {
+    width: 325px;
+    margin-left: 45px;
+    display: inline-flex;
+  } */
+  .fe-tabs-datacontainer .fe-datatable td.fe-column-name {
+    width: 325px;
+    padding-left: 45px !important;
+    position: relative;
+}
+  .fe-datatable tr.child-row.parent td {
+    border-bottom: 1px solid var(--secondary);
+    background-color: #ffffff;
+  }
+  
+  .fe-datatable .share-class-icon {
+    display: flex;
+    align-items: center;
+    /* width: 18px; */
+    margin:0 10px;
+    font-size: 0;
+    min-height: 40px;
+    position: absolute;
+    z-index: 1;
+    left: 5px;
+    top: 0;
+    height: 100%;
+  }
+  
+  .fe-datatable .share-class-icon a {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0;
+    border-radius: 50%;
+    /* background: var(--secondary); */
+  }
+  
+  .fe-datatable .share-class-icon a {
+    background-image: url(fe_img/gig-arrow-downwards.jpg);
+    background-size: 20px;
+    background-position: center;
+  }
+  
+  .share-class-icon a.share-class-expansion.plus {
+    background-image: url(fe_img/gig-arrow-downwards.jpg);
+  }
+  
+  .share-class-icon a.share-class-expansion.minus {
+    background-image: url(fe_img/gig-arrow-upwards.jpg);
+  }
+  
+  .share-class-expansion.minus:before,
+  .share-class-expansion.plus:before {
+    color: #fff;
+    display: none;
+  }
+  
+  .fe-datatable tr.parent {
+    position: inherit;
+    background-color: var(--lightgray);
+  }
+  
+  .fe-download-icon {
+    background-size: 17px;
+    background-position: left 0;
+  }
+  
+  .fe-caveat-container p {
+    margin: 0;
+  }
+  
+  .fe-datatable tr th .ui-icon {
+    filter: invert(1);
+  }
+  
+  .ui-widget {
+    font-family: var(--fontRegular);
+  }
+  
+  .fe-download-icon {
+    background-image: url(fe_img/ico_download_secondary.png);
+  }
+  
+  .mfs-container a.mfs-selected-option {
+    border-radius: 0;
+  }
+  
+  .mfs-container a.mfs-selected-option span {
+    /* background-color: var(--brown); */
+    /* background-color: var(--orange); */
+    background-color: var(--green);
+    /* border: none; */
+    border-radius: 0px;
+    height: 100%;
+    background-image: url(fe_img/dropDownArrow-white.png);
+    border: 1px solid var(--white) !important;
+  }
+  .fe-downloadTool-container .mfs-container a.mfs-selected-option span{
+    border: 1px solid var(--green) !important;
+  }
+  label.fe-search-fileters-label {
+    margin-block: 5px;
+    display: inline-block;
+  }
+  
+  .fe-search-container {
+    /* background: var(--secondary); */
+    background: var(--green);
+    color: #fff;
+    padding-block: 20px;
+  }
+  
+  .fe-search-fileters-container {
+    height: auto;
+  }
+  
+  span.ui-slider-handle.ui-corner-all.ui-state-default {
+    /* background-color: var(--brown); */
+    /* background-color: var(--orange); */
+    background-color: var(--white);
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+  }
+  
+  .fe-button.fe-search-button,
+  .fe-button.fe-search-clear-button {
+    /* background-color: var(--brown); */
+    /* background-color: var(--orange); */
+    background-color: var(--green);
+    color: #fff;
+  }
+  
+  .ui-slider.ui-slider-horizontal {
+    position: relative;
+  }
+  
+  .ui-slider-horizontal .ui-slider-handle {
+    top: -6px;
+    margin-left: -0.6em;
+  }
+  
+  .ui-slider-horizontal .ui-slider-range {
+    /* background-color: var(--brown); */
+    /* background-color: var(--orange); */
+    background-color: var(--white);
+  }
+  
+  .fe-slider-valuedisplay {
+    padding-bottom: 5px;
+    margin-block: 5px;
+  }
+  
+  .page {
+    max-width: 1340px;
+    width: 100%;
+    padding:10px
+  }
+  
+  .fe-fundCentre-body .fe-tabs-container-FundCentre .fe-fund-document-icon {
+    background-image: url(fe_img/pdfIcon.png);
+    width: 18px;
+    height: 18px; 
+    /* width: 100%; */
+    background-size: 15px;
+  }
+  .fe-fundCentre-body .fe-tabs-container-FundCentre .cascade-menu-wrapper .fe-fund-document-icon {
+    background-image: url(fe_img/pdfIcon.png);
+    /* width: 18px;*/
+    height: 18px; 
+    width: 100%;
+    background-size: 15px;
+    padding-left: 22px;
+  }
+  
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor,
+  .ui-widget .ui-widget,
+  .fe-search-container,
+  .fe-search-textbox,
+  .mfs-container {
+    font-size: 13px;
+  }
+  
+  .fe-footer-container {
+    font-size: 12px;
+  }
+  
+  .fe-tabs-container-FundCentre thead .fe-datatable-pagination-container,
+  .fe-tabs-container-FundCentre tfoot .fe-paging-footer {
+    display: none;
+  }
+  
+  .fe-dlg-expexcel-project-tool-export-all-btn {
+    margin-bottom: 15px !important;
+  }
+  
+  .accessibility-h1-header {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .fe-downloadTool-button, .ui-state-default, .ui-widget-content .fe-downloadTool-button {
+    /* background-color: var(--orange); */
+    background-color: var(--green);
+    color: var(--white);
+    /* border: 1px solid var(--orange); */
+    border: 1px solid var(--green);
+    margin-right:10px;
+  }
+  .fe-downloadTool-button:hover, .ui-state-default, .ui-widget-content .fe-downloadTool-button:hover {
+    background-color: transparent;
+    /* color: var(--orange); */
+    color: var(--green);
+  }
+  .fe-cascade-table tbody .cascade-menu .cascade-cellheader + img{
+    width: 70px;
+  }
+  td.fe-datafield-bespokecolumn7.pdfableColumn img {
+    width: 50px;
+  }
+  .fe-search-searchbox-container button {
+    border: 1px solid var(--white) !important;
+  }
+  .fe-datatable thead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+} 
+.fe-footer-container,.fe-footer-container .fe-caveat-container,.fe-footer-container .fe-caveat-container p {
+  font-size: 10pt;
+}
+.fe-tabs-container-FundCentre .fe-datatable th {
+  position: relative;
+}
+.fe-tabs-container-FundCentre .fe-helptext-div-css .help-text-callout-middle {
+  background: #4D4D4D;
+  border: 2px solid #4D4D4D;
+  position: relative;
+  box-shadow: 0 0 4px #535353;
+}
+
+.fe-tabs-container-FundCentre .fe-helptext-div-css .help-text-callout-middle:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #4D4D4D;
+  position: absolute;
+  top: -12px;
+  z-index: 9;
+  left: calc(50% - 6px);
+}
+.fe-tabs-container-FundCentre .fe-helptext-div-css .help-text-callout-top {
+  background-image: unset;
+  height: 30px;
+}
+.fe-tabs-container-FundCentre .fe-helptext-div-css {
+  left: -50px;
+  top: 25px;
+}
+.fe-tabs-container-FundCentre .fe-helptext-div-css .help-text-callout-bottom{
+  background-image: unset;
+}
+.fe-tabs-container-FundCentre .fe-helptext-div-css .help-text-callout-middle div {
+  padding: 10px;
+  color: #fff;
+  font-weight: normal;
+  line-height: 14px;
+}
+.fe-tabs-container-FundCentre .fe-helptext-image-background {
+  background-image: url(fe_img/helpTextInfoPink.png);
+  vertical-align: middle;
+}
+.fe-tabs-datacontainer .fe-datatable td.fe-datafield-bespokecolumn7.pdfableColumn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.fe-cascade-table .cascade-childrow-cnt .cascade-col .ui-icon {
+  background: none;
+}
+
+
+
+  @media (max-width: 1920px) {
+    /* For screens that are at least 1920 pixels wide */
+    .fe-tabs-datacontainer{
+      /* overflow-x: auto; */
+    }
+    .fe-tabs-datacontainer .fe-datatable th:first-child {
+      min-width: 250px;
+    }
+    .fe-tabs-datacontainer .fe-datatable th{
+      /* white-space: nowrap; */
+    }
+  }
+  
+  @media (max-width:1400px){
+    .fe-tabs-datacontainer .fe-datatable td{
+      padding:10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  @media (max-width: 992px) {
+    .fe-fundCentre-body .fe-tabs-container-FundCentre .cascade-menu-wrapper .fe-fund-document-icon,
+    .fe-fundCentre-body .fe-tabs-container-FundCentre .fe-fund-document-icon {
+      width: 100%;
+      padding-left: 25px;
+      height: auto;
+    }
+    .fe-cascade-table tbody tr.cascade-child.active.parent {
+      position: relative;
+  }
+    .fe-cascade-table tbody .cascade-child td:first-child {
+      width: auto !important;
+      max-width: unset !important;
+      display: table-cell;
+      padding-right: 14px;
+  }
+  .fe-cascade-table tbody .cascade-child td.cascade-menu-wrapper {
+    position: absolute;
+    top: 0;
+    right: 27px;
+    display: flex;
+    width: 35px;
+    height: 100%;
+    z-index: 9;
+    min-height: 44px;
+}
+.fe-cascade-table .cascade-childrow-cnt{
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.fe-cascade-table tbody .cascade-child {
+  background-color: #f2f2f2;
+}
+.fe-cascade-table .cascade-childrow-cnt .cascade-col {
+  margin: 0;
+  padding: 5px 10px 7px 10px;
+  background-color: #fff;
+}
+.fe-cascade-table .cascade-childrow-cnt .cascade-col:last-child{
+  margin-bottom:10px;
+}
+.fe-cascade-table .cascade-childrow-cnt .cascade-col:first-child{
+  margin-top:0;
+}
+.fe-cascade-table tbody .cascade-child ul{
+  margin: 0 0 0 13px;
+}
+.fe-cascade-table tbody .cascade-child td{
+  /* padding:10px; */
+}
+.fe-cascade-table tbody .cascade-menu .cascade-cellheader + img ,
+.fe-cascade-table tbody .cascade-col .cascade-cellheader + img{
+  width: 50px;
+  margin-top: 10px;
+  height: auto;
+}
+.fe-cascade-table tbody .cascade-menu {
+  top: 38px;
+}
+.fe-cascade-table tbody .cascade-child .fe-fund-document {
+  text-align: left;
+  padding-left: 25px;
+  margin: 0;
+  background-repeat: no-repeat;
+  width: auto;
+  height: auto;
+}
+  }
+  @media (max-width: 768px) {
+    .fe-tabs-datacontainer{
+      overflow-x: auto;
+    }
+    /* For screens that are less than 768 pixels wide */
+    .page {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    .fe-tabs-container-FundCentre {
+      flex-direction: column;
+    }
+    .fe-tabs-container-FundCentre > div:not(.fe-tabs):first-of-type {
+      border-top: 1px solid #ddd;
+    }
+    .fe-button.fe-search-button, .fe-button.fe-search-clear-button{
+      margin: 15px 0;
+    }
+    .fe-search-fileters-container {
+      width: 50%;
+      margin:0;
+      padding:5px 13px;
+    }
+    .fe-search-fileters-container .mfs-container{
+      width:100%
+    }
+    .ui-scroll-tabs-header.show-controls-always.st-activate-controls {
+      padding: 0 25px;
+  }
+  .ui-scroll-tabs-header.show-controls-always.st-activate-controls .ui-button {
+    padding: .4em 0em;
+    margin: 0;
+  }
+  .fe-fundCentre-body .ui-widget.ui-widget-content {
+    width: 100% !important;
+  }
+  .fe-fundCentre-body .fe-dlg-expexcel-column-name-section {
+    width: calc(100% - 220px);
+  }
+  .mfs-container a.mfs-selected-option {
+    text-overflow: ellipsis;
+    padding-right: 30px;
+}
+.fe-tabs-datacontainer .fe-datatable td.fe-column-name {
+  width: 150px;
+}
+.fe-cascade-table tbody .cascade-menu-wrapper {
+  width: 35px;
+  max-width: 35px;
+}
+.fe-cascade-table tbody .cascade-menu-wrapper button {
+  padding: 0;
+}
+.fe-fundCentre-body .ui-widget.ui-widget-content#ui-datepicker-div {
+  width: 270px !important;
+}
+  }
+  
+  /* Media query for screens smaller than 600 pixels (adjust as needed) */
+  @media (max-width: 600px) {
+    /* Make the table scrollable on small screens */ 
+    .fe-search-fileters-container {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .fe-search-fileters-container {
+      width: 100%;
+    }
+    /* .fe-tabs-datacontainer .fe-datatable td.fe-column-name {
+      display: table-cell !important;
+  } */
+  .fe-fundCentre-body .fe-dlg-expexcel-column-name-section {
+    width: calc(100% - 170px);
+}
+.fe-fundCentre-body .fe-dlg-expexcel-from-tab-name-section {
+  width: 140px;
+}
+.fe-dlg-expexcel-form {
+  font-size: 11px;
+}
+.fe-tab-container-PriceAndDividend .mfs-container {
+  width: 280px;
+  padding-right:5px;
+}
+.fe-price-container .fe-downloadTool-button, .fe-dividend-container .fe-downloadTool-button {
+  min-width: 76px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+  }
+  @media(max-width:380px){
+    .fe-cascade-table .cascade-childrow-cnt .cascade-col:first-child{
+      margin-top:10px;
+    }
+    .fe-cascade-table .cascade-childrow-cnt .cascade-col:nth-child(2){
+      margin-top:0;
+    }
+    .fe-dlg-expexcel-form {
+      font-size: 10px;
+  }
+  .fe-tab-container-PriceAndDividend .mfs-container {
+    width: 225px;
+  }
+  }
+  @media(max-width:330px){
+    .fe-tabs-datacontainer .fe-datatable td.fe-column-name {
+      width: 110px;
+    }
+  }
+      /*BNYM*/

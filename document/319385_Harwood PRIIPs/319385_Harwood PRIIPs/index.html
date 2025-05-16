@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>AKR0 PRIIP KID</title>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   <meta name="keywords" content="Version=3.2;
+DocumentType=PRP;
+PublicationCountry=-;
+Language=en;
+RecordDate=2023-07-26;
+ShareClass=AKR0;
+Constraint=;
+LevelType=;
+DisseminationRecipient=;
+GeneratorContact=customersupport@fefundinfo.com;
+Citicode=AKR0;
+Productcode=;
+PublicationDate=;
+DESavingsPlanPrint=yes;
+DateOfPublication=;
+DocumentUrl=;
+ModificationDate=;
+ProductionDateTime=;
+CalculationDate=2023-06-30;
+" />
+   <style>
+      .apply_watermark {}
+
+      body {
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-size: 9pt;
+      }
+
+      h2 {
+         font-size: 10pt;
+      }
+
+      @page {
+         size: 21cm 29.7cm;
+         margin: 0;
+         counter-increment: page 1;
+      }
+
+      .page {
+         width: 21cm;
+         height: 29.7cm;
+      }
+
+      .pageNumber::after {
+         content: counter(page);
+      }
+
+      .pageTotal::after {
+         content: counter(pages);
+      }
+
+      html {
+         -ro-rounding-mode: floor;
+      }
+
+      .clientRating {
+         width: 250px;
+      }
+
+      .rating {
+         max-width: 100px;
+      }
+
+      .kiiRiskRating {
+         width: 250px
+      }
+
+      .kiiRiskRating .header th:first-child,
+      .kiiRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .kiiRiskRating .header th:last-child,
+      .kiiRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .kiiRiskRating .arrow td {
+         background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 13px;
+      }
+
+      .kiiRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .kiiRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .kiiRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating {
+         width: 250px
+      }
+
+      .sriRangeRiskRating .header th:first-child,
+      .sriRangeRiskRating .description td:first-child {
+         text-align: left;
+      }
+
+      .sriRangeRiskRating .header th:last-child,
+      .sriRangeRiskRating .description td:last-child {
+         text-align: right;
+      }
+
+      .sriRangeRiskRating .arrow td {
+         background-image: url('https://stg-documentscdn.feprecisionplus.com/fileaccess/common/2/arrow.svg');
+         background-size: 246px 15px;
+         height: 16px;
+      }
+
+      .sriRangeRiskRating table {
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      .sriRangeRiskRating .rating {
+         width: 14%;
+         text-align: center;
+         vertical-align: middle;
+         background-color: #cccccc;
+         border: 1px solid #ffffff;
+      }
+
+      .sriRangeRiskRating .rating.selected {
+         background-color: #ffffcc;
+         border-top: 2px solid #ffcc66;
+         border-bottom: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.start {
+         border-left: 2px solid #ffcc66;
+      }
+
+      .sriRangeRiskRating .rating.selected.end {
+         border-right: 2px solid #ffcc66;
+      }
+
+      .clear {
+         clear: both;
+      }
+
+      .page1>.row1>.column1 {
+         float: left;
+         width: 50%;
+      }
+
+      .page1>.row1>.column2 {
+         float: left;
+         width: 50%;
+      }
+
+      .costComposition>p {
+         width: 100%;
+      }
+
+      .costComposition>table {
+         width: 100%;
+      }
+
+      .costComposition th,
+      .costComposition .category,
+      .costComposition .subcategory {
+         font-weight: bold;
+         text-align: left;
+      }
+
+      .costComposition .category,
+      .costComposition .subcategory,
+      .costComposition .costs {
+         width: 20%
+      }
+
+      .costComposition .description {
+         width: 40%
+      }
+   </style>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/jquery.1.8.2.min.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/jquery-ui.1.11.0.min.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/highcharts.9.3.0.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/highcharts-3d.9.3.0.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/custom-barchart.js"></script>
+   <script src="https://stg-documentscdn.feprecisionplus.com/fileaccess/scripts/10/template.common.js"></script>
+   <link rel="stylesheet" href="theme/theme.css">
+</head>
+
+<body>
+   <h1 style="position: absolute"></h1>
+   <div class="section page page1" data-pageorder="1" data-sectionId="736404" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="736405" data-sectiontype="2">
+         <div class="section column column1" data-sectionId="736406">
+            <div class="section row row1" data-roworder="1" data-sectionId="736407" data-sectiontype="2">
+               <div class="section contentSection text text1 keyinformationdocument" data-sectionId="736408">
+                  <h2 class="item2">Key Information Document</h2>
+               </div>
+               <div class="clear"></div>
+            </div>
+            <div class="section row row2" data-roworder="2" data-sectionId="736409" data-sectiontype="2">
+               <div class="section contentSection text text1" data-sectionId="736410">
+                  <h2 class="item2">Purpose</h2>
+                  <p class="item3">This document provides you with key information about this investment product. It is
+                     not marketing material. The information is required by law to help you understand the nature,
+                     risks, costs, potential gains and losses of this product and to help you compare it with other
+                     products.</p>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="section column column2" data-sectionId="736411">
+            <div class="section row row1" data-roworder="1" data-sectionId="736412" data-sectiontype="2">
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="736413" data-sectiontype="2">
+         <div class="section contentSection text text1 generalinformation" data-sectionId="736414">
+            <h2 class="item2">Product</h2>
+            <p class="FundNameWB">Rockwood Strategic Plc</p>
+            <p class="IsinCode">ISIN: GB0000385517</p>
+            <p class="GeneralInfo"><b>Purpose</b> This document provides you with key information about this investment
+               product. It is not marketing material. The information is required by law to help you understand the
+               nature, risks, costs, potential gains and losses of this product and to help you compare it with other
+               products. <b>Product</b> Name: Rockwood Strategic PLC (“the Company”) ISIN: GB00BYRH4982 PRIIP
+               Manufacturer: Rockwood Strategic PLC Contact number: 020 7640 3200 Competent authority: The Financial
+               Conduct Authority (FCA)</p>
+            <p class="IssuedOnDate">Date of Production 26/07/2023</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="736415" data-sectiontype="2">
+         <div class="section contentSection text text1 whatisthisproduct" data-sectionId="736416">
+            <h2 class="item2">What is this product?</h2>
+            <p class="Whatisthisproduct">This product is an Investment Trust Company quoted and traded with a Premium
+               Listing on the Main Market of the London Stock Exchange.</p>
+            <p class="08070_Investment_Objective_Portfolio">Rockwood Strategic invests predominantly in a diversified
+               portfolio of publicly listed UK equities capitalised under £250 million at the point of investment. The
+               targeted annualised return from each investment is 15%. The strategy intends to invest the majority of
+               its capital in a concentrated portfolio of up to 35 companies of which up to 10 will be ‘core’
+               investments constituting the majority of the portfolio. The Company will retain flexibility to invest in
+               non-listed, private investments (including debt instruments) that will not cumulatively exceed 15 per
+               cent of the Company’s Net Asset Value (NAV) at the time of any investment. For maximum flexibility, given
+               the full range of potential future corporate situations and opportunities, investments may result in the
+               Company investing directly or indirectly in companies listed in non-UK OECD countries. Non-UK OECD
+               investments will cumulatively not exceed 25 per cent of NAV at the time of investment. The Manager
+               targets undervalued shares in companies where it believes operational, strategic or management changes
+               are occurring, or can occur, which could realise, create and unlock shareholder value.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="736417" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="736418">
+            <div class="section contentSection text text1 whataretherisks compositeheader" data-sectionId="736419">
+               <h2 class="item2">What are the risks and what could I get in return?
+               </h2>
+            </div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="736420" data-sectiontype="2">
+                  <div class="section contentSection text text1 SRIdescription" data-sectionId="736421">
+                     <p class="Whataretherisks?">The risk indicator assumes you keep the product for 5 years. If you
+                        sell your product earlier you may have to sell at a price that significantly impacts how much
+                        you get back. The summary risk indicator is a guide to the level of risk of this product
+                        compared to other products. It shows how likely it is that the product will lose money because
+                        of movements in the markets or because we are not able to pay you. We have classified this
+                        product as 4 out of 7, which is a medium risk class. This suggests the risk from market
+                        movements is medium. However, the summary risk indicator only reflects historic share price
+                        volatility of the company shares based on historic price. It excludes other risks inherent in
+                        the product and, therefore, does not show the full risk to the investor. This product does not
+                        include any protection from future market performance, so you could lose some or all of your
+                        investment. The company may (from time to time) invest in unlisted equities which have valuation
+                        and performance uncertainties and liquidity risk. The ‘Other relevant information’ section gives
+                        more detail on the risks investors should consider.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="736422" data-sectiontype="2">
+                  <div class="section contentSection text text1 warning" data-sectionId="736423">
+                     <p class="Sri">
+                     <table class="sriRiskRating">
+                        <tr class="ratings">
+                           <td colspan="2">
+                              <table>
+                                 <tr>
+                                    <th colspan="7" style="height: 0px; padding: 0 0 0; "></th>
+                                 <tr>
+                                    <td class="rating">1</td>
+                                    <td class="rating">2</td>
+                                    <td class="rating">3</td>
+                                    <td class="rating">4</td>
+                                    <td class="rating">5</td>
+                                    <td class="selected rating">6</td>
+                                    <td class="rating">7</td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                        <tr class="arrow">
+                           <td colspan="2"></td>
+                        </tr>
+                        <tr class="header">
+                           <th>Lower risk</th>
+                           <th>Higher risk</th>
+                        </tr>
+                     </table>
+                     </p>
+                     <p class="SRInarrative1"></p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="736424" data-sectiontype="2">
+                  <div class="section contentSection text text1 narrative" data-sectionId="736425">
+                     <p class="SRInarrative2"></p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="736426" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="736427">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page2" data-pageorder="2" data-sectionId="736428" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="736429" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="736430">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="736431"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="736432" data-sectiontype="2">
+                  <div class="section contentSection text text1 whataretheriskscontinued" data-sectionId="736433">
+                     <h2 class="item2">Investment performance information</h2>
+                     <p class="Investmentperformanceinformation">Rockwood Strategic invests predominantly in a
+                        diversified portfolio of publicly listed UK equities capitalised under £250 million at the point
+                        of investment. The targeted annualised return from each investment is 15%. The strategy intends
+                        to invest the majority of its capital in a concentrated portfolio of up to 35 companies of which
+                        up to 10 will be ‘core’ investments constituting the majority of the portfolio. The Company will
+                        retain flexibility to invest in non-listed, private investments (including debt instruments)
+                        that will not cumulatively exceed 15 per cent of the Company’s Net Asset Value (NAV) at the time
+                        of any investment. For maximum flexibility, given the full range of potential future corporate
+                        situations and opportunities, investments may result in the Company investing directly or
+                        indirectly in companies listed in non-UK OECD countries. Non-UK OECD investments will
+                        cumulatively not exceed 25 per cent of NAV at the time of investment. The Manager targets
+                        undervalued shares in companies where it believes operational, strategic or management changes
+                        Other factors that may affect the return include stock-specific factors (including those
+                        relating to the sustainability of the business model of investments). Global, and regional,
+                        political, and macroeconomic events such as Brexit, high interest rates, supply chain issues, or
+                        labour shortages can all be expected to lead to market volatility.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="736434" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="736435">
+                     <p class="item2">What could affect my return positively?</p>
+                     <p class="AffectsPositively">Factors that are likely to have a positive impact on returns include
+                        market increases in sectors and regions invested in, and the narrowing discount or higher
+                        premium attached to the Company’s share price relative to its Net Asset Value. The Company’s
+                        portfolio is more concentrated than many other funds, and as a result positive news flow on
+                        individual stocks can have a disproportionately positive impact on returns compared with other
+                        more diversified funds.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row4" data-roworder="4" data-sectionId="736436" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="736437">
+                     <p class="item2">What could affect my return negatively?</p>
+                     <p class="AffectsNegatively">Factors that are likely to have a negative impact on returns include
+                        market falls in sectors and regions invested in, and the widening discount or reduced premium
+                        attached to the Company’s share price relative to its Net Asset Value. The Company’s portfolio
+                        is more concentrated than many other funds, and as a result negative news flow on individual
+                        stocks can have a disproportionately negative impact on returns compared with more diversified
+                        funds. If a shareholder decides to sell their shares under severely adverse market conditions,
+                        they may get back less than the amount initially invested.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="736438" data-sectiontype="2">
+         <div class="section contentSection text text1 unabletopay" data-sectionId="736439">
+            <h2 class="item2">What happens if Frostrow is unable to pay out? </h2>
+            <p class="UnableToPayOut">The Company is not required to make any payment to you in respect of your
+               investment. If the Company was liquidated, you would be entitled to receive a distribution equal to your
+               share of the Company’s assets, after payment of all of its creditors. As a shareholder you would not be
+               able to make a claim to the Financial Services Compensation Scheme, or other compensation or guarantee
+               scheme, in the event that the Company is unable to pay out. If you invest in the Company, you should be
+               prepared to assume the risk that you could lose some or all of your investment.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="736440" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="736441">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="736442"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="736443" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="736444">
+                     <h2 class="item2">What are the costs?</h2>
+                     <p class="Whatarethecosts">The table shows the amounts that are taken from your investment to cover
+                        different types of costs. These amounts depend on how much you invest, how long you hold the
+                        shares and how well the Company does. The amounts shown here are illustrations based on an
+                        example investment amount of £10,000 and different possible investment periods. The person
+                        selling you or advising you about the Company may charge you other costs. If so, this person
+                        will provide you with information about these costs, and show you the impact that all costs will
+                        have on your investment over time.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="736445" data-sectiontype="2">
+                  <div class="costovertime_4columntable section contentSection costOverTime costOverTime1"
+                     data-sectionId="736446" style="page-break-inside:avoid">
+                     <h2 class=""><!--HIDE--></h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class='investmentheader'>
+                                       <th class='investment' colSpan='4'>Investment &#163;10000</th>
+                                    </tr>
+                                    <tr class='scenarioheader'>
+                                       <th class='scenarios'>Scenarios</th>
+                                       <th class='scenario1'>If you cash in after 1 year</th>
+                                       <th class='scenario2'>If you cash in after 3 years</th>
+                                       <th class='scenario3'>If you cash in at 5 years</th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <thead></thead>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class='row'>
+                                          <td class='totalcostsheader'>Total costs</td>
+                                          <td class='totalcosts1'>&#163;246</td>
+                                          <td class='totalcosts2'>&#163;700</td>
+                                          <td class='totalcosts3'>&#163;1108</td>
+                                       </tr>
+                                       <tr class='row'>
+                                          <td class='riyheader'>Impact on return (RIY) per year</td>
+                                          <td class='riy1'>2.55%</td>
+                                          <td class='riy2'>2.55%</td>
+                                          <td class='riy3'>2.55%</td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="736447" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="736448">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="section page page3" data-pageorder="3" data-sectionId="736449" data-sectiontype="1">
+      <script>var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',]; var monthNamesAbv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',];</script>
+      <div class="section row row1" data-roworder="1" data-sectionId="736450" data-sectiontype="2">
+         <div class="section composite composite1 composite" data-sectionId="736451">
+            <div class="section contentSection text text1  compositeheader" data-sectionId="736452"></div>
+            <div class="compositebody">
+               <div class="section row row2" data-roworder="2" data-sectionId="736453" data-sectiontype="2">
+                  <div class="section contentSection text text1" data-sectionId="736454">
+                     <h2 class="item2">What are the costs? (continued)</h2>
+                     <p class="Whatarethecosts?(continued)">The table shows the amounts that are taken from your
+                        investment to cover different types of costs. These amounts depend on how much you invest, how
+                        long you hold the shares and how well the Company does. The amounts shown here are illustrations
+                        based on an example investment amount of £10,000 and different possible investment periods. The
+                        person selling you or advising you about the Company may charge you other costs. If so, this
+                        person will provide you with information about these costs, and show you the impact that all
+                        costs will have on your investment over time.</p>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="section row row3" data-roworder="3" data-sectionId="736455" data-sectiontype="2">
+                  <div class="section contentSection costComposition costComposition1" data-sectionId="736456"
+                     style="page-break-inside:avoid">
+                     <h2 class=""><!--HIDE--></h2>
+                     <table>
+                        <tr>
+                           <th class="groupHeader1">
+                              <div class="groupHeaderDiv1">
+                                 <table>
+                                    <tr class="tableHeader">
+                                       <th colspan=3></th>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </th>
+                        </tr>
+                        <tbody>
+                           <tr>
+                              <td class="groupRow1">
+                                 <div class="groupRowDiv1">
+                                    <table>
+                                       <tr class="entrycosts">
+                                          <td class="category" rowspan="2">One-off costs</td>
+                                          <td class="subcategory">Entry costs</td>
+                                          <td class="costs" style="white-space: nowrap;"></td>
+                                          <td class="description">There are no direct entry costs associated with the
+                                             Company.</td>
+                                       </tr>
+                                       <tr class="exitcosts">
+                                          <td class="subcategory">Exit costs</td>
+                                          <td class="costs" style="white-space: nowrap;"></td>
+                                          <td class="description">There are no direct exit costs associated with the
+                                             Company</td>
+                                       </tr>
+                                       <tr class="portfoliotrxcosts">
+                                          <td class="category" rowspan="2">Ongoing costs</td>
+                                          <td class="subcategory">Portfolio transaction costs</td>
+                                          <td class="costs" style="white-space: nowrap;">0.93%</td>
+                                          <td class="description">The impact of the costs of us buying and selling
+                                             underlying investments for the Company.</td>
+                                       </tr>
+                                       <tr class="otherongoingcosts">
+                                          <td class="subcategory">Other ongoing costs</td>
+                                          <td class="costs" style="white-space: nowrap;">1.30%</td>
+                                          <td class="description">The impact of the costs that are incurred each year
+                                             for managing your investments and running the Company.</td>
+                                       </tr>
+                                       <tr class="performancefees">
+                                          <td class="category" rowspan="2">Incidental costs</td>
+                                          <td class="subcategory">Performance fees</td>
+                                          <td class="costs" style="white-space: nowrap;">0.31%</td>
+                                          <td class="description">We take these from your investment only if the Product
+                                             outperforms its hurdle adjusted High Watermark.</td>
+                                       </tr>
+                                       <tr class="carriedinterests">
+                                          <td class="subcategory">Carried interests</td>
+                                          <td class="costs" style="white-space: nowrap;"></td>
+                                          <td class="description">This product does not charge any carried interest.
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row2" data-roworder="2" data-sectionId="736457" data-sectiontype="2">
+         <div class="section contentSection text text1 howlong" data-sectionId="736458">
+            <h2 class="item2">How long should I hold it and can I take money out early?</h2>
+            <p class="HowlongshouldIholditandcanItakemoneyoutearly"><b>Recommended required minimum holding period: 5
+                  years</b> The product has no required minimum holding period but is designed for medium to long-term
+               investment. The recommended minimum holding period of 5 years has been selected as the Company's ordinary
+               shares are designed to be held over the long term and may not be suitable as short-term investments.
+               There is no guarantee that any appreciation in the value of the Company's investments will occur and
+               investors may not get back the full value of their investments. The value of the ordinary shares and the
+               income derived from them (if any) may go down as well as up. Although the ordinary shares are traded on
+               the Main Market, it is possible that there may not be a liquid market in the shares and investors may
+               have difficulty selling them. Accordingly, investors may be unable to realise their shares at the quoted
+               market price (or at the prevailing net asset value per share), or at all. There are no additional fees or
+               penalties incurred on exit however the price you receive on the open market may not reflect the
+               underlying Net Asset Value (“NAV”) of the shares.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row3" data-roworder="3" data-sectionId="736459" data-sectiontype="2">
+         <div class="section contentSection text text1 howcanicomplain" data-sectionId="736460">
+            <h2 class="item2">How can I complain?
+            </h2>
+            <p class="HowcanIcomplain?">As a shareholder of the Company you do not have the right to complain to the
+               Financial Ombudsman Service (FOS) about the management of The Company. Complaints about the company or
+               the key information document should be directed to The Chief Operating Officer of Harwood Capital LLP.
+               More information can be found by telephoning 020 7640 3200. You can submit your complaint via post to
+               Chief Operating Officer, Harwood Capital LLP, 6 Stratton Street, London, W1J 8LD.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row4" data-roworder="4" data-sectionId="736461" data-sectiontype="2">
+         <div class="section contentSection text text1 otherrelevantinformation" data-sectionId="736462">
+            <h2 class="item2">Other relevant information</h2>
+            <p class="RelInfo">The latest annual report and accounts for the Company can be found at
+               https://www.rockwoodstrategic.co.uk/results-reports/. The cost, performance and risk calculations
+               included in this KID follow the methodology prescribed by EU rules. Depending on how you buy these shares
+               you may incur other costs, including broker commission, platform fees and Stamp Duty. The distributor
+               will provide you with additional documents where necessary. Further information on the Company's
+               investment policies, the types of assets in which the Company may invest, borrowing limits as well as
+               details of its management, administration and depositary arrangements can be found at
+               https://www.rockwoodstrategic.co.uk. If you are in any doubt about the action you should take, you should
+               seek independent financial advice.</p>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="section row row5" data-roworder="5" data-sectionId="736463" data-sectiontype="2">
+         <div class="section contentSection text text1 pagenumbers" data-sectionId="736464">
+            <p class="item2">
+            <div class="footer">
+               <p>Page <span class="pageNumber"></span> of <span class="pageTotal"></span></p>
+            </div>
+            </p>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+</body>
+
+</html>

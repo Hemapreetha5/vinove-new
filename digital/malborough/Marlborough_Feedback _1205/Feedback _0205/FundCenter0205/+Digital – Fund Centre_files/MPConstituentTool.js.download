@@ -1,0 +1,90 @@
+﻿var mpConstituentTypeCodes = [];
+
+function FEBreakdown(code, weight) {
+    this.code = code;
+    this.weight = weight;
+}
+
+$(function () {
+    var doc = $(document);
+    $('#MPConstituentsMasterTab').parent().hide();
+
+    doc.on('click', '.fe-icon-view-mpconstituents', function (e) {
+        e.preventDefault();
+
+        containerCode = $('a', this).attr('data-code');
+        text = $('a', this).attr('data-name');
+
+        $('.model-portfolio-name').text(text);
+        GetPortfolioBreakdowns(containerCode, AddModelPortfolioBreakdownToBasket);
+
+    });
+
+    doc.on('click', '.mpconstituent-backTo-container', function (e) {
+        SelectTabById("ModelPortfolioMasterTab");
+    });
+
+    function AddModelPortfolioBreakdownToBasket(model) {
+        mpConstituentTypeCodes = [];
+
+        for (var i = 0; i < model.length; i++) {
+            var breakdown = model[i];
+            mpConstituentTypeCodes.push(new FEBreakdown(breakdown.TypeCode, breakdown.Weight));
+        }
+        MPConstituentChanged();
+    }
+});
+
+function GetMPConstituentModel(fundInfo, pagingState, sortingState) {
+
+    var codesList = [];
+    for (var i in mpConstituentTypeCodes) {
+        codesList.push(mpConstituentTypeCodes[i].code);
+    }
+
+    var model = { CodesList: codesList };
+    AddBasicModelInformation(model, pagingState, sortingState);
+    return model;
+}
+
+function MPConstituentChanged() {
+    var mpConstituentFundInfo = $("#tabs-mpconstituents");
+    SelectTabById("MPConstituentsMasterTab");
+    mpConstituentFundInfo.FundInfoLoadData(true, true);
+}
+
+function SelectTabById(tabId) {
+    var listItem = $('#' + tabId);
+    listItem.trigger('click');
+}
+
+function OnMpConstituentsRendered(fundInfoTable, tabContainer) {
+	var total = 0;
+	tabContainer.find('.fe-col-weight-readonly').each(function () {
+		var item = $(this);
+		var code = item.attr("data-code");
+		var containerItem = GetBreakdownItemWithCode(mpConstituentTypeCodes, code);
+		if (containerItem != null) {
+			item.text(containerItem.weight + '%');
+			total += ConvertToFloat(containerItem.weight, 0); 
+		}
+	});
+
+	var totalValueElement = tabContainer.find(".fe-portfolio-totalValue");
+	totalValueElement[0].innerHTML = total.toFixed(2);
+
+    //We need to force page to scroll to top of page
+	window.scrollTo(0, 0);	
+}
+
+function GetBreakdownItemWithCode(container, code) {
+    for (var i = 0; i < container.length; i++) {
+        var item = container[i];
+
+        if (item.code == code) {
+            return container[i];
+        }
+    }
+
+    return null;
+}

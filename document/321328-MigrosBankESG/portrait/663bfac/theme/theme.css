@@ -1,0 +1,803 @@
+@font-face {
+    font-family: "MigrosbankKievit Light";
+    src: url("images/MigrosbankKievit-Light.woff2") format("woff2"), url("images/MigrosbankKievit-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MigrosbankKievit Regular";
+    src: url("images/MigrosbankKievit-Regular.woff2") format("woff2"), url("images/MigrosbankKievit-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MigrosbankKievit Bold";
+    src: url("images/MigrosbankKievit-Bold.woff2") format("woff2"), url("images/MigrosbankKievit-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+    font-size: 9pt;
+    font-family: "MigrosbankKievit Regular";
+}
+.logo {
+    display: none;
+}
+.page {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.page3, .page4 {
+    page-break-before: always;
+}
+.row {
+    margin-top: 0.2cm;
+}
+.column:first-child>.section {
+    margin-left: 0;
+}
+h1,h2,h3 {
+    margin: 0;
+    color: #144b3c;
+    border-bottom: 1pt solid #144b3c;
+    margin-bottom: 0.1cm;
+    padding-bottom: 0.1cm;
+    font-family: "MigrosbankKievit Bold";
+}
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+    color: #144b3c;
+}
+.page>.row1 h2 {
+    font-size: 24pt;
+    padding-left: 3cm;
+    min-height: 2cm;
+    background-image: url('./Images/logo.png');
+    background-repeat: no-repeat;
+    margin-bottom: 0.5cm;
+}
+.page1>.row2>.column2>.section {
+    background-color: #efefef;
+    border-radius: 0.25cm;
+    padding: 0.25cm;
+}
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+.tabs.breakdowns>.tabpanes {
+    border: none;
+}
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+    padding-bottom: 20px;
+}
+.tabs.breakdowns>.tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+.tabs.breakdowns>.tabbuttons>.tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+.cler {
+    font-size: 24pt;
+}
+.reportheader {
+    font-size: 34pt;
+    color: rgb(253, 226, 17);
+    padding-left: 0.5cm;
+}
+.headerbackground {
+    background-color: rgb(138, 216, 216);
+    height: 10cm;
+    background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.bottomrightheaderpage {
+    margin-top: 10cm;
+}
+.compositepadding {
+    padding-left: 1cm;
+    background-color: rgb(138, 216, 216);
+    margin-left: 1cm;
+    margin-right: 1cm;
+    padding-bottom: 1.6cm;
+}
+.securityaccount {
+    background-color: rgb(138, 216, 216);
+    padding-top: 7cm;
+    font-size: 34pt;
+    padding-bottom: .5cm;
+}
+.esgdata {
+    background-color: rgb(167, 179, 179);
+    padding-top: 4cm;
+    font-size: 34pt;
+    padding-bottom: 3cm
+}
+@page {
+    margin: 1.2cm 0.5cm 0.5cm 1.5cm;
+    padding: 1cm 0.5cm 0cm 0cm;
+    background-image: url('images/VG_logo.png');
+    background-repeat: no-repeat;
+    background-size: 6cm auto;
+    background-position: left top;
+    background-repeat: no-repeat;
+    @bottom-left {
+        content: element(footerIdentifier)
+    }
+}
+@page:first {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none;
+    @bottom-left {
+        content: "";
+    }
+}
+.page{
+    height: 29.7cm;
+}
+.page1 {
+    background: linear-gradient(135deg, hsla(28, 100%, 58%, 1) 0%, hsla(325, 100%, 43%, 1) 100%);
+}
+.page1 > .row1 {
+    width: 0;
+    height: 0;
+    border-top: 324px solid #144B3c;
+    border-left: 1233px solid transparent;
+    position: fixed;
+    right: 0;
+    margin-top: 0;
+}
+.page1 > .row3 {
+    width: 0;
+    height: 0;
+    border-bottom: 250px solid #4f1468;
+    border-left: 501px solid transparent;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.page1 > .row2 p {
+    z-index: 1000;
+    position: absolute;
+    background: transparent;
+    font-size: 13pt;
+    margin-left: 0.8cm;
+    margin-top: 1.5cm;
+    padding: 0.5cm;
+}
+p.InvestmentStrat {
+    margin-top: 280px !important;
+    font-weight: bold;
+}
+.page1 > .row2 p:first-child::before {
+    background-image: none;
+}
+.page1 > .row2 p:first-child::before{
+    background-image: url(images/VG_logo.png);
+    background-repeat: no-repeat !important;
+    background-size: 6cm auto;
+    background-position: left top;
+    content: "";
+    width: 8cm;
+    height: 3cm;
+    display: list-item;
+    list-style: none;
+    position: fixed;
+    top: 65px;
+    left: 70px;
+}
+
+.page1 > .row2 .contentSection {
+    background: white;
+    width: 50%;
+    margin: 20px;
+    position: absolute;
+    height: 28cm;
+    z-index: 1;
+}
+
+.page1 > .row2 p:last-child {
+    z-index: 1000;
+    position: fixed;
+    font-size: 13pt;
+    margin-left: 0.8cm;
+    padding: 0.5cm;
+    top: 340px;
+    font-weight: bold;
+    font-family: "MigrosbankKievit Bold";
+}
+
+.page1 > .row2 p:first-child {
+    position: fixed;
+    top: 170px;
+    color: #144B3c;
+    font-weight: bold;
+    width: 200px;
+    font-size: 17pt;
+    font-family: "MigrosbankKievit Bold";
+    /* height: 300px; */
+}
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+.compositefooter .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+.compositefooter .content:before {
+    content: '';
+    width: 1px;
+    height: 100px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: -3px;
+}
+.FooterCSS {
+    width: 20cm;
+    padding: 0px 0px 0px 4px;
+    position: absolute;
+    bottom: 0.3cm;
+    left: 0;
+    z-index: 1;
+    border-top: 0.5px solid #909090;
+    font-size: 7.5pt;
+}
+.FooterCSS .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+.FooterCSS .row {
+    margin-bottom: 0.05cm;
+}
+.FooterCSS .iconSection {
+    height: 23px;
+}
+.FooterCSS .content:before {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: 1px;
+}
+.FooterCSS .column1 {
+    width: 15%;
+    float: left;
+}
+.FooterCSS .column2 {
+    width: 15%;
+    float: left;
+}
+.FooterCSS .column3 {
+    width: 15%;
+    float: left;
+}
+.FooterCSS .column5 {
+    width: 15%;
+    float: left;
+}
+.FooterCSS .column4 {
+    width: 40%;
+    float: left;
+    text-align: center;
+}
+footer {
+    position: running(footerIdentifier)
+}
+.EsgCoverPageImage {
+    width: 100%;
+}
+.EsgCoverPage {
+    width: 100%
+}
+h3:empty,h2:empty {
+    display: none;
+}
+.page > .row > .column1 {
+    float: left;
+    width: 48%;
+}
+.page > .row > .column2 {
+    float: left;
+    width: 48%;
+    margin-left: 25px;
+}
+.page2 > .row7 > .column1 > .row2 > .column1, 
+.page2 > .row7 > .column1 > .row2 > .column2 {
+    float: left;
+    width: 45% !important;
+}
+.page2 > .row7 .column1 .row .chart .highcharts-container {
+    width: 150px !important;
+    align-items: center;
+    display: flex;
+    height: 120px !important;
+    margin-top: 25px;
+}
+.page2 > .row7 .column1 .row2 .contentSection {
+    display: flex;
+    /* justify-content: space-evenly; */
+    border-bottom: 0.5pt solid black;
+    font-family: 'MigrosbankKievit Bold';
+}
+.page2 > .row7 .column1 .row2 .contentSection .item2 {
+    margin-left: 135px
+}
+.page2 > .row7 .column1 .row2 .contentSection .item3 {
+    margin-left: 55px
+}
+.page2 > .row7 .column1 .row3 .contentSection {
+    display: flex;
+    border-bottom: 0.5pt solid black;
+}
+.page2 > .row7 .column1 .row3 .contentSection .item2 {
+    margin-left: 20px;
+}
+.page2 > .row7 .column1 .row3 .contentSection .item3 {
+    margin-left: 70px;
+}
+.page2 > .row7 .column1 .row3 .contentSection .item4 {
+    margin-left: 95px;
+}
+.page2 > .row7 .column1 .row5 .text, 
+.page2 > .row7 .column1 .row6 .text {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 25px;
+}
+.page2 > .row7 .column1 .row5 .text p, 
+.page2 > .row7 .column1 .row6 .text p {
+    margin-left: 10px;
+}
+.page2 > .row7 .column1 .row5 .text p::before, 
+.page2 > .row7 .column1 .row6 .text p::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    display: inline-flex;
+    margin-right: 5px;
+    top: 2px;
+    position: relative;
+}
+.page2 > .row7 .column1 .row5 .text p.item2::before {
+    background-color: #144B3c;
+}
+.page2 > .row7 .column1 .row5 .text p.item3::before {
+    background-color: rgb(131, 147, 132);
+}
+.page2 > .row7 .column1 .row5 .text p.item4::before {
+    background-color: rgb(242, 197, 76);
+}
+.page2 > .row7 .column1 .row5 .text p.item5::before {
+    background-color: #FCD678;
+}
+.page2 > .row7 .column1 .row5 .text p.item6::before {
+    background-color: #cccccc;
+}
+.page2 > .row7 .column1 .row6 .text p.item2::before {
+    background-color: #2B1038;
+}
+.page2 > .row7 .column1 .row6 .text p.item3::before {
+    background-color: #807097;
+}
+.page2 > .row7 .column1 .row6 .text p.item4::before {
+    background-color: rgb(107, 15, 60);
+}
+html[lang="it-IT"] .page2 > .row8 > .column1 .chart .highcharts-axis-labels > span div span:first-child,
+html[lang="fr-FR"] .page2 > .row8 > .column1 .chart .highcharts-axis-labels > span div span:first-child,
+html[lang="de-DE"] .page2 > .row8 > .column1 .chart .highcharts-axis-labels > span div span:first-child {
+    margin-left: -15px !important;
+    margin-right: 5px;
+}
+.page2 > .row8 > .column1 .chart .highcharts-axis-labels > span div span:first-child {
+    margin-left: -25px;
+    margin-right: 20px;
+}
+.page2 > .row7 > .column2 .chart .highcharts-container {
+    margin-top: -90px;
+}
+.page2 > .row7 > .column2 .row3 {
+    margin-top: -15px !important;
+}
+.page2 > .row9 .item2,
+.page3 > .row5 .item2,
+.page4 > .row3 .item2 {
+    position: fixed;
+    bottom: 0;
+    width: 95%;    
+    font-size: 9pt !important;
+}
+.page4 .row2 .column1 {
+    position: absolute;
+    bottom: 4cm;
+}
+.page4 .row2 .item2,
+.page4 .row2 .row3 .item2, .page4 .row4 .item2{
+    font-family: "MigrosbankKievit Bold";
+    font-size: 7pt;
+}
+.page4 .row {
+    font-size: 7pt;
+}
+.page4 .row2 .item5, .page4 .row2 .item7,
+.page4 .row2 .item9, .page4 .row2 .item11,
+.page4 .row2 .item13, .page4 .row2 .item15,
+.page4 .row2 .item17, .page4 .row2 .item19 {
+    padding-left: 10px;
+    float: left;
+}
+.page4 .row2 .item4, .page4 .row2 .item6,
+.page4 .row2 .item8, .page4 .row2 .item10,
+.page4 .row2 .item12, .page4 .row2 .item14,
+.page4 .row2 .item16, .page4 .row2 .item18 {
+    font-style: italic;
+    float: left;
+}
+.page4 > .parent{
+    position: absolute;
+    bottom: 4.5cm;
+    z-index: 9;
+}
+.page3 > .row3 .column1 .row2 {
+    /* float: left; */
+    text-align: center;
+}
+.VerticalCss tr.Row td:last-child {
+    text-align: center;
+}
+.page2 > .row8 .column1 .row3 .contentSection,
+.page2 > .row8 .column1 .row4 .contentSection {
+    display: flex;
+}
+.page2 > .row8 .column1 .row3 .item2,
+.page2 > .row8 .column1 .row3 .item3,
+.page2 > .row8 .column1 .row4 .item2,
+.page2 > .row8 .column1 .row4 .item3 {
+    font-size: 8pt;
+    margin-bottom: 0;
+}
+.page2 > .row8 .column1 .row3 .item3 {
+    margin-left: 17px;
+}
+.page2 > .row8 .column1 .row4 .item3 {
+    margin-left: 8px;
+}
+.page2 > .row8 .column1 .row3 p::before,
+.page2 > .row8 .column1 .row4 p::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    display: inline-flex;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
+}
+.page2 > .row8 .column1 .row3 p.item2::before {
+    background-color: rgb(107, 15, 60);
+}
+.page2 > .row8 .column1 .row3 p.item3::before {
+    background-color: #cccccc;
+}
+.page2 > .row8 .column1 .row4 p.item2::before {
+    background-color: rgb(131, 147, 132);
+}
+.page2 > .row8 .column1 .row4 p.item3::before {
+    background-color: #144B3c;
+}
+.VerticalCss tr.Row:nth-child(odd) {
+    background: #ebecec;
+}
+.VerticalCss tr.Row td {
+    border-top: 0.5pt solid black;
+}
+.VerticalCss tr.Row:last-child {
+    border-bottom: 0.5pt solid black;
+}
+table.VerticalCss {
+    border-collapse: collapse;
+}
+.VerticalCss th {
+    text-align: left;
+    width: 15%;
+}
+.VerticalCss tr.Row td:first-child {
+    margin-left: 2px;
+}
+.VerticalCss tr.Row td:first-child,
+.VerticalCss th:first-child {
+    padding-left: 4px;
+}
+.VerticalCss th:nth-child(2) {
+    width: 20%;
+}
+.VerticalCss th:first-child {
+    width: 50%;
+}
+.horizontal-list div {
+    float: left;
+    width: 99%;
+    border-top: 0.5pt solid black;
+    padding: 2px 0px;
+    display: flex;
+    /* justify-content: space-between; */
+}
+.horizontal-list span:first-child {
+    font-weight: normal;
+    width: 90%;
+    margin-left: 4px;
+}
+.horizontal-list div:nth-child(odd) {
+    background-color: #ebecec;
+}
+.clear {
+    background: transparent !important;
+}
+body > div.section.page.page3 > div.section.row.row3 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.barChartSection.barChartSection1 > div:nth-child(1) > div > div.gwp-chart-wrapper.gwp-chart-container > div:nth-child(1) > span {
+    color: white !important;
+}
+.page3 > .row3 .column2 .row3 div:nth-child(1) > div > div.gwp-chart-wrapper.gwp-chart-container > div:nth-child(2) {
+    border-top: 1.5pt solid black;
+}
+.page3 > .row3 .column2 .row5 {
+    position: absolute;
+    top: 230px;
+    right: 23px;
+    font-weight: bold;
+}
+html[lang="fr-FR"] .page3 > .row3 .column2 .row5,
+html[lang="it-IT"] .page3 > .row3 .column2 .row5 {
+    top: 215px;
+}
+.page3 > .row3 .column2 .row5 p {
+    width: 4cm;
+}
+.gwp-chart-legend, .page3 > .row3 .column2 .row3 .chart {
+    display: none !important;
+}
+.page3 > .row3 .column2 .row4 p::before {
+    content: "";
+    display: inline-block;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #144B3C;
+    top: 6px;
+    position: relative;
+    margin-right: 5px;
+}
+.page3 > .row3 .column2 .row4 p.Portfolio\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value::before {
+    border-left: 15px solid #144B3C;
+}
+.page3 > .row3 .column2 .row4 p.Benchmarks\.\[0\]\.Overall\.MSCI\.Carbon\.ImpliedTemperatureRise\.Value::before {
+    border-left: 15px solid rgb(131, 147, 132);
+}
+.page3 > .row3 .column2 .row6 .contentSection {
+    position: absolute;
+    top: 465px;
+    right: 40px;
+    display: flex;
+}
+/* .page3 > .row4 .column1 .chart .highcharts-container,
+.page3 > .row4 .column1 svg {
+    width: 220px !important;
+    height: 200px !important;
+} */
+.page3 > .row4 .column1 .barChartSection .chart {
+    height: 150px !important;
+    width: 80% !important;
+}
+.page2 > .row8 > .column1 .barChartSection .chart {
+    height: 200px !important;
+    width: 80% !important;
+}
+.page3 .row3 .column1 .row4 .contentSection {
+    display: flex;
+}
+.page3 .row3 .column1 .row4 .contentSection .item2 {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.page3 .row3 .column1 .row4 .contentSection p::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    display: inline-flex;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+}
+.page3 .row3 .column1 .row4 .contentSection .item2::before {
+    background-color: rgb(20, 75, 60);
+}
+.page3 .row3 .column1 .row4 .contentSection .item3::before {
+    background-color: rgb(131, 147, 133);
+}
+.page3 .row3 .column1 .row5 {
+    margin-left: 170px;
+    margin-top: -31px;
+}
+.page3 .row3 .column1 .row5 .item2{
+    justify-content: right;
+    margin-right: 15px;
+}
+.page3 .row3 .column1 .row5 .item2,
+.page3 > .row4 .column1 .row3 .item2,
+.page3 > .row4 .column1 .row4 .item2,
+.page3 > .row3 .column2 .row6 .contentSection .item2 {
+    display: flex;
+    color: #144B3C;
+    font-size: 7.5pt;
+}
+.page3 > .row3 .column2 .row6 .contentSection::before,
+.page3 > .row4 .column1 .row3 .item2::before,
+.page3 > .row4 .column1 .row4 .item2::before,
+.page3 .row3 .column1 .row5 .item2::before {
+    content: "";
+    background-image: url(images/green-triangle.png);
+    background-repeat: no-repeat;
+    background-size: 20px 16px;
+    background-position: 1px 0px;
+    height: 0.5cm;
+    width: 0.6cm;
+    display: inline-block;
+    top: -5px;
+    position: relative;
+}
+/* .page2 > .row5 .chart .highcharts-container,
+.page2 > .row5 .chart .highcharts-container svg, */
+.page3 > .row3 .column1 .row3 .column .chart .highcharts-container,
+.page3 > .row3 .column1 .row3 .column .chart .highcharts-container svg {
+    height: 290px !important;
+}
+/* .page2 > .row5 .chart .highcharts-container .highcharts-xaxis-labels span, */
+.page3 > .row3 .column1 .row3 .column .chart .highcharts-container span {
+    top: 272px !important;
+}
+.page3 > .row3 .column1 > .row3 .chart .highcharts-xaxis-labels span div span:first-child {
+    margin-left: -15px;
+}
+img.iconSection {
+    width: 0.6cm;
+    height: 0.5cm;
+}
+.page2 > .row3 > .column .row, 
+.page2 > .row4 > .column .row, 
+.page2 > .row5 > .column .row, 
+.page2 > .row6 > .column .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    line-height: 0.3;
+}
+.page2 > .row3 > .column .row .row1, 
+.page2 > .row4 > .column .row .row1, 
+.page2 > .row5 > .column .row .row1, 
+.page2 > .row6 > .column .row .row1 {
+    width: 85%;
+    margin-top: 5px;
+}
+.page2 > .row3 > .column .row .row2, 
+.page2 > .row4 > .column .row .row2, 
+.page2 > .row5 > .column .row .row2, 
+.page2 > .row6 > .column .row .row2 {
+    width: 11%;
+}
+.page2 > .row3 > .column .row .row1 p, 
+.page2 > .row4 > .column .row .row1 p, 
+.page2 > .row5 > .column .row .row1 p, 
+.page2 > .row6 > .column .row .row1 p {
+    margin-bottom: 0;
+}
+.page2 > .row,
+.page2 > .row8 .column1 .row3,
+.page3 > .row4 .column2 .row3,
+.page3 > .row4 .column2 .row4,
+.page3 > .row4 .column2 .row5 {
+    margin-top: 0 !important;
+}
+/* .page3 > .row4 .column2 .row3 p,
+.page3 > .row4 .column2 .row4 p,
+.page3 > .row4 .column2 .row5 p {
+    margin-bottom: 0;
+} */
+.page3 > .row4 .column2 {
+    margin-top: -110px;
+}
+.page2 > .row7 .column1 .row7 p {
+    white-space: pre-line;
+}
+.page3 > .row3 > .column1 > .row2 > .column1 .item2,
+.page3 > .row3 > .column1 > .row2 > .column2 .item2 {
+    font-weight: bold;
+}
+.page2 > .row9 .column2,
+.page3 > .row5 .column2, 
+.page4 > .row3 .column2 {
+    float: right;
+}
+.page2 > .row9 .column2 .item2,
+.page3 > .row5 .column2 .item2, 
+.page4 > .row3 .column2 .item2 {
+    left: 645px;
+}
+.page4 > .row2 > .column1 {
+    width: 100%;
+}
+.page4 .row2 .item4 i i:nth-child(odd),
+.page4 .row2 .row2 .item3 i i i:nth-child(1),
+.page4 .row2 .row3 .item3 i i,
+.page4 .row2 .row3 .item2 i i,
+.page4 .row2 .row2 .item2 i i {
+    font-style: normal;
+}
+.page4 .row2 .row3 .item3 i i br::after,
+.page4 .row2 .row3 .item3 br::after {
+    content:"\a";
+    white-space: pre;
+}
+.page4 .row2 .row2 p:nth-child(2),
+.page4 .row2 .row2 p:nth-child(3),
+.page4 .row2 .row2 p:nth-child(4) {
+    margin-bottom: 0;
+}
+.page4 .row2 .row2 p:nth-child(3),
+.page4 .row2 .row2 p:nth-child(4) {
+    margin-left: 20px;
+}
+/* .page4 .row2 .row2 .item3 i i i br:nth-child(3)::after,
+.page4 .row2 .row2 .item3 i i i br:nth-child(4)::after,
+.page4 .row2 .row2 .item3 i i i br:nth-child(5)::after {
+    content: "  –" !important;
+    color: white;
+    text-indent: 5em;
+    margin-left:10px;
+} */
+.page4 .row2 .row2 .item3 i:nth-child(4) {
+    margin-left: 10px;
+    display: block;
+    margin-bottom: -10px;
+}
+.page2 > .row8 .column1 .row3 .contentSection, .page2 > .row8 .column1 .row4 .contentSection,
+.page2 > .row8 .column1 .row3 .contentSection *,.page2 > .row8 .column1 .row4 .contentSection *{
+    box-sizing: border-box;
+}
+.page2 > .row8 .column1 .row3 .item2, .page2 > .row8 .column1 .row4 .item2{
+    /* background-color: red; */
+    width: 40%;
+}
+.page2 > .row8 .column1 .row3 .item3,.page2 > .row8 .column1 .row4 .item3{
+    /* background-color: blue; */
+    margin-left:0;
+}
+/* Theme name : Portrait */

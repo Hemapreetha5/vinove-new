@@ -1,0 +1,748 @@
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Set to true if logo should be in upside/set to false if logo should be in down*/
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ZurichSans";
+  src: url("images/ZurichSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  text-align: left;
+  word-break: break-word;
+}
+
+.otherrelevantinformation p {
+  /*Exclude this 'otherrelevant information' para to justify align, all other para will be justified*/
+  text-align: left;
+  word-break: break-word;
+}
+
+p,
+.description {
+  font: 8.5pt "frutigerlightregular";
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.narrative .WB_HowlongshouldIholdit_1,
+.narrative .WB_HowlongshouldIholdit_4 {
+  background-color: #bebebe;
+  padding: 8px 2px;
+  color: #ffffff;
+  font-weight: var(--fw-bold);
+  margin-bottom: 0.2cm;
+}
+
+.header1 p,
+.header2 p {
+  font: 12pt "frutigerlightbold";
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.header3 p,
+.header4 p {
+  font: 12pt "frutigerlightregular";
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: auto;
+}
+
+.page1 {
+  padding: 2cm 0 0 0;
+  background: "";
+  background-size: 196.536px auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.contentSection h2 {
+  border-top: 0.01cm solid #000000;
+}
+
+.keyinformationdocument h2 {
+  font: 24pt "frutigerlightregular";
+  color: #000000;
+  margin: 0.46cm 0 0.05cm 0;
+  padding: 0cm 0;
+}
+
+.fundName h2 {
+  font: 24pt "frutigerlightbold";
+  color: slategray;
+  margin: 0.46cm 0 0.05cm 0;
+  padding: 0;
+}
+
+.keyinformationdocument h2,
+.fundName h2 {
+  width: fit-content;
+  text-indent: 0cm;
+  text-align: left;
+}
+
+@page {
+  @top-left {
+    content: element(header);
+  }
+}
+
+@page {
+  /*border:1px solid;*/
+  margin: 1cm 1.6cm 0.8cm 1.6cm;
+  padding: 0cm;
+}
+
+@page :-ro-nth(1) {
+  padding: 0cm;
+
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.5cm;
+    padding: 0 0 0cm;
+  }
+}
+
+@page :-ro-nth(2) {
+  padding: 0cm;
+
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0 0cm;
+  }
+}
+
+@page :-ro-nth(3) {
+  padding: 0cm;
+
+  @footnote {
+    border: none;
+    margin: 0.3cm 0 0.9cm;
+    padding: 0 0 0cm;
+  }
+}
+
+.contentSection.pagenumbers .footer {
+  position: running(footerRight);
+  text-align: right;
+}
+
+.Pagination {
+  display: none;
+}
+
+.page1 .row5 .compositebody>.row .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+
+.page1 .row5 .compositebody>.row .column h2 {
+  column-span: all;
+}
+
+.page2 .row1 .compositebody * {
+  break-before: avoid-page;
+}
+
+.page2 .row1 .compositebody .row3 {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+
+.page2 .row1 .compositebody .row3 h2 {
+  column-span: all;
+}
+
+.page2 .row1 .compositebody .row5 .column {
+  width: 100% !important;
+  column-count: 1;
+  column-gap: 0.8cm;
+  column-fill: balance !important;
+}
+
+h2 {
+  bookmark-level: 1;
+}
+
+.subheader p {
+  bookmark-level: 2;
+}
+
+.groupRow1,
+.groupRowDiv1,
+.groupHeader1,
+.groupHeaderDiv1 {
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.groupHeader1 table th {
+  padding: 1mm;
+  background: transparent;
+  border: 0.5pt solid #000000;
+  font-family: "frutigerlightbold";
+  page-break-inside: avoid;
+  text-align: left;
+}
+
+.groupHeader1 table th:first-of-type {
+  text-align: left;
+}
+
+.groupRow1 table td {
+  border: 0.5pt solid #000000;
+  font-family: "frutigerlightregular";
+  color: #000000;
+  padding: 1mm 1mm;
+}
+
+.groupRow1 table .header {
+  border: 0.5pt solid #000000;
+}
+
+.groupRow1 table .header th {
+  font-family: var(--font-family);
+  text-align: left;
+  padding: 1mm;
+}
+
+.groupRow1 table .incidentalcosts {
+  border: 0.5pt solid #000000;
+}
+
+.groupRow1 table .incidentalcosts th {
+  font-family: var(--font-family);
+  text-align: left;
+  padding: 1mm;
+}
+
+.groupRow1 table .ongoingcosts {
+  border: 0.5pt solid #000000;
+}
+
+.groupRow1 table .ongoingcosts th {
+  font-family: var(--font-family);
+  text-align: left;
+  padding: 1mm;
+}
+
+.performanceScenario>table:first-of-type {
+  margin: 0.1cm 0 0.25cm 0;
+}
+
+.performanceScenario .survival-scenario th {
+  border-top: 0;
+}
+
+/* .performanceScenario th[class*=period] {
+  width: 3.05cm;
+}
+
+.performanceScenario td[class*=period] {
+  width: 3cm;
+} */
+
+.costOverTime>table:first-of-type {
+  margin: 0.1cm 0 0.5cm 0;
+}
+
+.costOverTime table .tableheader {
+  display: none;
+}
+
+.costComposition>table:first-of-type {
+  margin: 0.1cm 0 0.25cm 0;
+}
+
+.costComposition table .tableHeader {
+  display: none;
+}
+
+/* .costComposition table .oneofcosts th:last-of-type {
+  width: 3.1cm;
+}
+
+.costComposition table td:last-of-type {
+  width: 3.1cm;
+} */
+
+.sriRiskRating table {
+  width: calc(100% - 0.4cm);
+  margin: 0.2cm;
+  margin-bottom: 0;
+}
+
+.sriRiskRating table td.rating {
+  border: 1pt solid #bebebe;
+  text-align: center;
+  padding: 0.1cm;
+  font-size: 16pt;
+  font-family: "frutigerlightbold";
+}
+
+.sriRiskRating table td.rating.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.sriRiskRating table td.rating.selected {
+  background-color: #c3a284;
+  color: #ffffff;
+}
+
+.sriRiskRating .header {
+  font-size: 8.5pt;
+  font-family: "frutigerlightregular";
+  margin-top: 0.5cm;
+}
+
+.sriRiskRating .header th:first-of-type {
+  text-align: left;
+  padding-left: 0.3cm;
+  padding-bottom: 0.1cm;
+}
+
+.sriRiskRating .header th:last-of-type {
+  text-align: right;
+  padding-right: 0.3cm;
+  padding-bottom: 0.1cm;
+}
+
+.sriRiskRating .arrow {
+  background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='239' height='7' viewBox='0 0 239 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_125_2)'%3e%3cpath d='M1.89999 3.20001H236' stroke='%231985FF' stroke-width='0.5' stroke-miterlimit='10'/%3e%3cpath d='M4.30001 6.09999L4.70001 5.59999L2.20001 3.19999L4.70001 0.799988L4.30001 0.299988L1.10001 3.19999L4.30001 6.09999Z' fill='%231985FF'/%3e%3cpath d='M233.6 6.09999L233.1 5.59999L235.7 3.19999L233.1 0.799988L233.6 0.299988L236.7 3.19999L233.6 6.09999Z' fill='%231985FF'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_125_2'%3e%3crect width='238.2' height='6.4' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e ") no-repeat center/96% 3mm;
+  height: 4mm;
+  margin: 0 0.2cm;
+}
+
+.sriRiskRating>tbody {
+  position: relative;
+}
+
+.sriRiskRating>tbody .ratings>td {
+  padding-top: 1cm;
+}
+
+.sriRiskRating>tbody .arrow {
+  position: absolute;
+  /* top: 0.7cm; */
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  margin: 0;
+}
+
+.sriRiskRating>tbody .header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  /* top: 0.2cm; */
+  left: 0;
+  right: 0;
+  bottom: 7px;
+}
+
+p.Sri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 43.3px 25px;
+  border-color: transparent transparent #bebebe transparent;
+  margin: 45px 12px 0 0;
+  float: left;
+  position: absolute;
+  margin-top: 2.8cm;
+}
+
+p.Sri:after {
+  content: "!";
+  font-size: 25pt;
+  font-family: "frutigerlightregular";
+  color: #ffffff;
+  position: relative;
+  left: -6px;
+  top: 9px;
+}
+
+.SRIdescription:after {
+  content: "Risk indicator";
+  font-weight: 700;
+  font-family: "frutigerlightbold";
+}
+
+:root {
+  --font-family: "ZurichSans";
+  --fw-light: 300;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --black: #000000;
+  --white: #ffffff;
+  --primary-blue: rgb(0, 23, 156);
+  --arrow-color: rgb(25, 133, 255);
+}
+
+body {
+  color: var(--primary-blue);
+}
+
+p {
+  font-family: var(--font-family);
+  font-weight: var(--fw-light);
+  color: inherit;
+}
+
+h2 {
+  font-size: 9pt;
+  margin: 0cm 0 0.2cm 0;
+  padding: 0.19cm 0 0cm 0;
+}
+
+tbody {
+  display: table;
+  width: 100%;
+}
+
+.page1 {
+  padding-top: 0;
+}
+
+.page1>.row1>.column1 {
+  width: 100%;
+}
+
+.page1>.row6 .compositebody>.row .column h2 {
+  column-span: all;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 {
+  width: 21%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column2 {
+  width: 79%;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader p,
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value p {
+  margin-bottom: 0;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader p:not(:empty),
+.page1>.row4>.composite>.compositebody>.row3>.column2 .Product_Value p:not(:empty) {
+  height: 0.7cm;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column1> :not(.row1) .Product_SubHeader p:not(:empty),
+.page1>.row4>.composite>.compositebody>.row3>.column2> :not(.row1) .Product_Value p:not(:empty) {
+  height: 0.6cm;
+}
+
+.page1>.row4>.composite>.compositebody>.row3>.column>.row:last-of-type p:not(:empty) {
+  height: auto;
+  margin-bottom: 0.15cm;
+}
+
+.narrative p:last-of-type,
+.page1>.row4>.composite>.compositebody>.row4>.text1 p[class*=WB_GeneralInformation_]:last-of-type {
+  padding-bottom: 0.15cm;
+}
+
+/* p.Sri {
+  margin-top: 1cm;
+} */
+
+.sriRiskRating {
+  break-inside: avoid;
+  position: relative;
+  /* margin-bottom: 2mm; */
+  width: auto;
+}
+
+/* .sriRiskRating table {
+  margin-top: 0.2cm;
+} */
+
+.sriRiskRating table td.rating {
+  border-color: var(--arrow-color);
+  font-family: var(--font-family);
+  font-weight: var(--fw-medium);
+}
+
+.sriRiskRating table td.rating.selected {
+  background-color: var(--arrow-color);
+}
+
+.sriRiskRating .rating {
+  width: 1cm;
+  height: 1cm;
+}
+
+.sriRiskRating .header {
+  margin-top: 0;
+  font-size: 8pt;
+  font-family: var(--font-family);
+}
+
+.sriRiskRating .header th {
+  font-weight: var(--fw-light);
+}
+p.WB_SRInarrative2_4, p.WB_SRInarrative2_9 {
+  padding-left: 65px;
+}
+/* .sriRiskRating .header th:first-of-type {
+  padding-left: 0.7cm;
+}
+
+.sriRiskRating .header th:last-of-type {
+  padding-right: 0.7cm;
+} */
+
+/* .sriRiskRating>tbody .arrow {
+  margin: 0;
+  top: 0.4cm;
+}
+
+.sriRiskRating>tbody .header {
+  top: 0.1cm;
+} */
+
+.sriRiskRating>tbody .ratings>td {
+  padding-top: 0.2cm;
+  padding-bottom: 40px;
+}
+
+.page3 .compositebody {
+  break-inside: avoid-page;
+}
+
+.performanceScenario .groupRow1 th.groupHeader1>.groupHeaderDiv1 table tbody tr th,
+.costovertimetable tr.scenarioheader th,
+.costOverTime tr.scenarioheader th,
+.costComposition tr.oneofcosts th {
+  border-bottom: 0px;
+}
+
+.costovertime_3columntable th,
+.costovertime_3columntable td {
+  width: 33.33%;
+}
+
+.costovertime_4columntable th,
+.costovertime_4columntable td {
+  width: 25%;
+}
+
+.page1>.row6>.composite1>.compositebody>.row2>.column1,
+.page2>.row2>.composite1>.compositebody>.row5>.column1 {
+  width: 100%;
+}
+
+.groupRow1 table td,
+.groupHeader1 table th {
+  color: var(--primary-blue);
+  font-family: var(--font-family);
+}
+
+.groupRow1 table .header td {
+  font-family: var(--font-family);
+}
+
+.contentSection h2 {
+  color: inherit;
+  font-family: var(--font-family);
+  font-weight: var(--fw-medium);
+}
+
+.contentSection h2:empty {
+  display: none;
+}
+
+.contentSection.purpose h2 {
+  border-top: none;
+}
+
+.keyinformationdocument h2 {
+  font-size: 25pt;
+}
+
+.section .contentSection.keyinformationdocument h2 {
+  border: none;
+  margin-top: 0;
+}
+
+.performanceScenario {
+  page-break-inside: auto !important;
+}
+
+.holding-period th:first-of-type {
+  font-weight: var(--fw-light);
+}
+
+.investment-amount th {
+  font-weight: var(--fw-medium);
+}
+
+.WB_WhatAreTheCosts_3,
+.WB_WhatAreTheCosts_continued_2,
+.page1>.row5 .compositebody .subheader p,
+.WB_Whatisthisproduct_1,
+.WB_Whatisthisproduct_3,
+.WB_Whatisthisproduct_5,
+.WB_Whataretherisks_1 {
+  font-weight: var(--fw-medium);
+}
+
+.minimum .description,
+.averagereturn td,
+[class*=riy] {
+  font-weight: var(--fw-light);
+}
+
+.costComposition td:nth-of-type(n+2) {
+  font-weight: var(--fw-light);
+}
+
+.costComposition tr.oneofcosts th,
+.groupRow1 table .ongoingcosts th,
+.groupRow1 table .incidentalcosts th {
+  background: var(--arrow-color);
+  color: var(--white);
+}
+
+.narrative .WB_HowlongshouldIholdit_1 {
+  padding-left: 0.1cm;
+}
+
+.performancescenariotable table .survival-scenario th,
+.performanceScenario table .moderate.averagereturn td,
+.performanceScenario table .stress.averagereturn td {
+  background-color: transparent;
+}
+
+table .entrycosts td:first-of-type,
+table .exitcosts td:first-of-type,
+table .managementfeesandothercosts td:first-of-type,
+table .transactioncosts td:first-of-type,
+table .performancefees td:first-of-type,
+.totalcostsheader,
+.totalcosts1,
+.performanceScenario table .stress-return td,
+.performanceScenario table .moderate-return td,
+.performanceScenario table .favourable.averagereturn+.invest td,
+.performanceScenario table .invest:nth-last-of-type(2) td {
+  background-color: transparent;
+  font-family: var(--font-family) !important;
+}
+
+@media only screen {
+  .page {
+    width: 18cm;
+  }
+}
+
+.page1>.row6 {
+  page-break-before: always;
+}
+
+.WB_GeneralInformation_22{
+  font-family: var(--font-family);
+  font-weight: var(--fw-bold);
+}
+.WB_GeneralInformation_23{
+  font-family: var(--font-family);
+  font-weight: var(--fw-medium);
+}
+.page1 > .row {
+  margin-top: 0.6mm;
+}
+  /* New client updation - 16-05 changes */
+  .page2>.row4>.composite1>.compositebody {
+    page-break-before: always !important;
+  }
+  p.WB_SRInarrative2_34,.WB_GeneralInformation_5,.WB_GeneralInformation_6,.WB_GeneralInformation_1,.WB_GeneralInformation_2,
+  .WB_GeneralInformation_23,.WB_GeneralInformation_22{
+    font-weight: bold;
+  }
+  .page1 .WB_GeneralInformation_6,.page1 .WB_GeneralInformation_5,.page1>.row4>.composite>.compositebody>.row3>.column1 .Product_SubHeader p:not(:empty),
+  .page1>.row4>.composite>.compositebody>.row3>.column1> :not(.row1) .Product_SubHeader p:not(:empty), .page1>.row4>.composite>.compositebody>.row3>.column2> :not(.row1) .Product_Value p:not(:empty){
+    height: auto;
+    line-height: 1;
+    min-height: 20px;
+    margin-bottom: 0.2cm !important;
+    padding-bottom: 0;
+  }
+  .page1>.row4>.composite>.compositebody>.row3>.column1>.row1 .Product_SubHeader p:first-child,
+  .page1>.row4>.composite>.compositebody>.row3>.column2>.row1 .Product_Value p:first-child{
+    margin-bottom:0.2cm;
+    padding-bottom:0;
+  }
+  .costComposition table .oneofcosts th:last-of-type {
+    width: 3.6cm;
+  }
+  .costComposition table td:last-of-type {
+    width: 3.6cm;
+  } 
+  .performanceScenario th[class*=period] {
+    width:3.6cm;
+    text-align: left;
+  }
+  .performanceScenario td[class*=period] {
+    width: 3.6cm;
+  }
+  .costovertimetable tr.scenarioheader {
+    border-bottom: 0 !important;
+  }
+  p.WB_SRInarrative2_85 {
+    margin-bottom: 0;
+  }
+  .groupHeader1 table th,.groupRow1 table td,.performanceScenario table .stress-return th,.groupRow1 table .ongoingcosts th,.performanceScenario table .stress-return td,
+  .costComposition .groupHeader1 table th, .groupRow1 table .ongoingcosts th, .groupRow1 table .incidentalcosts th{
+    font-size:7.5pt !important;
+  }
+/* Theme name Zurich_K */
+
+/*# sourceMappingURL=theme.css.map */

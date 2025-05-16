@@ -1,0 +1,2892 @@
+@font-face {
+	font-family: 'SunLifeSans-Light';
+	src: url('fe_img/SunLifeSans-Light.eot?#iefix') format('embedded-opentype'), url('fe_img/SunLifeSans-Light.otf') format('opentype'),
+		url('fe_img/SunLifeSans-Light.woff') format('woff'), url('fe_img/SunLifeSans-Light.ttf') format('truetype'), url('fe_img/SunLifeSans-Light.svg#SunLifeSans-Light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SunLifeSans-Regular';
+	src: url('fe_img/SunLifeSans-Regular.eot?#iefix') format('embedded-opentype'), url('fe_img/SunLifeSans-Regular.otf') format('opentype'),
+		url('fe_img/SunLifeSans-Regular.woff') format('woff'), url('fe_img/SunLifeSans-Regular.ttf') format('truetype'), url('fe_img/SunLifeSans-Regular.svg#SunLifeSans-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SunLifeSans-Medium';
+	src: url('fe_img/SunLifeSans-Medium.eot?#iefix') format('embedded-opentype'), url('fe_img/SunLifeSans-Medium.otf') format('opentype'),
+		url('fe_img/SunLifeSans-Medium.woff') format('woff'), url('fe_img/SunLifeSans-Medium.ttf') format('truetype'), url('fe_img/SunLifeSans-Medium.svg#SunLifeSans-Medium') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SunLifeSans-Bold';
+	src: url('fe_img/SunLifeSans-Bold.eot?#iefix') format('embedded-opentype'), url('fe_img/SunLifeSans-Bold.otf') format('opentype'),
+		url('fe_img/SunLifeSans-Bold.woff') format('woff'), url('fe_img/SunLifeSans-Bold.ttf') format('truetype'), url('fe_img/SunLifeSans-Bold.svg#SunLifeSans-Bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('fe_img/fontawesome-webfont.eot?v=4.6.3');
+	src: url('fe_img/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('fe_img/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('fe_img/fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('fe_img/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'futura_stdbook';
+	src: url('fe_img/futurastd-book-webfont.woff2') format('woff2'),
+		url('fe_img/futurastd-book-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	--phoenix-hot-pink: #c90062;
+	--phoenix-aubergine: #662046;
+	--phoenix-black: #363534;
+	--phoenix-black-75: #696867;
+	--phoenix-black-50: #9a9a99;
+	--phoenix-black-25: #cdcccc;
+	--tab-background:#f1f1f1;
+	--black:#000000;
+	--white:#ffffff;
+	--font-regular: 'futura_stdbook';
+}
+
+/* ---------- General classes --------------- */
+body {
+	/* font:normal 16px 'SunLifeSans-Regular', Arial, Helvetica, sans-serif; */
+	font: normal 16px var(--font-regular);
+	color: var(--phoenix-black);
+	padding: 0px;
+	margin: 0px;
+	background: #fff none;
+}
+
+p {
+	padding: 0 0 15px;
+	margin: 0;
+}
+
+a {
+	color: var(--phoenix-black);
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #222222;
+}
+
+li {
+	list-style-type: none;
+	list-style-image: none;
+}
+
+a:focus,
+li:focus,
+span:focus,
+button:focus,
+select:focus,
+input:focus,
+*:focus {
+	outline: none !important;
+}
+
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	/* font: 16px 'SunLifeSans-Regular', Arial, Helvetica, sans-serif !important; */
+	font: 16px var(--font-regular) !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-widget-header {
+	background: none transparent;
+	border: 0 none;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	background: none;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+.ui-button-text-only .ui-button-text,
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: 0;
+	line-height: 20px;
+}
+
+.page {
+	padding: 0px;
+	min-height: 1000px;
+	position: relative;
+}
+
+.ui-page-content-panel {
+	margin: 0;
+}
+
+.ui-logo-container {
+	height: 120px;
+	display: block;
+	background: url(fe_img/logo.png) no-repeat right 16px;
+	border-bottom: 0;
+	margin: 0;
+	background-size: 16.6%;
+}
+
+.ui-logo-container img {
+	display: none;
+}
+
+/* ============== Search =========================== */
+#advancedSearchContainer {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	margin-top: 10px;
+}
+
+.fe-search-searchbox-container {
+	margin: 5px 0 0;
+	padding: 0;
+	/*! position: absolute; */
+	right: 0;
+	/*! top: -62px !important; */
+}
+
+.fe-search-textbox,
+.fe-search-textbox:focus
+
+/* search input */
+	{
+	font: normal 16px var(--font-regular) !important;
+	color: var(--phoenix-black);
+	height: auto;
+	padding: 12px 20px;
+	margin: 0 5px 0 0;
+	/* background-color: #FFF; */
+	background-color: var(--tab-background);
+	border: 1px solid var(--phoenix-black-50);
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+.ui-autocomplete
+
+/* auto search textbox */
+	{
+	z-index: 9999 !important;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.fe-button.ui-state-default,
+.ui-button.ui-state-default,
+.fe-button.fe-search-button
+
+/* All buttons */
+	{
+	font: normal 16px var(--font-regular);
+	color: #fff;
+	text-decoration: none;
+	width: auto !important;
+	height: auto;
+	margin: -6px 4px 0 0;
+	padding: 14px 25px;
+	/* background: var(--phoenix-aubergine); */
+	background: var(--phoenix-hot-pink);
+	border: 0;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	cursor: pointer
+}
+.fe-search-searchbox-container .fe-button.fe-search-button {
+    color: var(--phoenix-hot-pink);
+    font-size: 0 !important;
+    margin: 0;
+    vertical-align: top;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px !important;
+    height: 100%;
+    z-index: 9;
+    background-color: transparent;
+}
+.fe-search-searchbox-container .fe-button.fe-search-button:before{
+	content: "\f002";
+	color: var(--phoenix-hot-pink);
+	font-family: 'FontAwesome';
+    font-size: 18px !important;
+}
+.fe-search-searchbox-container .fe-search-textbox {
+    margin-right: 0;
+    padding-right: 45px;
+}
+.fe-search-searchbox-container {
+   position: relative;
+}
+.fe-button.ui-state-hover,
+.fe-button.ui-state-focus,
+.ui-button.ui-state-hover,
+.ui-button.ui-state-focus
+
+/* All buttons hover */
+	{
+	color: #FFFFFF !important;
+	text-decoration: none;
+	background: var(--phoenix-black) none;
+}
+
+/*#basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover  {
+	! background: url(fe_img/ico_search2.png) no-repeat center center #c1c1c1 !important; 
+    ! border: 0 none; 
+    color: transparent;
+    font-size: 0 !important;
+    height: 26px;
+    right: 75px;
+    margin: 0 0 0 -15px !important;
+    padding: 0 0 0 20px;
+    position: absolute;
+    text-decoration: none;
+    vertical-align: top;
+    width: 32px !important;
+    border-radius: 0 3px 3px 0;
+	-moz-border-radius:0 3px 3px 0;
+	-webkit-border-radius:0 3px 3px 0;
+}
+.fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus,.fe-advSearch-button.ui-state-hover {
+	font-size:0 !important;
+	color: transparent;
+	padding:0;
+	text-decoration: none;
+	margin: 0 4px 0 0;
+	right: 0px;
+	width: 30px !important;
+	height:26px;
+	vertical-align: top;
+	background:var(--phoenix-aubergine) url(fe_img/ico_advance.png) no-repeat center center;
+	border:0;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+}
+
+#advanceSearch .ui-icon-triangle-1-s{background:none no-repeat 5px center;}
+#advanceSearch .ui-icon-triangle-1-n{background:none no-repeat 5px center;}
+.fe-search-clear-button.ui-state-default,.fe-search-clear-button.ui-state-focus, .fe-search-clear-button.ui-state-hover {
+	background: var(--phoenix-aubergine) url(fe_img/ico_clear.png) no-repeat center center !important;
+    color: transparent;
+    font-size:0 !important;
+    height: 26px;
+    right: 0;
+    margin: 0 !important;
+    padding: 0;
+    text-decoration: none;
+    top: 0;
+    vertical-align: top;
+    width: 30px !important;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+}*/
+#advance {
+	background: #ccc none;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px #66666640;
+	margin: 10px 0 0;
+	padding: 12px 0 12px;
+	padding-bottom: 12px;
+	width: 100% !important;
+}
+
+.fe-search-fileters-container {
+	float: left;
+	height: 35px;
+	width: 260px;
+	margin: 0 17px 18px 18px !important;
+	font: normal 16px var(--font-regular);
+	padding: 0;
+	position: relative
+}
+
+.fe-search-fileters-label
+
+/* filter text - both sliders and dropdowns */
+	{
+	font-weight: normal;
+	color: var(--phoenix-black);
+}
+
+.fe-search-fileters-slider-value {
+	font-weight: bold;
+}
+
+.fe-search-fileters-container .mfs-container {
+	width: 275px !important;
+}
+
+/*mfs container*/
+.mfs-container a.mfs-selected-option
+
+/* dropdown list will attach with dropdown */
+	{
+	margin: 0;
+	padding: 5px;
+	font: 16px var(--font-regular);
+}
+
+.mfs-container A.mfs-selected-option span {
+	/* padding-top:0;
+	padding-bottom:8px; */
+	border-left: 0;
+	padding: 5px 0;
+	background: url(fe_img/dropDownArrow.png) no-repeat scroll center 11px #fff;
+	float: left;
+}
+
+.mfs-options li.mfs-optgroup {
+	color: #444444;
+	font-weight: bold;
+	padding: 4px 5px;
+}
+
+.mfs-optgroup-option {
+	padding-left: 10px;
+	font-weight: normal;
+}
+
+.mfs-options li.selected,
+.mfs-options li:active {
+	background-color: var(--phoenix-black);
+}
+
+.mfs-options li.selected a,
+.mfs-options li:active a {
+	color: #fff;
+}
+
+/* ============== Sliders =========================== */
+.ui-slider {
+	background: #fff none;
+	opacity: 1;
+	height: 8px;
+	margin: 0 0 0 7px;
+	width: 260px;
+}
+
+.ui-slider-range.ui-widget-header {
+	background: #FFFFFF none;
+	opacity: 1;
+	margin-left: 5px;
+}
+
+.ui-slider-handle.ui-state-default
+
+/* handle  */
+	{
+	opacity: 1;
+	background-color: var(--phoenix-black);
+	height: 15px;
+	width: 15px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.ui-slider-handle.ui-state-default.ui-state-focus
+
+/* handle focus */
+	{
+	opacity: 1;
+	background-color: var(--phoenix-black);
+	height: 15px;
+	width: 15px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/* --------- End of sliders ---------------- */
+.fe-topmenu {
+	font: normal 16px var(--font-regular);
+	width: 100%;
+	background: transparent;
+	margin-bottom: 10px
+}
+
+/* ============== Top Menu =========================== */
+.fe-menuTabs-list {
+	top: 0;
+	float: left;
+	height: 50px;
+}
+
+.fe-topmenu .fe-menuTabs-list li,
+.fe-topmenu .fe-menuTabs-list li:hover {
+	list-style-type: none;
+	list-style-image: none;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	color: #ababab;
+	border: 0;
+	background: transparent none;
+	border-radius: 0;
+}
+
+.fe-topmenu .fe-menuTabs-list li.selected {
+	background: transparent none;
+}
+
+.fe-topmenu .fe-menuTabs-list li a {
+	padding: 13px 25px 0 0;
+	height: 35px;
+	display: block;
+	color: #ababab;
+	text-decoration: none;
+	font: normal 16px var(--font-regular);
+	text-transform: uppercase;
+}
+
+.fe-topmenu .fe-menuTabs-list li:hover a {
+	color: #fff !important;
+}
+
+.fe-topmenu .fe-menuTabs-list li a.selected {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+/*End of Top Menu UL LI*/
+.ui-tabs .ui-tabs-panel {
+	padding: 0
+}
+
+.fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+	padding: 0;
+}
+
+.fe-asatdate-containers {
+	margin-bottom: 5px;
+}
+
+.fe-tabs-container.ui-tabs
+
+/*Content Main section /*ie 7 8 fix for tabs*/
+	{
+	position: relative;
+	z-index: 50;
+	margin-top: 2px;
+	background: transparent;
+}
+
+/* ============== Secondary tabs =========================== */
+.fe-tabs-container,
+.ui-tabs
+
+/* tabs section */
+	{
+	border: 0;
+	padding: 0;
+}
+
+/* Fundcenter Tabs & Charting */
+.fe-tabs.ui-tabs-nav
+
+/* UL background*/
+	{
+	height: 39px;
+	padding: 0;
+	background: transparent none;
+}
+
+.fe-tabs-item.ui-state-default:first-child {
+	border-left: 1px solid var(--phoenix-black-25);
+}
+
+.fe-tabs-item.ui-state-default
+
+/* LI background*/
+	{
+	text-decoration: none;
+	font: normal 16px/16px var(--font-regular);
+	opacity: 1;
+	/*! height: 39px; */
+	margin: 0 !important;
+	/* background: none #fff; */
+	background: var(--tab-background);
+	background: #f1f1f1;
+	border-right: 1px solid var(--phoenix-black-25);
+	list-style: none;
+	border-top: 1px solid var(--phoenix-black-25);
+}
+
+.fe-tabs-item.ui-state-default a
+
+/* Li normal text */
+	{
+	display: block;
+	/* color: var(--phoenix-black); */
+	color: var(--phoenix-hot-pink);
+	padding: 20px 20px !important;
+	text-align: center;
+	white-space: normal;
+	font-weight: 700;
+}
+
+.fe-tabs-item.ui-state-default.ui-state-hover
+
+/* LI hover background */
+	{
+	/* background: var(--phoenix-aubergine); */
+	background: var(--white);
+	border-top:1px solid var(--phoenix-hot-pink);
+}
+
+.fe-tabs-item.ui-state-default.ui-state-hover a
+
+/* LI hover text*/
+	{
+	/* color: #fff; */
+	color: var(--black);
+}
+
+.fe-tabs-item.ui-state-default.ui-state-active
+
+/* LI selected background*/
+	{
+	text-decoration: none;
+	opacity: 1;
+	/* background: var(--phoenix-aubergine); */
+	background: var(--white);
+    border-top: 1px solid var(--phoenix-hot-pink);
+}
+
+.fe-tabs-item.ui-state-default.ui-state-active a
+
+/* LI selected text */
+	{
+	/* color: #ffffff; */
+	color: var(--black);
+}
+
+/*Extra setting for specific page tabs*/
+.fe-chart-body .fe-tabs.ui-tabs-nav {
+	border-bottom: 1px solid var(--phoenix-black-75);
+}
+
+/*Charting Tool Instrument Tabs*/
+#instrumentOptionsTabs .fe-tabs.ui-tabs-nav
+
+/* UL background*/
+	{
+	height: 51px;
+	padding: 0;
+	background: transparent none;
+	border: 0;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default
+
+/* LI background*/
+	{
+	text-decoration: none;
+	font: normal 16px var(--font-regular);
+	opacity: 1;
+	height: 51px;
+	margin: 0 0 0;
+	background: none transparent;
+	border-right: 0;
+	list-style: none;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default a
+
+/* Li normal text */
+	{
+	display: block;
+	color: #ababab;
+	height: 28px;
+	text-align: center;
+	white-space: normal;
+	text-transform: uppercase;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover
+
+/* LI hover background */
+	{
+	background: transparent none;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover a
+
+/* LI hover text*/
+	{
+	color: #fff;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active
+
+/* LI selected background*/
+	{
+	text-decoration: none;
+	opacity: 1;
+	height: 51px;
+	background: transparent none;
+	margin: 0 0 0;
+}
+
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active a
+
+/* LI selected text */
+	{
+	color: #fff;
+}
+
+#instrumentOptionsTabs .fe-tabs li a {
+	padding: 13px 25px 13px 0 !important;
+}
+
+/* End of tabs*/
+/* the tab contents section */
+.ui-tabs.ui-tabs-panel.fe-tabs-datacontainer {
+	padding: 0;
+	background: transparent none;
+	color: var(--phoenix-black);
+}
+
+.fe-datatable {
+	margin: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-right: 0;
+}
+
+/* ============== Pagination =========================== */
+.fe-datatable-pagination-container.ui-corner-top
+
+/* pagination row top */
+	{
+	font: normal 14px var(--font-regular);
+	/* padding: 1px 6px 6px 14px; */
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color: var(--phoenix-aubergine);
+	height: auto;
+}
+
+.fe-datatable-pagination-container .fe-paging-navContainer
+
+/* Disable top pagination */
+	{
+	display: none !important;
+}
+
+.fe-tabs-autoLoad .fe-datatable-pagination-container.ui-corner-top
+
+/* remove padding for portfolio scan html page. This will avoid extra space*/
+	{
+	padding: 0;
+}
+
+.fe-paging-footer.ui-corner-bottom
+
+/* pagination row bottom */
+	{
+	font: normal 12px var(--font-regular);
+	padding: 1px 6px;
+	background-color: #fff;
+	border: 0;
+	height: auto;
+}
+
+.fe-paging-navContainer
+
+/* pagination control section*/
+	{
+	padding: 13px 0px 13px 0px;
+	margin-right: 0;
+}
+
+.pagination .ui-state-default,
+.pagination .ui-state-default
+
+/* pagination button normal */
+	{
+	/* background: none repeat scroll 0 0 #747474; */
+	background: none repeat scroll 0 0 var(--phoenix-black-75);
+	border: 0 none;
+	color: #fff;
+	font-weight: bold;
+	margin: 0 2px 0 0;
+	padding: 3px 8px;
+	text-decoration: none;
+	text-shadow: none !important;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.pagination .ui-state-disabled,
+.pagination .ui-paging-ellipse {
+	/* opacity:0.5; */
+	background-color: var(--phoenix-black-50);
+}
+
+.pagination .ui-state-highlight
+
+/* pagination buttons selected */
+	{
+	background: none repeat scroll 0 0 var(--phoenix-aubergine);
+	border: 0 none;
+	color: #fff;
+	font-weight: bold;
+	opacity: 1;
+}
+
+.pagination .ui-state-default.ui-paging-prev {}
+
+/* use image for prev - default stage*/
+.pagination .ui-state-default.ui-state-disabled.ui-paging-prev {}
+
+/* use image for prev - disabled stage*/
+.pagination .ui-state-default.ui-paging-next {}
+
+/* use image for next - default stage*/
+.pagination .ui-state-default.ui-paging-next {}
+
+/* use image for next - disabled stage*/
+/* End of Pagination */
+.fe-paging-displayContainer {
+	color: var(--phoenix-black);
+	margin: 5px 0 0;
+	/* margin-top:-6px */
+}
+
+.fe-paging-displayContainer .fe-paging-showtext,
+.fe-paging-displayContainer .fe-display-count {
+	padding-top: 3px;
+}
+
+.fe-paging-showmainunits {
+	color: var(--phoenix-black);
+	padding: 8px 0 0;
+}
+
+.fe-paging-showmainunits>input {
+	vertical-align: bottom;
+}
+
+/* ============== Table =========================== */
+.fe-datatable th,
+.fe-portfolioconstituents-dialog table thead th {
+	padding: 8px 6px;
+	font: bold 15px/16px var(--font-regular);
+	/* color: var(--phoenix-black); */
+	color: var(--white);
+	height: 44px;
+	vertical-align: bottom;
+	border-spacing: 0;
+	/* background-color: #f2f5f6; */
+	/* background-color: var(--phoenix-black-25); */
+	background-color: var(--phoenix-aubergine);
+	border-bottom: 0;
+	font-weight: 700;
+	border-left: 1px solid #fff;
+}
+.fe-datatable th:first-child,
+.fe-portfolioconstituents-dialog table thead th:first-child{
+	border-left: none;
+}
+.fe-soretedColumn
+
+/* th sorted (selected table header field) */
+	{
+	background-color: #e9e9e9;
+}
+
+.fe-columnheader-Change,
+.fe-columnheader-Change_ {
+	/*! text-align:right; */
+}
+
+.fe-datatable th .ui-icon-triangle-1-n
+
+/* sorting arrow for table header field - down arrow */
+	{
+	/* background: url("fe_img/sort-down.png") no-repeat scroll center bottom; */
+	background: url("fe_img/sort-down-white.png") no-repeat scroll center bottom;
+	background-size: 47%;
+}
+
+.fe-datatable th .ui-icon-triangle-1-s
+
+/* sorting arrow for table header field - up arrow */
+	{
+	background: url("fe_img/sort-up.png") no-repeat scroll center bottom;
+	background-size: 47%;
+}
+
+.fe-columnheader-FundName .ui-icon-triangle-1-s,
+.fe-columnheader-FundName .ui-icon-triangle-1-n {
+	position: absolute;
+	top: 33px;
+	left: 18px;
+}
+
+/*.fe-datatable th .ui-icon-triangle-1-n:before{
+	content: "\f0dd";
+	font-family: 'FontAwesome';
+	font-size: 15px;
+	color: var(--phoenix-black);
+	 position: absolute; 
+	left: 0; 
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+}*/
+/*.fe-datatable th .ui-icon-triangle-1-s:before{
+	content: "\f0de";
+	font-family: 'FontAwesome';
+	font-size: 15px;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	top: 7px;
+}*/
+/* -----   table row ---- */
+.fe-datatable td {
+	background-color: #fff;
+	padding: 7px 6px;
+	vertical-align: middle;
+	font: normal 14px var(--font-regular);
+	height: 24px;
+	border-bottom: 1px solid var(--phoenix-black-25);
+}
+
+.fe-datatable .odd td,
+.fe-dialog-portfolioconstituents table tbody tr.odd td,
+.fe-datatable .odd td.dt-risk {
+	background-color: #fff !important;
+}
+
+.fe-datatable .even td,
+.fe-dialog-portfolioconstituents table tbody tr.even td,
+.fe-datatable .even td.dt-risk {
+	background-color: #fff !important;
+}
+
+.fe-portfolio-totalFooter td,
+.fe-datatable .total TD
+
+/* total row */
+	{
+	font-weight: bold;
+	background-color: var(--phoenix-aubergine);
+	border-bottom: 0;
+}
+
+.dt-risk {
+	background: url(fe_img/bg_RiskScore.png) no-repeat center center !important;
+	color: #444444;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+td.fe-change-positive,
+.fe-datatable .even td.fe-change-positive
+
+/* positive even row */
+	{
+	color: #009900;
+	text-align: center;
+	background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+
+.fe-datatable .odd td.fe-change-positive
+
+/* positive odd row */
+	{
+	color: #009900;
+	text-align: center;
+	background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+
+td.fe-change-negative,
+.fe-datatable .even td.fe-change-negative
+
+/* negative even row */
+	{
+	color: #ff0000;
+	/*! text-align: right; */
+	background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+
+.fe-datatable .odd td.fe-change-negative
+
+/* negative odd row */
+	{
+	color: #ff0000;
+	/*! text-align: right; */
+	background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+
+td.fe-change-neutral,
+.fe-datatable .even td.fe-change-neutral
+
+/* neutral even row */
+	{
+	text-align: center;
+	background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;
+}
+
+.fe-datatable .odd td.fe-change-neutral
+
+/* neutral odd row */
+	{
+	text-align: center;
+	background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;
+}
+
+a.fe-ico-basket-shortlist-add,
+a.fe-ico-basket-portfolio-add,
+td.fe-icon-basket-add a
+
+/* add fund icon */
+	{
+
+	background: url(fe_img/ico_addFund.png) no-repeat scroll center 1px transparent;
+	float: left;
+	height: 18px;
+	padding: 0 0 0 17px;
+}
+
+a.fe-ico-basket-remove,
+td.fe-icon-basket-remove a
+
+/* remove fund icon */
+	{
+	background: url(fe_img/ico_remove.png) no-repeat scroll center 1px transparent;
+	float: left;
+	height: 18px;
+	padding: 0 0 0 17px;
+}
+
+td.fe-icon-chart a,
+a.fe-icon-chart,
+td.fe-icon-chart a:hover,
+a.fe-icon-chart:hover
+
+/*chart icon */
+	{
+	/* background-image: linear-gradient(to bottom, var(--phoenix-aubergine), var(--phoenix-hot-pink)); */
+	background-image: none;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	margin: 0 auto;
+	border-radius: 100%;
+	position: relative;
+}
+
+td.fe-icon-factsheet a,
+a.fe-icon-factsheet,
+td.fe-icon-factsheet a:hover,
+a.fe-icon-factsheet:hover
+
+/*factsheet icon */
+	{
+	/* background-image: linear-gradient(to bottom, var(--phoenix-aubergine), var(--phoenix-hot-pink)); */
+	background-image: none;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	margin: 0 auto;
+	border-radius: 100%;
+	position: relative;
+}
+
+a.fe-icon-factsheet:before {
+	font-family: 'FontAwesome';
+	content: "\f0f6";
+	font-size: 20px;
+	/* color: #fff; */
+	color: var(--phoenix-hot-pink);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+a.fe-icon-chart:before {
+	font-family: 'FontAwesome';
+	content: "\f080";
+	font-size: 20px;
+	/* color: #fff; */
+	color: var(--phoenix-hot-pink);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.fe-fund-document-icon,
+.fe-fund-document-icon:hover
+
+/*document icon */
+	{
+	background: none;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+}
+
+.fe-fund-document-icon:before {
+	font-family: 'FontAwesome';
+	content: "\f080";
+	font-size: 20px;
+	color: #747678;
+}
+
+.fe-fund-document-icon:hover
+
+/*document icon hover */
+	{
+	background-image: url(fe_img/ico_fs.png);
+}
+
+.fe-download-icon,
+.fe-download-icon:hover {
+	background: url(fe_img/ico_download1.png) no-repeat center center;
+	width: 32px;
+	height: 31px;
+	padding: 0;
+}
+
+td.fe-deleteRow a,
+.delete
+
+/* delete fund */
+	{
+	background: url(fe_img/ico_deleteFund.png) no-repeat;
+	height: 16px;
+	width: 16px;
+	margin: auto;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+}
+
+.fe-datatable .fe-basket-shortlistitems td a,
+.fe-datatable .fe-basket-portfolioitems TD a
+
+/* Disable basket icon */
+	{
+	background: url(fe_img/ico_disabledBasket.png) no-repeat;
+	padding: 0 0 0 17px;
+	cursor: default;
+	height: 18px
+}
+
+td.fe-deleteImage a
+
+/* Delete Basket icon */
+	{
+	background: url(fe_img/ico_deleteBasket.png) no-repeat;
+	padding: 2px 0 0 17px;
+	text-decoration: none;
+}
+
+.fe-noresult
+
+/* container for the no results message */
+	{
+	color: #ff0000;
+	font: normal 13px var(--font-regular);
+	text-align: center;
+	padding: 20px;
+}
+
+.fe-fund-performance-astext-element {
+	font-size: 14px;
+}
+
+.fe-datatable th.fe-columnheader-Bid {
+	font-size: 0;
+	position: relative;
+}
+
+.fe-datatable th.fe-columnheader-Bid:before {
+	font: bold 15px/16px var(--font-regular);
+	/* color: var(--phoenix-black); */
+	content: "Bid";
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	left: 0;
+	right: 0;
+}
+
+/* set fixed width for Table fields */
+.fe-columnheader-FundName {
+	width: 280px;
+	text-align: left;
+	position: relative;
+}
+
+.fe-columnheader-FundCode_Customtable {
+	width: 100px;
+}
+
+.fe-tabs-datacontainer .fe-datatable th {
+	min-width: 50px;
+}
+
+.fe-tab-container-AnnualisedPerformance.fe-tabs-datacontainer .fe-datatable th:not(.fe-columnheader-FundName) {
+	width: 90px;
+}
+
+.fe-tabs-datacontainer .fe-datatable th.fe-columnheader-Info {
+	min-width: 100px;
+
+}
+
+.fe-tabs-datacontainer .fe-datatable td:nth-last-child(1),
+.fe-tabs-datacontainer .fe-datatable td:nth-last-child(2),
+.fe-tabs-datacontainer .fe-datatable td:nth-last-child(3)
+
+/* info columns icons */
+	{
+	width: 25px;
+}
+
+.fe-tab-container-AnnualisedPerformance.fe-tabs-datacontainer .fe-datatable td:nth-last-child(1),
+.fe-tab-container-AnnualisedPerformance.fe-tabs-datacontainer .fe-datatable td:nth-last-child(2),
+.fe-tab-container-AnnualisedPerformance.fe-tabs-datacontainer .fe-datatable td:nth-last-child(3)
+
+/* info columns icons */
+	{
+	width: 20px;
+	min-width: 20px;
+	max-width: 20px;
+}
+
+.fe-icon-basket.fe-icon-basket-remove,
+.fe-icon-basket.fe-icon-basket-add
+
+/* Add/remove column width change */
+	{
+	width: 16px;
+	text-align: center;
+}
+
+.fe-columnheader-AMC,
+.fe-columnheader-InitialCharge,
+.fe-columnheader-MinInvestment,
+.fe-columnheader-OngoingCharge,
+.fe-columnheader-FECrownRating {
+	width: 100px;
+}
+
+.fe-fundCentre-body .fe-columnheader-_0to12m,
+.fe-fundCentre-body .fe-columnheader-_12to24m,
+.fe-fundCentre-body .fe-columnheader-_24to36m,
+.fe-fundCentre-body .fe-columnheader-_36to48m,
+.fe-fundCentre-body .fe-columnheader-_48to60m,
+.fe-fundCentre-body .fe-columnheader-YTD,
+.fe-fundCentre-body .fe-columnheader-Year1,
+.fe-fundCentre-body .fe-columnheader-Year2,
+.fe-fundCentre-body .fe-columnheader-Year3,
+.fe-fundCentre-body .fe-columnheader-Year4,
+.fe-fundCentre-body .fe-columnheader-Year5 {
+	width: 100px;
+}
+
+.fe-tab-container-Risk .fe-columnheader-GroupManagerName {
+	width: 150px;
+}
+
+.fe-columnheader-PriceDate,
+.fe-columnheader-Price,
+.fe-columnheader-Offer,
+.fe-columnheader-Bid,
+.fe-columnheader-Change {
+	width: 100px;
+}
+
+.fe-columnheader-_1m,
+.fe-columnheader-_3m,
+.fe-columnheader-_6m,
+.fe-columnheader-_1y,
+.fe-columnheader-_3y,
+.fe-columnheader-_5y {
+	width: 100px
+}
+
+/* ============== Footer =========================== */
+.fe-footer-container {
+	font: normal 13px var(--font-regular);
+	padding: 10px 0 0;
+	color: var(--phoenix-black);
+}
+
+.fe-caveat-container {
+	margin-top: 10px;
+}
+
+.fe-caveat-container a,
+a.fe-disclaimer-actionLink {
+	color: var(--phoenix-black);
+	text-decoration: underline;
+}
+
+.fe-caveat-container a:hover,
+a.fe-disclaimer-actionLink:hover {
+	color: var(--phoenix-black);
+	text-decoration: none;
+}
+
+.right50 label,
+.fe-footer-logo label {
+	vertical-align: middle !important;
+}
+
+/* ============== Basket =========================== */
+.fe-basket {
+	z-index: 3000;
+	position: absolute;
+	right: 0;
+	top: 11px;
+	padding-top: 0;
+	width: 44px;
+	background: transparent none;
+	padding-right: 0;
+	border-radius: 5px;
+	-webkit-border-radius: 35px;
+	-moz-border-radius: 5px;
+	display: none;
+}
+
+.fe-fundsInBasket {
+	text-align: center;
+	float: left;
+	color: #FFFFFF;
+	font-size: 11px;
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	background: #211d1e none;
+	border: 0;
+}
+
+.fe-fundsInBasket.fe-basket-collapse,
+.fe-fundsInBasket.fe-basket-expand {
+	background: url(fe_img/basket.png) no-repeat center center;
+	border: 1px solid var(--phoenix-black);
+	width: 31px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.fe-basketHeader {
+	padding: 6px 0 5px;
+	color: transparent;
+	font-size: 0;
+	text-transform: capitalize;
+}
+
+.fe-basketTitle {
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	font-weight: bold;
+	font-size: 0;
+	font-family: helvetica, arial;
+	padding: 0 3px 0 7px;
+}
+
+.fe-basketPin {
+	display: none;
+}
+
+.fe-fundsInBasket H5 {
+	margin: -22px 4px 0;
+	padding: 0 5px;
+	color: #ffffff !important;
+	background: #e34e35 none;
+	font: bold 13px var(--font-regular);
+	right: 0;
+	position: absolute;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+
+.fe-basket-header-item-count p,
+.fe-basketDraggable {
+	display: none;
+}
+
+.fe-tableInBasket
+
+/* Basket open Box */
+	{
+	padding: 10px;
+	margin: -26px 0 0;
+	background-color: var(--phoenix-aubergine);
+	border: 0;
+	box-shadow: 0 2px 3px #666;
+	float: right;
+	display: none;
+	width: 300px;
+}
+
+.fe-basket-empty-message {
+	margin: 36% auto 0;
+	text-align: center;
+}
+
+.fe-basket-empty-message span {
+	font-weight: normal;
+	color: #ff0000;
+}
+
+.fe-basketbuttonslegend
+
+/* Legend in Basket*/
+	{
+	border: 1px solid #333;
+	background: var(--phoenix-aubergine);
+	padding: 4px 4px 6px\9 !important
+		/* padding for IE 8 alone */
+}
+
+.display-inline-block {
+	margin-right: 8px;
+}
+
+.fe-basketbuttons a
+
+/* Action Buttons in basket */
+	{
+	background-color: var(--phoenix-black) !important;
+	text-decoration: none;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.fe-effects-moveToBasket
+
+/* fund added to basket */
+	{
+	border: 2px dotted var(--phoenix-black);
+	background-color: var(--phoenix-black);
+}
+
+/* End of Basket*/
+/* ============================ Charting tool ======================= */
+.fe-search-panel.ui-tabs-panel
+
+/* search pannel */
+	{
+	color: var(--phoenix-black);
+	font: normal 14px var(--font-regular);
+	height: auto;
+	background: none;
+	margin-bottom: 0;
+	padding: 10px 0;
+}
+
+.instrumentTabSearchOptions
+
+/* LABEL */
+	{
+	margin: 0 12px 0 0;
+	padding: 0 13px 10px 0;
+	background: none;
+	border-right: 1px solid #999;
+	height: 58px;
+}
+
+.fe-search-panel label {
+	font-weight: normal;
+}
+
+.instrumentTabSearchOptions .fe-chart-instrumentsearch-ortext {
+	float: left;
+	margin: 0 5px 0 10px;
+	padding-top: 3px;
+}
+
+.instrumentTabResultsOptions {
+	padding: 0;
+	border: 0;
+	height: auto;
+	width: 200px;
+}
+
+.addToChart {
+	margin-right: 96px;
+	margin-top: 0;
+}
+
+#instrumentType-N-options .addToChart,
+#instrumentType-X-options .addToChart,
+#instrumentType-P-options .addToChart {
+	float: left;
+}
+
+#instrumentType-F16000440-options .addToChart {
+	border-left: 1px solid #999;
+	height: 46px;
+	margin: 0 589px 0 0;
+	padding: 0 13px 20px 10px;
+}
+
+/*Performance & Scatter chart section */
+.fe-chart-tabs-container.ui-tabs
+
+/*Chart Main section /*ie 7 8 fix for tabs*/
+	{
+	position: relative;
+	z-index: 40;
+	background: none !important;
+}
+
+.fe-chart-tabs-innerContainer {
+	width: 100%;
+}
+
+.fe-chart-chartingOptions-container {
+	margin: -39px 0 0;
+	right: 0;
+	width: 50% !important;
+}
+
+.fe-chart-PanelToggleButton {
+	margin-top: 9px;
+}
+
+/* chart basis popup */
+.shownOption {
+	top: 38px;
+	right: 0px;
+	font: normal 14px var(--font-regular);
+	color: #444;
+	padding: 10px;
+	border: 1px solid #c5c5c5;
+	background: #f1f1f1 none;
+	z-index: 1010;
+}
+
+.fe-panel-text {
+	float: none;
+	display: inline-block;
+	margin-bottom: 8px;
+	min-width: 110px;
+}
+
+.fe-chart-togglePanel .fe-button.ui-state-default {
+	color: var(--phoenix-aubergine);
+	padding: 1px 7px !important;
+	margin: 0 0 4px 0;
+	text-decoration: none;
+	font: normal 14px var(--font-regular);
+	width: inherit !important;
+	background: var(--phoenix-black);
+	border: 1px solid var(--phoenix-black);
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.fe-chart-togglePanel .fe-button.ui-state-highlight,
+.fe-chart-togglePanel .fe-button.ui-state-hover {
+	color: var(--phoenix-black) !important;
+	margin: 0 0 4px 0;
+	padding: 1px 7px !important;
+	background: var(--phoenix-aubergine);
+	border: 1px solid var(--phoenix-black);
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.fe-basis-toglebutton.ui-state-default.fe-chart-currency-return {
+	width: 100% !important;
+}
+
+.fe-chart-returnbasis-input {
+	position: relative;
+}
+
+.fe-chart-return-text {
+	position: absolute;
+	right: 5px;
+	top: 3px;
+}
+
+.fe-closebutton-container
+
+/* Close dialog container */
+	{
+	position: absolute;
+	top: 11px;
+	right: 5px;
+	float: none;
+	display: block;
+	width: 20px;
+	height: 16px;
+}
+
+.fe-closebutton-container .fe-button.ui-state-default
+
+/* Close dialog icon */
+	{
+	text-indent: -1000em;
+	background: url(fe_img/closeChartBasisPannel.png) no-repeat 2px 4px;
+	height: 24px;
+	margin: -6px 0 0;
+	padding: 0 9px;
+	text-indent: -1000em;
+	width: 24px;
+	border: 0;
+}
+
+.fe-chart-OrLabel {
+	margin-top: 6px;
+}
+
+/* Chart popup ends */
+.fe-chart-currency.fe-currency {
+	margin-top: -18px;
+	position: relative;
+	font-size: 14px;
+	padding-left: 18px;
+	background: #fff;
+	padding-top: 5px;
+}
+
+.fe-chart-container.ui-tabs-panel,
+.fe-chart-scatterchart-container.ui-tabs-panel
+
+/* Chart background section */
+	{
+	margin: 0 0 0;
+	padding-bottom: 10px;
+	border: 0;
+	background: #fff;
+}
+
+#performanceChartTab>div
+
+/* Move Chart to center */
+	{
+	width: 100% !important;
+}
+
+.ChartContainer {
+	overflow: visible !important;
+	margin: 0 auto !important;
+	width: 96% !important;
+}
+
+.fe-chart-scatterchart-container {
+	text-align: center;
+	width: 100% !important;
+}
+
+.SummaryChartWindow {
+	background-color: #ccc !important;
+	border-left: 3px solid var(--phoenix-black) !important;
+	border-right: 3px solid var(--phoenix-black) !important;
+}
+
+.chartKey {
+	border-radius: 14px;
+	color: #FFFFFF;
+	padding: 2px;
+}
+
+/* Performance tabs section - section 3rd */
+.fe-chart-performanceTabs-container {
+	background: transparent none;
+}
+
+.fe-performance-table.ui-tabs
+
+/* performance table container */
+	{
+	padding: 10px !important;
+	background: none #fff;
+}
+
+.ui-asdate
+
+/* date */
+	{
+	padding: 3px;
+}
+
+/* ============== Dialog box =========================== */
+.fe-ui-dialog,
+.ui-dialog {
+	background: #fff;
+	padding: 0;
+	overflow: visible;
+	border: 1px solid #d4d8db !important;
+	box-shadow: 0 0 3px #b7b7b7;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+	border-radius: 0 0 6px 6px;
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+	margin: 2px;
+}
+
+.ui-dialog-titlebar {
+	background: none repeat scroll 0 0 var(--phoenix-black);
+	border-radius: 6px 6px 0 0;
+	color: #ffffff !important;
+	font: 16px var(--font-regular);
+	margin: 0;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+	display: none;
+}
+
+.ui-button.ui-dialog-titlebar-close {
+	background: url("fe_img/close-dialog-icon.png") no-repeat scroll 1px center !important;
+	transition: all 0.2s ease-in-out;
+	border: 0 none;
+	display: block !important;
+	height: 20px !important;
+	margin: 0;
+	padding: 0 !important;
+	right: 10px !important;
+	top: 10px !important;
+	width: 15px !important;
+	position: absolute;
+}
+
+.ui-dialog-titlebar-close:hover {
+	border: 0 !important;
+}
+
+.ui-dialog-content.ui-widget-content
+
+/* content container */
+	{
+	padding: 15px;
+	height: auto !important;
+}
+
+/* ============== Popup content =========================== */
+.fe-dialog-createPortfolio-container label,
+.fe-saveportfolio-stepOne-container label,
+.fe-dialog-createComparison-container label {
+	font: bold 14px var(--font-regular);
+	padding: 0 0 7px 20px;
+	color: var(--phoenix-black);
+}
+
+.fe-portfoliodetails-input,
+.fe-portfoliodetails-multiline {
+	width: 300px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.fe-pscan-benchmark-clientNameContainer label,
+.fe-comparison-report-clientNameContainer label {
+	background: url("fe_img/ico_client_name.png") no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+}
+
+.fe-pscan-benchmark-portfolioNameContainer label {
+	background: url("fe_img/ico_portfolio_name.png") no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+}
+
+.fe-pscan-benchmark-preparedByContainer label,
+.fe-comparison-report-preparedByContainer label {
+	background: url("fe_img/ico_preparedby.png") no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+}
+
+.fe-pscan-benchmark-datePreparedContainer label,
+.fe-comparison-report-datePreparedContainer label {
+	background: url("fe_img/ico_date_prepared.png") no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+}
+
+.fe-pscan-benchmark-summaryTextContainer label {
+	background: url("fe_img/ico_summary_text.png") no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+}
+
+.fe-pscan-benchmark-customStartDateContainer label {
+	background: url("fe_img/ico_date_prepared.png") no-repeat;
+	cursor: pointer;
+	height: 30px;
+	width: 120px;
+}
+
+#customPortfolioStartDatePicker {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	color: #666666;
+	display: block;
+	margin-top: 10px;
+	padding: 5px;
+	overflow: hidden;
+	text-decoration: none;
+	text-transform: lowercase;
+	white-space: nowrap;
+	width: 218px;
+}
+
+.fe-pscan-benchmark-OrContainer {
+	margin: 8px 0;
+}
+
+.fe-pscan-benchmark-indiciesContainer {
+	position: relative;
+	z-index: 50;
+}
+
+.fe-pscan-benchmarkContainer.ui-dialog-content.ui-widget-content {
+	height: auto !important;
+}
+
+.fe-dialog-createPortfolio-container .ui-widget-content {
+	position: static;
+}
+
+.fe-pscan-benchmark-sectorContainer {
+	position: relative;
+	z-index: 40;
+}
+
+.fe-pscan-benchmark-timePeriodContainer {
+	position: relative;
+	z-index: 40;
+}
+
+.fe-pscan-benchmark-customStartDateContainer {
+	position: relative;
+	z-index: 30;
+}
+
+.fe-benchmark-indiciesContainer .mfs-container {
+	position: relative;
+	z-index: 50;
+}
+
+.fe-shownext {
+	background: url(fe_img/ico_next.png) no-repeat;
+}
+
+.fe-dialog-createPortfolio-container h2,
+.fe-dialog-portfoliosave-container h2 {
+	font-size: 15px;
+	margin: 0;
+	padding: 0 0 10px 15px;
+	color: var(--phoenix-aubergine);
+	background: url(fe_img/ico_step.png) no-repeat left 1px;
+	display: block;
+}
+
+.fe-dialog-createPortfolio-container label {
+	font: normal 14px var(--font-regular);
+	padding: 0 0 7px 20px;
+}
+
+.fe-dialog-createPortfolio-container select,
+.fe-saveportfolio-stepOne-container select {
+	width: 92%;
+	margin: 0 0 20px;
+}
+
+.fe-portfolioSettings-stepOne-container
+
+/* step one container */
+	{
+	float: left;
+	width: 48.5%;
+	width: 49% \9;
+	/* below ie8 */
+	height: 175px;
+	border-right: 1px solid #cbcbcb;
+	margin: 0 2% 0 0;
+}
+
+.fe-portfolioSettings-stepTwo-container
+
+/* step two container */
+	{
+	float: right;
+	width: 49%;
+}
+
+.fe-pscan-benchmark-indiciesContainer label,
+.fe-benchmark-indiciesContainer label
+
+/* select indicies */
+	{
+	background: url(fe_img/ico_select_index.png) no-repeat left top;
+	display: block;
+}
+
+.fe-pscan-benchmark-sectorContainer label,
+.fe-benchmark-sectorContainer label
+
+/* select sector */
+	{
+	background: url(fe_img/ico_select_sector.png) no-repeat left top;
+	display: block;
+}
+
+.fe-pscan-benchmark-weightedSectorAverageContainer {
+	width: 92%;
+	margin-top: 8px;
+}
+
+.fe-pscan-benchmark-weightedSectorAverageContainer label,
+.fe-benchmark-weightedSectorAverageContainer label
+
+/* sector averages */
+	{
+	background: url(fe_img/ico_sector_average.png) no-repeat left top;
+	display: inline-block;
+	float: left;
+}
+
+.fe-pscan-benchmark-weightedSectorAverageContainer input,
+.fe-benchmark-weightedSectorAverageContainer input {
+	float: left;
+	margin-left: 15px;
+}
+
+.fe-pscan-benchmark-timePeriodContainer label,
+.fe-benchmark-timePeriodContainer label
+
+/* time period */
+	{
+	background: url(fe_img/ico_time_period.png) no-repeat left top;
+	display: block;
+}
+
+.fe-text-OR {
+	font: normal 14px var(--font-regular);
+	margin: -26px 15px 20px 0;
+	float: right;
+}
+
+.fe-chart-subOptionLabel {
+	position: relative;
+	z-index: 0;
+}
+
+.fe-benchmark-sectorContainer .mfs-container {
+	z-index: 4;
+}
+
+.chart-addToChart-Container .mfs-container {
+	position: relative;
+	z-index: 5;
+}
+
+.BenchmarkSettingNavButtons
+
+/* buttons container */
+	{
+	border-top: 1px solid #cbcbcb;
+	display: inline-block;
+	margin-top: 10px;
+	padding: 10px 0 0;
+	right: 0;
+	width: 100%;
+}
+
+.slide-button-left {
+	float: right;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+/*Save portfolio Poup*/
+.fe-saveportfolio-stepOne-container
+
+/* step one container */
+	{
+	float: right;
+	width: 47.5%;
+	margin-bottom: 20px;
+}
+
+.fe-portfolioSettings-stepTwo-container
+
+/* step two container */
+	{
+	float: left;
+	width: 47%;
+}
+
+.fe-saveportfolio-stepTwo-container {
+	float: left;
+	width: 49.5%;
+	margin: 0 2.45% 0 0;
+	height: 246px;
+	border-right: 1px solid #cbcbcb;
+}
+
+.fe-saveportfolio-stepTwo-container label {
+	font: bold 14px var(--font-regular);
+	color: var(--phoenix-black);
+	display: block;
+	padding: 0 0 7px 0px;
+}
+
+.fe-saveportfolio-stepTwo-container select {
+	width: 95%;
+	margin: 0 0 20px;
+}
+
+.fe-saveportfolio-stepTwo-container input {
+	width: 92%;
+	margin: 0 0 10px;
+}
+
+.fe-saveportfolio-stepTwo-container textarea {
+	width: 92%;
+	margin: 0 0 10px;
+	height: 50px;
+}
+
+.fe-portfoliosave-buttons
+
+/* buttons container */
+	{
+	padding: 10px 0 0;
+	border-top: 1px solid #cbcbcb;
+	margin-bottom: 20px;
+	margin-top: 26px;
+	width: 273px;
+	position: relative;
+}
+
+.btnSaveContainer,
+.btnUpdateContainer {
+	float: left;
+}
+
+.btnSaveContainer {
+	margin-right: 5px;
+	position: absolute;
+}
+
+.btnUpdateContainer.visibilityhidden {
+	display: none;
+}
+
+.fe-mandatoryfield-message {
+	font-size: 13px;
+	margin-top: 2px;
+}
+
+/* ============== Portfolio Scan =========================== */
+.fe-tabs-autoLoad.ui-tabs {
+	background: transparent;
+}
+
+.fe-tabs-autoLoad .fe-tabs {
+	background: none transparent;
+	border-bottom: 7px solid var(--phoenix-aubergine);
+	padding: 0;
+}
+
+.fe-tabs-autoLoad-container {
+	padding: 0 10px 10px !important;
+	background: #fff !important;
+}
+
+.fe-tabs-autoLoad-container h3 {
+	margin: 0;
+	padding: 20px 0;
+	color: var(--phoenix-black);
+	font-size: 15px;
+}
+
+.fe-pscan-summarytext-value,
+.fe-pscan-commentarytext {
+	word-wrap: break-word;
+}
+
+.fe-pscan-clientname,
+.fe-pscan-portname,
+.fe-pscan-preparedby,
+.fe-pscan-dateprepared,
+.fe-pscan-benchmark,
+.fe-pscan-timeperiod {
+	padding: 4px 0;
+}
+
+.fe-pscan-timeperiod {
+	padding-bottom: 10px;
+}
+
+.fe-pscan-clientname-label,
+.fe-pscan-portname-label,
+.fe-pscan-preparedby-label,
+.fe-pscan-dateprepared-label,
+.fe-pscan-benchmark-label,
+.fe-pscan-timeperiod-label {
+	font-weight: bold !important;
+	width: 200px;
+	display: inline-block;
+}
+
+.fe-columnheader-LegendColour
+
+/*portfolio scan table*/
+	{
+	margin: 0;
+	padding: 0;
+	width: 25px !important;
+}
+
+.fe-tabs-autoLoad .fe-columnheader-FundName {
+	width: 200px !important;
+}
+
+.fe-chartlegend {
+	margin-top: 10px;
+	width: 80%;
+}
+
+.fe-chartlegend-column2 {
+	float: left;
+	margin-left: 4%;
+	width: 46%;
+}
+
+.fe-chartlegend-column1 {
+	margin-left: 0;
+	width: 46%;
+}
+
+.fe-chartlegend-datatable {
+	display: none;
+}
+
+.fe-chart-container {
+	text-align: center;
+	width: 100% !important;
+}
+
+.fe-pscan-portfoliorow .fe-chartlegend-datatable,
+.fe-pscan-benchmarkrow .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable {
+	display: inline-block;
+}
+
+.treeTable tr td {
+	border-bottom: 1px solid #B0B0B0;
+}
+
+.treeTable tr.expanded td a.expander {
+	background: url(fe_img/toggle-collapse.png) no-repeat;
+	margin-left: 0 !important;
+	padding-left: 40px !important;
+	text-decoration: none;
+}
+
+.treeTable tr.collapsed td a.expander {
+	background: url(fe_img/toggle-expand.png) no-repeat;
+	margin-left: 0 !important;
+	padding-left: 40px !important;
+	text-decoration: none;
+}
+
+.fe-pscan-actions {
+	margin-left: 0;
+	margin-top: 10px;
+}
+
+/* ============== Login =========================== */
+.fe-login-page {
+	background-color: transparent;
+	margin: 0 auto;
+	padding: 5px 0;
+	width: 1000px;
+	min-height: 500px;
+}
+
+.fe-loginPannel {
+	width: auto;
+	height: 500px;
+	margin: 0 auto;
+	background: url(fe_img/LoginBackground.png) no-repeat left top;
+}
+
+.fe-login-header {
+	font: normal 23px var(--font-regular);
+	padding: 0;
+	margin: 0 0 30px;
+	display: none;
+}
+
+.fe-login-form {
+	margin: 90px auto 0 !important;
+	padding: 20px 0 0;
+	line-height: 80%;
+	width: 450px;
+	font-size: 13px;
+}
+
+.fe-login-form label {
+	color: var(--phoenix-black);
+	display: inline-block;
+	font: bold 14px var(--font-regular);
+	float: left;
+	font-weight: bold;
+	padding: 5px 10px 0 0;
+	text-align: right;
+	width: 23%;
+}
+
+.fe-login-textbox,
+.fe-login-textbox:focus {
+	border: 1px solid #C4C4C4;
+	float: left;
+	font: normal 14px var(--font-regular);
+	height: 12px;
+	width: 60%;
+	margin: 0 0 20px;
+	padding: 5px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.fe-login-button-container {
+	float: right;
+	margin: 0 332px 0 0;
+	/* *width:70px; */
+}
+
+.fe-logon-errors .validation-summary-errors {
+	background: #FABBAA;
+	border: 1px solid #DC143C;
+	margin-top: 1em;
+}
+
+.fe-logout-container {
+	padding: 5px 0 0;
+	text-align: right;
+	background: transparent none;
+	position: absolute;
+	right: 0;
+	height: 25px;
+	font: bold 14px var(--font-regular);
+}
+
+.fe-logout-container a {
+	font-weight: bold;
+	margin-left: 5px;
+	color: var(--phoenix-aubergine);
+}
+
+/* ============== Download tool =========================== */
+.fe-dialog-createDownloadTool-container
+
+/* Set fixed size for Download tool popup */
+	{
+	margin: 0 auto !important;
+	position: absolute !important;
+	right: 0 !important;
+	left: 0 !important;
+	width: 610px !important;
+}
+
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap {
+	background: none #e3e3e3;
+	border: 0;
+	padding: 9px 0 9px 10px;
+	margin: 0 0 15px;
+	width: 560px;
+	border-radius: 6px;
+	box-shadow: 0 3px 5px -4px #333;
+}
+
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap .fe-downloadtool-options-name {
+	width: 230px;
+	font: bold 13px/19px var(--font-regular);
+	min-width: 230px !important;
+	margin-top: 3px;
+	color: var(--phoenix-black);
+}
+
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap .fe-downloadtool-options-val {
+	font: normal 13px/19px var(--font-regular);
+	color: var(--phoenix-black);
+}
+
+.fe-tab-container-PriceAndDividend .mfs-container {
+	width: 229px;
+}
+
+.fe-tab-container-PriceAndDividend .fe-date-input input {
+	border: 1px solid #ccc;
+	border-radius: 0;
+	padding: 3px;
+	width: 221px;
+	color: #666;
+	font-size: 12px;
+	font-family: var(--font-regular);
+	outline: none;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.fe-downloadtool-options-wrap.fe-downloadprice-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloaddividend-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloadDocuments-table {
+	background: none transparent;
+	box-shadow: none;
+}
+
+.fe-tab-container-PriceAndDividend h5 {
+	font: bold 15px var(--font-regular);
+	margin-bottom: 8px;
+	padding: 20px 0 0;
+}
+
+.fe-downloadtooltabs .fe-datatable th
+
+/*download tool table header */
+	{
+	height: 22px !important;
+}
+
+.fe-tab-container-DownloadPrice .fe-columnheader-Bid,
+.fe-tab-container-DownloadPrice .fe-columnheader-Offer,
+.fe-tab-container-DownloadPrice .fe-columnheader-Mid,
+.fe-tab-container-DownloadPrice .fe-columnheader-PriceDate,
+.fe-tab-container-DownloadPrice .fe-columnheader-Currency
+
+/*set fixed width for table fields*/
+	{
+	width: 100px;
+}
+
+.dividendHtmlContainer,
+.priceHtmlContainer {
+	margin-bottom: 10px;
+}
+
+/* ============== Date Picker =========================== */
+.ui-datepicker {
+	background: none repeat scroll 0 0 var(--phoenix-black-75);
+	border: 1px solid #666;
+	width: 222px;
+	z-index: 99999 !important;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.ui-datepicker th {
+	color: #fff;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+	background: none repeat scroll 0 0 #fff !important;
+	border: 1px solid #333 !important;
+	color: var(--phoenix-black) !important;
+	text-align: center;
+	padding: 3px;
+}
+
+.ui-datepicker td a.ui-state-active,
+.ui-datepicker td a:hover {
+	background: none repeat scroll 0 0 var(--phoenix-aubergine) !important;
+	color: var(--phoenix-black) !important;
+	font-weight: bold !important;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+	margin: 0 5px;
+	width: 43%;
+}
+
+/* ============== Glossary Tab =========================== */
+.tabGlossaryContainer .accordion-header {
+	background: none repeat scroll 0 0 #D8E9F3;
+	border-radius: 8px;
+	color: #007FB1;
+	cursor: pointer;
+	display: block;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 0 0 3px;
+	padding: 8px 10px;
+}
+
+.tabGlossaryContainer .accordion-content {
+	font-size: 12px;
+	margin: 0 0 1px;
+	padding: 5px 10px;
+	line-height: 18px;
+}
+
+.tabGlossary .ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active {
+	color: #007FB1;
+	font: bold 13px var(--font-regular);
+	margin: 0 0 0 -15px;
+	padding: 0;
+}
+
+/* ============== Portfolio Tab =========================== */
+.fe-mastertabs-PortfolioMasterTab.fe-menuTabs-content {
+	padding: 10px 0 0;
+}
+
+.fe-userPortfolioDropdown {
+	padding-top: 12px;
+}
+
+.fe-userPortfolioDetails.visibilityhidden {
+	display: none;
+}
+
+.fe-userPortfolioDetails {
+	min-height: 10px !important;
+	padding-bottom: 10px;
+}
+
+.fe-userPortfolio-name-label,
+.fe-userPortfolio-benchmark-label,
+.fe-userPortfolio-currency-label {
+	font-weight: bold;
+	width: 200px;
+	padding: 2px 0;
+	display: inline-block;
+}
+
+.fe-column-weight
+
+/* weight textbox in table */
+	{
+	width: 50px;
+	text-align: right;
+}
+
+.fe-portfolio-deleteall
+
+/*Delete all button in portfolio builder page */
+	{
+	background: none repeat scroll 0 0 var(--phoenix-black);
+	border: 0 none;
+	border-radius: 3px;
+	bottom: 111px;
+	box-shadow: none;
+	height: 17px;
+	margin: 0;
+	padding: 3px 6px 5px;
+	position: absolute;
+	left: 563px;
+	left: 567px;
+	bottom: 291px;
+	bottom: 281px;
+	behavior: url(http://toolkit.financialexpress.net/Assets/css/PIE.htc) !important;
+}
+
+:root .fe-portfolio-deleteall {
+	bottom: 280px\9;
+	left: 566px\9
+}
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+	.fe-portfolio-deleteall {
+		bottom: 280px;
+		left: 567px
+	}
+}
+
+::i-block-chrome,
+.fe-portfolio-deleteall {
+	left: 559px !important;
+	bottom: 262px;
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+	.fe-portfolio-deleteall {
+		bottom: 279px;
+		left: 566px;
+	}
+}
+
+a.fe-icon-deleteall,
+a.fe-icon-deleteall:hover {
+	background: none;
+	text-decoration: none;
+	padding: 1px 8px;
+	color: var(--phoenix-aubergine);
+}
+
+/* ============== Tooltip =========================== */
+.fe-helptext-switch {
+	margin-top: -10px;
+	height: 18px;
+	color: #F1F7FC;
+	display: none;
+}
+
+.fe-helptext-image {
+	margin-top: -21px;
+	position: absolute;
+	cursor: default;
+}
+
+.fe-datatable th.fe-columnheader-Bid .fe-helptext-image {
+	margin-left: 10px;
+	margin-top: -18px
+}
+
+.fe-helptext-image-background {
+	background: url(fe_img/helpTextInfo.png) no-repeat;
+	height: 15px
+}
+
+.fe-helptext-image-background:before {
+	content: "i";
+	font-size: 8px;
+	border: 1px solid;
+	width: 12px;
+	height: 12px;
+	border-radius: 10px;
+	display: block;
+	line-height: 1.5;
+	margin: 0 0 0 3px;
+}
+
+.fe-helptext-div-css {
+	background: url(fe_img/bubble_midimg.png) repeat-y;
+	margin-top: 20px;
+	margin-left: -33px;
+	/* color: var(--phoenix-black); */
+	color: var(--white);
+	width: 196px;
+}
+
+.fe-helptext-div-css:hover {
+	z-index: 1002
+}
+
+.fe-helptext-div-css .help-text-callout-top {
+	background: url(fe_img/bubble_arrow.png) no-repeat;
+	width: 35px;
+	/* height: 17px; */
+	height: 24px;
+	/* top: -20px; */
+	top: -20px;
+    left: 28px;
+	background: none;
+}
+.fe-helptext-div-css .help-text-callout-top:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 14px solid var(--phoenix-black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.fe-helptext-div-css .help-text-callout-middle {
+	/* background: url(fe_img/bubble_top3.png) #fff no-repeat; */
+	background: url(fe_img/bubble_top3.png) var(--phoenix-black) no-repeat;
+	height: auto;
+	padding: 10px 0;
+	margin-top: -30px;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+	position: relative;
+	border-radius: 6px;
+}
+
+.fe-helptext-div-css .help-text-callout-bottom {
+	background: url(fe_img/bubble_botimg.png) no-repeat;
+	height: 15px;
+	top: 6px
+}
+
+.fe-helptext-div-css .help-text-callout-middle div {
+	padding-right: 12px;
+	text-transform: none;
+	text-align: left;
+	font: 13px var(--font-regular);
+}
+
+.fe-helptext-div-css .help-text-callout-middle .closeHelpText {
+	color: var(--phoenix-black);
+	padding: 0;
+	cursor: pointer;
+	text-decoration: underline
+}
+
+/* tooltip for search*/
+.fe-search-fileters-container .fe-helptext-image {
+	position: relative;
+}
+
+.fe-search-fileters-container .fe-helptext-div-css {
+	margin-left: 0;
+}
+
+#div-fe-helptext-span-1-0-0-AssetClassId.fe-helptext-div-css {
+	margin-left: 32px !important;
+}
+
+#fe-helptext-span-1-0-0-OngoingCharge .fe-helptext-div-css {
+	margin-left: 61px !important;
+}
+
+/* ============== Saved Portfolio Tab =========================== */
+.fe-mastertabs-SavedPortfoliosMasterTab.fe-menuTabs-content {
+	padding: 20px 0 0;
+}
+
+.fe-savedportfolios-portfoliomanagement {
+	left: 374px;
+	margin: 1px 0 0;
+	position: absolute;
+}
+
+.ui-multiselect.ui-state-default {
+	height: 26px;
+	padding: 0 0 0 5px;
+	border: 1px solid #333;
+	font: 14px var(--font-regular);
+	color: var(--phoenix-black) !important;
+	background: none transparent !important;
+	text-align: left;
+	width: 200px !important;
+	border-radius: 5px;
+}
+
+.ui-multiselect span.ui-icon {
+	float: right
+}
+
+.ui-multiselect-menu {
+	display: none;
+	padding: 3px;
+	position: absolute;
+	z-index: 10000;
+	text-align: left;
+	border-radius: 4px;
+	width: 193px !important;
+}
+
+.ui-multiselect-header {
+	margin-bottom: 3px;
+	padding: 3px 0 3px 4px;
+	background-color: #EBECEC;
+}
+
+.ui-multiselect-header ul {
+	font-size: 0.9em
+}
+
+.ui-multiselect-header ul li {
+	float: left;
+	padding: 0 10px 0 0
+}
+
+.ui-multiselect-header a {
+	text-decoration: none
+}
+
+.ui-multiselect-header a:hover {
+	text-decoration: underline
+}
+
+.ui-multiselect-header span.ui-icon {
+	float: left
+}
+
+.ui-multiselect-header li.ui-multiselect-close {
+	float: right;
+	text-align: right;
+	padding-right: 0
+}
+
+.ui-multiselect-single .ui-multiselect-checkboxes input {
+	position: absolute !important;
+	top: auto !important;
+	left: -9999px;
+}
+
+.ui-multiselect-single .ui-multiselect-checkboxes label {
+	padding: 5px !important
+}
+
+.ui-multiselect-checkboxes {
+	position: relative
+		/* fixes bug in IE6/7 */
+	;
+	overflow-y: auto
+}
+
+.ui-multiselect-checkboxes label {
+	cursor: default;
+	display: block;
+	border: 1px solid transparent;
+	padding: 3px 1px
+}
+
+.ui-multiselect-checkboxes label input {
+	position: relative;
+}
+
+.ui-multiselect-checkboxes li {
+	clear: both;
+	font-size: 0.9em;
+	padding-right: 3px
+}
+
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label {
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 1px solid
+}
+
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a {
+	display: block;
+	padding: 3px;
+	margin: 1px 0;
+	text-decoration: none
+}
+
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label {
+	border: none
+}
+
+.ui-multiselect-checkboxes .ui-corner-all.ui-state-hover {
+	background: none var(--phoenix-black);
+	border: 0 none;
+	color: #FFFFFF;
+}
+
+.fe-portfolioconstituents-dialog table th {
+	padding: 5px;
+	height: 10px !important;
+}
+
+.fe-portfolioconstituents-dialog table tbody th {
+	font-weight: normal;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #b0b0b0;
+}
+
+td.fe-editportfolio-icon a,
+.edit {
+	background: url(fe_img/ammend.png) no-repeat center center;
+	cursor: pointer;
+	display: block;
+	height: 20px;
+	width: 20px;
+	text-decoration: none;
+}
+
+td.fe-portfolioscan-icon a {
+	background: url(fe_img/PortfolioScan.png) no-repeat center center;
+	cursor: pointer;
+	display: block;
+	height: 20px;
+	width: 20px;
+	text-decoration: none;
+}
+
+.apply,
+.cancel {
+	text-decoration: none;
+}
+
+a.fe-showportfolioconstituents {
+	background: url(fe_img/icon_Constituents.png) no-repeat center center transparent;
+	cursor: pointer;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+}
+
+.fe-manageportfolios-dialog.ui-dialog-content {
+	height: auto !important;
+}
+
+/* ============== Model Portfolio Tab =========================== */
+.fe-fund-tableBody td.fe-icon-export-portfolio a {
+	background: url(fe_img/exported-fund.png) no-repeat scroll 0 0;
+	text-decoration: none;
+}
+
+td.fe-icon-multiple-documents a {
+	background: url(fe_img/ico_multipleDoc.png) no-repeat;
+	text-decoration: none;
+}
+
+.fe-portfolio-export-dlg.ui-dialog-content.ui-widget-content {
+	height: auto !important;
+}
+
+.ui-dialog .fe-portfolio-export-dlg {
+	padding: 0 0 10px;
+}
+
+.fe-portfolioExport-fundName {
+	background-color: var(--phoenix-black);
+	color: white;
+	display: block;
+	font-size: 13px;
+	padding: 5px 0 5px 10px;
+}
+
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-basket {
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-portfolio:hover {
+	background: url(fe_img/ico_addToPortfolio.png) no-repeat scroll left top;
+	padding: 0 0 0 17px;
+	text-decoration: none;
+}
+
+.fe-ico-add-to-portfolio:hover {
+	background-image: url(fe_img/ico_addToPortfolioOver.png);
+}
+
+.fe-ico-add-to-basket,
+.fe-ico-add-to-basket:hover {
+	background: url(fe_img/ico_addToBasket.png) no-repeat scroll left 1px;
+	padding: 0 0 0 17px;
+	text-decoration: none;
+}
+
+.fe-ico-add-to-basket:hover {
+	background-image: url(fe_img/ico_addToBasketOver.png);
+}
+
+.mpconstituent-fundname {
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.mpconstituent-backTo-container {
+	padding-bottom: 0;
+}
+
+.fe-icon-back.fe-back-button {
+	margin-left: 0 !important;
+}
+@media screen and (max-width:1000px){
+	.page {
+		width: 100% !important;
+	}
+	.ui-tabs.ui-tabs-panel.fe-tabs-datacontainer {
+		overflow-x: scroll;
+		width: 95%;
+		margin-inline: auto;
+	}
+	.ui-logo-container {
+		height: 80px;
+		background-size: 170px;
+	}
+}
+@media screen and (max-width:767px){
+	.fe-datatable td {
+		font-size: 12px;
+	}
+	.fe-search-searchbox-container {
+		margin: 5px auto;
+		width: 94%;
+		float: none;
+	}
+
+}
+/*SLOC - Fundcentre*/

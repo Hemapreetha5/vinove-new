@@ -1,0 +1,255 @@
+window.onload = function () {
+  if (window.matchMedia('(max-width:768px)').matches) {
+    $j('.calc--displayElements').insertBefore('#calc--checkboxGroup');
+    $j('.calc--popupLinkHolder').insertBefore('#calc--checkboxGroup');
+  }
+  else {
+    $j('.calc--displayElements').insertBefore('.calc--popupLinkHolder:first-child');
+    $j('.calc--popupLinkHolder').insertBefore('.calc--bottomContent');
+  }
+};
+window.addEventListener('load', function (e) {
+  let targetCalc = document.querySelectorAll(".calc--mainWrapper");
+  if (targetCalc.length > 0) {
+    /*=== Page Load Calculation ===*/
+    let targetDisabled = document.querySelectorAll(".defaultDisabled");
+    let targetDisplay = document.querySelector(".calc__displayNumber .h2");
+    const initialValue = 0;
+    let numArr = [];
+    targetDisabled.forEach(function (item) {
+      let numbersDisable = Number(item.getAttribute("data-dispnum"));
+      numArr.push(numbersDisable);
+    });
+    function loadAddition() {
+      let sumWithInitial = numArr.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+      const valueToShow = document.createTextNode(sumWithInitial);
+      function round(value, decimals) {
+        return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+      }
+      const mainValue = round(valueToShow.data, 2);
+      const trackDot = ".";
+      if (mainValue.toString().includes(trackDot)) {
+        if (mainValue.toString().split('.')[1].length == "1") {
+          targetDisplay.innerHTML = mainValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "0";
+        }
+        else {
+          targetDisplay.innerHTML = mainValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
+      }
+      else {
+        targetDisplay.innerHTML = mainValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      }
+    }
+    loadAddition();
+    /*=== Checkbox Check Operations ===*/
+
+    let targetCheckBoxes = document.querySelectorAll(".calc__checkboxTitle");
+    targetCheckBoxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event, idx) {
+        let checkBoxValue = Number(checkbox.getAttribute("value"));
+        if (event.target.checked) {
+          numArr.push(checkBoxValue);
+        }
+        else {
+          var testArr = numArr.filter(item => item !== checkBoxValue)
+          numArr = testArr;
+        }
+        targetDisplay.innerHTML = null;
+        loadAddition();
+      });
+    });
+  }
+
+  /*======== Popup Links ==============*/
+
+  let targetPopUpLinks = document.querySelectorAll(".module-calculator");
+  if (targetPopUpLinks.length > 0) {
+    targetPopUpLinks.forEach(function (calculator) {
+      let clickBtn = calculator.querySelectorAll(".popup-link");
+      let closeBtn = calculator.querySelectorAll(".btn-close");
+      let closeBtnContainer = calculator.querySelectorAll('.popup-container');
+      clickBtn.forEach(function (links) {
+        links.addEventListener("click", function () {
+          this.nextElementSibling.style.display = "block";
+        });
+      })
+      closeBtn.forEach(function (btnclose) {
+        btnclose.addEventListener("click", function (e) {
+          e.preventDefault();
+          $j(this).parents('.popup').css("display", "none");
+        });
+      });
+      closeBtnContainer.forEach(function (btnCloseContainer) {
+        btnCloseContainer.addEventListener("click", function (contain) {
+        });
+      });
+      $j(targetPopUpLinks).on('keydown', function (event) {
+        if (event.key == "Escape") {
+          $j('.btn-close').parents('.popup').css("display", "none");
+        }
+      });
+    });
+  }
+});
+
+//data layer setup for module-calculator            
+$j(document).ready(function () {
+
+  if ($j('section.module-calculator').length > 0) {
+
+    $j('section.module-calculator .defaultDisabled').each(function () {
+      // Access the specific input element with class 'defaultDisabled'
+      var $input = $j(this);
+
+    });
+
+    // Trigger GTM event on click of checkbox with class 
+    $j('.calc__checkboxTitle.nonDefault').on('click', function () {
+      var checkboxText = $j(this).parent().text().trim();
+      var isChecked = $j(this).prop('checked');
+      var eventAction = isChecked ? 'Selected' : 'De-selected';
+
+      window.dataLayer.push({
+        'event': 'howMuchWillINeed',
+        'eventCategory': 'How much will I need in retirement tool',
+        'eventAction': checkboxText,
+        'eventLabel': eventAction
+      });
+    });
+
+    // data layer event when the page loads
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'howMuchWillINeed',
+      'eventCategory': 'How much will I need in retirement tool',
+      'eventAction': 'Pageview',
+      'eventLabel': 'Load page'
+    });
+
+    // Trigger GTM event on click of links 
+    var $popupLinks = $j('.calc__popupLink .popup-link');
+
+    if ($popupLinks.length > 0) {
+      $popupLinks.on('click', function () {
+        var linkText = $j(this).text().trim();
+
+        window.dataLayer.push({
+          'event': 'howMuchWillINeed',
+          'eventCategory': 'How much will I need in retirement tool',
+          'eventAction': linkText,
+          'eventLabel': 'Click'
+        });
+      });
+    }
+  }
+});
+
+
+
+//change register link according to selected policy
+
+(function () {
+  // Check if the cookie consent is accepted
+  var cookieData = getCookieData('__CookieConsentV300');
+  if (cookieData && cookieData.accepted === true) {
+    if (checkCookie('selectedInsurance')) {
+      var policyCompany = getCookieData('selectedInsurance').company;
+      switch (policyCompany) {
+        case "liverpool":
+          updateUrlForAlbaLife();
+          updateUrlForLiverpoolTrustees();
+          break;
+        case "peterborough":
+          updateUrlForLiverpoolRS();
+          updateUrlForLiverpoolSL();
+          updateUrlForPeterboroughP();
+          updateUrlForPeterboroughL();
+          updateUrlForPeterboroughN();
+          updateUrlForPeterboroughNPLL();
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  function updateUrlForAlbaLife() {
+    var allowedPolicies = ["Alba Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-liverpoolgroup" && allowedPolicies.includes(selectedInsurance.name)) {
+
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+
+    }
+  }
+  function updateUrlForLiverpoolRS() {
+    var allowedPolicies = ["Beacon Insurance Company", "Bradford Insurance Company - Pensions", "Ebor Phoenix Assurance Company", "Law Union & Rock Insurance Company", "Liverpool London & Globe Insurance Company", "Lloyds Life Assurance", "London Assurance", "Phoenix & London Assurance", "Phoenix Assurance Limited", "Phoenix Assurance plc", "Phoenix Life & Pensions Limited", "Property Growth Assurance Company", "Property Growth Pensions and Annuities Limited", "Royal & Sun Alliance", "Royal Heritage Life Assurance", "Royal Insurance Company", "Royal Life", "Sun Alliance"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-liverpoolrs" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForLiverpoolSL() {
+    var allowedPolicies = ["Blackburn Assurance", "Blackburn Philanthropic Burial Society", "Bristol West of England and South Wales Friendly Collecting Society", "City of Birmingham Friendly Society", "Globe Insurance Company Limited", "Loyal Endeavour Friendly Society", "National Friendly Collecting Society", "Pioneer Life Assurance Company", "Pioneer Mutual Insurance Company", "Preston Philanthropic", "Royal Co-operative", "Royal Insurance (1968 Fund)", "Stamford Mutual Insurance Company", "Swiss Life (UK)", "Swiss Pioneer Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-liverpoolsl" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForLiverpoolTrustees() {
+    var allowedPolicies = ["Alba Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-liverpooltrustees" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForPeterboroughL() {
+    var allowedPolicies = ["London Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-peterborough" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForPeterboroughN() {
+    var allowedPolicies = ["NPI and National Provident Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-peterborough" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForPeterboroughNPLL() {
+    var allowedPolicies = ["NPI and National Provident Life"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-peterborough" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateUrlForPeterboroughP() {
+    var allowedPolicies = ["Pearl Assurance"];
+    var selectedInsurance = getCookieData('selectedInsurance');
+    if (selectedInsurance && selectedInsurance.url === "/customer-centre/manage-my-policy/manage-my-policy-peterborough" && allowedPolicies.includes(selectedInsurance.name)) {
+      updateRegistrationUrl("https://www.myphoenix.co.uk/registration");
+    }
+  }
+  function updateRegistrationUrl(url) {
+    var registrationLink = document.querySelector('li#Homepage-nav-nav-register-level1 a');
+    if (registrationLink) {
+      registrationLink.href = url;
+      registrationLink.setAttribute('target', '_blank');
+      //console.log("URL updated.");
+    }
+  }
+  // Function to retrieve cookie data
+  function getCookieData(cookieName) {
+    var cookieValue = document.cookie.split('; ').find(row => row.startsWith(cookieName + '='));
+    if (cookieValue) {
+      var cookieJson = cookieValue.split('=')[1];
+      return JSON.parse(decodeURIComponent(cookieJson));
+    }
+    return null;
+  }
+  // Function to check if a cookie is present
+  function checkCookie(cookieName) {
+    var cookieValue = getCookieData(cookieName);
+    return cookieValue !== null;
+  }
+})();

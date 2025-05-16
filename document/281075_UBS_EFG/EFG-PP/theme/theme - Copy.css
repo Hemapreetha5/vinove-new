@@ -1,0 +1,219 @@
+@font-face {
+	font-family: "Frutiger-bold";
+	src: url("./images/Frutiger-Bold.woff2") format("woff2"), url("./images/Frutiger-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+  }
+  @font-face {
+	font-family: "Frutiger";
+	src: url("./images/Frutiger-Light.woff2") format("woff2"), url("./images/Frutiger-Light.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+  }
+
+  :root {
+	  --primary: #5b504b;
+	  --secondary: #c3a284;
+	  --red: #E60000;
+	  --black: #000000;
+	  --white: #FFFFFF;
+	  --border: var(--black);
+	  --header: var(--primary);
+	  --tableborder: var(--black);
+	  --tableheaderbg: var(--secondary);
+	  --tableheader: var(--white);
+	  --alert: var(--secondary);
+	  --ratingbg: var(--white);
+	  --ratingborder: var(--secondary);
+	  --ratingselected: var(--secondary);
+	  --bodycolor: var(--black);
+	  --bodyfont: 9pt;
+	  --footerfont: 6.5pt;
+	  --lineheight: 1.1;
+	  --h2: 9pt;
+	  --h3: 8pt;
+	  --fontRegular: Frutiger;
+	  --fontBold: Frutiger-bold;
+	  --fontLightBold: Frutiger-bold;
+	  
+  }
+  /* Set to true if logo should be in upside/set to false if logo should be in down*/
+  body {
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	padding: 0;
+	margin: 0;
+	line-height: var(--lineheight);
+	color: var(--bodycolor);
+	font-family: var(--fontRegular);
+	font-size: var(--bodyfont);
+  }
+  table {
+	  width: 100%;
+	  margin: 0;
+	  padding: 0;
+	  border-collapse: collapse;
+	  font-size: 7pt;
+  }
+  table th {
+	  font-family: var(--fontBold);
+	  text-align: left;
+	  margin: 0;
+	  padding: 0;
+  }
+  table td {
+	  margin: 0;
+	  padding: 0;
+  }
+  h2 {
+	font-family:var(--fontBold);
+	font-size: var(--h2);
+	font-weight: 100;
+	color: var(--header);
+	border-top: 0.5pt solid var(--black);
+	padding: 0.21cm 0 0;
+	margin: 0 0 0.4cm;
+  }
+  p:empty, h2:empty {
+	  margin: 0;
+	  padding:0;
+	  border: 0;
+	  max-width: 0;
+	  min-height: 0;
+	  width: auto;
+	  height: auto;
+  }
+  p, ul, li {
+	  margin: 0;
+	  padding: 0;
+  }
+  
+  p {
+	  margin: 0 0 0.4cm;
+  }
+  b {
+	  font-family: var(--fontBold);
+	  font-weight: 100;
+  }
+  h2 {
+	bookmark-level: 1;
+  }
+  
+  .subheader p {
+	bookmark-level: 2;
+  }
+  /* page styles*/
+  .page {
+	  width: 19cm;
+	  height: auto;
+	  padding: 0cm 1cm 0.25cm 1cm;
+  }
+  
+  .page1 {
+	padding-top: 1cm;
+    background: url(images/vg_logo.png) right top / 1.7cm 0.75cm no-repeat;
+    background-position: 18.5cm 0;
+    background-repeat: no-repeat;
+  }
+  .page1 > .row1 .contentSection h2 {
+	  font-size: 24pt;
+	  font-weight: 100;
+	  border: 0;
+  }
+  .page1 .row2 .contentSection .item3 {
+	  font-family: var(--fontBold);
+  }
+  .page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 {
+	  width: 60%;
+	  margin-right: 1%;
+  }
+  .page1 > .row6 > .composite1 > .compositebody > .row2 > .column2 {
+	  width: 39%;
+  }
+  .discreteChart {
+	  height: 270px;
+  }
+  .groupHeaderDiv1 th, .groupRowDiv1 td {
+	  padding: 1mm;
+	  border-right: 0.5pt solid var(--black);
+	  border-bottom: 0.5pt solid var(--black);
+	  text-align: left;
+	  width: auto;
+	  text-align: center;
+  }
+  .groupHeaderDiv1 tr:first-child th {
+	  border-top: 0.5pt solid var(--tableheaderbg);
+  }
+  .groupHeaderDiv1 tr:first-child th {
+	  border-left: 0.5pt solid var(--tableheaderbg) !important;
+  }
+  .groupHeaderDiv1 th {
+	  background: var(--tableheaderbg);
+	  color: var(--tableheader);
+	  border-color: var(--tableheaderbg) !important;
+	  border-left: 0.5pt solid var(--tableheaderbg) !important;
+  }
+  .groupRowDiv1 table td:first-child {
+	  border-left: 0.5pt solid var(--tableborder);
+  }
+  .groupHeaderDiv1 th.keycell, .groupRowDiv1 td.keycell {
+	  width: 5%;
+	  text-align: left;
+  }
+  .groupHeaderDiv1 th.rowheader, .groupRowDiv1 td.rowheader {
+	  text-align: left;
+	  width: 16%;
+  }
+  
+  .pagenumbers .footer, .pagenumbers .Pagination {
+	position: running(pageNumber);
+	text-align: right;
+	font-family: var(--fontRegular);
+	font-size: var(--footerfont);
+	display: none;
+  }
+  
+  /* @page styles */
+  @page {
+	  margin: 1cm 0 1cm 0;
+	  padding: 0cm;
+	  @bottom-right {
+		  content: element(pageNumber);
+		  margin:0 1.5cm 0.5cm;
+		  padding: 0cm;
+		  font-family: var(--fontRegular);
+		  font-size: var(--footerfont);
+	  }
+  }
+  
+.performancetable>table tr>td,
+.performancetable>table tr>th {
+	width: 8%;
+}
+
+.groupHeader1 .groupHeaderDiv1>table {
+	table-layout: fixed;
+}
+
+.groupRow1 .groupRowDiv1>table {
+	table-layout: fixed;
+}
+
+.performancetable>table tr>td.keycell,
+.performancetable>table tr>th.keycell {
+	border-right-color: transparent;
+	width: 3% !important;
+}
+.performancetable>table tr>td.rowheader,
+.performancetable>table tr>th.rowheader {
+	padding-left: 0px;
+	text-align: left;
+	width: 8% !important;
+}
+ul{
+	list-style: none;
+}
+  /* theme name:EFG_P*/
+  

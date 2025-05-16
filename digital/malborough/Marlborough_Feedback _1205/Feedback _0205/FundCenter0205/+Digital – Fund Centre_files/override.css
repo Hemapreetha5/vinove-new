@@ -1,0 +1,4477 @@
+@font-face {
+  font-family: "FontAwesome";
+
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.eot")
+      format("embedded-opentype"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.ttf")
+      format("truetype"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.svg")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskRegular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskBold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskBoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskItalic.ttf") format("truetype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Klarheit Grotesk";
+  src: url("./fe_img/KlarheitGroteskLight.ttf") format("truetype");
+  font-weight: 300;
+}
+/* ---------- General classes --------------- */
+
+/* body {
+		font: 18px/24px "Klarheit Grotesk";
+		color: #333;
+		padding: 0px;
+		margin: 0px;
+		background: #fff;
+	} */
+
+:root {
+  /* Primary Colors */
+  --primary-blue: #051f30;
+  --primary-green: #88f469;
+  --primary-white: #ebf2ed;
+  --white: #ffffff;
+  /* Secondary Colors */
+  --font-family: "Klarheit Grotesk";
+  --border-radius: 5px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 300;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  background-color: var(--white);
+  color: var(--primary-blue);
+}
+
+#searchform-1 {
+  border-bottom: 0px solid var(--primary-green) !important;
+  padding-bottom: 10px;
+}
+
+.ui-logo-container {
+  height: 90px;
+  position: absolute;
+  display: block;
+  top: -82px;
+  /* right: 0; */
+  left: 0;
+  height: 86px;
+  padding-bottom: 20px;
+  background-image: url(fe_img/Malboroprimary.svg);
+  background-size: 250px 52px;
+  background-repeat: no-repeat;
+  background-position: top right;
+  width: 250px;
+}
+
+p {
+  padding: 0 0 15px;
+  margin: 0;
+}
+a {
+  color: #000;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration-color: var(--primary-blue);
+  color: #222222;
+}
+li {
+  list-style-type: none;
+  list-style-image: none;
+}
+a:focus,
+li:focus,
+span:focus,
+button:focus,
+select:focus,
+input:focus,
+*:focus {
+  outline: none !important;
+}
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font: 14px "Klarheit Grotesk" !important;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-widget-header {
+  background: none transparent;
+  border: 0 none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: none;
+}
+.ui-autocomplete .ui-state-active {
+  background: #eee;
+  color: #333;
+  border: 1px solid #333;
+}
+.empty-div {
+  height: unset;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: inherit;
+  text-decoration: inherit;
+}
+.ui-button-text-only .ui-button-text,
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+  padding: 0;
+  line-height: 20px;
+}
+.page {
+  padding: 0px;
+  min-height: 1000px;
+  position: relative;
+  width: 1000px;
+}
+.ui-page-content-panel {
+  margin: 0;
+}
+
+.ui-logo-container img {
+  display: none;
+}
+#accessibility-header-1 {
+  position: absolute;
+  top: -100px;
+  z-index: 0;
+  max-width: 1000px;
+}
+.accessibility-h1-header {
+  line-height: 1.3;
+}
+
+.fe-fund-tableBody tr:nth-child(n + 1) {
+  border-bottom: 1px solid #000;
+}
+
+/* ============== Search =========================== */
+#searchform-1 {
+  /*! float: right; */
+  margin-top: 100px;
+  position: relative;
+  left: 0;
+  z-index: 100;
+  background: #fff;
+}
+/*#searchform-1:before{
+		content: "Find a fund";
+		font-weight: 600;
+		font-size: 24px;
+		color: #421853;
+	}*/
+#advancedSearchContainer {
+  background: transparent;
+  border: 0px solid #dededc;
+  border-radius: 5px;
+  /* padding: 15px; */
+  padding: 0;
+  margin-top: 10px;
+  /* box-shadow: 0 3px 4px #dededc; */
+}
+.fe-search-searchbox-container {
+  margin: 10px 0;
+  padding: 0;
+  float: none;
+  /* position: absolute; */
+  top: 0 !important;
+  position: relative;
+  /* width: 100% !important; */
+}
+.fe-search-textbox /* search input */ {
+  font-family: "Klarheit Grotesk";
+  font-weight: 400;
+  font-size: 18px;
+  /* padding: 6px; */
+  height: auto;
+  /* color: #000; */
+  color: #aab3b9 !important;
+  background-color: #f5f9f6;
+  /* background-color: #ffffff; */
+  background-repeat: repeat-x;
+  background-position: left top;
+  float: left;
+  /* padding: 4px 30px 3px 10px; */
+  padding: 15px 40px;
+  /* margin: 0 10px 0 0; */
+  margin: 10px 0px 10px 0;
+  width: 93%;
+  /* border: 1px solid #d0d0d0; */
+  border: 1px solid var(--primary-green);
+  /* border-radius: 50px; */
+}
+.fe-search-textbox:focus /* search input */ {
+}
+.fe-search-advancedsearch-container /* basic search section */ {
+  padding: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 15px;
+  margin-left: 0;
+}
+.fe-search-clear-container {
+  padding: 0;
+}
+.ui-autocomplete /* auto search textbox */ {
+  z-index: 9999 !important;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-button.ui-state-default, .ui-button.ui-state-default, .fe-button.fe-search-button /* All buttons */ {
+  font: normal 14px "Klarheit Grotesk";
+  color: #fff;
+  text-decoration: none;
+  width: auto !important;
+  height: auto;
+  margin: 0 4px 0 0;
+  padding: 2px 10px 3px;
+  background: var(--primary-blue);
+  /* background: #00818a none; */
+  border: 0;
+  /* border-radius:3px; */
+  /* -webkit-border-radius:3px; */
+  -moz-border-radius: 3px;
+  cursor: pointer;
+}
+.fe-button.ui-state-hover, .fe-button.ui-state-focus, .ui-button.ui-state-hover, .ui-button.ui-state-focus /* All buttons hover */ {
+  color: #ffffff !important;
+  text-decoration: none;
+  background: #000 none;
+}
+#basicSearch.fe-button.ui-state-default, #basicSearch.fe-button.ui-state-focus, #basicSearch.fe-button.ui-state-hover /* search button*/ {
+  background: url(fe_img/searchicon.png) no-repeat right center;
+  font-size: 0 !important;
+  height: 26px;
+  /* left: 216px; */
+  margin-top: 1px;
+  opacity: 1;
+  /* width: 23px; */
+  outline: none;
+  /* top: 0px; */
+  top: 25px;
+  left: 8px;
+  background-size: 20px;
+  position: absolute;
+  /* border-left: 1px solid #d0d0d0; */
+}
+.fe-button.fe-advSearch-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-secondary {
+  background: var(--primary-blue);
+  /* border-radius: 50px; */
+  color: #fff;
+  font-family: "Klarheit Grotesk";
+  font-size: 12px;
+  font-weight: 400;
+  height: 25px;
+  padding: 0 2px;
+  right: 0;
+  text-decoration: none;
+  text-shadow: none;
+  width: 166px !important;
+  text-align: center;
+  /*! text-indent: 27px; */
+  display: none;
+}
+.fe-advSearch-button.ui-state-default, .fe-advSearch-button.ui-state-focus,.fe-advSearch-button.ui-state-hover /* advanced search button -----animation */ {
+  font-size: 0;
+  color: transparent;
+  padding: 0;
+  text-decoration: none;
+  margin: 0 4px 0 0;
+  right: 0px;
+  width: 30px;
+  height: 26px;
+  vertical-align: top;
+  background: #ffc20e url(fe_img/ico_advance.png) no-repeat center center;
+  border: 0;
+  /* border-radius:3px; */
+  /* -webkit-border-radius:3px; */
+  -moz-border-radius: 3px;
+}
+/*advance search sorting icon */
+#advanceSearch .ui-icon-triangle-1-s {
+  background-image: url(fe_img/icon-drop.png);
+  background-repeat: no-repeat;
+  background-position: center 0px;
+  margin-top: 6px;
+}
+#advanceSearch .ui-icon-triangle-1-n {
+  background-image: url(fe_img/icon-up.png);
+  background-repeat: no-repeat;
+  background-position: center 0px;
+  margin-top: 6px;
+}
+.fe-button.fe-search-clear-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only, /* clearbutton */ .fe-basket-button-clear {
+  display: none;
+  font-size: 13px;
+  text-decoration: none;
+  font-family: "Klarheit Grotesk";
+  font-weight: 300;
+  width: auto;
+  padding: 0 10px;
+  background: #fff;
+  border: 1px solid var(--primary-blue);
+  /* border-radius: 50px; */
+  color: #fff;
+  background: var(--primary-blue);
+  height: 27px;
+  margin-top: 0;
+  width: 100%;
+  /* display: none; */
+}
+.fe-button.fe-search-clear-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-focus, .fe-button.fe-search-clear-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover /* clear button over*/
+	 .fe-basket-button-clear {
+  font-size: 13px;
+  text-decoration: underline;
+  font-family: "Klarheit Grotesk";
+  font-weight: 300;
+  text-shadow: none;
+  padding: 0 2px 0 2px;
+  width: auto;
+  border: 0px solid #cccccc;
+  background: var(--primary-blue);
+  border-radius: 50px;
+  color: #fff;
+  margin-left: 0;
+  margin-top: 15px;
+  width: 100%;
+}
+#advance {
+  background: var(--white);
+  border-top: 1px solid var(--primary-green);
+  border-bottom: 1px solid var(--primary-green);
+  border-radius: 4px;
+  margin: 50px 0 50px 0;
+  /* padding: 15px; */
+  padding: 0;
+  /*! position: absolute; */
+  right: 0;
+  /*! width: 67%; */
+  display: none;
+}
+.fe-search-fileters-container {
+  float: left;
+  height: 53px;
+  width: 17%;
+  margin: 20px 1.6% 10px !important;
+  font: normal 12px "Klarheit Grotesk";
+  padding: 0;
+  position: relative;
+}
+.fe-search-fileters-container:first-child {
+  margin-left: 0 !important;
+}
+.fe-search-fileters-label /* filter text - both sliders and dropdowns */ {
+  color: #000000;
+  font-family: "Klarheit Grotesk";
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.fe-search-fileters-slider-value {
+  font-weight: normal;
+  color: #000;
+}
+.fe-search-fileters-container .mfs-container {
+  width: 100% !important;
+  margin-top: 0px;
+  /* border-top: 1px solid #ccc; */
+}
+.fe-search-performance-filter-options .mfs-container {
+  width: 130px !important;
+}
+.fe-search-performance-filter-operator .mfs-container {
+  width: 50px !important;
+}
+.fe-search-performance-filter-value {
+  width: 62px !important;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: 6px 4px;
+  margin-top: 2px;
+}
+.fe-search-filters-container-performance-filter {
+  margin-right: 5px !important;
+  width: 275px !important;
+}
+/*mfs container*/
+.mfs-options {
+  border-radius: 3px !important;
+  top: 31px;
+  width: 99%;
+  border-radius: 0 !important;
+  border: 0;
+  /* background: none; */
+  max-height: 180px;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0px 2px 2px rgb(0 0 0 / 20%);
+}
+#advance .mfs-options {
+  /* display: block !important; */
+}
+.mfs-option {
+  color: #333 !important;
+  text-indent: 8px;
+  position: relative;
+}
+/*.mfs-option:before{
+	  content: "";
+		display: block;
+		position: absolute;
+		background: #fff;
+		width: 10px;
+		height: 10px;
+		top:5px;
+		left: 10px;
+		border: 2px solid #421853;
+		opacity: 0.3;
+	}*/
+.mfs-option:hover:before,
+.mfs-option.selected:before {
+  opacity: 1;
+}
+/*.mfs-option.selected:after{
+		content: "";
+		display: block;
+		position: absolute;
+		width: 10px;
+		height: 3px;
+		 background: #fff;
+		top:7px;
+		left: 14px;
+		transform: rotateZ(-45deg);
+		border-left: 2px solid #421853;
+			border-bottom: 2px solid #421853;
+	}*/
+.mfs-container {
+  font: 13px "Klarheit Grotesk";
+}
+.fe-paging-displayContainer .mfs-container a.mfs-selected-option {
+  background: transparent;
+  border: 1px solid #d0d0d0;
+  border-radius: 0;
+  color: #333333;
+  filter: none;
+  float: left;
+  height: 26px;
+  line-height: 2;
+  font-size: 12px;
+  font-weight: 300;
+  margin: 0;
+  padding: 2px 8px;
+  text-align: left;
+  width: 29% !important;
+  display: block;
+}
+.fe-paging-displayContainer .mfs-container A.mfs-selected-option span {
+  right: 0px !important;
+}
+.fe-paging-displayContainer .mfs-container .mfs-options {
+  width: 58px !important;
+  top: 32px;
+}
+.mfs-container a.mfs-selected-option /* dropdown list will attach with dropdown */ {
+  background: transparent;
+  /* border: 1px solid #d0d0d0; */
+  border: none;
+  border-bottom: 1px solid var(--primary-green);
+  border-radius: 0;
+  color: #333333;
+  filter: none;
+  float: left;
+  height: 26px;
+  line-height: 2;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+  padding: 3px 2px 1px 13px;
+  text-align: left;
+  width: 95% !important;
+  background: var(--primary-green);
+  /* display: none; */
+}
+.mfs-container A.mfs-selected-option span {
+  border-left: 0;
+  padding: 3px 0;
+  background: url(fe_img/icon-dropdown.png) no-repeat scroll center 11px
+    transparent;
+  float: left;
+  border-radius: 0 0px 0px 0;
+  right: 0px;
+  height: 24px;
+  border: none;
+}
+.downloadtool_1_1 .mfs-container A.mfs-selected-option span {
+  right: -3px;
+}
+.mfs-options li.mfs-optgroup {
+  color: #444444;
+  font-weight: bold;
+  padding: 4px 5px;
+}
+.mfs-optgroup-option {
+  padding-left: 10px;
+  font-weight: normal;
+}
+.mfs-options li.selected,
+.mfs-options li.active {
+  background-color: #f2f2f2;
+}
+.mfs-options li.selected a,
+.mfs-options li.active a {
+  color: #333;
+}
+
+/* ============== Sliders =========================== */
+.ui-slider {
+  background: #421853 none;
+  opacity: 1;
+  height: 8px;
+  margin: 15px 0 0 9px;
+  width: 249px;
+  border: 1px #c3c3c3 solid !important;
+}
+.ui-slider-range.ui-widget-header {
+  background: #dcdcdc none;
+  opacity: 1;
+  margin-left: 5px;
+  border: 0;
+}
+.ui-slider-handle.ui-state-default /* handle  */ {
+  opacity: 1;
+  background-color: var(--primary-blue);
+  height: 15px;
+  width: 15px;
+}
+.ui-slider-handle.ui-state-default.ui-state-focus /* handle focus */ {
+  opacity: 1;
+  background-color: var(--primary-blue);
+  height: 15px;
+  width: 15px;
+}
+/* --------- End of sliders ---------------- */
+.fe-topmenu {
+  font: normal 14px "Klarheit Grotesk";
+  width: 100%;
+  background: transparent;
+  margin-bottom: 10px;
+}
+/* ============== Top Menu =========================== */
+.fe-menuTabs-list {
+  top: 0;
+  float: left;
+  height: 50px;
+}
+.fe-topmenu .fe-menuTabs-list li,
+.fe-topmenu .fe-menuTabs-list li:hover {
+  list-style-type: none;
+  list-style-image: none;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  color: #ababab;
+  border: 0;
+  background: transparent none;
+  border-radius: 0;
+}
+.fe-topmenu .fe-menuTabs-list li.selected {
+  background: transparent none;
+}
+.fe-topmenu .fe-menuTabs-list li a {
+  padding: 13px 25px 0 0;
+  height: 35px;
+  display: block;
+  color: #ababab;
+  text-decoration: none;
+  font: normal 16px "Klarheit Grotesk";
+  text-transform: uppercase;
+}
+.fe-topmenu .fe-menuTabs-list li:hover a {
+  color: #fff !important;
+}
+.fe-topmenu .fe-menuTabs-list li a.selected {
+  color: #fff !important;
+  text-decoration: none;
+}
+/*End of Top Menu UL LI*/
+.ui-tabs .ui-tabs-panel {
+  padding: 0;
+}
+.fe-mastertabs-FundCentreMasterTab.fe-menuTabs-content {
+  padding: 0;
+}
+.fe-asatdate-containers {
+  margin-bottom: 5px;
+}
+.fe-tabs-container.ui-tabs /*Content Main section /*ie 7 8 fix for tabs*/ {
+  position: relative;
+  z-index: 50;
+  margin-top: 2px;
+  background: #eaebea;
+}
+/* ============== Secondary tabs =========================== */
+.fe-tabs-container, .ui-tabs /* tabs section */ {
+  border: 0;
+  padding: 0;
+}
+/* Fundcenter Tabs & Charting */
+.fe-tabs.ui-tabs-nav /* UL background*/ {
+  text-decoration: none;
+  font: normal 18px/24px "Klarheit Grotesk";
+  opacity: 1;
+  height: 46px;
+  margin: 0px auto !important;
+  /* background: none #fff; */
+  /* border-right: 1px solid #eaebea; */
+  /* border-top: 1px solid #eaebea; */
+  /* border-bottom: 1px solid #eaebea; */
+  /*! border-bottom-width: unset !important; */
+  width: 100%;
+  min-width: 106px;
+  background: transparent;
+  display: table !important;
+  padding: 0;
+}
+.fe-tabs-item.ui-state-default /* LI background*/ {
+  border-left: 1px solid #fff;
+  display: table-cell;
+  float: none !important;
+  background: #fff;
+  padding-right: 0px !important;
+}
+.fe-tabs-item.ui-state-default:first-child {
+  display: table-cell !important;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  white-space: pre-wrap;
+  vertical-align: middle;
+  width: auto;
+  /* border-top-left-radius: 8px; */
+}
+.fe-tabs-item.ui-state-default:last-of-type {
+  /* border-top-right-radius: 8px; */
+}
+.fe-tabs-item.ui-state-default a /* Li normal text */ {
+  display: block;
+  /* color: #9d9d9d; */
+  color: var(--primary-blue);
+  padding: 10px 0 !important;
+  text-align: center;
+  white-space: pre-wrap;
+  vertical-align: middle;
+  /*! display: table-cell; */
+  /*! width: auto; */
+  float: none !important;
+  font-size: 14px;
+  font-weight: bold;
+  background: transparent;
+  /* border-right: 1px solid #9d9d9d; */
+  border-right: 1px solid #f5f9f6;
+}
+.fe-tabs-item.ui-state-default.ui-state-hover /* LI hover background */ {
+  /*background: #EAEBEA none;*/
+  /* 	background: url(fe_img/tab-over.png) repeat-x left bottom #ffffff;
+	 */
+}
+.fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/ {
+  /*color: #333;*/
+}
+.fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/ {
+  text-decoration: none;
+  opacity: 1;
+  background: #f9f9f9 none;
+  padding-bottom: 0 !important;
+}
+.fe-tabs-item.ui-state-default.ui-state-active a {
+  /* color: var(--primary-green); */
+  border-bottom: 2px solid var(--primary-green);
+  background: #f5f9f6 !important;
+}
+.fe-tabs-item.ui-state-default.ui-state-active /* LI selected text */ {
+  background: #fff;
+  /* border: 1px solid #E6E2E8; */
+}
+/*Extra setting for specific page tabs*/
+.fe-chart-body .fe-tabs.ui-tabs-nav {
+  border-bottom: 1px solid #747474;
+}
+/*Charting Tool Instrument Tabs*/
+#instrumentOptionsTabs .fe-tabs.ui-tabs-nav /* UL background*/ {
+  height: 51px;
+  padding: 0;
+  background: transparent none;
+  border: 0;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default /* LI background*/ {
+  text-decoration: none;
+  font: normal 16px "Klarheit Grotesk";
+  opacity: 1;
+  height: 51px;
+  margin: 0 0 0;
+  background: none transparent;
+  border-right: 0;
+  list-style: none;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default a /* Li normal text */ {
+  display: block;
+  color: #ababab;
+  height: 28px;
+  text-align: center;
+  white-space: normal;
+  text-transform: uppercase;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover /* LI hover background */ {
+  background: transparent none;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-hover a /* LI hover text*/ {
+  color: #fff;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active /* LI selected background*/ {
+  text-decoration: none;
+  opacity: 1;
+  height: 51px;
+  background: transparent none;
+  margin: 0 0 0;
+}
+#instrumentOptionsTabs .fe-tabs-item.ui-state-default.ui-state-active a /* LI selected text */ {
+  color: #fff;
+}
+#instrumentOptionsTabs .fe-tabs li a {
+  padding: 13px 25px 13px 0 !important;
+}
+/* End of tabs*/
+/* the tab contents section */
+.ui-tabs.ui-tabs-panel.fe-tabs-datacontainer {
+  padding: 0px;
+  /* background: transparent none; */
+  background: #f5f9f6;
+  color: #000;
+}
+
+.fe-fund-tableBody tr td:first-child {
+  padding-left: 20px;
+  white-space: nowrap;
+}
+
+.fe-datatable {
+  margin: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-right: 0;
+}
+/* ============== Pagination =========================== */
+
+.fe-paging-navContainer {
+  float: left;
+}
+.fe-datatable-pagination-container.ui-corner-top /* pagination row top */ {
+  font: 18px/24px "Klarheit Grotesk";
+  padding: 1px 6px 6px 2px;
+  margin: 0 0 0 0;
+  border: 0;
+  /* background-color: #fff; */
+  background-color: transparent;
+  height: auto;
+  padding-bottom: 10px;
+}
+.fe-datatable-pagination-container .fe-paging-navContainer /* Disable top pagination */ {
+  display: none !important;
+}
+.fe-tabs-autoLoad .fe-datatable-pagination-container.ui-corner-top /* remove padding for portfolio scan html page. This will avoid extra space*/ {
+  padding: 0;
+}
+.fe-paging-footer.ui-corner-bottom /* pagination row bottom */ {
+  font: normal 12px "Klarheit Grotesk";
+  padding: 1px 6px;
+  background-color: #fff;
+  border: 0;
+  height: auto;
+}
+.fe-paging-navContainer /* pagination control section*/ {
+  padding: 13px 0px 13px 0px;
+  margin-right: 0;
+}
+.pagination .ui-state-default, .pagination .ui-state-default /* pagination button normal */ {
+  background: #e6e9ea;
+  border: 0 none;
+  color: var(--primary-blue);
+  font-weight: 400;
+  margin: 0 12px 0 0;
+  padding: 3px 12px;
+  text-decoration: none;
+  text-shadow: none !important;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 0px;
+  /* border: 1px solid #ccc; */
+}
+.pagination .ui-state-disabled,
+.pagination .ui-paging-ellipse {
+  opacity: 0.5;
+}
+.pagination .ui-state-highlight /* pagination buttons selected */ {
+  background: none repeat scroll 0 0 var(--primary-green);
+  border-color: var(--primary-green);
+  /* color: #fff; */
+  color: var(--primary-blue) !important;
+  font-weight: bold;
+  opacity: 1;
+}
+.pagination .ui-state-default.ui-paging-prev {
+} /* use image for prev - default stage*/
+.pagination .ui-state-default.ui-state-disabled.ui-paging-prev {
+  display: none;
+} /* use image for prev - disabled stage*/
+.pagination .ui-state-default.ui-paging-next {
+} /* use image for next - default stage*/
+.pagination .ui-state-default.ui-paging-next {
+  display: none;
+} /* use image for next - disabled stage*/
+/* End of Pagination */
+.fe-paging-displayContainer {
+  color: #333;
+  margin: 5px 0 24px 0;
+}
+.fe-paging-displayContainer .fe-paging-showtext,
+.fe-paging-displayContainer .fe-display-count {
+  padding-top: 6px;
+}
+.fe-paging-showmainunits {
+  color: #000;
+  padding: 12px 0 0;
+  /* vertical-align: text-bottom; */
+}
+.fe-paging-showmainunits > input {
+  vertical-align: inherit;
+}
+/* ============== Table =========================== */
+.fe-datatable th,
+.fe-portfolioconstituents-dialog table thead th {
+  padding: 8px 6px;
+  font: 14px "Klarheit Grotesk";
+  color: #aab3b9;
+  height: 44px;
+  vertical-align: bottom;
+  border-spacing: 0;
+  /* background-color: var(--primary-blue); */
+  background-color: transparent;
+  /* border-bottom: 1px solid #421853; */
+}
+.fe-soretedColumn /* th sorted (selected table header field) */ {
+  background-color: #e9e9e9;
+}
+.fe-columnheader-Change,
+.fe-columnheader-Change_ {
+  text-align: right;
+}
+.fe-datatable th .ui-icon-triangle-1-n /* sorting arrow for table header field - down arrow */ {
+  /* background: url("fe_img/icon-up.png") no-repeat scroll center bottom; */
+  background: url("fe_img/icon-upnew.png") no-repeat scroll center bottom;
+  margin-top: -8px;
+  left: 60px;
+  display: none;
+}
+.fe-datatable th .ui-icon-triangle-1-s /* sorting arrow for table header field - up arrow */ {
+  /* background: url("fe_img/icon-drop.png") no-repeat scroll center bottom; */
+  background: url("fe_img/icon-dropnew.png") no-repeat scroll center bottom;
+  margin-bottom: -4px;
+  left: 60px;
+}
+/* -----   table row ---- */
+.fe-datatable td {
+  background-color: transparent;
+  /* background-color: #fff; */
+  padding: 7px 5px;
+  vertical-align: middle;
+  font: 13px "Klarheit Grotesk";
+  height: 24px;
+  /* border-bottom: 1px solid #000; */
+  border-bottom: transparent;
+  /* text-align: left; */
+  color: #333;
+}
+.fe-fund-tableBody tr.odd:last-child {
+  padding: 0 !important;
+  border-bottom: 1px solid var(--primary-green);
+}
+
+.fe-datatable td.fe-column-name a {
+  text-decoration: none;
+}
+.fe-datatable .odd td,
+.fe-dialog-portfolioconstituents table tbody tr.odd td,
+.fe-datatable .odd td.dt-risk {
+  /* background-color: #fff !important; */
+}
+.fe-datatable .even td,
+.fe-dialog-portfolioconstituents table tbody tr.even td,
+.fe-datatable .even td.dt-risk {
+  /* background-color: #EAEBEA !important; */
+}
+.fe-portfolio-totalFooter td, .fe-datatable .total TD /* total row */ {
+  font-weight: bold;
+  background-color: #ffc20e;
+  border-bottom: 0;
+}
+.fe-documentdropdownbutton {
+  background: transparent url(fe_img/icon_fs1.png) no-repeat left center !important;
+  background-size: 20px !important;
+  margin: 0 25%;
+}
+.fe-multidocument-div-css li {
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+.fe-multidocument-div-css li:hover {
+  background: #e6e2e8 !important;
+  text-decoration-color: var(--primary-blue);
+}
+.fe-fund-multidocument-icon,
+.fe-fund-multidocument-icon:hover {
+  background: none;
+}
+.fe-multidocument-div-css {
+  border-color: var(--primary-blue);
+  position: absolute;
+  margin-top: 10px;
+  left: 13px;
+  top: 25px;
+  border-width: 2px;
+  border-radius: 4px;
+}
+.fe-multidocument-div-css::after {
+  border-color: transparent transparent #00818a;
+  border-width: 10px;
+  top: -10px;
+}
+.fe-datatable .mouseover /* tr hover */ {
+}
+.dt-risk {
+  background: url(fe_img/bg_RiskScore.png) no-repeat center center !important;
+  color: #444444;
+  font-size: 11px;
+  font-weight: normal;
+}
+td.fe-change-positive, .fe-datatable .even td.fe-change-positive /* positive even row */ {
+  color: #009900;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+.fe-datatable .odd td.fe-change-positive /* positive odd row */ {
+  color: #009900;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceUp.png) no-repeat right center;
+}
+td.fe-change-negative, .fe-datatable .even td.fe-change-negative /* negative even row */ {
+  color: #ff0000;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+.fe-datatable .odd td.fe-change-negative /* negative odd row */ {
+  color: #ff0000;
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceDown.png) no-repeat right center;
+}
+td.fe-change-neutral, .fe-datatable .even td.fe-change-neutral /* neutral even row */ {
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;
+}
+.fe-datatable .odd td.fe-change-neutral /* neutral odd row */ {
+  text-align: right;
+  background: #f5f5f5 url(fe_img/priceZero.png) no-repeat right center;
+}
+a.fe-ico-basket-shortlist-add, a.fe-ico-basket-portfolio-add, td.fe-icon-basket-add a /* add fund icon */ {
+  background: url(fe_img/ico_addFund.png) no-repeat scroll center 1px
+    transparent;
+  float: left;
+  height: 18px;
+  padding: 0 0 0 17px;
+}
+a.fe-ico-basket-remove, td.fe-icon-basket-remove a /* remove fund icon */ {
+  background: url(fe_img/ico_remove.png) no-repeat scroll center 1px transparent;
+  float: left;
+  height: 18px;
+  padding: 0 0 0 17px;
+}
+td.fe-icon-chart a, a.fe-icon-chart, td.fe-icon-chart a:hover, a.fe-icon-chart:hover/*chart icon */ {
+  background: url(fe_img/ico_chart.png) no-repeat center center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0 auto;
+}
+td.fe-icon-chart a:hover, a.fe-icon-chart:hover /*chart icon hover */ {
+  background-image: url(fe_img/ico_chart.png);
+}
+td.fe-icon-factsheet a, a.fe-icon-factsheet, td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon */ {
+  background: url(fe_img/Download.svg) no-repeat center center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+td.fe-icon-factsheet a:hover, a.fe-icon-factsheet:hover /*factsheet icon hover */ {
+  background-image: url(fe_img/Download.svg);
+}
+.fe-fund-document-icon, .fe-fund-document-icon:hover /*document icon */ {
+  background: url(fe_img/Download.svg) no-repeat center center;
+  width: 24px;
+  height: 30px;
+  padding: 0;
+  background-size: 80%;
+}
+.fe-fund-document-icon:hover /*document icon hover */ {
+  background-image: url(fe_img/Download.svg);
+}
+.fe-download-icon,
+.fe-download-icon:hover {
+  background: no-repeat center center;
+  width: 26px;
+  height: 25px;
+  padding: 0;
+  text-decoration: none;
+}
+
+.fe-download-icon:before {
+  font-family: "FontAwesome";
+  content: "\f019";
+  font-size: 20px;
+  color: var(--primary-blue);
+}
+td.fe-deleteRow a, .delete /* delete fund */ {
+  background: url(fe_img/ico_deleteFund.png) no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.fe-datatable .fe-basket-shortlistitems td a, .fe-datatable .fe-basket-portfolioitems TD a /* Disable basket icon */ {
+  background: url(fe_img/ico_disabledBasket.png) no-repeat;
+  padding: 0 0 0 17px;
+  cursor: default;
+  height: 18px;
+}
+td.fe-deleteImage a /* Delete Basket icon */ {
+  background: url(fe_img/ico_deleteBasket.png) no-repeat;
+  padding: 2px 0 0 17px;
+  text-decoration: none;
+}
+.fe-noresult /* container for the no results message */ {
+  color: var(--primary-blue);
+  font: normal 13px "Klarheit Grotesk";
+  text-align: center;
+  padding: 20px;
+}
+/* set fixed width for Table fields */
+.fe-columnheader-FundName {
+  width: 203px;
+}
+#Documents_1_9.fe-datatable th {
+  /*! max-width: 80px; */
+  width: 60px;
+}
+.fe-tab-container-DiscretePerformance.fe-tabs-datacontainer .fe-datatable th {
+  min-width: 87px;
+}
+.fe-tab-container-Performance.fe-tabs-datacontainer .fe-datatable th {
+  min-width: 36px;
+  white-space: nowrap;
+}
+.fe-tab-container-AnnualisedPerformance.fe-tabs-datacontainer .fe-datatable th {
+  min-width: 87px;
+}
+.fe-tabs-datacontainer .fe-datatable th {
+  min-width: 61px;
+  display: table-cell;
+  /* text-align: left; */
+}
+th .ui-nowrap {
+  display: inline-block;
+  /*! min-width: 45px; */
+  position: relative;
+  padding-right: 18px;
+}
+.fe-tabs-datacontainer .fe-datatable th.pdfableColumn.fe-columnheader-Bid,
+.fe-tabs-datacontainer .fe-datatable th.pdfableColumn.fe-columnheader-Offer {
+  width: 71px;
+}
+.fe-tabs-datacontainer .fe-datatable th.fe-columnheader-FundName {
+  width: 261px;
+  text-align: left;
+}
+.fe-tabs-datacontainer.fe-tab-container-Documents
+  .fe-datatable
+  th.fe-columnheader-FundName {
+  min-width: 300px;
+  width: 300px;
+}
+.fe-tabs-datacontainer .fe-datatable th.ui-notsortable {
+  text-align: center;
+  white-space: nowrap;
+  /* vertical-align: middle; */
+}
+.fe-tabs-datacontainer .fe-datatable td:nth-last-child(1), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(2), .fe-tabs-datacontainer .fe-datatable td:nth-last-child(3)/* info columns icons */ {
+  width: 25px;
+}
+
+/* .fe-datatable td .fe-fund-document-icon{
+  background: url("fe_img/Download.svg") no-repeat scroll center center;
+}  */
+
+.fe-tab-container-DiscretePerformance.fe-tabs-datacontainer
+  .fe-datatable
+  th:nth-last-child(2) {
+  text-align: center;
+}
+
+.fe-icon-basket.fe-icon-basket-remove,.fe-icon-basket.fe-icon-basket-add   /* Add/remove column width change */ {
+  width: 16px;
+  text-align: center;
+}
+.fe-columnheader-AMC,
+.fe-columnheader-InitialCharge,
+.fe-columnheader-MinInvestment,
+.fe-columnheader-OngoingCharge,
+.fe-columnheader-FECrownRating {
+  width: 150px;
+}
+.fe-fundCentre-body .fe-columnheader-_0to12m,
+.fe-fundCentre-body .fe-columnheader-_12to24m,
+.fe-fundCentre-body .fe-columnheader-_24to36m,
+.fe-fundCentre-body .fe-columnheader-_36to48m,
+.fe-fundCentre-body .fe-columnheader-_48to60m,
+.fe-fundCentre-body .fe-columnheader-Year1,
+.fe-fundCentre-body .fe-columnheader-Year2,
+.fe-fundCentre-body .fe-columnheader-Year3,
+.fe-fundCentre-body .fe-columnheader-Year4,
+.fe-fundCentre-body .fe-columnheader-Year5 {
+  width: 100px;
+}
+.fe-tab-container-Risk .fe-columnheader-GroupManagerName {
+  width: 150px;
+}
+.fe-columnheader-_1w,
+.fe-columnheader-_1m,
+.fe-columnheader-_3m,
+.fe-columnheader-_6m,
+.fe-columnheader-YTD {
+  width: 80px;
+}
+.fe-columnheader-_1y,
+.fe-columnheader-_2y,
+.fe-columnheader-_3y,
+.fe-columnheader-_4y,
+.fe-columnheader-_5y,
+.fe-columnheader-_10y,
+.fe-columnheader-S_L {
+  width: 80px;
+}
+.fe-columnheader-Volatility1Yr,
+.fe-columnheader-Alpha,
+.fe-columnheader-Beta,
+.fe-columnheader-Sharpe {
+  width: 100px;
+}
+/* ============== Footer =========================== */
+.fe-footer-container {
+  font: normal 11px "Klarheit Grotesk";
+  padding: 10px 0 0;
+  color: #666;
+}
+.fe-caveat-container {
+  margin-top: 10px;
+}
+.fe-caveat-container a,
+a.fe-disclaimer-actionLink {
+  color: #ed008c !important;
+  text-decoration: underline;
+}
+.fe-caveat-container a:hover,
+a.fe-disclaimer-actionLink:hover {
+  color: #000;
+  text-decoration: underline !important;
+}
+.right50 label,
+.fe-footer-logo label {
+  vertical-align: middle !important;
+}
+/* ============== Basket =========================== */
+.fe-basket {
+  z-index: 3000;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  padding-top: 0;
+  width: 44px;
+  background: transparent none;
+  padding-right: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 5px;
+}
+.fe-fundsInBasket {
+  text-align: center;
+  float: left;
+  color: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  width: 100%;
+  height: 30px;
+  background: #211d1e none;
+  border: 0;
+}
+.fe-fundsInBasket.fe-basket-collapse,
+.fe-fundsInBasket.fe-basket-expand {
+  background: url(fe_img/basket.png) no-repeat center center;
+  border: 1px solid #000;
+  width: 31px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+.fe-basketHeader {
+  padding: 6px 0 5px;
+  color: transparent;
+  font-size: 0;
+  text-transform: capitalize;
+}
+.fe-basketTitle {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0;
+  font-family: helvetica, arial;
+  padding: 0 3px 0 7px;
+}
+.fe-basketPin {
+  display: none;
+}
+.fe-fundsInBasket H5 {
+  margin: -22px 4px 0;
+  padding: 0 5px;
+  color: #ffffff !important;
+  background: #e34e35 none;
+  font: bold 13px "Klarheit Grotesk";
+  right: 0;
+  position: absolute;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+.fe-basket-header-item-count p,
+.fe-basketDraggable {
+  display: none;
+}
+.fe-tableInBasket /* Basket open Box */ {
+  padding: 10px;
+  margin: -26px 0 0;
+  background-color: #ffc20e;
+  border: 0;
+  box-shadow: 0 2px 3px #666;
+  float: right;
+  display: none;
+  width: 300px;
+}
+.fe-basket-empty-message {
+  margin: 36% auto 0;
+  text-align: center;
+}
+.fe-basket-empty-message span {
+  font-weight: normal;
+  color: #ff0000;
+}
+.fe-basketbuttonslegend /* Legend in Basket*/ {
+  border: 1px solid #333;
+  background: #ffc20e;
+  padding: 4px 4px 6px\9 !important; /* padding for IE 8 alone */
+}
+.display-inline-block {
+  margin-right: 8px;
+}
+.fe-basketbuttons a /* Action Buttons in basket */ {
+  background-color: #000 !important;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-effects-moveToBasket /* fund added to basket */ {
+  border: 2px dotted #000;
+  background-color: #000;
+}
+/* End of Basket*/
+/* ============================ Charting tool ======================= */
+.fe-search-panel.ui-tabs-panel /* search pannel */ {
+  color: #000;
+  font: normal 14px "Klarheit Grotesk";
+  height: auto;
+  background: none;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+.instrumentTabSearchOptions /* LABEL */ {
+  margin: 0 12px 0 0;
+  padding: 0 13px 10px 0;
+  background: none;
+  border-right: 1px solid #999;
+  height: 58px;
+}
+.fe-search-panel label {
+  font-weight: normal;
+}
+.instrumentTabSearchOptions .fe-chart-instrumentsearch-ortext {
+  float: left;
+  margin: 0 5px 0 10px;
+  padding-top: 3px;
+}
+.instrumentTabResultsOptions {
+  padding: 0;
+  border: 0;
+  height: auto;
+  width: 200px;
+}
+.addToChart {
+  margin-right: 96px;
+  margin-top: 0;
+}
+#instrumentType-N-options .addToChart,
+#instrumentType-X-options .addToChart,
+#instrumentType-P-options .addToChart {
+  float: left;
+}
+#instrumentType-F16000440-options .addToChart {
+  border-left: 1px solid #999;
+  height: 46px;
+  margin: 0 589px 0 0;
+  padding: 0 13px 20px 10px;
+}
+/*Performance & Scatter chart section */
+.fe-chart-tabs-container.ui-tabs/*Chart Main section /*ie 7 8 fix for tabs*/ {
+  position: relative;
+  z-index: 40;
+  background: none !important;
+}
+.fe-chart-tabs-innerContainer {
+  width: 100%;
+}
+.fe-chart-chartingOptions-container {
+  margin: -39px 0 0;
+  right: 0;
+  width: 50% !important;
+}
+.fe-chart-PanelToggleButton {
+  margin-top: 9px;
+}
+/* chart basis popup */
+.shownOption {
+  top: 38px;
+  right: 0px;
+  font: normal 14px "Klarheit Grotesk";
+  color: #444;
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+  background: #f1f1f1 none;
+  z-index: 1010;
+}
+.fe-panel-text {
+  float: none;
+  display: inline-block;
+  margin-bottom: 8px;
+  min-width: 110px;
+}
+.fe-chart-togglePanel .fe-button.ui-state-default {
+  color: #ffc20e;
+  padding: 1px 7px !important;
+  margin: 0 0 4px 0;
+  text-decoration: none;
+  font: normal 14px "Klarheit Grotesk";
+  width: inherit !important;
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-chart-togglePanel .fe-button.ui-state-highlight,
+.fe-chart-togglePanel .fe-button.ui-state-hover {
+  color: #000 !important;
+  margin: 0 0 4px 0;
+  padding: 1px 7px !important;
+  background: #ffc20e;
+  border: 1px solid #000;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-basis-toglebutton.ui-state-default.fe-chart-currency-return {
+  width: 100% !important;
+}
+.fe-chart-returnbasis-input {
+  position: relative;
+}
+.fe-chart-return-text {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+}
+.fe-closebutton-container /* Close dialog container */ {
+  position: absolute;
+  top: 11px;
+  right: 5px;
+  float: none;
+  display: block;
+  width: 20px;
+  height: 16px;
+}
+.fe-closebutton-container .fe-button.ui-state-default /* Close dialog icon */ {
+  text-indent: -1000em;
+  background: url(fe_img/closeChartBasisPannel.png) no-repeat 2px 4px;
+  height: 24px;
+  margin: -6px 0 0;
+  padding: 0 9px;
+  text-indent: -1000em;
+  width: 24px;
+  border: 0;
+}
+.fe-chart-OrLabel {
+  margin-top: 6px;
+}
+/* Chart popup ends */
+.fe-chart-currency.fe-currency {
+  margin-top: -18px;
+  position: relative;
+  font-size: 14px;
+  padding-left: 18px;
+  background: #fff;
+  padding-top: 5px;
+}
+.fe-chart-container.ui-tabs-panel, .fe-chart-scatterchart-container.ui-tabs-panel /* Chart background section */ {
+  margin: 0 0 0;
+  padding-bottom: 10px;
+  border: 0;
+  background: #fff;
+}
+#performanceChartTab > div/* Move Chart to center */ {
+  width: 100% !important;
+}
+.ChartContainer {
+  overflow: visible !important;
+  margin: 0 auto !important;
+  width: 96% !important;
+}
+.fe-chart-scatterchart-container {
+  text-align: center;
+  width: 100% !important;
+}
+.SummaryChartWindow {
+  background-color: #ccc !important;
+  border-left: 3px solid #000 !important;
+  border-right: 3px solid #000 !important;
+}
+.chartKey {
+  border-radius: 14px;
+  color: #ffffff;
+  padding: 2px;
+}
+/* Performance tabs section - section 3rd */
+.fe-chart-performanceTabs-container {
+  background: transparent none;
+}
+.fe-performance-table.ui-tabs /* performance table container */ {
+  padding: 10px !important;
+  background: none #fff;
+}
+.ui-asdate /* date */ {
+  padding: 3px;
+}
+/* ============== Dialog box =========================== */
+.fe-ui-dialog,
+.ui-dialog {
+  background: #fff;
+  padding: 0;
+  overflow: visible;
+  border: 1px solid #d4d8db !important;
+  box-shadow: 0 0 3px #b7b7b7;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+.ui-dialog .ui-dialog-buttonpane {
+  border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+  margin: 2px;
+  padding: 3px 11px;
+}
+.ui-dialog-titlebar {
+  /* background: none repeat scroll 0 0 #421853; */
+  background: none repeat scroll 0 0 var(--primary-green);
+  /* border-radius: 2px 2px 0 0; */
+  color: #ffffff !important;
+  font: 16px "Klarheit Grotesk";
+  margin: 0px 0px 0px 0px;
+  height: 30px;
+}
+.ui-dialog .ui-dialog-titlebar-close span {
+  display: none;
+}
+.ui-button.ui-dialog-titlebar-close {
+  background: url("fe_img/close-dialog-icon.png") no-repeat scroll 1px center !important;
+  transition: all 0.2s ease-in-out;
+  border: 0 none;
+  display: block !important;
+  height: 35px !important;
+  margin: 0;
+  padding: 0 !important;
+  right: 10px !important;
+  top: 2px !important;
+  width: 36px !important;
+  position: absolute;
+}
+.ui-dialog-titlebar-close:hover {
+  border: 0 !important;
+}
+.ui-dialog-content.ui-widget-content /* content container */ {
+  padding: 15px;
+  height: auto !important;
+}
+/* ============== Popup content =========================== */
+.fe-dialog-createPortfolio-container label,
+.fe-saveportfolio-stepOne-container label,
+.fe-dialog-createComparison-container label {
+  font: bold 14px "Klarheit Grotesk";
+  padding: 0 0 7px 20px;
+  color: #000000;
+}
+.fe-portfoliodetails-input,
+.fe-portfoliodetails-multiline {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.fe-pscan-benchmark-clientNameContainer label,
+.fe-comparison-report-clientNameContainer label {
+  background: url("fe_img/ico_client_name.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-portfolioNameContainer label {
+  background: url("fe_img/ico_portfolio_name.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-preparedByContainer label,
+.fe-comparison-report-preparedByContainer label {
+  background: url("fe_img/ico_preparedby.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-datePreparedContainer label,
+.fe-comparison-report-datePreparedContainer label {
+  background: url("fe_img/ico_date_prepared.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-summaryTextContainer label {
+  background: url("fe_img/ico_summary_text.png") no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 120px;
+}
+.fe-pscan-benchmark-customStartDateContainer label {
+  background: url("fe_img/ico_date_prepared.png") no-repeat;
+  cursor: pointer;
+  height: 30px;
+  width: 120px;
+}
+
+.fe-datatable thead tr th:nth-child(1) span {
+  display: inline-block;
+}
+
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(1),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(1) {
+  width: 35%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(2),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(2) {
+  width: 12%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(3),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(3) {
+  width: 12%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(4),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(4) {
+  width: 11%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(5),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(5) {
+  width: 11%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(6),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(6) {
+  width: 11%;
+}
+.fe-tab-container-Price .fe-datatable thead tr th:nth-child(7),
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(7) {
+  width: 8%;
+}
+
+.fe-tab-container-Price .fe-datatable tbody tr td:nth-child(5) {
+  text-align: center;
+}
+
+#customPortfolioStartDatePicker {
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  color: #666666;
+  display: block;
+  margin-top: 10px;
+  padding: 5px;
+  overflow: hidden;
+  text-decoration: none;
+  text-transform: lowercase;
+  white-space: nowrap;
+  width: 218px;
+}
+.fe-pscan-benchmark-OrContainer {
+  margin: 8px 0;
+}
+.fe-pscan-benchmark-indiciesContainer {
+  position: relative;
+  z-index: 50;
+}
+.fe-pscan-benchmarkContainer.ui-dialog-content.ui-widget-content {
+  height: auto !important;
+}
+.fe-dialog-createPortfolio-container .ui-widget-content {
+  position: static;
+}
+.fe-pscan-benchmark-sectorContainer {
+  position: relative;
+  z-index: 40;
+}
+.fe-pscan-benchmark-timePeriodContainer {
+  position: relative;
+  z-index: 40;
+}
+.fe-pscan-benchmark-customStartDateContainer {
+  position: relative;
+  z-index: 30;
+}
+.fe-benchmark-indiciesContainer .mfs-container {
+  position: relative;
+  z-index: 50;
+}
+.fe-shownext {
+  background: url(fe_img/ico_next.png) no-repeat;
+}
+.fe-dialog-createPortfolio-container h2,
+.fe-dialog-portfoliosave-container h2 {
+  font-size: 15px;
+  margin: 0;
+  padding: 0 0 10px 15px;
+  color: #ffc20e;
+  background: url(fe_img/ico_step.png) no-repeat left 1px;
+  display: block;
+}
+.fe-dialog-createPortfolio-container label {
+  font: normal 14px "Klarheit Grotesk";
+  padding: 0 0 7px 20px;
+}
+.fe-dialog-createPortfolio-container select,
+.fe-saveportfolio-stepOne-container select {
+  width: 92%;
+  margin: 0 0 20px;
+}
+.fe-portfolioSettings-stepOne-container /* step one container */ {
+  float: left;
+  width: 48.5%;
+  width: 49% \9; /* below ie8 */
+  height: 175px;
+  border-right: 1px solid #cbcbcb;
+  margin: 0 2% 0 0;
+}
+.fe-portfolioSettings-stepTwo-container /* step two container */ {
+  float: right;
+  width: 49%;
+}
+.fe-pscan-benchmark-indiciesContainer label, .fe-benchmark-indiciesContainer label /* select indicies */ {
+  background: url(fe_img/ico_select_index.png) no-repeat left top;
+  display: block;
+}
+.fe-pscan-benchmark-sectorContainer label, .fe-benchmark-sectorContainer label /* select sector */ {
+  background: url(fe_img/ico_select_sector.png) no-repeat left top;
+  display: block;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer {
+  width: 92%;
+  margin-top: 8px;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer label, .fe-benchmark-weightedSectorAverageContainer label /* sector averages */ {
+  background: url(fe_img/ico_sector_average.png) no-repeat left top;
+  display: inline-block;
+  float: left;
+}
+.fe-pscan-benchmark-weightedSectorAverageContainer input,
+.fe-benchmark-weightedSectorAverageContainer input {
+  float: left;
+  margin-left: 15px;
+}
+.fe-pscan-benchmark-timePeriodContainer label, .fe-benchmark-timePeriodContainer label /* time period */ {
+  background: url(fe_img/ico_time_period.png) no-repeat left top;
+  display: block;
+}
+.fe-text-OR {
+  font: normal 14px "Klarheit Grotesk";
+  margin: -26px 15px 20px 0;
+  float: right;
+}
+.fe-chart-subOptionLabel {
+  position: relative;
+  z-index: 0;
+}
+.fe-benchmark-sectorContainer .mfs-container {
+  z-index: 4;
+}
+.chart-addToChart-Container .mfs-container {
+  position: relative;
+  z-index: 5;
+}
+.BenchmarkSettingNavButtons /* buttons container */ {
+  border-top: 1px solid #cbcbcb;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 0 0;
+  right: 0;
+  width: 100%;
+}
+.slide-button-left {
+  float: right;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+/*Save portfolio Poup*/
+.fe-saveportfolio-stepOne-container /* step one container */ {
+  float: right;
+  width: 47.5%;
+  margin-bottom: 20px;
+}
+.fe-portfolioSettings-stepTwo-container /* step two container */ {
+  float: left;
+  width: 47%;
+}
+.fe-saveportfolio-stepTwo-container {
+  float: left;
+  width: 49.5%;
+  margin: 0 2.45% 0 0;
+  height: 246px;
+  border-right: 1px solid #cbcbcb;
+}
+.fe-saveportfolio-stepTwo-container label {
+  font: bold 14px "Klarheit Grotesk";
+  color: #000000;
+  display: block;
+  padding: 0 0 7px 0px;
+}
+.fe-saveportfolio-stepTwo-container select {
+  width: 95%;
+  margin: 0 0 20px;
+}
+.fe-saveportfolio-stepTwo-container input {
+  width: 92%;
+  margin: 0 0 10px;
+}
+.fe-saveportfolio-stepTwo-container textarea {
+  width: 92%;
+  margin: 0 0 10px;
+  height: 50px;
+}
+.fe-portfoliosave-buttons /* buttons container */ {
+  padding: 10px 0 0;
+  border-top: 1px solid #cbcbcb;
+  margin-bottom: 20px;
+  margin-top: 26px;
+  width: 273px;
+  position: relative;
+}
+.btnSaveContainer,
+.btnUpdateContainer {
+  float: left;
+}
+.btnSaveContainer {
+  margin-right: 5px;
+  position: absolute;
+}
+.btnUpdateContainer.visibilityhidden {
+  display: none;
+}
+.fe-mandatoryfield-message {
+  font-size: 13px;
+  margin-top: 2px;
+}
+/* ============== Portfolio Scan =========================== */
+.fe-tabs-autoLoad.ui-tabs {
+  background: transparent;
+}
+.fe-tabs-autoLoad .fe-tabs {
+  background: none transparent;
+  border-bottom: 7px solid #ffc20e;
+  padding: 0;
+}
+.fe-tabs-autoLoad-container {
+  padding: 0 10px 10px !important;
+  background: #fff !important;
+}
+.fe-tabs-autoLoad-container h3 {
+  margin: 0;
+  padding: 20px 0;
+  color: #000;
+  font-size: 15px;
+}
+.fe-pscan-summarytext-value,
+.fe-pscan-commentarytext {
+  word-wrap: break-word;
+}
+.fe-pscan-clientname,
+.fe-pscan-portname,
+.fe-pscan-preparedby,
+.fe-pscan-dateprepared,
+.fe-pscan-benchmark,
+.fe-pscan-timeperiod {
+  padding: 4px 0;
+}
+.fe-pscan-timeperiod {
+  padding-bottom: 10px;
+}
+.fe-pscan-clientname-label,
+.fe-pscan-portname-label,
+.fe-pscan-preparedby-label,
+.fe-pscan-dateprepared-label,
+.fe-pscan-benchmark-label,
+.fe-pscan-timeperiod-label {
+  font-weight: bold !important;
+  width: 200px;
+  display: inline-block;
+}
+.fe-columnheader-LegendColour /*portfolio scan table*/ {
+  margin: 0;
+  padding: 0;
+  width: 25px !important;
+}
+.fe-tabs-autoLoad .fe-columnheader-FundName {
+  width: 200px !important;
+}
+.fe-chartlegend {
+  margin-top: 10px;
+  width: 80%;
+}
+.fe-chartlegend-column2 {
+  float: left;
+  margin-left: 4%;
+  width: 46%;
+}
+.fe-chartlegend-column1 {
+  margin-left: 0;
+  width: 46%;
+}
+.fe-chartlegend-datatable {
+  display: none;
+}
+.fe-chart-container {
+  text-align: center;
+  width: 100% !important;
+}
+.fe-pscan-portfoliorow .fe-chartlegend-datatable,
+.fe-pscan-benchmarkrow .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable,
+.fe-ratios-tableBody .fe-chartlegend-datatable {
+  display: inline-block;
+}
+.treeTable tr td {
+  border-bottom: 1px solid #b0b0b0;
+}
+.treeTable tr.expanded td a.expander {
+  background: url(fe_img/toggle-collapse.png) no-repeat;
+  margin-left: 0 !important;
+  padding-left: 40px !important;
+  text-decoration: none;
+}
+.treeTable tr.collapsed td a.expander {
+  background: url(fe_img/toggle-expand.png) no-repeat;
+  margin-left: 0 !important;
+  padding-left: 40px !important;
+  text-decoration: none;
+}
+.fe-pscan-actions {
+  margin-left: 0;
+  margin-top: 10px;
+}
+/* ============== Login =========================== */
+.fe-login-page {
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 5px 0;
+  width: 1000px;
+  min-height: 500px;
+}
+.fe-loginPannel {
+  width: auto;
+  height: 500px;
+  margin: 0 auto;
+  background: url(fe_img/LoginBackground.png) no-repeat left top;
+}
+.fe-login-header {
+  font: normal 23px "Klarheit Grotesk";
+  padding: 0;
+  margin: 0 0 30px;
+  display: none;
+}
+.fe-login-form {
+  margin: 90px auto 0 !important;
+  padding: 20px 0 0;
+  line-height: 80%;
+  width: 450px;
+  font-size: 13px;
+}
+.fe-login-form label {
+  color: #000;
+  display: inline-block;
+  font: bold 14px "Klarheit Grotesk";
+  float: left;
+  font-weight: bold;
+  padding: 5px 10px 0 0;
+  text-align: right;
+  width: 23%;
+}
+.fe-login-textbox,
+.fe-login-textbox:focus {
+  border: 1px solid #c4c4c4;
+  float: left;
+  font: normal 14px "Klarheit Grotesk";
+  height: 12px;
+  width: 60%;
+  margin: 0 0 20px;
+  padding: 5px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.fe-login-button-container {
+  float: right;
+  margin: 0 332px 0 0;
+  *width: 70px;
+}
+.fe-logon-errors .validation-summary-errors {
+  background: #fabbaa;
+  border: 1px solid #dc143c;
+  margin-top: 1em;
+}
+.fe-logout-container {
+  padding: 5px 0 0;
+  text-align: right;
+  background: transparent none;
+  position: absolute;
+  right: 0;
+  height: 25px;
+  font: bold 14px "Klarheit Grotesk";
+}
+.fe-logout-container a {
+  font-weight: bold;
+  margin-left: 5px;
+  color: #ffc20e;
+}
+/* ============== Download tool =========================== */
+.fe-dialog-createDownloadTool-container /* Set fixed size for Download tool popup */ {
+  margin: 0 auto !important;
+  position: absolute !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 700px !important;
+  background: #fff;
+  border: 3px solid #421853 !important;
+  border-radius: 4px;
+}
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options-wrap {
+  /* background: none #e3e3e3; */
+  border: 0;
+  float: left;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  border-bottom: 0px solid #ccc;
+  width: auto;
+}
+.fe-tab-container-PriceAndDividend
+  .fe-downloadtool-options-wrap
+  .fe-downloadtool-options-name {
+  width: 230px;
+  font: bold 13px/19px "Klarheit Grotesk";
+  min-width: 230px !important;
+  color: #000;
+  margin-left: 10px;
+}
+.fe-tab-container-PriceAndDividend
+  .fe-downloadtool-options-wrap
+  .fe-downloadtool-options-val {
+  font: normal 13px/19px "Klarheit Grotesk";
+  color: #000;
+  margin: 0 auto;
+}
+.fe-tab-container-PriceAndDividend .mfs-container {
+  width: 229px;
+}
+.fe-tab-container-PriceAndDividend .fe-date-input input {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 3px;
+  width: 221px;
+  color: #666;
+  font-size: 12px;
+  font-family: "Klarheit Grotesk";
+  outline: none;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.fe-downloadtool-options-wrap.fe-downloadprice-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloaddividend-displayoptions,
+.fe-downloadtool-options-wrap.fe-downloadDocuments-table {
+  background: none transparent;
+  box-shadow: none;
+}
+.fe-tab-container-PriceAndDividend h5 {
+  font: bold 15px "Klarheit Grotesk";
+  margin-bottom: 8px;
+  padding: 20px 0 0;
+}
+.fe-downloadtooltabs .fe-datatable th /*download tool table header */ {
+  height: 22px !important;
+}
+.fe-tab-container-DownloadPrice .fe-columnheader-Bid, .fe-tab-container-DownloadPrice .fe-columnheader-Offer, .fe-tab-container-DownloadPrice .fe-columnheader-Mid, .fe-tab-container-DownloadPrice .fe-columnheader-PriceDate, .fe-tab-container-DownloadPrice .fe-columnheader-Currency/*set fixed width for table fields*/ {
+  width: 100px;
+}
+.dividendHtmlContainer,
+.priceHtmlContainer {
+  margin-bottom: 10px;
+}
+/* ============== Date Picker =========================== */
+.ui-datepicker {
+  background: none repeat scroll 0 0 #747474;
+  border: 1px solid #666;
+  width: 222px;
+  z-index: 99999 !important;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.ui-datepicker th {
+  color: #fff;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+  background: none repeat scroll 0 0 #fff !important;
+  border: 1px solid #333 !important;
+  color: #000 !important;
+  text-align: center;
+  padding: 3px;
+}
+.ui-datepicker td a.ui-state-active,
+.ui-datepicker td a:hover {
+  background: none repeat scroll 0 0 #ffc20e !important;
+  color: #000 !important;
+  font-weight: bold !important;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  margin: 0 5px;
+  width: 43%;
+}
+/* ============== Glossary Tab =========================== */
+.tabGlossaryContainer .accordion-header {
+  /* background: none repeat scroll 0 0 #D8E9F31; */
+  background: none repeat scroll 0 0 #d8e9f3;
+  border-radius: 8px;
+  color: #0007fb;
+  cursor: pointer;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 0 3px;
+  padding: 8px 10px;
+}
+.tabGlossaryContainer .accordion-content {
+  font-size: 12px;
+  margin: 0 0 1px;
+  padding: 5px 10px;
+  line-height: 18px;
+}
+.tabGlossary .ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active {
+  color: #007fb1;
+  font: bold 13px "Klarheit Grotesk";
+  margin: 0 0 0 -15px;
+  padding: 0;
+}
+/* ============== Portfolio Tab =========================== */
+.fe-mastertabs-PortfolioMasterTab.fe-menuTabs-content {
+  padding: 10px 0 0;
+}
+.fe-userPortfolioDropdown {
+  padding-top: 12px;
+}
+.fe-userPortfolioDetails.visibilityhidden {
+  display: none;
+}
+.fe-userPortfolioDetails {
+  min-height: 10px !important;
+  padding-bottom: 10px;
+}
+.fe-userPortfolio-name-label,
+.fe-userPortfolio-benchmark-label,
+.fe-userPortfolio-currency-label {
+  font-weight: bold;
+  width: 200px;
+  padding: 2px 0;
+  display: inline-block;
+}
+.fe-column-weight /* weight textbox in table */ {
+  width: 50px;
+  text-align: right;
+}
+.fe-portfolio-deleteall /*Delete all button in portfolio builder page */ {
+  background: none repeat scroll 0 0 #000;
+  border: 0 none;
+  border-radius: 3px;
+  bottom: 111px;
+  box-shadow: none;
+  height: 17px;
+  margin: 0;
+  padding: 3px 6px 5px;
+  position: absolute;
+  left: 563px;
+  left: 567px\0/;
+  bottom: 291px;
+  bottom: 281px\0/;
+  behavior: url(http://toolkit.financialexpress.net/Assets/css/PIE.htc) !important;
+}
+:root .fe-portfolio-deleteall {
+  bottom: 280px\9;
+  left: 566px\9;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .fe-portfolio-deleteall {
+    bottom: 280px;
+    left: 567px;
+  }
+}
+::i-block-chrome,
+.fe-portfolio-deleteall {
+  left: 559px !important;
+  bottom: 262px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .fe-portfolio-deleteall {
+    bottom: 279px;
+    left: 566px;
+  }
+}
+a.fe-icon-deleteall,
+a.fe-icon-deleteall:hover {
+  background: none;
+  text-decoration: none;
+  padding: 1px 8px;
+  color: #ffc20e;
+}
+/* ============== Tooltip =========================== */
+.fe-helptext-switch {
+  margin-top: -10px;
+  height: 18px;
+  color: #f1f7fc;
+  display: none;
+}
+.fe-helptext-image {
+  margin-top: -21px;
+  position: absolute;
+}
+.fe-helptext-image-background {
+  background: url(fe_img/helpTextInfo.png) no-repeat;
+  height: 15px;
+}
+.fe-helptext-div-css {
+  background: url(fe_img/bubble_midimg.png) repeat-y;
+  margin-top: 20px;
+  margin-left: -33px;
+  color: #000;
+  width: 196px;
+}
+.fe-helptext-div-css:hover {
+  z-index: 1002;
+}
+.fe-helptext-div-css .help-text-callout-top {
+  background: url(fe_img/bubble_arrow.png) no-repeat;
+  width: 35px;
+  height: 17px;
+  top: -20px;
+  left: 40px;
+}
+.fe-helptext-div-css .help-text-callout-middle {
+  background: url(fe_img/bubble_top3.png) no-repeat;
+  height: auto;
+  padding-top: 30px;
+  margin-top: -40px;
+}
+.fe-helptext-div-css .help-text-callout-bottom {
+  background: url(fe_img/bubble_botimg.png) no-repeat;
+  height: 15px;
+  top: 6px;
+}
+.fe-helptext-div-css .help-text-callout-middle div {
+  padding-right: 12px;
+  text-transform: none;
+  text-align: left;
+  font: 13px "Klarheit Grotesk";
+}
+.fe-helptext-div-css .help-text-callout-middle .closeHelpText {
+  color: #000;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* tooltip for search*/
+.fe-search-fileters-container .fe-helptext-image {
+  position: relative;
+}
+.fe-search-fileters-container .fe-helptext-div-css {
+  margin-left: 0;
+}
+#div-fe-helptext-span-1-0-0-AssetClassId.fe-helptext-div-css {
+  margin-left: 32px !important;
+}
+#fe-helptext-span-1-0-0-OngoingCharge .fe-helptext-div-css {
+  margin-left: 61px !important;
+}
+/* ============== Saved Portfolio Tab =========================== */
+.fe-mastertabs-SavedPortfoliosMasterTab.fe-menuTabs-content {
+  padding: 20px 0 0;
+}
+.fe-savedportfolios-portfoliomanagement {
+  left: 374px;
+  margin: 1px 0 0;
+  position: absolute;
+}
+.ui-multiselect.ui-state-default {
+  height: 26px;
+  padding: 0 0 0 5px;
+  border: 1px solid #333;
+  font: 14px "Klarheit Grotesk";
+  color: #000 !important;
+  background: none transparent !important;
+  text-align: left;
+  width: 200px !important;
+  border-radius: 5px;
+}
+.ui-multiselect span.ui-icon {
+  float: right;
+}
+.ui-multiselect-menu {
+  display: none;
+  padding: 3px;
+  position: absolute;
+  z-index: 10000;
+  text-align: left;
+  border-radius: 4px;
+  width: 193px !important;
+}
+.ui-multiselect-header {
+  margin-bottom: 3px;
+  padding: 3px 0 3px 4px;
+  background-color: #ebecec;
+}
+.ui-multiselect-header ul {
+  font-size: 0.9em;
+}
+.ui-multiselect-header ul li {
+  float: left;
+  padding: 0 10px 0 0;
+}
+.ui-multiselect-header a {
+  text-decoration: none;
+}
+.ui-multiselect-header a:hover {
+  text-decoration: underline;
+}
+.ui-multiselect-header span.ui-icon {
+  float: left;
+}
+.ui-multiselect-header li.ui-multiselect-close {
+  float: right;
+  text-align: right;
+  padding-right: 0;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes input {
+  position: absolute !important;
+  top: auto !important;
+  left: -9999px;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes label {
+  padding: 5px !important;
+}
+.ui-multiselect-checkboxes {
+  position: relative /* fixes bug in IE6/7 */;
+  overflow-y: auto;
+}
+.ui-multiselect-checkboxes label {
+  cursor: default;
+  display: block;
+  border: 1px solid transparent;
+  padding: 3px 1px;
+}
+.ui-multiselect-checkboxes label input {
+  position: relative;
+}
+.ui-multiselect-checkboxes li {
+  clear: both;
+  font-size: 0.9em;
+  padding-right: 3px;
+}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a {
+  display: block;
+  padding: 3px;
+  margin: 1px 0;
+  text-decoration: none;
+}
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label {
+  border: none;
+}
+.ui-multiselect-checkboxes .ui-corner-all.ui-state-hover {
+  background: none #000000;
+  border: 0 none;
+  color: #ffffff;
+}
+.fe-portfolioconstituents-dialog table th {
+  padding: 5px;
+  height: 10px !important;
+}
+.fe-portfolioconstituents-dialog table tbody th {
+  font-weight: normal;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #b0b0b0;
+}
+td.fe-editportfolio-icon a,
+.edit {
+  background: url(fe_img/ammend.png) no-repeat center center;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  width: 20px;
+  text-decoration: none;
+}
+td.fe-portfolioscan-icon a {
+  background: url(fe_img/PortfolioScan.png) no-repeat center center;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  width: 20px;
+  text-decoration: none;
+}
+.apply,
+.cancel {
+  text-decoration: none;
+}
+a.fe-showportfolioconstituents {
+  background: url(fe_img/icon_Constituents.png) no-repeat center center
+    transparent;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  line-height: 20px;
+}
+.fe-manageportfolios-dialog.ui-dialog-content {
+  height: auto !important;
+}
+/* ============== Model Portfolio Tab =========================== */
+.fe-fund-tableBody td.fe-icon-export-portfolio a {
+  background: url(fe_img/exported-fund.png) no-repeat scroll 0 0;
+  text-decoration: none;
+}
+td.fe-icon-multiple-documents a {
+  background: url(fe_img/ico_multipleDoc.png) no-repeat;
+  text-decoration: none;
+}
+.fe-portfolio-export-dlg.ui-dialog-content.ui-widget-content {
+  height: auto !important;
+}
+.ui-dialog .fe-portfolio-export-dlg {
+  padding: 0 0 10px;
+}
+.fe-portfolioExport-fundName {
+  background-color: #000;
+  color: white;
+  display: block;
+  font-size: 13px;
+  padding: 5px 0 5px 10px;
+}
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-basket {
+  margin-left: 10px;
+  text-decoration: none;
+}
+.fe-ico-add-to-portfolio,
+.fe-ico-add-to-portfolio:hover {
+  background: url(fe_img/ico_addToPortfolio.png) no-repeat scroll left top;
+  padding: 0 0 0 17px;
+  text-decoration: none;
+}
+.fe-ico-add-to-portfolio:hover {
+  background-image: url(fe_img/ico_addToPortfolioOver.png);
+}
+.fe-ico-add-to-basket,
+.fe-ico-add-to-basket:hover {
+  background: url(fe_img/ico_addToBasket.png) no-repeat scroll left 1px;
+  padding: 0 0 0 17px;
+  text-decoration: none;
+}
+.fe-ico-add-to-basket:hover {
+  background-image: url(fe_img/ico_addToBasketOver.png);
+}
+.mpconstituent-fundname {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.mpconstituent-backTo-container {
+  padding-bottom: 0;
+}
+.fe-icon-back.fe-back-button {
+  margin-left: 0 !important;
+}
+#totalFundsObtained {
+  display: none;
+}
+.fe-fund-performance-astext-element {
+  /* display: none !important; */
+}
+.fe-fund-document {
+  background-image: url("fe_img/icon_fs1.png");
+  width: 24px;
+  height: 30px;
+  padding: 0;
+  background-size: 80%;
+}
+.fe-tab-container-PriceAndDividend .fe-downloadtool-options,
+#pricefundOptions,
+#dividendfundOptions {
+  background: #fff !important;
+  display: block;
+  float: left;
+  margin: 10px 0;
+  width: 100% !important;
+  border-bottom: 1px solid #000;
+}
+.fe-downloadTool-container {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.fe-downloadTool-container .mfs-container a.mfs-selected-option {
+  background: #fff;
+}
+.fe-downloadTool-container .mfs-container .mfs-options {
+  width: 241px;
+}
+.fe-price-container .fe-downloadTool-button,
+.fe-dividend-container .fe-downloadTool-button {
+  margin: 21px 4px 17px 1px;
+  min-width: 155px;
+  color: #fff !important;
+  background: #00818a !important;
+  font-size: 12px !important;
+  border-radius: 50px;
+  padding: 9px 2px;
+}
+#btnCSVPriceHistory,
+#btnCSVDividendHistory {
+  margin-left: 10px;
+}
+div.fe-ordering-icon {
+  height: 13px;
+}
+span.fe-ordering-icon {
+  height: 10px;
+  display: inline-block;
+}
+.fe-tab-container-Documents
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto; 
+		left: 235px; */
+}
+.fe-tab-container-DiscretePerformance
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 155px; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 160px; */
+}
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 162px; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-SEDOL
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 59%; */
+}
+
+.fe-tab-container-Price
+  .fe-columnheader-Bid
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 75.6%; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-Mid
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 83%; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-Offer
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 67.2%; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-PriceDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		right: 5.8%; */
+}
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 135px; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-ISIN
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position: relative;
+		top: -3px;
+		height: auto;
+		left: -31px; */
+}
+.fe-tab-container-Price
+  .fe-columnheader-CitiCode
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position: relative;
+		top: -3px;
+		height: auto;
+		left: 2px; */
+}
+
+.fe-tab-container-Performance
+  .fe-columnheader-FundName
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	position:absolute;
+		top: 28px;
+		height: auto;
+		left: 148px; */
+}
+.fe-tab-container-Performance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /*! left: 11px; */
+}
+.fe-tab-container-Performance
+  .fe-columnheader-_1m
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-Performance
+  .fe-columnheader-_3m
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-Performance
+  .fe-columnheader-_6m
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: -10px; */
+}
+.fe-tab-container-Performance
+  .fe-columnheader-YTD
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: -8px; */
+}
+.fe-tab-container-Performance
+  .fe-columnheader-_1w
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: 5px; */
+}
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_1y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_2y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_3y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_4y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_5y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-_10y
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: -9px; */
+}
+
+.fe-tab-container-Performance
+  .fe-columnheader-_1y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-Performance
+  .fe-columnheader-_3y
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-Performance
+  .fe-columnheader-_5y
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: -8px; */
+}
+
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-Year1
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-Year2
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-Year4
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-Year3
+  > .ui-nowrap
+  > .sorting-icon-container,
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-Year5
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 		left: -9px; */
+}
+/*
+	.fe-tab-container-Price  .ui-nowrap > .sorting-icon-container{	
+		position:relative;	
+		float:right;
+	
+	}
+	.fe-tab-container-Price  .fe-tabs-grid-columnheader.ui-nowrap.pdfableColumn{
+		display:inline-block;
+	}*/
+.sorting-icon-container {
+  /*! position: relative; */
+  /*! top: -3px; */
+  /*! height: auto; */
+  /*! right: -7px; */
+  float: left;
+  position: absolute;
+  right: 0;
+}
+.sorting-icon-container + span {
+  display: table-cell;
+  width: auto;
+  height: 32px;
+  white-space: normal;
+  margin: 0px 0px 0 0;
+  vertical-align: top;
+}
+/*reponsive code*/
+@media screen and (min-width: 0px) and (max-width: 320px) {
+  .page {
+    width: 90% !important;
+  }
+  #advancedSearchContainer #advance {
+    width: 88% !important;
+  }
+  .fe-accordion-expandcollapse-all {
+    margin-left: 5px;
+    margin-top: 7px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 579px) {
+  body {
+    /* background:   #421853; */
+  }
+  .fe-tabs-container > div {
+    width: 99% !important;
+  }
+  .fe-topmenu {
+    margin-top: 0;
+  }
+  .page {
+    padding: 0px;
+    position: relative;
+    margin: 0 auto;
+    width: 97% !important;
+  }
+  .fe-mastertabs-FundCentreAMMasterTab .fe-search-filters-container {
+    margin-top: 0;
+    position: static;
+    width: 277px !important;
+  }
+  .fe-search-fileters-container .mfs-container {
+    width: 275px;
+  }
+  .fe-section-vertical-wrap .fe-section-vertical-name {
+    font-size: 14px;
+  }
+  .fe-section-vertical-wrap .fe-section-vertical-val {
+    font: 17px/15px "Klarheit Grotesk";
+  }
+  .fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+    background: transparent;
+  }
+  .fe-paging-showmainunits,
+  .fe-accordion-expandcollapse-container,
+  .fe-paging-displayContainer.fe-paging-showmainunits,
+  .fe-accordion-expandcollapse-container,
+  .fe-datatable-pagination-container.ui-widget-header.ui-corner-top {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .fe-paging-displayContainer {
+    width: 100% !important;
+  }
+  .fe-paging-displayContainer .fe-paging-showtext {
+    float: left;
+  }
+  .fe-paging-showmainunits {
+    /* margin-right: 10px; */
+  }
+  .fe-menuTabs-list {
+    position: relative;
+    float: none;
+    right: 0;
+    top: 0;
+  }
+  .ui-tabs .ui-tabs-nav li {
+    width: 100%;
+  }
+  .ui-state-default.ui-corner-top {
+    height: 30px;
+    width: 99%;
+    background: #fff;
+  }
+  #searchform-1 {
+    float: right;
+  }
+  #searchform-1 {
+    margin-top: 52px;
+    right: 0;
+    z-index: 2500;
+  }
+  #advancedSearchContainer #advance {
+    width: 91% !important;
+  }
+  .ui-state-default.ui-corner-top {
+    height: 45px;
+    width: 99%;
+  }
+  .fe-topmenu .fe-menuTabs-list li a {
+    width: 100%;
+    padding: 15px 0;
+    border: 0;
+    border-bottom: 1px solid #fff;
+  }
+  .fe-section-horizontal {
+    float: left;
+    width: 97% !important;
+    border: 0;
+    padding: 0;
+  }
+  .fe-tab-container-FundOverview
+    .fe-section-composite-container.section_2_1
+    .fe-section-horizontal.section_2_1_2 {
+    min-width: 100% !important;
+  }
+  .minFsData h4 {
+    display: inline;
+  }
+  .fe-topmenu .fe-menuTabs-list li a {
+    height: 15px;
+    border-radius: 0;
+  }
+  .fe-topmenu .fe-menuTabs-list li {
+    border-radius: 0;
+    border-bottom: 1px dotted #000000 !important;
+    border-top: 1px dotted #ffffff !important;
+    height: 45px;
+    border-right: 0px dotted #cccccc;
+    background: #000000;
+  }
+  .fe-topmenu .fe-menuTabs-list li.selected {
+    border-radius: 0;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top {
+    width: 100% !important;
+    color: #421853 !important;
+    border-left: 0px solid #a7a3bc;
+    border-right: 0px solid #eeeeee;
+    border-bottom: 1px solid #333 !important;
+  }
+  .fe-tab-InvestmentInformation.fe-tabs-item.ui-state-default.ui-corner-top a {
+    padding: 10px 0;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active {
+    width: 100% !important;
+    color: #421853 !important;
+    border-left: 0px solid #ee3124;
+    border-right: 0px solid #ee3124;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top a {
+    /*! color: #421853 !important; */
+    text-align: left !important;
+    width: 94% !important;
+  }
+  .fe-tabs-datacontainer .fe-datatable th {
+    min-width: 101px;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover
+    a {
+    text-align: left !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active
+    a {
+    text-align: left !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover {
+    width: 100% !important;
+    border-left: 0px solid #ee3124;
+    border-right: 0px solid #ee3124;
+  }
+  .ui-page-content-panel {
+    width: 100%;
+  }
+  .ui-logo-container {
+    float: left;
+    height: 65px 0 2px;
+    width: 100%;
+  }
+  .fe-search-searchbox-containe {
+    width: 100%;
+  }
+  .fe-button.fe-search-clear-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only,
+  .fe-basket-button-clear {
+    margin: 2px 4px;
+    float: right;
+  }
+  .tapMenuicon {
+    background: url("fe_img/mobile_icon.png") no-repeat scroll 10px center #fff;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    height: 30px;
+    margin: 13px 0 0;
+    padding: 4px 5px 0 16px;
+    text-align: center;
+    width: 16px;
+    border: 1px solid #a7a3bc;
+    display: none !important;
+  }
+  .topMenu {
+    background: url("fe_img/mobile_nav_icon.png") no-repeat scroll 0 0 #421853;
+    cursor: pointer;
+    height: 22px;
+    margin: 18px 0 10px;
+    width: 30px;
+    position: absolute;
+    right: 5px;
+    z-index: 100;
+    display: none !important;
+  }
+  .topMenu:hover {
+    opacity: 0.5;
+  }
+  .ui-widget-content {
+    background: none;
+    border: 0 !important;
+  }
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
+    float: left;
+    font-weight: normal;
+  }
+  .fe-section-vertical-name {
+    min-height: auto !important;
+  }
+  .fe-tab-container-DocumentsandTools
+    .section_2_1.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name,
+  .fe-tab-container-DocumentsandTools
+    .section_2_2.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    min-height: auto !important;
+  }
+  .fe-tabs-container-FundCentreAM
+    .fe-tab-container-FundInformation
+    .fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    font: 14px/20px "Klarheit Grotesk";
+  }
+  .fe-sort-container {
+    float: none;
+    margin-top: 10px;
+    margin-left: 0;
+    position: static;
+  }
+  .fe-sort-icon {
+    margin-left: 10px;
+    padding-left: 15px;
+  }
+  .fe-mastertabs-AllFundsAMMasterTab .tapMenuicon {
+    display: none;
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .fe-chart-tabs-container {
+    background: url(fe_img/tabmenu_bg.png) repeat-x 0 -30px;
+    border: 0 none !important;
+    margin: 0;
+    padding: 0;
+  }
+  .fe-tabs-datacontainer div.title {
+    font: 400 19px/20px "Klarheit Grotesk";
+    display: block;
+  }
+  #advancedSearchContainer {
+    padding: 0;
+  }
+  .fe-button.fe-search-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+    position: static;
+  }
+  .fe-section-tools-val {
+    padding: 15px 0 0 5px;
+  }
+  .fe-section-vertical-wrap .fe-section-vertical-val {
+    color: #000000;
+    display: block;
+    font: 14px/15px "Klarheit Grotesk";
+  }
+  .fe-section-nesteddata .fe-section-vertical-name {
+    min-height: 40px;
+  }
+  .fe-section-text {
+    padding-bottom: 15px;
+    height: auto;
+  }
+  .fe-tabs-datacontainer div.title {
+    font: bold 17px/20px "Klarheit Grotesk";
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .fe-sort-header {
+    margin-left: 0;
+  }
+  .fe-section-header-val.pdfableColumn.fe-column-name {
+    width: 83% !important;
+    display: block;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    margin-top: 7px;
+    padding: 6px 11px;
+  }
+  .fe-tab-container-FundPerformance
+    .section_2_1.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    padding: 8px 0;
+  }
+  .fe-topmenu {
+    padding-top: 0px !important;
+  }
+  .minFsData {
+    margin-bottom: 10px;
+  }
+  .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-resizable.fe-ui-dialog.fe-ui-form-dialog.fe-dialog-createDownloadTool-container {
+    left: 3% !important;
+    margin: 0 auto 0 0 !important;
+    overflow: visible;
+    width: 93% !important;
+    z-index: 10000;
+    background: #fafafa;
+    border: 3px solid #421853 !important;
+  }
+  .fe-section-accordion-header.fe-section-vertical.section_1_2 {
+    width: 98% !important;
+    position: static;
+    margin-top: 0;
+  }
+  .fe-tabs-datacontainer div.title {
+    border-bottom: 0 solid #ee3124;
+    min-height: 40px;
+    width: 93% !important;
+  }
+  .fe-section-accordion-header.fe-section-vertical.section_1_2
+    .fe-section-vertical-wrap {
+    width: 100% !important;
+    border-bottom: 1px solid #421853;
+  }
+  .fe-section-accordion-header.fe-section-vertical.section_1_2
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    float: left;
+    margin: 0;
+    text-align: center !important;
+    width: 45% !important;
+  }
+  .fe-section-accordion-header.fe-section-vertical.section_1_2
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    float: right;
+    width: 42% !important;
+    padding: 13px 0 0;
+    text-align: center;
+  }
+  .fe-tab-container-FundOverview .fe-section-composite-container {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_2_2 {
+    float: left;
+    width: 100% !important;
+    position: inherit;
+    right: 0;
+    top: 0;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_3_1
+    .fe-section-vertical-wrap {
+    width: 100% !important;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_3_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    float: left;
+    text-align: left;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_3_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    float: right;
+    width: 47% !important;
+    padding: 13px 0;
+    text-align: left;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap {
+    width: 100% !important;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    float: left;
+    text-align: left;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    float: right;
+    width: 47% !important;
+    padding: 13px 0;
+    text-align: center;
+  }
+  .fe-tab-container-FundManager
+    .fe-section-recursivecontainer-contentwrapper
+    .fe-section-text {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_2_2 {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_3_2 {
+    width: 98% !important;
+  }
+  .fe-accordion-expandcollapse-container {
+    float: left;
+  }
+  .fe-datatable-pagination-container.ui-widget-header.ui-corner-top {
+    margin: 0;
+    width: 254px !important;
+    float: left;
+  }
+  .fe-search-searchbox-container {
+    margin-right: 5px;
+  }
+  .fe-section-textwithpicture {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_3_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    background: #fff !important;
+    border-bottom: 0 solid #d0d0d0;
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    width: 42% !important;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_3_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    padding: 13px 0;
+    text-align: center;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    background: #fff !important;
+    border-bottom: 0 solid #d0d0d0;
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    width: 42% !important;
+  }
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    fe-section-vertical-val {
+    padding: 13px 0;
+    text-align: center;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_3_1 {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundOverview
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap,
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_5_1
+    .fe-section-vertical-wrap,
+  .fe-tab-container-FundManager
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap,
+  .fe-tab-container-FundManager
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap,
+  .fe-tab-container-CalendarPerformance_
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap,
+  .fe-tab-container-Breakdowns
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap {
+    float: left;
+    height: 92px;
+    position: relative;
+  }
+  .fe-tab-container-FundOverview
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name,
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_5_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name,
+  .fe-tab-container-FundManager
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name,
+  .fe-tab-container-FundManager
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-name,
+  .fe-tab-container-CalendarPerformance_
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-name,
+  .fe-tab-container-Breakdowns
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-name {
+    position: absolute;
+    text-align: center;
+    top: 50% !important;
+    width: 98% !important;
+    margin-top: 26px;
+  }
+  .fe-tab-container-FundOverview
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val,
+  .fe-tab-container-FundPerformance
+    .fe-section-vertical.section_5_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val,
+  .fe-tab-container-FundManager
+    .fe-section-vertical.section_4_1
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val,
+  .fe-tab-container-FundManager
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-val,
+  .fe-tab-container-CalendarPerformance_
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-val,
+  .fe-tab-container-Breakdowns
+    .fe-section-horizontal.section_4_1
+    .fe-section-horizontal-wrap
+    .fe-section-horizontal-val {
+    float: left;
+    text-align: center;
+    width: 98%;
+    margin-top: 20px;
+  }
+  #searchform-1 {
+    position: static;
+    float: none;
+  }
+  /* .fe-search-textbox {
+    float: left;
+    position: static;
+    width: 86% !important;
+  } */
+  #advance {
+    position: static;
+  }
+  .fe-button.fe-advSearch-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-secondary {
+    width: 100% !important;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .fe-button.fe-advSearch-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-secondary.ui-state-focus,
+  .fe-button.fe-advSearch-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-secondary.ui-state-hover {
+    width: 98% !important;
+    margin-top: 10px;
+  }
+  .fe-search-container /* search section container */ {
+    background: transparent;
+  }
+  .fe-search-searchbox-container {
+    background: transparent;
+    width: 100% !important;
+  }
+  .fe-mastertabs-FundCentreAMMasterTab .fe-search-fileters-container {
+    width: 100% !important;
+  }
+  .fe-search-fileters-dropdow {
+    width: 100% !important;
+  }
+  .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all {
+    width: 95% !important;
+  }
+  .fe-accordion-expandcollapse-container {
+    margin-top: 5px;
+  }
+  .fe-accordion-expandcollapse-all {
+    margin-top: 6px;
+    margin-left: 5px;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-holdings.section_2_2_2 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-breakdowns.section_2_2_1 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_2 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_1 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-holdings.section_2_2_2 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Performance
+    .fe-section-vertical.section_2_1_2
+    .fe-section-vertical-wrap {
+    width: 100% !important;
+  }
+  .fe-section-horizontal.section_3_1 h5,
+  .fe-section-horizontal.section_4_1 h5,
+  .fe-section-horizontal.section_5_1 h5 {
+    padding: 10px 0;
+    width: 98% !important;
+  }
+  .fe-section-breakdowns {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-accordion-container
+    .fe-section-breakdowns {
+    position: relative;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-accordion-container
+    .fe-section-breakdowns
+    > div {
+    position: absolute;
+    top: 16px;
+  }
+  .fe-section-holdings {
+    width: 100% !important;
+  }
+  .breakdownsChart.assetBreakdowns,
+  .breakdownsChart.areaBreakdowns,
+  .breakdownsChart.sectorBreakdowns {
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+  .breakdownsChart.assetBreakdowns,
+  .breakdownsChart.areaBreakdowns,
+  .breakdownsChart.sectorBreakdowns {
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+  .fe-section-breakdowns.section_2_2_1 div:last-child,
+  .fe-section-breakdowns.section_2_1_2 div:last-child,
+  .fe-section-breakdowns.section_2_1_1 div:last-child {
+    width: 100% !important;
+  }
+  .fe-section-breakdowns.section_2_2_1 div:last-child .colourKey,
+  .fe-section-breakdowns.section_2_1_2 div:last-child .colourKey,
+  .fe-section-breakdowns.section_2_1_1 div:last-child .colourKey {
+    height: 17px !important;
+    width: 17px !important;
+  }
+  .breakdownsChart.assetBreakdowns,
+  .breakdownsChart.areaBreakdowns,
+  .breakdownsChart.sectorBreakdowns {
+    width: 100% !important;
+  }
+  .fe-section-breakdowns.section_2_1 div:last-child,
+  .fe-section-breakdowns.section_3_1 div:last-child,
+  .fe-section-breakdowns.section_2_2 div:last-child {
+    width: 100% !important;
+  }
+  .HoldingName.fe-section-vertical-name {
+    width: 69% !important;
+  }
+  /*.HoldingWeight.fe-section-vertical-name {
+			width: 20% !important;
+		}*/
+  .HoldingName.fe-section-vertical-val.pdfableColumn {
+    width: 69% !important;
+  }
+  .HoldingWeight.fe-section-vertical-val.pdfableColumn {
+    width: 20% !important;
+  }
+  .fe-section-header .fe-section-header-val {
+    margin-top: 9px;
+  }
+  .fe-expandcollapse-container {
+    top: 40px;
+  }
+  .fe-section-accordion-container {
+    margin-top: 10px;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top:last-child {
+    /*! border-bottom: 0 !important; */
+  }
+  .fe-search-fileters-container {
+    padding: 0;
+  }
+  #advancedSearchContainer #advance {
+    margin-top: 5px;
+  }
+  .fe-tab-container-FundOverview .section_3_1,
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_3_3 {
+    width: 100% !important;
+  }
+}
+@media screen and (min-width: 580px) and (max-width: 767px) {
+  .page {
+    width: 98% !important;
+  }
+  .fe-tabs-container > div {
+    width: auto !important;
+  }
+  .fe-tabs-datacontainer div.title {
+    font: 26px/26px "Klarheit Grotesk";
+  }
+  .fe-section-header .fe-section-header-val {
+    margin-top: 10px;
+  }
+  .fe-accordion-expandcollapse-container {
+    width: 100% !important;
+  }
+  .fe-expandcollapse-container {
+    top: 40px;
+  }
+  #searchform-1 {
+    margin: 11px auto;
+    position: relative;
+  }
+  .fe-section-header-val.pdfableColumn.fe-column-name {
+    display: block;
+    width: 80% !important;
+  }
+  .fe-fundInformationTools .ui-logo-container {
+    display: block;
+    height: 0px;
+
+    margin: 0;
+    width: 100%;
+  }
+  .fe-mastertabs-FundCentreAMMasterTab .fe-search-filters-container {
+    margin-top: 0;
+    position: static;
+    width: 200px !important;
+  }
+  .tapMenuicon {
+    display: none !important;
+  }
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_3_1 {
+    width: 100% !important;
+    padding: 0;
+  }
+  .fe-tab-container-FundOverview .section_3_2.fe-section-chart {
+    margin-top: 30px;
+    width: 60% !important;
+    padding: 0 0 0 2%;
+    float: right;
+  }
+  .fe-tabs-tab-FundCentreAM.fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+    margin-top: 10px;
+  }
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_3_3 {
+    width: 98% !important;
+    float: left;
+  }
+  .fe-tab-container-FundOverview .section_3_1 {
+    width: 100% !important;
+    padding: 0;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top {
+    width: 100% !important;
+    color: #421853 !important;
+    border-left: 0px solid #a7a3bc;
+    border-right: 0px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee !important;
+  }
+  .fe-tab-InvestmentInformation.fe-tabs-item.ui-state-default.ui-corner-top a {
+    padding: 10px 0;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active {
+    width: 100% !important;
+    color: #421853 !important;
+    border-left: 0px solid #ee3124;
+    border-right: 0px solid #ee3124;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top a {
+    color: #421853 !important;
+    text-align: left !important;
+    width: 93% !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover
+    a {
+    text-align: left !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active
+    a {
+    text-align: left !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover {
+    width: 100% !important;
+    border-left: 0px solid #ee3124;
+    border-right: 0px solid #ee3124;
+  }
+  .fe-tab-container-FundOverview .section_3_2.fe-section-chart {
+    margin-top: 0px;
+    width: 60% !important;
+    padding: 0 0 0 2%;
+    float: right;
+  }
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_3_3 {
+    width: 98% !important;
+    float: left;
+  }
+  .fe-tab-container-FundPerformance .fe-section-vertical.section_2_1 {
+    width: 30% !important;
+    padding: 0 0 1%;
+  }
+  .fe-tab-container-FundPerformance .section_2_2.fe-section-chart {
+    width: 60% !important;
+    padding: 0 0 0 2%;
+    float: right;
+  }
+  .fe-tab-container-FundPerformance .section_2_3.fe-section-vertical > h5 {
+    display: none;
+  }
+  .fe-tab-container-FundPerformance .section_2_3.fe-section-vertical {
+    width: 98% !important;
+    float: left;
+  }
+  .fe-tab-container-FundPerformance
+    .section_2_3.fe-section-vertical
+    .fe-section-vertical-wrap {
+    width: 25% !important;
+  }
+  .fe-tab-container-FundPerformance
+    .section_2_3.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    min-height: 0px;
+  }
+  .fe-tab-container-FundPerformance
+    .section_2_1.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-name {
+    min-height: 0px;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top {
+  }
+  .fe-tabs-datacontainer div.title {
+    font: 19px/20px "Klarheit Grotesk";
+  }
+  .fe-fundInformationTools
+    .fe-tab-FundManagerInformation.fe-tabs-item.ui-state-default.ui-corner-top {
+    border-left: 1px solid #a7a3bc;
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .fe-tab-container-InvestmentInformation
+    .section_2_2.fe-section-vertical
+    .fe-section-vertical-wrap
+    .fe-section-vertical-val {
+    min-height: 30px;
+    padding: 13px 0 !important;
+  }
+  .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-resizable.fe-ui-dialog.fe-ui-form-dialog.fe-dialog-createDownloadTool-container {
+    left: 3% !important;
+    margin: 0 auto 0 0 !important;
+    overflow: visible;
+    width: 93% !important;
+    z-index: 100;
+  }
+  .fe-section-accordion-header.fe-section-vertical.section_1_2 {
+    width: 98% !important;
+    margin-top: 0;
+    position: static;
+  }
+  .fe-section-composite-container.section_2_1 {
+    width: 100% !important;
+  }
+  .fe-tabs-datacontainer div.title {
+    border-bottom: 0 solid #ee3124;
+    min-height: 40px;
+    width: 93% !important;
+  }
+  .fe-tab-container-FundManager
+    .fe-section-recursivecontainer-contentwrapper
+    .fe-section-text {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_2_2 {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_3_2 {
+    width: 98% !important;
+  }
+  .fe-section-textwithpicture {
+    width: 98% !important;
+  }
+  .fe-tab-container-FundManager .fe-section-nesteddata.section_3_1 {
+    width: 98% !important;
+  }
+  #searchform-1 {
+  }
+  .fe-tab-container-FundOverview .fe-section-horizontal.section_2_2 {
+    /* width: 98% !important; */
+  }
+  .fe-search-fileters-dropdown {
+    margin-left: 0;
+    width: 260px;
+  }
+  .fe-topmenu {
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_1 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_2 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-breakdowns.section_2_2_1 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-holdings.section_2_2_2 {
+    width: 100% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-horizontal.section_2_3
+    .fe-section-horizontal-wrap {
+    float: right;
+    height: auto !important;
+    margin-top: 5px !important;
+    margin-bottom: 70px !important;
+    max-height: 213px;
+    position: relative;
+    width: 100%;
+  }
+  .fe-section-breakdowns {
+    width: 100% !important;
+  }
+  .fe-section-holdings {
+    width: 100% !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 800px) {
+  .fe-paging-showmainunits {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .page {
+    width: 98% !important;
+  }
+  .tapMenuicon {
+    display: none;
+  }
+  .fe-tabs-container > div {
+    width: auto !important;
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .minFsData {
+    margin-bottom: 10px;
+  }
+  .fe-search-fileters-dropdown {
+    margin-left: 0;
+    width: 260px;
+  }
+  .fe-tabs-datacontainer.ui-tabs.ui-widget.ui-widget-content.ui-corner-all.ui-tabs-panel.ui-corner-bottom {
+    margin-top: -10px !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_1 {
+    width: 98% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_1
+    .fe-section-breakdowns.section_2_1_2 {
+    width: 98% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-breakdowns.section_2_2_1 {
+    width: 98% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-composite-container.section_2_2
+    .fe-section-holdings.section_2_2_2 {
+    width: 98% !important;
+  }
+  .fe-tab-container-Breakdowns
+    .fe-section-horizontal.section_2_3
+    .fe-section-horizontal-wrap {
+    float: right;
+    height: auto !important;
+    margin-top: 5px !important;
+    margin-bottom: 70px !important;
+    max-height: 213px;
+    position: relative;
+    width: 100%;
+  }
+  .fe-section-breakdowns {
+    width: 100% !important;
+  }
+  .fe-section-holdings {
+    width: 100% !important;
+  }
+  .fe-fundInformationTools
+    .fe-tabs-item.ui-state-default.ui-corner-top.ui-state-hover
+    a {
+    padding: 10px 10px;
+  }
+  .fe-fundInformationTools .fe-tabs-item.ui-state-default.ui-corner-top a {
+    padding: 10px 10px;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .tapMenuicon {
+    display: none;
+  }
+  .fe-tabs-container > div {
+    width: auto !important;
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .fe-search-fileters-dropdown {
+    margin-left: 0;
+    width: 260px;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 2000px) {
+  .tapMenuicon {
+    display: none;
+  }
+  .fe-tabs-container > div {
+    width: auto !important;
+  }
+  .fe-chart-body .page,
+  .fe-downloadtool-body .page {
+    width: 900px !important;
+  }
+  .fe-search-fileters-dropdown {
+    margin-left: 0;
+    width: 260px;
+  }
+}
+
+/*952-1024*/
+
+@media screen and (min-width: 952px) and (max-width: 1024px) {
+  .mfs-container a.mfs-selected-option {
+    width: 93.5% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+	left: 208px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 150px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 161px;
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 58%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 74.6%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 82%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 66.2%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 7%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: -29px;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 10px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+
+/*913-951*/
+@media screen and (min-width: 913px) and (max-width: 951px) {
+  .mfs-container a.mfs-selected-option {
+    width: 93.5% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+		left: 235px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 139px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 153px;
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 55.5%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 73%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 81%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 64%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 6%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: -8px;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 30px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+/*870-912- fixed*/
+@media screen and (min-width: 870px) and (max-width: 912px) {
+  .mfs-container a.mfs-selected-option {
+    width: 92.5% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+		left: 235px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 137px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 135px;
+	
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 54%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 72.6%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 80%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 63.2%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 7%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 20px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+/*825-869*/
+@media screen and (min-width: 825px) and (max-width: 869px) {
+  .mfs-container a.mfs-selected-option {
+    width: 92.5% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+		left: 235px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 87px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 13%;
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 52%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 70.6%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 79%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 61.2%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 8%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: 0%;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 17%;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+@media screen and (min-width: 813px) and (max-width: 824px) {
+  .mfs-container a.mfs-selected-option {
+    width: 92.5% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+		left: 235px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 94px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 13%;
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 52%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 70.6%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 79%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 61.2%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 8%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: 0%;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 17%;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+@media screen and (min-width: 767px) and (max-width: 814px) {
+  .mfs-container a.mfs-selected-option {
+    width: 92% !important;
+  }
+  .ui-slider {
+    width: 90%;
+  }
+  /*238018 pbi latest comment 9 Jun 2022*/ /*.fe-tab-container-Documents .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		 
+		left: 235px;
+	}
+	.fe-tab-container-DiscretePerformance  .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 74px;
+	}
+	.fe-tab-container-Price .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		left: 13%;
+	} 
+	.fe-tab-container-CalendarPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 162px;
+	}
+	.fe-tab-container-Price  .fe-columnheader-SEDOL > .ui-nowrap > .sorting-icon-container{
+		left: 50%;
+	}
+	
+	.fe-tab-container-Price  .fe-columnheader-Bid > .ui-nowrap > .sorting-icon-container{
+		left: 68.6%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Mid > .ui-nowrap > .sorting-icon-container{
+		left: 78%;
+	}
+	.fe-tab-container-Price  .fe-columnheader-Offer > .ui-nowrap > .sorting-icon-container{
+		left: 61.2%;
+	}
+	.fe-tab-container-Price .fe-columnheader-PriceDate > .ui-nowrap > .sorting-icon-container{
+		right: 8%;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 135px;
+	}
+	.fe-tab-container-Price .fe-columnheader-ISIN > .ui-nowrap > .sorting-icon-container{
+		left: 0%;
+	}
+	.fe-tab-container-Price .fe-columnheader-CitiCode > .ui-nowrap > .sorting-icon-container{
+		left: 17%;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-FundName > .ui-nowrap > .sorting-icon-container{
+		
+		left: 148px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-UnitLaunchDate > .ui-nowrap > .sorting-icon-container{
+			left: 11px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_3m > .ui-nowrap > .sorting-icon-container,.fe-tab-container-Performance .fe-columnheader-_6m > .ui-nowrap > .sorting-icon-container{
+		left: -5px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-YTD > .ui-nowrap > .sorting-icon-container{
+		left: -1px;
+	}
+	.fe-tab-container-Performance .fe-columnheader-_1w > .ui-nowrap > .sorting-icon-container{
+		left: 5px;
+	}
+	.fe-tab-container-AnnualisedPerformance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_2y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_4y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container,.fe-tab-container-AnnualisedPerformance .fe-columnheader-_10y > .ui-nowrap > .sorting-icon-container{
+		left: -9px;
+	}
+	
+	.fe-tab-container-Performance .fe-columnheader-_1y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_3y > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-Performance .fe-columnheader-_5y > .ui-nowrap > .sorting-icon-container{
+		left: -3px;
+	}
+	
+	
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year1 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year2 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year4 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year3 > .ui-nowrap > .sorting-icon-container,
+	.fe-tab-container-CalendarPerformance .fe-columnheader-Year5 > .ui-nowrap > .sorting-icon-container{
+			left: -9px;
+	}*/
+}
+.fe-tabs-tab-FundCentre {
+  /*! display:block !important; */
+}
+.fe-downloadtooltabs {
+  overflow: auto;
+}
+.fe-tabs-responsive-title {
+  display: none !important;
+}
+#advance {
+  display: block !important;
+}
+.fe-fund-performance-astext-element {
+  font-size: 14px;
+}
+.fe-search-fileters-container.fe-search-filter-CategoryId > label,
+.fe-search-fileters-container.fe-search-filter-BespokeColumn2 > label {
+  /*! overflow:hidden; */
+  /*! font-size: 0; */
+  /*! display:inline-block; */
+}
+
+.fe-search-fileters-container.fe-search-filter-CategoryId > label:after,
+.fe-search-fileters-container.fe-search-filter-BespokeColumn2 > label:after {
+  /*! content:"Product range"; */
+  /*! font-size: 14px !important; */
+}
+.fe-columnheader-UnitLaunchDate > .ui-nowrap > span:after {
+  /*! content: " Launch date"; */
+  /*! white-space: normal; */
+}
+.fe-columnheader-UnitLaunchDate {
+  /* 	text-indent: -70px; */
+  /* 	overflow:hidden;
+		white-space: nowrap; */
+}
+.fe-columnheader-UnitLaunchDate {
+  min-width: 65px !important;
+  /* padding-left: 49px; */
+}
+.fe-columnheader-UnitLaunchDate > .ui-nowrap > span {
+  /*! margin: 0 0 0px 43px; */
+}
+.fe-tab-container-Performance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /*! left: 27px; */
+  /*! top: -3px; */
+}
+.fe-tab-container-AnnualisedPerformance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /*! left: 28px; */
+  /*! top: -3px; */
+}
+.fe-tab-container-DiscretePerformance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: 28px;
+		top: -3px; */
+}
+.fe-tab-container-CalendarPerformance
+  .fe-columnheader-UnitLaunchDate
+  > .ui-nowrap
+  > .sorting-icon-container {
+  /* 	left: 30px;
+		top: -3px; */
+}
+
+/*marlborough*/

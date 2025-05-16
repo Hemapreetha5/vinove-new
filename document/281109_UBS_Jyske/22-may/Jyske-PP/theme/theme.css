@@ -1,0 +1,239 @@
+@font-face {
+	font-family: "Effra-Std-Rg";
+	src: url("images/Effra-Std-Rg.ttf") format("truetype"),
+		 url("images/Effra-Std-Rg.ttf") format("opentype"),
+		 url("images/Effra-Std-Rg.ttf") format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }
+  @font-face {
+	font-family: "Effra-Std-Lt";
+	src: url("images/Effra-Std-Lt.ttf") format("truetype"),
+		 url("images/Effra-Std-Lt.ttf") format("opentype"),
+		 url("images/Effra-Std-Lt.ttf") format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }
+  @font-face {
+	font-family: "Effra-Bold";
+	src: url("images/Effra-Bold.ttf") format("truetype"),
+		 url("images/Effra-Bold.ttf") format("opentype"),
+		 url("images/Effra-Bold.ttf") format("woff");
+	font-weight: normal;
+	font-style: normal;
+  }
+  :root{
+	  --primary: #005231;
+	  --secondary: #BEBEBE;
+	  --header:#212121;
+	  --headerbg:rgb(241, 242, 242);
+	  --parabg:rgb(241, 242, 242);
+	  --black: #000000;
+	  --white:#ffffff;
+	  --red: #E60000;
+	  --border: var(--primary);
+	  --tableborder: var(--black);
+	  --tableheader:#004e53;
+	  --tablerowheader: var(--secondary);
+	  --tableheaderbg:rgba(0,156,166,0.2);
+	  --tablesubheaderbg:rgba(0,156,166,0.05);
+	  --altrow: #E6EBED;
+	  --alert: var(--black);
+	  --warningfont: 12pt;
+	  --ratingbg: var(--white);
+	  --ratingborder: var(--black);
+	  --ratingselected: #005231;
+	  --bodyfont:9pt;
+	  --bodycolor: var(--black);
+	  --footerfont: 8pt;
+	  --lineheight: 1.2;
+	  --h2:12pt;
+	  --h3:10pt;
+	  --fontRegular: 'Effra-Std-Rg';
+	  --fontLight: 'Effra-Std-Lt';
+	  --fontBold: 'Effra-Bold';
+  }
+  
+  /* Set to true if logo should be in upside/set to false if logo should be in down*/
+  body {
+    line-height: var(--lineheight);
+    color: var(--bodycolor);
+    font-family: var(--fontLight);
+    font-size: var(--bodyfont);
+    font-weight: normal;
+    text-rendering: optimizelegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
+  table {
+	  width: 100%;
+	  margin: 0;
+	  padding: 0;
+	  border-collapse: collapse;
+	  font-size: 7pt;
+  }
+  table th {
+	  font-family: var(--fontBold);
+	  text-align: left;
+	  margin: 0;
+	  padding: 0;
+  }
+  table td {
+	  margin: 0;
+	  padding: 0;
+  }
+  h2 {
+	font-family: var(--fontBold);
+    font-weight: 100;
+    font-size: var(--h2);
+    color: var(--bodycolor);
+    margin-bottom: 0.3cm;
+    padding: 1.4mm 0mm 0cm;
+    border-top: 0.5pt solid var(--primary);
+	margin-top:0;
+  }
+  p:empty, h2:empty {
+	  margin: 0;
+	  padding:0;
+	  border: 0;
+	  max-width: 0;
+	  min-height: 0;
+	  width: auto;
+	  height: auto;
+  }
+  p, ul, li {
+	  margin: 0;
+	  padding: 0;
+  }
+  
+  p {
+    font-size: var(--bodyfont);
+    padding: 0px 0px 0.4cm;
+  }
+  b {
+	  font-family: var(--fontBold);
+	  font-weight: 100;
+  }
+  h2 {
+	bookmark-level: 1;
+  }
+  
+  .subheader p {
+	bookmark-level: 2;
+  }
+  /* page styles*/
+  .page {
+	  width: 19cm;
+	  height: auto;
+	  padding: 0cm 1cm 0.25cm 1cm;
+  }
+  
+  .page1 {
+    padding-top: 1cm;
+    background: url(images/jyske_sicav_logo.svg) 15.5cm 0px / 4.6cm 0.5cm no-repeat;
+  }
+  .page1 > .row1 .contentSection h2 {
+	font-family: var(--fontLight);
+    font-size: 25pt;
+    font-weight: 100;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+  }
+  .page1 .row2 .contentSection .item3 {
+	  font-family: var(--fontBold);
+  }
+  .page1 > .row6 > .composite1 > .compositebody > .row2 > .column1 {
+	  width: 60%;
+	  margin-right: 1%;
+  }
+  .page1 > .row6 > .composite1 > .compositebody > .row2 > .column2 {
+	  width: 39%;
+  }
+  .discreteChart {
+	  height: 270px;
+  }
+  .groupHeaderDiv1 th, .groupRowDiv1 td {
+	  padding: 1mm;
+	  border-right: 0pt solid var(--black);
+	  border-bottom: 0.5pt solid var(--black);
+	  text-align: left;
+	  width: auto;
+	  text-align: center;
+  }
+  .groupHeaderDiv1 tr:first-child th {
+	  border-top: 0.5pt solid var(--black);
+  }
+  .groupHeaderDiv1 tr:first-child th {
+	  border-left: 0pt solid var(--tableheaderbg) !important;
+  }
+  .groupHeaderDiv1 th {
+	  color: var(--tableheader);
+	  /* border-color: var(--tableheaderbg) !important; */
+	  border-left: 0.5pt solid var(--tableheaderbg) !important;
+  }
+  .groupRowDiv1 table td:first-child {
+	  /* border-left: 0.5pt solid var(--tableborder); */
+  }
+  .groupHeaderDiv1 th.keycell, .groupRowDiv1 td.keycell {
+	  width: 5%;
+	  text-align: left;
+  }
+  .groupHeaderDiv1 th.rowheader, .groupRowDiv1 td.rowheader {
+	  text-align: left;
+	  width: 16%;
+  }
+  
+  .pagenumbers .footer, .pagenumbers .Pagination {
+	position: running(pageNumber);
+	text-align: right;
+	font-family: var(--fontRegular);
+	font-size: var(--footerfont);
+	display: none;
+  }
+  
+  /* @page styles */
+  @page {
+	  margin: 1cm 0 1cm 0;
+	  padding: 0cm;
+	  @bottom-right {
+		  content: element(pageNumber);
+		  margin:0 1.5cm 0.5cm;
+		  padding: 0cm;
+		  font-family: var(--fontRegular);
+		  font-size: var(--footerfont);
+	  }
+  }
+  
+  .performancetable>table tr>td,
+  .performancetable>table tr>th {
+	  width: 8%;
+  }
+  
+  .groupHeader1 .groupHeaderDiv1>table {
+	  table-layout: fixed;
+  }
+  
+  .groupRow1 .groupRowDiv1>table {
+	  table-layout: fixed;
+  }
+  
+  .performancetable>table tr>td.keycell,
+  .performancetable>table tr>th.keycell {
+	  border-right-color: transparent;
+	  width: 3% !important;
+  }
+  .performancetable>table tr>td.rowheader,
+  .performancetable>table tr>th.rowheader {
+	  padding-left: 0px;
+	  text-align: left;
+	  width: 10.5% !important;
+  }
+.highcharts-axis-labels span {
+    font-family: var(--fontRegular) !important;
+}
+.performancetable table tr td.keycell div {
+    vertical-align: middle;
+}
+  /* theme name:Jyske_P */
+  

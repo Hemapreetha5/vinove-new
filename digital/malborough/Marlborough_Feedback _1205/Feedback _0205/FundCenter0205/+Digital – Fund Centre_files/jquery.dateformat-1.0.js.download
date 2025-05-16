@@ -1,0 +1,19 @@
+﻿// OLD jQuery based date formatting removed due to its limitation in handling timezone based conversions
+// replaced with moment.js
+
+$(document).ready(function () {
+    $(".shortDateFormat").each(function (idx, elem) {
+        if ($(elem).is(":input")) {
+            $(elem).val(moment($(elem).val()).format("DD/MM/YYYY"));
+        } else {
+            $(elem).text(moment($(elem).text()).format("DD/MM/YYYY"));
+        }
+    });
+    $(".longDateFormat").each(function (idx, elem) {
+        if ($(elem).is(":input")) {
+            $(elem).val(moment($(elem).val()).format("DD/MM/YYYY hh:mm:ss"));
+        } else {
+            $(elem).text(moment($(elem).text()).format("DD/MM/YYYY hh:mm:ss"));
+        }
+    });
+});
