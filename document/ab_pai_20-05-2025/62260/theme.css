@@ -1,0 +1,542 @@
+:root {
+  --header-blue: #1e9bd7;
+  --context-header-yellow: #ffbf27;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*common*/
+p {
+  margin: 0;
+}
+
+/* Page */
+@page {
+  size: A4 landscape;
+  margin: .5cm 1cm 0.5cm .5cm;
+  padding: 2.5cm 0cm 1cm 0cm;
+  background: url('./images/ab-logo.jpg');
+  background-repeat: no-repeat;
+  background-position: 3cm 0%;
+  background-size: 60mm;
+  position: relative;
+
+  @bottom-right {
+    content: element(footerText1);
+    position: absolute;
+    left: 30mm;
+    bottom: 9mm;
+  }
+
+  @bottom-left {
+    content: element(footerText2);
+    position: absolute;
+    left: 30mm;
+    bottom: 5mm;
+  }
+}
+
+/*.common*/
+
+/* Page */
+.page {
+  width: 28.2cm;
+  height: 21cm;
+  position: relative;
+}
+
+/* Black Title */
+.page1>.row6 center b {
+  border-right: 1px solid var(--header-blue);
+  border-left: 1px solid var(--header-blue);
+  background: var(--color-black);
+  color: var(--color-white);
+  text-align: left;
+  padding: 1mm 2mm;
+  display: block;
+}
+
+/* .Black Title */
+
+/* Yellow Title */
+.page1>.row7 center b,
+.page1>.row13 center b {
+  border-right: 1px solid var(--header-blue);
+  border-left: 1px solid var(--header-blue);
+  background: var(--context-header-yellow);
+  color: var(--color-black);
+  text-align: left;
+  padding: 1mm 2mm;
+  display: block;
+}
+
+/* .Yellow Title */
+
+/* left right border blue */
+.page1>.row8,
+.page1>.row9,
+.page1>.row10,
+.page1>.row11,
+.page1>.row12,
+.page1>.row14 {
+  border-left: 1px solid var(--header-blue);
+  border-right: 1px solid var(--header-blue);
+  box-decoration-break: clone;
+}
+
+/* .left right border black*/
+
+/* right border black */
+.page1>.row5>.column6 p {
+  border-right: 1px solid var(--color-black);
+  box-decoration-break: clone;
+}
+
+/* .right border black */
+
+/* right border blue */
+.page1>.row8>.column1,
+.page1>.row8>.column1>.row>.column:not(.column6),
+.page1>.row10>.column:not(.column7),
+.page1>.row11>.column:not(.column7),
+.page1>.row12>.column:not(.column7),
+.page1>.row14>.column1>.row>.column {
+  border-right: 1px solid var(--header-blue);
+  box-decoration-break: clone;
+}
+
+/* .right border blue*/
+
+
+/* left border blue*/
+
+/* .left border */
+
+/* bottom border blue*/
+.page1>.row8>.column1>.row:not(.row9)>.column,
+.page1>.row8,
+.page1>.row10,
+.page1>.row11,
+.page1>.row12,
+.page1>.row14>.column1>.row>.column,
+.page1>.row14>.column2 {
+  border-bottom: 1px solid var(--header-blue);
+  box-decoration-break: clone;
+}
+
+/* .bottom border blue*/
+
+body {
+  font-family: "Georgia", serif;
+  font-size: 9pt;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page1>.row8,
+.page1>.row9,
+.page1>.row14 {
+  display: flex;
+}
+
+.page1>.row10,
+.page1>.row11,
+.page1>.row12 {
+  display: table;
+}
+
+.page1>.row8>.column1>.row>.column,
+.page1>.row8>.column2,
+.page1>.row10>.column,
+.page1>.row11>.column,
+.page1>.row12>.column,
+.page1>.row14>.column1>.row>.column,
+.page1>.row14>.column2>.row1>.text1 {
+  overflow-wrap: break-word;
+  float: none;
+  padding: 0.2cm 0.1cm 0.2cm 0.2cm;
+}
+
+.page1>.row8>.column1>.row>.column>.row1,
+.page1>.row8>.column2>.row1 {
+  box-decoration-break: clone;
+}
+
+/*.common*/
+
+/* Width Percent */
+.page1>.row8>.column1>.row>.column1,
+.page1>.row14>.column1>.row1>.column1 {
+  width: 13.3%;
+}
+
+.page1>.row8>.column1>.row>.column2,
+.page1>.row14>.column1>.row1>.column2 {
+  width: 17.3%;
+}
+
+.page1>.row8>.column1>.row>.column3,
+.page1>.row14>.column1>.row1>.column3 {
+  width: 27.3%;
+}
+
+.page1>.row8>.column1>.row>.column4,
+.page1>.row14>.column1>.row1>.column4 {
+  width: 13.3%;
+}
+
+.page1>.row8>.column1>.row>.column5,
+.page1>.row14>.column1>.row1>.column5 {
+  width: 16.2%;
+}
+
+.page1>.row8>.column1>.row>.column6,
+.page1>.row14>.column1>.row1>.column6 {
+  width: 12.6%;
+}
+
+.page1>.row18>.column1,
+.page1>.row22>.column1,
+.page1>.row27>.column1,
+.page1>.row28>.column1 {
+  width: 23%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column1,
+.page1>.row8>.composite1>.compositebody>.row3>.column1,
+.page1>.row8>.composite1>.compositebody>.row4>.column1,
+.page1>.row8>.composite1>.compositebody>.row5>.column1,
+.page1>.row9>.column1,
+.page1>.row10>.column1,
+.page1>.row11>.column1,
+.page1>.row12>.column1,
+.page1>.row13>.column1,
+.page1>.row14>.column1,
+.page1>.row15>.column1,
+.page1>.row16>.column1,
+.page1>.row17>.column1,
+.page1>.row19>.column1,
+.page1>.row20>.column1,
+.page1>.row21>.column1,
+.page1>.row23>.column1,
+.page1>.row24>.column1,
+.page1>.row25>.column1,
+.page1>.row26>.column1,
+.page1>.row29>.column1,
+.page1>.row30>.column1,
+.page1>.row31>.column1 {
+  width: 10%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column2,
+.page1>.row8>.composite1>.compositebody>.row3>.column2,
+.page1>.row8>.composite1>.compositebody>.row4>.column2,
+.page1>.row8>.composite1>.compositebody>.row5>.column2,
+.page1>.row9>.column2,
+.page1>.row10>.column2,
+.page1>.row11>.column2,
+.page1>.row12>.column2,
+.page1>.row13>.column2,
+.page1>.row14>.column2,
+.page1>.row15>.column2,
+.page1>.row16>.column2,
+.page1>.row17>.column2,
+.page1>.row19>.column2,
+.page1>.row20>.column2,
+.page1>.row21>.column2,
+.page1>.row23>.column2,
+.page1>.row24>.column2,
+.page1>.row25>.column2,
+.page1>.row26>.column2,
+.page1>.row29>.column2,
+.page1>.row30>.column2,
+.page1>.row31>.column2 {
+  width: 13%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column3,
+.page1>.row8>.composite1>.compositebody>.row3>.column3,
+.page1>.row8>.composite1>.compositebody>.row4>.column3,
+.page1>.row8>.composite1>.compositebody>.row5>.column3,
+.page1>.row9>.column3,
+.page1>.row10>.column3,
+.page1>.row11>.column3,
+.page1>.row12>.column3,
+.page1>.row13>.column3,
+.page1>.row14>.column3,
+.page1>.row15>.column3,
+.page1>.row16>.column3,
+.page1>.row17>.column3,
+.page1>.row18>.column2,
+.page1>.row19>.column3,
+.page1>.row20>.column3,
+.page1>.row21>.column3,
+.page1>.row22>.column2,
+.page1>.row27>.column2,
+.page1>.row23>.column3,
+.page1>.row24>.column3,
+.page1>.row25>.column3,
+.page1>.row26>.column3,
+.page1>.row28>.column2,
+.page1>.row29>.column3,
+.page1>.row30>.column3,
+.page1>.row31>.column3 {
+  width: 20.2%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column4,
+.page1>.row8>.composite1>.compositebody>.row3>.column4,
+.page1>.row8>.composite1>.compositebody>.row4>.column4,
+.page1>.row8>.composite1>.compositebody>.row5>.column4,
+.page1>.row9>.column4,
+.page1>.row10>.column4,
+.page1>.row11>.column4,
+.page1>.row12>.column4,
+.page1>.row13>.column4,
+.page1>.row14>.column4,
+.page1>.row15>.column4,
+.page1>.row16>.column4 .page1>.row17>.column4,
+.page1>.row18>.column3,
+.page1>.row19>.column4,
+.page1>.row20>.column4,
+.page1>.row21>.column4,
+.page1>.row22>.column3,
+.page1>.row23>.column4,
+.page1>.row24>.column4,
+.page1>.row25>.column4,
+.page1>.row26>.column4,
+.page1>.row27>.column3,
+.page1>.row28>.column3,
+.page1>.row29>.column4,
+.page1>.row30>.column4,
+.page1>.row31>.column4 {
+  width: 9.9%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column5,
+.page1>.row8>.composite1>.compositebody>.row3>.column5,
+.page1>.row8>.composite1>.compositebody>.row4>.column5,
+.page1>.row8>.composite1>.compositebody>.row5>.column5,
+.page1>.row9>.column5,
+.page1>.row10>.column5,
+.page1>.row11>.column5,
+.page1>.row12>.column5,
+.page1>.row13>.column5,
+.page1>.row14>.column5,
+.page1>.row15>.column5,
+.page1>.row16>.column5,
+.page1>.row17>.column5,
+.page1>.row18>.column4,
+.page1>.row19>.column5,
+.page1>.row20>.column5,
+.page1>.row21>.column5,
+.page1>.row22>.column4,
+.page1>.row23>.column5,
+.page1>.row24>.column5,
+.page1>.row25>.column5,
+.page1>.row26>.column5,
+.page1>.row27>.column4,
+.page1>.row28>.column4,
+.page1>.row29>.column5,
+.page1>.row30>.column5,
+.page1>.row31>.column5 {
+  width: 12%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column6,
+.page1>.row8>.composite1>.compositebody>.row3>.column6,
+.page1>.row8>.composite1>.compositebody>.row4>.column6,
+.page1>.row8>.composite1>.compositebody>.row5>.column6,
+.page1>.row9>.column6,
+.page1>.row10>.column6,
+.page1>.row11>.column6,
+.page1>.row12>.column6,
+.page1>.row13>.column6,
+.page1>.row14>.column6,
+.page1>.row15>.column6,
+.page1>.row16>.column6,
+.page1>.row17>.column6,
+.page1>.row18>.column5,
+.page1>.row27>.column5,
+.page1>.row19>.column6,
+.page1>.row20>.column6,
+.page1>.row21>.column6,
+.page1>.row23>.column6,
+.page1>.row22>.column5,
+.page1>.row24>.column6,
+.page1>.row25>.column6,
+.page1>.row26>.column6,
+.page1>.row28>.column5,
+.page1>.row29>.column6,
+.page1>.row30>.column6,
+.page1>.row31>.column6 {
+  width: 9.95%;
+}
+
+.page1>.row8>.composite1>.compositebody>.row2>.column7,
+.page1>.row8>.composite1>.compositebody>.row3>.column7,
+.page1>.row8>.composite1>.compositebody>.row4>.column7,
+.page1>.row8>.composite1>.compositebody>.row5>.column7,
+.page1>.row9>.column7,
+.page1>.row10>.column7,
+.page1>.row11>.column7,
+.page1>.row12>.column7,
+.page1>.row13>.column7,
+.page1>.row14>.column7,
+.page1>.row15>.column7,
+.page1>.row16>.column7,
+.page1>.row17>.column7,
+.page1>.row18>.column6,
+.page1>.row19>.column7,
+.page1>.row20>.column7,
+.page1>.row21>.column7,
+.page1>.row22>.column6,
+.page1>.row27>.column6,
+.page1>.row23>.column7,
+.page1>.row24>.column7,
+.page1>.row25>.column7,
+.page1>.row26>.column7,
+.page1>.row28>.column6,
+.page1>.row29>.column7,
+.page1>.row30>.column7,
+.page1>.row31>.column7 {
+  width: 25%;
+}
+
+
+.page1>.row14>.column1>.row>.column1,
+.page1>.row15>.column1>.row>.column1 {
+  width: 12.2%;
+}
+
+.page1>.row14>.column1>.row>.column2,
+.page1>.row15>.column1>.row>.column2 {
+  width: 16%;
+}
+
+.page1>.row14>.column1>.row>.column4,
+.page1>.row15>.column1>.row>.column4 {
+  width: 12.3%;
+}
+
+.page1>.row14>.column1>.row>.column5,
+.page1>.row15>.column1>.row>.column5 {
+  width: 14.8%;
+}
+
+.page1>.row14>.column1>.row>.column6,
+.page1>.row15>.column1>.row>.column6 {
+  width: 12.2%;
+}
+
+
+
+/*.Width Percent */
+
+/*Page1*/
+
+.page1>.row2 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-black);
+  padding: .4cm .4cm .1cm .4cm;
+}
+
+.page1>.row3 {
+  padding: .4cm .4cm .5cm .4cm;
+  border: 1px solid var(--color-black);
+  border-top: none;
+}
+
+.page1>.row4>.TextBox {
+  font-size: 16pt;
+  color: var(--header-blue);
+  padding: 0.2cm 0.1cm 0.35cm 0.2cm;
+}
+
+.page1>.row5 {
+  display: grid;
+  grid-template-columns: 23% 20% 10% 12% 10% 25%;
+}
+
+.page1>.row5>.column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--header-blue);
+  width: initial !important;
+  border: 1px solid var(--color-black);
+  border-right: 0px;
+}
+
+.page1>.row5>.column p {
+  margin: 0;
+  padding: .2cm 0;
+  text-align: center;
+}
+
+.page1>.row8>.column1,
+.page1>.row14>.column1 {
+  width: 75%;
+}
+
+.page1>.row14>.column1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.page1>.row8>.column2,
+.page1>.row14>.column2 {
+  width: 25%;
+}
+
+.page1>.row8>.column1,
+.page1>.row14>.column1>.row {
+  display: table;
+  table-layout: fixed;
+}
+
+.page1>.row14>.column1>.row {
+  height: 100%;
+}
+
+.page1>.row8>.column1>.row {
+  display: table;
+  table-layout: fixed;
+}
+
+.page1>.row8>.column1>.row>.column,
+.page1>.row10>.column,
+.page1>.row14>.column1>.row>.column,
+.page1>.row11>.column,
+.page1>.row12>.column {
+  display: table-cell;
+}
+
+.page1>.row8>.column1>.row>.column p {
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.page1>.row8>.column1>.row9>.column4 p {
+  width: 24mm;
+}
+
+.page1>.row10>.column {
+  height: 100%;
+}
+
+/*.Page1*/
+
+
+
+/* Theme Name- AB_SFDR_PAI_Calculated */
