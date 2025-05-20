@@ -142,7 +142,7 @@ b{
 	font-weight: bold;
 }
 .page4 b{
-	font-size: 10pt;
+	/* font-size: 10pt; */
 }
 .clear { 
 	margin: 0!important;
@@ -181,7 +181,7 @@ padding: 1cm 2.1cm .5cm 1.5cm;
     top:1cm;
 	display: none;
 }
-.Header, .header {
+.Header, .header,.page4 > .row2 > .text1 {
     /* border-bottom: 1px solid #000; */
     padding: 0.2cm 0.4cm;
     position: relative;
@@ -204,7 +204,7 @@ padding: 1cm 2.1cm .5cm 1.5cm;
 	left: 9cm;
 	background-color: #9f248f;
 }
-.page>.row2>.contentSection.Header, .header {
+.page>.row2>.contentSection.Header, .header,.page4 > .row2 > .text1 {
     /* margin-bottom: 0.5cm; */
 	border-left: 4pt solid #9F248F;
 	border-right: 4pt solid #9F248F;
@@ -219,7 +219,9 @@ padding: 1cm 2.1cm .5cm 1.5cm;
 	width: auto;
 }
 
-.Header .QeDataAsAtDate, .header .QeDataAsAtDate{
+.Header .QeDataAsAtDate, .header .QeDataAsAtDate,.page4 .QeDataAsAtDate,
+.page5 .QeDataAsAtDate,.page5 .QeDataAsAtDate a,
+.page6 .QeDataAsAtDate,.page6 .QeDataAsAtDate a {
 	font-family: Calibri, Arial, Helvetica, sans-serif;
 	/*! font-weight: bold; */
 	font-size: 18pt;
@@ -227,12 +229,21 @@ padding: 1cm 2.1cm .5cm 1.5cm;
     text-transform:uppercase;
     margin: 0 0 0.2cm;
 }
-.Header .FundNames {
+.Header .FundNames,.page4 .FundNames,.page5 .FundNames,.page5 .FundNames a,
+.page6 .FundNames,.page6 .FundNames a {
     /* margin-bottom: 0.5cm; */
     font-family: Calibri;
 	font-weight: bold;
     font-size: 16pt;
     color: #262A82;
+}
+.page4 > .row3 p b {
+    font-weight: normal;
+}
+.page4 h3.TableHeader {
+    color: #ad178d;
+	margin-bottom: 15px;
+	min-height: 20px;
 }
 .FundRangeHeader{
     /* margin-bottom: 0.5cm; */
@@ -255,7 +266,8 @@ color: #262A82;
 	font-family: Calibri;
 	font-weight: bold;
 }
-.Header .PensionSchemeName {
+.Header .PensionSchemeName,.page4 .PensionSchemeName,.page5 .PensionSchemeName,.page5 .PensionSchemeName a ,
+.page6 .PensionSchemeName,.page6 .PensionSchemeName a {
     font-size: 30pt;
     color: #262A82;
     font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -263,7 +275,8 @@ color: #262A82;
     font-weight: bold;
     line-height: 1;
 }
-.page:not(.page1) .Header .PensionSchemeName{
+.page:not(.page1) .Header .PensionSchemeName,.page4 .PensionSchemeName,.page5 .PensionSchemeName,
+.page5 .PensionSchemeName a,.page6 .PensionSchemeName,.page6 .PensionSchemeName a {
 	font-size: 15pt;
 }
 .Header .FundNameFull, .header .FundNameFull {
@@ -379,7 +392,8 @@ span.footerNote {
 	border-top:0;
 	margin-top: -0.3cm;
 	background: #fff;
-	width: 18.12cm;
+	/* width: 18.12cm;  */
+	width: 18.97cm;
 }
 .page3 .compositebody>.row5{
 	position: relative;
@@ -389,7 +403,8 @@ span.footerNote {
 	border-top: 0.75pt solid #6d6e71 !important;
 }
 .compositeheader h2, .performancetable h2, 
-.Perfchart h2, .PerfChart h2, .breakdown h2, .glidepathimages span{
+.Perfchart h2, .PerfChart h2, .breakdown h2, .glidepathimages span,
+.page2>.row5 h2,.page4 > .row3 h2{
 	background-color: #262a82;
 	color: #fff;
 	font-size: 11pt;
@@ -1191,6 +1206,29 @@ div.furtherinformation {
 .page2 .composite, .glidepathimages{
 	border: 0.75pt solid #999
 }
+.page2 > .row5,.page2 > .row6 {
+	border: 0.75pt solid #999
+}
+.page2 > .row5 {
+	border-bottom: none;
+}
+.page2 > .row6 {
+	border-top:none;
+}
+.page2 .row5,.page2 .row5 p.SRRIRating,.page2 .row5 .row1{
+	margin-bottom:0;
+}
+.page2 .row5 .row1 p,.page4 > .row3 p {
+    padding-left: 0.2cm;
+	padding-right: 0.2cm;
+}
+.page2 .row .iconSection {
+    width: 100%;
+    height: auto;
+}
+.page2 .row5 .row1 p:first-child {
+    padding-top: 0.2cm;
+}
 .LifeStageTable th{
 	border-bottom: 1.5pt solid #262a82;
 	padding-bottom: 0.2cm;
@@ -1273,6 +1311,121 @@ img.GlidepathStandard {
     display: flex;
     /* align-items: center; */
 }
+
+.Pagination .pageTotal {
+    padding-left: 4px;
+}
+.Pagination b{
+	font-weight: normal;
+}
+.page4 > .row4 > .column1 .HorizontalCss tr {
+    border-bottom: 1pt solid #688EB6;
+}
+.page4 > .row4 > .column1 table th {
+    text-align: left;
+}
+.page4 > .row4 > .column2 .HorizontalCss tr{
+	background-color: #e6e7e8;
+	   border-bottom: 1pt solid #D4D4D4;
+}
+.page4 > .row4 > .column2 {
+    padding-top: 14px;
+}
+.page4 > .row4 > .column table.HorizontalCss td{
+	padding:1px;
+}
+.page4 > .row4 > .column2 table.HorizontalCss td:nth-child(2) {
+    text-align: right;
+    padding-right: 10px;
+}
+.page4 > .row6 b{
+	font-weight: normal;
+}
+.page4 > .row6 a {
+    color: #5d9ad7;
+}
+.page4 > .row7 p, .page4 > .row8 p, .page4 > .row9 p{
+	margin-bottom:0;
+	padding-bottom:0.1cm;
+}
+.page4 > .row7, .page4 > .row8, .page4 > .row9 {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 0.75pt solid #999;
+    border-right: 0.75pt solid #999;
+	background-color: #E7E6E6;
+}
+.page4 > .row7 {
+    padding-top: 10px;
+    border-top: 0.75pt solid #999;
+}
+.page4 > .row9 {
+    padding-bottom: 10px;
+    border-bottom: 0.75pt solid #999;
+}
+.page4 > .row7 .ESGReport {
+	font-size: 11pt;
+	padding-bottom:10px;
+}
+.page4 .ESGReport a b b {
+    color: #ad178d;
+}
+.page5 .contentSection.performancetable.performancetable1 a,
+.page5 .pdfperformancechart a ,
+.page6 .ImportantInformation a{
+    color: #fff;
+}
+.page6 .Caveat b {
+    font-weight: normal;
+}
+.page5 .row10 a b b ,.page6 .row3 .compositebody b b p,.AdditionalNotes b b {
+    font-weight: normal;
+}
+.page5 .row10 a b b b,.page6 .row3 .compositebody a b b b,.AdditionalNotes b b b{
+    font-weight: bold;
+}
+.page6 > .row3 {
+    border: 0.75pt solid #6d6e71;
+	margin-bottom:0.2cm;
+}
+.page6 > .row3 .contentSection,.page6 > .row5 .contentSection,.page6 .row6 .contentSection{
+	padding-left:0;
+}
+
+.page4 > .row5 > .column1 .donutchart .highcharts-legend-item text {
+    /* display: none; */
+		opacity:0;
+}
+.page4 > .row5 > .column1 .donutchart span.highcharts-subtitle {
+    /* display: none; */
+		opacity:0;
+}
+.page4 > .row5 > .column1 g.highcharts-data-labels.highcharts-series-0 ,
+.page4 > .row5 > .column1 g.highcharts-series-group{
+    /* display: none; */
+	opacity:0;
+}
+.page4 > .row5 {
+    position: relative;
+}
+.page4 > .row5 > .column2 {
+    float: left;
+    width: 30%;
+    position: absolute;
+    left: 20px;
+    top: 90px;
+	z-index: 9;
+}
+.page4 > .row5 > .column3 {
+    width: 50% !important;
+    position: relative;
+    left: -220px;
+}
+.page4 > .row5 > .column2 .HorizontalCss td {
+    padding: 2px 0;
+}
+
+
 
 /* TPTblended */
 
