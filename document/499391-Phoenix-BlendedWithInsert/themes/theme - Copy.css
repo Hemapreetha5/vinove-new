@@ -210,7 +210,6 @@ padding: 1cm 2.1cm .5cm 1.5cm;
 	border-right: 4pt solid #9F248F;
 	padding-left: 0.5cm; 
 	width: 10cm;
-	min-height: 1.5cm;
 }
 .page.page1>.row2>.contentSection.Header{
 	border-right: 0;
@@ -318,9 +317,6 @@ color: #262A82;
 	border-top:0;
 	margin-bottom: 0.2cm;
 }
-.Notes.contentSection{
-	padding-left: 0;
-}
 .page1 .breakdown {
 	position: relative;
 	border: 0.75pt solid #6d6e71;
@@ -394,22 +390,25 @@ span.footerNote {
 	/*! display: none; */
 }
 .contentSection.PrincipalHoldings{
-	padding:0 0 0.4cm !important;
+	padding:0 0.4cm 0.4cm !important;
 	border: 0.75pt solid #6d6e71;
     /*! border-top: 0; */
 	border-top:0;
-	margin-top: 0;
+	margin-top: -0.3cm;
 	background: #fff;
-	/* width: 18.14cm;  */
-	/* width: 18.97cm; */
+	/* width: 18.12cm;  */
+	width: 18.97cm;
 }
 .page3 .compositebody>.row5{
 	position: relative;
 	z-index: 1;
 }
+.holding h2{
+	border-top: 0.75pt solid #6d6e71 !important;
+}
 .compositeheader h2, .performancetable h2, 
 .Perfchart h2, .PerfChart h2, .breakdown h2, .glidepathimages span,
-.page2>.row5 h2,.page2>.row6 h2,.page4 > .row3 h2{
+.page2>.row5 h2,.page4 > .row3 h2{
 	background-color: #262a82;
 	color: #fff;
 	font-size: 11pt;
@@ -419,9 +418,6 @@ span.footerNote {
 	padding: 0.1cm 0.3cm 0;
 	height: 22px;
 	display: block;
-}
-.page2>.row6 h2{
-	margin-top:0.2cm;
 }
 .glidepath {
 	font-weight: bold;
@@ -445,25 +441,9 @@ span.footerNote {
 .PerfChart .keyContainer{
 	margin-top:-0.3cm;
 	margin-left:0.3cm;
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-.PerfChart .keyContainer .key-color{
-	display: inline-flex !important;
-	float: none !important;
-		flex-wrap: nowrap;
 }
 .PerfChart .keyContainer .label{
 	line-height:10px;
-	color:#000;
-	white-space: nowrap;
-	display: inline-flex !important;
-	float: none !important;
-	flex-wrap: nowrap;
-	font-weight: normal !important;
-}
-.PerfChart .keyContainer b{
-	white-space: nowrap;
 }
 .performancetable h2, .PerfChart h2{
 	padding: 0.1cm 0.3cm 0;
@@ -593,7 +573,7 @@ margin-bottom:0;
 }
  
 .horizontal-list.Infoone > div .label, .text .label  {
-    padding: 0.1cm 0.15cm;
+    padding: 0.15cm;
     line-height: 8pt; 
 	font-size: 9pt;
     font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -740,15 +720,14 @@ h2.UnderlyingFundNameFull-LaunchDate span,h2.LaunchDate-FundNameFull  span{
 	color: #000;
 }
 p.PropertyFundExpensesText,p.FundExpensesText {
-    margin-top: 0.1cm;
-	margin-bottom: 0;
+    margin-top: 0.3cm;
 }
 .compositebody .text.Infotext p{
 	font-family: Calibri, Arial, Helvetica, sans-serif;
 	font-size:8pt;
 }
 .keyWrapper {
-    margin-top: 0.1cm;
+    margin-top: 0.3cm;
 	font-size: 8pt;
 }
 .compositebody .row{
@@ -794,9 +773,9 @@ border-left: 1pt solid #6d6e71;
     /*! width: 718px; */
 }
 .breakdown.fullholdings{
-   /* border-left: 1pt solid #6d6e71; */
+   border-left: 1pt solid #6d6e71;
     border-bottom: 1pt solid #6d6e71;
-    /* border-right: 1pt solid #6d6e71; */
+    border-right: 1pt solid #6d6e71;
 }
 .breakdown .chart{
 	margin:0.1cm 0.3cm 0.4cm;
@@ -883,18 +862,14 @@ border-left: 1pt solid #6d6e71;
 	padding: 0 10px 10px;
 }
 .holding h2{
-	    /* background-color: #ffffff; */
-	    /* color: #9f248f; */
+	    background-color: #ffffff;
+	    color: #9f248f;
 	    margin: 0 0cm 0.2cm;
-	    /* padding: 0.2cm 0cm 0; */
-		    padding: 0.1cm 0.3cm 0;
+	    padding: 0.2cm 0cm 0;
 	    height: 20px;
 	    border-top: 0pt solid #6d6e71;
 		font-size: 11pt;
 	    font-family: Calibri, Arial, Helvetica, sans-serif;
-	clear: both;
-	background-color: #262a82;
-	color: #ffffff;
 }
 .holding table td.spacer{
 	width:1%;
@@ -907,9 +882,6 @@ border-left: 1pt solid #6d6e71;
 	border-right:0.5pt solid #000;
 	text-align:center;
 	width: 8%;
-}
-.holding table td.Weight:last-child{
-	border-right:none;
 }
 td.Number.Number {
     padding-right: 0.1cm;
@@ -1235,60 +1207,48 @@ div.furtherinformation {
 .page3 .contentSection {
     padding-left: 0;
 }
-.page2 .composite{
-	border: 0.75pt solid #6d6e71
+.page2 .composite, .glidepathimages{
+	border: 0.75pt solid #999
 }
 .page2 > .row5,.page2 > .row6 {
-	border: 0.75pt solid #6d6e71;
-}
-.page2 > .row7{
-	border: 0.75pt solid #6d6e71;
-	border-top:none;
+	border: 0.75pt solid #999
 }
 .page2 > .row5 {
 	border-bottom: none;
 }
 .page2 > .row6 {
 	border-top:none;
-	border-bottom:none;
 }
-.page2 .row5,.page2 > .row6,.page2 > .row6 .row1,.page2 .row5 p.SRRIRating,.page2 .row5 .row1{
+.page2 .row5,.page2 .row5 p.SRRIRating,.page2 .row5 .row1{
 	margin-bottom:0;
 }
 .page4 > .row3 h2{
 	margin-bottom:0;
 }
 .page2 .row5 .row1 p,
-.page4 > .row3 p,
-.page2 .row6 .row1 p,.page4 > .row4 {
+.page4 > .row3 p {
     padding-left: 0.2cm;
 	padding-right: 0.2cm;
     margin-bottom: 0;
 	padding-bottom:0.1cm;
 }
-.page4 > .row3 p ,.page4 > .row4,.page4 > .row5,.page4 > .row6,.page4 > .row7,.page4 > .row8{
-	border-left: 0.75pt solid #6d6e71;
-	border-right: 0.75pt solid #6d6e71;
-}
-.page4 > .row6,.page4 > .row7,.page4 > .row8,.page4 > .row9,.page4 > .row10{
+.page2 > .row6{
 	padding-left: 0.2cm;
 	padding-right: 0.2cm;
+}
+.page4 > .row3 p {
+	border-left: 0.75pt solid #999;
+	border-right: 0.75pt solid #999;
 }
 .page4 > .row3 p.item3{
 	padding-top:0.1cm;
 }
-.page4 > .row4{
-	margin-top:0;
-	padding-bottom:0.2cm;
-}
-.page2 > .row6 * ,.page2 > .row7 * {
-    box-sizing: border-box;
+.page4 > .row3 p.item4{
+	border-bottom: 0.75pt solid #999;
 }
 .page2 .row .iconSection {
     width: 100%;
     height: auto;
-		padding-left: 0.2cm;
-	padding-right: 0.2cm;
 }
 .page2 .row5 .row1 p:first-child {
     padding-top: 0.2cm;
@@ -1305,7 +1265,7 @@ div.furtherinformation {
 }
 .LifeStageTable table td {
     padding: 0.05cm 0;
-    border-bottom: 0.75pt solid #6d6e71;
+    border-bottom: 0.75pt solid #999;
 }
 .page4 .contentSection{
 	padding-left: 0;
@@ -1347,7 +1307,7 @@ p:empty {
     margin-top: 0;
 }
 .page3 .compositebody>.row5, .page3 .compositebody>.row5 * {
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 .page3 > .row4 .contentSection.PrincipalHoldings {
     width: 100%;
@@ -1389,13 +1349,8 @@ img.GlidepathStandard {
     text-align: left;
 }
 .page4 > .row4 > .column2 .HorizontalCss tr{
-	background-color: #009D9A;
+	background-color: #e6e7e8;
 	   border-bottom: 1pt solid #D4D4D4;
-}
-.page4 > .row4 > .column2 .HorizontalCss tr td,
-.ESGReport a b,.page4 > .row8 .contentSection .item2 a,
-.page4 > .row9 a{
-	color:#fff;
 }
 .page4 > .row4 > .column2 {
     padding-top: 14px;
@@ -1410,37 +1365,27 @@ img.GlidepathStandard {
 .page4 > .row6 b,.page4 > .row7 b,.page4 > .row9 b{
 	font-weight: normal;
 }
-.page4 > .row7 a,.page4 > .row6 a {
+.page4 > .row7 a {
     color: #5d9ad7;
 }
-.page4 > .row7 .ESGReport  a{
-	color: #231F20;
-}
-.page4 > .row7 p, .page4 > .row8 p, .page4 > .row9 p,.page4 > .row6 p{
+.page4 > .row7 p, .page4 > .row8 p, .page4 > .row9 p{
 	margin-bottom:0;
 	padding-bottom:0.1cm;
 }
-.page4 p.ESGReport {
-    padding-left: 0.2cm;
-    padding-right: 0.2cm;
-    border-top: 0.75pt solid #6d6e71;
-    border-left: 0.75pt solid #6d6e71;
-    border-right: 0.75pt solid #6d6e71;
-    background-color: #009D9A;
-    margin-bottom: -2px;
+.page4 > .row8, .page4 > .row9 {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 0.75pt solid #999;
+    border-right: 0.75pt solid #999;
+	background-color: #E7E6E6;
 }
-.page4 > .row8 .contentSection .item2  , .page4 > .row9 {
-    padding-left: 0.2cm;
-    padding-right: 0.2cm;
-    border-left: 0.75pt solid #6d6e71;
-    border-right: 0.75pt solid #6d6e71;
-}
-.page4 > .row8 .contentSection .item2  , .page4 > .row9 .contentSection .item2{
-	background-color: #009D9A;
+.page4 > .row8 {
+    padding-top: 10px;
+    border-top: 0.75pt solid #999;
 }
 .page4 > .row9 {
     padding-bottom: 10px;
-    border-bottom: 0.75pt solid #6d6e71;
+    border-bottom: 0.75pt solid #999;
 }
 .page4  .ESGReport {
 	font-size: 11pt;
@@ -1457,12 +1402,10 @@ img.GlidepathStandard {
 .page6 .Caveat b {
     font-weight: normal;
 }
-.page5 .row10 a b b ,.page6 .row3 .compositebody b b p,.AdditionalNotes b b ,
-.page4 .row8  b b{
+.page5 .row10 a b b ,.page6 .row3 .compositebody b b p,.AdditionalNotes b b {
     font-weight: normal;
 }
-.page5 .row10 a b b b,.page6 .row3 .compositebody a b b b,.AdditionalNotes b b b,
-.page4 .ESGReport a b {
+.page5 .row10 a b b b,.page6 .row3 .compositebody a b b b,.AdditionalNotes b b b{
     font-weight: bold;
 }
 .page6 > .row3 {
@@ -1474,8 +1417,6 @@ img.GlidepathStandard {
 }
 .page3 > .row3 > .row1 {
     margin-bottom: 0.2cm;
-	border: 0.75pt solid #6d6e71;
-	padding-bottom:0.1cm;
 }
 .page4 > .row5 > .column1 .donutchart .highcharts-legend-item text {
 		opacity:0;
@@ -1511,10 +1452,6 @@ img.GlidepathStandard {
 }
 .page4 .donutchart .chart{
     height: 300px;
-}
-.page4 > .row9 .contentSection .item2{
-    padding-left: 0.2cm;
-    padding-right: 0.2cm;
 }
 
 /* TPTblended */
