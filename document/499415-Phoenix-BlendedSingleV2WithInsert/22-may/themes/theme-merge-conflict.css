@@ -385,9 +385,11 @@ span.footerNote {
 
   margin: 0;
 }
-.compositeheader h2, .performancetable h2, 
-.Perfchart h2, .PerfChart h2, .glidepathimages span,
-.page2>.row6 h2,.page4 > .row3 h2{
+.compositeheader h2,
+.performancetable h2,
+.Perfchart h2,
+.PerfChart h2,
+.glidepathimages span {
   background-color: #262a82;
   color: #fff;
   font-size: 11pt;
@@ -396,9 +398,6 @@ span.footerNote {
   padding: 0.1cm 0.3cm 0;
   height: 22px;
   display: block;
-}
-.page2>.row6 h2{
-  height: 26px;
 }
 .highcharts-credits {
   transform: translateY(5px);
@@ -832,9 +831,6 @@ p.FundExpensesText {
 .page2 > .row:not(.row1) {
   margin-bottom: 0.2cm;
 }
-.page2 > .row.row6:not(.row1){
-  margin-bottom:0;
-}
 .page2 > .row.row3 .composite {
   border-left: 1pt solid #6d6e71;
   border-right: 1pt solid #6d6e71;
@@ -956,6 +952,16 @@ p.FundExpensesText {
 .PrincipalHoldings.holding.contentSection {
   padding: 0 0.2cm 0.2cm;
 }
+.contentSection.PrincipalHoldings{
+	padding:0 0 0.4cm !important;
+	border: 0.75pt solid #6d6e71;
+    /*! border-top: 0; */
+	border-top:0;
+	margin-top: 0;
+	background: #fff;
+	/* width: 18.14cm;  */
+	/* width: 18.97cm; */
+}
 .page3 .compositebody>.row5{
 	position: relative;
 	z-index: 1;
@@ -964,14 +970,18 @@ p.FundExpensesText {
 	border-top: 0.75pt solid #6d6e71 !important;
 }
 .holding h2 {
-  background-color: #ffffff;
-  color: #9f248f;
-  margin: 0 0cm 0.2cm;
-  padding: 0.2cm 0cm 0;
-  height: 20px;
-  border-top: 0pt solid #6d6e71;
-  font-size: 11pt;
-  font-family: Calibri, Arial, Helvetica, sans-serif;
+	    /* background-color: #ffffff; */
+	    /* color: #9f248f; */
+	    margin: 0 0cm 0.2cm;
+	    /* padding: 0.2cm 0cm 0; */
+		    padding: 0.1cm 0.3cm 0;
+	    height: 20px;
+	    border-top: 0pt solid #6d6e71;
+		font-size: 11pt;
+	    font-family: Calibri, Arial, Helvetica, sans-serif;
+	clear: both;
+	background-color: #262a82;
+	color: #ffffff;
 }
 .holding table td.spacer {
   width: 1%;
@@ -1435,7 +1445,7 @@ div.furtherinformation {
 .page2 .composite{
 	border: 0.75pt solid #6d6e71
 }
-.page2 > .row6 {
+.page2 > .row5,.page2 > .row6 {
 	border: 0.75pt solid #6d6e71;
 }
 .page2 > .row7{
@@ -1514,7 +1524,7 @@ div.furtherinformation {
 }
 .page4 b {
   font-weight: bold;
-  /* font-size: 10pt; */
+  font-size: 10pt;
 }
 .page5 .contentSection {
   padding-left: 0;
@@ -1708,8 +1718,5 @@ p:empty {
 .page4 > .row9 .contentSection .item2{
     padding-left: 0.2cm;
     padding-right: 0.2cm;
-}
-.page4 > .row{
-  margin-bottom: 0;
 }
 /* TPTsingleblended */
