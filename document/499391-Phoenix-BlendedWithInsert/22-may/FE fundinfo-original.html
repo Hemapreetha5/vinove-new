@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://staging-documentsadmin.feprecisionplus.com/Preview?templateId=13110 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <script type="text/javascript">
+        if (self === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+            top.location = self.location;
+        }
+    </script>
+    <title>FE fundinfo</title>
+    <link rel="author" href="https://www.fe-fundinfo.com/" title="FE fundinfo">
+    <script src="./FE fundinfo_files/jQuery"></script>
+
+    <script src="./FE fundinfo_files/Preview"></script>
+
+    <script type="text/javascript">
+        var loginError = 'Token invalid.';
+        $(document).ready(function () {
+
+            function filterStylesLogos() {
+                $('#Styles option').each(function () {
+                    $(this).attr('data-theme') == undefined || $(this).attr('data-theme').toLocaleLowerCase() == $('#Theme').val().toLocaleLowerCase()
+                        ? $(this).show()
+                        : $(this).hide();
+                });
+                $('#Logos option').each(function () {
+                    $(this).attr('data-theme') == undefined || $(this).attr('data-theme').toLocaleLowerCase() == $('#Theme').val().toLocaleLowerCase()
+                        ? $(this).show()
+                        : $(this).hide();
+                });
+            }
+
+            function generate(templateType) {
+                $('.error').text('').hide();
+                $('.warnings').html('');
+                var citicode = $('#CitiCode').val().trim();
+                var calculationid = $('#calculationid').val().trim();
+                if (calculationid == '' && citicode == '') {
+                    $('.error').text('Please enter a CitiCode or calculationid').show();
+                   return;
+                }
+                var dateValue = parseInt($('#DocumentDate').val());
+                var year = dateValue % 100;
+                var month = (dateValue - year) / 100;
+                var docDate = new Date();
+                docDate.setMonth(month - 1);
+                docDate.setFullYear(2000 + year);
+                docDate.setDate(1);
+
+                // Adjust date to last day of month
+                docDate.setMonth(docDate.getMonth() + 1);
+                docDate.setDate(docDate.getDate() - 1);
+
+                var clientFields = [];
+                $('.clientField').each(function () {
+                    if ($(this).val().trim() != '')
+                        clientFields.push({
+                            DataName: $(this).attr('name'),
+                            Value: $(this).val()
+                        });
+                });
+
+                $('iframe').hide();
+
+                ajaxRequest({
+                    url: './GeneratePreview',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        templateType: templateType,
+                        templateId: $('#TemplateId').val(),
+                        citicode: citicode,
+                        calculationid: calculationid,
+                        locale: $('#Locale').val(),
+                        documentDate: docDate.toJSON().substring(0, 10),
+                        theme: $('#Theme').val(),
+                        styleId: $('#Styles').val(),
+                        clientFields: clientFields,
+                        logoId: $('#Logos').val(),
+                        secondaryUnitCiticodes: $('#SecondaryUnitCiticodes').val(),
+                        secondaryBenchmark: $('#SecondaryBenchmark').val(),
+                        targetBenchmark: $('#TargetBenchmark').val(),
+                        comparatorBenchmark: $('#ComparatorBenchmark').val(),
+                        constraintBenchmark: $('#ConstraintBenchmark').val(),
+                        additionalUnitBenchmark: $('#AdditionalUnitBenchmark').val(),
+                        addtionalUnitSector: $('#AdditionalUnitSector').val()
+                    }),
+                    success: function (result) {
+                        console.log(result);
+                        if (result.error != null) {
+                            $('.error').text(result.error).show();
+                        } else {
+                            if (result.warnings.length > 0) {
+                                result.warnings.forEach(function (warning) {
+                                    $('.warnings').append('<li>' + warning + '</li>');
+                                });
+                                $("#close").click(function () {
+                                    $(".info").hide();
+                                });
+                                $(".info").show();
+                            }
+                            $('iframe').show().attr('src', result.path);
+                        }
+                    },
+                    error: function (xhr) {
+                        $('.error').text(xhr).show();
+                    }
+                });
+            }
+
+            filterStylesLogos();
+            $('#Theme').on('change', function () {
+                filterStylesLogos();
+            });
+            $('#previewPdf').on('click', function (e) {
+                e.preventDefault();
+                generate(1);
+            });
+            $('#previewHtml').on('click', function (e) {
+                e.preventDefault();
+                generate(2);
+            });
+
+        });
+    </script>
+    <link href="./FE fundinfo_files/Preview(1)" rel="stylesheet">
+
+
+    <style>
+    </style>
+</head>
+<body class="preview" style="zoom: 1;">
+    <div class="content">
+        <div class="header">
+            <img src="./FE fundinfo_files/fefundinfo_logo_regular.svg">
+        </div>
+        <div class="wrapper">
+            <p class="error" style="display: none;"></p>
+            <iframe src="./FE fundinfo_files/index.html" style="display: inline;"></iframe>
+            <div class="info">
+                <h3>Warnings</h3>
+                <ul class="warnings"></ul>
+                <p id="close"><a href="https://staging-documentsadmin.feprecisionplus.com/Preview?templateId=13110#">Close</a></p>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="autoScrollable">
+                <input data-val="true" data-val-number="The field TemplateId must be a number." data-val-required="The TemplateId field is required." id="TemplateId" name="TemplateId" type="hidden" value="13110">
+                <label>Citicode<input type="text" name="CitiCode" id="CitiCode"></label>
+                <label>CalculationId<input type="text" name="calculationid" id="calculationid"></label>
+
+                <label>
+                    Language
+                    <select name="Locale" id="Locale">
+                            <option value="en-GB">English (United Kingdom)</option>
+                            <option value="zh-HK">Chinese (Hong Kong SAR)</option>
+                            <option value="zh-SG">Chinese (Singapore)</option>
+                            <option value="de-DE">German (Standard) </option>
+                            <option value="es-ES">Spanish (Spain) </option>
+                            <option value="en-au">English (Australia) </option>
+                            <option value="de-ch">German (Switzerland)</option>
+                            <option value="de-au">German (Austria)</option>
+                            <option value="de-lu">German (Luxembourg)</option>
+                            <option value="cs-CZ">Czech</option>
+                            <option value="it-IT">Italian</option>
+                            <option value="it-ch">Italian (Switzerland)</option>
+                            <option value="af-ZA">Afrikaans (South Africa)</option>
+                            <option value="ar-DZ">Arabic (Algeria)</option>
+                            <option value="ar-BH">Arabic (Bahrain)</option>
+                            <option value="ar-EG">Arabic (Egypt)</option>
+                            <option value="ar-IQ">Arabic (Iraq)</option>
+                            <option value="ar-JO">Arabic (Jordan)</option>
+                            <option value="ar-KW">Arabic (Kuwait)</option>
+                            <option value="ar-LB">Arabic (Lebanon)</option>
+                            <option value="ar-LY">Arabic (Libya)</option>
+                            <option value="ar-MA">Arabic (Morocco)</option>
+                            <option value="ar-OM">Arabic (Oman)</option>
+                            <option value="ar-QA">Arabic (Qatar)</option>
+                            <option value="ar-SA">Arabic (Saudi Arabia)</option>
+                            <option value="ar-SY">Arabic (Syria)</option>
+                            <option value="ar-TN">Arabic (Tunisia)</option>
+                            <option value="ar-AE">Arabic (U.A.E.)</option>
+                            <option value="ar-YE">Arabic (Yemen)</option>
+                            <option value="en-BZ">English (Belize)</option>
+                            <option value="en-CA">English (Canada)</option>
+                            <option value="en-IN">English (India)</option>
+                            <option value="en-IE">English (Ireland)</option>
+                            <option value="en-JM">English (Jamaica)</option>
+                            <option value="en-MY">English (Malaysia)</option>
+                            <option value="en-NZ">English (New Zealand)</option>
+                            <option value="en-PH">English (Republic of the Philippines)</option>
+                            <option value="en-SG">English (Singapore)</option>
+                            <option value="en-ZA">English (South Africa)</option>
+                            <option value="en-TT">English (Trinidad and Tobago)</option>
+                            <option value="en-US">English (United States)</option>
+                            <option value="en-ZW">English (Zimbabwe)</option>
+                            <option value="es-AR">Spanish (Argentina)</option>
+                            <option value="es-BO">Spanish (Bolivia)</option>
+                            <option value="es-CL">Spanish (Chile)</option>
+                            <option value="es-CO">Spanish (Colombia)</option>
+                            <option value="es-CR">Spanish (Costa Rica)</option>
+                            <option value="es-DO">Spanish (Dominican Republic)</option>
+                            <option value="es-EC">Spanish (Ecuador)</option>
+                            <option value="es-SV">Spanish (El Salvador)</option>
+                            <option value="es-GT">Spanish (Guatemala)</option>
+                            <option value="es-HN">Spanish (Honduras)</option>
+                            <option value="es-MX">Spanish (Mexico)</option>
+                            <option value="es-NI">Spanish (Nicaragua)</option>
+                            <option value="es-PA">Spanish (Panama)</option>
+                            <option value="es-PY">Spanish (Paraguay)</option>
+                            <option value="es-PE">Spanish (Peru)</option>
+                            <option value="es-PR">Spanish (Puerto Rico)</option>
+                            <option value="es-US">Spanish (United States)</option>
+                            <option value="es-UY">Spanish (Uruguay)</option>
+                            <option value="es-VE">Spanish (Venezuela)</option>
+                            <option value="fr-BE">French (Belgium)</option>
+                            <option value="fr-CA">French (Canada)</option>
+                            <option value="fr-FR">French (France)</option>
+                            <option value="fr-LU">French (Luxembourg)</option>
+                            <option value="fr-MC">French (Principality of Monaco)</option>
+                            <option value="fr-CH">French (Switzerland)</option>
+                            <option value="fr-NL">French (Netherlands)</option>
+                            <option value="nl-BE">Dutch (Belgium)</option>
+                            <option value="nl-NL">Dutch (Netherlands)</option>
+                            <option value="da-DK">Danish (Denmark)</option>
+                            <option value="pl-PL">Polish (Poland)</option>
+                            <option value="pt-BR">Portuguese (Brazil)</option>
+                            <option value="pt-PT">Portuguese (Portugal)</option>
+                            <option value="ru-RU">Russian (Russia)</option>
+                            <option value="sk-SK">Slovak (Slovakia)</option>
+                            <option value="sv-FI">Swedish (Finland)</option>
+                            <option value="sv-SE">Swedish (Sweden)</option>
+                            <option value="nb-NO">Norwegian, Bokmål (Norway)</option>
+                            <option value="nn-NO">Norwegian, Nynorsk (Norway)</option>
+                            <option value="sq-AL">Albanian (Albania)</option>
+                            <option value="bg-BG">Bulgarian (Bulgaria)</option>
+                            <option value="hr-HR">Croatian (Croatia)</option>
+                            <option value="hr-BA">Croatian (Latin, Bosnia and Herzegovina)</option>
+                            <option value="fi-FI">Finnish (Finland)</option>
+                            <option value="de-LI">German (Liechtenstein)</option>
+                            <option value="hu-HU">Hungarian (Hungary)</option>
+                            <option value="hy-AM">Armenian (Armenia)</option>
+                            <option value="sr-Cy-BA">Serbian (Cyrillic, Bosnia and Herzegovina)</option>
+                            <option value="sr-Cy-SP">Serbian (Cyrillic, Serbia)</option>
+                            <option value="sr-Ln-BA">Serbian (Latin, Bosnia and Herzegovina)</option>
+                            <option value="sr-Ln-SP">Serbian (Latin, Serbia)</option>
+                            <option value="sl-SI">Slovenian (Slovenia)</option>
+                            <option value="en-GI">English (Gibraltar)</option>
+                            <option value="en-JE">English (Jersey)</option>
+                            <option value="en-LU">English(Luxembourg)</option>
+                            <option value="no-No">Norwegian (Norway)</option>
+                            <option value="ja-JP">Japanese (Japan)</option>
+                            <option value="et-EE">Estonian</option>
+                            <option value="el-GR">Greek (Greek)</option>
+                            <option value="is-IS">Icelandic</option>
+                            <option value="lv-LV">Latvian</option>
+                            <option value="lt-LT">Lithuanian</option>
+                            <option value="ro-RO">Romanian</option>
+                            <option value="en-CH">English (Swiss)</option>
+                            <option value="ko-KR">Korean</option>
+                            <option value="tr-TR">Turkish</option>
+                    </select>
+                </label>
+
+
+                <label>
+                    Document Date
+                    <select name="DocumentDate" id="DocumentDate">
+                                <option value="0525">May 2025 (30-04-2025)</option>
+                                <option value="0425">April 2025 (31-03-2025)</option>
+                                <option value="0325">March 2025 (28-02-2025)</option>
+                                <option value="0225">February 2025 (31-01-2025)</option>
+                                <option value="0125">January 2025 (31-12-2024)</option>
+                                <option value="1224">December 2024 (30-11-2024)</option>
+
+                    </select>
+                </label>
+                <label>
+                    Theme
+                    <select name="Theme" id="Theme">
+                            <option value="AXA-corporate-blened">AXA-corporate-blened</option>
+                            <option value="BlendedBase">BlendedBase</option>
+                            <option value="AtkinsBlendedBase">AtkinsBlendedBase</option>
+                            <option value="TPTBlended">TPTBlended</option>
+                            <option value="LBGblended">LBGblended</option>
+                    </select>
+                </label>
+                        <label>
+                            Style
+                            <select name="StyleId" id="Styles">
+                                    <option value="">None</option>
+                                        <option value="21804" data-theme="atkinsblendedbase" style="display: none;">Atkins</option>
+                                        <option value="21806" data-theme="lbgblended" style="display: none;">LBG</option>
+                                        <option value="21807" data-theme="axa-corporate-blened" style="display: none;">New Style</option>
+                                        <option value="21808" data-theme="lbgblended" style="display: none;">New Style</option>
+                                        <option value="21809" data-theme="lbgblended" style="display: none;">New Style 1</option>
+                                        <option value="21803" data-theme="blendedbase" style="display: none;">Slaughter and May</option>
+                                        <option value="21805" data-theme="tptblended" style="display: block;">TPT</option>
+
+                            </select>
+                        </label>
+                        <label>
+                            Logo
+                            <select name="Logos" id="Logos">
+                                    <option value="">None</option>
+                                        <option value="32692" data-theme="atkinsblendedbase" style="display: none;">Atkins</option>
+                                        <option value="32691" data-theme="axa-corporate-blened" style="display: none;">MUFG Bank</option>
+                                        <option value="32690" data-theme="blendedbase" style="display: none;">Phoenix</option>
+
+                            </select>
+
+                        </label>
+                <label class="wide">
+                    ScopeId
+                    <input type="text" class="clientField" name="ScopeId" value="">
+                </label>
+
+                    <label class="wide">
+                        Pension Scheme
+                        <input type="text" class="clientField" name="PensionScheme" value="">
+                    </label>
+                    <label class="wide">
+                        Risk Rating
+                        <input type="text" class="clientField" name="RiskRating" value="">
+                    </label>
+                    <label class="wide">
+                        Breakdowns
+                        <input type="text" class="clientField" name="Breakdowns" value="">
+                    </label>
+                    <label class="wide">
+                        Third party disclaimer
+                        <input type="text" class="clientField" name="Thirdpartiesdisclaimers" value="">
+                    </label>
+                    <label class="wide">
+                        Special Risk Factors
+                        <input type="text" class="clientField" name="SpecialRiskFactors" value="">
+                    </label>
+                    <label class="wide">
+                        Fund Specific Performance Caveat
+                        <input type="text" class="clientField" name="Performancecaveat" value="">
+                    </label>
+                    <label class="wide">
+                        Fund Name
+                        <input type="text" class="clientField" name="FundNames" value="">
+                    </label>
+                    <label class="wide">
+                        Third party disclaimer title
+                        <input type="text" class="clientField" name="Thirdpartiesdisclaimertitle" value="">
+                    </label>
+                    <label class="wide">
+                        Additional Notes
+                        <input type="text" class="clientField" name="AdditionalNotes" value="">
+                    </label>
+                    <label class="wide">
+                        Standard Performance Disclaimer
+                        <input type="text" class="clientField" name="Performancedisclaimer" value="">
+                    </label>
+                    <label class="wide">
+                        Pension Scheme Name
+                        <input type="text" class="clientField" name="PensionSchemeName" value="">
+                    </label>
+                    <label class="wide">
+                        Trustee Text 2
+                        <input type="text" class="clientField" name="TrusteeText2" value="">
+                    </label>
+                    <label class="wide">
+                        Trustee Text 1
+                        <input type="text" class="clientField" name="TrusteeText1" value="">
+                    </label>
+                    <label class="wide">
+                        Unit Size
+                        <input type="text" class="clientField" name="UnitSize" value="">
+                    </label>
+                    <label class="wide">
+                        Adviser Charge
+                        <input type="text" class="clientField" name="advisercharge" value="">
+                    </label>
+                    <label class="wide">
+                        Property Expense Ratio
+                        <input type="text" class="clientField" name="PropertyExpenseRatio" value="">
+                    </label>
+                    <label class="wide">
+                        Fund Expenses Text
+                        <input type="text" class="clientField" name="FundExpensesText" value="">
+                    </label>
+                    <label class="wide">
+                        Property Fund Expenses Text
+                        <input type="text" class="clientField" name="PropertyFundExpensesText" value="">
+                    </label>
+                    <label class="wide">
+                        Breakdown Note Text Asset
+                        <input type="text" class="clientField" name="BreakdownNoteText" value="">
+                    </label>
+                    <label class="wide">
+                        Breakdown Note Text Sector
+                        <input type="text" class="clientField" name="BreakdownNoteTextSector" value="">
+                    </label>
+                    <label class="wide">
+                        Breakdown Note Text Credit
+                        <input type="text" class="clientField" name="BreakdownNoteTextCredit" value="">
+                    </label>
+                    <label class="wide">
+                        Breakdown Note Text Geographic
+                        <input type="text" class="clientField" name="BreakdownNoteTextGeog" value="">
+                    </label>
+                    <label class="wide">
+                        Page 2 Free Text Box
+                        <input type="text" class="clientField" name="PG2FreeTextBox" value="">
+                    </label>
+                    <label class="wide">
+                        Risks
+                        <input type="text" class="clientField" name="Risks" value="">
+                    </label>
+                    <label class="wide">
+                        Name Sub Header
+                        <input type="text" class="clientField" name="NameSubHeader" value="">
+                    </label>
+                    <label class="wide">
+                        Name Sub Text
+                        <input type="text" class="clientField" name="NameSubText" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Overview
+                        <input type="text" class="clientField" name="TDFOverview" value="">
+                    </label>
+                    <label class="wide">
+                        Overview Header
+                        <input type="text" class="clientField" name="OverviewHeader" value="">
+                    </label>
+                    <label class="wide">
+                        Type Of Funds Header
+                        <input type="text" class="clientField" name="TypeOfFundsHeader" value="">
+                    </label>
+                    <label class="wide">
+                        Type Of Funds Text
+                        <input type="text" class="clientField" name="TypeOfFundsText" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Page Note 1
+                        <input type="text" class="clientField" name="Page1Note1" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Page Note 2
+                        <input type="text" class="clientField" name="InsertPageNote2" value="">
+                    </label>
+                    <label class="wide">
+                        Further Information
+                        <input type="text" class="clientField" name="FurtherInformation" value="">
+                    </label>
+                    <label class="wide">
+                        How Does It Invest
+                        <input type="text" class="clientField" name="HowDoesItInvest" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Page Note 1 Header
+                        <input type="text" class="clientField" name="InsertPageNote1Header" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Page Note 2 Header
+                        <input type="text" class="clientField" name="InsertPageNote2Header" value="">
+                    </label>
+                    <label class="wide">
+                        Insert Caveat
+                        <input type="text" class="clientField" name="InsertCaveat" value="">
+                    </label>
+                    <label class="wide">
+                        Fund Range Header
+                        <input type="text" class="clientField" name="FundRangeHeader" value="">
+                    </label>
+                    <label class="wide">
+                        SRRI Rating
+                        <input type="text" class="clientField" name="SRRIRating" value="">
+                    </label>
+                    <label class="wide">
+                        Show ESG
+                        <input type="text" class="clientField" name="ShowESG" value="">
+                    </label>
+                    <label class="wide">
+                        ESG Report
+                        <input type="text" class="clientField" name="ESGReport" value="">
+                    </label>
+                <label class="wide">
+                    Secondary Units
+                    <input type="text" name="SecondaryUnitCiticodes" id="SecondaryUnitCiticodes" title="Sample: CitiCode1{Custom Name of CitiCode1}, CitiCode2{Custom Name of Citicode2} ">
+                </label>
+                <label class="wide">
+                    Additional Unit Benchmark
+                    <input type="text" name="AdditionalUnitBenchmark" id="AdditionalUnitBenchmark" title="Sample for Fund(F), Sector(X) and Index(N): F.A141 X.MYKA N.ASX ">
+                </label>
+                <label class="wide">
+                    Additional Unit Sector
+                    <input type="text" name="AdditionalUnitSector" id="AdditionalUnitSector" title="Sample for Fund(F), Sector(X) and Index(N): F.A141 X.MYKA N.ASX ">
+                </label>
+                <label class="wide">
+                    Secondary Benchmark
+                    <input type="text" name="SecondaryBenchmark" id="SecondaryBenchmark" title="Sample for Fund(F), Sector(X) and Index(N): F.A141 X.MYKA N.ASX ">
+                </label>
+
+                <label class="wide">
+                    Target Benchmark
+                    <input type="text" name="TargetBenchmark" id="TargetBenchmark">
+                </label>
+
+                <label class="wide">
+                    Comparator Benchmark
+                    <input type="text" name="ComparatorBenchmark" id="ComparatorBenchmark">
+                </label>
+
+                <label class="wide">
+                    Constraint Benchmark
+                    <input type="text" name="ConstraintBenchmark" id="ConstraintBenchmark">
+                </label>
+
+
+                    <a href="https://staging-documentsadmin.feprecisionplus.com/Preview?templateId=13110#" id="previewPdf" class="previewPdf" title="Preview template as Pdf"></a>
+                <a href="https://staging-documentsadmin.feprecisionplus.com/Preview?templateId=13110#" id="previewHtml" class="previewHtml" title="Generate HTML preview for designers"></a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="popups" style="display: none;">
+        <div class="greyout" style="display: block;"></div>
+        <div class="wait" style="display: none;"></div>
+    </div>
+
+
+</body></html>
