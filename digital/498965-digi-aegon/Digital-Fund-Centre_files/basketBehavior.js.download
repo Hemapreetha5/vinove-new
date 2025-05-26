@@ -1,0 +1,669 @@
+﻿/// <reference path="../../global.js" />
+/// <reference path="portfoliotool.js" />
+/// <reference path="shortlist.js" />
+/// <reference path="dynamicshortlist.js" />
+/// <reference path="basketstate.js" />
+
+var masterContainer = null;
+// Following temp-prefixed variables, keeps the list of codes added or removed to a temporary list
+// which will be pushed to the actual list after the debounced time (in secs).
+var tempAddPortfolioList = [], tempRemovePortfolioList = [];
+var tempAddShortList = [], tempRemoveShortList = [];
+var tempAddDynamicShortList = [], tempRemoveDynamicShortList = [];
+
+$(function () {
+    if (masterContainer === null)
+        masterContainer = new MasterContainer(modelContents.ProjectName, modelContents.GrsUserId);
+
+    var debounceDuration = 1500;
+    // Used to delay and reduce number of GFMD request raised between every 2 secs
+    var debouncedPortfolioAddFn = $.debounce(debounceDuration, AddCodesToPortfolio);
+    var debouncedPortfolioRemoveFn = $.debounce(debounceDuration, RemoveCodesFromPortfolio);
+    var debouncedShortListAddFn = $.debounce(debounceDuration, AddCodesToShortList);
+    var debouncedShortListRemoveFn = $.debounce(debounceDuration, RemoveCodesFromShortList);
+    var debouncedDynamicShortListAddFn, debouncedDynamicShortListRemoveFn = null;
+    if (typeof(dynamicShortListFn) !== "undefined" && typeof(dynamicShortListFn.AddCodesToDynamicShortList) !== "undefined") {
+        debouncedDynamicShortListAddFn = $.debounce(debounceDuration, dynamicShortListFn.AddCodesToDynamicShortList);
+        debouncedDynamicShortListRemoveFn = $.debounce(debounceDuration, dynamicShortListFn.RemoveCodesFromDynamicShortList);
+    }
+
+    var isXmlMessage;
+    if (readCookie(modelContents.ProjectName + '_xmlmessage') === "xmlsource") {
+        isXmlMessage = true;
+        eraseCookie(modelContents.ProjectName + '_xmlmessage');
+    }
+    if (modelContents.DisabledCookies && $.inArray('1', modelContents.DisabledCookies.split(',')) > -1 && !isXmlMessage) {
+        masterContainer.portfolioContainer.RemoveCookie();
+        masterContainer.portfolioComparisonContainer.RemoveCookie();
+    }
+    else if (modelContents.DisabledCookies && $.inArray('2', modelContents.DisabledCookies.split(',')) > -1 && masterContainer.portfolioComparisonContainer && !isXmlMessage) {
+        var items = masterContainer.portfolioComparisonContainer.Get();
+        for (var i = 0; i < items.length; i++) {
+            items[i].IsSelected = false;
+        }
+        masterContainer.portfolioComparisonContainer.PersistState();
+    }
+
+    $(document).on('click', '.fe-icon-basket-add a', function (e) {
+        e.preventDefault();
+
+        ValidateCookieStorageAccess();
+        if (IsContainerFull(Containers.Basket, 1)) {
+            $(this).showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            var $this = $(this);
+            updateBasketItem($this, true);
+            $this.parents("td").AnimateTransitionToBasket();
+            AddToBasketCache($this.data('code'));
+        }
+    });
+
+    $(document).on('click', '.fe-icon-basket-remove a', function (e) {
+        e.preventDefault();
+        updateBasketItem($(this), false);
+    });
+
+    $(document).on('click', '.fe-ico-basket-remove, .fe-ico-basket-portfolio-add', function (e) {
+        e.preventDefault();
+        updateBasketItem($(this), false);
+
+        if ($('.fe-icon-basket a', '.fe-fund-tableBody').length > 0 && $('.fe-icon-basket a', '#fe-basket-table .fe-fund-tableBody').length > 0) {
+            $('.fe-icon-basket a', '#fe-basket-table .fe-fund-tableBody')[0].focus();
+        }
+
+    });
+
+    $(document).on('click', '.fe-ico-basket-shortlist-add', function (e) {
+        e.preventDefault();
+
+        ValidateCookieStorageAccess();
+        if (IsContainerFull(Containers.Shortlist, tempAddShortList.length + 1)) {
+            $(this).showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            // Add the codes to the list immediately, but debounce/delay the actual ajax request
+            var code = $this.attr('code');
+            tempAddShortList.push(code);
+           // updateAddToButtonUiStates(code, 'fe-icon-shortlist-remove', 'fe-icon-shortlist-add');
+            debouncedShortListAddFn(tempAddShortList, function () { tempAddShortList = []; });
+        }
+    });
+
+    $(document).on('click', '.fe-ico-basket-portfolio-add', function (e) {
+        e.preventDefault();
+
+        ValidateCookieStorageAccess();
+        if (IsContainerFull(Containers.Portfolio, tempAddPortfolioList.length + 1)) {
+            $(this).showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            // Add the codes to the list immediately, but debounce/delay the actual ajax request
+            var code = $(this).attr('code');
+            tempAddPortfolioList.push(code);
+           // updateAddToButtonUiStates(code, 'fe-icon-portfolio-remove', 'fe-icon-portfolio-add');
+            debouncedPortfolioAddFn(tempAddPortfolioList, function () { tempAddPortfolioList = []; });
+        }
+    });
+
+    $('.fe-basket-addtoshortlist').on("click", function (e) {
+
+        e.preventDefault();
+        var numberOfFundstoAdd = masterContainer.basketContainer.Get().length;
+
+        if (IsContainerFull(Containers.Shortlist, numberOfFundstoAdd)) {
+            $(this).showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            var container = masterContainer.basketContainer.Get();
+            if (container != null) {
+
+                var basketContainer = [];
+                $.each(container, function (i, item) {
+                    basketContainer.push(new BasketContainerInfo(item.Code));
+                });
+
+                masterContainer.shortListContainer.AddCollection(basketContainer);
+                masterContainer.shortlistComparisonContainer.AddCollection(basketContainer);
+                ToolsCommon.SelectTabById('ShortListMasterTab');
+            }
+        }
+    });
+
+    $('.fe-basket-addtoportfolio').on("click", function (e) {
+        e.preventDefault();
+
+        var numberOfFundstoAdd = masterContainer.basketContainer.Get().length;
+
+        if (IsContainerFull(Containers.Portfolio, numberOfFundstoAdd)) {
+            $(this).showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            var container = masterContainer.basketContainer.Get();
+            if (container != null) {
+
+                var basketContainer = [];
+                $.each(container, function (i, item) {
+                    basketContainer.push(new BasketContainerInfo(item.Code));
+                });
+
+                masterContainer.portfolioContainer.AddCollection(basketContainer);
+                masterContainer.portfolioComparisonContainer.AddCollection(basketContainer);
+                // if save portfolio functionality is enabled, then mark flag indicating that changes are made to current portfolio.
+                if (modelContents.AllowSavingOfPortfolios == "True") {
+                    CurrentPortfolioChanged();
+                }
+                ToolsCommon.SelectTabById('PortfolioMasterTab');
+            }
+        }
+    });
+
+    $('.fe-basket-clear').on("click", function (e) {
+
+        var tDlg = {
+            position: [e.clientX - 375, e.clientY - 100],
+            dialogClass: "fe-basketClear-dlg"
+        };
+
+
+        $(this).showConfirm(modelContents.GetTranslation("RemoveItemsFromBasketWarning"), 1, ClearCallback).dialog(tDlg);
+    });
+
+    $('#btn-basket-chartall').on("click", function () {
+
+        var basketContent = BasketViewModel.ReturnBasket();
+
+        if (basketContent.length > 10) {
+            ShowErrorDialog(modelContents.GetTranslation("ChartAllErrorTitle"), modelContents.GetTranslation("ChartAllFundsLimitError"));
+            return;
+        }
+        else {
+            var selectedTypeCodes = '';
+
+            $.each(basketContent, function (index, item) {
+                selectedTypeCodes = selectedTypeCodes + item.Code + ',';
+            });
+            var chartingUrl = modelContents.ChartingUrl + "?TypeCode=";
+            chartingUrl = chartingUrl + selectedTypeCodes;
+
+            if ($(this).attr("data-type") == '2') {
+                chartingUrl = $(this).attr("data-domainname") + chartingUrl;
+            }
+
+            window.open(chartingUrl, '_blank');
+        }
+    });
+
+
+    $('.fe-basket-ammendbasket').on("click", function () {
+        if (modelContents.EnableScrollTabs) {
+            $('#menuTabs').scrollTabs("option", "active", 0);
+        } else {
+            $('#menuTabs').tabs("option", "active", 0);
+        }
+    });
+
+    $(document).on('click', '.fe-basket-actionbtn', function (e) {
+        e.preventDefault();
+        $(".fe-tableInBasket-scrollpane").fadeTo(1500, 0.2).fadeTo(1500, 1.0)
+    });
+
+    $(document).on('click', '#basket-pin', function (e) {
+        e.preventDefault();
+
+        if ($('#floatcontainer').hasClass('unpin')) {
+
+            // Position element relative to window
+            var offset = $('#floatcontainer').offset();
+            $('#floatcontainer').css({ position: 'fixed', top: offset.top - $(window).scrollTop(), left: offset.left - $(window).scrollLeft() });
+        }
+        else {
+
+            // Position element relative to parent menu
+            var topLevelMenuPosition = $('#menuTabs').position();
+            var basketPosition = $('#floatcontainer').offset();
+            $('#floatcontainer').css({ position: 'absolute', top: basketPosition.top - topLevelMenuPosition.top, left: basketPosition.left - topLevelMenuPosition.left });
+        }
+
+        $('#floatcontainer').toggleClass('unpin');
+        $('#basket-pin').toggleClass('fe-ico-pin').toggleClass('fe-ico-unpin');
+    });
+
+    $(document).on('click', '.fe-icon-shortlist-add a', function (e) {
+        e.preventDefault();
+
+        ValidateCookieStorageAccess();
+        var $this = $(this);
+        if (IsContainerFull(Containers.Shortlist, tempAddShortList.length + 1)) {
+            $this.showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            // Add the codes to the list immediately, but debounce/delay the actual ajax request
+            var code = $this.attr('data-code');
+            updateAddToButtonUiStates(code, 'fe-icon-shortlist-remove', 'fe-icon-shortlist-add');
+            tempAddShortList.push(code);
+
+            debouncedShortListAddFn(tempAddShortList, function () { tempAddShortList = []; });
+        }
+    });
+
+    $(document).on('click', '.fe-icon-portfolio-add a', function (e) {
+        e.preventDefault();
+
+        ValidateCookieStorageAccess();
+        var $this = $(this);
+        if (IsContainerFull(Containers.Portfolio, tempAddPortfolioList.length + 1)) {
+            $this.showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            // Add the codes to the list immediately, but debounce/delay the actual ajax request
+            var code = $this.attr('data-code');
+            updateAddToButtonUiStates(code, 'fe-icon-portfolio-remove', 'fe-icon-portfolio-add');
+            tempAddPortfolioList.push(code);
+
+            debouncedPortfolioAddFn(tempAddPortfolioList, function () { tempAddPortfolioList = []; });
+        }
+    });
+
+    $(document).on('click', '.fe-icon-dynamicshortlist-add a', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        if (IsContainerFull(Containers.DynamicShortlist, tempAddDynamicShortList.length + 1)) {
+            $this.showMessage(modelContents.GetTranslation("BasketCountExceeded"));
+        }
+        else {
+            // Add the codes to the list immediately, but debounce/delay the actual ajax request
+            var code = $this.attr('data-code');
+            updateAddToButtonUiStates(code, 'fe-icon-dynamicshortlist-remove', 'fe-icon-dynamicshortlist-add');
+            tempAddDynamicShortList.push(code);
+
+            debouncedDynamicShortListAddFn(tempAddDynamicShortList, function () { tempAddDynamicShortList = []; });
+        }
+    });
+
+    $(document).on('click', '.fe-icon-dynamicshortlist-remove a', function (e) {
+        e.preventDefault();
+        var codeToRemove = $(this).data('code');
+        updateAddToButtonUiStates(codeToRemove, 'fe-icon-dynamicshortlist-add', 'fe-icon-dynamicshortlist-remove');
+
+        var index = tempAddDynamicShortList.indexOf(codeToRemove);
+        if (index > -1) {
+            // Quickly remove it from the temporary list
+            tempAddDynamicShortList.splice(index, 1);
+        } else {
+            tempAddDynamicShortList.push(codeToRemove);
+        }
+        debouncedDynamicShortListRemoveFn(tempAddDynamicShortList, function () { tempAddDynamicShortList = []; });
+    });
+
+    $(document).on('click', '.fe-icon-shortlist-remove a', function (e) {
+        e.preventDefault();
+        var codeToRemove = $(this).data('code');
+        updateAddToButtonUiStates(codeToRemove, 'fe-icon-shortlist-add', 'fe-icon-shortlist-remove');
+
+        var index = tempAddShortList.indexOf(codeToRemove);
+        if (index > -1) {
+            // Quickly remove it from the temporary list
+            tempAddShortList.splice(index, 1);
+        } else {
+            tempRemoveShortList.push(codeToRemove);
+        }
+        debouncedShortListRemoveFn(tempRemoveShortList, function() { tempRemoveShortList = []; });
+    });
+
+    $(document).on('click', '.fe-icon-portfolio-remove a', function (e) {
+        e.preventDefault();
+        var codeToRemove = $(this).data('code');
+        updateAddToButtonUiStates(codeToRemove, 'fe-icon-portfolio-add', 'fe-icon-portfolio-remove');
+
+        var index = tempAddPortfolioList.indexOf(codeToRemove);
+        if (index > -1) {
+            // Quickly remove it from the temporary list
+            tempAddPortfolioList.splice(index, 1);
+        } else {
+            tempRemovePortfolioList.push(codeToRemove);
+        }
+        debouncedPortfolioRemoveFn(tempRemovePortfolioList, function() { tempRemovePortfolioList = []; });
+    });
+});
+
+function AddToBasketCache(TypeCode) {
+    var dataList = [];
+    var state = GetInternalState($('#AddedFunds_List'));
+
+    if (state == undefined) {
+        var state = $.extend(true, {}, GetInternalState($('#tab-fundCentre')));
+        SetInternalState($('#AddedFunds_List'), state);
+    }
+    else {
+        dataList = $.extend(true, [], GetInternalState($('#AddedFunds_List')).CachedModel.DataList);
+    }
+
+    if ($(GetInternalState($('#tab-fundCentre')).CachedModel).length > 0 &&
+        GetInternalState($('#tab-fundCentre')).CachedModel != null) {
+        $(GetInternalState($('#tab-fundCentre')).CachedModel.DataList).each(function (index, element) {
+            if (TypeCode == element.FundInfo.TypeCode) {
+                dataList.push(element);
+                return false;
+            }
+        });
+    }
+
+    state.CachedModel.DataList = dataList;
+    SetInternalState($('#AddedFunds_List'), state);
+}
+
+//Basket funcionality
+function UpdateBasketView() {
+
+    var array = masterContainer.basketContainer.Get();
+
+    if (array != null) {
+        BasketViewModel.RemoveAll();
+        for (var i = 0; i < array.length; i++) {
+            var key = array[i];
+
+            var item = $('.fe-icon-basket a', '.fe-fund-tableBody').filter(function (index) {
+                return $(this).attr('data-code') == key.Code;
+            });
+
+            if (item.length > 0) {
+                item.parent().addClass('fe-icon-basket-remove');
+                item.parent().removeClass('fe-icon-basket-add');
+            }
+
+            BasketViewModel.addItem(key.Name, key.Code);
+
+            if (BasketViewModel.isShortListTabActive())
+                RefreshShortListBasketView();
+            else if (BasketViewModel.isPortfolioTabActive())
+                RefreshPortfolioBasketView();
+
+        }
+    }
+}
+
+function ClearCallback(action, id, event) {
+    if (action) {
+        BasketViewModel.RemoveAll();
+
+        var array = masterContainer.basketContainer.Get();
+        if (array != null) {
+            for (var i = 0; i < array.length; i++) {
+                var key = array[i];
+
+                var item = $('.fe-icon-basket a', '.fe-fund-tableBody').filter(function (index) {
+                    return $(this).attr('data-code') == key.Code;
+                });
+
+                if (item.length > 0) {
+                    item.parent().removeClass('fe-icon-basket-remove');
+                    item.parent().addClass('fe-icon-basket-add');
+                }
+            }
+        }
+        masterContainer.basketContainer.RemoveAll();
+    }
+    event.stopPropagation();
+}
+
+//i.e doesnt support indexOf !
+if (!Array.prototype.indexInBasket) {
+    Array.prototype.indexInBasket = function (value) {
+        var ctr = "";
+        for (var i = 0; i < this.length; i++) {
+            // use === to check for Matches. ie., identical (===), ;
+            if (this[i].Code == value.Code) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
+
+
+function ShortListItemAddedHandler(event) {
+    var source, e;
+    e = window.event ? $.event.fix(window.event) : event;
+    var target = $(e.target || e.srcElement)
+    if ($(target).hasClass('fe-ico-basket-shortlist-add')) {
+        source = target;
+    }
+    ShortListChanged(false, source);
+    RefreshShortListBasketView();
+
+};
+
+
+function ShortListItemRemovedHandler(event) {
+    ShortListChanged();
+    RefreshShortListBasketView();
+};
+
+
+function BasketItemAddedHandler(event) {
+
+};
+
+
+function BasketItemRemovedHandler(event) {
+
+};
+
+function PortfolioItemAddedHandler(event) {
+    var source, e;
+    e = window.event ? $.event.fix(window.event) : event;
+    var target = $(e.target || e.srcElement)
+    if ($(target).hasClass('fe-ico-basket-portfolio-add')) {
+        source = target;
+    }
+    RefreshPortfolioBasketView();
+    PortfolioChanged(false, source);
+};
+
+
+function PortfolioItemRemovedHandler(event) {
+    RefreshPortfolioBasketView();
+    PortfolioChanged();
+};
+
+function UserPortfolioAddedHandler(event, args) {
+    ReloadSavedPortfoliosDropdown(args);
+    ReloadPortfolioDropdown(args);
+}
+
+function UserPortfolioUpdatedHandler(event, args) {
+    UpdatePortfolioDropdown(args);
+    UpdateSavedPortfoliosDropdown(args);
+}
+
+function UserPortfolioRemovedHandler(event, args) {
+
+    var portfolioId = args.Code;
+    var portfolioDropdown = $('#ddUserSavedPortfolios', '#userPortfolioDropdown');
+
+    // 1. Refresh the dropdown on portfolio builder
+    //if deleted portfolio is the currentlySelected, then clear the selection
+    var selectedValue = portfolioDropdown.val();
+    if (selectedValue == portfolioId) {
+        portfolioDropdown.val("");
+        portfolioDropdown.trigger('change');
+    }
+    //remove option from dropdown
+    portfolioDropdown.find('option[value=' + portfolioId + ']').remove();
+
+    //2. Refresh the multisleect dropdown
+    var multiselectDropdown = $("#savedPortfoliosSelect", '.fe-savedportfolios-div');
+
+    //remove option from dropdown
+    multiselectDropdown.find('option[value=' + portfolioId + ']').remove();
+
+    //only do a refresh if ticked
+    var selectedValues = multiselectDropdown.val();
+    multiselectDropdown.multiselect('refresh');
+    SavedPortfoliosChanged($('#savedPortfoliosTabs'));
+    $('#userPortfolioDropdown').mfs('refresh');
+}
+
+function RefreshShortListBasketView() {
+
+    var shortListContainer = masterContainer.shortListContainer.Get();
+    var basketContainer = BasketViewModel.ReturnBasket();
+
+    for (var i = 0; i < basketContainer.length; i++) {
+        basketItem = basketContainer[i];
+        basketItem.IsInShortList(false);
+    }
+
+    if (shortListContainer != null && basketContainer != null) {
+        for (var j = 0; j < shortListContainer.length; j++) {
+
+            var shortListCode = shortListContainer[j].Code;
+
+            for (var k = 0; k < basketContainer.length; k++) {
+
+                basketItem = basketContainer[k];
+                // basketItem.IsInShortList(false);
+
+                if (basketItem.Code == shortListCode) {
+                    basketItem.IsInShortList(true);
+                    break;
+                }
+            }
+        }
+
+        BasketViewModel.InitialiseBasket(basketContainer);
+    }
+
+}
+
+
+function RefreshPortfolioBasketView() {
+
+    var portfolioContainer = masterContainer.portfolioContainer.Get();
+    var basketContainer = BasketViewModel.ReturnBasket();
+
+    for (var i = 0; i < basketContainer.length; i++) {
+        basketItem = basketContainer[i];
+        basketItem.IsInPortfolio(false);
+    }
+
+    if (portfolioContainer != null && basketContainer != null) {
+
+        for (var j = 0; j < portfolioContainer.length; j++) {
+
+            var code = portfolioContainer[j].Code;
+
+            for (var k = 0; k < basketContainer.length; k++) {
+
+                basketItem = basketContainer[k];
+
+                if (basketItem.Code == code) {
+                    basketItem.IsInPortfolio(true);
+                    break;
+                }
+            }
+        }
+
+        BasketViewModel.InitialiseBasket(basketContainer);
+    }
+}
+
+function ResetPortfolioBasketView() {
+
+    var basketContainer = BasketViewModel.ReturnBasket();
+
+    for (var i = 0; i < basketContainer.length; i++) {
+        basketItem = basketContainer[i];
+        basketItem.IsInPortfolio(false);
+    }
+
+    BasketViewModel.InitialiseBasket(basketContainer);
+}
+
+var Containers =
+{
+    Basket: "Basket",
+    Portfolio: "Portfolio",
+    Shortlist: "Shortlist",
+    DynamicShortlist: "DynamicShortlist",
+    TargetAllocation: "TargetAllocation"
+};
+
+function IsContainerFull(containerType, numberOfFundstoAdd) {
+
+    var max_count = 30;
+    var container = null;
+
+    if (containerType === Containers.Basket) {
+        container = masterContainer.basketContainer.Get();
+    }
+    else if (containerType === Containers.Shortlist) {
+        container = masterContainer.shortListContainer.Get();
+    }
+    else if (containerType === Containers.Portfolio) {
+        container = masterContainer.portfolioContainer.Get();
+    }
+    else if (containerType === Containers.DynamicShortlist) {
+        container = masterContainer.dynamicShortListContainer.Get();
+    }
+    else if (containerType === Containers.TargetAllocation) {
+        container = masterContainer.targetAllocation.Get();
+    }
+    else {
+        return null;
+    }
+
+    if ((container.length + numberOfFundstoAdd) <= max_count) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function ShowHideNoOfFunds(container, noOffunds, showNoofFunds) {
+    if (showNoofFunds.toLowerCase() == "true") {
+        $(container).html("(" + noOffunds + ")");
+    } else {
+        $(container).hide();
+    }
+}
+
+/**
+ * Add or remove the items that matches the code of provided jQuery Item from the list of basket items
+ * @param {any} jqItem
+ * @param {any} bAdd
+ */
+var updateBasketItem = function (jqItem, bAdd) {
+    var code = jqItem.data('code') ? jqItem.data('code') : jqItem.attr('code');
+    var name = jqItem.data('name') ? jqItem.data('name') : jqItem.attr('name');
+    var item = $('.fe-icon-basket a', '.fe-fund-tableBody').filter(function (index) {
+        return $(this).data('code') === code;
+    });
+    if (bAdd) {
+        item.parent().removeClass('fe-icon-basket-add').addClass('fe-icon-basket-remove');
+        masterContainer.basketContainer.Add(new ContainerInfo(name, code));
+        BasketViewModel.addItem(name, code);
+    } else {
+        item.parent().removeClass('fe-icon-basket-remove').addClass('fe-icon-basket-add');
+        BasketViewModel.RemoveItem(code);
+        masterContainer.basketContainer.Remove(new BasketContainerInfo(code));
+    }
+}
+
+/**
+ * This method updates the status of Add to portfolio, shortlist and basket icons based on their status
+ * @param {string} code
+ * @param {string} classToAdd
+ * @param {string} classToRemove
+ */
+var updateAddToButtonUiStates = function(code, classToAdd, classToRemove) {
+    var fundItem = $('.' + classToRemove + ' a, .fe-fund-tableBody').filter(function (index) {
+        return $(this).data('code') == code;
+    });
+
+    if (fundItem.length > 0) {
+        fundItem.parent().removeClass(classToRemove).addClass(classToAdd);
+    }
+}

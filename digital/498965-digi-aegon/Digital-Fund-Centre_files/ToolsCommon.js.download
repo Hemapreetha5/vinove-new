@@ -1,0 +1,96 @@
+﻿/* File Created: October 16, 2012 */
+//Initialize and configure tabs
+
+var Tool =
+	{
+	    Shortlist: "Shortlist",
+	    Portfolio: "Portfolio",
+	    SavedPortfolios: "SavedPortfolios"
+	}
+
+
+var ToolsCommon =
+{
+    GetActiveTabForTool: function (toolName) {
+        switch (toolName) {
+            case Tool.Shortlist:
+                return $('.fe-tabs-container-Shortlist .ui-tabs-active');
+            case Tool.Portfolio:
+                return $('.fe-tabs-container-Portfolio .ui-tabs-active');
+            case Tool.SavedPortfolios:
+                return $('.fe-tabs-container-Saved .ui-tabs-active');
+            default:
+                break;
+        }
+    },
+
+    ChartAll: function (selectedInstruments, typeCodeAttribute, responsiveDomainName ) {
+        var chartingUrl = modelContents.ChartingUrl + "?TypeCode=";
+        var selectedTypeCodes = '';
+        if (selectedInstruments.length == 0) {
+            ShowErrorDialog(modelContents.GetTranslation("ChartAllErrorTitle"), modelContents.GetTranslation("ChartAllNoFundsSelectedError"));
+            return;
+        }
+        else if (selectedInstruments.length > 10) {
+            ShowErrorDialog(modelContents.GetTranslation("ChartAllErrorTitle"), modelContents.GetTranslation("ChartAllFundsLimitError"));
+            return;
+        }
+        else {
+            var categoryParams = [];
+            if (getParameterByNameIgnoreCase('category'))
+                categoryParams.push("category=" + getParameterByNameIgnoreCase('category'));
+
+            if (getParameterByNameIgnoreCase('category2'))
+                categoryParams.push("category2=" + getParameterByNameIgnoreCase('category2'))
+
+            var categoryParameters = categoryParams.join("&");
+
+            selectedInstruments.each(function () {
+                var instrument = $(this);
+                selectedTypeCodes = selectedTypeCodes + instrument.attr(typeCodeAttribute) + ',';
+            });
+
+            chartingUrl = chartingUrl + selectedTypeCodes;
+
+            if (responsiveDomainName != '') {
+                chartingUrl = responsiveDomainName + chartingUrl + (categoryParams.length > 0 ? "&" + categoryParameters : "" );
+            }
+
+            window.open(chartingUrl, '_blank');
+        }
+    },
+
+    SelectTabById: function (tabId) {
+        var listItem = $('#' + tabId);
+        listItem.trigger('click');
+    },
+
+	ActiveMasterTab: function () {
+		var menuTabs = $('#menuTabs');
+		var selectedTabIndex = modelContents.EnableScrollTabs ? menuTabs.scrollTabs('option', 'active') :
+		    menuTabs.tabs('option', 'active');
+		return menuTabs.find('.fe-menuTabs-list li a')[selectedTabIndex].id;
+    },
+
+    ActiveMasterToolDetails: function () {
+        var menuTabs = $('#menuTabs');
+        var selectedTabIndex = modelContents.EnableScrollTabs ? menuTabs.scrollTabs('option', 'active') :
+            menuTabs.tabs('option', 'active');
+        var ToolDetails = {ToolId:"1", ToolName:"tab-fundCentre"};
+        switch (menuTabs.find('.fe-menuTabs-list li a')[selectedTabIndex].text)
+        {
+            case "Portfolio":
+                ToolDetails.ToolId = "7";
+                ToolDetails.ToolName = "tabs-portfolio";
+                break;
+            case "Shortlist":
+                ToolDetails.ToolId = "6";
+                ToolDetails.ToolName = "tabs-shortList";
+                break;
+        }
+
+        return ToolDetails;
+     }
+}
+
+

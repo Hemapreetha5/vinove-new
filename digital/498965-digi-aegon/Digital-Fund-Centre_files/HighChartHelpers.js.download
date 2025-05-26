@@ -1,0 +1,525 @@
+﻿function LoadHighCharts(container, dataUrl) {
+    var parameters = ['clientName=', 'portfolioName=', 'datePrepared=', 'preparedBy=', 'summaryText='];
+    var encodedUrl = GetEncodedUrl(dataUrl, parameters);
+
+    var settings = {
+        url: encodedUrl,
+        type: 'GET',
+        datatype: "json",
+        context: container,
+        success: GenerateHighCharts,
+        error: AutoLoadingAjaxCallError
+    };
+
+    $.ajax(settings);
+}
+
+function GenerateHighCharts(data) {
+    var containers = GetAffectedHighChartTabs(this);
+    containers.each(function () {
+        var tabContainer = $(this);
+        if (data && tabContainer.length > 0) {
+            waitForEl(tabContainer, 'div[class^=\'fe-pscan-highchart-container-\']', function (highChartContainer) {
+                var tabName = $(tabContainer).attr('data-tabname');
+                switch (tabName) {
+                    case 'PortfolioScanAssetSplit':
+                        RenderPieHighChart(data.AssetBreakdowns, highChartContainer);
+                        break;
+                    case 'PortfolioScanGeographicalSplit':
+                        RenderPieHighChart(data.GeographicalBreakdowns, highChartContainer);
+                        break;
+                    case 'PortfolioScanSectorSplit':
+                        RenderPieHighChart(data.SectorBreakdowns, highChartContainer);
+                        break;
+                    case 'Risk':
+                        RenderScatterHighChart(data, highChartContainer);
+                        break;
+                    case 'Discrete Performance':
+                        RenderBarHighChart(data, highChartContainer);
+                        break;
+                    case 'Performance':
+                        RenderLineHighChart(data, highChartContainer);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+    });
+
+}
+
+function waitForEl(container, selector, callback) {
+    if (jQuery(container).find(selector).length > 0) {
+        callback(jQuery(container).find(selector)[0]);
+    } else {
+        setTimeout(function () {
+            waitForEl(container, selector, callback);
+        }, 100);
+    }
+};
+
+function RenderPieHighChart(model, $chart) {
+
+    // Get the data for the chart
+    var breakdowns = [];
+    var sliceMarginWidth = 0;
+    var chartInnerSize = 0;
+    var showDataLabels = false;
+    var data = [];
+    var colours = [];
+    var drawChart = true;
+
+    breakdowns = model.BreakDowns;
+    sliceMarginWidth = model.ChartSliceMargin;
+    chartInnerSize = model.ChartInnerSize ? model.ChartInnerSize + '%' : 0;
+
+    // Bind the data into the correct format and assign colours
+    if (breakdowns.length > 0 && drawChart) {
+        for (var i = 0; i < breakdowns.length; i++) {
+            data.push([breakdowns[i].DisplayName, breakdowns[i].Weight]);
+            colours.push('#' + breakdowns[i].Colour);
+        }
+
+        // Draw the chart									
+        jQuery($chart).highcharts({
+            chart: {
+                type: 'pie',
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.2f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    borderWidth: sliceMarginWidth,
+                    cursor: 'pointer',
+                    colors: colours,
+                    innerSize: chartInnerSize,
+                    dataLabels: {
+                        enabled: showDataLabels,
+                        format: '{point.percentage:.2f} %'
+                    }
+                }
+            },
+            series: [{
+                point: {
+                    events: {
+                        click: function () {
+                            var rows = jQuery($chart).parent().parent().find('.fe-chartlegend-item');
+                            rows.each(function () { $(this).removeClass('selected-breakdown'); });
+                            if (!this.selected) {   // this is set after click so we want the inverse
+                                var idx = $.inArray(this, this.series.data);
+                                $(rows[idx]).addClass('selected-breakdown');
+                            }
+                        }
+                    }
+                },
+                data: data
+            }]
+        });
+
+        var chart = jQuery($chart).highcharts();
+        jQuery($chart).parent().parent().find('.fe-chartlegend-item').on('click', function () {
+            if (!$(this).hasClass('selected-breakdown')) {
+                jQuery($chart).parent().parent().find('.fe-chartlegend-item').each(function () { $(this).removeClass('selected-breakdown'); });
+                $(this).addClass('selected-breakdown');
+            }
+            else { jQuery($chart).parent().parent().find('.fe-chartlegend-item').each(function () { $(this).removeClass('selected-breakdown'); }); }
+            var idx = $.inArray(this, jQuery($chart).parent().parent().find('.fe-chartlegend-item'));
+            chart.series[0].data[idx].select();
+            return;
+        });
+
+    } else {
+
+        // If there's no data, remove the chart and make the table full width
+        jQuery($chart).next().css('width', '100%');
+        jQuery($chart).remove();
+    }
+}
+
+function RenderScatterHighChart(model, $chart) {
+
+    // Get the data for the chart
+    var riskData = [];
+    var series = [];
+    var xAxisLabel = 'Return';
+    var yAxisLabel = 'Volatility';
+    var decimalSeperator = '.';
+
+    if (model) {
+        if (model.ScatterHighChartModel) {
+            riskData = model.ScatterHighChartModel.ScatterChartDataModel;
+            xAxisLabel = model.ScatterHighChartModel.XAxisLabel;
+            yAxisLabel = model.ScatterHighChartModel.YAxisLabel;
+        }
+
+        decimalSeperator = model.DecimalSeparator;
+    }
+
+    // Bind the data into the correct format and assign colours
+    if (riskData.length > 0) {
+
+        for (var i = 0; i < riskData.length; i++) {
+            var seriesData = [];
+            seriesData.data = [];
+            seriesData.data.push([riskData[i].Volatility, riskData[i].Performance]);
+            seriesData.name = riskData[i].EntityName;
+            seriesData.color = '#' + riskData[i].Colour;
+            seriesData.showInLegend = !riskData[i].IsFund;
+            series.push(seriesData);
+        }
+
+        Highcharts.setOptions({
+            lang: {
+                decimalPoint: decimalSeperator
+            }
+        });
+
+        // Draw the chart									
+        jQuery($chart).highcharts({
+            chart: {
+                type: 'scatter',
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null,
+                zoomType: 'xy'
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: xAxisLabel
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: yAxisLabel
+                }
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 5,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '<b>{point.x:.2f}%, {point.y:.2f}%</b>'
+                    }
+                }
+            },
+            series: series
+        });
+    }
+}
+
+function RenderBarHighChart(model, $chart) {
+
+    // Get the data for the chart
+    var portfolioData = {};
+    var benchmarkData = {};
+    var groupNames = [];
+    var labelText = '';
+    var series = [];
+    var xAxisLabel = 'Date';
+    var yAxisLabel = 'Return';
+    var decimalSeperator = '.';
+
+    if (model) {
+        if (model.DiscretePerformanceHighChartModel) {
+            portfolioData = model.DiscretePerformanceHighChartModel.PortfolioValues;
+            benchmarkData = model.DiscretePerformanceHighChartModel.BenchmarkValues;
+            groupNames = model.DiscretePerformanceHighChartModel.GroupNames;
+            xAxisLabel = model.DiscretePerformanceHighChartModel.XAxisLabel;
+            yAxisLabel = model.DiscretePerformanceHighChartModel.YAxisLabel;
+            labelText = model.DiscretePerformanceHighChartModel.LabelText;
+        }
+
+        decimalSeperator = model.DecimalSeparator;
+    }
+
+    // Bind the data into the correct format and assign colours
+    if (groupNames.length > 0) {
+        var portfolioSeries = {};
+        portfolioSeries.data = [];
+        portfolioSeries.name = portfolioData.InstrumentName;
+        portfolioSeries.color = '#' + portfolioData.Colour;
+        var benchmarkSeries = {};
+        benchmarkSeries.data = [];
+        benchmarkSeries.name = benchmarkData.InstrumentName;
+        benchmarkSeries.color = '#' + benchmarkData.Colour;
+        for (var i = 0; i < groupNames.length; i++) {
+            if (portfolioData && portfolioData.PerformanceValues && portfolioData.PerformanceValues.length >= i) {
+                portfolioSeries.data.push(portfolioData.PerformanceValues[i]);
+            }
+
+            if (benchmarkData && benchmarkData.PerformanceValues && benchmarkData.PerformanceValues.length >= i) {
+                benchmarkSeries.data.push(benchmarkData.PerformanceValues[i]);
+            }
+        }
+
+        series.push(portfolioSeries);
+        series.push(benchmarkSeries);
+
+        Highcharts.setOptions({
+            lang: {
+                decimalPoint: decimalSeperator
+            }
+        });
+
+        // Draw the chart									
+        jQuery($chart).highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: labelText,
+                align: 'right',
+                style: {
+                    fontSize: '11px'
+                }
+            },
+            xAxis: {
+                categories: groupNames,
+                title: {
+                    text: xAxisLabel
+                }
+            },
+            tooltip: {
+                useHTML: true,
+                formatter: function () {
+                    return this.series.name + "<br>" + this.x + " : <b> " + this.y.toFixed(2) + "</b>";
+                }
+            },
+            yAxis: {
+                title: {
+                    text: yAxisLabel
+                }
+            },
+            series: series
+        });
+    }
+}
+
+function RenderLineHighChart(model, $chart) {
+    // Get the data for the chart
+    var portfolioData = {};
+    var benchmarkData = {};
+    var series = [];
+    var xAxisLabel = 'Date';
+    var labelText = '';
+    var yAxisLabel = 'Return';
+    var decimalSeperator = '.';
+    var dateFormat = 'dd/MM/yyyy';
+    var xAxisMinDate = undefined;
+    var xAxisMaxDate = undefined;
+
+    if (model) {
+        if (model.PortfolioHistories) {
+            portfolioData = model.PortfolioHistories;
+        }
+
+        if (model.BenchmarkHistories) {
+            benchmarkData = model.BenchmarkHistories;
+        }
+
+        xAxisMinDate = model.MinHistoryDate;
+        xAxisMaxDate = model.MaxHistoryDate;
+        xAxisLabel = model.XAxisLabel;
+        yAxisLabel = model.YAxisLabel;
+        decimalSeperator = model.DecimalSeparator;
+        dateFormat = model.DateFormat;
+        labelText = model.LabelText;
+    }
+    
+    var accessibility_ShowBrokenLine = modelContents.HigChartAccessibilitySettings ? modelContents.HigChartAccessibilitySettings.ShowBrokenLine : false;
+
+    // Bind the data into the correct format and assign colours
+    if (portfolioData || benchmarkData) {
+        var portfolioSeries = {};
+        portfolioSeries.data = [];
+        portfolioSeries.name = portfolioData.InstrumentName;
+        portfolioSeries.color = '#' + portfolioData.Colour;
+        if (accessibility_ShowBrokenLine) {
+            portfolioSeries.dashStyle = 'ShortDot';
+        }
+
+        var benchmarkSeries = {};
+        benchmarkSeries.data = [];
+        benchmarkSeries.name = benchmarkData.InstrumentName;
+        benchmarkSeries.color = '#' + benchmarkData.Colour;
+        if (accessibility_ShowBrokenLine) {
+            benchmarkSeries.dashStyle = 'ShortDashDotDot';
+        }
+
+        if (portfolioData.Histories) {
+            $.map(portfolioData.Histories,
+                function (n, i) {
+                    portfolioSeries.data.push([moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]);
+                });
+        }
+
+        if (benchmarkData.Histories) {
+            $.map(benchmarkData.Histories,
+                function (n, i) {
+                    benchmarkSeries.data.push([moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]);
+                });
+        }
+
+        series.push(portfolioSeries);
+        series.push(benchmarkSeries);
+
+        Highcharts.setOptions({
+            lang: {
+                decimalPoint: decimalSeperator
+            }
+        });
+
+        // Draw the chart									
+        jQuery($chart).highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: labelText,
+                align: 'right',
+                style: {
+                    fontSize: '11px'
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                minRange: 30 * 24 * 3600000,
+                minTickInterval: 5 * 24 * 3600000,
+                title: {
+                    text: xAxisLabel
+                },
+                labels: {
+                    format: getHighChartDateFormat(dateFormat, 'value')
+                },
+                min: moment.utc(xAxisMinDate).valueOf(),
+                max: moment.utc(xAxisMaxDate).valueOf()
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: getHighChartDateFormat(dateFormat, 'point.x') + ': {point.y:.2f}',
+                hideDelay: 0
+            },
+            yAxis: {
+                title: {
+                    text: yAxisLabel
+                }
+            },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 600
+                    },
+                    // Make the labels less space demanding on mobile
+                    chartOptions: {
+                        xAxis: {
+                            tickPixelInterval: 85,
+                            labels: {
+                                rotation: -45
+                            }
+                        }
+                    }
+                }, {
+                    condition: {
+                        minWidth: 601
+                    },
+                    chartOptions: {
+                        xAxis: {
+                            tickPixelInterval: getPxIntervalBasedOnFormat(getHighChartDateFormat(dateFormat, 'point.x')),
+                            labels: {
+                                rotation: 0
+                            }
+                        }
+                    }
+                }]
+            },
+            series: series
+        });
+    }
+}
+
+function getHighChartDateFormat(format, paramName) {
+    var reformat = format;
+    if (reformat) {
+        reformat = reformat.replace(/dd/, '%d');
+        reformat = reformat.replace(/MMMM/, '%B');
+        reformat = reformat.replace(/MMM/, '%b');
+        reformat = reformat.replace(/MM/, '%m');
+        reformat = reformat.replace(/yyyy/, '%Y');
+        reformat = reformat.replace(/yy/, '%y');
+    } else {
+        reformat = '%d %m %y';
+    }
+    return '{' + (paramName ? paramName : 'value') + ':' + reformat + '}';
+}
+
+function getPxIntervalBasedOnFormat(format) {
+    var px = 120; // Highchart Default
+    if (/%B/g.test(format)) {
+        px += 60;
+    } else if (/%b/g.test(format)) {
+        px += 20;
+    }
+
+    px = 11 * px;
+
+    return px;
+}

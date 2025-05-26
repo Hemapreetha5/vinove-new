@@ -1,0 +1,1140 @@
+﻿var PortfolioTool = PortfolioTool || {}
+var showMultipleWatchlists = (modelContents.ShowMultipleWatchlists && parseInt(modelContents.GrsUserId) > 0);
+var grsUserId = modelContents.GrsUserId;
+
+$(function () {
+    var weightedUnits = [];
+    var portfolioStartDateFormat = "dd-MM-yyyy";
+    var doc = $(document);
+
+    doc.on('click', '#btn-portfolio-chartall', function () {
+
+        var activeTab = ToolsCommon.GetActiveTabForTool(Tool.Portfolio);
+        //Accessibility href fix
+        var containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');
+        var selectedInstruments = $(containerSelector).find(':checkbox:checked');
+        var responsiveDomainName = $(this).attr("data-type") == '2' ? $(this).attr("data-domainname") : '';
+        responsiveDomainName = responsiveDomainName.length > 0 ? responsiveDomainName : '';
+        ToolsCommon.ChartAll(selectedInstruments, "value", responsiveDomainName);
+    });
+
+    doc.on('click', '#btn-portfolio-downloadTool', function (event) {
+        // Get list of citicodes in portfolio tool and pass it to download tool
+        var weightTextboxes = $("input.fe-column-weight:visible", ".fe-mastertabs-PortfolioMasterTab");
+        weightTextboxes = weightTextboxes.length === 0 ? $(".fe-column-portfolio-value") : weightTextboxes;
+        var citicodes = [];
+        if (weightTextboxes.length > 0) {
+            weightTextboxes.each(function (index, control) {
+                var citicode = $(control).data('citi');
+                if ($.inArray(citicode, citicodes) === -1) {
+                    citicodes.push(citicode);
+                }
+            });
+        } else {
+            var noSelectedFundsErrorTitle = modelContents.GetTranslation("DownloadToolDlgNoFundsSelectedErrorTitle");
+            var noSelectedFundsErrorMsg = modelContents.GetTranslation("DownloadToolDlgNoFundsSelectedErrorMsg");
+            ShowErrorDialog(noSelectedFundsErrorTitle, noSelectedFundsErrorMsg, true);
+            return;
+        }
+
+
+        var region = getQueryStringValue("region");
+        var usertype = getQueryStringValue("usertype");
+
+        if (region != '' || usertype != '') {
+            var newUrl = modelContents.DownloadToolUrl.split("?")[0];
+            newUrl += "?UserType=" + usertype + "&Region=" + region;
+            var queryParams = modelContents.DownloadToolUrl.split("?")[1];
+            if (queryParams) {
+                newUrl += "&" + queryParams;
+            }
+            modelContents.DownloadToolUrl = newUrl;
+        }
+
+        if ($(this).attr('data-openInNewWindow') == "True") {
+            if (region != '' || usertype != '') {
+                OpenDownloadToolNewWindow(modelContents.DownloadToolUrl + "&referrerToolId=7&citicode=" + citicodes.join(), event);
+            }
+            else {
+                OpenDownloadToolNewWindow(modelContents.DownloadToolUrl + "?referrerToolId=7&citicode=" + citicodes.join(), event);
+            }
+            
+        } else {
+            $(this).attr('data-code', citicodes.join());
+            OpenDownloadTool(modelContents.DownloadToolUrl, event);
+        }
+
+
+    });
+
+    doc.on('click', '#portfolio-deleteall-container a', function (e) {
+        e.preventDefault();
+
+        if (!showMultipleWatchlists) {
+
+            var portfolio = masterContainer.portfolioContainer.Get();
+            if (portfolio.length > 0) {
+                masterContainer.portfolioContainer.RemoveAll();
+            }
+
+            var portfolioComparison = masterContainer.portfolioComparisonContainer.Get();
+            if (portfolioComparison.length > 0) {
+                masterContainer.portfolioComparisonContainer.RemoveAll();
+            }
+
+            // Revert any add/remove icons of selected funds on the main fund view.
+            $.each(portfolio, function (portfolioIndex, portfolioItem) {
+                var fundItem = $('.fe-icon-portfolio-remove a, .fe-fund-tableBody').filter(function (index) {
+                    return $(this).attr('data-code') == portfolioItem.Code;
+                });
+
+                if (fundItem.length > 0) {
+                    fundItem.parent().removeClass('fe-icon-portfolio-remove');
+                    fundItem.parent().addClass('fe-icon-portfolio-add');
+                }
+            });
+        }
+        else {
+            var $this = $(this);
+            var currentWatchlistItems = multipleWatchlists.getCurrentOptionWatchlistItems();
+
+            if (currentWatchlistItems.watchlistStorageItems.length > 0) {
+                $this.showMessageWithCallback(modelContents.GetTranslation("WatchlistItemsDeleteMessage")+" "+"?", function () {
+                    var tabsPortfolio = GetInternalState($("#tabs-portfolio"));
+                    var activeContainer = tabsPortfolio.ActiveContainer[0];
+                    SetPositionOfAjaxLoader(activeContainer, true);
+
+                    var watchlistName = currentWatchlistItems.watchlistName;
+                    multipleWatchlists.RemoveFromWatchlistContentLocalStorage(currentWatchlistItems.watchlistName, currentWatchlistItems.watchlistStorageItems);
+                    if (watchlistData[watchlistName]) {
+                        delete watchlistData[watchlistName];
+                    }
+                    var itemsToDelete = currentWatchlistItems.watchlistStorageItems.map(function (item) {
+                        return item.Code;
+                    });
+                    multipleWatchlists.DeleteUserWatchlistItems(currentWatchlistItems.watchlistId, watchlistName, itemsToDelete);
+                });
+            }
+        }
+        // If save portfolio functionality is enabled, then mark flag indicating that changes are made to current portfolio.
+        if (modelContents.AllowSavingOfPortfolios == "True") {
+            CurrentPortfolioChanged();
+        }
+    });
+
+    doc.on('click', '#PScanDistributeWeightage', function (e) {
+        var selectedTab = $('a', '.fe-tabs-container-Portfolio .ui-tabs-active');
+        //Accessibility href fix
+        var selectedTabHref = selectedTab.attr('href') || selectedTab.attr('data-target');
+
+        var columnWeightSelector = $('.fe-column-weight', selectedTabHref);
+
+        if (columnWeightSelector.length > 0) {
+            e.preventDefault();
+
+            var items, totalItems, weight, remainder;
+
+            if (showMultipleWatchlists) {
+                var currentWatchlistItems = multipleWatchlists.getCurrentOptionWatchlistItems();
+                items = currentWatchlistItems.watchlistStorageItems;
+                multipleWatchlists.RemoveFromWatchlistContentLocalStorage(currentWatchlistItems.watchlistName, currentWatchlistItems.watchlistStorageItems);
+            } else {
+                items = masterContainer.portfolioContainer.Get();
+            }
+
+            totalItems = items.length;
+            weight = (100 / totalItems).toFixed(2);
+            remainder = (100 - (weight * totalItems)).toFixed(2);
+
+            for (var i in items) {
+                items[i].Weight = weight;
+            }
+
+            if (remainder != 0) {
+                items[totalItems - 1].Weight = (parseFloat(weight) + parseFloat(remainder)).toFixed(2);
+            }
+
+            if (showMultipleWatchlists) {
+                var watchlistItemsForLocalStorage = items.map(multipleWatchlists.createWatchlistItemsForLocalStorage);
+
+                multipleWatchlists.CreateWatchlistContentLocalStorage(currentWatchlistItems.watchlistName, watchlistItemsForLocalStorage);
+                items = multipleWatchlists.getCurrentOptionWatchlistItems().watchlistStorageItems;
+            } else {
+                masterContainer.portfolioContainer.PersistState();
+            }
+
+            var containerSelector = $(selectedTabHref);
+            UpdateWeight($('[data-id=docRows] .fe-column-weight', containerSelector).parents("table"), containerSelector, items);
+        }
+    });
+
+
+    doc.on('click', '#PScanBenchmarkLink', function (e) {
+        e.preventDefault();
+        PortfolioTool.Benchmark.SetBenchmarkSettings(PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource);
+    });
+
+    doc.on('click', '#btnPScanPdf', function (e) {
+        e.preventDefault();
+        PortfolioTool.Benchmark.SetBenchmarkSettings(PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource);
+    });
+
+    doc.on('click', '#btnStartPortfolioScan', function (e) {
+        e.preventDefault();
+        var consitituents = $('#portfolioconstituents', '#benchmarkContainer').val();
+        var units = JSON.parse(consitituents);
+        var weightedUnits = [];
+
+        $.each(units, function (index, item) {
+            var weight = ConvertToFloat(item.Weight, 0);
+            // weight.toString() is called because there is some kind of an issue with the binder converting js float to c# decimal on the ASP.MVC side. Works fine with string
+            var unit = new Unit(item.CitiCode, item.TypeCode, item.FirstPriceDate, item.SectorClassCode, weight.toString(), item.Value);
+            weightedUnits.push(unit);
+        });
+
+        var timePeriod = $('#ddTimePeriod option:selected').attr('data-id');
+        var errorMsg = null;
+        errorMsg = CheckBenchmarkSettingsForScan(errorMsg, weightedUnits, portfolioStartDateFormat);
+        if (errorMsg == null) {
+
+            var portfolioScanSource = $("#PScanSourceAction").val();
+            var currencyValue = $('#currencyList').val();
+            var startDate = null;
+            if ($("#customPortfolioStartDatePicker").length > 0 && $('#ddTimePeriod').val() == "") {
+                startDate = moment($("#customPortfolioStartDatePicker").datepicker("getDate")).format(ConvertToMomentSupportedFormat(portfolioStartDateFormat));
+            }
+            if (portfolioScanSource == PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource) {
+
+                var context = $('.fe-portfolioSettings-portfoliodetails-html');
+                portfolioScanDetails = new PortfolioTool.Benchmark.PortfolioScanDetails($('#txtPScanClientName-html', context).val(), $('#txtPScanPortfolioName-html', context).val(), $('#txtPScanPreparedBy-html', context).val(), $('#txtPScanDatePrepared-html', context).val(), $('#txtSummaryText-html', context).val(), currencyValue);
+                scanData = new portfolioScanData(modelContents.ProjectName, modelContents.LanguageCode, modelContents.Theme, weightedUnits, timePeriod, $('#indices').val(), $('#fundSectors').val(), $('#chkWeightedSectorAverageContainer').is(':checked'), portfolioScanDetails, startDate);
+                ShowPortfolioScan(scanData);
+            }
+            else if (portfolioScanSource == PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource) {
+
+                var context = $('.fe-portfolioSettings-portfoliodetails-pdf');
+                portfolioScanDetails = new PortfolioTool.Benchmark.PortfolioScanDetails($('#txtPScanClientName-pdf', context).val(), $('#txtPScanPortfolioName-pdf', context).val(), $('#txtPScanPreparedBy-pdf', context).val(), $('#txtPScanDatePrepared-pdf', context).val(), $('#txtSummaryText-pdf', context).val(), currencyValue);
+                scanData = new portfolioScanData(modelContents.ProjectName, modelContents.LanguageCode, modelContents.Theme, weightedUnits, timePeriod, $('#indices').val(), $('#fundSectors').val(), $('#chkWeightedSectorAverageContainer').is(':checked'), portfolioScanDetails, startDate);
+                PortfolioScanTool.ShowPortfolioScanPdf(scanData);
+            }
+            weightedUnits = [];
+        }
+        else {
+            weightedUnits = [];
+            ShowPScanError(errorMsg);
+        }
+
+    });
+
+    doc.on('click', '#btnExitPortfolioScan', function (e) {
+        $('#benchmarkContainer').dialog('close');
+    });
+
+    if (modelContents.PortfolioEnabled.toLowerCase() == "true") {
+        var portfolioContianer = masterContainer.portfolioContainer.Get();
+        if (portfolioContianer != null && portfolioContianer.length > 0) {
+            // Send true as it is on the page load that it is called
+            PortfolioChanged(true);
+        }
+        else {
+            //the method is in fundInformationtable.js
+            HideFundTablesAndShowNoResultInTool($("#tabs-portfolio"));
+        }
+    }
+});
+
+function ShowPortfolioScanBenchmarkContainer(weightedUnits, title) {
+
+    if (title == undefined) {
+        title = modelContents.GetTranslation("PScanBenchmarkDialogTitle");
+    }
+
+    var model = $.extend({ 'Units': weightedUnits }, { 'Value1': modelContents.GrsProjectId }, { 'Value2': 10 });
+
+    $(this).sendJsonAsString(modelContents.PortfolioScanTimePeriodUrl, model,
+        function (result) {
+            if (result) {
+                if (result.timePeriod < 3) {
+                    var errorMsg = modelContents.GetTranslation("PScanUnderThreeMonthsOld");
+                    weightedUnits = [];
+                    errorMsg = errorMsg + result.instruments;
+                    ShowPScanError(errorMsg);
+                } else {
+                    filterOutTimePeriods(result.timePeriod);
+                    $('#portfolioconstituents', '#benchmarkContainer').val(JSON.stringify(weightedUnits));
+
+                    setCustomPortfolioStartDatePicker(weightedUnits, result.youngestFundDate, result.maximumCalendarDate);
+                    weightedUnits = [];
+
+                    $('#benchmarkContainer').dialog({
+                        resizable: false,
+                        width: 520,
+                        height: 'auto',
+                        dialogClass: "fe-ui-dialog fe-ui-form-dialog fe-dialog-createPortfolio-container",
+                        title: title,
+                        open: function (event) {
+                            MakeCloseButtonWorking($(".fe-dialog-createPortfolio-container"));
+                        },
+                        beforeClose: function (event) {
+                            RemoveAddedClassOnClose($(".fe-dialog-createPortfolio-container"));
+                        }
+                    });
+
+                    ////Maintain the height of the dialog
+                    $('#benchmarkContainer').css('height', $('#benchmarkContainer').height());
+                }
+            } else {
+                alert('Failure');
+                weightedUnits = [];
+            }
+        }, null, 4);
+}
+
+
+function setCustomPortfolioStartDatePicker(weightedUnits, youngestFundDate, maximumCalendarDate) {
+    if ($("#customPortfolioStartDatePicker").length > 0) {
+        var dateFormat = $("#customPortfolioStartDatePicker").attr('data-dateFormat');
+        var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+        var languageCode = modelContents.MajorLanguageCode;
+        var jqueryMinDate = jQuery.datepicker.parseDate("dd/mm/yy", GetDate(youngestFundDate));
+        var jqueryMaxDate = jQuery.datepicker.parseDate("dd/mm/yy", GetDate(maximumCalendarDate));
+        if ($.datepicker.regional[languageCode]) {
+            $.datepicker.regional[languageCode].dateFormat = jQueryDateFormat;
+        }
+        $("#customPortfolioStartDatePicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            constrainInput: true,
+            numberOfMonths: 1,
+            minDate: jqueryMinDate,
+            maxDate: jqueryMaxDate,
+            dateFormat: jQueryDateFormat
+        });
+    }
+
+}
+
+
+function resetBenchmarkDialog() {
+    var benchmarkDialogContext = $('.fe-pscan-benchmarkContainer');
+    $("#chkWeightedSectorAverageContainer", benchmarkDialogContext).prop('checked', false);
+    $("#fundSectors", benchmarkDialogContext).val('');
+    $("#indices", benchmarkDialogContext).val('');
+    $('#ddTimePeriod', benchmarkDialogContext).val('');
+}
+
+function ShowPScanError(errorMessage) {
+
+    var title = modelContents.GetTranslation("PScanBenchmarkDialogErrorTitle");
+    ShowErrorDialog(title, errorMessage);
+}
+
+function IsBenchmarkInputValid() {
+
+    var numberOfBenchmarksSelected = 0;
+    numberOfBenchmarksSelected = $('#chkWeightedSectorAverageContainer').length > 0 && $('#chkWeightedSectorAverageContainer').is(':checked') ? numberOfBenchmarksSelected + 1 : numberOfBenchmarksSelected;
+    numberOfBenchmarksSelected = $('#indices').length > 0 && $('#indices').val() != "" ? numberOfBenchmarksSelected + 1 : numberOfBenchmarksSelected;
+    numberOfBenchmarksSelected = $('#fundSectors').length > 0 && $('#fundSectors').val() != "" ? numberOfBenchmarksSelected + 1 : numberOfBenchmarksSelected;
+
+    if (numberOfBenchmarksSelected == 1) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function GetPortfolioUnits(selectedTab) {
+    var weightedUnits = [];
+    if ($('.fe-column-portfolio-value').length > 0) {
+        $('.fe-column-portfolio-value', selectedTab).each(function () {
+            var valueUnit = $(this);
+            var value = ConvertToFloat(valueUnit.val().replace(/[^0-9\.]/g, ""), 0);
+            if (value > 0) {
+                var unit = new Unit(valueUnit.attr('data-citi'),
+                    valueUnit.attr('data-code'),
+                    valueUnit.attr('data-pricedate'),
+                    valueUnit.attr('data-sectorcode'),
+                    "0", value.toString());
+                weightedUnits.push(unit);
+            }
+        });
+
+        var totalWeight = 0;
+        for (var i = 0; i < weightedUnits.length; i++) {
+            var weight = ConvertToFloat((weightedUnits[i].Value / GetTotalPortfolioValue(selectedTab)) * 100);
+            if (i !== weightedUnits.length - 1) {
+                weightedUnits[i].Weight = weight;
+                totalWeight += weight;
+            } else {
+                if (totalWeight + weight !== 100) {
+                    weightedUnits[i].Weight = 100 - totalWeight;
+                } else {
+                    weightedUnits[i].Weight = weight;
+                }
+            }
+        }
+    } else {
+        $('.fe-column-weight', selectedTab).each(function () {
+            var weightedUnit = $(this);
+            var weight = ConvertToFloat(weightedUnit.val(), 0);
+            if (weight > 0) {
+                // weight.toString() is called because there is some kind of an issue with the binder converting js float to c# decimal on the ASP.MVC side. Works fine with string
+                var unit = new Unit(weightedUnit.attr('data-citi'),
+                    weightedUnit.attr('data-code'),
+                    weightedUnit.attr('data-pricedate'),
+                    weightedUnit.attr('data-sectorcode'),
+                    weight.toString(), "0");
+                weightedUnits.push(unit);
+            }
+        });
+    }
+
+    return weightedUnits;
+}
+
+function IsTimePeriodValid(dateFormat) {
+    var startDate = $("#customPortfolioStartDatePicker").val();
+    // both time period and start date is there
+    if (startDate && startDate != dateFormat && $('#ddTimePeriod').val()) {
+        return false;
+    }
+
+    // has neither start date nor time period
+    if ((!startDate || startDate == dateFormat) && !$('#ddTimePeriod').val()) {
+        return false;
+    }
+
+    return true;
+}
+
+
+function IsCustomStartDateValid(dateFormat) {
+    var startDate = $("#customPortfolioStartDatePicker").val()
+    if (IsDateValid(startDate, dateFormat)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function IsDateValid(value, dateFormat) {
+    try {
+        var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+        jQuery.datepicker.parseDate(jQueryDateFormat, value);
+        return true;
+    }
+    catch (e) {
+        return false;
+    }
+}
+
+function IsCustomStartDateHasHistory(weightedUnits, portfolioStartDateFormat) {
+    // get portfolio start date and youngest fund date in dd/MM/yyyy format and then compare
+    var startDate = moment($("#customPortfolioStartDatePicker").datepicker("getDate")).format(ConvertToMomentSupportedFormat(portfolioStartDateFormat));
+    var youngestFundDate = $("#customPortfolioStartDatePicker").datepicker("option", "minDate");
+    var jQueryDateFormat = getJqueryDatePickerFormatMapping(portfolioStartDateFormat);
+    if (jQuery.datepicker.parseDate(jQueryDateFormat, startDate) >= youngestFundDate) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function CheckBenchmarkSettingsForScan(errorMsg, weightedUnits, portfolioStartDateFormat) {
+    // check if benchmark is selected. Should have exactly one benchmark selected
+    if (!IsBenchmarkInputValid()) {
+        errorMsg = modelContents.GetTranslation("PScanBenchmarkValidation");
+        return errorMsg;
+    }
+
+    // should have exactly one time period selected
+    var dateFormat = $("#customPortfolioStartDatePicker").attr('data-dateFormat');
+    if (!IsTimePeriodValid(dateFormat)) {
+        errorMsg = modelContents.GetTranslation("PScanTimePeriodValidation");
+        return errorMsg;
+    }
+
+    // if there is a start date selected as time period, check that date is valid and falls within the constituents history
+    if ($('#ddTimePeriod').val() == "") {
+        if (!IsCustomStartDateValid(dateFormat)) {
+            errorMsg = modelContents.GetTranslation("InvalidDateError");
+            return errorMsg;
+        }
+
+        if (!IsCustomStartDateHasHistory(weightedUnits, portfolioStartDateFormat)) {
+            errorMsg = modelContents.GetTranslation("PortfolioStartDateHistoryValidation");;
+            return errorMsg;
+        }
+    }
+
+    return errorMsg;
+}
+
+function portfolioScanData(projectname, language, theme, constituents, timeperiod, indiciesCode, sectorCode, IsWeightedSectorAverage, details, startDate) {
+
+    this.ProjectName = projectname;
+    this.LangCode = language;
+    this.Theme = theme;
+    this.Units = constituents;
+    this.TimePeriod = timeperiod;
+    this.IndiciesCode = indiciesCode;
+    this.SectorCode = sectorCode;
+    this.IsWeightedSectorAverage = IsWeightedSectorAverage;
+    this.Details = details;
+    this.StartDate = startDate;
+}
+
+function ComparisonData(projectname, language, theme, instruments, details) {
+
+    this.ProjectName = projectname;
+    this.LanguageCode = language;
+    this.ThemeName = theme;
+    this.Instruments = instruments;
+    this.Details = details;
+}
+
+function InstrumentName(Name, TypeCode) {
+
+    this.Name = Name;
+    this.TypeCode = TypeCode;
+}
+
+function Unit(citicode, typeCode, firstPriceDate, sectorClassCode, weight, value) {
+
+    this.TypeCode = typeCode;
+    this.CitiCode = citicode;
+    this.FirstPriceDate = firstPriceDate;
+    // we prefix sector class code with 'X' for weighted sector average.check if sector class code is already prefixed with 'X'.
+    // prefix with 'X' even if sector class code itself is 'X'
+    if (sectorClassCode && sectorClassCode.toUpperCase().indexOf("X") == 0 && !sectorClassCode.toUpperCase().indexOf("X:") == 0) {
+        this.SectorClassCode = sectorClassCode;
+    }
+    else {
+        this.SectorClassCode = 'X' + sectorClassCode;
+    }
+    this.Weight = weight;
+    this.Value = value;
+}
+
+
+function GetDate(jsonDate) {
+    var value = moment.utc(jsonDate).toDate();
+    return value.getDate() + "/" + (parseInt(value.getMonth()) + 1) + "/" + value.getFullYear();
+}
+
+function filterOutTimePeriods(timePeriod) {
+    $('#ddTimePeriod option', '#benchmarkContainer').each(function () {
+        var ddItem = $(this);
+        var ddmonths = parseInt(ddItem.attr('data-id'));
+
+        if (ddmonths > timePeriod) {
+            ddItem.addClass('hide');
+            if (ddItem.is(':selected')) {
+                ddItem.selected = false;
+                $('#ddTimePeriod').val('');
+            }
+        }
+        else {
+            ddItem.removeClass('hide');
+
+        }
+    });
+
+    $('.fe-pscan-benchmark-timePeriodContainer').mfs('refresh');
+}
+
+function GetPortfolioModel(fundInfo, pagingState, sortingState) {
+    var codesList = [];
+
+    if (showMultipleWatchlists) {
+        var context = $(".watchlist-dropdown-portfoliotab");
+        var savedWatchlistsDropdown = context.find("#watchlistOption");
+
+        if (savedWatchlistsDropdown.length > 0) {
+            var key = multipleWatchlists.getWatchlistKey(savedWatchlistsDropdown.find(":selected").data('name')) + '_' + grsUserId;
+            var codes = multipleWatchlists.GetCodeListFromWatchlist(key);
+            codesList = codes;
+
+        }
+    } else {
+        var list = masterContainer.portfolioContainer.Get();
+
+        for (var i in list) {
+            codesList.push(list[i].Code);
+        }
+    }
+
+    var model = {
+        CodesList: codesList
+    };
+
+    AddBasicModelInformation(model, pagingState, sortingState);
+
+    return model;
+}
+
+function PortfolioChanged(isFirstTime, source) {
+    //send false if its not first time
+    if (isFirstTime == undefined)
+        isFirstTime = false;
+
+    var portfolioFundInfo = $("#tabs-portfolio");
+
+    portfolioFundInfo.FundInfoLoadData(true, true, isFirstTime, false, source);
+
+}
+
+/**
+ * Adds the set of fund codes to the portfolio list & clears the original array using
+ * passed clearFn - callback function.
+ * @param {string[]} codes
+ * @param {function()} clearFn
+ */
+var AddCodesToPortfolio = function (codes, clearFn) {
+    var processCodes = codes.slice(0);
+    if (clearFn)
+        clearFn();
+
+    var basketContainer = [];
+    $.each(processCodes, function (idx, item) {
+        basketContainer.push(new BasketContainerInfo(item));
+        if (masterContainer.userWatchlistsContainer !== undefined) {
+            masterContainer.userWatchlistsContainer.AddCollection(basketContainer);
+        }
+    });
+
+    if (!showMultipleWatchlists) {
+        masterContainer.portfolioContainer.AddCollection(basketContainer);
+        masterContainer.portfolioComparisonContainer.AddCollection(basketContainer);
+    }
+
+    // If save portfolio functionality is enabled, then mark flag indicating that changes are made to current portfolio.
+    if (modelContents.AllowSavingOfPortfolios === "True") {
+        CurrentPortfolioChanged();
+    }
+}
+
+/**
+ * Removes the set of fund codes from the portfolio list & clears the original array using
+ * passed clearFn - callback function.
+ * @param {string[]} codes
+ * @param {function()} clearFn
+ */
+function RemoveCodesFromPortfolio(codes, clearFn) {
+    var processCodes = codes.slice(0);
+    if (clearFn)
+        clearFn();
+
+    var basketContainer = [];
+
+    $.each(processCodes, function (idx, item) {
+        basketContainer.push(new ContainerInfo(null, item));
+        if (masterContainer.userWatchlistsContainer !== undefined) {
+            masterContainer.userWatchlistsContainer.RemoveCollection(basketContainer);
+        }
+
+    });
+
+    if (!showMultipleWatchlists) {
+        masterContainer.portfolioContainer.RemoveCollection(basketContainer);
+        masterContainer.portfolioComparisonContainer.RemoveCollection(basketContainer);
+    }
+
+    if (modelContents.AllowSavingOfPortfolios == "True") {
+        CurrentPortfolioChanged();
+    }
+}
+
+/**
+ * Called directly from the delete icons within the tools like portfolio tool view
+ * @param {any} value
+ * @param {any} event
+ */
+function RemoveFromPortfolio(value, event) {
+
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) eventObj.preventDefault();
+    // event.srcElement for IE prior to 9
+    var codeToRemove = $(event.currentTarget || event.srcElement).attr("data-code");
+
+    if (!showMultipleWatchlists) {
+        var fundItem = $('.fe-icon-portfolio-remove a, .fe-fund-tableBody').filter(function (index) {
+
+            return $(this).attr('data-code') === codeToRemove;
+        });
+
+        if (fundItem.length > 0) {
+            fundItem.parent().removeClass('fe-icon-portfolio-remove');
+            fundItem.parent().addClass('fe-icon-portfolio-add');
+        }
+
+        masterContainer.portfolioContainer.Remove(new ContainerInfo(null, codeToRemove));
+        masterContainer.portfolioComparisonContainer.Remove(new ContainerInfo(null, codeToRemove));
+        if (modelContents.AllowSavingOfPortfolios == "True") {
+            CurrentPortfolioChanged();
+        }
+    }
+    else {
+        var tabsPortfolio = GetInternalState($("#tabs-portfolio"));
+        var activeContainer = tabsPortfolio.ActiveContainer[0];
+        SetPositionOfAjaxLoader(activeContainer, true);
+        var currentWatchlistItems = multipleWatchlists.getCurrentOptionWatchlistItems();
+        var watchlistName = currentWatchlistItems.watchlistName;
+
+        multipleWatchlists.RemoveFromWatchlistContentLocalStorage(watchlistName, [{ Code: codeToRemove }]);
+        var parsedWatchlistData = watchlistData[watchlistName] || null;
+
+        if (parsedWatchlistData !== null) {
+            const indexToRemove = parsedWatchlistData.DataList.findIndex(item => item.Common && item.Common.TypeCode === codeToRemove);
+
+            // Remove the item if found
+            if (indexToRemove !== -1) {
+                parsedWatchlistData.DataList.splice(indexToRemove, 1);
+                watchlistData[watchlistName] = parsedWatchlistData;
+            }
+        }
+
+        multipleWatchlists.DeleteUserWatchlistItems(currentWatchlistItems.watchlistId, watchlistName, [codeToRemove]);
+    }
+}
+
+function EditUserPortfolio(value, event) {
+
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) eventObj.preventDefault();
+    var portfolioId = $(event.currentTarget || event.srcElement).attr("data-portfolioid");
+
+    var portfolioDropdown = $('#ddUserSavedPortfolios', '#userPortfolioDropdown');
+    portfolioDropdown.val(portfolioId);
+    portfolioDropdown.trigger('change');
+    $('#userPortfolioDropdown').mfs('refresh');
+
+    var performanceTab = $("li.fe-masterTab-portfolio");
+    var performanceScanTabIndex = performanceTab.index();
+    $('#menuTabs').tabs({ active: performanceScanTabIndex });
+}
+
+
+function StartPortfolioScan(value, event) {
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) eventObj.preventDefault();
+    var portfolioId = $(event.currentTarget || event.srcElement).attr("data-portfolioid");
+    PortfolioTool.Benchmark.StartPortfolioScan(PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource, portfolioId);
+
+}
+
+function StartPortfolioPdfScan(value, event) {
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) eventObj.preventDefault();
+    var portfolioId = $(event.currentTarget || event.srcElement).attr("data-portfolioid");
+    PortfolioTool.Benchmark.StartPortfolioScan(PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource, portfolioId);
+
+}
+
+function OnPortfolioRendered(fundInfoTable, tabContainer, isFirstTime) {
+    if ($(".fe-column-weight").length > 0) {
+        if (!showMultipleWatchlists) {
+            UpdateWeight(fundInfoTable, tabContainer);
+        }
+        else {
+            var key = multipleWatchlists.getCurrentOptionWatchlistItems();
+            UpdateWeight(fundInfoTable, tabContainer, key.watchlistStorageItems);
+        }
+        
+    }
+    UpdateInstrument(tabContainer, masterContainer.portfolioComparisonContainer);
+    if ($(".fe-column-portfolio-value").length > 0) {
+        UpdateValue(fundInfoTable, tabContainer);
+    }
+
+    if (!isFirstTime)
+        ToolkitUI.Common.ResizeIFrame();
+}
+
+function UpdateWeight(fundInfoTable, tabContainer, items) {
+
+    var containerItems = showMultipleWatchlists ? items : masterContainer.portfolioContainer.Get();
+
+    tabContainer.find('input.fe-column-weight').each(function () {
+        var item = $(this);
+        var code = item.attr("data-code");
+
+        var containerItem = GetItemWithCode(containerItems, code);
+        if (containerItem != null) {
+            item.val(containerItem.Weight);
+        }
+    });
+
+    RecalculateTotalWeight(tabContainer);
+}
+
+function UpdateValue(fundInfoTable, tabContainer) {
+    tabContainer.find('input.fe-column-portfolio-value').each(function () {
+        var item = $(this);
+        var code = item.attr("data-code");
+
+        var containerItem = GetItemWithCode(masterContainer.portfolioContainer.Get(), code);
+        if (containerItem != null && containerItem.Value != undefined && containerItem.Value != null) {
+            item.val(containerItem.Value.toLocaleString());
+        }
+    });
+
+    RecalculateTotalPortfolio(tabContainer);
+}
+
+function WeightChanged(modelValue, event) {
+    // event.srcElement for IE prior to 9
+    var eventSource = $(event.currentTarget || event.srcElement);
+    var code = eventSource.attr("data-code");
+    var containerItem = GetItemWithCode(masterContainer.portfolioContainer.Get(), code);
+
+    if (containerItem != null) {
+        var typedWeight = ConvertToFloat(eventSource.val(), 0);
+        if (typedWeight < 0) {
+            typedWeight = 0;
+        }
+
+        containerItem.Weight = typedWeight;
+        masterContainer.portfolioContainer.PersistState();
+
+        eventSource.val(typedWeight);
+    }
+
+    RecalculateTotalWeight(eventSource.parents("table"));
+    if (modelContents.AllowSavingOfPortfolios == "True") {
+        CurrentPortfolioChanged();
+    }
+}
+
+function PortfolioValueChanged(modelValue, event) {
+    // event.srcElement for IE prior to 9
+    var eventSource = $(event.currentTarget || event.srcElement);
+    var code = eventSource.attr("data-code");
+    var containerItem = GetItemWithCode(masterContainer.portfolioContainer.Get(), code);
+
+    if (containerItem != null) {
+        var typedValue = ConvertToFloat(eventSource.val().replace(/[^0-9\.]/g, ""), 0);
+        if (typedValue < 0) {
+            typedValue = 0;
+        }
+
+        containerItem.Value = typedValue;
+        masterContainer.portfolioContainer.PersistState();
+
+        eventSource.val(typedValue.toLocaleString());
+    }
+
+    RecalculateTotalPortfolio(eventSource.parents("table"));
+    if (modelContents.AllowSavingOfPortfolios === "True") {
+        CurrentPortfolioChanged();
+    }
+}
+
+function RecalculateTotalWeight(tableElement) {
+    var totalValueElement = tableElement.find(".fe-portfolio-totalValue");
+    var total = 0.0;
+
+    tableElement.find(".fe-column-weight").each(function (index, txt) {
+        var parsedValue = ConvertToFloat(txt.value, 0);
+        if (parsedValue < 0) {
+            parsedValue = 0;
+        }
+
+        total = total + parsedValue;
+    });
+
+    if (total)
+        totalValueElement[0].innerHTML = total.toFixed(2);
+}
+
+function RecalculateTotalPortfolio(tableElement) {
+    var totalValueElement = tableElement.find(".fe-totalPortfolioValue");
+    var total = 0.0;
+
+    tableElement.find(".fe-column-portfolio-value").each(function (index, txt) {
+        var parsedValue = ConvertToFloat(txt.value.replace(/[^0-9\.]/g, ""), 0);
+        if (parsedValue < 0) {
+            parsedValue = 0;
+        }
+        total = total + parsedValue;
+    });
+
+    if (total)
+        totalValueElement[0].innerHTML = total.toLocaleString();
+}
+
+function GetTotalPortfolioWeight(selectedTab) {
+    return ConvertToFloat($('.fe-portfolio-totalValue', selectedTab)[0].innerHTML);
+}
+
+function GetTotalPortfolioValue(selectedTab) {
+    return ConvertToFloat($('.fe-totalPortfolioValue', selectedTab)[0].innerHTML.replace(/[^0-9\.]/g, ""), 0);
+}
+
+function GetItemWithCode(containerItems, code) {
+    for (var i in containerItems) {
+        if (containerItems.hasOwnProperty(i)) {
+            if (containerItems[i].Code === code) {
+                return containerItems[i];
+            }
+        }
+    }
+
+    return null;
+}
+
+function ConvertToFloat(value, defaultValue) {
+    var parsedValue = parseFloat(value).toFixed(2);
+    parsedValue = parseFloat(parsedValue); // toFixed returns a string
+
+    if (isNaN(parsedValue)) {
+        parsedValue = defaultValue;
+    }
+
+    return parsedValue;
+}
+
+PortfolioTool.Benchmark = function () {
+
+    setBenchmarkSettings = function (pscanSource) {
+        var selectedTab = $('a', '.fe-tabs-container-Portfolio .ui-tabs-active');
+        //Accessibility href fix
+        var selectedTabHref = selectedTab.attr('href') || selectedTab.attr('data-target');
+
+        //Check weighting total 100%
+        if ($('.fe-column-weight', selectedTabHref).length > 0) {
+            var portfolioWeight = GetTotalPortfolioWeight(selectedTabHref);
+            if (portfolioWeight != 100) {
+                var errorMsg = modelContents.GetTranslation("PScanWeightingsNotHundredPerc");
+                ShowPScanError(errorMsg);
+                return 0;
+            }
+        } else if ($('.fe-column-portfolio-value', selectedTabHref).length > 0) {
+            var portfolioValue = GetTotalPortfolioValue(selectedTabHref);
+            if (portfolioValue < 1) {
+                var errorMsg = modelContents.GetTranslation("PortfolioValueErrorMessage");
+                ShowPScanError(errorMsg);
+                return 0;
+            }
+        }
+
+        weightedUnits = GetPortfolioUnits(selectedTabHref);
+        $("#PScanSourceAction").val(pscanSource);
+        var title = modelContents.GetTranslation("PScanBenchmarkDialogTitle");
+        if (pscanSource == PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource) {
+            if (modelContents.AreAnyPortfolioSettingEnabledForHtml) {
+
+                $('.fe-portfolioSettings-portfoliodetails-html').show();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').hide();
+                title = modelContents.GetTranslation("PortfolioDetails");
+
+            }
+            else {
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').show();
+            }
+
+        }
+        else if (pscanSource == PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource) {
+            if (modelContents.AreAnyPortfolioSettingEnabledForPdf) {
+
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').show();
+                $('.fe-portfolioSettings-selectbenchmark').hide();
+                title = modelContents.GetTranslation("PortfolioDetails");
+            }
+            else {
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').show();
+            }
+        }
+        ShowPortfolioScanBenchmarkContainer(weightedUnits, title);
+
+    };
+
+    startPortfolioScan = function (pscanSource, portfolioId) {
+
+
+
+        $("#PScanSourceAction").val(pscanSource);
+        var title = modelContents.GetTranslation("PScanBenchmarkDialogTitle")
+        if (pscanSource == PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource) {
+            if (modelContents.AreAnyPortfolioSettingEnabledForHtml) {
+
+                $('.fe-portfolioSettings-portfoliodetails-html').show();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').hide();
+                title = modelContents.GetTranslation("PortfolioDetails")
+
+            }
+            else {
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').show();
+            }
+
+        }
+        else if (pscanSource == PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource) {
+            if (modelContents.AreAnyPortfolioSettingEnabledForPdf) {
+
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').show();
+                $('.fe-portfolioSettings-selectbenchmark').hide();
+                title = modelContents.GetTranslation("PortfolioDetails")
+            }
+            else {
+                $('.fe-portfolioSettings-portfoliodetails-html').hide();
+                $('.fe-portfolioSettings-portfoliodetails-pdf').hide();
+                $('.fe-portfolioSettings-selectbenchmark').show();
+            }
+        }
+
+        var model = $.extend({ ProjectName: modelContents.ProjectName }, { ToolName: modelContents.ToolName }, { LangCode: modelContents.LangCode },
+            { RangeCode: modelContents.RangeCode }, { Category: modelContents.Category }, { 'Value1': portfolioId });
+        $(this).sendJsonAsString(modelContents.GetPortfolioConstituentDetailsUrl, model,
+            function (result) {
+
+                if (result != null) {
+                    var constituents = result.portfolioConstituents;
+                    var weightedUnits = [];
+                    for (var i = 0; i < constituents.length; i++) {
+                        var constituent = constituents[i];
+                        var unit = new Unit(constituent.CitiCode, constituent.TypeCode, constituent.FirstPriceDate, constituent.SectorClassCode, constituent.Weight);
+                        weightedUnits.push(unit);
+                    }
+
+                    var benchmarkDialogContext = $('.fe-pscan-benchmarkContainer');
+                    resetBenchmarkDialog();
+                    $("#chkWeightedSectorAverageContainer", benchmarkDialogContext).val('');
+
+                    if (result.IsWeightedSector == true) {
+                        $("#chkWeightedSectorAverageContainer", benchmarkDialogContext).prop('checked', true);
+                    }
+                    else if (result.BenchmarkTypeCode.substring(0, 1) == "X") {
+                        $("#fundSectors", benchmarkDialogContext).val(result.BenchmarkTypeCode);
+                    }
+                    else if (result.BenchmarkTypeCode.substring(0, 1) == "N") {
+                        $("#indices", benchmarkDialogContext).val(result.BenchmarkTypeCode);
+                    }
+                    ShowPortfolioScanBenchmarkContainer(weightedUnits, title);
+
+                    $('#benchmarkContainer').mfs('refresh');
+                }
+                else {
+                    alert('Error getting portfolio constituents');
+                }
+            });
+    };
+
+    portfolioScanDetails = function (clientName, portfolioName, preparedBy, datePrepared, summaryText, performanceCurrency) {
+        this.ClientName = clientName;
+        this.PortfolioName = portfolioName;
+        this.PreparedBy = preparedBy;
+        this.DatePrepared = datePrepared;
+        this.SummaryText = summaryText;
+        this.PerformanceCurrency = performanceCurrency;
+    }
+
+    return {
+        SetBenchmarkSettings: setBenchmarkSettings,
+        PortfolioScanDetails: portfolioScanDetails,
+        StartPortfolioScan: startPortfolioScan
+    };
+}();
+
+function UpdateFundCentreViewForPortfolio() {
+
+    var portfolio = [];
+    if (!showMultipleWatchlists) {
+        portfolio = masterContainer.portfolioContainer.Get();
+
+        $.each(portfolio, function (portfolioIndex, portfolioItem) {
+            var fundItem = $('.fe-icon-portfolio-add a, .fe-fund-tableBody').filter(function (index) {
+                return $(this).attr('data-code') == portfolioItem.Code;
+            });
+
+            if (fundItem.length > 0) {
+                fundItem.parent().removeClass('fe-icon-portfolio-add');
+                fundItem.parent().addClass('fe-icon-portfolio-remove');
+            }
+        });
+
+        // Show remove icons of previously selected funds on the main fund view.
+        ShowHideNoOfFunds(".fe-PortfolioMasterTab-nooffunds", portfolio.length, modelContents.ShowNoOfFundsInPortfolio);
+
+    }
+    else {
+        portfolio = masterContainer.userWatchlistsContainer.Get();
+        $.each(portfolio, function (portfolioIndex, portfolioItem) {
+
+            masterContainer.userWatchlistsContainer.Remove(portfolioItem);
+            var fundItem = $('.fe-icon-portfolio-remove a, .fe-fund-tableBody').filter(function (index) {
+                return $(this).attr('data-code') == portfolioItem.Code;
+            });
+
+            if (fundItem.length > 0) {
+                fundItem.parent().addClass('fe-icon-portfolio-add');
+                fundItem.parent().removeClass('fe-icon-portfolio-remove');
+            }
+        });
+
+        ShowHideNoOfFunds(".fe-PortfolioMasterTab-nooffunds", totalWatchlistItems, modelContents.ShowNoOfFundsInPortfolio);
+    }
+}
+
+function UpdateFundCentreViewForPortfolioWithMultipleWatchlists() {
+
+    var portfolio = [];
+    if (!showMultipleWatchlists) {
+        portfolio = masterContainer.portfolioContainer.Get();
+
+        $.each(portfolio, function (portfolioIndex, portfolioItem) {
+            var fundItem = $('.fe-icon-portfolio-add a, .fe-fund-tableBody').filter(function (index) {
+                return $(this).attr('data-code') == portfolioItem.Code;
+            });
+
+            if (fundItem.length > 0) {
+                fundItem.parent().removeClass('fe-icon-portfolio-add');
+                fundItem.parent().addClass('fe-icon-portfolio-remove');
+            }
+        });
+
+        // Show remove icons of previously selected funds on the main fund view.
+        ShowHideNoOfFunds(".fe-PortfolioMasterTab-nooffunds", portfolio.length, modelContents.ShowNoOfFundsInPortfolio);
+
+    }
+    else {
+        ShowHideNoOfFunds(".fe-PortfolioMasterTab-nooffunds", totalWatchlistItems, modelContents.ShowNoOfFundsInPortfolio);
+    }
+}
+
+
+// This function will change "remove" fund from Portfolio icons back to "add" fund icons 
+// for all items in the Portfolio list when the list is being replaced.
+function RevertFundCentreViewForPortfolio() {
+    var portfolio = masterContainer.portfolioContainer.Get();
+    if (portfolio && portfolio.length > 0) {
+        // Revert any add/remove icons of selected funds on the main fund view.
+        $.each(portfolio, function (portfolioIndex, portfolioItem) {
+            var fundItem = $('.fe-icon-portfolio-remove a, .fe-fund-tableBody').filter(function (index) {
+                return $(this).attr('data-code') == portfolioItem.Code;
+            });
+
+            if (fundItem.length > 0) {
+                fundItem.parent().removeClass('fe-icon-portfolio-remove');
+                fundItem.parent().addClass('fe-icon-portfolio-add');
+            }
+        });
+    }
+}
+
+PortfolioTool.PortfolioScanSource = {
+    PortfolioScanHtmlSource: "pscanhtml",
+    PortfolioScanPdfSource: "pscanpdf"
+};

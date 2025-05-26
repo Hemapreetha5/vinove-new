@@ -1,0 +1,156 @@
+$(function () {
+    if (modelContents.EnableScrollTabs) {
+        // If scroll tabs is enabled, skip adaptive menu tabs behaviour changes
+        return;
+    }
+    generic();
+    setResize();
+    tabnavtoggle();
+    menuTabsList();
+
+    $(window).resize(function () {
+        setResize();
+    });
+});
+
+function generic()
+{
+    ////$(".fe-tabs-container-Shortlist .fe-tabs-responsive-icon").hide();
+    var feMenuTabsListdefaultContant = $(".fe-topmenu").children(".fe-menuTabs-list li a:first").text();
+    $(".menuTabsDropdown").text(feMenuTabsListdefaultContant);
+    $(".fe-menuTabs-list li a").on("click",function () {
+        var feMenuTabsListselectContent = $(this).text();
+        $('.menuTabsDropdown').text(feMenuTabsListselectContent);
+    });
+
+    var FundCentredefaultContant = $(".fe-tabs-container-FundCentre").children(".fe-tabs-tab-FundCentre li a:first").text();
+    $(".fe-tabs-container-FundCentre .fe-tabs-responsive-title").text(FundCentredefaultContant);
+      
+    $(".fe-tabs-container-FundCentre .fe-tabs-tab-FundCentre li a, this").on("click",function () {
+        var FundCentreselectContent = $(this).text();
+        $('.fe-tabs-container-FundCentre .fe-tabs-responsive-title').text(FundCentreselectContent);
+    });
+
+    var shortlistdefaultContant = $(".fe-tabs-container-Shortlist").children(".fe-tabs-tab-Shortlist li a:first").text();
+    $(".fe-tabs-container-Shortlist .fe-tabs-responsive-title").text(shortlistdefaultContant);
+
+    $(".fe-tabs-container-Shortlist .fe-tabs-tab-Shortlist li a, this").on("click",function () {
+        var ShortlistselectContent = $(this).text();
+        $('.fe-tabs-container-Shortlist .fe-tabs-responsive-title').text(ShortlistselectContent);
+    });
+
+
+    var portfoliodefaultContant = $(".fe-tabs-container-Portfolio").children(".fe-tabs-tab-Portfolio li a:first").text();
+    $(".fe-tabs-container-Portfolio .fe-tabs-responsive-title").text(portfoliodefaultContant);
+
+    $(".fe-tabs-container-Portfolio .fe-tabs-tab-Portfolio li a, this").on("click",function () {
+        var PortfolioselectContent = $(this).text();
+        $('.fe-tabs-container-Portfolio .fe-tabs-responsive-title').text(PortfolioselectContent);
+    });
+
+    var modelPortfoliodefaultContant = $(".fe-tabs-container-ModelPortfolio").children(".fe-tabs-tab-ModelPortfolio li a:first").text();
+    $(".fe-tabs-container-ModelPortfolio .fe-tabs-responsive-title").text(modelPortfoliodefaultContant);
+    $(".fe-tabs-container-ModelPortfolio .fe-tabs-tab-ModelPortfolio li a, this").on("click",function () {
+        var ModelPortfolioselectContent = $(this).text();
+        $('.fe-tabs-container-ModelPortfolio .fe-tabs-responsive-title').text(ModelPortfolioselectContent);
+    });
+
+    var mPConstituentsdefaultContant = $(".fe-tabs-container-MPConstituents").children(".fe-tabs-tab-MPConstituents li a:first").text();
+    $(".fe-tabs-container-MPConstituents .fe-tabs-responsive-title").text(mPConstituentsdefaultContant);
+    $(".fe-tabs-container-MPConstituents .fe-tabs-tab-MPConstituents li a, this").on("click",function () {
+        var mPConstituentsselectContent = $(this).text();
+        $('.fe-tabs-container-MPConstituents .fe-tabs-responsive-title').text(mPConstituentsselectContent);
+    });
+    
+    var savePortfoliodefaultContant = $(".fe-tabs-container-Saved").children(".fe-tabs-tab-Saved li a:first").text();
+    $(".fe-tabs-container-Saved .fe-tabs-responsive-title").text(savePortfoliodefaultContant);
+    $(".fe-tabs-container-Saved .fe-tabs-tab-Saved li a, this").on("click",function () {
+        var SavePortfolioselectContent = $(this).text();
+        $('.fe-tabs-container-Saved .fe-tabs-responsive-title').text(SavePortfolioselectContent);
+    });
+
+    var savePortfoliodefaultContant = $(".fe-tabs-container-Saved").children(".fe-tabs-tab-Saved li a:first").text();
+    $(".fe-tabs-container-Saved .fe-tabs-responsive-title").text(savePortfoliodefaultContant);
+    $(".fe-tabs-container-Saved .fe-tabs-tab-Saved li a, this").on("click",function () {
+        var SavePortfolioselectContent = $(this).text();
+        $('.fe-tabs-container-Saved .fe-tabs-responsive-title').text(SavePortfolioselectContent);
+    });
+    var feuniverseseletordefaultContant = $(".fe-tabs-autoLoad").children(".fe-tabs li a:first").text();
+    $(".fe-tabs-autoLoad .fe-tabs-responsive-title").text(feuniverseseletordefaultContant);
+    $(".fe-tabs-autoLoad .fe-tabs li a, this").on("click",function () {
+        var feuniverseseletorContent = $(this).text();
+        $('.fe-tabs-autoLoad .fe-tabs-responsive-title').text(feuniverseseletorContent);
+    });
+
+}
+function setResize() {
+    if ($(window).width() <= 625) {
+        $('.fe-tabs-responsive-icon').show();
+        $('.fe-menuTabs-list').hide();
+        $('.fe-tabs').hide();
+        $(".fe-tabs li a, this").on("click",function () {
+            $(this).parents(".fe-tabs").hide();
+        });
+        $(".fe-menuTabs-list li a, this").on("click",function (e) {
+            $(this).parents(".fe-menuTabs-list").hide();
+        });
+
+    }
+    if ($(window).width() >= 626) {
+        $('.fe-menuTabs-list').show();
+        $('.fe-tabs-responsive-icon').hide();
+        $('.fe-tabs').show();
+        $(".fe-tabs li a, this").on("click",function (e) {
+            $(this).parents(".fe-tabs").show();
+        });
+        $(".fe-menuTabs-list li a, this").on("click",function (e) {
+            $(this).parents(".fe-menuTabs-list").show();
+        });
+    }
+}
+function menuTabsList() {
+    $('.fe-menuTabs-list').css('display', 'none');
+    $('.menuTabsDropdownArrow').each(function () {
+        $(this).on("click",function () {
+            $('.fe-tabs').css('display', 'none');
+            var tabnavpanel = $('.fe-menuTabs-list');
+            var tabnavisOpen = tabnavpanel.is(':visible');
+            tabnavpanel[tabnavisOpen ? 'slideUp' : 'slideDown']('2000');
+            if (tabnavisOpen) {
+            }
+        });
+    });
+}
+function tabnavtoggle()
+{
+    $('.fe-tabs').css('display', 'none');
+    $('.fe-tabs-responsive-icon').each(function () {
+        $(this).on("click",function () {
+            var tabnavpanel = $('.fe-tabs');
+            var tabnavisOpen = tabnavpanel.is(':visible');
+            tabnavpanel[tabnavisOpen ? 'slideUp' : 'slideDown']('2000');
+        });
+    });
+}
+
+
+function PscanTabnavtoggle() {
+    $(".fe-mastertabs-portfolioScanMasterTab .fe-tabs-responsive-title").text($(".fe-mastertabs-portfolioScanMasterTab li a:first").text());
+
+    $(".fe-mastertabs-portfolioScanMasterTab .fe-tabs li a").on("click",function () {
+        $('.fe-mastertabs-portfolioScanMasterTab .fe-tabs-responsive-title').text($(this).text());
+    });
+    
+    $(".menuTabsDropdown").text($(".fe-topmenu .fe-menuTabs-list li a.selected").text());
+    $('.fe-mastertabs-portfolioScanMasterTab .fe-tabs').css('display', 'none');
+    $('.fe-mastertabs-portfolioScanMasterTab .fe-tabs-responsive-icon').each(function () {
+        $(this).on("click",function () {
+            var tabnavpanel = $('.fe-mastertabs-portfolioScanMasterTab .fe-tabs');
+            var tabnavisOpen = tabnavpanel.is(':visible');
+            tabnavpanel[tabnavisOpen ? 'slideUp' : 'slideDown']('2000');
+        });
+    });
+    $(".fe-mastertabs-portfolioScanMasterTab .fe-tabs li a, this").on("click",function (e) {
+        $(this).parents(".fe-tabs").hide();
+    });
+}

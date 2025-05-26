@@ -1,0 +1,87 @@
+﻿var PostMessaging = PostMessaging || {};
+
+
+var postMessaging = {
+    SetupPostMessagingEvents: function () {
+        pmOptions = {}
+        pmOptions.IFrameOptions = new PostMessagingEvent("IFrameSize");
+        pmOptions.IFrameFundOptions = new PostMessagingEvent("IFrameFunds");
+        pmOptions.IFrameRedirectOptions = new PostMessagingEvent("CookieConsentRedirect");
+    },
+    OnParentURLReceived: function (data) {
+        DebugAlert('CHILD:ReceivedParentURL() ' + data.ParentUrl);
+        pmOptions.IFrameOptions.url = data.ParentUrl; // assign global ParentUrl
+        pmOptions.IFrameFundOptions.url = data.ParentUrl;
+        pmOptions.IFrameRedirectOptions.url = data.ParentUrl;
+    },
+    OnDataSendSuccess: function (x, xhr) {
+        // This is called when a message is sent successully
+        DebugAlert("PostMessage sent to parent!");
+    },
+    OnDataSendError: function (x, xhr) {
+        // This is called if a message fails to be sent
+        DebugAlert("PostMessage send to parent failed!");
+    }
+};
+
+/*Type encapsulates a post messaging event*/
+function PostMessagingEvent(eventName) {
+    return {
+        type: eventName,
+        target: window.parent,
+        url: parentUrl,
+        success: function (data) { postMessaging.OnDataSendSuccess(data); },
+        error: function (data) { postMessaging.OnDataSendError(data); },
+        data: null
+    };
+}
+
+
+///////////////////
+// Event Publishing
+///////////////////
+function ToggleDiv() {
+    $("#toggleDiv").toggle();
+}
+
+
+PostMessaging.Events = function () {
+
+
+    SendIFrameSize = function (width, height) {
+        pmOptions.IFrameOptions.data = { "Width": width, "Height": height }; //assign the data for the options
+        DebugAlert('CHILD: SendIFrameSize() sending data:' + pmOptions.IFrameOptions.data.Height);
+        DebugAlert('CHILD: SendIFrameSize() sending data to URL:' + pmOptions.IFrameOptions.url);
+        pm(pmOptions.IFrameOptions); //send a PostMessage with the assigned options.
+    };
+
+    ResizeIFrame = function () {
+        var width = $(document).width();
+        // We've used the below to get the all possible heights that might occur, 
+        // don't use document.documentElement.clientHeight and document.documentElement.scrollHeight,
+        // this will include the iframe height which we set earlier
+		var height = Math.max(document.body.offsetHeight, document.documentElement.offsetHeight);
+		if (browser.msie !== undefined &&  browser.msie) {
+			height = height + 100;
+		}
+        DebugAlert('CHILD: sending dimensions:' + width + ',' + height);
+        SendIFrameSize(width, height);
+    };
+
+    SendFundList = function (funds) {
+        pmOptions.IFrameFundOptions.data = funds; //assign the data for the options
+        pm(pmOptions.IFrameFundOptions); //send a PostMessage with the assigned options.
+    };
+
+    RequestRedirect = function (urlData) {
+        pmOptions.IFrameRedirectOptions.data = urlData; //assign the data for the options
+        pm(pmOptions.IFrameRedirectOptions); //send a PostMessage with the assigned options.
+    };
+
+    return {
+        SendFundList: SendFundList,
+        ResizeIFrame: ResizeIFrame,
+        RequestRedirect: RequestRedirect
+    };
+
+} ();

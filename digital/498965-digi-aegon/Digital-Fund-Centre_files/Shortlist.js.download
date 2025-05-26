@@ -1,0 +1,190 @@
+﻿
+
+$(function () {
+    $(document).on('click', '#shortlist-deleteall-container a', function (e) {
+        e.preventDefault();
+        var shortList = masterContainer.shortListContainer.Get();
+        if (shortList.length > 0) {
+            masterContainer.shortListContainer.RemoveAll();
+        }
+
+        var shortListComparison = masterContainer.shortlistComparisonContainer.Get();
+        if (shortListComparison.length > 0) {
+            masterContainer.shortlistComparisonContainer.RemoveAll();
+        }
+
+        // Revert any add/remove icons of selected funds on the main fund view.
+        $.each(shortList, function (shortListIndex, shortListItem) {
+            var fundItem = $('.fe-icon-shortlist-remove a, .fe-fund-tableBody').filter(function(index) {
+                return $(this).attr('data-code') == shortListItem.Code;
+            });
+
+            if (fundItem.length > 0) {
+                fundItem.parent().removeClass('fe-icon-shortlist-remove');
+                fundItem.parent().addClass('fe-icon-shortlist-add');
+            }
+        });
+    });
+
+    SetupAdditionalTools();
+
+    if (modelContents.ShortlistEnabled.toLowerCase() === "true") {
+        var shortListContainer = masterContainer.shortListContainer.Get();
+        if (shortListContainer != null && shortListContainer.length > 0) {
+            // Send true as it is on the page load that it is called
+            ShortListChanged(true);
+        }
+        else {
+            //the method is in fundInformationtable.js
+            HideFundTablesAndShowNoResultInTool($("#tabs-shortList"));
+        }
+    }
+});
+
+function GetShortlistModel(fundInfo, pagingState, sortingState) {
+    var shortList = masterContainer.shortListContainer.Get();
+    var codesList = [];
+    for (var i in shortList) {
+        codesList.push(shortList[i].Code);
+    }
+
+    var model = { CodesList: codesList };
+    AddBasicModelInformation(model, pagingState, sortingState);
+    return model;
+}
+
+function ShortListChanged(isFirstTime,source) {
+    //send false if its not first time
+    if (isFirstTime == undefined)
+        isFirstTime = false;
+
+    $("#tabs-shortList").FundInfoLoadData(true, true, isFirstTime,false, source);    
+}
+
+/**
+ * Adds the set of fund codes to the shortlist & clears the original array using
+ * passed clearFn - callback function.
+ * @param {any} codes
+ * @param {any} clearFn
+ */
+var AddCodesToShortList = function(codes, clearFn) {
+    var processCodes = codes.slice();
+    if (clearFn)
+        clearFn();
+
+    var basketContainer = [];
+    $.each(processCodes, function (idx, item) {
+        basketContainer.push(new BasketContainerInfo(item));
+    });
+
+    masterContainer.shortListContainer.AddCollection(basketContainer);
+    masterContainer.shortlistComparisonContainer.AddCollection(basketContainer);
+}
+
+/**
+ * Removes the set of fund codes from the shortlist & clears the original array using
+ * passed clearFn - callback function.
+ * @param {string[]} codes
+ * @param {function()} clearFn
+ */
+function RemoveCodesFromShortList(codes, clearFn) {
+    var processCodes = codes.slice(0);
+    if (clearFn)
+        clearFn();
+
+    var basketContainer = [];
+    $.each(processCodes, function (idx, item) {
+        basketContainer.push(new ContainerInfo(null, item));
+    });
+
+    masterContainer.shortListContainer.RemoveCollection(basketContainer);
+    masterContainer.shortlistComparisonContainer.RemoveCollection(basketContainer);
+}
+
+/**
+ * Called directly from the delete icons within the tools like Shortlist tool
+ * @param {any} value
+ * @param {any} event
+ */
+function RemoveFromShortList(value, event) {
+    // event.srcElement for IE prior to 9
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj != null) {
+        eventObj.preventDefault();
+    }
+    var codeToRemove = $(event.currentTarget || event.srcElement).attr("data-code");
+    var fundItem = $('.fe-icon-shortlist-remove a, .fe-fund-tableBody').filter(function (index) {
+        return $(this).attr('data-code') == codeToRemove;
+    });
+
+    if (fundItem.length > 0) {
+        fundItem.parent().removeClass('fe-icon-shortlist-remove');
+        fundItem.parent().addClass('fe-icon-shortlist-add');
+    }
+
+    masterContainer.shortListContainer.Remove(new ContainerInfo(null, codeToRemove));
+    masterContainer.shortlistComparisonContainer.Remove(new ContainerInfo(null, codeToRemove));
+}
+
+function OnShortlistRendered(fundInfoTable, tabContainer, isFirstTime) {
+    UpdateInstrument(tabContainer, masterContainer.shortlistComparisonContainer);
+
+    if(!isFirstTime)
+        ToolkitUI.Common.ResizeIFrame();
+}
+
+function SetupAdditionalTools() {
+
+    $('#btn-shortlist-chartall').on("click", function () {
+    
+        var activeTab = ToolsCommon.GetActiveTabForTool(Tool.Shortlist);
+        //Accessibility href fix
+        var containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');
+        var chartingUrl = modelContents.ChartingUrl + "?TypeCode=";
+        var selectedTypeCodes = '';
+        var selectedInstruments = $(containerSelector).find(':checkbox:checked');
+
+        if (selectedInstruments.length == 0) {
+            ShowErrorDialog(modelContents.GetTranslation("ChartAllErrorTitle"), modelContents.GetTranslation("ChartAllNoFundsSelectedError"));
+            return;
+        }
+        else if (selectedInstruments.length > 10) {
+            ShowErrorDialog(modelContents.GetTranslation("ChartAllErrorTitle"), modelContents.GetTranslation("ChartAllFundsLimitError"));
+            return;
+        }
+        else {
+            selectedInstruments.each(function () {
+                var instrument = $(this);
+                selectedTypeCodes = selectedTypeCodes + instrument.attr('value') + ',';
+            });
+
+            chartingUrl = chartingUrl + selectedTypeCodes;
+            if ($(this).attr("data-type") == '2') {
+                chartingUrl = $(this).attr("data-domainname") + chartingUrl;
+            }
+            window.open(chartingUrl, '_blank');
+        }
+    });
+
+    $(document).on('click', '#btn-shortlist-downloadTool', function () {
+        OpenDownloadToolNewWindow(modelContents.DownloadToolUrl);
+    });
+}
+
+function UpdateFundCentreViewForShortlist() {
+    var shortList = masterContainer.shortListContainer.Get();
+    // Show remove icons of previously selected funds on the main fund view.
+    $.each(shortList, function (shortListIndex, shortListItem) {
+        var fundItem = $('.fe-icon-shortlist-add a, .fe-fund-tableBody').filter(function (index) {
+            return $(this).attr('data-code') == shortListItem.Code;
+        });
+
+        if (fundItem.length > 0) {
+            fundItem.parent().removeClass('fe-icon-shortlist-add');
+            fundItem.parent().addClass('fe-icon-shortlist-remove');
+        }
+    });
+
+    ShowHideNoOfFunds(".fe-ShortListMasterTab-nooffunds", shortList.length, modelContents.ShowNoOfFundsInShortlist);
+}
+

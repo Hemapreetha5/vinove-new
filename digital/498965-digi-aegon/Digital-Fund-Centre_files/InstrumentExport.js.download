@@ -1,0 +1,211 @@
+﻿var showMultipleWatchlists = (modelContents.ShowMultipleWatchlists && parseInt(modelContents.GrsUserId) > 0);
+
+var ExportMethod = {
+    PostMessaging: function (exportSource) {
+        $.ajax({
+            type: 'POST',
+            url: modelContents.FundModelForExportUrl,
+            data: { 'toolName': exportSource },
+            success: function (data) {
+                PostMessaging.Events.SendFundList(data.Funds);
+            },
+            error: function (x, xhr) {
+                alert(x);
+            }
+
+        });
+    },
+    XmlMessaging: function (exportSource) {
+        exportUrl = modelContents.ExportUrl + "?source=" + exportSource;
+        window.location.href = exportUrl;
+    },
+    AnalyticsExport: function (portfolioName, email) {
+        $.ajax({
+            type: 'POST',
+            url: modelContents.FeAnalyticsExportUrl,
+            data: { 'portfolioName': portfolioName, 'email': email, 'overwriteExistingPortfolio': this.ExportToFeAnalyticsOverWrite },
+            beforeSend: function () {
+                $('html').showLoading();
+            },
+            success: function (data) {
+                if (data) {
+                    if (data.redirectionUrl) {
+                        window.open(data.redirectionUrl, '_blank');
+                        $('#viewinfeAnalyticsContainer').dialog('close');
+                    } else if (data.importErrors && data.importErrors.length > 0) {
+                        $('.fe-portfolioSettings-portfolio-analytics-warning').show();
+                        var sanitizedHtml = DOMPurify.sanitize(data.importErrors[0].Item2);
+                        $(".fe-analytics-login-message").html(sanitizedHtml);
+
+                        if (data.importErrors[0].Item1 === 'Portfolio.Name') {
+                            ExportMethod.IsExistingAnalyticsPortfolio = true;
+                        }
+                    }
+                }
+
+                $('html').hideLoading();
+            },
+            error: OnAjaxError
+        });
+    },
+    AnalyticsExportForWatchlist: function (portfolioName, email, watchlistItems) {
+        $.ajax({
+            type: 'POST',
+            url: modelContents.FeAnalyticsExportUrl,
+            data: { 'portfolioName': portfolioName, 'email': email, 'watchlistItems': watchlistItems, 'overwriteExistingPortfolio': this.ExportToFeAnalyticsOverWrite, 'isWatchlistEnabled': showMultipleWatchlists },
+            beforeSend: function () {
+                $('html').showLoading();
+            },
+            success: function (data) {
+                if (data) {
+                    if (data.redirectionUrl) {
+                        window.open(data.redirectionUrl, '_blank');
+                        $('#viewinfeAnalyticsContainer').dialog('close');
+                    } else if (data.importErrors && data.importErrors.length > 0) {
+                        $('.fe-portfolioSettings-portfolio-analytics-warning').show();
+                        $(".fe-analytics-login-message").html(DOMPurify.sanitize(data.importErrors[0].Item2));
+
+                        if (data.importErrors[0].Item1 === 'Portfolio.Name') {
+                            ExportMethod.IsExistingAnalyticsPortfolio = true;
+                        }
+                    }
+                }
+
+                $('html').hideLoading();
+            },
+            error: OnAjaxError
+        });
+    },
+    CurrentAnalyticsPortfolioName: '',
+    IsExistingAnalyticsPortfolio: false,
+    ExportToFeAnalyticsOverWrite: false
+};
+
+$(document).on('click', '.fe-button-export, #standaloneExportButton', function (e) {
+    e.preventDefault();
+    var exportSource = this.attributes['data-tool'].value;
+    if (ToolContainsFund(exportSource)) {
+        if (modelContents.XmlMessageOutputMethod == "Xml") {
+            ExportMethod.XmlMessaging(exportSource);
+        }
+        else if (modelContents.XmlMessageOutputMethod == "PostMessage") {
+            ExportMethod.PostMessaging(exportSource);
+        }
+    }
+    else {
+        return false;
+    }
+});
+
+$(document).on('click', '#btnPortfolioExportFeAnalytics', function (e) {
+    ValidateOnClickFeAnalytics();
+});
+
+$(document).on('click', '#btnExportLogin', function (e) {
+    ValidateOnClickFeAnalyticsLogin();
+});
+
+$(document).on('click', '#btnExportCancel', function (e) {
+    $('#viewinfeAnalyticsContainer').dialog('close');
+});
+
+function ToolContainsFund(exportSource) {
+    var container;
+    var hasFunds = true;
+    if (exportSource == "shortlist") {
+        container = masterContainer.shortListContainer.Get();
+    }
+    else if (exportSource == "portfolio") {
+        container = masterContainer.portfolioContainer.Get();
+    }
+    else if (exportSource == "basket" || exportSource == "standalone") {
+        container = masterContainer.basketContainer.Get();
+    }
+    return hasFunds;
+}
+
+function ValidateOnClickFeAnalytics() {
+    var isPassed = true;
+    if ($('.fe-column-weight').length > 0) {
+        var selectedTab = $('a', '.fe-tabs-container-Portfolio .ui-tabs-active');
+        //Accessibility href fix
+        var selectedTabHref = selectedTab.attr('href') || selectedTab.attr('data-target');
+        var portfolioWeight = GetTotalPortfolioWeight(selectedTabHref);
+        isPassed = portfolioWeight == 100 ? isPassed : false;
+        if (!isPassed) {
+            ShowErrorDialog(modelContents.GetTranslation("ViewInFeAnalyticsError"), modelContents.GetTranslation("PortfolioWeightingWarning"));
+        }
+    } else if (masterContainer.portfolioContainer.Get().length === 0) {
+        ShowErrorDialog(modelContents.GetTranslation("ViewInFeAnalyticsError"), modelContents.GetTranslation("PortfolioContainsNoFundsWarning"));
+        isPassed = false;
+    }
+    if (isPassed) {
+        var title = modelContents.GetTranslation("ViewInFeAnalyticsHeader");
+
+        // Reset previous overwrite session
+        ExportMethod.CurrentAnalyticsPortfolioName = '';
+        ExportMethod.IsExistingAnalyticsPortfolio = false;
+        ExportMethod.ExportToFeAnalyticsOverWrite = false;
+
+        $('#viewinfeAnalyticsContainer').dialog({
+            resizable: false,
+            width: 520,
+            height: 'auto',
+            dialogClass: "fe-ui-dialog fe-ui-form-dialog fe-dialog-export-feanalytics-container",
+            title: title,
+            open: function (event) {
+                MakeCloseButtonWorking($(".fe-dialog-export-feanalytics-container"));
+            },
+            beforeClose: function (event) {
+                RemoveAddedClassOnClose($(".fe-dialog-export-feanalytics-container"));
+                $(".fe-analytics-login-message").html("");
+                $('.fe-portfolioSettings-portfolio-analytics-warning').hide();
+            }
+        });
+    }
+
+    return isPassed;
+}
+
+function ValidateOnClickFeAnalyticsLogin() {
+    var isPassed = false;
+    var portfolioName = $("#txtportfolio-name").val();
+    var email = $("#analytics-email").val();
+    $(".fe-analytics-login-message").html("");
+    $('.fe-portfolioSettings-portfolio-analytics-warning').hide();
+
+    if (portfolioName.length === 0) {
+        $('.fe-portfolioSettings-portfolio-analytics-warning').show();
+        $(".fe-analytics-login-message").html(modelContents.GetTranslation("EnterPortfolioNameAnalyticsWarning"));
+        isPassed = false;
+    } else if (email.length === 0) {
+        $('.fe-portfolioSettings-portfolio-analytics-warning').show();
+        $(".fe-analytics-login-message").html(modelContents.GetTranslation("IncorrectAnalyticsLogin"));
+        isPassed = false;
+    } else {
+        $(".fe-analytics-login-message").html("");
+        $('.fe-portfolioSettings-portfolio-analytics-warning').hide();
+        isPassed = true;
+    }
+
+    if (isPassed) {
+        if (ExportMethod.CurrentAnalyticsPortfolioName === portfolioName && ExportMethod.IsExistingAnalyticsPortfolio) {
+            ExportMethod.ExportToFeAnalyticsOverWrite = true;
+        } else {
+            ExportMethod.ExportToFeAnalyticsOverWrite = false;
+        }
+
+        ExportMethod.CurrentAnalyticsPortfolioName = portfolioName;
+        ExportMethod.IsExistingAnalyticsPortfolio = false;
+
+        if (!showMultipleWatchlists) {
+            ExportMethod.AnalyticsExport(portfolioName, email);
+        }
+        else {
+            var currentWatchlistItems = multipleWatchlists.getCurrentOptionWatchlistItems();
+            ExportMethod.AnalyticsExportForWatchlist(portfolioName, email, JSON.stringify(currentWatchlistItems.watchlistStorageItems));
+        }
+    }
+
+    return isPassed;
+}

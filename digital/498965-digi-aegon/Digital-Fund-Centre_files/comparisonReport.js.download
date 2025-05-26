@@ -1,0 +1,141 @@
+﻿var ComparisonReportTool = ComparisonReportTool || {}
+
+$(function () {
+    var doc = $(document);
+    doc.on('click', '#btn-portfolio-comparisonreport', function (e) {
+        e.preventDefault();
+        ComparisonReportTool.ComparisonReport.SetReportDetailsSettings(ToolsCommon.GetActiveTabForTool(Tool.Portfolio));
+    });
+
+    doc.on('click', '#btn-shortlist-comparisonreport', function (e) {
+        e.preventDefault();
+        ComparisonReportTool.ComparisonReport.SetReportDetailsSettings(ToolsCommon.GetActiveTabForTool(Tool.Shortlist));
+    });
+
+    doc.on('click', '#btnStartComparisonReport', function (e) {
+        e.preventDefault();
+        OnComparisonReportClick();
+    });
+});
+
+ComparisonReportTool.ComparisonReport = function () {
+    setReportDetailsSettings = function (selectedTab) {
+        var containerSelector = selectedTab.find('a').attr('href') || selectedTab.find('a').attr('data-target');//Accessibility href fix
+        var selectedFundsCount = $('input:checked', containerSelector).length;
+        if (selectedFundsCount > 1 && selectedFundsCount <= 4) {
+            if (modelContents.AreAnyComparisonDetailsSettingsEnabled) {
+
+                $('#reportDetailsContainer').dialog({
+                    resizable: false,
+                    width: 520,
+                    height: 'auto',
+                    dialogClass: "fe-ui-dialog fe-ui-form-dialog fe-dialog-createComparison-container",
+                    title: modelContents.GetTranslation("ComparisonReportDetails"),
+                    open: function (event) {
+                        MakeCloseButtonWorking($(".fe-dialog-createComparison-container"));
+                    },
+                    beforeClose: function (event) {
+                        RemoveAddedClassOnClose($(".fe-dialog-createComparison-container"));
+                    }
+                });
+            }
+            else
+                OnComparisonReportClick();
+        }
+        else {
+            ShowComparisonReportError();
+        }
+    };
+
+    comparisonReportDetails = function (clientName, preparedBy, datePrepared, performanceCurrency) {
+        this.ClientName = clientName;
+        this.PreparedBy = preparedBy;
+        this.DatePrepared = datePrepared;
+        this.PerformanceCurrency = performanceCurrency;
+    }
+
+    return {
+        SetReportDetailsSettings: setReportDetailsSettings,
+        ComparisonReportDetails: comparisonReportDetails
+    };
+}();
+
+function UpdateInstrument(tabContainer, comparisonContainer) {
+    tabContainer.find(':checkbox').each(function () {
+        var item = $(this);
+        var code = item.val();
+        var containerItem = GetItemWithCode(comparisonContainer, code);
+        if (containerItem != null && containerItem.IsSelected != undefined && containerItem.IsSelected == true) {
+            item.prop("checked", true);
+        }
+    });
+}
+
+function InstrumentCheckBoxClicked(typeCode, event) {
+    var comparisonContainer = null;
+    if (ToolsCommon.ActiveMasterTab() == "ShortListMasterTab") {
+        comparisonContainer = masterContainer.shortlistComparisonContainer;
+    }
+    else {
+        comparisonContainer = masterContainer.portfolioComparisonContainer;
+    }
+    if (comparisonContainer != null) {
+        var eventSource = $(event.currentTarget || event.srcElement);
+        var code = eventSource.val();
+        var containerItem = GetItemWithCode(comparisonContainer, code);
+        if (containerItem != null) {
+            containerItem.IsSelected = eventSource.prop('checked');
+            comparisonContainer.PersistState();
+        }
+    }
+}
+
+function OnComparisonReportClick() {
+
+    var context = $('#comparisonSettings');
+    var instruments = [];
+    if (ToolsCommon.ActiveMasterTab() == "ShortListMasterTab") {
+        var containerSelector = ToolsCommon.GetActiveTabForTool(Tool.Shortlist).find('a').attr('href') || ToolsCommon.GetActiveTabForTool(Tool.Shortlist).find('a').attr('data-target');//Accessibility href fix
+    }
+    else {
+        var containerSelector = ToolsCommon.GetActiveTabForTool(Tool.Portfolio).find('a').attr('href') || ToolsCommon.GetActiveTabForTool(Tool.Portfolio).find('a').attr('data-target');//Accessibility href fix
+    }
+
+    var currencyValue = $('#currencyList').val();
+
+    comparisonReportDetails = new ComparisonReportTool.ComparisonReport.ComparisonReportDetails($('#txtComparisonClientName', context).val(), $('#txtComparisonPreparedBy', context).val(), $('#txtComparisonDatePrepared', context).val(), currencyValue);
+
+    $(containerSelector).find(':checkbox').each(function () {
+        var instrument = $(this);
+        if (instrument.is(':checked')) {
+            var instrumentName = new InstrumentName(null, instrument.attr('value'));
+            instruments.push(instrumentName);
+        }
+    });
+
+    comparisonReportData = new ComparisonData(modelContents.ProjectName, modelContents.LanguageCode, modelContents.Theme, instruments, comparisonReportDetails);
+    var region = getQueryStringValue("region");
+    var usertype = getQueryStringValue("usertype");
+    if (region != '' || usertype != '') {
+        comparisonReportData.Region = region;
+        comparisonReportData.UserType = usertype;
+    }
+    ShowComparisonReport(comparisonReportData);
+}
+
+function ShowComparisonReport(model) {
+    $(this).sendJsonAsString(modelContents.GetComparisonReportPdfUrl, model,
+        function (result) {
+            if (result) {
+                LoadTool(result.comparisonReportUrl);
+            } else {
+                alert('Error. Cannot load comparison report');
+            }
+        });
+}
+
+function ShowComparisonReportError() {
+    var title = modelContents.GetTranslation("ComparisonReportErrorTitle");
+    var errorMessage = modelContents.GetTranslation("ComparisonReportError");
+    ShowErrorDialog(title, errorMessage);
+}

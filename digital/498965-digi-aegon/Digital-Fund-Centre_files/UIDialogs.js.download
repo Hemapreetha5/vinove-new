@@ -1,0 +1,113 @@
+﻿/* File Created: November 28, 2012 */
+
+///Set isModal to true, when you want to show this dialog along with other modal popup 
+function ShowErrorDialog(title, errorMessage, isModal) {
+    $('.errorMessage-identity', '.dlgErrorMessage').html(errorMessage).text();
+    var OKText = modelContents.GetTranslation("Ok");
+    $('.dlgErrorMessage').dialog({
+        resizable: false,
+        dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+        stack: true,
+        title: title,
+        modal: isModal,
+        buttons:
+                [{
+            text: OKText,
+            "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                    }
+                }],
+        open: function (event) {
+            hideDuplicateImage($(".fe-ui-error-dialog"));
+            MakeCloseButtonWorking($(".fe-ui-error-dialog"));
+        },
+        beforeClose: function (event)
+        {
+            RemoveAddedClassOnClose($(".fe-ui-error-dialog"));
+        },
+        close : function(event) {
+            $(this).dialog( "destroy" );
+        }
+    });
+}
+
+// message on portfolio tab, while moving away from unsaved portfolio 
+function ShowConfirmDialog(title, message, OnConfirm, OnCancel) {
+    $('#confirmMessage', '#dlgConfirmMessage').html(message).text();
+    var confirmText = modelContents.GetTranslation("ContinueButtonText");
+    $('#dlgConfirmMessage').dialog({
+        resizable: false,
+        dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+        stack: true,
+        title: title,
+        buttons:[
+                {
+                text: confirmText,
+                "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                        OnConfirm();
+                    }
+                    },{
+                text: "Cancel",
+                "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                        OnCancel();
+                    }
+                }]
+    });
+}
+
+var UIDialogs = UIDialogs || {};
+
+var UIDialogs = function () { };
+
+UIDialogs.prototype = function() {
+
+// Dialog message for confirming an action. The callback function will be called with the provided control/input model 
+// as a parameter together with a boolean that indicates which option was selected. Continue = true and Cancel = false.
+// A continue button and a cancel button will be shown.
+
+    function showConfirmDlgWithCallbackParam(title, message, onConfirmCallback, callbackParam, dialogSelector, msgSelector, isConfirm) {
+        if (typeof dialogSelector == "undefined" || !dialogSelector) {
+            dialogSelector = '#confirmMessage';
+        }
+
+        if (typeof msgSelector == "undefined" || !msgSelector) {
+            msgSelector = "'#confirmMessage', '#dlgConfirmMessage'";
+        }
+
+        $(msgSelector).html(message).text();
+        var confirmText = isConfirm ? "Confirm" : modelContents.GetTranslation("ContinueButtonText");
+        var cancelText = modelContents.GetTranslation("Cancel");
+        $(dialogSelector).dialog({
+            resizable: false,
+            dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+            zIndex: 9999,
+            stack: false,
+            title: title,
+            buttons: [
+                {
+                    text: confirmText,
+                    "class": "ui-state-default ui-button-text-only",
+                    click: function() {
+                        $(this).dialog('close');
+                        onConfirmCallback(true, callbackParam);
+                    }
+                }, {
+                    text: cancelText,
+                    "class": "ui-state-default ui-button-text-only",
+                    click: function() {
+                        $(this).dialog('close');
+                        onConfirmCallback(false, callbackParam);
+                    }
+                }]
+        });
+    }
+
+    return {
+        ShowConfirmDialogWithCallbackParam: showConfirmDlgWithCallbackParam
+    };
+}();

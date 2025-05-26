@@ -1,0 +1,877 @@
+﻿
+var PortfolioScanTool = PortfolioScanTool || {}
+var maxFileSize = 46080; ////In bytes
+var Setting = {};
+var selectedConfigCategoryId = -1;  //// Set to correct configCategoryId only when it is necessary to save a commentary.
+var ignoreSaveCommentaryEvent = false;
+var isFileReaderSupported = window.FileReader != null;
+var isAjaxUploadSupported = window.FormData != null; //IE (9 and below) browser not support Ajax file upload
+var isPScanFirstTab = true;
+////IE8 and below does not support console 
+if (!window.console) {
+    window.console = { log: function () { /*Do nothing*/ } };
+}
+
+GetSettingIds = function () {
+    $.ajaxSetup({ cache: true });
+    $.ajax({
+        async: false,
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        url: modelContents.GetClientConfigUrl,
+        success: function (result) {
+            if (result) {
+                $.each(result, function (key, value) {
+                    Setting[key] = value;
+                });
+            } else {
+                console.log('Error. Cannot load config');
+            }
+        }
+    });
+};
+
+function OnGetPortfolioCompositionModelComplete(dataContainer, model) {
+
+    ////Which means the response is a string from Azure service
+    if (model.IsSuccessful == null) {
+        model = JSON.parse(model.GetPortfolioCompositionResult);
+    }
+
+    // This is the old, where the view is send to client and rendered. Now the viewModel is passed and rendered.
+    if (model.view != null) {
+        dataContainer.html(model.view);
+    }
+
+    if (model.viewModel != null) {
+        dataContainer.html(''); /// Remove loader 
+        $('#template-PortfolioCompositionSummary').tmpl(model.viewModel).appendTo(dataContainer);
+        if (model.viewModel.PortfolioScanDetails != null && (model.viewModel.PortfolioScanDetails.SummaryText == null ||
+            model.viewModel.PortfolioScanDetails.SummaryText == '')) {
+            $('div.fe-pscan-summarytext', dataContainer).remove();
+            $('#fe-pscan-summarytext-break', dataContainer).remove();
+        }
+    }
+
+    var html = $('.fe-portfoliocomposition-container', dataContainer);
+    if (html.find("#fe-portfolioComposition-tableBody tr.total").length > 0) {
+        $("#template-PortfolioComposition_10_41").tmpl(model.result).insertBefore(html.find("#fe-portfolioComposition-tableBody tr.total"));
+    }
+    else {
+        $("#template-PortfolioComposition_10_41").tmpl(model.result).appendTo(html.find("#fe-portfolioComposition-tableBody"));
+    }
+
+    if (model != null && model.result != null) {
+        var ongoingChargeTotal = 0.00, yieldTotal = 0.00, originalValueTotal = 0.00, latestValueTotal = 0.00;
+
+        $(model.result).each(function() {
+            if (this.PortfolioComposition != null && this.PortfolioComposition.OngoingCharge != null) {
+                var latestPercentageForOngoing = this.PortfolioComposition.LatestPercentageWeight / 100;
+                latestPercentageForOngoing = this.PortfolioComposition.OngoingCharge * latestPercentageForOngoing;
+                ongoingChargeTotal += latestPercentageForOngoing;
+            }
+            if (this.PortfolioComposition != null && this.PortfolioComposition.Yield != null) {
+                var latestPercentageForYield = this.PortfolioComposition.LatestPercentageWeight / 100;
+                latestPercentageForYield = this.PortfolioComposition.Yield * latestPercentageForYield;
+                yieldTotal += latestPercentageForYield;
+            }
+
+            if (this.PortfolioComposition != null && this.PortfolioComposition.OriginalValue != null) {
+                var originalValue = this.PortfolioComposition.OriginalValue.replace(model.viewModel.Currency, "");
+                originalValueTotal += ConvertToFloat(originalValue.replace(/[^0-9\.]/g, ""), 0);
+            }
+
+            if (this.PortfolioComposition != null && this.PortfolioComposition.LatestValue != null) {
+                var latestValue = this.PortfolioComposition.LatestValue.replace(model.viewModel.Currency, "");
+                latestValueTotal += ConvertToFloat(latestValue.replace(/[^0-9\.]/g, ""), 0);
+            }
+        });
+        ongoingChargeTotal = FormatDecimal(ongoingChargeTotal, null, '2', '.') + '%';
+        yieldTotal = FormatDecimal(yieldTotal, null, '2', '.') + '%';
+        originalValueTotal = originalValueTotal.toLocaleString().indexOf('.') === -1
+            ? originalValueTotal.toLocaleString() + '.00'
+            : originalValueTotal.toLocaleString();
+        latestValueTotal = latestValueTotal.toLocaleString().indexOf('.') === -1
+            ? latestValueTotal.toLocaleString() + '.00'
+            : latestValueTotal.toLocaleString();
+
+        $('#portfolioComposition-OngoingChargeTotal').html(ongoingChargeTotal);
+        $('#portfolioComposition-yieldTotal').html(yieldTotal);
+
+        $('#portfolioComposition-OriginalValueTotal').html(model.viewModel.Currency + originalValueTotal);
+        $('#portfolioComposition-LatestValueTotal').html(model.viewModel.Currency + latestValueTotal);
+    }
+
+    $('.fe-datatable', dataContainer).StyleTableRows();
+
+    SpanDivKeypress();
+
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetPerformanceModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.cumulativePerformanceView);
+    var html = $('.CumulativePerformanceContent', dataContainer);
+    $("#template-Performance_10_3").tmpl(model.model.DataList).appendTo(html.find("#fe-cumulativePerformance-tableBody"));
+    ApplyFormattingToPortfolioAndBenchmarkRows($('#fe-cumulativePerformance-tableBody'), model);
+    ConfigureDataContainerForPerformance(dataContainer);
+
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetDiscretePerformanceModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.discretePerformanceView);
+    var html = $('.DiscretePerformanceContent', dataContainer);
+    $("#template-DiscretePerformance_10_4").tmpl(model.model.DataList).appendTo(html.find("#fe-discretePerformance-tableBody"));
+    ApplyFormattingToPortfolioAndBenchmarkRows($('#fe-discretePerformance-tableBody'), model);
+    ConfigureDataContainerForPerformance(dataContainer);
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetCalendarPerformanceModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.calendarPerformanceView);
+    var html = $('.CalendarPerformanceContent', dataContainer);
+    $("#template-CalendarPerformance_10_5").tmpl(model.model.DataList).appendTo(html.find("#fe-calendarPerformance-tableBody"));
+    ApplyFormattingToPortfolioAndBenchmarkRows($('#fe-calendarPerformance-tableBody'), model);
+    ConfigureDataContainerForPerformance(dataContainer);
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetRatiosModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.ratiosView);
+    var html = $('.RatiosContent', dataContainer);
+    $("#template-Risk_10_6").tmpl(model.model.DataList).appendTo(html.find("#fe-ratios-tableBody"));
+    ApplyFormattingToPortfolioAndBenchmarkRows($('#fe-ratios-tableBody'), model);
+    ConfigureDataContainerForPerformance(dataContainer);
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetFundTab1ModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.fundTab1View);
+    var html = $('.FundTab1Content', dataContainer);
+    if (model.model.DataList.length > 0 &&
+        model.model.DataList[0].FundInfo == null &&
+        model.model.DataList.length > 2) {
+        var dataList = model.model.DataList.slice(2, model.model.DataList.length);
+        $("#template-FundTab1_10_61").tmpl(dataList).appendTo(html.find("#fe-fundTab1-tableBody"));
+    }
+    ConfigureDataContainerForPerformance(dataContainer);
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function OnGetFundTab2ModelComplete(dataContainer, model) {
+
+    dataContainer.html(model.fundTab2View);
+    var html = $('.FundTab2Content', dataContainer);
+    if (model.model.DataList.length > 0 &&
+        model.model.DataList[0].FundInfo == null &&
+        model.model.DataList.length > 2) {
+        var dataList = model.model.DataList.slice(2, model.model.DataList.length);
+        $("#template-FundTab2_10_62").tmpl(dataList).appendTo(html.find("#fe-fundTab2-tableBody"));
+    }
+    ConfigureDataContainerForPerformance(dataContainer);
+    applyResponsiveCascadingRow(dataContainer, dataContainer.find('.fe-datatable'));
+}
+
+function ConfigureDataContainerForPerformance(dataContainer) {
+    GenerateShowLoadingImages(dataContainer);
+    $('.fe-datatable', dataContainer).StyleTableRows();
+}
+
+function ApplyFormattingToPortfolioAndBenchmarkRows(tableBody, model) {
+
+    var portfolioRow = tableBody.find('tr').eq(0).addClass('fe-pscan-portfoliorow');
+    var benchmarkRow = tableBody.find('tr').eq(1).addClass('fe-pscan-benchmarkrow');
+
+    if (model.showRowColours) {
+        $('td', portfolioRow).css('color', '#' + model.PortfolioColour);
+        $('td', benchmarkRow).css('color', '#' + model.BenchmarkColour);
+    }
+}
+
+
+function ShowPortfolioScan(model) {
+    if (modelContents.ShowPortfolioScanInNewWindow) {
+        OpenPortfolioScanInNewWindow(model);
+    } else {
+        $('.fe-masterTab-portfolioScan').attr("style", "display: list-item !important");
+        OpenPortfolioScanInHiddenTab(model);
+    }
+}
+
+function OpenPortfolioScanInNewWindow(model) {
+    OpenPortfolioScan(model);
+}
+
+function OpenPortfolioScanInHiddenTab(model) {
+    var performanceTab = $("li.fe-masterTab-portfolioScan");
+    var performanceScanTabIndex = performanceTab.index();
+    if (performanceScanTabIndex > -1) {
+        if (modelContents.EnableScrollTabs) {
+            $('.fe-menuTabs-list').scrollTabs({ active: performanceScanTabIndex });
+        } else {
+            $('.fe-menuTabs-list').tabs({ active: performanceScanTabIndex });
+        }
+        var tabContainerId = performanceTab.find('a')[0].hash;
+
+        $(this).sendJsonAsString(modelContents.PortfolioScanContentUrl, model,
+            function (data, textStatus, jqXHR) {
+                $(tabContainerId).html(data);
+                $("#pscan_edit_ProjectTabs").sortable({ axiz: 'y', containment: 'parent' }).disableSelection();
+                $('#btnPScanPdfFromHtml').button();
+                OpenPortfolioScan(model, tabContainerId, performanceScanTabIndex);
+            }, OnPortfolioScanLoadingError, 4);
+    }
+}
+
+
+function OpenPortfolioScan(userSettings, tabContainerId, tabIndex) {
+    if (tabContainerId == undefined) {
+        var windowName = 'PscanPage' + parseInt(Math.random() * 1000000);
+        window.open('', windowName);
+    }
+
+    var region = getQueryStringValue("region");
+    var usertype = getQueryStringValue("usertype");
+    if (region != '' || usertype != '') {
+        userSettings.Region = region;
+        userSettings.UserType = usertype;
+    }
+    
+
+    $(this).sendJsonAsString(modelContents.PortfolioScanUrl, userSettings,
+        function (result) {
+            if (result) {
+                // tabContainerId is null when opening in new window
+                if (tabContainerId == undefined) {
+                    window.open(result.portfolioScanUrl, windowName);
+                } else {
+                    var pscanUrl = result.portfolioScanUrl;
+                    $('#pscanurl', $(tabContainerId)).val(pscanUrl);
+                    GenerateAutoLoadingTabs();
+                    $('#benchmarkContainer').dialog('close');
+                    if (modelContents.EnableScrollTabs) {
+                        $('#menuTabs').scrollTabs({ active: tabIndex });
+                    } else {
+                        $('#menuTabs').tabs({ active: tabIndex });
+                    }
+                    if (modelContents.MakePlatformResponsive && (!modelContents.ShowPortfolioScanInNewWindow)) {
+                        PscanTabnavtoggle();
+                    }
+                }
+            } else {
+                alert('Error. Cannot load portfolio scan');
+                return undefined;
+            }
+        }, null, 4);
+}
+
+function OnPortfolioScanLoadingError(jqXHR, textStatus, errorThrown) {
+    // TODO : handle this error
+    alert('Error. Cannot load portfolio scan');
+}
+
+PortfolioScanTool = function () {
+
+    showPortfolioScanPdf = function (model) {
+
+        var region = getQueryStringValue("region");
+        var usertype = getQueryStringValue("usertype");
+        if (region != '' || usertype != '') {
+            model.Region = region;
+            model.UserType = usertype;
+        }
+        $(this).sendJsonAsString(modelContents.PortfolioScanPdfUrl, model,
+        function (result) {
+            if (result) {
+                LoadDocumentWithProgress(result.portfolioScanPdfUrl, model.Units.length);
+            } else {
+                alert('Error. Cannot load portfolio scan');
+            }
+        });
+    };
+
+    return {
+        ShowPortfolioScanPdf: showPortfolioScanPdf,
+        Setting: Setting,
+        GetSettingIds: GetSettingIds
+    };
+}();
+
+$(function () {
+    var doc = $(document);
+
+    $("#pscan_edit_ProjectTabs").sortable({
+        axiz: 'y',
+        containment: 'parent',
+        items: ':not(.not-sortable)',
+        start: function () {
+            $('.not-sortable', this).each(function () {
+                var $this = $(this);
+                $this.data('pos', $this.index());
+            });
+        },
+        change: function () {
+            $sortable = $(this);
+            $statics = $('.not-sortable', this).detach();
+            $helper = $('<li></li>').prependTo(this);
+            $statics.each(function () {
+                var $this = $(this);
+                var target = $this.data('pos');
+
+                $this.insertAfter($('li', $sortable).eq(target));
+            });
+            $helper.remove();
+        }
+    }).disableSelection();
+    $('#CurrentSessionId').val($("#SessionId").val());
+
+    if (isAjaxUploadSupported) {
+        // Add events
+        doc.on('submit', '#imgUploadForm', uploadFiles);
+
+        doc.on('click', '#btnBrowseImage', function () {
+            $('#fileImageUpload').trigger('click');
+        });
+
+    } else {
+
+        ////Set controls visibilty as per the browser support
+        $('#btnBrowseImage').addClass('hideBrowseButton');
+        var isIE8 = browser.msie && browser.version == '8.0';
+        $('#fileImageUpload').removeClass('fileUploader').addClass(isIE8 ? 'ie8fileUploader' : 'iefileUploader');
+
+        doc.on('click', '#fileImageUpload', function (e) {
+            // Set timeout suspended when file dialog is open
+            setTimeout(function () {
+                if ($('#fileImageUpload').val().length > 0) {
+                    showLoader();
+                    if($('#fileImageUpload').length && $('#fileImageUpload')[0].files.length > 0)
+                        createCookie("PScanImage", $('#SessionId').val() + '-' + trimfileName($('#fileImageUpload')[0].files[0]), 0.5);
+                    $('#imgUploadForm').trigger('submit');
+                }
+            }, 0);
+        });
+    }
+
+    var className = 'pscan-edit-selectedTab';
+    doc.on('click keypress', '#pscan_edit_ProjectTabs > li', function (e) {
+
+        if (e.keyCode == undefined || e.keyCode == 13 || e.keyCode == 32) {
+            if ($(this).hasClass(className)) {
+                $(this).removeClass(className);
+            } else {
+                $(this).removeClass(className).addClass(className);
+            }
+        }
+    });
+
+    doc.on('click', '#btnPScanPdfFromHtml', function (e) {
+        e.preventDefault();
+        if ($('div.pscan-edit-wrapper').length > 0) {
+            var cancelText = modelContents.GetTranslation("Cancel");
+            var generateButtonText = modelContents.GetTranslation("GenerateReport");
+
+            $('div.pscan-edit-wrapper').dialog({
+                autoOpen: true,
+                modal: true,
+                resizable: false,
+                zIndex: 1003,
+                stack: false,
+                width: 650,
+                dialogClass: 'fe-ui-dialog fe-ui-form-dialog fe-dialog-createPortfolio-container pscan-edit-modalpopup-dialog',
+                closeOnEscape: true,
+                buttons: [
+                    {
+                        text: generateButtonText,
+                        click: GenerateReportClicked
+                    },
+                    {
+                        text: cancelText,
+                        click: function () {
+                            $(this).dialog('close');
+                        }
+                    }
+                ]
+            });
+        } else {
+            openPScanPdf();
+        }
+    });
+
+    function openPScanPdf(windowName) {
+        var pscanUrl = $('#pscanurl').val();
+        var numberOfUnits = getParameterByNameFromURl("NumberOfUnits", window.location.href);
+        if (pscanUrl != '') {
+            queryString = pscanUrl.slice(pscanUrl.indexOf('?') + 1);
+            if (!numberOfUnits)
+                numberOfUnits = getParameterByNameFromURl("NumberOfUnits", pscanUrl);
+        } else {
+            queryString = window.location.href.slice(window.location.href.indexOf('?') + 1);
+        }
+        if (queryString != '') {
+            var PScanHtmlSummaryText = $('#PScanHtmlSummaryText').text();
+
+            if (queryString.indexOf("SummaryText") == -1)
+                queryString = queryString + "&SummaryText=" + PScanHtmlSummaryText;
+            var sessionSetValue = stringToBoolean($('#ShowCommentaries').val()) || $('div.pscan-edit-wrapper').length > 0;
+            var isSessionSet = stringToBoolean(sessionSetValue ? sessionSetValue.toString() : "false");
+            if (isSessionSet) {
+                var sessionId = $('#SessionId').val();
+                queryString += "&SessionId=" + sessionId;
+            }
+
+            //// Encode any "#" special characters in the query string because they cause characters that follow them to be ignored in a URL.
+            var encodedHashStr = encodeURIComponent("#");
+            var regExpInst = new RegExp("#", "g");
+            queryString = queryString.replace(regExpInst, encodedHashStr);
+            var url = modelContents.PortfolioScanPdfHomeUrl + "?" + queryString;
+            LoadDocumentWithProgress(url, numberOfUnits, windowName);
+        }
+    }
+
+
+
+    showLoader = function () {
+        $('.pscan-edit-nologomessage').css({ "background": "url(/Assets/images/ajax-loader.gif) no-repeat scroll 50% 65% transparent" });
+    };
+
+    hideLoader = function () {
+        $('.pscan-edit-nologomessage').css({ "background": "" });
+    };
+
+    $('#fileIframe').on('load', function () {
+        var content = $('#fileIframe').contents().find('body').text();
+        if (content != '') {
+            var result = JSON.parse(content);
+            handleUploadResult(result);
+        }
+    });
+
+    doc.on('change', '#fileImageUpload',
+        function () {
+            files = !!this.files ? this.files : [];
+
+            if (!files.length) {
+                return;
+            }
+            else if (!isFileReaderSupported && isAjaxUploadSupported) {
+                ////Filereader not supported, so upload and do the neccessary things
+                showLoader();
+                if (files.length > 0)
+                    createCookie("PScanImage", $('#SessionId').val() + '-' + files[0].name, 0.5);
+                $('#imgUploadForm').trigger('submit');
+            }
+            else {
+                var fileType = files[0].type;
+                createCookie("PScanImage", $('#SessionId').val() + '-' + files[0].name, 0.5);
+
+                // Validation (also happens in serverside  for old browsers which not support filereader: see PortfolioScanController actin: UploadImage)
+                var isValid = (/\/png$/.test(fileType) || /\/jpg$/.test(fileType) || /\/jpeg$/.test(fileType)) && files[0].size <= maxFileSize;
+                if (isValid) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(files[0]);
+                    $('#pscan-edit-imageprvwname').text(files[0].name);
+                    reader.onloadend = function () {
+                        $('#pscan_edit_imgPreview').attr('src', this.result);
+                        $('.pscan-edit-imgholder').css('display', 'block');
+                        $('.pscan-edit-nologomessage').css('display', 'none');
+                    }
+                } else {
+                    clearFileSelection('#fileImageUpload');
+                    var errorTitle = '<p class="pscan-edit-warningcontent">' + modelContents.GetTranslation("ImageUploadFailureSummary") + '</p>';
+                    ShowErrorDialog(modelContents.GetTranslation("ImageUploadErrorTitle"), errorTitle + $('.pscan-edit-warningcontainer').html().replace('*', ''), true);
+                }
+            }
+
+        });
+
+    doc.on('click', '.pscan-edit-leftcolumn .fe-ico-remove', function () {
+        var model = { fileName: $('#SessionId').val() + '-' + $('#pscan-edit-imageprvwname').text() };
+        $('.pscan-edit-nologomessage').css('display', 'block');
+        $('.pscan-edit-imgholder').css('display', 'none');
+        $('#pscan_edit_imgPreview').attr('src', '');
+        $('#pscan-edit-imageprvwname').text('');
+        clearFileSelection('#fileImageUpload');
+
+        if (!isFileReaderSupported) {
+            $(this).sendJsonRequest($.ajaxTypes.post, modelContents.ImageDeleteUrl, model,
+                function (r) {
+                    console.log(r.result ? 'logo deleted' : 'unable to delete the logo');
+                    //Do anything
+                });
+        }
+    });
+
+    ////Replace a copy of new control as few browsers does not support clear and not fire change event
+    clearFileSelection = function (controlId) {
+        var inputControl = $(controlId);
+        inputControl.replaceWith(inputControl = inputControl.clone(true));
+    };
+
+    GenerateReportClicked = function () {
+        ////Upload image to server (happens only on modern servers, which supports window.FileReader)
+        if (isFileReaderSupported && isAjaxUploadSupported) {
+            $('#imgUploadForm').trigger('submit');
+        }
+
+        var selectTabs = [];
+        $('#pscan_edit_ProjectTabs > li.pscan-edit-selectedTab').each(function (index, element) {
+            selectTabs.push($(element).attr('data-tabId'));
+        });
+
+        ///if the current and default order is same, don't save the data
+        var orderedSelectedTabs = selectTabs.join();
+        if ($('#defaultTabOrder').val() == orderedSelectedTabs) {
+            orderedSelectedTabs = '';
+        }
+
+        var sessionId = $('#SessionId').val();
+        var imgName = String.prototype.trim.call($('#pscan-edit-imageprvwname').text());
+
+
+        var models = [];
+        models.push({
+            SessionId: sessionId,
+            ConfigCategoryid: PortfolioScanTool.Setting.PortfolioScanPdfId,
+            SettingId: PortfolioScanTool.Setting.PScanSelectedTabs,
+            UserData: orderedSelectedTabs
+        });
+
+        models.push({
+            SessionId: sessionId,
+            ConfigCategoryid: PortfolioScanTool.Setting.PortfolioScanPdfId,
+            SettingId: PortfolioScanTool.Setting.PScanCustomLogo,
+            UserData: imgName
+        });
+
+        ////A blank window is opened and it is named and this window is used to load the Pscanpdf after AJAX call using the window name that is passed after ajax reference.
+        ////A random number is used to name all window opened because one window should not be used another pscan pdf
+        var windowName = 'PscanPdfPage' + parseInt(Math.random() * 1000000);
+        window.open('', windowName);
+
+        $(this).sendJsonAsString(modelContents.SaveUserDataUrl, models,
+            function (r) {
+                console.log('data saved');
+                //Submit to PScanPDF
+                openPScanPdf(windowName);
+                //Close this dialog
+            });
+    };
+
+
+    function handleUploadResult(outputResult) {
+        if (!outputResult.result.length) {
+            clearFileSelection('#fileImageUpload');
+            ////show validation message
+            var errorTitle = '<p class="pscan-edit-warningcontent">' + modelContents.GetTranslation("ImageUploadFailureSummary") + '</p>';
+            ShowErrorDialog(modelContents.GetTranslation("ImageUploadErrorTitle"), errorTitle + $('.pscan-edit-warningcontainer').html().replace('*', ''), true);
+        } else {
+            var fileName = '';
+            if (outputResult.fileName) {
+                fileName = outputResult.fileName;
+            }
+            else if (files.length > 0) {
+                fileName = files[0].name;
+            }
+
+            $('#pscan_edit_imgPreview').attr('src', outputResult.result);
+            $('.pscan-edit-imgholder').css('display', 'block');
+            $('.pscan-edit-nologomessage').css('display', 'none');
+            $('#pscan-edit-imageprvwname').text(trimfileName(fileName));
+        }
+
+        hideLoader();
+    }
+
+    /**************************************Upload image using ajax**************************************/
+    // Variable to store your files
+    var files;
+
+    // Catch the form submit and upload the files
+
+    function uploadFiles(event) {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        if (files == null || !files.length)
+            return;
+        if (isAjaxUploadSupported) {
+            // Create a formdata object and add the files
+            var data = new FormData();
+            $.each(files, function (key, value) {
+                data.append(key, value);
+            });
+
+            data.append("SessionId", $('#SessionId').val());
+
+            if (files.length > 0)
+                createCookie("PScanImage", $('#SessionId').val() + '-' + trimfileName(files[0].name), 0.5);
+
+            $.ajax({
+                url: modelContents.ImageUploadUrl,
+                type: 'POST',
+                data: data,
+                cache: false,
+                dataType: 'json',
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                success: function (d) {
+                    handleUploadResult(d);
+                },
+                complete: function () {
+                    console.log('complete');
+                    clearFileSelection('#fileImageUpload');
+                }
+            });
+        }
+    }
+    /**************************************End Upload image using ajax**************************************/
+
+    /************************************** START: Addition/Retrieval of Portfolio Scan commentaries using AJAX **************************************/
+    doc.on('click', '.fe-pscan-commentary-add-commentary-link', function () {
+        var selectedControlIdPrefix = "linkPScanCommentary_";
+
+        var configCategoryId = getConfigCategoryId($(this).attr('id'), selectedControlIdPrefix);
+
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + configCategoryId;
+        var commentaryAdditionSpanId = "#spanAddCommentarySection_" + configCategoryId;
+        var commentaryEditSpanId = "#spanEditCommentarySection_" + configCategoryId;
+        $(commentaryAdditionSpanId).hide();
+        $(commentaryEditSpanId).show();
+        initialiseTextArea(configCategoryId, divCommDisplaySectId);
+        ToolkitUI.Common.ResizeIFrame();
+    });
+
+    doc.on('focusout', '.fe-pscan-commentary-textarea', function (event) {
+        if (ignoreSaveCommentaryEvent) {
+            ignoreSaveCommentaryEvent = false;  //// Reset the cancel/clear commentary operation flag.
+            return;  //// Ignore the save commentary request because it is not required on this occasion (i.e. Cancel or Clear button was clicked.)
+        }
+
+        var selectedControlIdPrefix = "textareaPScanCommentary_";
+        selectedConfigCategoryId = getConfigCategoryId(event.target.id, selectedControlIdPrefix);
+        handleEndCommentaryInput(selectedConfigCategoryId, "#" + selectedControlIdPrefix + selectedConfigCategoryId);
+
+        setTimeout(saveCommentaryText, 200);
+    });
+
+    function saveCommentaryText() {
+        if (selectedConfigCategoryId.length > 0 && selectedConfigCategoryId != -1) {
+            updatePScanCommentaries(selectedConfigCategoryId); //// Pass across the ID of the tab that contains the relevant commentary and update the temporary data.
+        }
+        ToolkitUI.Common.ResizeIFrame();
+    }
+
+    doc.on('mousedown','.fe-btn-portfolio-commentary-cancel', function () {
+        ignoreSaveCommentaryEvent = true;
+        var selectedControlIdPrefix = "btnPortfolioScanCommentaryCancel_";
+        var configCategoryId = getConfigCategoryId($(this).attr('id'), selectedControlIdPrefix);
+        cancelCommentaryCommand(configCategoryId);
+        ToolkitUI.Common.ResizeIFrame();
+    });
+
+    doc.on('click', '.fe-button-portfolio-commentary-update', function () {
+        //// Commentary should be saved already via the textarea's own "focus out" event so nothing to do here.
+        ToolkitUI.Common.ResizeIFrame();
+        return;
+    });
+
+    function updatePScanCommentaries(configCategoryId) {
+        var commentaryTextareaId = "#textareaPScanCommentary_" + configCategoryId;
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + configCategoryId;
+        var sessionId = $('#SessionId').val();
+        var currentCommentaryText = $(divCommDisplaySectId).text();
+        var prevCommentaryText = $(commentaryTextareaId).data(configCategoryId); //// Get a copy of the commentary that was previously saved.
+
+        if (currentCommentaryText == prevCommentaryText) {
+            return;
+        }
+
+        //// Update the temporary data storage.
+        $(commentaryTextareaId).data(configCategoryId, currentCommentaryText);
+
+        //// Create the model data to be passed back.
+        var models = [];
+        models.push({
+            SessionId: sessionId,
+            ConfigCategoryid: configCategoryId,
+            SettingId: PortfolioScanTool.Setting.PScanCommentaries,
+            UserData: currentCommentaryText
+        });
+
+        $(this).sendJsonAsString(modelContents.SaveUserDataUrl, models,
+        function () {
+            console.log('PScan commentary saved.');
+        });
+    }
+
+    //// Assuming the controlId contains a Config Category Id at the end of the string, this function will return that number.
+    function getConfigCategoryId(controlId, controlIdPrefix) {
+        var configCategoryId = '';
+        if (!controlIdPrefix || !controlId) {
+            return '';
+        }
+
+        if (controlIdPrefix.length >= controlId.length) {
+            return configCategoryId;
+        }
+
+        configCategoryId = controlId.substr(controlIdPrefix.length);
+        return isNaN(configCategoryId) ? '' : configCategoryId;
+    }
+
+    doc.on('mouseenter', '.fe-pscan-commentary-textarea', function () {
+        $(this).addClass("fe-pscan-commentary-textarea-highlight");
+    });
+
+    doc.on('mouseleave', '.fe-pscan-commentary-textarea', function () {
+        $(this).removeClass("fe-pscan-commentary-textarea-highlight");
+    });
+
+    doc.on('mousedown', ".fe-pscan-commentary-clear-commentary-link", function (event) {
+        var selectedControlIdPrefix = "linkPScanClearCommentary_";
+        var commentaryClearConfirmDialogSection = "#divPScanCommentaryClearConfirmDialog_";
+        var confirmDeleteBtnText = parseHTML(modelContents.GetTranslation("DeleteCommentaryDlgConfirmBtn"));
+        var cancelBtnText = modelContents.GetTranslation("Cancel");
+        selectedConfigCategoryId = getConfigCategoryId(event.target.id, selectedControlIdPrefix);
+        var commentaryTextareaId = "#textareaPScanCommentary_" + selectedConfigCategoryId;
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + selectedConfigCategoryId;
+        $(commentaryClearConfirmDialogSection + selectedConfigCategoryId).dialog({
+            autoOpen: true,
+            height: 220,
+            width: 270,
+            modal: true,
+            buttons: [
+                {
+                    text: confirmDeleteBtnText,
+                    click: function () {
+                        performClearCommentary();
+                        $(this).dialog('close');
+                    }
+                }, {
+                    text: cancelBtnText,
+                    click: function () {
+                        $(commentaryTextareaId).val($(divCommDisplaySectId).text());  //// Restore the textrea value since cancel was clicked.
+                        handleEndCommentaryInput(selectedConfigCategoryId, commentaryTextareaId);
+                        $(this).dialog('close');
+                    }
+                }],
+            close: function () {
+                return;
+            }
+        });
+        ToolkitUI.Common.ResizeIFrame();
+    });
+
+    function performClearCommentary() {
+        if (selectedConfigCategoryId.length > 0 && selectedConfigCategoryId != -1) {
+            var commentaryTextareaId = "#textareaPScanCommentary_" + selectedConfigCategoryId;
+            var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + selectedConfigCategoryId;
+
+            $(commentaryTextareaId).val("");
+            $(divCommDisplaySectId).text("");
+            updatePScanCommentaries(selectedConfigCategoryId); //// Pass across the ID of the tab that contains the relevant commentary but assume Cancel can be clicked next to restore temp data.     
+            processEmptyCommentarySection(selectedConfigCategoryId);
+        }
+    }
+
+    function processEmptyCommentarySection(configCategoryId) {
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + configCategoryId;
+        var divCommTxtareaBtnsSectId = "#divPScanCommentaryTextareaButtonsSection_" + configCategoryId;
+        var commentaryAdditionSpanId = "#spanAddCommentarySection_" + configCategoryId;
+        var commentaryEditSpanId = "#spanEditCommentarySection_" + configCategoryId;
+
+        $(divCommDisplaySectId).hide();
+        $(commentaryEditSpanId).hide();
+        $(divCommTxtareaBtnsSectId).hide();
+        $(commentaryAdditionSpanId).show();
+    }
+
+    function cancelCommentaryCommand(configCategoryId) {
+        selectedConfigCategoryId = -1; //// Set a value to indicate that the commentary does not need to be saved.
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + configCategoryId;
+        var divCommTxtareaBtnsSectId = "#divPScanCommentaryTextareaButtonsSection_" + configCategoryId;
+        var commentaryTextareaId = "#textareaPScanCommentary_" + configCategoryId;
+        var prevCommentaryText = $(commentaryTextareaId).data(configCategoryId); //// Get a copy of the commentary that was previously saved.
+        var currentCommentaryText = $(commentaryTextareaId).val();
+
+        $(commentaryTextareaId).val("");
+        $(divCommTxtareaBtnsSectId).hide();
+        if (prevCommentaryText != currentCommentaryText) {
+            $(divCommTxtareaBtnsSectId).hide();
+            $(divCommDisplaySectId).text(prevCommentaryText);
+            $(divCommDisplaySectId).show();
+
+            if (!(prevCommentaryText.length > 0)) {
+                processEmptyCommentarySection(configCategoryId);
+                updatePScanCommentaries(configCategoryId); //// Pass across the ID of the tab that contains the relevant commentary and update the temporary data accordingly.
+            }
+        } else if (!(prevCommentaryText.length > 0)) {
+            processEmptyCommentarySection(configCategoryId);
+        } else {
+            $(divCommDisplaySectId).text(prevCommentaryText);
+            $(divCommDisplaySectId).show();
+        }
+    }
+
+    doc.on('mouseenter', '.fe-pscan-commentary-display-section', function () {
+        $(this).addClass("fe-pscan-commentary-display-section-highlight");
+    });
+
+    doc.on('mouseleave', '.fe-pscan-commentary-display-section', function () {
+        $(this).removeClass("fe-pscan-commentary-display-section-highlight");
+    });
+
+    doc.on('click keypress', '.fe-pscan-commentary-display-section', function (e) {
+        if (e.keyCode == undefined || e.keyCode == 13 || e.keyCode == 32) {
+            var selectedControlIdPrefix = "divPScanCommentaryDisplaySection_";
+            var configCategoryId = getConfigCategoryId($(this).attr('id'), selectedControlIdPrefix);
+            initialiseTextArea(configCategoryId, "#" + selectedControlIdPrefix + configCategoryId);
+        }
+    });
+
+    function initialiseTextArea(configCategoryId, divCommDisplaySectId) {
+        var commentaryTextareaId = "#textareaPScanCommentary_" + configCategoryId;
+        var divCommTxtareaBtnsSectId = "#divPScanCommentaryTextareaButtonsSection_" + configCategoryId;
+        var currentCommentary = $(divCommDisplaySectId).text();
+        $(commentaryTextareaId).val(currentCommentary);
+        //// Save current commentary in case Cancel is clicked.
+        $(commentaryTextareaId).data(configCategoryId, currentCommentary);
+        $(divCommDisplaySectId).text("");
+        $(divCommDisplaySectId).hide();
+        $(divCommTxtareaBtnsSectId).show();
+        $(commentaryTextareaId).trigger("focus");
+    }
+
+    function handleEndCommentaryInput(configCategoryId, commentaryTextareaId) {
+        var divCommTxtareaBtnsSectId = "#divPScanCommentaryTextareaButtonsSection_" + configCategoryId;
+        var divCommDisplaySectId = "#divPScanCommentaryDisplaySection_" + configCategoryId;
+
+        var currentCommentary = $(commentaryTextareaId).val();
+        $(commentaryTextareaId).val("");
+        $(divCommTxtareaBtnsSectId).hide();
+        $(divCommDisplaySectId).text(currentCommentary);
+        if (!(currentCommentary.length > 0)) {
+            processEmptyCommentarySection(configCategoryId);
+        } else {
+            $(divCommDisplaySectId).show();
+        }
+    }
+
+    doc.on('change keyup keydown paste cut', 'textarea.fe-pscan-commentary-textarea', function () {
+        $(this).height(0).height(this.scrollHeight);  //// Automatically adjust the height of a textarea.
+    });
+
+    function trimfileName(fileName) {
+        return String.prototype.trim.call(fileName.replace(/\s/g, ''));
+    }
+
+    /************************************** END: Addition/Retrieval of Portfolio Scan commentaries using AJAX **************************************/
+    PortfolioScanTool.GetSettingIds();
+});

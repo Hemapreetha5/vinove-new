@@ -1,0 +1,225 @@
+﻿$(function () {
+
+    var $scrollingDiv = $(".fe-basket");
+    var $mainContent = $(".fe-tableInBasket");
+    var $shortlistTable = $("#fe-basket-table");
+
+    $shortlistTable.StyleTableRows();
+
+    $('.fe-fundsInBasket').on("click", function (e) {
+        if (e.target.id != "basket-pin") { // tried e.srcElement, but that doesn't work in FireFox
+            slideBasket($mainContent, e);
+        }
+    });
+    
+    $(document).on("click", function (e) {
+        var isClearEmptyBasketVisible = $(".fe-basketClear-dlg").is(":visible");
+
+        if ($('#floatcontainer.fe-basket-expand') && isClearEmptyBasketVisible == false) {
+            if ($(e.target).parents('#floatcontainer').length == 0 && (!$(e.target).parent().hasClass('fe-icon-basket'))) {
+                $mainContent.slideUp('medium');
+                $('.fe-fundsInBasket').removeClass('fe-basket-expand').addClass('fe-basket-collapse');
+            }
+        }
+    });
+    
+    BasketViewModel = {
+
+        selectedMasterTab: ko.observable("FundCentreMasterTab"),
+        items: ko.observableArray(),
+        remove: function (item) {
+            BasketViewModel.items.remove(item);
+            $shortlistTable.StyleTableRows();
+        }
+    };
+
+    BasketViewModel.itemCount = ko.computed(function () {
+        return BasketViewModel.items().length;
+    }, BasketViewModel);
+
+    BasketViewModel.basketEmpty = ko.computed(function () {
+        return BasketViewModel.items().length == 0;
+    }, BasketViewModel);
+
+    BasketViewModel.isFundMasterTabActive = ko.computed(function () {
+        return BasketViewModel.selectedMasterTab() == "FundCentreMasterTab";
+    }, BasketViewModel);
+
+    BasketViewModel.isShortListTabActive = ko.computed(function () {
+        return BasketViewModel.selectedMasterTab() == "ShortListMasterTab";
+    }, BasketViewModel);
+
+    BasketViewModel.isPortfolioTabActive = ko.computed(function () {
+        return BasketViewModel.selectedMasterTab() == "PortfolioMasterTab";
+    }, BasketViewModel);
+
+    BasketViewModel.isModelPortfolioTabActive = ko.computed(function () {
+        return BasketViewModel.selectedMasterTab() == "ModelPortfolioMasterTab";
+    }, BasketViewModel);
+
+
+    BasketViewModel.ActiveIconClass = ko.computed(function () {
+        if (BasketViewModel.selectedMasterTab() == "FundCentreMasterTab")
+            return "fe-ico-basket-remove";
+        else if (BasketViewModel.selectedMasterTab() == "ShortListMasterTab")
+            return "fe-ico-basket-shortlist-add";
+        else if (BasketViewModel.selectedMasterTab() == "PortfolioMasterTab")
+            return "fe-ico-basket-portfolio-add";
+    }, BasketViewModel);
+
+    BasketViewModel.addItem = function (fundName, citiCode) {
+
+        var obj = new BasketInfo(fundName, citiCode);
+
+        var index = BasketViewModel.items().indexInBasket(obj);
+
+        if (index == -1) {
+            BasketViewModel.items.push(obj);
+            BasketViewModel.items.sort(function (left, right) {
+                return left.Name == right.Name ? 0 : (left.Name < right.Name ? -1 : 1)
+            });
+
+            $shortlistTable.StyleTableRows();
+            $shortlistTable.find('tbody tr td').addClass('fe-icon-basket');
+        }
+
+    };
+
+    BasketViewModel.fundsInList = ko.computed(function () {
+        return BasketViewModel.items().length > 0;
+    }, BasketViewModel);
+
+    BasketViewModel.RemoveItem = function (citiCode) {
+        ko.utils.arrayFirst(BasketViewModel.items(), function (item) {
+            if (item != undefined) {
+                if (item.Code == citiCode) {
+                    BasketViewModel.remove(item);
+                    return;
+                }
+            }
+        });
+    }
+
+    BasketViewModel.InitialiseBasket = function (array) {
+        BasketViewModel.items(array);
+    }
+
+    BasketViewModel.RemoveAll = function () {
+        BasketViewModel.items.removeAll();
+    }
+
+    BasketViewModel.SetCurrentTab = function (tabName) {
+        BasketViewModel.selectedMasterTab(tabName);
+    }
+
+    BasketViewModel.ReturnBasket = function () {
+        return BasketViewModel.items();
+    }
+
+    ko.bindingHandlers.disableClick = {
+        init: function (element, valueAccessor) {
+
+            $(element).on("click", function (evt) {
+                if (valueAccessor()) {
+                    evt.preventDefault();
+                    evt.stopImmediatePropagation();
+                }
+            });
+
+            //begin of 'hack' to move our 'disable' event handler to top of the stack
+            var events = $._data(element, "events");
+
+            var handlers = events['click'];
+
+            if (handlers.length == 1) {
+                return;
+            }
+
+            handlers.splice(0, 0, handlers.pop());
+            //end of 'hack' to move our 'disable' event handler to top of the stack
+
+        },
+
+        update: function (element, valueAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            ko.bindingHandlers.css.update(element, function () {
+                return {
+                    disabled_anchor: value
+                };
+            });
+        }
+    };
+
+    ko.applyBindings(BasketViewModel);
+
+});
+
+function BasketInfo(fundName, unitCode) {
+    this.IsInShortList = ko.observable(false);
+    this.IsInPortfolio = ko.observable(false);
+    this.DisableAddToShortList = ko.dependentObservable(function () {
+        return this.IsInShortList() && BasketViewModel.isShortListTabActive();
+    }, this);
+    this.DisableAddToPortfolio = ko.dependentObservable(function () {
+        return this.IsInPortfolio() && BasketViewModel.isPortfolioTabActive();
+    }, this);
+
+    this.Name = fundName;
+    this.Code = unitCode;
+}
+
+function slideBasket($mainContent, e) {
+    e.preventDefault();
+    $('.fe-fundsInBasket').toggleClass('fe-basket-expand').toggleClass('fe-basket-collapse');
+    $mainContent.slideToggle('medium');
+
+    $(".fe-basket").off('mouseleave').on("mouseleave", function () {
+
+        $('.mfs-container').on("mouseup", function () {
+            $mainContent.slideUp('medium');
+            $('.fe-fundsInBasket').removeClass('fe-basket-expand').addClass('fe-basket-collapse');
+            $('.mfs-container').off("mouseup");
+        });
+
+        $('.ui-slider').on("mouseup", function () {
+            $mainContent.slideUp('medium');
+            $('.fe-fundsInBasket').removeClass('fe-basket-expand').addClass('fe-basket-collapse');
+            $('.ui-slider').off("mouseup");
+        });
+    });
+}
+
+function BasketContainerInfo(unitCode) {
+    this.Code = unitCode;
+}
+
+function ContainerInfo(fundName, unitCode) {
+    this.Name = fundName;
+    this.Code = unitCode;
+}
+
+function PortfolioContainerInfo(fundName, unitCode, weight) {
+    this.Code = unitCode;
+    this.Weigth = weight;
+}
+
+function RefreshScrollPane() {
+
+    var settings = { showArrows: true, maintainPosition: false };
+    var pane = $('.fe-tableInBasket-scrollpane');
+    pane.jScrollPane(settings);
+    api = pane.data('jsp');
+    //api = $('.fe-tableInBasket-scrollpane').jScrollPane({ showArrows: true }).data('jsp');
+}
+
+function refreshPane() {
+    api.reinitialise();
+}
+
+function SlideUpBasket() {
+    if ($('#floatcontainer.fe-basket-expand')) {
+        $(".fe-tableInBasket").slideUp('medium');
+        $('.fe-fundsInBasket').removeClass('fe-basket-expand').addClass('fe-basket-collapse');
+    }
+
+};

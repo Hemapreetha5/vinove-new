@@ -1,0 +1,166 @@
+﻿var StorageVault = StorageVault || {};
+
+function readCookie(name) {
+    var cookie = StorageVault.InMemoryStore.read(name);
+    if(!cookie)
+        cookie = StorageVault.CookieStore.read(name);
+    
+    return cookie;
+}
+
+function readEncodedCookie(name) {
+    var cookieEncoded = StorageVault.InMemoryStore.readEncoded(name);
+    if(!cookieEncoded)
+        cookieEncoded = StorageVault.CookieStore.readEncoded(name);
+    
+    return cookieEncoded;
+}
+
+function eraseCookie(name) {
+    StorageVault.CookieStore.erase(name);
+}
+
+function createCookie(name, value, days) {
+    StorageVault.CookieStore.create(name, value, days);
+}
+
+function createEncodedCookie(name, value, days) {
+    StorageVault.CookieStore.createEncoded(name, value, days);
+}
+
+function createPersistentCookie(name) {
+    StorageVault.CookieStore.createPersistent(name);
+}
+
+StorageVault.CookieStore = (function () {
+    read = function (name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') 
+                c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+    readEncoded = function (name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c;
+            try {
+                c = decodeURIComponent(ca[i]);
+            } catch (e) {
+                c = ca[i];
+            }
+            while (c.charAt(0) == ' ') 
+                c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+    erase = function (name) {
+        this.create(name, "", -1);
+    }
+    addSecurityFlag = function () {
+        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" ? "" : "; Secure;" + (isSameSiteCookieSupported() ? "SameSite = None; " : ""));
+    }
+    create = function (name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else {
+            var expires = "";
+        }
+        var cookieValue = name + "=" + value + expires + "; path=/" + this.addSecurityFlag();
+        document.cookie = cookieValue;
+        StorageVault.InMemoryStore.create(name, cookieValue, days);
+    }
+    createEncoded = function (name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else {
+            var expires = "";
+        }
+        var cookieValue = name + "=" + encodeURIComponent(value) + expires + "; path=/" + this.addSecurityFlag();
+        document.cookie = cookieValue;
+        StorageVault.InMemoryStore.create(name, cookieValue, days);
+    }
+    createPersistent = function (name) {
+        var date = new Date();
+        date.setFullYear(date.getFullYear() + 1);
+        var expires = "; expires=" + date.toGMTString();
+        var cookieValue = name + "=true" + expires + "; path=/" + this.addSecurityFlag();
+        document.cookie = cookieValue;
+        StorageVault.InMemoryStore.create(name, cookieValue);
+    }
+    return {
+        read: read,
+        readEncoded: readEncoded,
+        erase: erase,
+        addSecurityFlag: addSecurityFlag,
+        create: create,
+        createEncoded: createEncoded,
+        createPersistent: createPersistent
+    };
+})();
+
+StorageVault.InMemoryStore = (function () {
+    var inMemoryObject = {};
+
+    read = function (name) {
+        if (inMemoryObject[name]) {
+            var nameEQ = name + "=";
+            var ca = inMemoryObject[name].split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') 
+                    c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) 
+                    return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+    readEncoded = function readEncoded(name) {
+        if (inMemoryObject[name]) {
+            var nameEQ = name + "=";
+            var ca = inMemoryObject[name].split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c;
+                try {
+                    c = decodeURIComponent(ca[i]);
+                } catch (e) {
+                    c = ca[i];
+                }
+                while (c.charAt(0) == ' ') 
+                    c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) 
+                    return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+    create = function create(name, value, days) {
+        if (days == -1)
+            delete inMemoryObject[name]; 
+        else {
+            inMemoryObject[name] = value;
+        }
+    }
+    return {
+        read: read,
+        readEncoded: readEncoded,
+        create: create
+    };
+})();
