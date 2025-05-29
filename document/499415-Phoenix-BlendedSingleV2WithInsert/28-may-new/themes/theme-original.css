@@ -1,0 +1,1766 @@
+@font-face {
+  font-family: "Calibri";
+  src: url("Images/Calibri-Bold.woff2") format("woff2"),
+    url("Images/Calibri-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Calibri-Light";
+  src: url("Images/Calibri-Light.woff2") format("woff2"),
+    url("Images/Calibri-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Calibri";
+  src: url("Images/Calibri.woff2") format("woff2"),
+    url("Images/Calibri.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.row {
+  margin-bottom: 0.2cm;
+}
+.page2 .Compositeborderbody .row {
+  margin-bottom: 0;
+}
+.column > .section {
+  margin-left: 0.5cm;
+}
+.column:first-child > .section {
+  margin-left: 0;
+}
+h1,
+h2,
+h3 {
+  color: #39f;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+.page1 a {
+  color: #000;
+}
+.page > .row1 {
+  margin-top: 1cm;
+  margin-bottom: 0 !important;
+  height: 0;
+}
+.vertical-list div {
+  margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+  color: #39f;
+}
+body {
+  font-family: Calibri-Light, Arial, Helvetica, sans-serif;
+  font-size: 9pt;
+  line-height: normal;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  color: #231f20;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+h2 {
+  font-weight: bold;
+  color: #262a82;
+  font-size: 12pt;
+  font-family: Calibri;
+}
+.page1 b {
+  color: #262a82;
+  font-weight: bold;
+  font-family: Calibri;
+}
+p {
+  margin-bottom: 0.1cm;
+}
+.text:not(.Header) p {
+  line-height: 1.3;
+}
+.text:not(.Header) p br {
+  /*! display: none; */
+}
+p:empty {
+  margin: 0;
+  display: none;
+}
+.TypeOfFundsHeader,
+.OverviewHeader,
+.whattypeoffunds h2 {
+  margin-bottom: 0cm;
+}
+.OverviewHeader {
+  /*! margin-bottom: 0.2cm; */
+}
+.TDFOverview {
+  margin-bottom: 0.4cm;
+}
+b {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.clear {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  height: 0 !important;
+}
+.page {
+  position: relative;
+  width: 19cm;
+  height: 28.2cm;
+  padding: 1cm 1cm 0.5cm;
+  background: url(Images/tpt_logo.png) no-repeat 15.5cm 1cm / auto 2.88cm;
+}
+.page1 {
+  background: url(Images/trust_logo.svg) no-repeat 15.35cm 1cm / auto 1.37cm;
+  background-size: 131px 51px !important; /*PDF reactor V11 migration changes*/
+  width: 17.4cm;
+  height: 28.2cm;
+  padding: 1cm 2.1cm 0.5cm 1.5cm;
+}
+.page1:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #9f248f;
+  height: 29.7cm;
+  width: 0.6cm;
+}
+.logo {
+  width: 5cm;
+  height: 2cm;
+  position: absolute;
+  right: 6.3cm;
+  top: 1cm;
+  display: none;
+}
+.Header,
+.header,.page4 > .row2 > .text1 {
+  /* border-bottom: 1px solid #000; */
+  padding: 0.2cm 0.4cm;
+  position: relative;
+}
+.Header:before,
+.header:before {
+  /* content: ''; */
+  width: 2.5pt;
+  height: 100%;
+  position: absolute;
+  top: -0.2cm;
+  left: 0;
+  background-color: #9f248f;
+}
+.Header:after,
+.header:after {
+  /* content: ''; */
+  width: 2.5pt;
+  height: 100%;
+  position: absolute;
+  top: -0.2cm;
+  left: 9cm;
+  background-color: #9f248f;
+}
+.page > .row2 > .contentSection.Header,
+.header,.page4 > .row2 > .text1 {
+  /* margin-bottom: 0.5cm; */
+  border-left: 4pt solid #9f248f;
+  border-right: 4pt solid #9f248f;
+  padding-left: 0.5cm;
+  width: 10cm;
+  min-height: 1.5cm;
+}
+.page.page1 > .row2 > .contentSection.Header {
+  border-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  width: auto;
+}
+
+.Header .QeDataAsAtDate, .header .QeDataAsAtDate,.page4 .QeDataAsAtDate,
+.page5 .QeDataAsAtDate,.page5 .QeDataAsAtDate a,
+.page6 .QeDataAsAtDate,.page6 .QeDataAsAtDate a {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 18pt;
+  color: #9f258f;
+  text-transform: uppercase;
+  margin: 0 0 0.2cm;
+}
+.page4 .QeDataAsAtDate{
+    text-transform: none;
+}
+.Header .FundNames,.page4 .FundNames,.page5 .FundNames,.page5 .FundNames a,
+.page6 .FundNames,.page6 .FundNames a {
+  /* margin-bottom: 0.5cm; */
+  font-family: Calibri;
+  font-weight: bold;
+  font-size: 16pt;
+  color: #262a82;
+}
+.page4 > .row3 p b {
+    font-weight: normal;
+}
+.page4 > .row3 p b b b{
+	font-weight: bold;
+}
+.page4 h3.TableHeader {
+    color: #ad178d;
+	/* margin-bottom: 15px;
+	min-height: 20px; */
+
+}
+.page4 > .row4{
+		margin-top:0.2cm;
+}
+.FundRangeHeader {
+  /* margin-bottom: 0.5cm; */
+  font-weight: bold;
+  font-size: 30pt;
+  color: #262a82;
+  line-height: 0.9;
+  padding-bottom: 10px;
+  font-family: Calibri;
+}
+.NameSubHeader {
+  font-size: 18pt;
+  color: #9f258f;
+  font-weight: bold;
+}
+.NameSubText {
+  font-size: 16pt;
+  color: #262a82;
+  font-weight: bold;
+  font-family: Calibri;
+}
+.Header .PensionSchemeName,.page4 .PensionSchemeName,.page5 .PensionSchemeName,.page5 .PensionSchemeName a ,
+.page6 .PensionSchemeName,.page6 .PensionSchemeName a {
+  font-size: 30pt;
+  color: #262a82;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  margin: 0 0 0.1cm;
+  font-weight: bold;
+  line-height: 1;
+}
+.page:not(.page1) .Header .PensionSchemeName,.page4 .PensionSchemeName,.page5 .PensionSchemeName,
+.page5 .PensionSchemeName a,.page6 .PensionSchemeName,.page6 .PensionSchemeName a {
+	font-size: 15pt;
+}
+.Header .FundNameFull,
+.header .FundNameFull {
+  color: #e2056f;
+  font-size: 15pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  margin-bottom: 0.5cm;
+}
+.InvestmentObjective h2,
+.breakdown h2 {
+  color: #9f248f;
+  font-size: 11pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.2cm;
+}
+.ObjectiveText {
+  font-size: 10pt;
+}
+.breakdown h2 {
+  padding-left: 0.2cm;
+}
+.Warningtext p {
+  color: #5a589c;
+  font-size: 12pt;
+}
+.Intro,
+.Intro a {
+  color: #9f258f;
+  font-size: 10pt;
+}
+.Intro a {
+  text-decoration: underline;
+}
+.page1 .composite {
+  border: 0pt solid #6d6e71;
+  border-top: 0;
+}
+.page5 .composite,
+.Notes {
+  border: 0.75pt solid #6d6e71;
+  border-top: 0;
+}
+.page5 .composite {
+  margin-bottom: 0.2cm;
+}
+.page5 .composite .composite {
+  border: 0;
+  margin: 0;
+}
+.Notes.contentSection{
+	padding-left: 0;
+}
+.page1 .breakdown {
+  position: relative;
+  border: 1pt solid #6d6e71;
+  border-top: 0;
+}
+.breakdownNote {
+  margin: 61px 0% 0 0 !important;
+  border-top: 0;
+  /* padding-top: 0; */
+  position: relative;
+  height: auto;
+  /* top: 0px; */
+  /* right: 0px; */
+  /* padding-right: 1%; */
+  /* padding-left: 1%; */
+  background: transparent;
+}
+.breakdownNote .item2 {
+  position: relative;
+  top: 1cm;
+}
+.page2 > .row > .composite1 > .Compositeborderbody > .row2 > .column2 > .row,
+.page2 > .row > .composite1 > .compositebody > .row2 > .column2 > .row {
+  margin: 0;
+}
+.page2 > .row > .composite1 > .Compositeborderbody > .row2 > .column2,
+.page2 > .row > .composite1 > .compositebody > .row2 > .column2 {
+  display: none;
+}
+.page2
+  > .row
+  > .composite1
+  > .Compositeborderbody
+  > .row2
+  > .column1
+  + .column2,
+.page2 > .row > .composite1 > .compositebody > .row2 > .column1 + .column2 {
+  display: block;
+}
+span.footerNote {
+  display: block;
+  margin-top: 0.2cm;
+  font-size: 8pt;
+}
+.Compositeborderbody,
+.compositebody {
+  border: 0pt solid #6d6e71;
+  border-top: 0;
+  position: relative;
+}
+.page3 > .row3 .compositebody {
+  border: 0.75pt solid #6d6e71;
+  border-top: 0;
+
+  margin: 0;
+}
+.compositeheader h2, .performancetable h2, 
+.Perfchart h2, .PerfChart h2, .glidepathimages span,
+.page2>.row6 h2,.page4 > .row3 h2,.page4 > .row3 h2,.page4 > .row4 .QeDataAsAtDate,
+.page4 > .row5 .QeDataAsAtDate{
+  background-color: #262a82;
+  color: #fff;
+  font-size: 11pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.2cm;
+  padding: 0.1cm 0.3cm 0;
+  height: 22px;
+  display: block;
+}
+.page4 > .row4 .QeDataAsAtDate, .page4 > .row5 .QeDataAsAtDate {
+    width: 18.36cm;
+    position: relative;
+    left: -0.2cm;
+}
+.page2>.row6 h2{
+  height: 26px;
+}
+.highcharts-credits {
+  transform: translateY(5px);
+}
+.breakdown h2 {
+  width: 18.38cm;
+}
+.GeographicAllocation.breakdown h2,
+.holding.PrincipalHoldings h2,
+.CreditAllocation h2 {
+  border-top: 0.75pt solid #6d6e71;
+  padding-top: 0.2cm;
+}
+.SectorAllocation.breakdown h2,
+.AssetAllocation.breakdown h2 {
+  padding-top: 0.2cm;
+}
+.breakdown {
+  position: relative;
+}
+.Notes p {
+  padding: 0.1cm 0.3cm;
+}
+.Notes h2 {
+  padding: 0.1cm 0.3cm;
+}
+.PerfChart h2 {
+  border-bottom: 2px solid #fff;
+  padding: 0.1cm 0.3cm;
+}
+.PerfChart {
+  padding-bottom: 0.3cm;
+}
+.PerfChart .keyContainer{
+	margin-top:-0.3cm;
+	margin-left:0.3cm;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+.PerfChart .keyContainer .key-color{
+	display: inline-flex !important;
+	float: none !important;
+		flex-wrap: nowrap;
+}
+.PerfChart .keyContainer .label{
+	line-height:10px;
+	color:#000;
+	white-space: nowrap;
+	display: inline-flex !important;
+	float: none !important;
+	flex-wrap: nowrap;
+	font-weight: normal !important;
+}
+.PerfChart .keyContainer b{
+	white-space: nowrap;
+}
+.performancetable h2, .PerfChart h2{
+	padding: 0.1cm 0.3cm 0;
+	margin-bottom: 0
+}
+.page3 .row5 p,
+.page3 .row7 p {
+  line-height: 0.3cm;
+}
+.compositeheader h2 span,
+.performancetable h2 span,
+.pdfperformancechart h2 span {
+  color: #e2056f;
+}
+/*
+.compositeheader > *, .compositebody > * {
+padding: 0.1cm 0.3cm;
+color: #e2056f;
+}
+*/
+
+.FundInfo + .compositebody,
+.UnderlyingFundInformation + .compositebody,
+.ImportantInformation + .compositebody {
+  padding: 0 0.2cm 0.2cm;
+}
+.FundInfo + .compositebody {
+  padding-top: 0cm;
+}
+.ImportantInformation + .compositebody {
+  font-size: 9.5pt;
+}
+.SpecialRiskFactorstext br {
+  display: none;
+}
+.horizontal-list.Infoone {
+  border-top: 1.5pt solid #262a82;
+  border-bottom: 1.5pt solid #7e7ab2;
+}
+.horizontal-list.Infoone {
+  border-bottom: 0;
+}
+.text.Infoone {
+  border-bottom: 1.5pt solid #262a82;
+}
+.text.Infoone.Infoone1 {
+  border-bottom: 0.5pt solid #7e7ab2;
+}
+.text span:last-child {
+  float: right;
+  max-width: 100%;
+  display: block;
+  text-align: right;
+}
+.horizontal-list.horizontal-list1.infotwo {
+  border: 0;
+}
+.horizontal-list.Infoone > div,
+.compositebody .text > p.UnitSize,
+.compositebody .text > p.FundSize,
+.compositebody .text > p.RiskRating,
+.compositebody .text > p.FundBenchmarkName,
+.compositebody .text > p.Bencmark {
+  border-top: 0.5pt solid #7e7ab2;
+  width: 100%;
+  margin: 0;
+  display: inline-block;
+  /*! height: 25px; */
+  position: relative;
+}
+.compositebody .text > p.FundBenchmarkName {
+  /*! height: auto; */
+  /*! min-height: 24px; */
+  /*! display: block; */
+}
+.compositebody .text > p.RiskRating:empty,
+.compositebody .text > p.FundBenchmarkName:empty {
+  display: none;
+}
+.compositebody .text > p.FundBenchmarkName .value {
+  /*! width: 75%; */
+  line-height: 10pt;
+}
+.horizontal-list.horizontal-list1.infotwo div {
+  float: left;
+}
+.horizontal-list.horizontal-list1.infothree div.LaunchDate,
+.horizontal-list.horizontal-list1.infothree
+  div.FundSize-YeDataAsAtDate-QeDataAsAtDate-FundSizeDate {
+  width: 49.25%;
+  margin-right: 1.5%;
+  border-bottom: 1pt solid #7e7ab2;
+  border-top: 1pt solid #7e7ab2;
+  height: 25px;
+  float: left;
+}
+.horizontal-list.horizontal-list1.infothree
+  div.FundSize-YeDataAsAtDate-QeDataAsAtDate-FundSizeDate {
+  margin: 0;
+}
+.horizontal-list.horizontal-list1.infothree
+  div.FundSize-YeDataAsAtDate-QeDataAsAtDate-FundSizeDate
+  .label
+  span {
+  padding-left: 0.2cm;
+  font-weight: normal;
+}
+.horizontal-list.horizontal-list1.infothree
+  div.FundSize-YeDataAsAtDate-QeDataAsAtDate {
+  width: 50%;
+  margin-bottom: 0.2cm;
+  border-bottom: 1.5pt solid #262a82;
+  border-top: 0 solid #7e7ab2;
+  height: 25px;
+}
+.horizontal-list div.FundSize-YeDataAsAtDate-QeDataAsAtDate .label span {
+  display: block;
+  padding-left: 0.2cm;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+.horizontal-list.Infoone > div:first-child {
+  border-top: 0;
+}
+
+.horizontal-list.Infoone > div .label,
+.text .label {
+  padding: 0.1cm 0.15cm;
+  line-height: 8pt;
+  font-size: 9pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  float: left;
+  width: 32%;
+}
+.horizontal-list.infothree > div .label {
+  padding: 0.15cm;
+  line-height: 8pt;
+  font-size: 9pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  color: #000;
+  margin: 0;
+  float: left;
+}
+
+.horizontal-list > div .value,
+.text .value {
+  padding: 0.15cm;
+  line-height: 8pt;
+  font-size: 9pt;
+  color: #000;
+  font-weight: normal;
+  margin: 0;
+}
+.page2 .column1 .horizontal-list > div,
+.page2 .column1 .text p {
+  display: table;
+  width: 100%;
+}
+.page2 .column1 .horizontal-list > div .label,
+.page2 .column1 .text .lebel,
+.page2 .column1 .horizontal-list > div .value,
+.page2 .column1 .text .value {
+  float: none;
+  display: table-cell;
+  width: auto;
+}
+.page2 .column1 .horizontal-list > div .label,
+.page2 .column1 .text .label {
+  width: 40%;
+  float: none;
+}
+.page2 .column1 .horizontal-list > div .value,
+.page2 .column1 .text .value {
+  text-align: right;
+}
+.horizontal-list > div.TER,
+.horizontal-list > div.AnnualCharge {
+  background-color: #ededed;
+  border-bottom: 0;
+}
+.horizontal-list > div.TER .value,
+.horizontal-list > div.OnGoingCharge .value {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.horizontal-list > div.OtherExpenses {
+  background-color: #ededed;
+}
+.horizontal-list > div.TER .label span {
+  display: block;
+  float: none;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  margin: 5px 0 0 0;
+}
+
+.horizontal-list > div.AnnualCharge,
+.horizontal-list > div.OtherExpenses,
+.horizontal-list > div.advisercharge {
+  border: 0;
+  width: 100%;
+}
+.horizontal-list > div.advisercharge,
+.horizontal-list > div.PropertyExpenseRatio {
+  border-top: 0.5pt solid #262a82;
+}
+.horizontal-list.horizontal-list1.Infotwo {
+  color: #000;
+}
+
+.horizontal-list > div.TER {
+  width: 100%;
+
+  display: inline-block;
+}
+.horizontal-list.Infotwo > div .label {
+  padding: 0.15cm;
+  line-height: 8pt;
+  font-size: 9pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  color: #000;
+  margin: 0;
+  float: left;
+}
+.horizontal-list.Infotwo > div.TER .label {
+  font-weight: normal;
+}
+.horizontal-list.horizontal-list1.Infotwo {
+  border-top: 1.5pt solid #262a82;
+  border-bottom: 1.5pt solid #262a82;
+}
+.horizontal-list > div.AnnualCharge span.label,
+.horizontal-list > div.OtherExpenses span.label {
+  padding-left: 15px;
+  padding-right: 0;
+  width: 80%;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  line-height: 8pt;
+  color: #000;
+}
+.horizontal-list > div.AnnualCharge span span,
+.horizontal-list > div.OtherExpenses span span,
+.horizontal-list > div.advisercharge span span {
+  float: left;
+  padding-left: 0;
+  margin-left: -8px;
+}
+.UnderlyingFundNameFull {
+  color: #e2056f;
+  font-size: 10pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  margin-bottom: 0.2cm;
+}
+.Underlying + .compositebody .horizontal-list {
+  border: 0;
+}
+.Underlying + .compositebody .horizontal-list > div {
+  /* border:0; */
+}
+h2.UnderlyingFundNameFull-LaunchDate,
+h2.LaunchDate-FundNameFull,
+h2.LaunchDate-FundNameFull-UnitNameFull {
+  color: #9f248f;
+  font-size: 11pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  margin-bottom: 0.2cm;
+}
+h2.UnderlyingFundNameFull-LaunchDate span,
+h2.LaunchDate-FundNameFull span,
+h2.LaunchDate-FundNameFull-UnitNameFull span {
+  padding-left: 0.2cm;
+  float: none !important;
+  color: #000000;
+}
+.Underlying + .compositebody .horizontal-list > div .label {
+  font-size: 10pt;
+  padding-right: 0;
+}
+.page .Page {
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  position: absolute;
+  bottom: 1cm;
+  right: 1cm;
+}
+.page .Page p {
+  text-align: right;
+}
+.KeyFacts3 .item2 .label,
+.KeyFacts3 .item4 .label {
+  padding: 0;
+}
+.KeyFacts3 .item2 .value,
+.KeyFacts3 .item4 .value {
+  color: #666;
+  font-size: 8pt;
+}
+.page1 > .row3 > .composite1 > .compositebody > .row3 > .column1,
+.page1 > .row3 > .composite1 > .compositebody > .row3 > .column2,
+.page1 > .row3 > .composite1 > .compositebody > .row3 > .column3 {
+  width: 33%;
+}
+.compositebody .text {
+  color: #000;
+}
+
+.page5
+  > .row3
+  > .composite1
+  > .compositebody
+  > .row2
+  > .composite1
+  > .compositebody
+  > .row2
+  .row1
+  .text1
+  p.item2
+  b {
+  color: #000;
+}
+.page5
+  > .row3
+  > .composite1
+  > .compositebody
+  > .row2
+  > .composite1
+  > .compositebody
+  > .row2
+  .row1
+  .text1
+  p:nth-child(2)
+  b {
+  color: #000;
+}
+.page5 .compositebody .text b {
+  /*! color: #9F258F; */
+}
+p.PropertyFundExpensesText,
+p.FundExpensesText {
+    margin-top: 0.1cm;
+	margin-bottom: 0;
+}
+.compositebody .text.Infotext p {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+}
+.keyWrapper {
+  margin-top: 0.1cm;
+  font-size: 8pt;
+}
+.compositebody .row {
+  margin-bottom: 0;
+}
+.page3 .compositebody > .row {
+  margin-bottom: 0;
+}
+.FundPerformance h2,
+.ImpoInfoText h2,
+.Perftextex h2,
+.otherinfotext h2,
+.Risktext h2 {
+  color: #e2056f;
+  font-size: 11pt;
+  margin-bottom: 0.2cm;
+}
+.page2 .row {
+  margin-bottom: 0cm;
+}
+
+.page2 > .row:not(.row1) {
+  margin-bottom: 0.2cm;
+}
+.page2 > .row.row6:not(.row1){
+  margin-bottom:0;
+}
+.page2 > .row.row3 .composite {
+  border-left: 1pt solid #6d6e71;
+  border-right: 1pt solid #6d6e71;
+  border-bottom: 1pt solid #6d6e71;
+}
+.page2 > .row.row3 .composite .compositebody > .row {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding: 0;
+}
+.Compositeborderheader h2 {
+  background-color: #5d0039;
+  color: #fff;
+  font-size: 10pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  padding: 0.1cm 0.3cm;
+  width: 697px;
+}
+.page2 .breakdown {
+  height: auto;
+  /* border-left: 1pt solid #6d6e71;
+  border-bottom: 1pt solid #6d6e71;
+  border-right: 1pt solid #6d6e71;
+  width: 718px; */
+}
+.breakdown.fullholdings{
+   border-left: 1pt solid #6d6e71;
+    /* border-bottom: 1pt solid #6d6e71; */
+    border-right: 1pt solid #6d6e71;
+}
+.breakdown .chart {
+  margin: 0.1cm 0.3cm 0.4cm;
+  width: 40% !important;
+  margin-right: 0;
+  height: auto;
+}
+.page2 .breakdown .chart {
+  height: 5.5cm;
+  width: 28% !important;
+  margin-right: 34%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.page3 > .row3 > .composite1 > .compositebody > .row > .column2 p {
+  /*! padding-top: 1cm */
+}
+.breakdown.fullholdings .chart {
+  width: 97% !important;
+  height: auto;
+}
+.breakdown table {
+  margin: 0.1cm 0cm 0 0.4cm;
+  width: 51% !important;
+  float: left !important;
+}
+.breakdown .footer {
+  /*PDF Reactor V11 migration changes*/
+  padding: 0;
+  position: relative;
+  top: -237px;
+  right: -5.3cm;
+  width: 36.5%;
+  float: right;
+}
+.breakdown.fullholdings .footer {
+  position: static;
+  width: 98%;
+  margin: 0 auto;
+  text-align: right;
+  font-size: 9pt;
+}
+.breakdown th {
+  display: none;
+}
+.holding th {
+  /* display: none; */
+}
+.keyContainer {
+  float: left;
+  margin-right: 0.5cm;
+  white-space: nowrap;
+}
+.key-color {
+  width: 2.5mm;
+  height: 2.5mm;
+}
+.breakdown .key-color {
+  border-radius: 50%;
+}
+.breakdown table td,
+.holding table td {
+  padding: 2px 0;
+  color: #000;
+  font-size: 9pt;
+  font-weight: normal;
+  vertical-align: middle;
+}
+.breakdown table td.Key {
+  padding-right: 5px;
+  width: 0.4cm;
+}
+.breakdown table td.Weight {
+  text-align: right;
+}
+.breakdown .footer {
+  color: #000;
+  margin: 0 0 0.1cm;
+  font-weight: normal;
+}
+.page2 > .row3 > .composite1 > .compositebody > .row5 > .column2 {
+  width: 28%;
+  font-weight: normal;
+}
+.holding {
+  border-top: 0pt solid #000;
+  padding-top: 0;
+  padding: 0 10px 10px;
+}
+.PrincipalHoldings.holding.contentSection {
+  padding: 0 0.2cm 0.2cm;
+}
+.page3 .compositebody>.row5{
+	position: relative;
+	z-index: 1;
+}
+.holding h2{
+	border-top: 0.75pt solid #6d6e71 !important;
+}
+.holding h2 {
+  background-color: #ffffff;
+  color: #9f248f;
+  margin: 0 0cm 0.2cm;
+  padding: 0.2cm 0cm 0;
+  height: 20px;
+  border-top: 0pt solid #6d6e71;
+  font-size: 11pt;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+.holding table td.spacer {
+  width: 1%;
+}
+
+.holding table td.Weight {
+  padding-left: 0.2cm;
+  padding-right: 0.2cm;
+  border-left: 0.5pt solid #000;
+  border-right: 0.5pt solid #000;
+  text-align: center;
+  width: 8%;
+}
+.holding table td.Weight:last-child{
+	border-right:none;
+}
+td.Number.Number {
+  padding-right: 0.1cm;
+  font-weight: 700;
+  text-align: right;
+  width: 2%;
+}
+
+.holding table td.Name.Name {
+  padding-bottom: 0.1cm;
+  width: 40%;
+}
+.performancetable table {
+  border-top: 0.5pt solid #000000;
+  border-bottom: 1.5pt solid #262a82;
+  font-size: 9pt;
+}
+.performancetable th {
+  background-color: #e6e7e8;
+  padding: 0.1cm 0.05cm;
+  border-right: 0.5pt solid #000000;
+  color: #262a82;
+  font-weight: bold;
+  text-align: center;
+}
+.performancetable .rowheader {
+  text-align: left;
+  width: 23%;
+  padding-left: 0.15cm;
+  background-color: #e6e7e8;
+}
+.performancetable td {
+  background-color: #ffffff;
+  padding: 0.1cm 0.05cm;
+  border-top: 0.5pt solid #000000;
+  border-right: 0.5pt solid #000000;
+  color: #000;
+  text-align: center;
+}
+.performancetable th:last-child,
+.performancetable td:last-child {
+  border-right: 0;
+}
+.PerfChart .chart {
+  height: 6cm;
+}
+.PerfChart .chart tspan {
+  fill: #000000;
+  font-size: 8pt;
+}
+.Performancedisclaimer {
+  margin: 0;
+  line-height: 9pt;
+}
+.underlyingfundinfocontinued.compositeheader.contentSection,
+.underlyingfundinfocontinued.compositeheader.contentSection h2 {
+  margin: 0;
+}
+.underlyingfundinfocontinued.compositeheader.contentSection + .compositebody {
+  padding: 0 0.2cm 0.2cm;
+}
+.page3 .row {
+  /*! margin-bottom:4pt; */
+}
+
+.underlyingfundinfocontinued {
+  margin-bottom: 0.2cm;
+}
+.SpecialRiskFactors,
+.ThirdPartyDisclaimers,
+.page4 .composite1.composite {
+  border: 1pt solid #6d6e71;
+  border-top: 0;
+}
+.page4 .contentSection.Notes {
+  border: 1pt solid #6d6e71;
+  border-top: 0;
+}
+.page4 .contentSection.Notes:empty {
+  border: 0pt solid #6d6e71;
+  border-top: 0;
+}
+.page4 .compositebody .composite1.composite {
+  border: 0;
+}
+.page4 .compositebody .composite1.composite .compositebody > * {
+  padding: 0;
+}
+.SpecialRiskFactors h2,
+.ImportantInformation h2,
+.ThirdPartyDisclaimers h2,
+.Notes h2 {
+  background-color: #262a82;
+  color: #fff;
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  margin-bottom: 0.2cm;
+  padding: 0.1cm 0.3cm;
+}
+.SpecialRiskFactors ul {
+  padding: 0 0.2cm 0.05cm 0.2cm;
+}
+.SpecialRiskFactors p,
+.ImportantInformation p,
+.ThirdPartyDisclaimers p {
+  padding: 0.1cm 0.2cm;
+  margin: 0;
+}
+.ImportantInformation p:empty {
+  margin: 0;
+  padding: 0;
+}
+.Perftextex p {
+  color: #e2056f;
+}
+.PerfCaveat .item2 {
+  font-weight: bold;
+}
+.PerfCaveat .item3 {
+  color: #e2056f;
+}
+.AXAWealthCaveat {
+  position: absolute;
+  bottom: 1.5cm;
+  font-size: 8pt;
+  width: 19cm;
+  left: 1cm;
+}
+.Caveat,
+.caveat {
+  position: absolute;
+  bottom: 1.5cm;
+  width: 19cm;
+  left: 1cm;
+  right: 1cm;
+  padding-top: 0.2cm;
+  font-size: 8pt;
+}
+.Infotext a {
+  color: #000;
+}
+.ImportantInformation p,
+.SpecialRiskFactors p,
+.Notes p,
+.ThirdPartyDisclaimers p {
+  line-height: 10pt;
+}
+.ImportantInformation a {
+  color: #000;
+  text-decoration: none;
+}
+.Imp h2 {
+  background-color: #e2056f;
+}
+.Overview p.OverviewHeader {
+  font-weight: bold;
+  color: #262a82;
+  font-size: 12pt;
+}
+.contentSection {
+  padding-left: 0.6cm;
+}
+.whattypeoffunds {
+  position: relative;
+  padding: 0cm 0.6cm 0.7cm;
+  margin-bottom: 0.2cm !important;
+}
+.howdoesitinvest {
+  position: relative;
+  padding: 1px 0.6cm 0.4cm 0.6cm;
+  margin-bottom: 0.2cm;
+
+  margin-top: -0.6cm;
+}
+.whattypeoffunds:before,
+.howdoesitinvest:before {
+  display: block;
+  z-index: -1;
+  background: #dad9ea;
+  content: "";
+  right: 0;
+  left: -3cm;
+  width: auto;
+  height: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+.row4 .whattypeoffunds:after {
+  display: block;
+  z-index: 2;
+  background: #9f248f;
+  content: "";
+  right: 0;
+  left: 0;
+  width: 4pt;
+  height: 1cm;
+  top: 0.5cm;
+
+  position: absolute;
+}
+.whattypeoffunds:first-of-type {
+  margin: 0;
+}
+.HowDoesItInvest p {
+  /*! padding-bottom: 0.5cm; */
+  margin: 0;
+  padding: 0 !important;
+}
+.whattypeoffunds h2,
+.HowDoesItInvest h2 {
+  padding-top: 0.4cm;
+}
+.whataretherisks h2 {
+  font-size: 20pt;
+  line-height: 24pt;
+  margin: 0.6cm 0 0.2cm;
+}
+.row5 .whattypeoffunds h2 {
+  padding: 0;
+}
+.compositeheader.whataretherisks h2 {
+  font-size: 20pt;
+  line-height: 24pt;
+  height: auto;
+  color: #262a82;
+  background: no-repeat;
+  padding: 0;
+  margin: 0.2cm 0 0.3cm;
+}
+.compositeheader.whataretherisks {
+  padding: 0;
+}
+.compositeheader.whataretherisks + .compositebody > .row {
+  /*! width: 50%; */
+  float: none;
+  display: inline-block;
+}
+.compositeheader.whataretherisks,
+.compositeheader.whataretherisks + .compositebody {
+  padding-left: 0.6cm;
+}
+.compositeheader.whataretherisks + .compositebody {
+  margin-bottom: 0;
+  /* 	display: inline-block; */
+  column-count: 2;
+  column-gap: 0.6cm;
+}
+.page1 > .row6 > .column > .row > .row {
+  margin: 0;
+}
+.marketrisk,
+.creditraterisk,
+.foreignrisk,
+.allocationrisk,
+.counterparty,
+.moneymarket,
+.liquidityrisk,
+.interestraterisk,
+.exchangeraterisk,
+.reinsurancerisk,
+.emergingmarkets,
+.Property,
+.Derivatives,
+.Inflation {
+  background: url(./images/marketRisk.svg) no-repeat left top/1.3cm;
+  padding-left: 1.8cm;
+  margin-bottom: 0.3cm;
+  min-height: 2cm;
+}
+.liquidityrisk,
+.interestraterisk,
+.exchangeraterisk,
+.reinsurancerisk,
+.emergingmarkets,
+.Property {
+  background-position: left top;
+
+  /*! margin-left: 0.3cm; */
+}
+.marketrisk,
+.creditraterisk,
+.foreignrisk,
+.allocationrisk,
+.counterparty,
+.moneymarket,
+.liquidityrisk,
+.interestraterisk,
+.exchangeraterisk,
+.reinsurancerisk,
+.emergingmarkets,
+.Property,
+.Derivatives,
+.Inflation {
+  background: no-repeat left top/1.3cm;
+  padding-left: 1.8cm;
+  margin-bottom: 0.15cm; /*191773 Phoenix theme amendments issue #1 fix */
+  min-height: 2cm;
+}
+.liquidityrisk,
+.interestraterisk,
+.exchangeraterisk,
+.reinsurancerisk,
+.emergingmarkets,
+.Property {
+  background-position: left top;
+  /*! padding-left: 1.9cm; */
+}
+.marketrisk p,
+.creditraterisk p,
+.foreignrisk p,
+.allocationrisk p,
+.counterparty p,
+.moneymarket p,
+.liquidityrisk p,
+.interestraterisk p,
+.exchangeraterisk p,
+.reinsurancerisk p,
+.emergingmarkets p,
+.Property p,
+.Derivatives p,
+.Inflation p {
+  text-align: justify;
+  line-height: 1.22 !important;
+  margin: 0;
+}
+.creditraterisk {
+  background-image: url(./images/CreditRateRisk.svg);
+  background-size: 50px 36px;
+}
+.foreignrisk {
+  background-image: url(./images/foreign.svg);
+  background-size: 55px 52px;
+}
+.allocationrisk {
+  background-image: url(./images/AllocationRisk.svg);
+  background-size: 50px 48px;
+}
+.counterparty {
+  background-image: url("./images/CounterpartRisk1.svg");
+  background-size: 50px 35px !important;
+}
+.marketrisk {
+  background-image: url("./images/marketRisk.svg");
+  background-size: 50px 34px;
+}
+.moneymarket {
+  background-image: url("./images/money-market.svg");
+  background-size: 50px 35px; /*same as counter party risk*/
+}
+.liquidityrisk {
+  background-image: url("./images/LiquidityRisk.svg");
+  background-size: 50px 34px; /*same as market risk*/
+}
+.interestraterisk {
+  background-image: url("./images/InterestRateRisk.svg");
+  background-size: 48px 50px;
+}
+.exchangeraterisk {
+  background-image: url("./images/ExchangeRisk.svg");
+  background-size: 49px 44px; /*same as foreign risk*/
+}
+.reinsurancerisk {
+  background-image: url("./images/ReinsuranceRisk.svg");
+  background-size: 40px 48px !important;
+}
+.Derivatives {
+  background-image: url("./images/derivatives.svg");
+  background-size: 54px 48px;
+  /*! padding-bottom: 0.3cm; */
+}
+.Inflation {
+  background-image: url("./images/inflation.svg");
+  background-size: 50px 48px;
+  /*! padding-bottom: 0.3cm; */
+}
+.emergingmarkets {
+  background-image: url("./images/EmergingMarketRisk.svg");
+  background-size: 49px 41px;
+}
+.Property {
+  background-image: url("./images/property.svg");
+  background-size: 48px 48px;
+}
+.page1 > .row > .column {
+  width: auto !important;
+}
+.page1 .column > .section {
+  margin-left: 0 !important;
+}
+.InsertNotes h2 {
+  padding: 0cm 0 0 0.5cm;
+  margin-bottom: 0.2cm;
+  border-left: 4pt solid #9f248f;
+}
+div.furtherinformation {
+  background: #dad9ea;
+  padding: 0.4cm 0.5cm;
+  width: 4cm;
+}
+.furtherinformation h2 {
+  margin-bottom: 0.2cm;
+}
+.FurtherInformation {
+  text-align: justify;
+}
+.text.insertcaveat {
+  background: url(./images/tpt_logo.svg) no-repeat right bottom/auto 1.3cm;
+  background-size: 73px 50px; /*PDF reactor V11 migration changes*/
+  width: 17.3cm;
+  height: auto;
+  position: absolute;
+  bottom: 0.5cm;
+  left: 1cm;
+  content: "";
+  padding-top: 1.7cm;
+  font-size: 8pt;
+}
+.InsertCaveat {
+  width: 12cm;
+  color: #262a82;
+  font-size: 8pt;
+}
+.page1 .Page {
+  display: none;
+}
+
+.InsertNotes p {
+  padding-left: 0.65cm;
+  /*! text-align: justify; */
+}
+.InsertNotes {
+  padding: 0;
+  width: 5.68cm;
+  margin-right: 0.5cm;
+}
+.page:not(.page1) > .row2 {
+  /*border-bottom: 0.75pt solid #000;*/ /*191773 Phoenix theme amendments issue #2 fix */
+  padding-bottom: 2px;
+  margin-bottom: 0.4cm;
+}
+.page2 .contentSection,
+.page3 .contentSection {
+  padding-left: 0;
+}
+.page2 .composite{
+	border: 0.75pt solid #6d6e71
+}
+.page2 > .row6 {
+	border: 0.75pt solid #6d6e71;
+}
+.page2 > .row7{
+	border: 0.75pt solid #6d6e71;
+	border-top:none;
+}
+.page2 > .row5 {
+	border-bottom: none;
+}
+.page2 > .row6 {
+	border-top:none;
+	border-bottom:none;
+}
+.page2 .row5,.page2 > .row6,.page2 > .row6 .row1,.page2 .row5 p.SRRIRating,.page2 .row5 .row1{
+	margin-bottom:0;
+}
+.page4 > .row3 h2{
+	margin-bottom:0;
+}
+.page2 .row5 .row1 p,
+.page4 > .row3 p,
+.page2 .row6 .row1 p {
+    padding-left: 0.2cm;
+	padding-right: 0.2cm;
+    margin-bottom: 0;
+	padding-bottom:0.1cm;
+}
+.page4 > .row4,.page4 > .row5{
+     margin-bottom: 0.2cm;
+}
+.page4 > .row3 p ,.page4 > .row4,.page4 > .row5,.page4 > .row6,.page4 > .row7,.page4 > .row8{
+	border-left: 0.75pt solid #6d6e71;
+	border-right: 0.75pt solid #6d6e71;
+}
+.page4 > .row6,.page4 > .row7,.page4 > .row8,.page4 > .row9,.page4 > .row10{
+	padding-left: 0.2cm;
+	padding-right: 0.2cm;
+}
+.page4 > .row3 p.item3{
+	padding-top:0.1cm;
+}
+.page4 > .row4{
+	margin-top:0;
+	padding-bottom:0.2cm;
+}
+.page2 > .row6 * ,.page2 > .row7 * {
+    box-sizing: border-box;
+}
+.page2 .row .iconSection {
+    width: 100%;
+    height: auto;
+		padding-left: 0.2cm;
+	padding-right: 0.2cm;
+}
+.page2 .row5 .row1 p:first-child {
+    padding-top: 0.2cm;
+}
+.LifeStageTable th {
+  border-bottom: 1.5pt solid #262a82;
+  padding-bottom: 0.2cm;
+  text-align: left;
+}
+.LifeStageTable td:first-child {
+  font-weight: bold;
+  width: 2.5cm;
+  text-align: left;
+}
+.LifeStageTable table td {
+  padding: 0.05cm 0;
+  border-bottom: 0.75pt solid #6d6e71;
+}
+.page4 .contentSection {
+  padding-left: 0;
+}
+.YearonYearPerformance.contentSection,
+.AnnualisedPerfTable.contentSection,
+.CumulativePerdTable.contentSection {
+  margin-bottom: 0.2cm;
+}
+.page4 b {
+  font-weight: bold;
+  /* font-size: 10pt; */
+}
+.page5 .contentSection {
+  padding-left: 0;
+}
+.glidepathimages img {
+  width: 75%;
+  text-align: center;
+  margin: 0 auto;
+}
+p:empty {
+  display: none;
+}
+/*191773 Phoenix theme amendments issue #4 fix */
+.page5 .row3 .composite1 .compositebody .row4 .text.contentSection p b,
+.page5 .row3 .composite1 .compositebody .row5 .text.contentSection p b,
+.page5 .row3 .composite1 .compositebody .row6 .text.contentSection p b {
+  color: #a51890;
+}
+/*as per pbi 195780<<<<*/
+.Infoone1 {
+  border-top: 0.5pt solid #7e7ab2 !important;
+}
+.page1 .horizontal-list1.Infoone,
+.page1 .contentSection.Infoone {
+  padding-left: 0 !important;
+}
+
+.page2 > .row {
+  margin-bottom: 0;
+}
+
+.page2 > .row1,
+.page2 > .row2,
+.page2 > .row3 .breakdown1,
+.page2 > .row3 .composite.composite1,
+.page2 > .row4 .breakdown1,
+.page2 > .row5 .breakdown1,
+.page2 > .row6 .breakdown1,
+.page2 > .row7 .breakdown1,
+.page2 > .row8 .breakdown1 {
+  margin-bottom: 0.2cm;
+}
+
+.PG2FreeTextBox {
+  border: 1.5pt solid #6d6e71;
+  padding: 0.1cm 0.1cm;
+}
+.page1 .row3 br {
+  display: block;
+  margin: 1px 0;
+  content: "";
+  height: 2px;
+}
+
+.Pagination .pageTotal {
+    padding-left: 4px;
+}
+.Pagination b{
+	font-weight: normal;
+}
+.page4 > .row4 > .column1 .HorizontalCss tr {
+    border-bottom: 1pt solid #688EB6;
+}
+.page4 > .row4 > .column1 table th {
+    text-align: left;
+}
+.page4 > .row4 > .column2 .HorizontalCss tbody tr{
+	background-color: #009D9A;
+	   border-bottom: 1pt solid #D4D4D4;
+}
+.page4 > .row4 > .column .HorizontalCss tr th{
+	height:15px;
+}
+.page4 > .row4 > .column2 .HorizontalCss tr td,
+.ESGReport a b,.page4 > .row8 .contentSection .item2 a,
+.page4 > .row9 a{
+	color:#fff;
+}
+.page .Pagination a{
+	color:#000 !important;
+}
+.page4 > .row4 > .column2 .HorizontalCss tr th{
+	    color: #000;
+    text-align: left;
+    opacity: 0;
+}
+.page4 > .row4 > .column table.HorizontalCss td{
+	padding:1px;
+}
+.page4 > .row4 > .column2 table.HorizontalCss td:nth-child(2) {
+    text-align: right;
+    padding-right: 10px;
+}
+.page4 > .row6 b,.page4 > .row7 b,.page4 > .row9 b{
+	font-weight: normal;
+}
+.page4 > .row7 a,.page4 > .row6 a {
+     /* color: #5d9ad7; */
+    color: #ad178d;
+}
+.page4 > .row7 .ESGReport  a{
+	color: #231F20;
+}
+.page4 > .row7 p, .page4 > .row8 p, .page4 > .row9 p,.page4 > .row6 p{
+	margin-bottom:0;
+	padding-bottom:0.1cm;
+}
+.page4 p.ESGReport {
+    padding-left: 0.2cm;
+    padding-right: 0.2cm;
+    border-top: 0.75pt solid #6d6e71;
+    border-left: 0.75pt solid #6d6e71;
+    border-right: 0.75pt solid #6d6e71;
+    background-color: #009D9A;
+    margin-bottom: -2px;
+}
+.page4 > .row8 .contentSection .item2  , .page4 > .row9 {
+    padding-left: 0.2cm;
+    padding-right: 0.2cm;
+    border-left: 0.75pt solid #6d6e71;
+    border-right: 0.75pt solid #6d6e71;
+}
+.page4 > .row8 .contentSection .item2  , .page4 > .row9 .contentSection .item2{
+	background-color: #009D9A;
+}
+.page4 > .row9 {
+    padding-bottom: 10px;
+    border-bottom: 0.75pt solid #6d6e71;
+}
+.page4  .ESGReport {
+	font-size: 11pt;
+	padding-bottom:10px;
+}
+.page4 .ESGReport a b b {
+    color: #ad178d;
+}
+.page5 .contentSection.performancetable.performancetable1 a,
+.page5 .pdfperformancechart a ,
+.page6 .ImportantInformation a{
+    color: #fff;
+}
+.page6 .Caveat b {
+    font-weight: normal;
+}
+.page5 .row10 a b b ,.page6 .row3 .compositebody b b p,.AdditionalNotes b b ,
+.page4 .row8  b b,.STAText b b {
+    font-weight: normal;
+}
+.page5 .row10 a b b b,.page6 .row3 .compositebody a b b b,.AdditionalNotes b b b,
+.page4 .ESGReport a b {
+    font-weight: bold;
+}
+.page6 > .row3 {
+    border: 0.75pt solid #6d6e71;
+	margin-bottom:0.2cm;
+}
+.page6 > .row3 .contentSection,.page6 > .row5 .contentSection,.page6 .row6 .contentSection{
+	padding-left:0;
+}
+.page3 > .row3 > .row1 {
+    margin-bottom: 0.2cm;
+	border: 0.75pt solid #6d6e71;
+	padding-bottom:0.1cm;
+}
+.page4 > .row5 > .column1 .donutchart .highcharts-legend-item text {
+		opacity:0;
+}
+.page4 > .row5 > .column1 .donutchart span.highcharts-subtitle {
+		opacity:0;
+}
+.page4 > .row5 > .column1 g.highcharts-data-labels.highcharts-series-0 ,
+.page4 > .row5 > .column1 g.highcharts-series-group{
+	opacity:0;
+}
+.page4 > .row5 {
+    position: relative;
+}
+.page4 > .row5 > .column2 {
+    float: left;
+    width: 30%;
+    position: absolute;
+    left: 30px;
+    top: 35px;
+	z-index: 9;
+}
+.page4 > .row5 > .column3 {
+    width: 50% !important;
+    position: relative;
+    left: -250px;
+	top:30px;
+}
+.page4 > .row5 > .column2 .HorizontalCss td {
+    padding: 2px 0 1.2px;
+}
+.page4 table.HorizontalCss tr.Row:last-child td{
+	padding-top:3px;
+}
+.page4 .donutchart .chart{
+    height: 215px;
+}
+.page4 > .row9 .contentSection .item2{
+    padding-left: 0.2cm;
+    padding-right: 0.2cm;
+}
+.page4  .row{
+  margin-bottom: 0;
+}
+.page4 > .row4,.page4 > .row5{
+  padding-left: 0.2cm;
+  padding-right: 0.2cm;
+}
+.page4 > .row3,.page4 > .row4{
+  margin-bottom: 0.2cm;
+}
+.page4 > .row3 p:last-child,.page4 > .row4{
+  border-bottom: 0.75pt solid #6d6e71;
+}
+.page4 > .row5 > .column2 .HorizontalCss th {
+  height: 16px;
+	text-align: left;
+	opacity: 0;
+}
+.page4 > .row5 > .column3 > .row1 p.item2 {
+  position: absolute;
+  right: -253px;
+  top: 0;
+  z-index: 9;
+	width: 175px;
+}
+.page4 > .row4 > .column2{
+	padding-top:33px;
+}
+/* TPTsingleblended */
