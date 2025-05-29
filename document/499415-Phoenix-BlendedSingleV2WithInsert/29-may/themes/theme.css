@@ -1695,7 +1695,7 @@ p:empty {
 	border: 0.75pt solid #6d6e71;
 	padding-bottom:0.1cm;
 }
-/* .page4 > .row5 > .column1 .donutchart .highcharts-legend-item text {
+.page4 > .row5 > .column1 .donutchart .highcharts-legend-item text {
 		opacity:0;
 }
 .page4 > .row5 > .column1 .donutchart span.highcharts-subtitle {
@@ -1721,7 +1721,8 @@ p:empty {
     position: relative;
     left: -250px;
 	top:30px;
-} */
+  min-height: 250px;
+}
  .page4 > .row5 > .column2,.page4 > .row5 > .column3{
   padding-top:30px;
  }
@@ -1765,5 +1766,46 @@ p:empty {
 }
 .page4 > .row4 > .column2{
 	padding-top:33px;
+}
+.page4 > .row5 > .column1 > .row2 {
+    display: none;
+}
+/*  As per client feedback table static color added - 499415: +Docs - PT-2348 Phoenix -  Amendments to new BlendedSingleV2WithInsert ESG Factsheet - 28 May feedback */
+.page4 > .row5 > .column2 .HorizontalCss td:first-child {
+  position: relative;
+  padding-left: 20px;
+}
+.page4 > .row5 > .column2 .HorizontalCss td:first-child::before {
+  content:"";
+  position: absolute;
+  top:3px;
+  left:0;
+  width:12px;
+  height:12px;
+  border-radius: 12px;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:first-child td:first-child::before {
+  background-color: #0D1E68;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(2) td::before{
+  background-color: #B2188B;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(3) td::before {
+  background-color: #3C9A7F;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(4) td::before{
+  background-color: #AAAAAC;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(5) td::before {
+  background-color: #AED3C7;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(6) td::before{
+  background-color: #F4DCED;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(7) td::before{
+  background-color: #76B6A3;
+}
+.page4 > .row5 > .column2 .HorizontalCss .Row:nth-child(8) td::before {
+  background-color: #4E7092;
 }
 /* TPTsingleblended */
