@@ -155,6 +155,7 @@ body {
   padding: 0.2cm 0.1cm 0.1cm 0.2cm;
   box-sizing: border-box;
 }
+
 .HeaderBox {
   padding: 0.2cm 0.1cm 0.1cm 0.2cm;
 }
@@ -1570,7 +1571,6 @@ footer {
 .page1 > .row29 > .column2 > .row1,
 .page1 > .row29 > .column3 > .row1 {
   height: 100%;
-  display: inline-flex;
 }
 
 .page1>.row8>.column1>.row6>.column6,
@@ -1578,30 +1578,78 @@ footer {
   padding-bottom: 5mm;
 }
 
-
-.page1>.row29 > .column1,.page1 > .row29 > .column2 {
-    display: inline-flex;
-    flex-wrap: wrap;
-      align-items: stretch;
-}
-.page1 > .row29 > .column1 > .row{
-  display: flex;
-  align-items: stretch;
-}
-.page1 > .row29 > .column1 > .row1 .column {
-    display: inline-flex;
-    flex-wrap: wrap;
+.page1 > .row29 > .column1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  gap: 5px;
+  grid-template-areas:
+   "menu1 menu2 menu3 menu4 menu5"
+"menu1 menu2 menu6 menu7 menu8"
+"menu1 menu2 menu9 menu10 menu11"
+"menu1 menu2 menu12 menu13 menu14";
+    
 }
 
-.page1 > .row29 p.PAI_18_1_Explanation {
-    margin-bottom: 5px;
-    width:100%;
+/* Target elements inside each row and map them to grid-areas */
+.page1 > .row29 > .column1 > .row1 > .column1 {
+  grid-area: menu1;
 }
-.page1 > .row29 > .column1 > .row1 .column .text1 p{
-  width:120px;
-   word-break: break-word;
-    word-wrap: break-word;
+.page1 > .row29 > .column1 > .row1 > .column2 {
+  grid-area: menu2;
 }
+.page1 > .row29 > .column1 > .row1 > .column3 {
+  grid-area: menu3;
+}
+.page1 > .row29 > .column1 > .row1 > .column4 {
+  grid-area: menu4;
+}
+.page1 > .row29 > .column1 > .row1 > .column5 {
+  grid-area: menu5;
+}
+.page1 > .row29 > .column1 > .row2 > .column3 {
+  grid-area: menu6;
+}
+.page1 > .row29 > .column1 > .row2 > .column4 {
+  grid-area: menu7;
+}
+.page1 > .row29 > .column1 > .row2 > .column5 {
+  grid-area: menu8;
+}
+.page1 > .row29 > .column1 > .row3 > .column3 {
+  grid-area: menu9;
+}
+.page1 > .row29 > .column1 > .row3 > .column4{
+  grid-area: menu10;
+}
+.page1 > .row29 > .column1 > .row3 > .column5 {
+  grid-area: menu11;
+}
+.page1 > .row29 > .column1 > .row4 > .column3 {
+  grid-area: menu12;
+}
+.page1 > .row29 > .column1 > .row4 > .column4{
+  grid-area: menu13;
+}
+.page1 > .row29 > .column1 > .row4 > .column5 {
+  grid-area: menu14;
+}
+
+
+/* Hide rows' display since the parent .column1 now handles layout */
+.page1 > .row29 > .column1 > .row {
+  display: contents;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* Theme Name- PAI_RealEstate_OP */
 

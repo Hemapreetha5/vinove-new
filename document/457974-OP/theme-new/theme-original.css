@@ -6,6 +6,39 @@
     url("Fonts/friends_life_dagny-bold-webfont.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'opchevinpro-bold';
+  src: url("./images/opchevinpro-bold-webfont.eot");
+  src: local("opchevinpro-bold-webfont"),
+    url("./images/opchevinpro-bold-webfont.woff") format("woff"),
+    url("./images/opchevinpro-bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opchevinpro-light';
+  src: url("./images/opchevinpro-light-webfont.eot");
+  src: local("opchevinpro-bold-webfont"),
+    url("./images/opchevinpro-light-webfont.woff") format("woff"),
+    url("./images/opchevinpro-light-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+   font-family: 'opchevinpro-light';
+}
+
+b{
+  font-family: 'opchevinpro-bold';
+}
+
+.horizontal-list span:first-child {
+    float: left;
+    font-family: 'opchevinpro-bold';
+}
+
 :root {
   --header-blue: #1e9bd7;
   --context-header-yellow: #ffbf27;
@@ -97,8 +130,8 @@ body {
   border-right: 1px solid #000;
 }
 
-.page1 > .row38 > .TextBox .label,
-.page1 > .row38 .label {
+.page1>.row38>.TextBox .label,
+.page1>.row38 .label {
   text-align: center;
   width: 100%;
 }
@@ -155,6 +188,7 @@ body {
   padding: 0.2cm 0.1cm 0.1cm 0.2cm;
   box-sizing: border-box;
 }
+
 .HeaderBox {
   padding: 0.2cm 0.1cm 0.1cm 0.2cm;
 }
@@ -430,7 +464,6 @@ body {
   width: 10.05%;
 }
 
-.page1>.row20>.column3,
 .page1>.row24>.column3,
 .page1>.row30>.column5 {
   width: 9.95%;
@@ -844,7 +877,7 @@ footer {
 .page1>.row21,
 .page1>.row24,
 .page1>.row26,
-.page1 > .row29 > .column1 > .row,
+.page1>.row29>.column1>.row,
 .page1>.row25 {
   display: table;
   width: 27.76cm;
@@ -904,8 +937,7 @@ footer {
 }
 
 
-.page1>.row4,
-.page1>.row22 {
+.page1>.row4 {
   page-break-before: always;
 }
 
@@ -1015,6 +1047,7 @@ footer {
 .page1>.row22>.SubHeader {
   border-top: 1px solid var(--black-color);
   font-weight: bold;
+  font-family: 'opchevinpro-bold' !important;
 }
 
 .page1>.row13>.column7 {
@@ -1035,6 +1068,7 @@ footer {
 .page1>.row27>.text1>.item2.displayname-tooltip,
 .page1>.row30>.text1>.item2.displayname-tooltip {
   font-weight: bold;
+  font-family: 'opchevinpro-bold' !important;
 }
 
 .page1>.row8>.composite1>.compositebody>.row2>.column4>.row9,
@@ -1398,7 +1432,7 @@ footer {
   border-bottom: 1px solid #000;
 }
 
-.page1>.row8>.column1>.row9 >.column {
+.page1>.row8>.column1>.row9>.column {
   border-bottom: none;
 }
 
@@ -1462,13 +1496,13 @@ footer {
 }
 
 .page1>.row8>.column1>.row>.column1 {
-  border-bottom: none !important; 
+  border-bottom: none !important;
 }
 
 .page1>.row8>.column1>.row1>.column2,
 .page1>.row8>.column1>.row2>.column2,
 .page1>.row8>.column1>.row3>.column2 {
-  border-bottom: none !important; 
+  border-bottom: none !important;
 }
 
 .page1>.row28 {
@@ -1482,19 +1516,19 @@ footer {
   border-right: 1px solid #000;
 }
 
-.page1>.row30 > .column > .row1 .displayname-tooltip,
-.page1>.row33 > .column > .row1 .item2 {
+.page1>.row30>.column>.row1 .displayname-tooltip,
+.page1>.row33>.column>.row1 .item2 {
   padding: 0.2cm 0.1cm 0.1cm 0.2cm;
   word-wrap: break-word;
-} 
+}
 
-.page1 > .row29 > .column1 > .row > .column5, 
-.page1 > .row28 > .column6,
-.page1 > .row29 > .column3 {
+.page1>.row29>.column1>.row>.column5,
+.page1>.row28>.column6,
+.page1>.row29>.column3 {
   border-right: 1px solid #000;
 }
 
-.page1 > .row29 > .column {
+.page1>.row29>.column {
   border: none;
 }
 
@@ -1502,75 +1536,78 @@ footer {
   width: 9.95%;
 }
 
-.page1 > .row29 > .column1 {
+.page1>.row29>.column1 {
   width: 55.05%;
 }
 
-.page1 > .row29 > .column2 {
+.page1>.row29>.column2 {
   width: 20%;
 }
 
-.page1 > .row29 > .column3 {
+.page1>.row29>.column3 {
   width: 25%;
 }
 
-.page1 > .row29 > .column1 > .row1 {
+.page1>.row29>.column1>.row1 {
   width: 100%;
 }
 
-.page1 > .row29 > .column1 > .row > .column1 {
+.page1>.row29>.column1>.row>.column1 {
   width: 27.8mm;
 }
 
-.page1 > .row29 > .column1 > .row > .column2 {
+.page1>.row29>.column1>.row>.column2 {
   width: 35.6mm;
 }
 
-.page1 > .row29 > .column1 > .row > .column3 {
+.page1>.row29>.column1>.row>.column3 {
   width: 33.1mm;
 }
 
-.page1 > .row29 > .column1 > .row > .column4 {
+.page1>.row29>.column1>.row>.column4 {
   width: 27.6mm;
 }
 
-.page1 > .row29 > .column1 > .row > .column5 {
+.page1>.row29>.column1>.row>.column5 {
   width: 27.4mm;
 }
 
-.page1 > .row29 > .column1 > .row > .column {
+.page1>.row29>.column1>.row>.column {
   border: none;
   word-wrap: break-word;
 }
 
-.page1 > .row29 > .column1 > .row > .column2 > .row {
+.page1>.row29>.column1>.row>.column2>.row {
   height: 100%;
 }
 
-.page1 > .row29 > .column1 > .row > .column1,
-.page1 > .row29 > .column1 > .row > .column2,
-.page1 > .row29 > .column1 > .row > .column3,
-.page1 > .row29 > .column1 > .row > .column4,
-.page1 > .row29 > .column1 > .row > .column5,
-.page1 > .row29 > .column2 > .row1 {
+.page1>.row29>.column1>.row>.column1,
+.page1>.row29>.column1>.row>.column2,
+.page1>.row29>.column1>.row>.column3,
+.page1>.row29>.column1>.row>.column4,
+.page1>.row29>.column1>.row>.column5,
+.page1>.row29>.column2>.row1 {
   border-left: 1px solid #000;
 }
 
-.page1 > .row29 > .column1 > .row:not(.row4) > .column3,
-.page1 > .row29 > .column1 > .row:not(.row4) > .column4,
-.page1 > .row29 > .column1 > .row:not(.row4) > .column5 {
+.page1>.row29>.column1>.row:not(.row4)>.column3,
+.page1>.row29>.column1>.row:not(.row4)>.column4,
+.page1>.row29>.column1>.row:not(.row4)>.column5 {
   border-bottom: 1px solid #000 !important;
 }
 
-.page1 > .row29 > .column2 > .row1,
-.page1 > .row29 > .column3 > .row1 {
+.page1>.row29>.column2>.row1,
+.page1>.row29>.column3>.row1 {
   border-right: 1px solid #000 !important;
 }
 
-.page1 > .row29 > .column2 > .row1,
-.page1 > .row29 > .column3 > .row1 {
-  height: 100%;
-  display: inline-flex;
+.page1>.row29>.column2>.row1,
+.page1>.row29>.column3>.row1 {
+  height: 111.5mm;
+}
+
+.page1>.row29>.column1>.row4>.column3>.row {
+  min-height: 52mm;
 }
 
 .page1>.row8>.column1>.row6>.column6,
@@ -1578,30 +1615,23 @@ footer {
   padding-bottom: 5mm;
 }
 
-
-.page1>.row29 > .column1,.page1 > .row29 > .column2 {
-    display: inline-flex;
-    flex-wrap: wrap;
-      align-items: stretch;
-}
-.page1 > .row29 > .column1 > .row{
-  display: flex;
-  align-items: stretch;
-}
-.page1 > .row29 > .column1 > .row1 .column {
-    display: inline-flex;
-    flex-wrap: wrap;
+.page1>.row36>.TextBox>.PAI_Description_Of_Policies>span {
+  display: block;
 }
 
-.page1 > .row29 p.PAI_18_1_Explanation {
-    margin-bottom: 5px;
-    width:100%;
+.page1>.row36>.TextBox>.PAI_Description_Of_Policies>span.label {
+  text-align: center;
+  width: 100%;
 }
-.page1 > .row29 > .column1 > .row1 .column .text1 p{
-  width:120px;
-   word-break: break-word;
-    word-wrap: break-word;
+
+.page1>.row23,
+.page1>.row27 {
+  page-break-before: always;
 }
+
+/* .page1>.row21>.column5 {
+  width: 9.8%;
+} */
 
 /* Theme Name- PAI_RealEstate_OP */
 
