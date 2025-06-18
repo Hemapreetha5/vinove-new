@@ -651,27 +651,35 @@ p.DocumentDate.displayname-tooltip {
     margin-right: 14mm;
   }
 } */
-.page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row8 {
+.page > .row .Date p.Date {
    position: running(footerBlock);
-   visibility: visible;
+   margin-bottom:0;
+     font-size: 6pt;
+   /* visibility: visible;
    height: 0;
-   overflow: hidden;
+   overflow: hidden; */
 }
-
+.page > .row:last-child,.page > .row:last-child .row{
+    margin-bottom:0;
+}
 /* Hide it in screen view */
 @media screen {
-   .page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row8{
+   .page > .row .Date p.Date{
       display: none;
    }
 }
 
 @page {
    @bottom-left {
-      content: " Nachhaltigkeits-Factsheet · 31 Januar 2025";
+      /* content: " Nachhaltigkeits-Factsheet · 31 Januar 2025"; */
+      content:element(footerBlock);
       font-size: 6pt;
       margin-left: 14mm;
-      margin-bottom: 10.5mm;
+      margin-bottom: 7.5mm;
       font-family: var(--FontFamilyRegular);
+      position: absolute;
+      left:0;
+      bottom:0;
    }
 
    @bottom-right {
@@ -738,6 +746,9 @@ tspan.highcharts-text-outline {
     display: inline-flex;
     margin: 0;
     font-weight: bold;
+}
+.page2 > .row3 > .column1 p:first-child{
+    margin-right:5px;
 }
 .page2 > .row3 > .column1 > .row1 {
     margin: 0;
@@ -973,9 +984,6 @@ content: "\A0Reference fonds";
     left: -10px;
     z-index: 9;
 }
-
-
-
 .page4 > .row3 > .column > .row2 .text p,
 .page4 > .row4 > .column > .row2 .text p{
     position: relative;
