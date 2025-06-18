@@ -397,7 +397,7 @@ footer {
 }
 .page1 > .row3 {
     margin-top: 29mm !important;
-    width: 73%;
+    /* width: 73%; */
     margin-bottom: 0;
 }
 .page1 > .row4 {
@@ -415,8 +415,14 @@ footer {
 .page1 > .row4 > .row1 > .text1 > ul {
     background-color: #f2f2f2;
     padding-top: 5mm !important;
-    padding: 4.5mm;
-    margin-right: 45mm;
+    /* padding: 4.5mm; */
+    padding: 4.5mm 6mm 4.5mm 9mm;
+}
+.page1 > .row4 > .row1 > .text1 > ul li{
+    hyphens: auto;
+}
+.page1 > .row3,.page1 > .row4 > .row1 > .text1 > ul {
+    width: 83.2%;
 }
 /* .page1 > .row5 {
     margin-top: 4.4cm;
@@ -540,37 +546,36 @@ p.DocumentDate.displayname-tooltip {
     max-width: 100%;
     display: block;
 }
-.page4 > .row5 {
+.page4 > .row6 {
     margin-bottom: 0;
     padding-bottom: 7.2mm;
 }
-.page4 > .section.row.row5 {
+.page4 > .section.row.row6 {
     display: flex;
     gap: 6.99mm !important;
     align-items: center;
     justify-content: flex-start;
   }
-  .page4 > .row5 > .column1{
+  .page4 > .row6 > .column1{
     background: #f1f1f1;
     width: 73mm;
     height: 26mm;
-    /* margin-top: 23.5mm; */
-    margin-top: 29mm;
+    margin-top: 22.5mm;
   }
-  .page4 > .row6{
+  .page4 > .row8{
     margin-bottom: 0;
     /* padding-bottom: 7.2mm; */
   }
-  .page4 > .section.row.row7 {
+  .page4 > .section.row.row8 {
     display: flex;
     gap: 6.99mm !important;
     align-items: center;
     justify-content: flex-start;
     width: 80%;
-    display: none;
+    /* display: none; */
   }
-  .page4 > .row6 > .text1 > .item2 {
-    padding-top: 9mm;
+  .page4 > .row7 > .text1 > .item2 {
+    padding-top: 8mm;
     font-size: 6.5pt;
     color: #c3c3c3;
     padding-right: 14mm;
@@ -582,7 +587,7 @@ p.DocumentDate.displayname-tooltip {
     margin-bottom: 0;
     margin-top: -0.5cm;
 }
-.page4 > .row5 > .column1 > .row1 > .column2 > .row1 {
+.page4 > .row6 > .column1 > .row1 > .column2 > .row1 {
     margin-bottom: 0;
     padding-top: 1.35cm;
     margin-left: -1.15cm;
@@ -599,13 +604,13 @@ p.DocumentDate.displayname-tooltip {
     margin-bottom: 0 !important;
 }
 
-.page1 > .row5 > .column2 > .row1 > .text1 > .Pagination +p {
+.page1 > .row6 > .column2 > .row1 > .text1 > .Pagination +p {
     display: none;
 } 
 .Pagination p{
     margin-bottom: 0;
 }
-.page1 > .row5 > .column1 > .row1 {
+.page1 > .row6 > .column1 > .row1 {
     margin-bottom: 0;
 }
 .page4 > .row3 > .column2 > .row1 > .iconSection {
@@ -643,7 +648,7 @@ p.DocumentDate.displayname-tooltip {
     margin-right: 14mm;
   }
 } */
-.page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row10 {
+.page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row8 {
    position: running(footerBlock);
    visibility: visible;
    height: 0;
@@ -652,7 +657,7 @@ p.DocumentDate.displayname-tooltip {
 
 /* Hide it in screen view */
 @media screen {
-   .page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row10{
+   .page1 > .row5, .page2 > .row6, .page3 > .row7, .page4 > .row8{
       display: none;
    }
 }
@@ -720,11 +725,19 @@ tspan.highcharts-text-outline {
 }
 .page2 > .row3 > .column1 {
     position: absolute;
-    top: 123px;
+    top: 135px;
     z-index: 9;
     left: 51px;
     width: 80px;
     text-align: center;
+}
+.page2 > .row3 > .column1 p {
+    display: inline-flex;
+    margin: 0;
+    font-weight: bold;
+}
+.page2 > .row3 > .column1 > .row1 {
+    margin: 0;
 }
 .page2 > .row4 {
     position: relative;
@@ -807,28 +820,17 @@ p.Portfolio\.Overall\.MSCI\.Impacts\.SdgNetAlignment.displayname-tooltip::after 
     margin-left: 35px;
 }
 .page4 > .row4 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .page4 > .row5 {
   position: relative;
+  margin-bottom: 0;
 }
-.page4 > .row5 {
-  position: relative;
+.page4 > .row5 .section {
+    margin-bottom: 0;
 }
-
 /* Fonds */
-.page4 > .row5::before {
-  /* content: "Fonds";
-    font-size: 7pt;
-    position: absolute;
-    top: -2px;
-    left: 12px;
-    padding-left: 2px;
-    box-shadow: -12px 0 0 0 #26ABE0;
-    display: inline-block;
-    height: 9px;
-    line-height: 12px;
-    background: none; */
+/* .page4 > .row5::before {
     content: "Fonds";
     font-size: 7pt;
     position: absolute;
@@ -840,10 +842,10 @@ p.Portfolio\.Overall\.MSCI\.Impacts\.SdgNetAlignment.displayname-tooltip::after 
     height: 12px;
     line-height: 15px;
     background: none;
-}
+} */
 
 /* Reference Fonds */
-.page4 > .row5::after {
+/* .page4 > .row5::after {
 content: "\A0Reference fonds";
     font-size: 7pt;
     position: absolute;
@@ -855,7 +857,7 @@ content: "\A0Reference fonds";
     height: 12px;
     line-height: 15px;
     background: none;
-}
+} */
 .page1 > .row1 > .column1 > .row2 > .row2 {
     margin-bottom: 0.55cm;
 }
@@ -925,7 +927,9 @@ content: "\A0Reference fonds";
 .page3 > .row6 > .column2 p.item2,
 .page3 > .row6 > .column2 p.item3,
 .page3 > .row6 > .column4 p.item2,
-.page3 > .row6 > .column4 p.item3{
+.page3 > .row6 > .column4 p.item3,
+.page4 > .row5 > .column1 .SGDKey p.item2,
+.page4 > .row5 > .column1 .SGDKey p.item3{
     position: relative;
     padding-left:12px;
     margin-bottom: 0;
@@ -935,7 +939,9 @@ content: "\A0Reference fonds";
 .page3 > .row6 > .column2 p.item2:after,
 .page3 > .row6 > .column2 p.item3:after,
 .page3 > .row6 > .column4 p.item2:after,
-.page3 > .row6 > .column4 p.item3:after {
+.page3 > .row6 > .column4 p.item3:after,
+.page4 > .row5 > .column1 .SGDKey p.item2:after,
+.page4 > .row5 > .column1 .SGDKey p.item3:after {
     content: "";
     background-color: #7252AC;
     height: 8px;
@@ -945,7 +951,8 @@ content: "\A0Reference fonds";
     left: 0;
 }
 .page3 > .row6 > .column2 p.item3:after,
-.page3 > .row6 > .column4 p.item3:after {
+.page3 > .row6 > .column4 p.item3:after,
+.page4 > .row5 > .column1 .SGDKey p.item3:after {
     background-color: #26ABE0;
 }
 .page3 > .row6 > .column2,
