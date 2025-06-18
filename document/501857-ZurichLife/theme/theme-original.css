@@ -1,0 +1,658 @@
+ @font-face {
+    font-family: 'FrutigerLight';
+    src:  url('Images/Frutiger LT 45 Light.woff2') format('woff2'), 
+        url('Images/Frutiger LT 45 Light.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'FrutigerBold';
+    src:  url('Images/Frutiger LT 65 Bold.woff2') format('woff2'), 
+        url('Images/Frutiger LT 65 Bold.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'FrutigerItalic';
+    src:  url('Images/Frutiger LT Std 55 Roman Italic.woff2') format('woff2'), 
+        url('Images/Frutiger LT Std 55 Roman Italic.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'FrutigerRegular';
+    src:  url('Images/Frutiger LT Std 55 Roman Regular.woff2') format('woff2'), 
+        url('Images/Frutiger LT Std 55 Roman Regular.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+ 
+ 
+body {
+    font-family: 'FrutigerLight', serif;
+    font-size: 9pt;
+}
+.page {
+    position: relative;
+    width: 19cm;
+    height: 27.7cm;
+    padding: 0.5cm 1cm;
+}
+.page1{	
+    padding: 1cm 1cm 0.5cm;
+}
+.page1>.row1:before{
+	content:"";
+	display: block;
+    background-image:url(Images/logo@1x.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 3.7cm auto;
+	width: 144px;
+	height: 95px;
+	margin-left: 570px;
+	position: absolute;
+	top:1cm;
+	right: 1cm;
+}
+.row {
+    margin-bottom: 0.1cm;
+}
+.column > .section {
+    margin-left: 0.5cm;
+}
+.column:first-child > .section {
+    margin-left: 0;
+}
+h1, h2, h3 {
+    margin: 0;
+    color: #00459a;
+	font-family: 'FrutigerBold';
+	font-size: 10pt;
+	margin-bottom: 5px;
+}
+h2{
+    line-height: 14pt;
+}
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+/*
+.page > .row1 {
+    border-bottom: 3px solid #003399;
+}
+*/
+.logo{
+/*    background:url(Images/logo.png) no-repeat right top;*/
+	background-size: auto;
+	width: 300px;
+	height: 100px;
+	display: inline;
+}
+.page1 > .row2 > .column2 > .section {
+    background-color: #efefef;
+    border-radius: 0.25cm;
+    padding: 0.25cm;
+}
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+.tabs.breakdowns > .tabpanes {
+    border: none;
+}
+.tabs.breakdowns > .tabpanes > .slider > .tab {
+    padding-bottom: 20px;
+}
+.tabs.breakdowns > .tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+.tabs.breakdowns > .tabbuttons > .tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+table {
+    width: 100%;
+    border-spacing: 0;
+}
+table th {
+    background-color: #092a6d;
+    color: #fff;
+	padding: 5px;
+}
+table td{
+	border-bottom: 0.5pt solid #fff;
+	padding: 5px;
+	text-align: center;
+	background: #ccd8ef;
+	color: #0076be;
+}
+.PerformanceChart .chart {
+    height: 4cm;
+}
+.key-color {
+    width: 12px;
+    height: 12px;
+	border-radius: 100%;
+}
+.PerformanceChart .key-color{
+	border-radius: 0;
+	width: 5mm;
+	height: 1mm;
+    margin-top: 7px;
+}
+.page1 > .row1 > .column1 {
+    padding: 1cm 0 0.3cm;
+    margin-left: -1cm;
+}
+.page1 > .row1 > .column1:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    background-color: #dfe7e6;
+    height: 100%;
+    width: 32%;
+    z-index: -1; 
+    box-sizing: border-box;
+    left: 0;
+    background-image: url(images/left-column-footer-image.png);
+    background-size: 100%;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+
+.page1 > .row1 > .column1 > .row {
+    padding: 0 0.5cm;
+}
+.FundInfo {
+    border: 1pt solid #005baa;
+}
+.FundInfo div{
+	width: 100%;
+	border-bottom: 0.5pt solid #fff;
+	background: rgb(234,243,249);
+}
+.FundInfo div.LaunchDate {
+    color:#fff;
+    background-color: #0076be;
+
+}
+.FundInfo{
+    position: relative;
+}
+
+body:before {
+    content: "";
+width: 20px;
+    height: 1px;
+    display: block;
+    /*! border: 12px solid #fff; */
+    border-width:  20px 25px 20px 20px;
+border-color:  transparent  #fff transparent  transparent;
+    position: absolute;
+   left: 5.2cm;
+    top:2.2cm;
+    z-index: 1000;
+    
+}
+.FundInfo div:nth-last-child(2),.FundInfo .clear{border: none;}
+.FundInfo .clear{
+    display: none;
+}
+.FundInfo{
+    margin-bottom: 0.4cm;
+    
+}
+.FundInfo div .label {
+    /*! background-color: #000066; */
+    width: 50%;
+    /*! color: #fff; */
+    margin: 0;
+    padding: 3px 5px;
+    border-right: 0.5pt solid #fff;
+    font: 8pt 'FrutigerBold';
+}
+.FundInfo div .value {
+    font: 8pt 'FrutigerLight';
+    padding: 3px 5px;
+}
+.Fundname .WBFundName {
+font: 27pt/32pt FrutigerLight;
+    color: #216eb3;
+    width: 100%;
+}
+.Fundname .WBFundName+p{
+   font: 18pt/22pt FrutigerLight; 
+        color: #216eb3;
+}
+.WBFundName{
+    padding-top: 15px;
+}
+.WBFundName:before{
+     /*! content: ""; */
+    width: 200px;
+    height: 30px;
+    
+    float: right;
+    position: absolute;
+}
+tr  td.rowheader {
+    text-align: left;
+   
+}
+tr:nth-of-type(2) td.rowheader {
+  
+    font-family: FrutigerBold;
+}
+.Warning1, .Warning2 {
+    border: 1pt solid #0076be;
+    border-color:#000;
+    padding: 1pt 2pt;
+    float: footnote;
+    margin-bottom: 0.2cm;
+}
+.Warning1::footnote-call{
+	content: "*";
+	color: transparent;
+	 
+}
+.Warning1::footnote-marker{
+	content: "*";
+	display: none;
+}
+.Warning1 p, .Warning2 p {
+    margin-bottom: 0;
+	font-size: 8pt;
+
+}
+.Warning1 p b,.Warning1 p {
+       font-style: normal !important;
+       font-family: FrutigerBold;
+       font-size: 9.5pt;
+       color: #0076be;
+    color: #000;
+}
+.SourcePage1 {
+    position: absolute;
+    bottom: 0.5cm;
+    right: 1cm;
+    width: 57%;
+	font-size: 8pt;
+}
+.FundCaveatPage1{
+    color: #0076be;
+}
+.SourcePage1 b{
+    font-style: normal !important;
+    font-family: FrutigerBold; 
+}
+.breakdown th.Name, .breakdown td.Name {
+    text-align: left;
+}
+.breakdown td.Weight {
+    text-align: right;
+}
+.breakdown td.Key {
+    width: 12px;
+    border: 0;
+}
+/*
+.page1 > .row1 {
+    background-color: #E7ECEB;
+	height: 27.7cm;
+}
+*/
+.page1 > .row1 > .column2 > .row1 > .column1{
+	width: 100%;
+}
+.page1 > .row1 > .column2 > .row1 > .column2{
+	width: 30%;
+}
+.page1 > .row1 > .column2{
+	padding-top: 1.2cm;
+/*
+	background-color: #fff;
+	height: 27.7cm;
+*/
+	padding-left: 1cm;
+}
+.YearlyInvestmentTable, .PerformanceChart, .performancetable  {
+    margin-bottom: 10px;
+}
+.YearlyInvestmentTable h2, .PerformanceChart h2, .performancetable h2,.page2 h2{
+    color:#0076be;
+}
+.YearlyInvestmentTable th, .YearlyInvestmentTable td {
+    font-size: 6pt;
+}
+table.RiskRating td:before{
+    position: relative;
+    top:0px;
+}
+table.RiskRating td:nth-child(2):before {
+    content:"1";
+}
+table.RiskRating td:nth-child(3):before {
+    content:"2";
+}
+table.RiskRating td:nth-child(4):before {
+    content:"3";
+}
+table.RiskRating td:nth-child(5):before {
+    content:"4";
+}
+table.RiskRating td:nth-child(6):before {
+    content:"5";
+}
+table.RiskRating td:nth-child(7):before {
+    content:"6";
+}
+table.RiskRating td:nth-child(8):before {
+    content:"7";
+}
+ 
+table.RiskRating td:nth-child(2) {
+    background:#4a8ecc;
+}
+table.RiskRating td:nth-child(3) {
+    background:#00aeef;
+}
+table.RiskRating td:nth-child(4) {
+    background:#b1be2d;
+}
+table.RiskRating td:nth-child(5) {
+    background:#00ae90;
+}
+table.RiskRating td:nth-child(6) {
+    background:#6d2c91;
+}
+table.RiskRating td:nth-child(7) {
+    background:#f69c00;
+}
+table.RiskRating td:nth-child(8) {
+    background:#ea635c;
+}
+
+table.RiskRating td:nth-child(1),table.RiskRating tr:first-child{
+    display:none;
+}
+table.RiskRating td {
+    border:none;
+    color:#fff;
+    position: relative;
+    z-index: 0;
+	border-right: 2px solid #006;
+	font-size: 19pt;
+    font-family: "FrutigerBold";
+    padding: 0px 5px 0px;
+    height: 31px;
+ 
+}
+table.RiskRating td.RiskRating-Active {
+    border-right: 0;
+}
+table.RiskRating {
+    margin-bottom: 0.3cm;
+}
+table.RiskRating +p+p{
+    margin-bottom: 0cm;
+	font-size: 10pt;
+}
+table.RiskRating td[class*="Active"]{
+    outline:4px solid #fff;
+    z-index: 1;
+}
+
+.RiskRating.text{
+/*margin:0.4cm -1.05cm 0.5cm -1cm;*/
+margin: 0.4cm -0.57cm 0.5cm -0.5cm;
+padding: 0.3cm 0.5cm;
+background: #03296a;
+color: #fff;
+}
+.RiskRating.text h2{
+    color: #fff;
+}
+.Date.text {
+    transform: rotate(-90deg); /*PDF Reactor V11 migration changes*/
+    position: absolute;
+    left: -14px;
+    bottom: 0.5cm;
+    color: #003399;
+    font-size: 8pt;
+}
+.text.Address::footnote-call{
+	content: "*";
+	color: transparent;
+	
+}
+.text.Address::footnote-marker{
+	content: "*";
+	display: none;
+}
+.text.Address {
+	float: footnote; 
+	padding-right: 30%;
+	
+	font-size: 8.5pt;
+	line-height: 10pt;
+	color: #0076be;
+}.text.Address:before{
+	content: "";
+	background-image: url(Images/Zurich_72_Logo_Ver_Blue_RGB.svg);
+	background-repeat: no-repeat;
+	background-position: top right;
+	background-size: auto;
+    width: 3.7cm !important;
+    height: 2cm !important;
+	position: absolute;
+	right: 1cm;
+}
+.text.Address .item2{
+    font-family: 'FrutigerRegular';
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+.text.Address .item3{
+/*     width: 380px; */
+    line-height: 10pt;
+    margin-bottom: 0;
+	font-weight: normal !important;
+}
+.text.Address .item4{
+/*     width: 350px; */
+    line-height: 10pt;
+    margin-bottom: 0;
+	font-weight: normal !important;
+}
+.text.Address p:last-child{
+    margin-bottom: 0.2cm;
+}
+.WebAddress::footnote-call{
+	content: "*";
+	color: transparent;
+	
+}
+.WebAddress::footnote-marker{
+	content: "*";
+	display: none;
+}
+.WebAddress {
+	float: footnote;
+	margin-bottom: 0.2cm;
+	/*    color:rgb(234,99,92);*/
+	color: #003399;
+}
+.WebAddress b{
+    padding:0;
+}
+@page{
+	counter-reset: address;
+	@footnote{
+		border:0;
+		margin-right: 1cm;
+		margin-left: 1cm;
+		margin-top: 0;
+        margin-bottom: 0.5cm;
+	}
+	@top-left{
+	 
+	}
+}
+.page2 > .row1 {
+    margin-bottom: 0;
+}
+.text.Source p{
+    margin: 0;
+    color: #0076be;
+}
+ 
+.FooterCaveat p {
+    font-size: 7pt;
+    margin: 0;
+}
+.breakdown td{
+	padding: 1px 5px;
+	line-height: 11px;
+	background: none;
+	color: #000000;
+}
+.page2 > .row4 .logo {
+    height: 0;
+}
+.YearlyInvestmentTable table th, .GrossDividendTable1 table th, .GrossDividendTable2 table th {
+    background-color: #e5ecea;
+    color: #000;
+	border-right: 1px solid #fff;
+	padding: 3px 3px;
+	font-weight: normal;
+    font-size: 7pt;
+    text-align: center;
+}
+.YearlyInvestmentTable table td, .GrossDividendTable1 table td, .GrossDividendTable2 table td {
+    background-color: #0076be;
+    color: #fff;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #fff; 
+	padding: 3px 3px;
+    font-size: 7pt;
+    border-bottom: 0;
+}
+.YearlyInvestmentTable table th:first-child, .GrossDividendTable1 table th:first-child, .GrossDividendTable2 table th:first-child, .YearlyInvestmentTable table td:first-child, .GrossDividendTable1 table td:first-child, .GrossDividendTable2 table td:first-child {
+    background-color: #061c57;
+    color: #fff;
+    text-align: left;
+    text-indent: 5px;
+    font-weight: bold;
+    font-size: 8pt;
+}
+.FundDescriptionSubHeader h2 {
+    color: #0076be;
+    font-size: 10pt;
+}
+p.FundDescription{
+   color: #0076be; 
+   line-height: 12pt;
+}
+
+.FundDescriptionSubHeader i {
+    font-style: normal !important;
+    font-family: FrutigerItalic;
+}
+.composite .column > .section {
+    margin-left: 0;
+}
+.page2 > .row3 > .composite1 > .compositebody > .row5 > .column1{
+	width: 0.01%;
+}
+.WebAddress p {
+    margin-bottom: 0;
+    color: #0076be;
+}
+.page2 .section.row.row4 {
+    margin-bottom: 0;
+}
+.Date p {
+    display: inline-block;
+    padding-right: 4px;
+}
+.page2 > .row1 > .column1, .page2 > .row1 > .column2{
+	width: 50%;
+}
+.holding td.Name, .holding th.Name {
+    text-align: left;
+}
+.holding td {
+    padding: 1px 5px;
+    background: #ccd8ef;
+    border-color: #fff;
+    color: #0076be;
+    font: 8pt 'FrutigerLight';
+}
+.breakdown td.Name, .breakdown td.Weight {
+    border: 0pt solid #006;
+}
+.breakdown td.Weight:last-child {
+    border-right: 0;
+}
+.Footer {
+/*     position: absolute; */
+    left: 1cm;
+    right: 1cm;
+    bottom: 2cm;
+    line-height: 8pt;
+	font-size: 8pt;
+	font-weight: normal !important;
+    float: footnote;
+}
+.Footer::footnote-call{
+	content: "*";
+	color: transparent;
+	
+}
+.Footer::footnote-marker{
+	content: "*";
+	display: none;
+}
+.Full_Holdings th.spacer, .Full_Holdings td.spacer {
+    display: none;
+}
+.Footer b, .Date.text b {
+    font-weight: normal;
+}
+.text.Address .item3 b, .text.Address .item4 b, .text.Address .item5 b {
+    font-weight: normal;
+}
+.Top10 td.Weight {
+    color: transparent;
+    font-size: 0;
+}
+/*PDF Reactor V11 migration changes*/
+ 
+.holding tr,.holding table td,.holding table tr {
+    padding: 3px 5px!important;
+}  
+.text.Address p:last-child {
+    margin-bottom: 0 !important;
+}
+ 
+.performancetable table th {
+    text-align: left !important;
+}
+/*ZurichIreland*/
