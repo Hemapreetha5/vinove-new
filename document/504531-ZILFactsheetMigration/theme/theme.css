@@ -82,7 +82,8 @@ h1,
 h2,
 h3 {
 	margin: 0 0 0.1cm 0;
-	color: #3399FF;
+	/* color: #3399FF; */
+	color: rgb(0, 79, 158);
 }
 
 p {
@@ -400,10 +401,10 @@ top:-0.5cm;
 	border-top: 2.5pt solid rgb(21, 40, 100);
 }
 
-.page2>.row1>.column2 ,.page2>.row2,.page3>.row1{
+/* .page2>.row1>.column2 ,.page2>.row2,.page3>.row1{
 	width: 11.5cm;
 	margin-left: 7.5cm;
-}
+} */
 .page3>.row1 .row1 h2{
 	margin-top: 0.5cm;	
 }
@@ -482,6 +483,9 @@ line-height: initial;
 	border-top: 2.5pt solid rgb(73, 144, 218);
 	padding-top: 0.2cm;
 	margin-top: -5px;
+}
+.page2 .row2 .column2 > .row1 .breakdown{
+	border-top:none;
 }
 .page2 .holding {
 	border-top: 2.5pt solid rgb(73, 144, 218);
@@ -651,32 +655,44 @@ body > div.page3.page.section > div.row2.row.section > div.row1.row.section > di
 .page1 > .row4 > .column2 .row2 table th {
     font-size: 7.3pt;
 }
-.page1 > .row4{
-	display: inline-flex;
+.page1 > .row4,.page2>.row2{
+	display: flex;
 }
-.page1 > .row4 > .column1 {
-    float: left;
-    width: 33%;
-    background: rgb(238, 236, 234);
+.page1 > .row4 > .column1,.page2>.row2 > .column1 {  
     display: inline-flex;
     flex-wrap: wrap;
-	padding: 5px;
 	align-items: flex-start;
     align-content: flex-start;
+	background: rgb(238, 236, 234);
+	padding: 5px;
+}
+.page2>.row2 > .column1 {  
+    height: 24cm;
 }
 .page2 > .row2 > .column2 > .row{
-	margin-bottom: 0.1cm;
+	margin-bottom: 0.2cm;
 }
 .page1 > .row4 > .column2 h2 {
     background-color: #4890DA;
     color: #fff;
-    padding: 2px 10px;
+    padding: 2px 7px;
 	font-size: 8pt;
+	margin-bottom: 0;
+}
+.page1 > .row4 > .column2 > .row3 > .column1 h2, 
+.page1 > .row4 > .column2 > .row3 > .column2 h2 {
+    min-height: 27px;
 }
 .page1 > .row4 > .column2 > .row{
-	margin-bottom: 0.1cm;
+	margin-bottom: 0.2cm;
 }
 .page1 > .row4 > .column2 > .row:last-child{
 	margin-bottom: 0;
+}
+.page2 > .row2 > .column1{
+	min-height: 1px;
+}
+.page2 > .row2 > .column2 > .row .breakdown .chart{
+	height:180px;
 }
 /* ZurichAssurance*/
