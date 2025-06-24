@@ -59,7 +59,7 @@ body {
 
 .page {
 	position: relative;
-	width: 19cm;
+	width: 21cm;
 	padding: 0cm 1cm;
 /* 	 height: auto; */
 	page-break-after: always;
@@ -153,12 +153,13 @@ p {
 	text-indent: -10000px;
 }
 
-.page1>.row1 {
+.page>.row1 {
 	background: url("images/logonew.png") no-repeat top right;
 	background-size: 23%;
 	background-position: 565px -19px;
+	min-height:2.6cm;
 }
-.page2:before ,
+/* .page2:before ,
 .page3:before {
 	content: "";
 	position: absolute;
@@ -170,7 +171,7 @@ p {
 	background-position: -20px -19px;
 	bottom: 2cm;
 	right: 1cm;
-}
+} */
 .FundName,.fundobjective{
 	padding-top:10px;
 }
@@ -552,7 +553,7 @@ line-height: initial;
 	}
 }
 @page:-ro-nth(2) {
-	margin-bottom:3cm;
+	margin-bottom:1cm;
 	@bottom-left {
 		content: element(Page2Disclaimer);
 		margin:  0cm  1cm 1.5cm;
@@ -561,7 +562,7 @@ line-height: initial;
 	}
 }
 @page:-ro-last {
-	margin-bottom:3cm;
+	margin-bottom:1cm;
 	@bottom-left {
 		content: element(Page3Disclaimer);
 		margin:  0cm  1cm 1.5cm;
@@ -667,7 +668,7 @@ body > div.page3.page.section > div.row2.row.section > div.row1.row.section > di
 	padding: 5px;
 }
 .page2>.row2 > .column1 {  
-    height: 24cm;
+    height: 24.5cm;
 }
 .page2 > .row2 > .column2 > .row{
 	margin-bottom: 0.2cm;
@@ -681,7 +682,7 @@ body > div.page3.page.section > div.row2.row.section > div.row1.row.section > di
 }
 .page1 > .row4 > .column2 > .row3 > .column1 h2, 
 .page1 > .row4 > .column2 > .row3 > .column2 h2 {
-    min-height: 27px;
+    min-height: 30px;
 }
 .page1 > .row4 > .column2 > .row{
 	margin-bottom: 0.2cm;
@@ -694,5 +695,33 @@ body > div.page3.page.section > div.row2.row.section > div.row1.row.section > di
 }
 .page2 > .row2 > .column2 > .row .breakdown .chart{
 	height:180px;
+}
+*{
+	box-sizing: border-box;
+}
+.page3 > .row2 {
+    padding: 30px 30px 50px 30px;
+    background-color: #DCE6F2;
+}
+.page3 > .row3{
+    position: absolute;
+    bottom: 1.8cm;
+    left: 1cm;
+	width:19cm;
+}
+.page3 > .row3 h2,.page3 > .row3 p{
+	font-size: 8pt;
+}
+.page3 > .row3 p.item4 {
+    margin-bottom: 0;
+}
+.page3 > .row3 p.item3 {
+    margin-bottom: 30px;
+}
+.page2 .logo,.page3 .logo{
+	display: none;
+}
+.page3 .Commentary {
+    padding-top: 60px;
 }
 /* ZurichAssurance*/
