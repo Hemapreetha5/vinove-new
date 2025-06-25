@@ -535,7 +535,7 @@ p.DocumentDate.displayname-tooltip {
     margin-bottom: 0;
 }
 .page4 > .row2 {
-    padding: 11mm 14mm 11mm 0mm;
+    padding: 9mm 14mm 11mm 0mm;
     /* padding-top: 11mm;
     padding-bottom: 11mm;
     padding-right: 14mm; */
@@ -564,6 +564,9 @@ p.DocumentDate.displayname-tooltip {
     width: 73mm;
     height: 26mm;
     margin-top: 22.5mm;
+  }
+  .page4 > .row6 > .column1 > .row{
+    margin-bottom:0;
   }
   .page4 > .row8{
     margin-bottom: 0;
@@ -692,11 +695,11 @@ p.DocumentDate.displayname-tooltip {
 }
 
 .page2 div[data-highcharts-chart] {
-  height: 230px !important; 
+  height: 200px !important; 
   width: 230px !important; 
 }
 .page2 div[data-highcharts-chart] .highcharts-container {
-  height: 230px !important; 
+  height: 200px !important; 
   width: 230px !important; 
 }
 
@@ -734,24 +737,32 @@ tspan.highcharts-text-outline {
     position: relative;
     margin-bottom: 0;
 }
-.page2 > .row3 > .column1 {
+.page2 > .row3 > .column1,.page2 > .row3 > .column2 {
     position: absolute;
-    top: 135px;
+    top: 106px;
     z-index: 9;
-    left: 51px;
     width: 80px;
     text-align: center;
 }
-.page2 > .row3 > .column1 p {
+.page2 > .row3 > .column1 {
+    left: 51px;
+}
+.page2 > .row3 > .column2 {
+    left: 395px;
+}
+.page2 > .row3 > .column1 p,.page2 > .row3 > .column2 p {
     display: inline-flex;
     margin: 0;
     font-weight: bold;
 }
-.page2 > .row3 > .column1 p:first-child{
+.page2 > .row3 > .column1 p:first-child,.page2 > .row3 > .column2 p:first-child{
     margin-right:5px;
 }
-.page2 > .row3 > .column1 > .row1 {
+.page2 > .row3 > .column1 > .row1,.page2 > .row3 > .column2 > .row1 {
     margin: 0;
+}
+.page2 > .row4 > .column > .row1 .row1{
+    margin-bottom: 0;
 }
 .page2 > .row4 {
     position: relative;
@@ -773,23 +784,32 @@ tspan.highcharts-text-outline {
     margin-top: 10mm;
     margin-bottom: 3px;
 }
-.page2 > .row4 > .column2 > .row1 > .standardtable1 > .CustomCss > tbody {
+.page2 > .row4 > .column2 > .row1 > .standardtable1 > .CustomCss > tbody,
+.page2 > .row4 > .column4 > .row1 > .standardtable1 > .CustomCss > tbody {
     font-size: 7pt;
 }
-.page2 > .row4 > .column2 > .row1 > .standardtable1 > .CustomCss {
+.page2 > .row4 > .column2 > .row1 > .standardtable1 > .CustomCss,
+.page2 > .row4 > .column4 > .row1 > .standardtable1 > .CustomCss {
     position: absolute;
-    top: 32% !important;
-    /* margin-top: 1.45cm; */
-    margin-top: 1.54cm;
-    /* left: -23%; */
+    margin-top: 40px;
     left: 18px;
-    line-height: 0.9;
+    line-height: 1.3;
 }
-.page2 > .row4 > .column2 > .row1 > .standardtable1 {
+.page2 > .row4 > .column2 > .row1 > .standardtable1,
+.page2 > .row4 > .column4 > .row1 > .standardtable1 {
     position: relative;
 }
-.page2 > .row4 > .column1 > .row1 {
-    margin-bottom: 0cm;
+.page2 > .row4 > .column1 > .row,
+.page2 > .row4 > .column3 > .row {
+    margin-bottom: 0;
+}
+.page2 > .row4 > .column .donutchart {
+    position: relative;
+    left: -14px;
+}
+.page2 > .row4 > .column2>.section,
+.page2 > .row4 > .column4>.section {
+    margin-left: 5px;
 }
 p.Portfolio\.Overall\.MSCI\.Impacts\.SdgNetAlignment.displayname-tooltip {
     font-size: 7pt;
@@ -885,7 +905,7 @@ content: "\A0Reference fonds";
 }
 .page2 > .row4 > .column3 {
     position: relative;
-    left: -60px;
+    /* left: -60px; */
 }
 .page3 > .row3 table.HorizontalCss{
     width:100%;
@@ -928,7 +948,7 @@ content: "\A0Reference fonds";
 .page3 > .row3 {
     margin-bottom:56px;
 }
-.page3 > .row4 h2{
+.page3 > .row4 h2,.page4 > .row1 h2{
     font-size: 12pt;
 }
 .page3 > .row4 > .column > .row1{
@@ -945,8 +965,8 @@ content: "\A0Reference fonds";
 .page3 > .row6 > .column2 p.item3,
 .page3 > .row6 > .column4 p.item2,
 .page3 > .row6 > .column4 p.item3,
-.page4 > .row5 > .column1 .SGDKey p.item2,
-.page4 > .row5 > .column1 .SGDKey p.item3{
+.page4 > .row5 > .column1 .SDGKey p.item2,
+.page4 > .row5 > .column1 .SDGKey p.item3{
     position: relative;
     padding-left:12px;
     margin-bottom: 0;
@@ -957,8 +977,8 @@ content: "\A0Reference fonds";
 .page3 > .row6 > .column2 p.item3:after,
 .page3 > .row6 > .column4 p.item2:after,
 .page3 > .row6 > .column4 p.item3:after,
-.page4 > .row5 > .column1 .SGDKey p.item2:after,
-.page4 > .row5 > .column1 .SGDKey p.item3:after {
+.page4 > .row5 > .column1 .SDGKey p.item2:after,
+.page4 > .row5 > .column1 .SDGKey p.item3:after {
     content: "";
     background-color: #7252AC;
     height: 8px;
@@ -969,7 +989,7 @@ content: "\A0Reference fonds";
 }
 .page3 > .row6 > .column2 p.item3:after,
 .page3 > .row6 > .column4 p.item3:after,
-.page4 > .row5 > .column1 .SGDKey p.item3:after {
+.page4 > .row5 > .column1 .SDGKey p.item3:after {
     background-color: #26ABE0;
 }
 .page3 > .row6 > .column2,
@@ -1029,4 +1049,9 @@ content: "\A0Reference fonds";
 .page2 > .row4 > .column3 > .section{
     margin: 0;
 }
+.DonutChartTitleFundsPF p, .DonutChartTitleBMPF p {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
 /* ValiantESG */
