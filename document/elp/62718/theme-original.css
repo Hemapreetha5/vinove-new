@@ -1,0 +1,866 @@
+/* Common Styles */
+@font-face {
+    font-family: 'GiorgioSansRegularWeb';
+    src: url('images/GiorgioSansRegularWeb.eot');
+    src: url('images/GiorgioSansRegularWeb.eot') format('embedded-opentype'),
+         url('images/GiorgioSansRegularWeb.woff2') format('woff2'),
+         url('images/GiorgioSansRegularWeb.woff') format('woff'),
+         url('images/GiorgioSansRegularWeb.ttf') format('truetype'),
+         url('images/GiorgioSansRegularWeb.svg#GiorgioSansRegularWeb') format('svg');
+}
+@font-face {
+    font-family: 'GiorgioSansLight';
+    src: url(images/GiorgioSans-Light-Web.eot);
+    src: url(images/GiorgioSans-Light-Web.eot?#iefix) format("embedded-opentype"), url(images/GiorgioSans-Light-Web.woff) format("woff"), url(images/GiorgioSans-Light-Web.ttf) format("truetype"), url(images/GiorgioSans-Light-Web.svg#svgGeorgiaSansLight) format("svg")
+}
+@font-face {
+    font-family: 'UnitRoundedLight';
+    src: url('images/UnitRoundedLight.eot');
+    src: url('images/UnitRoundedLight.eot') format('embedded-opentype'),
+         url('images/UnitRoundedLight.woff2') format('woff2'),
+         url('images/UnitRoundedLight.woff') format('woff'),
+         url('images/UnitRoundedLight.ttf') format('truetype'),
+         url('images/UnitRoundedLight.svg#UnitRoundedLight') format('svg');
+}
+@font-face {
+    font-family: 'UnitRoundedRegular';
+    src: url('images/UnitRoundedRegular.eot');
+    src: url('images/UnitRoundedRegular.eot') format('embedded-opentype'),
+         url('images/UnitRoundedRegular.woff2') format('woff2'),
+         url('images/UnitRoundedRegular.woff') format('woff'),
+         url('images/UnitRoundedRegular.ttf') format('truetype'),
+         url('images/UnitRoundedRegular.svg#UnitRoundedRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitRoundedMedium';
+    src: url('images/UnitRoundedMedium.eot');
+    src: url('images/UnitRoundedMedium.eot') format('embedded-opentype'),
+         url('images/UnitRoundedMedium.woff2') format('woff2'),
+         url('images/UnitRoundedMedium.woff') format('woff'),
+         url('images/UnitRoundedMedium.ttf') format('truetype'),
+         url('images/UnitRoundedMedium.svg#UnitRoundedMedium') format('svg');
+}
+
+@font-face {
+    font-family: 'ABCArizonaFlare-Medium';
+    src: url('images/ABCArizonaFlare-Medium.otf') format('otf');
+    src: url('images/ABCArizonaFlare-Medium.woff') format('woff'),
+		url('images/ABCArizonaFlare-Medium.ttf') format('truetype');     
+}
+
+@font-face {
+    font-family: 'GT-Ultra-Standard-Lloyds-Ultra';
+    src: url('images/GT-Ultra-Standard-Lloyds-Ultra.otf') format('otf');
+    src: url('images/GT-Ultra-Standard-Lloyds-Ultra.woff2') format('woff2'),
+		url('images/GT-Ultra-Standard-Lloyds-Ultra.ttf') format('truetype');     
+}
+
+@font-face {
+    font-family: 'GT-Ultra-Standard-Lloyds-Black';
+    src: url('images/GT-Ultra-Standard-Lloyds-Black.otf') format('otf');
+    src: url('images/GT-Ultra-Standard-Lloyds-Black.woff2') format('woff2'),
+		url('images/GT-Ultra-Standard-Lloyds-Black.ttf') format('truetype');     
+}
+
+@font-face {
+    font-family: 'GT-Ultra-Standard-Lloyds-Bold';
+    src: url('images/GT-Ultra-Standard-Lloyds-Bold.otf') format('otf');
+    src: url('images/GT-Ultra-Standard-Lloyds-Bold.woff2') format('woff2'),
+		url('images/GT-Ultra-Standard-Lloyds-Bold.ttf') format('truetype');     
+}
+
+@font-face {
+    font-family: 'GT-Ultra-Standard-Lloyds-Light';
+    src: url('images/GT-Ultra-Standard-Lloyds-Light.otf') format('otf');
+    src: url('images/GT-Ultra-Standard-Lloyds-Light.woff2') format('woff2'),
+		url('images/GT-Ultra-Standard-Lloyds-Light.ttf') format('truetype');     
+}
+
+@font-face {
+    font-family: 'GT-Ultra-Standard-Lloyds-Regular';
+    src: url('images/GT-Ultra-Standard-Lloyds-Regular.otf') format('otf');
+    src: url('images/GT-Ultra-Standard-Lloyds-Regular.woff2') format('woff2'),
+		url('images/GT-Ultra-Standard-Lloyds-Regular.ttf') format('truetype');     
+}
+
+:root {
+	--red: #ff222f;
+	--teal:#0B3239;
+	--light-pink: #FFE2E8;
+}
+body {
+	/*font-family: 'UnitRoundedRegular', sans-serif;*/
+	font-family: 'GT-Ultra-Standard-Lloyds-Regular', sans-serif !important;
+	font-size: 10pt;
+	line-height: normal;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	font-weight: normal;
+	color: #000000;
+}
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+.FlexibleHeader h2{
+
+}
+.PastPerformance .item2 b,
+.Notes .item2 b,
+.AsAtYearYYYY b,
+.LastPageNotes .item2{
+	color:#ed135e;
+	font-weight:normal;
+	font-size: 10pt;
+}
+ul li {
+	list-style: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	/*background-color: #f3efec;*/
+	background-color: transparent;
+	padding: 5px;
+}
+
+table th:nth-child(1) {
+	border-top-left-radius: 15px;
+    
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > thead > tr > th {
+	    border-radius: 15px;
+}
+
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > thead > tr > th {
+	border-radius: 15px;
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > thead > tr > th > div > table > tbody > tr:nth-child(1) > th.VolatilityY3, body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > thead > tr > th > div > table > tbody > tr:nth-child(1) > th.VolatilityY3  {
+	    border-top-right-radius: 15px;
+}
+
+           
+ 
+/*body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(19) > td.InformationRatioY3 {
+	border-top-right-radius: 15px;
+}*/
+ 
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(18) > td.WBInstrumentName.customTableSectorClassCode, 
+ 
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(182) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(18) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(38) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(58) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(78) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(98) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(118) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(138) > td.WBInstrumentName, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(142) > td.WBInstrumentName, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(37) > td.WBInstrumentName, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(56) > td.WBInstrumentName, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(56) > td.WBInstrumentName, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(75) > td.WBInstrumentName, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(94) > td.WBInstrumentName,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(113) > td.WBInstrumentName,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(132) > td.WBInstrumentName,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(170) > td.WBInstrumentName.customTableSectorClassCode,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(179) > td.WBInstrumentName {
+	    border-bottom-left-radius: 15px;
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(18) > td.InformationRatioY3.customTableSectorClassCode, 
+ 
+ 
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(182) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(18) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(38) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(58) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(78) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(98) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(118) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(138) > td.InformationRatioY3, 
+body > div.section.page.page4 > div.section.row.row2 > div.section.contentSection.Table7.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(142) > td.InformationRatioY3, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(37) > td.InformationRatioY3, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(56) > td.InformationRatioY3, body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(56) > td.InformationRatioY3,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(75) > td.InformationRatioY3,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(94) > td.InformationRatioY3,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(113) > td.InformationRatioY3,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(132) > td.InformationRatioY3,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(170) > td.InformationRatioY3.customTableSectorClassCode,
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(179) > td.InformationRatioY3
+ {
+	border-bottom-right-radius: 15px;
+}
+table table {
+    background-color: transparent;
+    padding: 0;
+}
+.Table7 table th,.Table7  table td {/*testing*/
+	/*width: 2cm !important;
+	max-width: 2cm !important;*/
+	min-width: 1.5cm !important;
+	padding-left:0 !important;
+	padding-right:0 !important;
+}
+.Table7 table th{
+}
+.page3 .Table6 th ,.page3 .Table6 td {
+  width: 1.68cm !important;
+  min-width: 1.68cm !important;
+  max-width: 1.68cm !important;
+} 
+table th, table td {
+width: 1.68cm;
+/*		min-width: 1.1cm;*/
+	margin: 0;
+	padding: 0.15cm 0.1cm;s
+	vertical-align: middle;
+	border: 0;
+	text-align: center;
+}
+table tbody td{	
+	height: 0.8cm;	
+	padding: 0 0.11cm 0cm 0.12cm;	
+	font-size: 9pt;
+	border-right: 1px solid #fff;
+}
+table tbody td:last-child {	
+	border-right: 0px solid #d73e42;
+}
+table th{
+	vertical-align: bottom;
+	font-weight: normal;
+	font-size: 9pt;
+	/*background-color: #0095da;
+	border-color: #0095da;
+	color: #fff;*/
+	    background-color: #004560;
+    border: 0;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+table th:last-child {border-right: 0;}
+.Contents table th{
+	height:0.7cm;
+	vertical-align:middle;
+	font-size:9pt;
+	text-align:left;
+	/*text-indent:1cm;*/
+	background: #ed135e;
+}
+.Contents table td{
+	text-align:left;
+	text-indent:1cm;
+}
+table th.groupHeader0, table th.groupHeader1, table th.groupHeader2, table th.groupHeader3{
+	padding: 0;
+	border-top: 0;
+	border-bottom: 0;
+}
+table th.groupHeader0 table tr th:last-child, table th.groupHeader1 table tr th:last-child, table th.groupHeader2 table tr th:last-child{
+	border-right: 0;
+}
+table td.groupRow0, table td.groupRow1, table td.groupRow2, table td.groupRow3{
+	padding: 0;
+	border-top: 0;
+	border-bottom: 0;
+}
+table td.groupRow0 table tr:first-child td, table td.groupRow1 table tr:first-child td, table td.groupRow2 table tr:first-child td, table td.groupRow3 table tr:first-child td{
+	border-top: 0;
+}
+table td.groupRow0 table tr td:last-child, table td.groupRow1 table tr td:last-child, table td.groupRow2 table tr td:last-child, table td.groupRow3 table tr td:last-child{
+	border-right: 0;
+}
+table th.tableheader{/*	border-bottom: 0;*/vertical-align: middle;height: 0.5cm;}
+table td.tablefooter{
+	border-top: 0;
+	text-align: left;
+}
+table th.FundName, table td.FundName{
+	width: 4cm;
+	min-width: 4cm;
+	border-left: 0;
+	text-align: left;
+}
+
+.OEIC table td.FundName{
+	color:#0097d7
+}
+.OEIC table th.tableheader{
+	background-color:#0097d7;
+}
+.FlexibleOptions table td.FundName{
+	color:#7d529f
+}
+.FlexibleOptions table th.tableheader{
+	background-color:#7d529f;
+}
+ 
+table th.CitiCode, table td.CitiCode{
+	width: 1.3cm;
+	min-width: 1.3cm;
+}
+table th.UnitCurrencyCode, table td.UnitCurrencyCode{
+	width: 1.3cm;
+	min-width: 1.3cm;
+}
+table th.LaunchDate, table td.LaunchDate{
+	width: 1.5cm;
+	min-width: 1.5cm;
+}
+table th.Rating, table td.Rating{
+	width: 1.3cm;
+	min-width: 1.3cm;
+	border-left: 0;
+}
+table th.CrownRating, table td.CrownRating{
+	width: 1.3cm;
+	min-width: 1.3cm;
+	max-width: 1.3cm;
+}
+/*
+table th.FundName, table th.CitiCode, table th.UnitCurrencyCode, table th.LaunchDate{
+	height: 1.5cm;
+}
+table th.CrownRating{
+	height: 0.5cm;
+}
+*/
+table td.CrownRating .rating {
+    max-width: 50px;
+}
+ 
+/*
+h2 {
+	font-family: 'DINProRegular', sans-serif;
+	margin:0;
+}
+*/
+p {
+	margin: 0;
+	padding: 0;
+}
+ul, ol {
+	margin-bottom: 0;
+	margin-top: 0.2cm;
+}
+.clear {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* Specific Styles */
+.page {
+	position: relative;
+	width: 27.7cm;
+	height: 18.5cm;
+	padding: 1cm 1cm 1.5cm;
+	box-decoration-break: clone;
+	 
+}
+.page1 {
+    padding-top: 6cm;
+    height: 13.5cm;
+    
+}
+.row {
+	margin-bottom: 0.3cm;
+}
+h2{
+	font-size:10pt;
+}
+.logo {  
+     background: url('images/SW_Primary_Logo.jpeg') no-repeat center center;
+    background-size: auto 60%;
+    width: auto;
+    margin-top: 175px;
+}
+.FirstInfo .item2{
+	font-size:34pt;
+	text-align:right;
+}
+.FirstInfo .item3 h2{
+	color:#ed135e;
+	font-size:19pt;
+	text-align:right;
+}
+.DocumentDate{
+	font-size:17pt;
+	text-align:right;
+}
+p {
+	margin: 0;
+	margin-bottom: 0.25cm;
+}
+
+.FrontPage{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(images/cover2.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: cover;
+	padding: 1cm;
+    box-sizing: border-box;
+}
+.FrontPage:before{
+	content: '';
+	background-color: rgba(0,0,0,0.8);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 27.7cm;
+	height: 19cm;
+	margin: 1cm;
+}
+.compositebody{
+	position: relative;
+	margin: 1cm 1cm 0 1cm;
+}
+.FundNameHeader{
+	padding-top: 1cm;
+}
+.FundNameHeader  h2{
+	background-image: url(images/logo.svg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 3cm auto;
+	height: 2cm;
+	position: relative;
+}
+.FundNameHeader  p{
+	margin-top: 0.5cm;
+	font-family: 'DINProLight';
+	font-size: 40pt;
+	line-height: 45pt;
+	letter-spacing: -1pt;
+	color: #ffc30e;
+	
+}
+.FundNameHeader .DocumentDate h2{
+	background: none;
+	height: auto;
+}
+.FundNameHeader .DocumentDate p{
+	font-size: 14pt;
+    color: #ffffff;
+    line-height: normal;
+    margin: 0;
+    letter-spacing: normal;
+}
+
+.Objective1{
+	margin-top: 1.5cm;
+}
+.Objective1 p, .Objective2 p{
+	font-family: 'DINProLight';
+	font-size: 14pt;
+	color: #ffffff;
+	
+}
+
+.Header{
+	position: relative;
+}
+.Header h2{
+	font-size: 24pt;
+	color: #ffc30e;
+}
+.DataAsAtDate{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.DataAsAtDate p{
+	margin: 0;
+}
+
+.AdditionInfo h2{
+	font-size: 24pt;
+	color: #ffc30e;
+	margin-bottom: 1cm;
+}
+.AdditionInfo div h2{
+	font-size: 18pt;
+	color: #000000;
+	margin: 0;
+}
+.AdditionInfo ul{
+	margin-bottom: 0.5cm;
+}
+.AdditionInfo ul li{
+	list-style-type: square;
+	margin-left: 1cm;
+	font-size: 12pt;
+	margin-bottom: 0.2cm;
+}
+
+.Pagination{
+	position: absolute;
+	bottom: 0.35cm;
+	left: 0.5cm;
+	width: 27.7cm;
+}
+.page4 > .row3 > .column2 {
+    float: right;
+    width: 50%;
+}
+.TitlePageHeader h2 {
+    font-size: 34pt;
+    font-family: 'ABCArizonaFlare-Medium', sans-serif;
+    text-align: center;
+    padding: 2px 0;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+.TitlePageHeader h2:empty {
+    display: none;
+}
+.TitlePageHeader > h2:after {
+    background: #d73e42;
+    width: 52px;
+    height: 1px;
+    /* position: absolute; */
+    display: block;
+    content: "";
+    left: 0;
+    right: 0;
+    margin: 19px auto 15px;
+}
+.DocumentDate {
+    font-size: 16pt;
+    margin-bottom: 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.TitlePageCaveat {
+    text-align: center;
+    font-size: 11pt;
+    margin-top: 80px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 2cm;
+}
+.ContentsPage h2 {
+    font-size: 22pt;
+	margin-bottom: 30px;
+}
+.ContentsPage p, .ContentsPage li {
+    color: #d73e42;
+    font-size: 13pt;
+    padding: 5px 0;
+}
+/*.page2:after{
+	content: "";
+	background: url(images/body-bg.svg) no-repeat left bottom;
+	width: auto;
+	height: 2cm;
+	display: block;
+	position: absolute;
+	left: -5px;
+	bottom: 2cm;
+}*/
+.page2 > .row1 > .column2{
+	margin-left: 60%;
+	margin-top: 100px;
+}
+.tableheader h2{
+	font-size: 16pt;
+	margin-bottom: 0.25cm;
+	text-align: left;
+	color: #d73e42;
+}
+.tableheader h2 span{
+	color: #000000;
+}
+.customTable .groupRow {
+    text-align: left;
+    font-size: 10pt;
+    font-weight: bold;
+}
+.customTable td.FundNameFull, .customTable th.FundNameFull, .customTable th.FundNameWB, .customTable td.FundNameWB, .customTable td.WBInstrumentName {
+    text-align: left;
+	width: 6.87cm;
+	min-width:  6.87cm;
+	max-width:  6.87cm;
+
+}
+.page4 .Table7.customTable td.JensensAlphaY3, .page4 .Table7.customTable th.JensensAlphaY3,
+.page4 .Table7.customTable td.SharpeY3, .page4 .Table7.customTable th.SharpeY3{/*testing*/
+    padding-left:0.1cm !important;
+    padding-right:0.1cm !important;
+}
+ .page4 .Table7.customTable td.WBInstrumentName, .page4 .Table7.customTable th.WBInstrumentName{/*testing*/
+
+	min-width: 7cm !important;
+    padding-left:0.1cm !important;
+    padding-right:0.1cm !important;
+	overflow-wrap: anywhere !important;
+ }
+ .page4 .Table7.customTable th.WBInstrumentName{/*testing*/
+	/*width: 6.5cm !important;*/
+ }
+.customTable th.FundNameWB, .customTable th.WBInstrumentName{
+
+width: 6.89cm;
+}
+.page3 .customTable .Risk{
+	width: 1.8cm ;
+	min-width: 1.8cm ;
+	max-width: 1.8cm ;
+}
+.page4 .customTable .Risk{
+	width: 1.99cm ;
+	min-width: 1.99cm ;
+	max-width: 1.99cm ;
+}
+.customTable .footer {
+    position: absolute;
+    bottom: 1cm;
+    left: 1cm;
+    right: 1cm;
+	font-size: 8pt;
+}
+.rating {
+    padding-top: 2px;
+}
+.ObsrRating, .CitywireRating {
+     
+}
+.page3 .customTable table .ObsrRating{
+	
+}
+.customTable tr.even td  {
+    background: #e7e7e8;
+}
+.customTable tr.odd td  {
+    background: #dcddde;
+}
+.ABISector h2, .RiskCategory h2{
+	color: #d73e42;
+	font-size: 15pt;
+	margin-bottom: 5px;
+}
+.ABISector p, .RiskCategory p{
+	font-size: 9pt;
+}
+.ABISector p:empty, .RiskCategory p:empty, h2:empty, p:empty, div:empty{
+	display: none;
+}
+div.logo:empty{
+	display: block;
+}
+.TerminologyPage h2{
+	font-size: 22pt;
+	margin-bottom: 10px;
+}
+.RatingsHeader h2, .RiskPerformanceAnalysis h2, .RiskAnalysis h2{
+	color: #d73e42;
+	font-size: 20pt;
+}
+.MorningStarRatingInfo h2, .MSAnalystInfo h2, .CrownRatings1 h2, .CrownRatings2 h2, .CrownRatings3 h2, .Exclusions h2, .VolatilityInfo h2, .BetaInfo h2, .AlphaInfo h2, .JensenInfo h2, .SharpeInfo h2, .RInfo h2, .InformationRation h2{
+	font-size: 12pt;
+	font-family: 'UnitRoundedMedium', sans-serif;
+	margin-bottom: 8px;
+}
+.MSAnalystInfo {
+    margin-top: 30px;
+}
+.MSAnalystInfo ul{
+	margin-left: 0.1cm;
+	margin-bottom: 10px;
+}
+.MSAnalystInfo li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 0.5cm;
+}
+.MSAnalystInfo li:before {
+    content: "";
+    background: #000;
+    width: 5px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 7px;
+}
+.CrownRatings3 ul, .Exclusions ul{
+	margin-left: 0.4cm;
+}
+.CrownRatings3 ul li, .Exclusions ul li{
+	list-style-type: disc;
+}
+.KiiRiskNumber, td.star,th.Star:first-child {
+    width: 1.8cm; 
+}
+.rating { width: 75px;}
+.groupRow {
+    background-color: #d73e42;
+    color: #fff;
+}
+.FooterSection {
+    position: absolute;
+    bottom: 1cm;
+    left: 1cm;
+    right: 1cm;
+}
+.customTable p:empty {
+    display: none;
+}
+.customTable h2{
+	margin-bottom: 0.3cm;
+	font-size: 16pt;
+	color: #d73e42;
+}
+.customTable h2 * {
+    color: #000;
+}
+.customTable p {
+    font-size: 8pt;
+}
+.page4 table tbody td.Star{
+	width: 1.42cm ;
+	min-width: 1.42cm ;
+	max-width: 1.42cm ;
+}
+.Star .clientRating {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.Star img.clientRating {
+    max-width: 75px;
+}
+.TableCaveat {
+    position: absolute;
+    left: 1cm;
+    right: 1cm;
+    bottom: 0cm;
+}
+tr.odd td.customTableSectorClassCode, tr.even td.customTableSectorClassCode {
+        background-color: #004560;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: bold;
+}
+tr.odd td.customTableSectorClassCode, tr.even td.customTableSectorClassCode {
+    border-right: 1px solid #fff;
+}
+td.BetaY3.customTableSectorClassCode:before, td.R2Y3.customTableSectorClassCode:before {
+    content: "1.00";
+}
+.RiskImage img {
+    height: auto !important;
+}
+.page3 .customTable th.Star{
+    width: 1.3cm;
+}
+.page3 .customTable th.Star{
+    width: 2.2cm !important;
+	min-width: 2.2cm !important;
+	max-width: 2.2cm !important;
+}
+.page3 .customTable td.Star{
+    width: 2.2cm !important;
+	min-width: 2.2cm !important;
+	max-width: 2.2cm !important;
+}
+.page3 .customTable td{
+    width: 1.68cm;
+    min-width: 1.68cm;
+}
+.page3 .customTable th.WBInstrumentName{
+    /*width: 6cm !important;
+	min-width: 6cm !important;
+	max-width: 6cm !important;*/
+	    width: 5.9cm !important;
+    min-width: 5.9cm !important;
+    max-width: 5.9cm !important;
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > tbody > tr > td > div > table > tbody > tr:nth-child(1) > td.WBInstrumentName.customTableSectorClassCode {
+    padding: 0 -0.2cm 0cm 0.12cm;	
+	
+}
+.page3 .customTable td.WBInstrumentName{
+  /*  width: 6.01cm !important;
+	min-width: 6.01cm !important;
+	max-width: 6.01cm !important;*/
+	    width: 5.95cm !important;
+    min-width: 5.95cm !important;
+    max-width: 5.95cm !important;
+}
+.page3 .customTable table .ObsrRating{
+    width: 2.2cm !important;
+	min-width: 2.2cm !important;
+	max-width: 2.2cm !important;
+}
+ .page3 .customTable table .MstarAnalystRating{
+    width: 2.2cm !important;
+	min-width: 2.2cm !important;
+	max-width: 2.2cm !important;
+}
+  .page3 .customTable table .CrownRating{
+    width: 2.2cm !important;
+	min-width: 2.2cm !important;
+	max-width: 2.2cm !important;
+}
+ 
+.page4 .customTable th.Star:first-of-type{
+	width: 1.4cm ;
+	/* padding: 0.15cm 0; */
+	min-width: 1.4cm ;
+	max-width: 1.4cm ;
+}
+.page4 .customTable  td.Risk{
+	width: 2cm ;
+	min-width: 2cm ;
+	max-width: 2cm ;
+
+} 
+.page4 .customTable th.WBInstrumentName{
+	width: 6.87cm;
+		min-width: 6.87cm;
+		max-width: 6.87cm;
+}
+.page4 .customTable.Table7 table tbody td.Star,
+.page4 .customTable.Table7 table th.Star,
+.page4 .customTable.Table7 table tbody td.MstarAnalystRating,
+.page4 .customTable.Table7 table  th.MstarAnalystRating,
+.page4 .customTable.Table7 table tbody td.CrownRating,
+.page4 .customTable.Table7 table  th.CrownRating
+{
+	width: 3cm !important;
+	min-width: 3cm !important;
+	max-width: 3cm !important;
+}
+.Table6 table .groupHeaderDiv0 table, .Table7 table .groupHeaderDiv0 table{
+	margin-bottom: 0px !important;
+}
+table{
+	margin-bottom:5px !important;
+}
+
+.page1 .row2 .text1 .DocumentDate p {
+	font-family: GT-Ultra-Standard-Lloyds-Regular;
+    color: var(--teal);
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > thead > tr > th > div > table > tbody > tr:nth-child(2) > th.InformationRatioY3 {
+	padding-right: 1px;
+}
+
+body > div.section.page.page3 > div.section.row.row3 > div.section.contentSection.Table6.customTable.customTable1 > table > thead > tr > th > div > table > tbody > tr:nth-child(1) > th.WBInstrumentName {
+	     
+}
+/*theme name: ELP*/
