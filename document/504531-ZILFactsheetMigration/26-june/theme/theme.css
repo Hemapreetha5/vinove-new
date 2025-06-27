@@ -188,7 +188,8 @@ p {
 	width: 100%;
 	line-height: initial;
 	font-weight: 600;
-	padding-top: 0.3cm;
+	/* padding-top: 0.3cm; */
+	padding-top: 0;
 }
 .page1 > .row1 > .column1 {
  
@@ -274,10 +275,10 @@ table{
 	margin: 0;
 }
 .FundManagementGroupName span:first-child{
-	width: 65%;
+	width: 50%;
 }
 .FundManagementGroupName span:last-child{
-	width: 35%;
+	width: 50%;
 }
 .FundManagementGroupName span.label{
 	line-height: 1;
@@ -285,9 +286,6 @@ table{
 }
 .FundManagementGroupName span.value{
 	text-align: right;
-}
-.page1 .row1>.horizontal-list .label{
-	
 }
 .page1 .row2>.horizontal-list h2,
 .page2>.row1 h2 ,.page3>.row1 h2 ,
@@ -322,8 +320,8 @@ table{
 .page1 .horizontal-list div{
 	color: rgb(0, 79, 158);
 	line-height: initial;
-	padding-bottom: 0.1cm;
-	padding-top: 0.1cm;
+	padding-bottom: 0.07cm;
+	padding-top: 0.07cm;
 }
 .page1 .horizontal-list div.clear{
     padding: 0;
@@ -364,8 +362,15 @@ table{
 top:-0.5cm;
 	height: 4.3cm;
 }
-.page1>.row2{
+/* .page1>.row2{
 	position: relative;
+} */
+.page1>.row2 {
+    position: relative;
+    top: -120px;
+    margin-bottom: -120px;
+    padding-top: 30px;
+    padding-right: 170px;
 }
 .page1>.row2>.column1 {
 	position: absolute;
@@ -671,7 +676,7 @@ body > div.page3.page.section > div.row2.row.section > div.row1.row.section > di
 	padding: 5px;
 }
 .page1 > .row4 > .column1{
-	min-height: 17cm;
+	min-height: 13cm;
 }
 .page2>.row2 > .column1 {  
     height: 24.5cm;
@@ -752,7 +757,8 @@ font-size: 7pt;
 .page1 > .row4 > .column1 .row1 {
     position: relative;
 }
-.page1 img.SustainabilityRating4,.page1 img.LowCarbonDesignation3 {
+.page1 img[class*="SustainabilityRating"],
+.page1 img[class*="LowCarbonDesignation"]{
     position: absolute;
     right: 0;
     top: -22px;
