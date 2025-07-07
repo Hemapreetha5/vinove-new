@@ -330,7 +330,7 @@ table{
 .page1 .horizontal-list div.clear{
     padding: 0;
 }
-.page1 .horizontal-list .label {
+.page1 .horizontal-list .label,.page1 .vertical-list .label {
 	color: rgb(0, 79, 158);
 	line-height: initial;
 }
@@ -743,7 +743,7 @@ font-size: 7pt;
 .page3 .Commentary {
     padding-top: 60px;
 }
-.page1 > .row5  .contentSection.Disclaimer{
+.page1 > .row  .contentSection.Disclaimer{
     position: absolute;
     left: 1cm;
     bottom: 2.5cm;
@@ -766,9 +766,16 @@ font-size: 7pt;
     right: 0;
     top: -22px;
 }
-.page1 .FundInformation .item3,
-.page1 .row6 .FundInformation .label {
+.page1 .FundInformation div[class*=item],
+.page1 .row6 .FundInformation .label ,
+.page1 .row7 .FundInformation .label {
     width: 145px;
+	margin-bottom: 0;
+}
+.page1 .FundInformation div[class*=item],
+.page1 .row6 .FundInformation .label,
+.page1 .row5 .FundInformation .label {
+    margin-left: 0;
 }
 .page1 > .row4 > .column1 .Charge_caveat {
     padding-top: 10px;
