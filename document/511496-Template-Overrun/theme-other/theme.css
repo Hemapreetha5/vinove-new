@@ -88,6 +88,9 @@ p {
 	margin: 0;
 	margin-bottom: 0.25cm;
 }
+.page.page1 > .row1 > .column2{
+	width: 100% ;
+}
 
 .vertical-list div:not(.clear) {
 	margin-bottom: 0.25cm;
@@ -107,13 +110,11 @@ p {
 	min-height: 2cm;
 	margin-bottom: 0.5cm;
 }
-.page.page1 > .row1 > .column2{
-	width: 100% ;
-}
+
 .page1>.row2>.column2>.section {
 	background-color: transparent;
 	border-radius: 0;
-	padding: 0 0 0.05cm 0;
+	padding: 0 0 0.2cm 0;
 	margin: 0;
 }
 
@@ -152,26 +153,20 @@ p {
 }
 
 .page1>.row1 {
-	background: url("images/logonew.png") no-repeat top right;
-	/* background-size: 23%;
-	background-position: 565px -19px; */
-	    background-size: auto 2cm;
-    background-position: top -10px right;
+	background: url("images/Sterling(cmyk).jpg") no-repeat top right;
+	background-size: 3cm 1.3cm;
+	background-position: 600px 1px;
+	/* margin-top: 23px; */
 }
 .page2:before ,
 .page3:before {
 	content: "";
 	position: absolute;
 	display: block;
-	/* width: 3.5cm;
-	height: 2.2cm; */
-	width: 3cm;
-    height: 2cm;
-	background: url("images/logonew.png") no-repeat bottom right;
-	/* background-size: 122%;
-	background-position: -20px -19px; */
-	background-size: contain;
-    background-position: bottom right;
+	width: 3.5cm;
+	height: 2.2cm;
+	background: url("images/Sterling(cmyk).jpg") no-repeat bottom right;
+	background-size: 86%;
 	bottom: 2cm;
 	right: 1cm;
 }
@@ -226,19 +221,19 @@ p {
 .page2>.row1>.column1 .contentSection,
 .page3>.row1>.column1 .contentSection {
 	background: rgb(238, 236, 234);
-	padding: 0.15cm 0cm 0;
+	padding: 0;
 }
 .page1 > .row2 > .column1>.row{
 	padding-left: 0.2cm;
 	padding-right: 0.2cm;
-	background: #eeecea;
 }
 .Fund.Holding{
-	padding: 0cm 0.2cm 0.2cm 0;
+	padding: 0.1cm 0.2cm 0.2cm 0;
 	/*background: #eeecea;*/
 }
 .Fund.Holding p{
-	margin: 0.1cm 0 0 0;
+	margin: 0;
+	
 }
 .page1>.row2 >.column1{
 	background: #eeecea ;
@@ -298,6 +293,9 @@ p {
 .page2 > .row1 > .column1 h2{
 	padding-top: 0.4cm;
 }
+.page3 > .row1 > .column1 h2{
+	padding-top: 0.4cm;
+}
 .page2 > .row1 > .column1>.row,.page3 > .row1 > .column1>.row{
 	padding-left: 0.2cm;
 	padding-right: 0.2cm;
@@ -315,19 +313,13 @@ p {
 	padding-bottom: 0;
 	padding-top: 0.1cm;
 }
+ 
+.Yield-Yieldtext .value {
+	margin-top: -0.2cm;
+}
 .page1 .horizontal-list .label {
 	color: rgb(0, 79, 158);
 	line-height: initial;
-}
-.page1 .Fund.Information .Price .label{
-	color: rgb(0, 79, 158);
-	margin-left:0px;
-	font-weight: bold;
-}
-.page1 .Fund.Information .Price .value{
-	float:right;
-	margin-right:3px;
-	padding-top: 3px;
 }
 .rating {
     max-width: 80px;
@@ -336,20 +328,16 @@ p {
 .page1 .horizontal-list .value {
 	color: rgb(21, 40, 100);
 }
-.Yieldtext{
-	margin: 0;
-}
+
 .page1 .ObjectiveText .value {
 	margin-bottom: 0.2cm;
-	font-size: 7.8pt;
-	line-height: 1;
 }
-.page1 .horizontal-list .Yieldtext .value{
-	margin-top: 0.1cm;
-}
+
 .chart {
-top:-0.5cm;
-	height: 4.5cm;
+	height: 4.7cm;
+}
+.page1 > .row2 > .column2 > .row6 > .row2 > .pdfperformancechart1 > .chart{
+	height: 4.4cm;
 }
 .page1>.row2{
 	position: relative;
@@ -361,12 +349,11 @@ top:-0.5cm;
 	left: 0cm;
 	bottom: 0;
 	background: #eeecea;
-	min-height: 18.5cm;
+	min-height:19.5cm;/*test*/
 }
 .Charge.caveat{
-	/* position: absolute;
-	bottom: 0; */
-	padding-bottom: 0.2cm;
+	position: absolute;
+	bottom: 0;
 }
 .page2>.row1>.column1{
 	position: absolute;
@@ -381,7 +368,7 @@ top:-0.5cm;
 	width: 7cm;
 	top: 0.8cm;
 	left: 1cm;
-	bottom: 2s.5cm;
+	bottom: 4.5cm;
 	background: #eeecea;
 }
 
@@ -395,9 +382,6 @@ top:-0.5cm;
 .page2>.row1>.column2 ,.page2>.row2,.page3>.row1{
 	width: 11.5cm;
 	margin-left: 7.5cm;
-}
-.page3>.row1 .row1 h2{
-	margin-top: 0.5cm;	
 }
 .page3 > .row1 > .column2{
 	width: auto;
@@ -444,35 +428,33 @@ table {
 	line-height: 1;
 	padding: 0.1cm 0 0.1cm 0.1cm;
 }
+
 .page1 table td.rowheader {
 	text-align: left;
 	padding: 0.1cm 0;
-	width: 1.5cm;
+	width: 2.2cm;
 }
 
-.Warning1.contentSection {
-	font-size: 7.8pt;
-	line-height: 1;
+.Warning1 .DocumentDate {
+	font-size:7.5pt;
+	margin-bottom:0cm;
 }
-.Warning1.contentSection p{
-	margin-bottom: 1mm;
+.Warning1 .DocumentDate br {
+    display: block; /* makes it have a width for break <br> */
+    content: ""; /* clears default height of break <br> */
+	line-height: 0;
+	height:0;
+    margin-top: 2px; /* change this to whatever height you want it to give for line break */
 }
+
 .page2 .horizontal-list .label {
 	margin: 0;
 	color: rgb(0, 79, 158);
-	padding-bottom: 0;
-padding-top: 0.1cm;
-line-height: initial;
 }
-.page2 .horizontal-list .value {
- 
-	padding-bottom: 0;
-padding-top: 0.1cm;
-line-height: initial;
-}
+
 .page2 .row2 .breakdown,.page2 .row3 .breakdown,.page2 .row4 .breakdown,.page2 .row5 .breakdown,.page2 .row6 .breakdown{
 	border-top: 2.5pt solid rgb(73, 144, 218);
-	padding-top: 0.2cm;
+	padding-top: 6px;
 	margin-top: -5px;
 }
 .page2 .holding {
@@ -502,7 +484,7 @@ line-height: initial;
 .page2 .holding table td.Weight {
 	text-align: right;
 }
-.page2>.row2>.row1> .contentSection{
+.page2>.row2>.row1>.contentSection{
 	position: running(Page2Disclaimer);
 	border-bottom: 1pt solid  rgb(21, 40, 100);
  padding-bottom: 0.3cm;
@@ -553,25 +535,25 @@ line-height: initial;
 		 
 	}
 }
+
+.page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td.Weight{
+	/*border:1px solid;*/
+	text-align:center;
+	width: 25%;
+	padding: 0.1cm 0;
+}
 .page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td{
 		border-bottom: 0.5pt solid rgb(73, 144, 218);
 
 }
-.page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td.Weight{
-	/*border:1px solid;*/
-	/* text-align:center; */
-	width:12%;
-	padding: 0.1cm 0.3cm 0.1cm 0;
-}
 .page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td.Name{
-	/*border:1px solid;*/
-	width: 60%;
+	width: 50%;
 	padding: 0.1cm 0;
 }
 .page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td.FundFactsheet{
 	/*border:1px solid;*/
 	text-align:center;
-	width:20%;
+	width: 25%;
 }
 .page2 .section.contentSection.breakdown.breakdown1.Full.Holding table tr td.FundFactsheet a:after{
 	 content: "\f0f6";
@@ -591,8 +573,41 @@ line-height: initial;
 	display: inline-block;
 }
 
+.page2 > .row1 > .column2 > .row3 > .breakdown1 .chart,.page2 > .row1 > .column2 > .row4 > .breakdown1 .chart,.page2 > .row1 > .column2 > .row5 > .breakdown1 .chart{
+ margin-top: -13px;
+}
+.page1 .Fund.Information .Price .label{
+	color: rgb(0, 79, 158);
+	margin-left:0px;
+	font-weight: bold;
+}
+.page1 .Fund.Information .Price .value{
+	float:right;
+	margin-right:3px;
+	padding-top: 3px;
+}
+.page2 > .row1 > .column2  .chart{
+	margin-top: -15px;
+}
+.page2 > .row1 > .column2 .breakdown1  table tr td.Name{ 
+  width:65%;
+}
+.page2 > .row1 > .column2 .breakdown1:not(.Holding)  table tr td.Weight{
+  text-align:right;
+}
+.page2 > .row1 > .column2 .breakdown1 table tr td.Weight{	 
+	  width:35%;
+	  padding-left: 11px;
+}
+.page2 > .row1 > .column2 .breakdown1 table tr td.Key{	 
+	  width:10%;
+}
+
 .page1 .horizontal-list div.FundSize{
 	padding-top: 0;
+}
+.row4>.Fun>.Yieldtext{
+	margin:0.08cm 0 0 0;
 }
 .page2 > .row1 .breakdown1 table{
 	margin-bottom:6px;
@@ -603,39 +618,7 @@ line-height: initial;
 .page2 > .row1 .breakdown1.Sector.Split table{
 	margin-bottom:6px;
 }
-.page2 > .row1 > .column2 .breakdown1  table tr td.Name{ 
-  width:65%;
-}
-.page2 > .row1 > .column2 .breakdown1 table tr td.Weight{	 
-  width:35%;
-  padding-right: 11px;
-/* color: red; */text-align: right;}
-.page2 > .row1 > .column2 .breakdown1 table tr td.Key{	 
-  width:10%;
-}
 .page2 p.UnderlyingUnitNameFull-UnderlyingFactsheetLink b{
 	font-weight:bold;	
 }
-
-body > div.page3.page.section > div.row1.row.section > div.column2.column.section > div.row1.row.section > div.row1.row.section > div.text1.text.contentSection.section.animation-None > h2 {
-	    margin-top: 0cm;
-}
-
-.page3>.row1>.column2 {
-    margin-top: 0.5cm;
-}
-
-body > div.page3.page.section > div.row2.row.section > div.row1.row.section > div.text1.text.contentSection.section.animation-None {
-	    position: absolute;
-    /* bottom: 92px; */
-	    bottom: 75px;
-    left: 45px;
-    width: 58%;
-}
-.page3 .AdditionalInformation {
-    margin-bottom: 0;
-}
-body > div.page3.page.section > div.row2.row.section > div.row1.row.section > div.text1.text.contentSection.section.animation-None{
-	margin-bottom: 3px;
-}
-/* ZurichAssurance*/
+/* Sterling*/
