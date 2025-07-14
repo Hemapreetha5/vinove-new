@@ -364,14 +364,23 @@ a:hover {
 .fe-fundCentre-body .fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all /* tab control fund centre*/
 {
 	border:0;
-	background:url(fe_img/search-results.png) no-repeat;
+	/* background:url(fe_img/search-results.png) no-repeat; */
 	margin-top: 55px;
-	*margin-top: 27px;
 	display: inline-block;
 	width: 100%;
-	
+    position: relative;
+    vertical-align: top;
+	background-color: #0b3239;
 }
-
+.fe-fundCentre-body .fe-tabs.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all::before {
+    position: absolute;
+    content: "Results of Search";
+    left: 10px;
+    top: 7px;
+    font-size: 12px;
+    line-height: normal;
+	color:#fff;
+}
 .fe-tabs-item.ui-state-default.ui-corner-top /* tab charting tool*/
 {
 	-moz-border-radius: 0;
@@ -843,7 +852,8 @@ line-height: 115%
 
 .fe-datatable th, .fe-chart-datable th {
 	padding: 10px 5px 10px 5px;
-	background: #666666 !important;
+	/* background: #666666 !important; */
+		background: #f8f8f8 !important;
 	font: 12px Arial, sans-serif;
 	color: #fff;
 	font-weight: bold;
@@ -852,6 +862,7 @@ line-height: 115%
 	border-right:0;
 	border-top: 2px solid #ffffff;
 	border-left:2px solid #ffffff;
+	color:#000;
 }
 
 .ui-sortable.pdfableColumn.fe-tabs-grid-columnheader.fe-soretedColumn /* th sorted */ 
@@ -1137,14 +1148,16 @@ td.fe-providerFact-Container
 	padding: 1px 5px;
 	color: #fff;
 	background-image: none;
-	border: 0px solid #cc0000;
+	/* border: 0px solid #cc0000; */
+	border: 0px solid #0b3239;
 	-moz-border-radius: 0;
 	-webkit-border-radius:0;
 	border-radius: 0;
 	margin: 0 2px 0 0;
 	text-decoration: none;
 	font-size: 11px !important;
-	background-color: #cc0000;
+	/* background-color: #cc0000; */
+	background-color: #0b3239;
 }
 
 
@@ -1665,7 +1678,8 @@ select.fundManagers, select.fundSectors, select.chartInstrument /* drop down sel
 	position: absolute;
 	width: 620px;
 	top: 130px;
-	border-bottom: 27px solid #d3292e;
+	/* border-bottom: 27px solid #d3292e; */
+	border-bottom: 27px solid #0b3239;
 	font-size:11px !important;
 }
 .Header b{
