@@ -31,6 +31,9 @@
   --font-regular: "rathbones_sansregular";
   --font-light: "rathbones_sanslight";
 }
+*{
+  box-sizing: border-box;
+}
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: var(--font-light);
@@ -39,8 +42,8 @@ body {
 
 .page {
   position: relative;
-  width: 28.7cm !important;
-  height: 20cm !important;
+  width: 29.7cm !important;
+  height: 21cm !important;
   padding: 0.5cm;
 }
 
@@ -145,8 +148,9 @@ h3:empty {
 .page1 .row1 .column1 .text {
   padding-top: 460px;
 }
-.page2 > .row2 h2 {
-  font-size: 20pt;
+.page > .row2 h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 .page2 .row3 .item3,
 .page2 .row4 .item3 {
@@ -170,12 +174,6 @@ h3:empty {
 
 .page1.section > .row.section:last-child {
   display: block;
-}
-
-.page3 > .row2 .item3,
-.page3 > .row2 .DocumentDate,
-.page3 > .row2 .DataAsAtDate {
-  display: inline;
 }
 
 .page3 > .row2 .DocumentDate,
@@ -206,15 +204,6 @@ h3:empty {
 .page3 > .row4 > .column .row1 .item2,
 .page3 > .row4 > .column .row1 .item3 {
   text-align: center;
-}
-
-.page3 > .row3 > .column .row1 .item3:nth-of-type(1),
-.page3 > .row4 > .column .row1 .item3:nth-of-type(1) {
-  width: 350px;
-  /* padding-left: 90px; */
-  margin: 0 auto;
-  padding-top: 5px;
-  font-size: 10pt;
 }
 
 .page3 > .row3 > .column > .row2 .row1 p:first-child,
@@ -253,13 +242,138 @@ h3:empty {
 .page3 > .row3 > .column2 > .row2 > .column2 {
   /* display: none; */
 }
-
+.page2 > .row3 > .column1 > .row1 .item2 {
+  background-color: #041640;
+  color: white;
+  padding: 8px 0;
+  font-size: 10px;
+  font-weight: normal;
+  text-align: center;
+}
+.page2 > .row3 > .column2 > .row1 .item2 {
+  background-color: #005f7f;
+  color: white;
+  /* padding: 5px; */
+  padding: 8px 0;
+  font-size: 10px;
+  font-weight: normal;
+  text-align: center;
+}
 .page3 > .row3 > .column1 > .row1 .item2 {
   background-color: #041640;
   color: white;
   padding: 8px 0;
-  font-size: 12pt;
+  font-size: 10px;
   font-weight: normal;
+}
+.page2 > .row3 > .column1,.page2 > .row3 > .column2{
+  text-align: center;
+}
+.page2 > .row3 > .column2{
+  width:calc(50% - 0.5cm);
+}
+.page2 > .row3 > .column2 {
+    margin-left: 0.5cm;
+}
+.page2 > .row3 > .column1 > .row1 p, .page2 > .row3 > .column2 > .row1 p,
+.page3 > .row3 > .column1 > .row1 p, .page3 > .row3 > .column2 > .row1 p {
+    font-size: 11px;
+}
+.page2 > .row3 > .column1 > .row1 p, .page2 > .row3 > .column2 > .row1 p {
+    min-height: 44px;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row1,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row1{
+  margin-bottom: 0;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row1 p{
+    background-color:#9BA2B3;
+}
+.page2 > .row3 > .column1 > .row2 > .column2 > .row1 p{
+    background-color:#505C7A;
+}
+.page2 > .row3 > .column2 > .row2 > .column1 > .row1 p{
+    background-color:#99BFCC;
+}
+.page2 > .row3 > .column2 > .row2 > .column2 > .row1 p{
+    background-color:#4D8FA6;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row1 p,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row1 p,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row1 p,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row1 p{
+  padding: 8px 0;
+  font-size: 9px;
+  margin-bottom: 0;
+  color:#fff;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2  p,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2  p,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2  p,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2  p{
+  font-size: 10px;
+  margin-bottom: 7px;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1, 
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2 {
+    border-right: 1px solid #E0E0E0;
+    min-height:155px;
+    border-bottom: 1px solid #E0E0E0;
+    padding:5px;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1{
+   border-left: 1px solid #E0E0E0;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1 .row, 
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2 .row, 
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1 .row, 
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2 .row,
+.page2 > .row3 > .column2 > .row2 > .column1 .row,
+.page2 > .row3 > .column2 > .row2 > .column2 .row{
+  margin-bottom: 0;
+}
+.page2 > .row3 > .column1 > .row1, .page2 > .row3 > .column2 > .row1 ,
+.page3 > .row3 > .column1 > .row1, .page3 > .row3 > .column2 > .row1 {
+    margin-bottom: 0;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1 .row1 p:first-child,
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2 .row1 .row1 p:first-child,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1 .row1 p:first-child,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2 .row1 .row1 p:first-child,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1 .row1 p:first-child,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2 .row1 .row1 p:first-child,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1 .row1 p:first-child,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2 .row1 .row1 p:first-child{
+    color: #FF0E0E;
+    font-size: 18px;
+    margin-bottom:2px;
+}
+.page2 > .row3 > .column1 > .row3 p,
+.page2 > .row3 > .column2 > .row3 p{
+  text-align: left;
+  font-size: 11px;
+  margin-bottom: 0;
+}
+.logo {
+    width: auto;
+    height: auto;
+}
+.page2 > .row3 > .column1 > .row3,
+.page2 > .row3 > .column2 > .row3 {
+    margin-bottom: 0;
 }
 
 .page3 > .row3 > .column1,
@@ -290,13 +404,12 @@ h3:empty {
 .page3 > .row3 > .column1 > .row2 > .column2 {
   background-color: #e6e7e9;
 }
-
 .page3 > .row3 > .column2 > .row1 .item2 {
   background-color: #005f7f;
   color: white;
   /* padding: 5px; */
   padding: 8px 0;
-  font-size: 12pt;
+  font-size: 10px;
   font-weight: normal;
 }
 
@@ -391,12 +504,6 @@ h2 {
   /* padding-right: 1cm !important;
     margin-right: 1cm !important; */
 }
-
-.page3 > .row2 .item2 {
-  margin-bottom: 10px;
-  font-size: 20pt;
-}
-
 .page4 > .row2 {
   display: flex;
   height: 15cm;
@@ -891,5 +998,11 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 
   margin-left: 0.5cm !important;
 }
+.page2 >.row2 p,.page3 >.row2 p {
+    font-size: 11px;
+    margin-bottom: 5px;
+
+}
+
 
 /* Theme name - Rathbone_TCFD */
