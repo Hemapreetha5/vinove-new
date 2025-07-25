@@ -1,0 +1,1341 @@
+@font-face {
+    font-family: Friends Life Dagny Bold;
+    src: url('Fonts/friends_life_dagny-bold-webfont.eot');
+    src: local("Friends Life Dagny-Bold"), url('Fonts/friends_life_dagny-bold-webfont.woff') format("woff"),
+        url('Fonts/friends_life_dagny-bold-webfont.ttf') format("truetype");
+}
+@font-face {
+    font-family: 'merriweatherregular';
+    src: url('./Images/merriweather-regular-webfont.woff') format('woff'),
+         url('./Images/merriweather-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'merriweatherbold';
+    src: url('./Images/merriweather-bold-webfont.woff2') format('woff2'),
+         url('./Images/merriweather-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    /* Font families */
+    --font-merriweather: 'merriweatherregular';
+    --font-arial:'Arial';
+    --font-roboto: 'Roboto';
+    /* Font sizes */
+    --headline-size: 18pt; 
+    --intro-size: 12pt; 
+    --subheading-size: 18pt; 
+
+    /* Color variables */
+    --color-sandstone: rgb(238, 233, 221);
+    --color-white: rgb(255, 255, 255);
+    --color-charcoal: rgb(42, 42, 42);
+    --color-orange: rgb(252, 84, 0);
+    --color-mid-charcoal: rgb(99, 100, 102);
+    --color-deep-sandstone: rgb(202, 197, 183);
+  }
+body {
+    /* font-family: Georgia, serif; */
+     font-family: var(--font-merriweather);
+    font-size: 8pt;
+    line-height: 1.3;
+}
+
+.page {
+    position: relative;
+    width: 20cm;
+    height: 27.7cm;
+    /* height: auto; */
+    padding: 0.5cm;
+    /* padding-bottom: 4.5cm; */
+    padding-bottom: 0.5cm;
+}
+
+.row {
+    margin-bottom: 0.5cm;
+}
+
+.column>.section {
+    margin-left: 0.5cm;
+}
+
+.column:first-child>.section {
+    margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    /* color: #3399FF; */
+    color: var(--color-orange);
+    font-size: var(--intro-size);
+    font-family: var(--font-arial)
+}
+
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page>.row1 h2 {
+    font-size: 24pt;
+    padding-left: 3cm;
+    min-height: 2cm;
+    background-image: url('./Images/logo.png');
+    background-repeat: no-repeat;
+    margin-bottom: 0.5cm;
+}
+
+.page1>.row2>.column2>.section {
+    background-color: #efefef;
+    border-radius: 0.25cm;
+    padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+
+.tabs.breakdowns>.tabpanes {
+    border: none;
+}
+
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+    padding-bottom: 20px;
+}
+
+.tabs.breakdowns>.tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+
+.tabs.breakdowns>.tabbuttons>.tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+
+.cler {
+    font-size: 24pt;
+}
+
+.reportheader {
+    font-size: 34pt;
+    color: rgb(253, 226, 17);
+    padding-left: 0.5cm;
+}
+
+.headerbackground {
+    background-color: rgb(138, 216, 216);
+    height: 10cm;
+    background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bottomrightheaderpage {
+    margin-top: 10cm;
+}
+
+.compositepadding {
+    padding: 0cm 0cm 1.6cm 1cm;
+    background-color: rgb(138, 216, 216);
+    margin: 0cm 1cm;
+}
+
+.securityaccount {
+    background-color: rgb(138, 216, 216);
+    padding-top: 7cm;
+    font-size: 34pt;
+    padding-bottom: .5cm;
+}
+
+.esgdata {
+    background-color: rgb(167, 179, 179);
+    padding-top: 4cm;
+    font-size: 34pt;
+    padding-bottom: 3cm
+}
+
+.FooterCSS .column1 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column2 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column3 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column5 {
+    width: 15%;
+    float: left;
+}
+
+
+.FooterCSS .column4 {
+    width: 40%;
+    float: left;
+    text-align: center;
+}
+
+
+/* footer {
+    position: running(footerIdentifier)
+}
+
+@page {
+
+    @bottom-left {
+        content: element(footerIdentifier)
+    }
+} */
+
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+
+.compositefooter .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+
+.compositefooter .content:before {
+    content: '';
+    width: 1px;
+    height: 100px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: -3px;
+}
+
+/* 
+@page: first {
+
+    @bottom-left {
+        content: "";
+    }
+} */
+
+.FooterCSS {
+    width: 20cm;
+    padding: 0px 0px 0px 4px;
+    position: absolute;
+    bottom: 0.3cm;
+    left: 0;
+    z-index: 1;
+    border-top: 0.5px solid #909090;
+    font-size: 7.5pt;
+
+}
+
+.FooterCSS .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+
+.FooterCSS .row {
+    margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+    height: 23px;
+}
+
+.FooterCSS .content:before {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: 1px;
+}
+
+.EsgCoverPageImage {
+    width: 100%;
+}
+
+
+.EsgCoverPage {
+    width: 100%
+}
+
+.ro-toc a::after {
+
+    content: leader('.') target-counter(-ro-attr(href url), page);
+
+}
+
+.tableofcontents ul {
+    columns: 1 !important;
+}
+.page1.page.section {
+    background-image: url('./images/Australia\ Unity\ Banner\ New.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+/* .page1 {
+    position: relative;
+    padding: 0.5cm;
+} */
+.page1 > .row3 {
+    display: flex;
+    flex-direction: column;
+    margin-top: -0.5cm;
+}
+.page1 >.row2> .text1> .AusUnityFundName  {
+    font-family:var(--font-merriweather);
+    font-size: 18pt;
+    font-weight: bold;
+    /* margin-top: 3.5cm; */
+    margin-top: 3cm;
+    padding: 0cm 0.5cm;
+    /* padding-left: 0.5cm;
+    padding-right: 0.5cm; */
+}
+.page1 .row3 .text1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start; 
+    padding-left: 0.5cm;
+    /* font-family: var(--font-roboto); */
+    font-size: 12pt;
+    font-weight: bold;
+}
+.page1 .row3 .text1 .item2 {
+    font-family: var(--font-arial);
+    font-size: 12pt;
+    display:none;
+}
+.page1 .row3 .text1 .DataAsAtDate {
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: var(--font-arial);
+    /* margin-top: -0.2cm; */
+}
+.page1 > .row3::after {
+    content: '';
+    position: absolute;
+    top: 23%;
+    left: 5%;
+    width: 20%;
+    height: 3px;
+    background-color: var(--color-orange);
+}
+.page1> .row4 {
+    position: relative;
+    top: -1%;
+    left: 2.8%;
+    width: 89%;
+    height: 32%;
+    /* border: 2px solid rgb(22, 85, 108); */
+    padding: 0 0.5cm;
+}
+/* .page1 > .row4.row.section:after {
+    content: 'Variable Photo Caption';
+    position: absolute;
+    left: 0%;
+    bottom: -7%;
+    font-family: Arial;
+    font-size: 8pt;
+} */
+.row5 .horizontal-list1 {
+    display: grid;
+    /* grid-gap: 10px;  */
+    grid-template-columns: repeat(4, 1fr); 
+    padding-top: 1cm;
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+
+}
+.row5 .horizontal-list1 .DataAsAtDate,.row6 .horizontal-list1 .DataAsAtDate  {
+    color: var(--color-orange);
+    font-family: var(--font-arial);
+    font-size: var(--intro-size);
+    font-weight: bold;
+    grid-column: span 4; 
+    /* margin-top: -0.8cm !important; */
+}
+.page1 .row5 .horizontal-list1 .DataAsAtDate{
+    font-size: 10pt !important;
+}
+/* .row7.row.section {
+    margin-top: -0.3cm;
+    margin-left: 0.5cm;
+} */
+.row5 .horizontal-list1 .DataAsAtDate:before {
+    content: 'Fund Facts as at ';
+    padding-right: 5px; 
+}
+.row5 .horizontal-list1 div,.row6 .horizontal-list1 div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+.row5 .horizontal-list1 div > .label, .row6 .horizontal-list1 div > .label {
+    background-color: var(--color-deep-sandstone);
+    width: 100%;
+    height: 0.8cm;
+    text-align: center;
+    font-family: var(--font-arial) !important;
+    padding-top: 0.3cm;
+    margin-left: -0.5cm !important;
+}
+
+.row5 .horizontal-list1 div > .value,.row6 .horizontal-list1 div > .value {
+    background-color: var(--color-sandstone);
+    width: 100%;
+    height: 0.8cm;
+    text-align: center;
+    font-family: var(--font-merriweather);
+    padding-top: 0.3cm;
+    margin-left: -0.5cm !important;
+}
+.page1 > .row6 .horizontal-list1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    margin-top: -1cm;
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+}
+/* .page2 > .row1,.page3 > .row1 { 
+    background-color: var(--color-charcoal);
+    height: 1.5cm;
+    padding: 0px !important;
+    margin: -19px -19px 0px -19px;
+    counter-reset: page;
+} */
+
+
+.page2 {
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+}
+.page2 .row2 h2 {
+    /* padding: 0.2cm 0.2cm 0.2cm 0.5cm; */
+    color: var(--color-orange);
+    font-size: var(--intro-size);
+    font-family: var(--font-arial);
+}
+.page2 .row5 .column1 .row1 .breakdown1 .chart .highcharts-container .highcharts-root,
+.page2 .row5 .column2 .row1 .breakdown1 .chart .highcharts-container .highcharts-root {
+    width: 90px;
+    height: 90px;
+    padding-left: 0.5cm;
+}
+.page2 > .row5 > .column1 > .row1 > .breakdown1.CustomPieChart table  {
+    /* position: absolute; */
+    float: left;
+    padding-left: 0.5cm;
+    width: 90% !important;
+    font-family: var(--font-arial);
+}
+.page2 > .row5 > .column2 > .row1 > .breakdown1.CustomPieChart table{
+    float: left;
+    padding-left: 0.5cm;
+    font-family: var(--font-arial);
+}
+.page2 .row3 .text1 h2 {
+    padding-left: 0.5cm;
+    color: var(--color-orange);
+    font-family: var(--font-arial);
+    font-size: var(--intro-size);
+}
+.page2 .row3 .text1 .item3 {
+    font-family: var(--font-merriweather);
+    padding-left: 0.5cm;
+    /* padding-top: 0.2cm; */
+}
+.page2 .row4 h2 {
+    color: var(--color-orange);
+    font-family: var(--font-arial);
+    font-size: var(--intro-size);
+}
+.page2 .row4 .column1 .row1 .breakdown1 h2 {
+    padding-left: 0.5cm;
+}
+.page2 .row4 .column1 .row1 .breakdown1 table,.page2 .row4 .column1 .row1 .breakdown1 table {
+    padding-left: 0.5cm;
+}
+td.Key {
+    width: 8%;
+}
+.page2 > .row7 > .column1 > .row1>.breakdown1 table {
+    position: relative;
+    /* width: 85%; */
+    width: 90%;
+  }
+.page2 > .row7 > .column1 > .row1>.breakdown1 table tbody::before {
+    content: '';
+    display: block;
+    /* width: 145.5%; */
+    width: 202.5%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    /* height: 15px; */
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 > .row7 > .column1 > .row1>.breakdown1 table tbody tr:nth-child(1),
+.page2 > .row7 > .column1 > .row1>.breakdown1 table tbody tr:nth-child(3) ,
+.page2 > .row7 > .column1 > .row1>.breakdown1 table tbody tr:nth-child(5)
+ {
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+  .page2 > .row7 > .column1 > .row1>.breakdown1 table tbody tr td.Name,.page2 > .row7 > .column2 > .row1>.breakdown1 table tbody tr td.Name,
+  .page2 > .row7 > .column1 > .row2>.breakdown1 table tbody tr td.Name,.page2 > .row7 .column1 .row3 .breakdown1 table tbody tr td.Name ,
+  .page2 > .row7 .column1 .row4 .breakdown1 table tbody tr td.Name,
+  .page2 > .row7 > .column2 > .row2 > .breakdown1 > table > tbody > tr{
+    display: flex;
+        padding: 3px;
+        justify-content: space-between !important;
+}
+  .page2 .row7 .column1 .row1 .breakdown1 table,.page2 .row7 .column2 .row1 .breakdown1 table, .page2 > .row7 > .column1 > .row2>.breakdown1 table,
+  .page2 > .row7 .column1 .row3 .breakdown1 table,.page2 > .row7 .column1 .row4 .breakdown1 table{
+    border-spacing: 0px !important;
+}
+.page2 > .row7 > .column2 > .row1>.breakdown1 table tbody::before {
+    content: 'Tenant';
+    display: block;
+    width: 125.8%;
+    /* width: 122%; */
+    background-color: var(--color-deep-sandstone);
+    /* height: 15px; */
+    height: 12px;
+    padding: 3px 3px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+.page2 > .row7 > .column2 > .row1>.breakdown1 table {
+    position: relative;
+    width: 85%;
+  }
+.page2 > .row7 > .column2 > .row1>.breakdown1 table tbody tr:nth-child(1),
+.page2 > .row7 > .column2 > .row1>.breakdown1 table tbody tr:nth-child(3) ,
+.page2 > .row7 > .column2 > .row1>.breakdown1 table tbody tr:nth-child(5) {
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+.page2 .row7 .column1 .row2 .breakdown1 table tbody::before{
+    content: '';
+    display: block;
+    /* width: 150%; */
+    width: 151.8%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 .row7 .column1 .row3 .breakdown1 table tbody::before{
+    content: '';
+    display: block;
+    width: 114%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 .row7 .column1 .row2 >.breakdown1 table, .page2 .row7 .column1 .row3 >.breakdown1 table{
+        position: relative;
+        width: 90%;
+} 
+.page2 > .row7 > .column1 > .row2 >.breakdown1 table tbody tr:nth-child(1),
+.page2 > .row7 > .column1 > .row2 >.breakdown1 table tbody tr:nth-child(3),
+.page2 > .row7 > .column1 > .row3 >.breakdown1 table tbody tr:nth-child(1),
+page2 > .row7 > .column1 > .row3 >.breakdown1 table tbody tr:nth-child(3){
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+  /* .page2 .row3 .breakdown1 {
+    padding-left: 0.5cm;
+} */
+.page2 .row3 .breakdown1 table tbody::before {
+    content: '';
+    display: block;
+    width: 112%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 .row4 .column1 .row3 .breakdown1 table,.page2 > .row4 .column1 .row4 .breakdown1 table {
+    width: 90%;
+    position: relative;
+}
+.page2 > .row4  .column1 .row3 .breakdown1 table tbody tr:nth-child(1),
+.page2 > .row4 .column1 .row3 .breakdown1 table tbody tr:nth-child(3){
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+  .page2 .row5 .column1 .row1 .breakdown1 .chart .highcharts-container {
+    height: 90px !important;
+    /* height: 100px !important; */
+}
+.page2 .row5 .column2 .row1 .breakdown1 .chart .highcharts-container {
+    /* height: 100px !important; */
+    height: 90px !important;
+}
+/* .page2 .row4 ,.page2 .row4 .column1 .row3{
+    margin-top: -0.5cm;
+} */
+.page2 .row4 .column1 .row4 .breakdown1 {
+    padding-left: 0.5cm;
+}
+.page2 .row4 .column1 .row4 .breakdown1 table tbody::before {
+    content: '';
+    display: block;
+    width: 129.5%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 > .row4  .column1 .row4 .breakdown1 table tbody tr:nth-child(1),
+.page2 > .row4 .column1 .row4 .breakdown1 table tbody tr:nth-child(3),
+.page2 > .row4 .column1 .row4 .breakdown1 table tbody tr:nth-child(5),
+.page2 > .row4 .column1 .row4 .breakdown1 table tbody tr:nth-child(7){
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+  .page2 .row4 td.Weight {
+    text-align: right;
+    padding-right: 5px;
+}
+.page2 .row2 {
+    margin-bottom: 0cm;
+}
+.page2 >.row4 >.column1 >.row1 >.breakdown1 h2,.page2 .row4 .column2 .row1 .breakdown1 h2 {
+    margin-top: -0.7cm;
+}
+.page2 > .row4 >.column1 > .row2 > .breakdown1 >h2 {
+    margin-top: -0.7cm;
+    padding-left: 0.5cm;
+}
+.page2 > .row4 >.column1 > .row2> .breakdown1 >table {
+    margin-top: -0.2cm;
+}
+.page2 > .row4 > .column1 >.row4 >.breakdown1 >h2 {
+    margin-top: -0.5cm;
+}
+.page2 >.row5 >.column1 >.row1 >.text1 >.item2 {
+    white-space: pre-line;
+    color: var(--color-orange);
+    font-weight: bold;
+    font-size: var(--intro-size);
+    /* padding: 4px; */
+    padding-left: 1cm;
+    font-family: var(--font-arial) !important;
+}
+.page2 >.row5 {
+    width: 100%;
+    padding-left: 0.5cm;
+    margin-bottom: 0 !important;
+}
+.page2 > .row5 > .column2 > .row1 >.column2 > .row1 >.text1 > .item2{
+    white-space: pre-line; padding-top: 0.8cm !important;
+}
+.page2 > .row5 > .column2 > .row1 > .column1 {
+    float: left;
+    width: 50%;
+    white-space: pre-line !important;
+    padding-top: 0.8cm !important;
+}
+.page3 .row2 .text1 .item2 {
+    color: var(--color-orange);
+    font-size: var(--intro-size);
+    padding-top: 0.5cm;
+    font-weight: bold;
+    font-family: var(--font-arial) !important;
+}
+.page3 .row3 .text1 h2 {
+    color: var(--color-orange);
+    padding-bottom: 0.2cm;
+    padding-left: 0.5cm;
+    font-size: 8pt;
+}
+.page3 .row3 .text1 .item3{
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+    margin-right: 0.5cm;
+    font-size: 8pt !important;
+    color: #2A2A2A;
+    font-family: var(--font-roboto);
+}
+
+
+/* .page2 > .row1::after, .page3 > .row1::after {
+    content: "Healthcare Property Trust - Retail";
+    color: white;
+    position: absolute;
+    left: 6.2%;
+    top: 3.5%;
+    transform: translate(-50%, -50%);
+} */
+
+/* Add page number dynamically using a CSS counter */
+/* .page2 > .row1 .page-no::after, .page3 > .row1 .page-no::after {
+    content: "Page No: " counter(page); 
+    font-size: 14px; 
+    position: absolute;
+    right: 10px;
+    top: 4.5%;
+    transform: translateY(-50%);
+    counter-increment: page; 
+} */
+/* .page3 .row3 .text1 {
+    position: absolute;
+    bottom: 2%;
+} */
+.page1 > .row7 > .text1 > .item2 {
+    color: var(--color-orange);
+    font-family: var(--font-arial);
+    font-size: var(--intro-size);
+    font-weight: bold;
+    grid-column: span 4; 
+    margin-top: -0.5cm !important;
+    margin-bottom: -0.3cm;
+}
+table.BasicInformation {
+    margin-top: -0.5cm;
+    margin-left: 0.5cm;
+    width: 94.5%;
+    border-spacing: 0px;
+    font-size: 7.5pt !important;
+}
+table.BasicInformation tr:first-child {
+    background-color: var(--color-deep-sandstone);
+    height: 20px;
+    padding: 3px 3px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+table.BasicInformation tr:nth-child(even):not(:first-child) {
+    background-color: var(--color-sandstone);
+    height: 17px;
+}
+
+table.BasicInformation tr:nth-child(3), 
+table.BasicInformation tr:nth-child(5) {
+    background-color: transparent;
+    height: 17px;
+}
+
+.page2 > .row4 {
+    margin-bottom: 0cm;
+}
+.page3 > .row2 > .text1 > .PropertyCommentary {
+    margin-top: 0.2cm;
+}
+.page3 > .row2 {
+    padding: 0 0.6cm;
+}
+img.image1,img.image2,img.image4 {
+    margin-left: -0.5cm;
+    width: 711px;
+    height: 355px !important;
+}
+span.image{
+    display: none;
+}
+
+.page1 > .row5 {
+    margin-top: -0.5cm;
+}
+.page2 > .row4 > .column2 > .row2 > .breakdown1 > h2 {
+    margin: -0.7cm 0cm -0.3cm -0.4cm;
+}
+.page2 > .row4 > .column2 > .row2 > .breakdown1 > table > tbody::before {
+    content: '';
+    display: block;
+    width: 159%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+page2 > .row4 > .column2 > .row2 > .breakdown1 > table > tbody > tr > td.Weight {
+    text-align: right;
+    padding-right: 5px;
+}
+.page2 > .row4 > .column2 > .row2 > .breakdown1 > table > tbody > tr {
+    width: 157%;
+    display: flex;
+    justify-content: space-between;
+}
+.page2 > .row4  >.column2 > .row2 > .breakdown1 > table > tbody >tr:nth-child(1),
+.page2 > .row4 >.column2 > .row2 > .breakdown1 > table > tbody >tr:nth-child(3),
+.page2 > .row4 >.column2 > .row2 > .breakdown1 > table > tbody >tr:nth-child(5),
+.page2 > .row4 >.column2 > .row2 > .breakdown1 > table > tbody >tr:nth-child(7){
+    background-color: var(--color-sandstone);margin-bottom: -2px;
+  }
+
+  .page1 > .row8 > .row1 > .performancetable > h2 {
+    color: var(--color-orange);
+    padding-left: 0.5cm;
+    font-size: var(--intro-size);
+    font-family: var(--font-arial);
+    /* margin-bottom: 0.5cm; */
+}
+.page1 > .row8 > .row1 > .performancetable > table{
+    margin-left: 0.5cm;
+    width: 96.5%;
+    border-spacing: 0;
+}
+.page1 > .row8 > .row1 > .performancetable >table tr:first-child {
+    background-color: var(--color-deep-sandstone);
+    height: 20px;
+    padding: 3px 3px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+/* td.rowheader {
+    padding-left: 5px;
+    text-align: left;
+}  */
+
+.performancetable table tr:first-child {
+    background-color: var(--color-deep-sandstone); 
+    height: 20px;
+}
+
+.performancetable table tr:nth-child(even) {
+    background-color: var(--color-sandstone);
+    height: 19px;
+    /* text-align: center; */
+}
+
+.performancetable table tr:nth-child(odd) {
+    /* background-color: white; */
+    height: 19px;
+    /* text-align: center; */
+}
+.page1 > .row7 > .row1 > .text1 > h2 {
+    color: var(--color-orange);font-size: var(--intro-size);
+    font-family: var(--font-arial);
+}
+
+td.rowheader {
+    padding-left: 2px !important;
+}
+.page1 > .row7 {
+    padding-left: 0.5cm;
+    margin-bottom: 0cm;
+}
+.page1 > .row8 > .row1{
+    margin-bottom: 0cm;
+}
+.page1 > .row7 > .performancetable > h2{
+    color: var(--color-orange);
+    /* padding-left: 0.5cm; */
+    font-size: var(--intro-size);
+    font-family: var(--font-arial);
+}
+.page1 > .row7 > .performancetable > table{
+    width: 97%;
+    border-collapse: collapse;
+}
+.page2 > .row2 > .ContributionTable > .item3 {
+    padding-left: 0.5cm;
+    margin-top: -0.1cm;
+    margin-bottom: 0 !important;
+}
+.page2 > .row4 > .contentSection > .item2 {
+    padding: 0 0.5cm 0 0.5cm;
+    font-size: 6.9pt;
+    font-family: var(--font-roboto);
+    margin-top: -0.5cm !important;
+    margin-bottom: 0cm !important;
+}
+tr.odd.workbookUnitDistribution > td, tr.even.workbookUnitTotal > td, tr.odd.workbookUnitPrice > td {
+    text-align: center;
+}
+tr.odd.workbookUnitDistribution > td.rowheader, tr.even.workbookUnitTotal > td.rowheader, tr.odd.workbookUnitPrice > td.rowheader {
+    text-align: left !important;
+    padding-left: 5px !important;
+}
+td.Contributor_label.label, td.Contributor1_value.value , td.Contributor2_value.value , td.Contributor3_value.value , td.Contributor4_value.value , td.Contributor5_value.value {
+    padding-left: 5px;
+}
+/* td.Weight {
+    display: none;
+} */
+.key-color {
+    display: block;
+    width: 3mm;
+    height: 3mm;
+}
+.page2 > .row5 > .column1 > .row1, .page2 > .row5 > .column2 > .row1 {
+    margin-bottom: 0cm !important;
+}
+.page2 > .row7 {
+    padding-left: 0.5cm;
+    margin-bottom: 0cm;
+}
+.page2 > .row2 > .ContributionTable > h2 {
+    padding: 0.6cm 0.2cm 0.2cm 0.5cm;
+}
+.page2 > .row6{
+    margin-bottom: 0;
+}
+.page2 > .row7 > .column1 > .row3 >.breakdown1 table tbody tr:nth-child(3) {
+    background-color: var(--color-sandstone);
+}
+.page2 > .row7 > .column2 > .row2 > .breakdown1 table tbody::before {
+    content: '';
+    display: block;
+    width: 175%;
+    background-color: var(--color-deep-sandstone);
+    height: 12px;
+    padding: 4px 3px;
+    margin-top: 3px;
+}
+.page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(1),
+ .page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(3), 
+ .page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(5),
+ .page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(7) {
+    background-color: var(--color-sandstone);
+    margin-bottom: -2px;
+    display: flex;
+    background-color: var(--color-sandstone);
+    margin-bottom: 4px;
+    justify-content: space-between;
+    width: 175%;
+}
+.page2 .row7 .column2 .row2 .breakdown1 table, 
+.page2 .row7 .column2 .row2 .breakdown1 table, .page2 > .row7 > .column1 > .row2>.breakdown1 table,
+ .page2 > .row7 .column2 .row3 .breakdown1 table, .page2 > .row7 .column1 .row4 .breakdown1 table{
+    border-spacing: 0px !important;
+}
+.page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(2),
+ .page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(4), 
+ .page2 > .row7 > .column2 > .row2 >.breakdown1 table tbody tr:nth-child(6) {
+    display: flex;
+    justify-content: space-between;
+    width: 175%;
+    margin-bottom: -2px;
+    margin-top: -4px;
+}
+.page2 > .row7 td.Weight {
+    text-align: right;
+    padding-right: 10px;
+}
+.page2 > .row7 > .column1 > .row1,.page2 > .row8, .page2 > .row7 > .column1 > .row3, .page2 > .row7 > .column1 > .row4 {
+    margin-bottom: 0;
+}
+.page2 > .row7 > .column2 > .row1 {
+    margin-bottom: 0.2cm;
+}
+.page2 > .row8 > .row1 > .text1 > .item2 {
+    padding-left: 0.5cm;
+    margin-top: -0.1cm;
+}
+.animation-None.section.contentSection.text.text1.CustomInformationTable + p {
+    display: none;
+}
+.page2 > .row8 > .row1 {
+    margin-bottom: 0cm;
+}
+table.BasicInformation + p{
+    display: none;
+}
+/* @page: second{
+    .page2 {
+        position: relative;
+        width: 20cm;
+        height: auto;
+        padding: 0.5cm;
+        padding-bottom: 1cm !important;
+    }
+} */
+.page2 {
+    position: relative;
+    width: 20cm;
+    /* height: 24.7cm; */
+    height: auto;
+    padding: 0.5cm;
+    /* padding-bottom: 1cm !important; */
+}
+
+.page2 >.row10 {
+    /* position: absolute;
+    bottom: -7%;
+    width: 100%;
+    border-top: 2px solid var(--color-orange);
+    padding-top: 0.2cm;
+    margin-left: -0.5cm; */
+    display: none;
+}
+.page2 > .row10 > .column2 > .row1 > .column1 {
+    /* float: left;
+    width: 50%;
+    white-space: pre-line !important;
+    padding-top: 0.8cm !important; */
+    display: none;
+}
+.page2 > .row10 > .column2 > .row1 >.column2 > .row1 >.text1 > .item2 {
+    /* white-space: pre-line;
+    padding-top: 0.8cm !important; */
+    display: none;
+}
+.page2 >.row10 >.column1 >.row1 >.text1 >.item2 {
+    white-space: pre-line;
+    color: var(--color-orange);
+    font-weight: bold;
+    font-size: var(--intro-size);
+    padding-left: 1cm;
+    font-family: var(--font-arial) !important;
+}
+.page2 {
+    line-height: 1.1 !important;
+}
+.page2 > .row7 table tbody {
+    font-size: 7.5pt;
+}
+table.BasicInformation + p + p {
+    padding-left: 0.5cm;
+}
+
+/* @page {
+    counter-reset: page;
+  } */
+  
+  .page2 > .row1,
+  .page3 > .row1 {
+    position: relative;
+  }
+  
+  /* Label on the left */
+  /* .page2 > .row1::before,
+  .page3 > .row1::before{
+    content: "Healthcare Property Trust - Retail";
+    color: white;
+    position: absolute;
+    left: 17.8%;
+    top: 56.5%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+  }
+  .page3 > .row3::before  {
+    content: "Healthcare Property Trust - Retail";
+    color: white;
+    position: absolute;
+    left: 19.4%;
+    top: 56.5%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+  }
+  
+  .page2 > .row1::after,
+  .page3 > .row1::after ,
+  .page3 > .row3::after{
+    font-size: 12px;
+    position: absolute;
+    right: 5.8%;
+    top: 54.5%;
+    transform: translateY(-50%);
+    color: white;
+  }
+  .page2 > .row1::after{
+    content: "Page 2 ";
+  }
+  .page3 > .row1::after{
+    content: "Page 3 ";
+  }
+.page3 > .row3::after{
+    content: "Page 6 ";
+  } */
+  /* .page3 > .row3 {
+    width: 100%;
+    position: absolute;
+    top: 76%;
+    padding-left: 0.5cm;
+} */
+ .page3 > .row3 > .text1{
+    padding: 0 1.5cm 0 1.5cm;
+}
+/* .page3 > .row4 {
+   position: relative;
+    top: 85%;
+    padding: 0 0.5cm 0 0.5cm;
+} */
+/* .page3 > .row3 {
+    width: 91%;
+    position: absolute;
+    top: 78%;
+} */
+.page2 > .row7 > .column2 > .row1 > .CustomTable {
+    width: 110% !important;
+}
+
+/* .page3 p:nth-of-type(19) {
+  page-break-before: always;
+  position: relative;
+  padding-top: 1.7cm; 
+} */
+
+/* .page3 p:nth-of-type(19)::before {
+  content: "Healthcare Property Trust - Retail";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: -42px;
+  right: -42px;
+  height: 0.9cm;
+  background-color: var(--color-charcoal);
+  color: white;
+  font-size: 12px;
+  padding: 19px 0px 0px 37px !important;
+}
+
+.page3 p:nth-of-type(19)::after {
+  content: "Page 4";
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: -30px;
+  height: 0.9cm;
+  padding: 19px 37px 0 0;
+  color: white;
+  font-size: 12px;
+  text-align: right;
+} */
+.page3 > .row2 > .text1 > .PropertyCommentary + p >b {
+    display: none;
+    /* visibility: hidden; */
+}
+.page3 > .row2 > .text1 > .PropertyCommentary + p +p{
+    margin-top: 0.3cm;
+}
+.page3 > .row2 p b {
+   color: var(--color-orange);
+    font-size: var(--intro-size);
+    font-family: var(--font-arial);
+}
+
+/* .page3 p:nth-of-type(42) {
+    page-break-before: always;
+    position: relative;
+    padding-top: 1.7cm;
+} */
+/* .page3 p:nth-of-type(42)::before {
+  content: "Healthcare Property Trust - Retail";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: -42px;
+  right: -42px;
+  height: 0.9cm;
+  background-color: var(--color-charcoal);
+  color: white;
+  font-size: 12px;
+  padding: 19px 0px 0px 37px !important;
+}
+
+.page3 p:nth-of-type(42)::after {
+  content: "Page 5";
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: -30px;
+  height: 0.9cm;
+  padding: 19px 37px 0 0;
+  color: white;
+  font-size: 12px;
+  text-align: right;
+} */
+
+/* .page3 > .row3 { 
+    background-color: var(--color-charcoal);
+    height: 1.5cm;
+    margin: 0cm -0.5cm 0cm -1cm;
+    padding: 0px 0px 0px 0px;
+    page-break-before: always;
+    position: relative;
+
+} */
+.page3 > .row3 > .text1 > .item2 {
+    page-break-before: always;
+    padding-top: 14cm;
+    /* padding-top: 17.5cm; */
+    color: var(--color-orange);
+    font-size: var(--intro-size);
+    font-family: var(--font-arial);
+}
+
+.page3 > .row3 {
+    margin-left: -0.9cm;
+}
+.page3 >.row4 {
+    padding-left: 0.6cm;
+    padding-right: 0.5cm;
+    margin-bottom: 0 !important;
+}
+/* .page1>.row2>.FundNameHeader p {
+    display: none;
+} */
+
+/* .page1 .row1 .contentSection .AusUnityFundName {
+  position: running(fundHeader);
+  font-size: 12px;
+  background-color: var(--color-charcoal);
+  height: 1.5cm;
+} */
+/* @page {
+    .page1 .row1 .contentSection .AusUnityFundName {
+  position: running(fundHeader);
+  font-size: 12px;
+  background-color: var(--color-charcoal);
+  height: 1.5cm;
+}
+.page1 .row1 .contentSection .AusUnityFundName {
+  position: running(fundHeader);
+  font-size: 12px;
+  background-color: var(--color-charcoal);
+  height: 1.5cm;
+  line-height: 1.5cm;
+  text-align: center;
+  color: white;
+}
+  @top-center {
+    content: element(fundHeader);
+  }
+} */
+/* .page1 .row1 .contentSection .AusUnityFundName {
+  position: running(fundHeader);
+  font-size: 12px;
+  background-color: var(--color-charcoal);
+  height: 1.5cm;
+  line-height: 1.5cm;
+  text-align: center;
+  color: white;
+} */
+/* 1. Declare the running header for PDF */
+.row1 .contentSection .AusUnityFundName {
+  position: running(fundHeader);
+  font-size: 9pt;
+  background-color: var(--color-charcoal);
+  height: 1.5cm;
+  line-height: 1.5cm;
+  text-align: left;
+  color: white;
+      padding-left: 1cm;
+}
+
+/* 2. Hide header on page1 in browser only */
+.page1 .row1 .contentSection .AusUnityFundName {
+  display: none;
+}
+
+@page {
+    margin-bottom: 1.7cm;
+  @top-center {
+    content: element(fundHeader);
+  }
+   @bottom-left {
+    white-space: pre;
+    color: var(--color-orange);
+    font-weight: bold;
+    font-size: var(--intro-size);
+    padding-left: 1cm;
+    font-family: var(--font-arial) !important;
+    content: "Contact us\A"
+         "australianunity.com.au/wealth/\A"
+         "australianunitywealth@unitregistry.com.au";
+
+  }
+
+  @bottom-center {
+    content: "Investor Services\AT 1300 997 774";
+    font-family: var(--font-merriweather);
+    font-size: 8pt;
+    white-space: pre;
+    color: black;
+    padding-left: 3cm;
+    padding-top: 0.8cm;
+  }
+
+  @bottom-right {
+   content: "Adviser Services\A"  "T 1300 997 774"; /* 8 spaces */
+  font-family: var(--font-merriweather);
+  font-size: 8pt;
+  white-space: pre;
+  color: black;
+  padding-right: 1.5cm;
+  padding-top: 0.8cm;
+  }
+  border-bottom: 2px solid var(--color-orange);
+  padding-bottom: 0.2cm;
+}
+@page :first {
+  @top-center {
+    content: none;
+  }
+}
+
+ /* div > p.MsoBodyText:nth-of-type(16) {
+    color: blue;
+    page-break-before: always;
+} */
+
+  p.footer {
+    margin-bottom: 0;
+}
+.page2>.row9>.row1 {
+    margin-bottom: 0;
+}
+table.BasicInformation + p {
+    display: none;
+}
+table.BasicInformation + p + p {
+    padding-left: 0.5cm;
+    margin-bottom: 0 !important;
+}
+/* .page2 .row2 p:nth-of-type(3) {
+  margin-top: 1.5cm;
+  color: yellow;
+}
+.page2 .row2 ul li p{
+    margin-bottom:0.1cm;
+} */
+p.MsoNormal b strong, p.MsoNormal strong strong b, p strong b {
+    font-family: var(--font-arial);
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+/* AusUnPro*/
