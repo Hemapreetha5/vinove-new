@@ -46,11 +46,11 @@ body {
 .page {
     position: relative;
     width: 20cm;
-    height: 27.7cm;
+    height: 29.2cm;
     /* height: auto; */
     padding: 0.5cm;
     /* padding-bottom: 4.5cm; */
-    padding-bottom: 0.5cm;
+    padding-top:0;
 }
 
 .row {
@@ -677,7 +677,7 @@ page2 > .row7 > .column1 > .row3 >.breakdown1 table tbody tr:nth-child(3){
 .page3 .row2 .text1 .item2 {
     color: var(--color-orange);
     font-size: var(--intro-size);
-    padding-top: 0.5cm;
+    /* padding-top: 0.5cm; */
     font-weight: bold;
     font-family: var(--font-arial) !important;
 }
@@ -907,7 +907,9 @@ td.Contributor_label.label, td.Contributor1_value.value , td.Contributor2_value.
     margin-bottom: 0cm;
 }
 .page2 > .row2 > .ContributionTable > h2 {
-    padding: 0.6cm 0.2cm 0.2cm 0.5cm;
+    /* padding: 0.6cm 0.2cm 0.2cm 0.5cm; */
+    padding: 0 0.2cm 0.2cm 0.5cm;
+
 }
 .page2 > .row6{
     margin-bottom: 0;
@@ -988,6 +990,7 @@ table.BasicInformation + p{
     /* height: 24.7cm; */
     height: auto;
     padding: 0.5cm;
+      padding-top:0;
     /* padding-bottom: 1cm !important; */
 }
 
@@ -1037,6 +1040,7 @@ table.BasicInformation + p + p {
   .page2 > .row1,
   .page3 > .row1 {
     position: relative;
+    margin-bottom:0;
   }
   
   /* Label on the left */
@@ -1190,7 +1194,7 @@ table.BasicInformation + p + p {
 } */
 .page3 > .row3 > .text1 > .item2 {
     page-break-before: always;
-    padding-top: 14cm;
+    padding-top: 12cm;
     /* padding-top: 17.5cm; */
     color: var(--color-orange);
     font-size: var(--intro-size);
@@ -1254,6 +1258,7 @@ table.BasicInformation + p + p {
   text-align: left;
   color: white;
       padding-left: 1cm;
+      margin-bottom:0;
 }
 
 /* 2. Hide header on page1 in browser only */
@@ -1300,13 +1305,14 @@ table.BasicInformation + p + p {
   }
   border-bottom: 2px solid var(--color-orange);
   padding-bottom: 0.2cm;
+   padding-top:1.8cm;
 }
 @page :first {
   @top-center {
     content: none;
   }
+    padding-top:0;
 }
-
  /* div > p.MsoBodyText:nth-of-type(16) {
     color: blue;
     page-break-before: always;
@@ -1337,5 +1343,13 @@ p.MsoNormal b strong, p.MsoNormal strong strong b, p strong b {
     font-size: 12pt;
     font-weight: bold;
 }
+.page3 > .row2 ul {
+    margin-bottom: 0.2cm;
+    margin-top: 0.2cm;
+    page-break-inside: avoid;
 
+}
+.page3 > .row2 ul li p {
+    margin-bottom: 0.2cm;
+}
 /* AusUnPro*/
