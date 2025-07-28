@@ -1,0 +1,884 @@
+﻿if (modelContents.ShowMultipleWatchlists && parseInt(modelContents.GrsUserId) > 0) {
+
+    var grsUserId = modelContents.GrsUserId;
+    var multipleWatchlists = multipleWatchlists || {};
+    var isFirstLoad = true;
+    var storedWatchlistItems;
+    var totalWatchlistItems = 0;
+    var optionItemsCounts = {};
+    var watchlistFundLimit = modelContents.WatchlistLimit;
+    var remainingWatchlistLimit = 0;
+    var genericErrorMessage = 'An Error has occurred while processing your request';
+    var validSymbols = /^[a-zA-Z0-9!"£$%^&*()\[\]_=\+\\|/?,.<>;@:'~#-\s]+$/;
+
+    function ModelState() { 
+        this.IsValid = true;
+        this.Errors = [];
+    }
+
+    $(function () {
+
+        var renameModal = $('#renameWatchlistModal');
+        var renameModalOverlay = $('#renameModalOverlay');
+        var renameInput = $('#renameWatchlistInput');
+        var renameButton = $('#btnRenameWatchlist');
+
+        var deleteModal = $('#deleteWatchlistModal');
+        var deleteModalOverlay = $('#deleteModalOverlay');
+        var deleteButton = $('#btnDeleteYesWatchlist');
+
+        function addWatchlistInputListener(inputId, errorId) {
+            var inputElement = document.getElementById(inputId);
+            inputElement.addEventListener('input', function () {
+                multipleWatchlists.validateWatchlistName(inputId, errorId);
+            });
+        }
+
+        addWatchlistInputListener('newWatchlistName', 'watchlistNameErrorMessage');
+        addWatchlistInputListener('newWatchlistNamePortfolio', 'watchlistNameErrorMessagePortfolioTab');
+        addWatchlistInputListener('renameWatchlistInput', 'renameWatchlistNameErrorMessage');
+
+        var context = $('#createNewWatchlistModal');
+        var portfolioContext = $('#createNewWatchlistModalPortfolio');
+
+        function validateAndSave(e, context) {
+            e.preventDefault();
+            multipleWatchlists.checkWatchlistLimit(context, function (result) {
+                if (result) {
+                    multipleWatchlists.validateSaveModel(context);
+                }
+            });
+        }
+
+        function closeAndCancel(e, context) {
+            e.preventDefault();
+            multipleWatchlists.closeCreateNewWatchlistModal(context);
+        }
+
+        function handleWatchlistChange() {
+           var tabsPortfolioContainer = $("#tabs-portfolio");
+           SetPositionOfAjaxLoader(tabsPortfolioContainer, true);
+           var watchlistId = $('.watchlistOption').val();
+           var selectedWatchlistOption = $('.watchlistOption option:selected').data('name');
+           var key = multipleWatchlists.getWatchlistKey(selectedWatchlistOption) + '_' + grsUserId;
+           multipleWatchlists.getUserWatchlistWithConstituents(key, watchlistId, true, function (success) {
+               if (!success) {
+                   ShowErrorDialog(genericErrorMessage);
+               }
+            });
+        }
+
+        function scrollToModalFn(modal) {
+            var header = modal.find("#watchListModalContentHeader");
+            var portfolioHeader = modal.find("#watchListModalContentHeaderPortfolio");
+
+            if (header.length > 0) {
+                var offset = 180;
+                var modalPosition = header.offset().top;
+                $('html, body').animate({ scrollTop: modalPosition - offset }, 'smooth');
+            }
+
+            if (portfolioHeader.length > 0) {
+                var modalPosition = portfolioHeader.offset().top;
+                var offset = 250;
+                $('html, body').animate({ scrollTop: modalPosition - offset }, 'smooth');
+            }
+        }
+
+        function openCreateNewWatchlistModal(modalId, nameInputId, overlay, scrollToModalFn) {
+            var modal = $("#" + modalId);
+            var nameInput = $("#" + nameInputId);
+            var createModalOverlay = $("#" + overlay);
+
+            if (nameInput.length > 0) {
+                nameInput.val("");
+            }
+
+            if (modal.length > 0) {
+                modal.css("display", "block");
+                createModalOverlay.css('display', 'block');
+                scrollToModalFn(modal);
+            }
+        }
+       
+        function toggleWatchlistDropdown() {
+            $("#add-selection-portfolio-dropdown").toggleClass("show");
+        }
+
+        $("#createNewWatchlistPortfolioTab").click(function () {
+            openCreateNewWatchlistModal('createNewWatchlistModalPortfolio', 'newWatchlistNamePortfolio', 'createModalOverlayPortfolioTab', scrollToModalFn);
+        });
+
+        $('#add-selection-portfolio-dropdown').on('click', '.create-new-watchlist-btn', function () {
+            openCreateNewWatchlistModal('createNewWatchlistModal', 'newWatchlistName', 'createModalOverlay', scrollToModalFn);
+        });
+
+        $(document).on('click', '#btnCancelRename, #closeRenameModalButton', function () {
+            var errorMessageElement = $('#renameWatchlistNameErrorMessage');
+            errorMessageElement.hide();
+            renameModal.add(renameModalOverlay).hide();
+        });
+
+        $(document).on('click', '#btnDeleteNoWatchlist, #closeDeleteModalButton', function () {
+            deleteModal.add(deleteModalOverlay).hide();
+        });
+
+        $('.watchlistOption').on("change", function (e) {
+            handleWatchlistChange();
+        });
+
+        $('#PortfolioMasterTab').on('click', function () {
+            if ($('.watchlistOption').find('option').length > 0) {
+                handleWatchlistChange();
+            }
+        });
+
+        $(".add-to-shorlist-btn").click(function () {
+            toggleWatchlistDropdown();
+        });
+
+        $(document).on('click', '.watchlist-dropdown-items-fundcenter', function () {
+            var updateWatchlist = $(this);
+            multipleWatchlists.checkWatchlistLimit(null, function (result) {
+                if (result) {
+                    var id = updateWatchlist.data('id');
+                    var name = updateWatchlist.data('name');
+                    multipleWatchlists.updateWatchlistItems(id, name);
+                }
+            });
+        });
+
+        function handleModalClick(modalType) {
+            var watchlistId = $(this).data('watchlistid');
+            var watchlistName = $(this).data('watchlistname');
+
+            if (modalType === 'rename') {
+                renameButton.data('watchlistid', watchlistId).data('watchlistname', watchlistName);
+                renameInput.val(watchlistName);
+                renameModal.add(renameModalOverlay).show();
+            } else if (modalType === 'delete') {
+                deleteButton.data('watchlistid', watchlistId).data('watchlistname', watchlistName);
+                deleteModal.add(deleteModalOverlay).show();
+            }
+        }
+
+        $(document).on('click', '.handle-edit-click', function () {
+            handleModalClick.call(this, 'rename');
+        });
+
+        $(document).on('click', '.handle-delete-click', function () {
+            handleModalClick.call(this, 'delete');
+        });
+
+        $(document).on('click', '#btnRenameWatchlist', function () {
+            var watchlistId = $(this).data('watchlistid');
+            var oldWatchlistName = $(this).data('watchlistname');
+            var newWatchlistName = renameInput.val().trim();
+
+            if (newWatchlistName === oldWatchlistName) {
+                $(this).showMessage(modelContents.GetTranslation("WatchlistRenameSameNameErrorMessage"));
+            } else {
+                multipleWatchlists.handleWatchlistRename(watchlistId, newWatchlistName, oldWatchlistName, renameModal);
+            }
+        });
+
+        $(document).on('click', '#btnDeleteYesWatchlist', function () {
+            var watchlistId = $(this).data('watchlistid');
+            var watchlistName = $(this).data('watchlistname');
+
+            if (watchlistId && watchlistName) {
+
+                var isFirstOption = false;
+                var firstOption = $("#watchlistOption").find(":selected").data('name').trim();
+                if (firstOption === watchlistName) {
+                    isFirstOption = true;
+                }
+                multipleWatchlists.handleWatchlistDelete(watchlistId, watchlistName, deleteModal, isFirstOption);
+            }
+        });
+
+        context.on('click', '#btnWatchListCreate', function (e) {
+            validateAndSave(e, context);
+        });
+
+        context.on('click', '#watchListModalClose, #btnWatchListCancel', function (e) {
+            closeAndCancel(e, context);
+        });
+
+        portfolioContext.on('click', '#btnWatchListCreatePortfolio', function (e) {
+            validateAndSave(e, portfolioContext);
+        });
+
+        portfolioContext.on('click', '#watchListModalClosePortfolio, #btnWatchListCancelPortfolio', function (e) {
+            closeAndCancel(e, portfolioContext);
+        });
+
+    });
+    multipleWatchlists.handleWatchlistRename = function (watchlistId, newWatchlistName, oldWatchlistName, renameModal) {
+        multipleWatchlists.validateWatchlistRename(newWatchlistName, renameModal, function (isValid, renameModal) {
+            if (!isValid) {
+                renameModal.add(renameModalOverlay).hide();
+                $('html').hideLoading();
+                ShowErrorDialog(modelContents.GetTranslation("WatchlistNameDuplicateError"));
+            } else {
+                var $this = $(this);
+                multipleWatchlists.RenameUserWatchlist(watchlistId, newWatchlistName, function (result) {
+                    if (result === true) {
+                        //rename the local storage and inmemory object
+                        var oldWatchlistStorageName = multipleWatchlists.getWatchlistKey(oldWatchlistName) + '_' + grsUserId;
+                        var newWatchlistStorageName = multipleWatchlists.getWatchlistKey(newWatchlistName) + '_' + grsUserId;
+
+                        var watchlistStorageItems = multipleWatchlists.ReadWatchlistContentLocalStorage(oldWatchlistStorageName);
+
+                        if (watchlistStorageItems.length > 0) {
+                            multipleWatchlists.CreateWatchlistContentLocalStorage(newWatchlistStorageName, watchlistStorageItems);
+                            multipleWatchlists.EraseLocalStorage(oldWatchlistStorageName);
+                        }
+
+                        if (watchlistData.hasOwnProperty(oldWatchlistStorageName)) {
+                            watchlistData[newWatchlistStorageName] = watchlistData[oldWatchlistStorageName];
+                            delete watchlistData[oldWatchlistStorageName];
+                        }
+
+                        multipleWatchlists.getUserWatchlists(function (success) {
+                            if (success) {
+                                renameModal.add(renameModalOverlay).hide();
+                                $('html').hideLoading();
+                                $this.showMessage(oldWatchlistName + ' ' + modelContents.GetTranslation("WatchlistRenameSuccessMessage") + ' ' + newWatchlistName);
+                            } else {
+                                ShowErrorDialog(genericErrorMessage);
+                            }
+                        });
+                        
+                    } else {
+                        $('html').hideLoading();
+                        ShowErrorDialog(genericErrorMessage);
+                    }
+                });
+            }
+        });
+    }
+    multipleWatchlists.handleWatchlistDelete = function (watchlistId, watchlistName, deleteModal, isFirstOption) {
+
+        $('html').showLoading();
+        multipleWatchlists.DeleteUserWatchlist(watchlistId, function (isDeleted) {
+            var $this = $(this);
+
+            if (isDeleted) {
+                var watchlistStorageName = multipleWatchlists.getWatchlistKey(watchlistName) + '_' + grsUserId;
+
+                multipleWatchlists.EraseLocalStorage(watchlistStorageName);
+
+                if (watchlistData.hasOwnProperty(watchlistStorageName)) {
+                    delete watchlistData[watchlistStorageName];
+                }
+                if (optionItemsCounts.hasOwnProperty(watchlistId)) {
+                    var removedCount = optionItemsCounts[watchlistId];
+                    delete optionItemsCounts[watchlistId];
+
+                    totalWatchlistItems -= removedCount;
+                }                
+                multipleWatchlists.getUserWatchlists(function (success) {
+                    if (success) {
+                        if (isFirstOption) {
+                            var watchlistId = $('.watchlistOption').val();
+                            var selectedWatchlistOption = $('.watchlistOption option:selected').data('name');
+                            var key = multipleWatchlists.getWatchlistKey(selectedWatchlistOption) + '_' + grsUserId;
+                            if (watchlistId && key) {
+                               multipleWatchlists.getUserWatchlistWithConstituents(key, watchlistId, false, function (success) {
+                                   if (success) {
+                                       multipleWatchlists.hideDeleteModalAndReloadPortfolio(deleteModal, function () {
+                                           $this.showMessageWithCallback(watchlistName + ' ' +modelContents.GetTranslation("WatchlistDeleteSuccessMessage"), function(){
+                                               PortfolioChanged(undefined, key);
+                                           });
+                                       });
+                                   } else {
+                                       ShowErrorDialog(genericErrorMessage);
+                                   }
+                               });
+                          }
+                            else {
+                                UpdateFundCentreViewForPortfolio();
+                                deleteModal.add(deleteModalOverlay).hide();
+                                $('html').hideLoading();
+                                $this.showMessage(modelContents.GetTranslation("WatchlistDeleteSuccessMessage"));
+                          }
+                        }
+                        else {
+                            UpdateFundCentreViewForPortfolio();
+                            deleteModal.add(deleteModalOverlay).hide();
+                            $('html').hideLoading();
+                            $this.showMessage(modelContents.GetTranslation("WatchlistDeleteSuccessMessage"));
+                        }
+                    } else {
+                        ShowErrorDialog(genericErrorMessage);
+                    }
+                });
+
+            }
+            else {
+                $('html').hideLoading();
+                ShowErrorDialog(genericErrorMessage);
+            }
+        });
+    }
+    multipleWatchlists.WatchlistItem = function(watchlistId, instrumentTypeCode) {
+        this.WatchlistId = watchlistId;
+        this.InstrumentTypeCode = instrumentTypeCode;
+    }
+    multipleWatchlists.Watchlist = function(name, id) {
+        this.WatchlistId = id;
+        this.Name = name;
+        this.WatchlistItems = [];
+
+        this.addWatchlistItem = function (code) {
+            this.WatchlistItems.push(new multipleWatchlists.WatchlistItem(this.WatchlistId, code));
+        };
+    }
+    multipleWatchlists.closeCreateNewWatchlistModal = function (context) {
+        var modalId = context.attr('id');
+        var modal = document.getElementById(modalId);
+        var errorMessageElement = $('#watchlistNameErrorMessage');
+        var createModalOverlay = $('#createModalOverlay');
+
+        if (modalId === 'createNewWatchlistModalPortfolio') {
+            errorMessageElement = $('#watchlistNameErrorMessagePortfolioTab');
+            createModalOverlay = $('#createModalOverlayPortfolioTab');
+        }
+
+        if (modal) {
+            modal.style.display = "none";
+            errorMessageElement.hide();
+            createModalOverlay.css('display', 'none');
+        }
+    }
+    multipleWatchlists.hideDeleteModalAndReloadPortfolio = function (deleteModal, callback) {
+        UpdateFundCentreViewForPortfolio();
+        deleteModal.add(deleteModalOverlay).hide();
+        $('html').hideLoading();
+
+        if (callback) {
+            callback();
+        }
+    }
+    multipleWatchlists.validateWatchlistAndProcess = function (newWatchlistName, context, isRenameValidation, callback) {
+        var modelState = new ModelState();
+
+        if (newWatchlistName.startsWith(' ') || newWatchlistName === '' || newWatchlistName.length > 40 || !validSymbols.test(newWatchlistName)) {
+            modelState.IsValid = false;
+            ShowErrorDialog(modelContents.GetTranslation("InvalidWatchlistNameError"));
+        }
+
+        if (modelState.IsValid) {
+            if (!isRenameValidation) {
+                context.showLoading();
+            } else {
+                $('html').showLoading();
+            }
+
+            var obj = {
+                "watchlistName": newWatchlistName,
+                "watchlistId": 0
+            };
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: modelContents.IsWatchlistNameValidUrl,
+                dataType: 'json',
+                data: JSON.stringify(obj),
+                success: function (result) {
+                    callback(result, modelState, context, isRenameValidation);
+                }
+            });
+        } else {
+            if (isRenameValidation) {
+                $('html').hideLoading();
+                renameModal.add(renameModalOverlay).hide();
+            } else {
+                context.hideLoading();
+                multipleWatchlists.closeCreateNewWatchlistModal(context);
+            }
+        }
+    }
+    multipleWatchlists.validateWatchlistRename = function (newWatchlistName, renameModal, callback) {
+        multipleWatchlists.validateWatchlistAndProcess(newWatchlistName, renameModal, true, function (result, modelState, context) {
+            if (!result) {
+                callback(false, context);
+            } else {
+                callback(true, context);
+                modelState.IsValid = true;
+            }
+        });
+    };
+    multipleWatchlists.validateSaveModel = function (context) {
+        var watchlistName = $('#newWatchlistName, #newWatchlistNamePortfolio', context).val();
+        multipleWatchlists.validateWatchlistAndProcess(watchlistName, context, false, function (result, modelState, context) {
+            if (!result) {
+                context.hideLoading();
+                multipleWatchlists.closeCreateNewWatchlistModal(context);
+                ShowErrorDialog(modelContents.GetTranslation("WatchlistNameDuplicateError"));
+            } else {
+                modelState.IsValid = true;
+                multipleWatchlists.onWatchlistSaveSuccessHandler(modelState, context);
+            }
+        });
+    };
+    multipleWatchlists.onWatchlistSaveSuccessHandler = function(modelState, context) {
+        multipleWatchlists.createWatchlist(modelState, context);
+    }
+    multipleWatchlists.getUserWatchlists = function (callback) {
+
+        $.ajax({
+            url: modelContents.UserWatchlistsUrl,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var fundCentreDropdownItems = '';
+                var portfolioDropdownOptions = '';
+                var selectedOption = $('#watchlistOption').val();
+
+                for (var i = 0; i < data.length; i++) {                    
+                    var option = data[i];
+                    var watchlistItemsChange = option.watchlistItemsCount - (optionItemsCounts[option.id] || 0);
+
+                    totalWatchlistItems += watchlistItemsChange;
+
+                    // Update optionItemsCounts for this option
+                    optionItemsCounts[option.id] = option.watchlistItemsCount;
+                    
+                    fundCentreDropdownItems += '<span class="watchlist-dropdown-items-fundcenter" data-id="' + option.id + '" data-name="' + option.name + '">' + option.name + '</span>';
+
+                    var isSelected = (option.id == selectedOption);       
+                    portfolioDropdownOptions +=
+                        '<option value="' + option.id + '" data-custom-attribute="portfoliotab-watchlist-dropdown" data-name="' + option.name + '"' + (isSelected ? ' selected' : '') + '>' +
+                        option.name + ' (' + option.watchlistItemsCount + ')' +
+                        '</option>';  
+                }
+                fundCentreDropdownItems += '<span class="watchlist-dropdown-items create-new-watchlist-btn">' + modelContents.CreateNewLabelWatchlist + '</span>';
+
+                var infoMessageElement = $('#watchlistInfoMessage');
+                var infoMessageElementPortfolioTab = $('#watchlistInfoMessagePortfolioTab');
+                remainingWatchlistLimit = watchlistFundLimit - totalWatchlistItems;
+
+                var infoMessage1 = modelContents.GetTranslation("WatchlistLimitCheckInfoMessage1").replace(/\{1\}/g, "<b>" + watchlistFundLimit + "</b>");
+                var infoMessage2 = modelContents.GetTranslation("WatchlistLimitCheckInfoMessage2") + " <b>" + remainingWatchlistLimit + "</b>";
+                var infoMessage = DOMPurify.sanitize( infoMessage1 + ". " + infoMessage2);
+
+                infoMessageElement.html(infoMessage);
+                infoMessageElementPortfolioTab.html(infoMessage);
+
+                $('#add-selection-portfolio-dropdown').html(DOMPurify.sanitize(fundCentreDropdownItems));
+                $('#watchlistOption').html(DOMPurify.sanitize(portfolioDropdownOptions));
+                $('#watchlistOption').parents('.watchlist-dropdown-portfoliotab').mfs('refresh');
+
+                isFirstLoad = false;
+
+                if (callback) {
+                    callback(true);
+                }
+            },
+            error: function () {
+                if (callback) {
+                    callback(false);
+                }
+            }
+        });
+    }
+    multipleWatchlists.createWatchlist = function (modelState, context) {
+        var $this = $(this);
+        var modalId = context.attr('id');
+        var createModalOverlay = $('#createModalOverlay');
+        if (modalId === 'createNewWatchlistModalPortfolio') {
+            createModalOverlay = $('#createModalOverlayPortfolioTab');
+        }
+
+        if (modelState.IsValid) {
+            var watchlistName = $('#newWatchlistName, #newWatchlistNamePortfolio', context).val().trim();
+            var watchlistId = 0;
+
+            var watchlistConstituents = masterContainer.userWatchlistsContainer.Get();
+            var watchlist = new multipleWatchlists.Watchlist(watchlistName, watchlistId);
+
+            if (watchlistConstituents.length > 0) {
+                for (var i = 0; i < watchlistConstituents.length; i++) {
+                    var item = watchlistConstituents[i];
+                    watchlist.addWatchlistItem(item.Code);
+                }
+            }
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: modelContents.SaveWatchlistUrl,
+                dataType: 'json',
+                data: JSON.stringify(watchlist),
+                success: function (result) {
+                    multipleWatchlists.getUserWatchlists(function (success) {
+                        if (success) {
+                            var watchlistName = result.Name + "_Watchlist" + '_' + grsUserId;
+                            multipleWatchlists.getUserWatchlistWithConstituents(watchlistName, result.WatchlistId, false, function (success) {
+                                if (success) {
+                                    UpdateFundCentreViewForPortfolio();
+                                    createModalOverlay.css('display', 'none');
+                                    context.hideLoading();
+                                    multipleWatchlists.closeCreateNewWatchlistModal(context);
+                                    $this.showMessage(result.Name + ' ' + modelContents.GetTranslation("SaveSuccessfulMessage"));
+                                }
+                                else {
+                                    createModalOverlay.css('display', 'none');
+                                    context.hideLoading();
+                                    multipleWatchlists.closeCreateNewWatchlistModal(context);
+                                }
+                            });
+                        } else {
+                            ShowErrorDialog(genericErrorMessage);
+                        }
+                    });
+                },
+                error: function () {
+                    UpdateFundCentreViewForPortfolio();
+                    context.hideLoading();
+                    ShowErrorDialog(genericErrorMessage);
+                }
+            });
+        }
+    }
+    multipleWatchlists.updateWatchlistItems = function (id, name) {
+        var $this = $(this);
+
+        var watchlistId = id;
+        var watchlistName = name;
+        var watchlistConstituents = masterContainer.userWatchlistsContainer.Get();
+
+        if (watchlistConstituents.length > 0) {
+            $('html').showLoading();
+
+            var watchlist = new multipleWatchlists.Watchlist(watchlistName, watchlistId);
+
+            for (var i = 0; i < watchlistConstituents.length; i++) {
+                var item = watchlistConstituents[i];
+                watchlist.addWatchlistItem(item.Code);
+            }
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: modelContents.SaveWatchlistUrl,
+                dataType: 'json',
+                data: JSON.stringify(watchlist),
+                success: function (result) {
+                    if(result.HasExistingCodes === 1){
+                        UpdateFundCentreViewForPortfolio();
+                        $('html').hideLoading();
+                        $this.showMessage(modelContents.GetTranslation("WatchlistExistingInstruments")+": "+result.Name);
+                    }
+                    else{
+                      var watchlistName = result.Name + "_Watchlist" + '_' + grsUserId;
+                      multipleWatchlists.getUserWatchlists(function (success) {
+                          if (!success) {
+                              ShowErrorDialog(genericErrorMessage);
+                          }
+                          else {
+                              multipleWatchlists.getUserWatchlistWithConstituents(watchlistName, result.WatchlistId, false, function (success) {
+                                  if (success) {
+                                      UpdateFundCentreViewForPortfolio();
+                                      $('html').hideLoading();
+                                      if (result.HasExistingCodes === 2) {
+                                          $this.showMessage(result.Name + ' ' + modelContents.GetTranslation("WatchlistExistingPlusNewInstruments"));
+                                      }
+                                      else {
+                                          $this.showMessage(result.Name + ' ' + modelContents.GetTranslation("SaveSuccessfulMessage"));
+                                      }
+                                  }
+                                  else {
+                                      $('html').hideLoading();
+                                      ShowErrorDialog(genericErrorMessage);
+                                  }
+                              });
+                          }
+                      });
+                    }
+                },
+                error: function () {
+                    UpdateFundCentreViewForPortfolio();
+                    $('html').hideLoading();
+                    ShowErrorDialog(genericErrorMessage);
+                }
+            });
+        } else {
+            ShowErrorDialog(modelContents.GetTranslation("EmptyFundsAddToWatchlistError"));
+        }
+    }
+    window.onclick = function (event) {
+        if (!event.target.matches('.add-to-shorlist-btn')) {
+            var dropdowns = $(".add-selection-portfolio-dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    };
+    multipleWatchlists.CreateWatchlistContentLocalStorage = function (watchlistName, watchlistContainerCollection) {
+        var collectionChanged = false;
+        var collection = multipleWatchlists.ReadWatchlistContentLocalStorage(watchlistName);
+
+        var value = collection.map(function (item) {
+            return {
+                Code: item.Code,
+                Weight: item.Weight
+            };
+        });
+
+        for (var i = 0; i < watchlistContainerCollection.length; i++) {
+            var codeToAdd = watchlistContainerCollection[i].Code;
+            var weightToAdd = watchlistContainerCollection[i].Weight;
+
+            var index = value.findIndex(function (item) {
+                return item.Code === codeToAdd && item.Weight === weightToAdd;
+            });
+
+            if (index === -1) {
+                value.unshift({
+                    Code: codeToAdd,
+                    Weight: watchlistContainerCollection[i].Weight
+                });
+                collectionChanged = true;
+            }
+        }
+
+        if (collectionChanged) {
+            var codes = value.map(function (obj) {
+                return { Code: obj.Code, Weight: obj.Weight };
+            });
+
+            var str = JSON.stringify(codes);
+            var key = watchlistName;
+            localStorage.setItem(key, str);
+        }
+    }
+    multipleWatchlists.RemoveFromWatchlistContentLocalStorage = function (watchlistName, itemsToRemove) {
+        var collection = multipleWatchlists.ReadWatchlistContentLocalStorage(watchlistName);
+
+        var value = collection.filter(function (item) {
+            return !itemsToRemove.some(function (itemToRemove) {
+                return itemToRemove.Code === item.Code;
+            });
+        });
+
+        var codes = value.map(function (obj) {
+            return { Code: obj.Code, Weight: obj.Weight };
+        });
+
+        var str = JSON.stringify(codes);
+        var key = watchlistName;
+        localStorage.setItem(key, str);
+    }
+    multipleWatchlists.ReadWatchlistContentLocalStorage = function (watchlistName) {
+        var key = watchlistName;
+        var jsonString = localStorage.getItem(key);
+
+        if (jsonString) {
+            try {
+                var jsonArray = JSON.parse(jsonString);
+                return jsonArray.map(function (item) {
+                    return { Code: item.Code, Weight: item.Weight };
+                });
+            } catch (error) {
+                ShowErrorDialog(genericErrorMessage);
+            }
+        }
+
+        return [];
+    }
+    multipleWatchlists.EraseLocalStorage = function (watchlistName) {
+        localStorage.removeItem(watchlistName);
+    }
+    multipleWatchlists.GetCodeListFromWatchlist = function(key) {
+        var codes = multipleWatchlists.ReadWatchlistContentLocalStorage(key);
+        var codesList = codes.map(function (item) {
+            return item.Code;
+        });
+        return codesList;
+    }
+    multipleWatchlists.processWatchlistAndLocalStorage = function (key, watchlistItems) {
+        var storedWatchlistItems = multipleWatchlists.processWatchlistItems(watchlistItems);
+        var watchlistStorageItems = multipleWatchlists.ReadWatchlistContentLocalStorage(key);
+        multipleWatchlists.RemoveFromWatchlistContentLocalStorage(key, watchlistStorageItems);
+        multipleWatchlists.CreateWatchlistContentLocalStorage(key, storedWatchlistItems);
+    }
+    multipleWatchlists.getUserWatchlistWithConstituents = function (key, selectedWatchlistValue, shouldInvokePortfolioChanged, callback) {
+        multipleWatchlists.GetUserWatchlistWithConstituents(selectedWatchlistValue, function (watchlistItems) {
+            multipleWatchlists.processWatchlistAndLocalStorage(key, watchlistItems);
+
+            if (shouldInvokePortfolioChanged) {
+                PortfolioChanged(undefined, key);
+            }
+
+            if (callback) {
+                callback(true);
+            }
+        });
+    };
+    multipleWatchlists.GetUserWatchlistWithConstituents = function(watchlistId, callback) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            url: modelContents.GetUserWatchlistWithConstituentsUrl,
+            dataType: 'json',
+            data: { watchlistId: watchlistId }
+            ,
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                ShowErrorDialog(genericErrorMessage);
+            }
+        });
+    }
+    multipleWatchlists.DeleteUserWatchlistItems = function(watchlistId, watchlistName, instrumentTypeCodes) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            url: modelContents.DeleteUserWatchlistItemUrl,
+            dataType: 'json',
+            data: { watchlistId: watchlistId, instrumentTypeCodes: instrumentTypeCodes },
+            traditional: true,
+            success: function (result) {
+                if (result) {
+                    multipleWatchlists.getUserWatchlists(function (success) {
+                        if (success) {
+                            PortfolioChanged(undefined, watchlistName);
+                        }
+                        else {
+                            ShowErrorDialog(genericErrorMessage);
+                        }  
+                    });
+                }
+                else {
+                    ShowErrorDialog(genericErrorMessage);
+                }
+            },
+            error: function () {
+                ShowErrorDialog(genericErrorMessage);
+            }
+        });
+    }
+    multipleWatchlists.createWatchlistItemsForLocalStorage = function(item) {
+        var weight = '';
+        if (item.Weight !== null && item.Weight !== undefined) {
+            weight = item.Weight;
+        }
+        return {
+            Code: item.Code,
+            Weight: weight
+        };
+    }
+    function ShowErrorDialog(message) {
+        $(this).showError(message);
+    }
+    multipleWatchlists.getWatchlistKey = function(selectedWatchlistOption) {
+        return selectedWatchlistOption + "_Watchlist";
+    };
+    multipleWatchlists.getCurrentOptionWatchlistItems = function() {
+        var watchlistId = $('.watchlistOption').val();
+        var watchlistName = multipleWatchlists.getWatchlistKey($('.watchlistOption option:selected').data('name')) + '_' + grsUserId;
+        var watchlistStorageItems = multipleWatchlists.ReadWatchlistContentLocalStorage(watchlistName);
+
+        return {
+            watchlistId: watchlistId,
+            watchlistName: watchlistName,
+            watchlistStorageItems: watchlistStorageItems
+        };
+    }
+    multipleWatchlists.processWatchlistItems = function (watchlist) {
+        return watchlist.WatchlistItems.map(function (item) {
+            return {
+                Code: item.InstrumentTypeCode,
+                Weight: ''
+            };
+        });
+    }   
+    multipleWatchlists.validateWatchlistName = function (inputId, errorMessageId) {
+        var inputElement = document.getElementById(inputId);
+        var errorMessage = document.getElementById(errorMessageId);
+        var inputText = inputElement.value;
+        var invalidSymbols = [];
+        var validSymbolsList = validSymbols.source.replace(/\\/g, '');
+
+        for (var i = 0; i < inputText.length; i++) {
+            if (!validSymbols.test(inputText[i])) {
+                invalidSymbols.push(inputText[i]);
+            }
+        }
+        if (inputText.startsWith(' ')) {
+            errorMessage.innerText = modelContents.GetTranslation("WatchlistNameSpaceCheckErrorMessage");
+            errorMessage.style.display = 'block';
+        } else if (invalidSymbols.length > 0 || inputText.trim().length > 40) {
+            errorMessage.innerText =
+                (invalidSymbols.length > 0
+                    ? "\n" + modelContents.GetTranslation("WatchlistNameSpecialCharacterCheck") + ': ' + validSymbolsList
+                    : '') +
+                (inputText.trim().length > 40 ? "\n" + modelContents.GetTranslation("MaximumLengthWatchlistNameErrorMessage") : '');
+            errorMessage.style.display = 'block';
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+    multipleWatchlists.RenameUserWatchlist = function (watchlistId, newWatchlistName, callback) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            url: modelContents.UpdateUserWatchlistNameUrl,
+            dataType: 'json',
+            data: { watchlistId: watchlistId, newWatchlistName: newWatchlistName },
+            traditional: true,
+            success: function (result) {
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error: function () {
+                if (callback) {
+                    callback(false);
+                }
+            }
+        });
+    }
+    multipleWatchlists.DeleteUserWatchlist = function (watchlistId, callback) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            url: modelContents.DeleteUserWatchlistUrl,
+            dataType: 'json',
+            data: { watchlistId: watchlistId },
+            traditional: true,
+            success: function (result) {
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error: function () {
+                if (callback) {
+                    callback(false);
+                }
+            }
+        });
+    }
+    multipleWatchlists.checkWatchlistLimit = function (context, callback) {
+
+        var userWatchlistItems = masterContainer.userWatchlistsContainer.Get();
+
+        if (remainingWatchlistLimit <= 0 || userWatchlistItems.length > remainingWatchlistLimit) {
+            if (context !== null) {
+                multipleWatchlists.closeCreateNewWatchlistModal(context);
+            }
+            ShowErrorDialog(modelContents.GetTranslation("WatchlistLimitErrorMessage"));
+            callback(false);
+        } else {
+            callback(true);
+        }
+    }
+}

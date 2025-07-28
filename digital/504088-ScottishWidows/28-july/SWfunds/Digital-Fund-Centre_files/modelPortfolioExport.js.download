@@ -1,0 +1,138 @@
+﻿var containerCode = null;
+
+$(function () {
+
+
+    $('body').on('click', function (e) {
+
+        if ($('#PortfolioExportDlg').hasClass('ui-dialog-content') && $('#PortfolioExportDlg').dialog('isOpen') && !$(e.target).is('.ui-dialog, a') && !$(e.target).closest('.ui-dialog').length) {
+            $('#PortfolioExportDlg').dialog('close');
+        }
+    });
+
+    //    $('.fe-tabs-item a').li-ve('click', function () {
+    //        if ($('#PortfolioExportDlg').dialog('isOpen') && !$(e.target).is('.ui-dialog, a') && !$(e.target).closest('.ui-dialog').length) {
+    //            $('#PortfolioExportDlg').dialog('close');
+    //        }
+    //    });
+
+    $(document).on('click', '.fe-icon-export-portfolio', function (e) {
+        e.preventDefault();
+
+        containerCode = $('a', this).attr('data-code');
+        text = $('a', this).attr('data-name');
+        $('#fundName').text(text);
+
+        $('tr', '.fe-tabs-container-ModelPortfolio .fe-datatable tbody').each(function () {
+            $(this).removeClass('exportPortfolio');
+        });
+
+        $('.fe-tabs-container-ModelPortfolio .fe-datatable').StyleTableRows();
+        var row = $(this).parent();
+        row.addClass('exportPortfolio');
+        var container = $('#PortfolioExportDlg');
+
+        container.dialog({
+            //            modal: 'true',
+            width: 250,
+            resizable: 'false',
+            draggable: 'false',
+            closeOnEscape: true,
+            dialogClass : 'ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable portfolioexportdialog',
+
+            //            overlay: { opacity: 0, background: "black" },
+            //            open: function () {
+            //                $('.ui-widget-overlay').css('background', 'transparent');
+            //                $('.ui-widget-overlay').liv-e('click', function () { container.dialog('close'); })
+            //            },
+            close: function () {
+
+                $('tr', '.fe-tabs-container-ModelPortfolio .fe-datatable tbody').each(function () {
+                    $(this).removeClass('exportPortfolio');
+                });
+                $('.fe-tabs-container-ModelPortfolio .fe-datatable').StyleTableRows();
+            }
+        }).siblings('div.ui-dialog-titlebar').remove();
+
+
+        $('.portfolioexportdialog').position({
+            my: "left top",
+            at: "center",
+            of: $(this).find("a")
+        });
+    });
+
+
+
+    $(document).on('click', '#AddMpToPortfolio', function (e) {
+        e.preventDefault();
+
+        if (masterContainer.portfolioContainer.Get() && masterContainer.portfolioContainer.Get().length > 0) {
+            $(this).showConfirm(modelContents.GetTranslation("PortfolioClear"), 1, ExportPortfolio);
+        }
+        else {
+            ExportPortfolio(true, this);
+        }
+    });
+
+    $(document).on('click', '#AddMpToBasket', function (e) {
+        e.preventDefault();
+        GetPortfolioBreakdowns(containerCode, AddModelPortfolioBreakdownToBasket);
+    });
+
+});
+
+function ExportPortfolio(action, id) {
+    if (action) {
+        GetPortfolioBreakdowns(containerCode, AddPortfolioBreakdownToPortfolio);
+    }
+}
+
+function AddModelPortfolioBreakdownToBasket(model) {
+
+    for (var i = 0; i < model.length; i++) {
+        var breakdown = model[i];
+        // Typecode added to avoid azure call while portfolio loading
+        mpCodeList.remove(breakdown.TypeCode);
+        mpCodeList.push(breakdown.TypeCode);
+
+        masterContainer.basketContainer.Add(new ContainerInfo(breakdown.UnitName, breakdown.TypeCode));
+        BasketViewModel.addItem(breakdown.UnitName, breakdown.TypeCode);
+    }
+    var str = JSON.stringify(mpCodeList);
+    createCookie(mpCodelistkey, str);
+
+    $('#AddMpToBasket').AnimateTransitionToBasket();
+    $('#PortfolioExportDlg').dialog('close');
+}
+
+function AddPortfolioBreakdownToPortfolio(model) {
+
+    // Revert the state of the "remove" portfolio icon in the main fund centre since all Portfolio items are being removed.
+    RevertFundCentreViewForPortfolio();  // Function is defined in PortfolioTool.js file.
+    masterContainer.portfolioContainer.RemoveAll();
+
+    var container = [];
+
+    for (var i = 0; i < model.length; i++) {
+        var breakdown = model[i];
+        // Typecode added to avoid azure call while portfolio loading
+        mpCodeList.remove(breakdown.TypeCode);
+        mpCodeList.push(breakdown.TypeCode);
+        container.push(new PortfolioContainerInfo(breakdown.UnitName, breakdown.TypeCode, breakdown.Weight));
+    }
+    var str = JSON.stringify(mpCodeList);
+    createCookie(mpCodelistkey, str);
+    masterContainer.portfolioContainer.AddCollection(container);
+    $('#PortfolioExportDlg').dialog('close');
+    SelectTabById("PortfolioMasterTab");
+}
+
+function GetPortfolioBreakdowns(typeCode, callbackFunction) {
+
+    var model = $.extend({ ProjectName: modelContents.ProjectName }, { LanguageCode: modelContents.LanguageCode }, { 'Value1': typeCode });
+    $(this).sendJsonAsString(modelContents.PortfolioBreakdownActionUrl, model,
+        function (model) {
+            callbackFunction(model.Breakdowns);
+        });
+}

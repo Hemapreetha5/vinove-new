@@ -1,0 +1,502 @@
+﻿var ToolkitUI = ToolkitUI || {}
+
+function InitializeUIControls() {
+    GenerateButtons();
+    GenerateSliders();
+    GenerateAutoCompleteForFundCentre();
+    GenerateDialogButtons();
+    GenerateAutoLoadingTabs();
+    GenerateShowLoadingImages();
+    BackButtonProcess();
+    DisplayDisclaimerPopup();
+    IsPageLoaded = true;
+}
+
+function BackButtonProcess() {
+    if (readCookie('FromBackButton') == 'yes') {
+        try {
+            RetainFilterParams();
+        } catch (er) {
+        }
+    }
+    eraseCookie('FromBackButton');
+}
+
+function RetainFilterParams() {
+    var toolId;
+    if ($("[id^='searchform-']")) {
+        toolId = $("[id^='searchform-']").attr('data-toolid');
+
+        var filteringOptions = JSON.parse('[' + readCookie('RetainFilterData_' + toolId) + ']');
+        eraseCookie('RetainFilterData_' + toolId);
+        if (filteringOptions && filteringOptions[0]) {
+            var a = $('#searchform-' + toolId).serializeArray();
+            $.each(a, function () {
+                $("#searchform-" + toolId + " [name='" + this.name + "']").unbind('change');
+                $("#searchform-" + toolId + " [name='" + this.name + "']").val(filteringOptions[0][this.name]);
+                $("#searchform-" + toolId + " [name='" + this.name + "']").bind('change');
+
+            });
+
+            $('div[data-rangeslider]').each(function () {
+
+                var slider = $(this);
+                slider.unbind('slidechange');
+                var sliderData = filteringOptions[0][$(this).attr('data-name')];
+                if (sliderData) {
+                    var min = sliderData.BottomValue;
+                    var max = sliderData.TopValue;
+                    slider.slider("values", 0, (min ? min : slider.data('min')));
+                    slider.slider("values", 1, max ? max : slider.data('max'));
+                }
+                slider.bind('slidechange');
+            });
+        }
+    }
+}
+//#region UI component creation
+function GenerateAutoCompleteForFundCentre() {
+    GenerateAutoComplete(ToolIds.FundCentreId);
+    GenerateAutoComplete(ToolIds.FundCentreAMId);
+    GenerateAutoComplete(ToolIds.AllFundsAMId);
+}
+
+function GenerateAutoComplete(toolId, onSelectFunction, onChangefunc, includeCiticode) {
+    if ($("#SearchText-" + toolId).length > 0 && $("#SearchText-" + toolId).data("allowautocomplete") == true) {
+        $("#SearchText-" + toolId).autocomplete({
+            open: function () {
+                $(this).autocomplete('widget').css('z-index', 100);
+                return false;
+            },
+            select: onSelectFunction != null ? onSelectFunction : function (event, ui) {
+                $("#SearchText-" + toolId).val(ui.item.label);
+                $(".basicSearch-" + toolId).trigger('click');
+            },
+            change: onChangefunc,
+            source: function (request, response) {
+                var projectRangeId = getParameterByNameIgnoreCase('rangecode'), category = getParameterByNameIgnoreCase('category');
+                var category2 = getParameterByNameIgnoreCase('category2');
+                if ($("#RangeId-" + toolId).length === 1) {
+                    projectRangeId = nullIfEmpty($("#RangeId-" + toolId).val());
+                }
+
+                if ($("#CategoryId-" + toolId).length === 1) {
+                    category = nullIfEmpty($("#CategoryId-" + toolId).val());
+                }
+
+                if ($("#Category2Id-" + toolId).length === 1) {
+                    category2 = nullIfEmpty($("#Category2Id-" + toolId).val());
+                }
+                
+                var model = $.extend(
+                    { GrsProjectId: modelContents.GrsProjectId },
+                    { ToolId: toolId },
+                    { RangeCode: projectRangeId },
+                    { Category: (modelContents.Category && modelContents.Category != '' ? modelContents.Category : category) },
+                    { Category2: (modelContents.Category2 && modelContents.Category2 != '' ? modelContents.Category2 : category2) },
+                    { LanguageId: modelContents.InternalLanguageId },
+                    { Key: $("#SearchText-" + toolId).val() },
+                    { EnableSedolSearch: modelContents.EnableSedolSearch },
+                    { FundNameSourceId: modelContents.FundNameSourceId },
+                    { ForSaleIn: modelContents.forSaleIn },
+                    { IncludeCitiCode: includeCiticode }
+                );
+                $(this).sendJsonAsString(modelContents.FundCentreAutoCompleteActionUrl + (toolId == 16 ? '' : (projectRangeId ? ('/' + projectRangeId) : '')), model,
+                    function (data) {
+                        response($.map(data.Predicts, function (item, key) {
+                            return { label: item, value: item, id: key };
+                        }));
+                    });
+            },
+            minLength: 3
+        });
+    }
+}
+
+function GenerateAutoLoadingTabs() {
+    var tabs = $('div.fe-tabs-autoLoad');
+    var tabOptions = {
+        create: function (event, ui) {
+            ui.tab.addClass("ui-tabs-selected");
+            //accessibility  
+            setAriaHiddenValue(ui.tab, true);
+            enableAccessibilityFeaturesV1(ui.tab, true);
+        },
+        activate: function (event, ui) {
+            ui.oldTab.removeClass("ui-tabs-selected");
+            ui.newTab.addClass("ui-tabs-selected");
+            ToolkitUI.Common.ResizeIFrame();
+            ui.newPanel.find('.fe-datatable').trigger('fe-datatable:shown');
+
+            // Redraw chart after panel has been activated
+            if (ui && ui.newPanel) {
+                var chartContainer =
+                    jQuery(ui.newPanel).find('div[class^=\'fe-pscan-highchart-container-\']');
+                if (chartContainer.length > 0) {
+                    var chart = jQuery(chartContainer[0]).highcharts();
+                    if (chart) {
+                        chart.reflow();
+                        chart.redraw(true);
+                    }
+                }
+            }
+            //accessibility  
+            enableAccessibilityFeaturesV1(ui.oldTab, false);
+            enableAccessibilityFeaturesV1(ui.newTab, true);
+        }
+    };
+
+    if (modelContents.EnableScrollTabs) {
+        tabOptions.scrollOptions = modelContents.scrollTabsOptions;
+        tabs.scrollTabs(tabOptions);
+    } else {
+        tabs.tabs(tabOptions);
+    }
+
+    // fire the requests for the data
+    var notGroupedTabs = tabs.children('div[data-autoloadurl]:not([data-group])');
+    // only one tab for each group will be added
+    var groupedTabs = GetSingleTabPerGroup(tabs.children('div[data-autoloadurl][data-group]'));
+
+    notGroupedTabs.add(groupedTabs).each(function (i, div) { loadPscantabData(i, div) });
+
+    // Load High Charts tab data seperately
+    var highChartGroupedTabs = GetSingleTabPerGroup(tabs.children('div[data-highchartdataurl][data-highchartgroup]'));
+    var nothighChartGroupedTabs = tabs.children('div[data-highchartdataurl]:not([data-highchartgroup])');
+    nothighChartGroupedTabs.add(highChartGroupedTabs).each(function (i, div) { loadHighChartTabData(i, div) });
+}
+
+loadHighChartTabData = function (i, div) {
+    var $this = $(div);
+    var highChartDataUrl = $this.attr('data-highchartdataurl');
+    if (highChartDataUrl) {
+        LoadHighCharts($this, highChartDataUrl);
+    }
+}
+
+
+loadPscantabData = function (i, div) {
+    var $this = $(div);
+    //// if = -99 indicates retry loading using FE internal DB c
+    var url = (i == -99) ? $this.attr('data-autoloadretryurl') : $this.attr('data-autoloadurl');
+
+    var parameters = ['clientName=', 'portfolioName=', 'datePrepared=', 'preparedBy=', 'summaryText='];
+
+    var encodedUrl = GetEncodedUrl(url, parameters);
+    if (modelContents.MakePlatformResponsive && $this.attr('data-IsChartResponsiveApplicable') == 'True') {
+        var width = modelContents.ShowPortfolioScanInNewWindow ? $("div.fe-tabs-autoLoad").width() : $(".fe-mastertabs-PortfolioMasterTab").width();
+        width = $(window).width() <= 625 ? parseInt(width * .9) : parseInt(width * .68);
+        encodedUrl = encodedUrl + "&responsiveWidth=" + width;
+    }
+
+    var settings = {
+        url: encodedUrl,
+        type: 'GET',
+        datatype: "html",
+        context: $this,
+        success: AutoLoadingAjaxCallSuccess,
+        error: AutoLoadingAjaxCallError
+    };
+
+    $.ajax(settings);
+}
+
+function GetEncodedUrl(url, parameters) {
+    var parameterSeparator = '&';
+
+    $.each(parameters, function (i, currParameter) {
+        if (url.indexOf(currParameter) != -1) {
+            var urlPath = url.substring(0, url.indexOf(currParameter));
+            var remainingUrlPathwithParameter = url.substring(url.indexOf(currParameter));
+
+            if (remainingUrlPathwithParameter.indexOf(parameterSeparator) != -1) {
+                var parameterValue = remainingUrlPathwithParameter.substring(remainingUrlPathwithParameter.indexOf(currParameter), remainingUrlPathwithParameter.indexOf(parameterSeparator));
+                var remainingUrlPath = remainingUrlPathwithParameter.substring(remainingUrlPathwithParameter.indexOf(parameterValue) + parameterValue.length);
+                var querystring = encodeURIComponent(url.substring(url.indexOf(currParameter) + currParameter.length, url.indexOf(parameterValue) + parameterValue.length));
+                url = urlPath + currParameter + querystring + remainingUrlPath;
+            }
+            else {
+                var parameterValue = remainingUrlPathwithParameter.substring(remainingUrlPathwithParameter.indexOf(currParameter), remainingUrlPathwithParameter.indexOf(parameterSeparator));
+                var remainingUrlPath = remainingUrlPathwithParameter.substring(remainingUrlPathwithParameter.indexOf(parameterValue));
+                var querystring = encodeURIComponent(url.substring(url.indexOf(currParameter) + currParameter.length));
+                url = urlPath + currParameter + querystring;
+            }
+        }
+    });
+
+    return url;
+}
+
+function GenerateSliders() {
+    $('div[data-rangeslider]').each(function (i, div) {
+        var slider = $(div);
+        var min = slider.data("min");
+        var max = slider.data("max");
+        var doSuppress = slider.data("suppresssearch");
+        var toolId = slider.attr("data-toolId");
+
+        slider.slider({
+            range: true,
+            min: min,
+            max: max,
+            step: slider.data("step"),
+            values: [min, max],
+            slide: function (event, ui) {
+                DisplaySliderValue(slider, ui.values[0], ui.values[1]);
+            },
+            change: function (event, ui) {
+
+                DisplaySliderValue(slider, ui.values[0], ui.values[1]);
+                if (!doSuppress && event.originalEvent) {
+                    Search(toolId);
+                }
+            },
+            create: function (event, ui) {
+                DisplaySliderValue(slider, min, max);
+            }
+        });
+    });
+}
+
+
+function GenerateButtons() {
+    $("button").each(function (i, button) {
+        var jQueryButton = $(button);
+        var secondaryIcon = jQueryButton.attr("data-secIcon");
+        var secondaryTogleIcon = jQueryButton.attr("data-secTogIcon");
+        jQueryButton.button();
+        if (secondaryIcon != null) {
+            jQueryButton.button("option", "icons", { secondary: secondaryIcon });
+            if (secondaryTogleIcon != null) {
+                jQueryButton.on("click", function (e) {
+                    var activeIcon = jQueryButton.button("option", "icons").secondary;
+                    var newActiveIcon;
+                    if (activeIcon == secondaryIcon) {
+                        newActiveIcon = secondaryTogleIcon;
+                    }
+                    else {
+                        newActiveIcon = secondaryIcon;
+                    }
+                    jQueryButton.button("option", "icons", { secondary: newActiveIcon });
+                });
+            }
+        }
+    });
+}
+
+
+function GenerateDialogButtons() {
+    var draggable = true;
+
+    if (modelContents.FundCentreAMEnabled) {
+        draggable = false;
+    }
+
+    $('a[data-showDialog]').on("click", function (e) {
+        var dialogId = $(this).attr('data-showDialog');
+        var OKText = modelContents.GetTranslation("Ok");
+        $('#' + dialogId).dialog({
+            modal: true,
+            draggable: draggable,
+            height: 500,
+            width: 550,
+            buttons: [{
+                text: OKText,
+                click: function () {
+                    $(this).dialog("close");
+                }
+            }],
+            open: function (event) {
+                hideDuplicateCloseButtonImage($(".ui-dialog"));
+            }
+        });
+        e.preventDefault();
+    });
+}
+
+//#endregion
+////Duplicate close image appear due to bad design
+function hideDuplicateCloseButtonImage(dialog) {
+    if (dialog.find('.ui-icon-closethick').is(':visible')
+        && $('.ui-dialog-titlebar-close > .ui-icon-closethick').css('background-image').indexOf('fe_img/cancel.png') > -1
+        && $(".ui-dialog-titlebar-close > .ui-button-text").is(':visible')
+        && $('.ui-dialog-titlebar-close > .ui-button-text').css('background-image').indexOf('fe_img/cancel.png') > -1) {
+        $(".ui-dialog-titlebar-close > .ui-button-text").hide();
+        dialog.find('.ui-icon-closethick').removeClass("ui-icon-closethick-close").addClass("ui-icon-closethick-close");
+    }
+}
+//#region Slider component
+
+function DisplaySliderValue(sliderElement, lowerBound, higherBound) {
+    var displayElementId = sliderElement.attr("id") + "Display";
+    var displayItem = $("#" + displayElementId);
+    if (displayItem != null) {
+        var metricName = sliderElement.data("metric");
+        var upperBoundryDisplay =
+            GetSliderDisplayValue(higherBound, sliderElement.data("max"),
+                metricName,
+                sliderElement.data("maxboundrydisplay"));
+        var lowerBoundryDisplay =
+            GetSliderDisplayValue(lowerBound, sliderElement.data("min"),
+                metricName,
+                sliderElement.data("minboundrydisplay"));
+
+        displayItem.text(lowerBoundryDisplay + " - " + upperBoundryDisplay);
+    }
+}
+
+function GetSliderDisplayValue(currentValue, boundryValue, metric, boundryText) {
+    if (!boundryText || currentValue != boundryValue) {
+        return currentValue + metric;
+    }
+
+    else {
+        return boundryText;
+    }
+}
+
+
+//#endregion
+
+//#region Auto loading tabs
+
+function AutoLoadingTabsHtmlHandler(container, result) {
+    container.html(result);
+    applyResponsiveCascadingRow(container, container.find('.fe-datatable'));
+}
+
+////The first parameter name is changed to make it work in Bundling and  Minification on MVC
+function AutoLoadingAjaxCallSuccess(n, textStatus, jqXHR) {
+    var containers = GetAffectedTabs(this);
+    containers.each(function () {
+        var tabContainer = $(this);
+
+        var handler = tabContainer.attr('data-handler');
+        if (handler != undefined && handler != "") {
+            window[handler](tabContainer, n);
+        } else {
+            // default handler 
+            AutoLoadingTabsHtmlHandler(tabContainer, n);
+        }
+    });
+
+
+    ToolkitUI.Common.ResizeIFrame();
+
+}
+
+function AutoLoadingAjaxCallError(jqXHR, textStatus, errorThrown) {
+    if ($(this).attr('id') == "PortfolioComposition-container" && $(this).data('autoloadretryurl') != '') {
+        loadPscantabData(-99, this);
+    } else {
+        var containers = GetAffectedTabs(this);
+        var errorDiv = containers.parent().children('.fe-autotab-error');
+
+        containers.html(errorDiv.html());
+    }
+}
+
+// this method will get all the affected tabs, the parameter provided is the tab that initiated the call
+function GetAffectedTabs(sourceOftheCall) {
+    var result;
+    var group = sourceOftheCall.attr('data-group');
+    if (group != undefined) {
+        result = sourceOftheCall.siblings('[data-group="' + group + '"]').add(sourceOftheCall);
+    } else {
+        result = sourceOftheCall;
+    }
+
+    return result;
+}
+
+// this method will get all the affected high chart tabs, the parameter provided is the tab that initiated the call
+function GetAffectedHighChartTabs(sourceOftheCall, isPdf) {
+    ///Get all div needs to be filled except "Risk"
+    var result = null;
+
+    if (isPdf) {
+        if ($(sourceOftheCall).attr('data-tabname') == 'Risk') {
+            result = sourceOftheCall;
+        }
+        else {
+            result = $('div.fe-tabs-highchart-autoLoad').children('div[data-highchartdataurl]:not([data-tabname="Risk"])');
+        }
+    }
+    else {
+        var group = sourceOftheCall.attr('data-highchartgroup');
+        if (group != undefined) {
+            result = sourceOftheCall.siblings('[data-highchartgroup="' + group + '"]').add(sourceOftheCall);
+        } else {
+            result = sourceOftheCall;
+        }
+    }
+
+    return result;
+}
+
+function GetSingleTabPerGroup(allGroupedTabs) {
+    var dictionary = {};
+    var result = $();
+
+    allGroupedTabs.each(function () {
+        var $this = $(this);
+        var group = $this.attr("data-group");
+
+        if (!dictionary[group]) {
+            dictionary[group] = $this;
+            result = result.add(this);
+        }
+    });
+
+    return result;
+}
+
+//#endregion
+
+function GenerateShowLoadingImages(context) {
+    var loadingOverlay = $('<div>').addClass('fe-imageLoading-Container');
+    loadingOverlay.append('<div class="fe-loadingIcon" ></div>');
+
+    var image = $('img.fe-showLoading', context);
+
+    image.each(function () {
+        var currentImage = $(this);
+        if (!this.complete) {
+            currentImage.showLoading();
+
+            currentImage.load(function () {
+                currentImage.hideLoading();
+            });
+        }
+    });
+}
+
+ToolkitUI.Common = function () {
+    getDate = function (jsonDate) {
+        var value = moment.utc(jsonDate).toDate();
+        return value.getDate() + "/" + (parseInt(value.getMonth()) + 1) + "/" + value.getFullYear();
+    },
+
+        resizeIFrame = function () {
+            if (modelContents.PostMessagingEnabled) {
+                PostMessaging.Events.ResizeIFrame();
+            }
+        }
+
+    getJsonDate = function (jsonDate) {
+        var dt = new Date(jsonDate);
+        var newDate = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMilliseconds()));
+        return newDate.toISOString();
+    }
+    return {
+        GetDate: getDate,
+        GetJsonDate: getJsonDate,
+        ResizeIFrame: resizeIFrame
+    };
+}();
+
+///Used when the dialog button text is assigned in JS. Because few char in other languages are HTML encoded and shows that as button text
+function parseHTML(value) {
+    return $("<div/>").html(value).text();
+}
+

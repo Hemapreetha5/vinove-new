@@ -1,0 +1,667 @@
+﻿function EventTarget() {
+    this._listeners = {};
+}
+
+EventTarget.prototype = {
+
+    constructor: EventTarget,
+
+    addListener: function (type, listener) {
+
+        var listenerAlreadyPresent = false;
+        if (typeof this._listeners[type] == "undefined") {
+            this._listeners[type] = [];
+        }
+
+        var listner = this._listeners[type];
+
+        for (var i = 0, len = listner.length; i < len; i++) {
+
+            if (listner[i] === listener) {
+                listenerAlreadyPresent = true;
+                break;
+            }
+        }
+
+        if (!listenerAlreadyPresent)
+            this._listeners[type].push(listener);
+    },
+
+    fire: function (event, args) {
+        if (typeof event == "string") {
+            event = { type: event };
+        }
+        if (!event.target) {
+            event.target = this;
+        }
+
+        if (!event.type) {  //falsy
+            throw new Error("Event object missing 'type' property.");
+        }
+
+        if (this._listeners[event.type] instanceof Array) {
+            var listeners = this._listeners[event.type];
+            for (var i = 0, len = listeners.length; i < len; i++) {
+                listeners[i].call(this, event, args);
+            }
+        }
+    },
+
+    removeListener: function (type, listener) {
+        if (this._listeners[type] instanceof Array) {
+            var listeners = this._listeners[type];
+            for (var i = 0, len = listeners.length; i < len; i++) {
+                if (listeners[i] === listener) {
+                    listeners.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+};
+
+var containerKey = '';
+var maxCookieExpireDays = 30;
+function Container(key, target) {
+
+    var key = key;
+    var value = [];
+
+    this.Get = function () {
+        var jsonString = readCookie(key);
+        var jsonObj = JSON.parse('[' + jsonString + ']');
+        if (jsonObj[0] != null) {
+            value = jsonObj[0];
+        } else {
+            value = [];
+        }
+
+        return value;
+    };
+
+    this.GetEncoded = function() {
+        var jsonString = readEncodedCookie(key);
+        var jsonObj = JSON.parse('[' + jsonString + ']');
+        if (jsonObj[0] != null) {
+            value = jsonObj[0];
+        } else {
+            value = [];
+        }
+
+        return value;
+    };
+
+    this.Add = function(val) {
+        var collection = this.Get();
+
+        if (collection != null)
+            value = collection;
+
+
+        var index = value.indexInBasket(val);
+        if (index == -1) {
+
+            value.unshift(val);
+            str = JSON.stringify(value);
+            createCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemAdded", val);
+        }
+    };
+
+    this.AddEncoded = function(val) {
+        var collection = this.GetEncoded();
+
+        if (collection != null)
+            value = collection;
+
+
+        var index = value.indexInBasket(val);
+        if (index == -1) {
+
+            value.unshift(val);
+            str = JSON.stringify(value);
+            createEncodedCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemAdded", val);
+        }
+    };
+
+
+    this.Update = function(val) {
+        var collection = this.Get();
+
+        if (collection != null)
+            value = collection;
+
+        var index = value.indexInBasket(val);
+        if (index != -1) {
+
+            var item = collection[index];
+            item.Name = val.Name;
+            str = JSON.stringify(value);
+            createCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemUpdated", val);
+        }
+    };
+
+    this.UpdateEncoded = function (val) {
+        var collection = this.GetEncoded();
+
+        if (collection != null)
+            value = collection;
+
+        var index = value.indexInBasket(val);
+        if (index != -1) {
+
+            var item = collection[index];
+            item.Name = val.Name;
+            str = JSON.stringify(value);
+            createEncodedCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemUpdated", val);
+        }
+    };
+
+    this.AddCollection = function(container) {
+
+        var collectionChanged = false;
+        var collection = this.Get();
+
+        if (collection != null)
+            value = collection;
+
+        for (var i = 0; i < container.length; i++) {
+
+            var index = value.indexInBasket(container[i]);
+            if (index == -1) {
+                value.unshift(container[i]);
+                collectionChanged = true;
+            }
+        }
+
+        if (collectionChanged) {
+            str = JSON.stringify(value);
+            createCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemAdded", container);
+        }
+    };
+
+    this.AddCollectionEncoded = function (container) {
+
+        var collectionChanged = false;
+        var collection = this.GetEncoded();
+
+        if (collection != null)
+            value = collection;
+
+        for (var i = 0; i < container.length; i++) {
+
+            var index = value.indexInBasket(container[i]);
+            if (index == -1) {
+                value.unshift(container[i]);
+                collectionChanged = true;
+            }
+        }
+
+        if (collectionChanged) {
+            str = JSON.stringify(value);
+            createEncodedCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemAdded", container);
+        }
+    };
+
+    this.Remove = function(val) {
+
+        var collection = this.Get();
+
+        if (collection != null)
+            value = collection;
+
+        var index = value.indexInBasket(val);
+        if (index != -1) {
+            value.splice(index, 1);
+            str = JSON.stringify(value);
+            createCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemRemoved", val);
+        }
+    };
+
+    this.RemoveCollection = function(container) {
+
+        var collectionChanged = false;
+        var collection = this.Get();
+
+        if (collection != null)
+            value = collection;
+
+        for (var i = 0; i < container.length; i++) {
+
+            var index = value.indexInBasket(container[i]);
+            if (index != -1) {
+                value.splice(index, 1);
+                collectionChanged = true;
+            }
+        }
+
+        if (collectionChanged) {
+            str = JSON.stringify(value);
+            createCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemRemoved", container);
+        }
+    };
+
+    this.RemoveEncoded = function (val) {
+
+        var collection = this.GetEncoded();
+
+        if (collection != null)
+            value = collection;
+
+        var index = value.indexInBasket(val);
+        if (index != -1) {
+            value.splice(index, 1);
+            str = JSON.stringify(value);
+            createEncodedCookie(key, str, maxCookieExpireDays);
+            if (target != undefined)
+                target.fire("ItemRemoved", val);
+        }
+    };
+
+    this.RemoveAll = function () {
+        createCookie(key, "[]");        
+        if (target != undefined)
+            target.fire("ItemRemoved");
+    };
+    
+    this.RemoveCookie = function () {
+        createCookie(key, "[]");
+    };
+
+    this.RemoveAllEncoded = function () {
+        createEncodedCookie(key, "[]");
+        if (target != undefined)
+            target.fire("ItemRemoved");
+    };
+
+    this.PersistState = function () {
+        str = JSON.stringify(value);
+        createCookie(key, str, maxCookieExpireDays);
+    };
+
+    this.PersistStateEncoded = function () {
+        str = JSON.stringify(value);
+        createEncodedCookie(key, str, maxCookieExpireDays);
+    };
+}
+
+
+function ShortListContainer(containerKey) {
+
+    this.target = new EventTarget();
+    this.target.addListener("ItemAdded", ShortListItemAddedHandler);
+    this.target.addListener("ItemRemoved", ShortListItemRemovedHandler);
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function() {
+        return this.container.Get();
+    };
+
+    this.Add = function(val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function(val) {
+        this.container.Remove(val);
+    };
+
+    this.AddCollection = function(collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.RemoveAll = function() {
+        this.container.RemoveAll();
+    };
+
+    this.RemoveCookie = function () {
+        this.container.RemoveCookie();
+    };
+}
+
+function DynamicShortListContainer(containerKey) {
+
+    this.target = new EventTarget();
+    // this.target.addListener("ItemAdded", ShortListItemAddedHandler);
+    // this.target.addListener("ItemRemoved", ShortListItemRemovedHandler);
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function () {
+        return this.container.Get();
+    };
+
+    this.Add = function (val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function (val) {
+        this.container.Remove(val);
+    };
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.RemoveAll = function () {
+        this.container.RemoveAll();
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+}
+
+function TargetAllocationListContainer(containerKey) {
+
+    this.target = new EventTarget();
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function () {
+        return this.container.Get();
+    };
+
+    this.Add = function (val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function (val) {
+        this.container.Remove(val);
+    };
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.RemoveAll = function () {
+        this.container.RemoveAll();
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+}
+
+function BasketContainer(containerKey) {
+
+    this.target = new EventTarget();
+    this.target.addListener("ItemAdded", BasketItemAddedHandler);
+    this.target.addListener("ItemRemoved", BasketItemRemovedHandler);
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function() {
+        return this.container.GetEncoded();
+    };
+
+    this.Add = function(val) {
+        this.container.AddEncoded(val);
+    };
+
+    this.Remove = function(val) {
+        this.container.RemoveEncoded(val);
+    };
+
+    this.RemoveAll = function() {
+        this.container.RemoveAllEncoded();
+    };
+}
+
+
+function PortfolioContainer(containerKey) {
+
+    this.target = new EventTarget();
+    this.target.addListener("ItemAdded", PortfolioItemAddedHandler);
+    this.target.addListener("ItemRemoved", PortfolioItemRemovedHandler);
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function() {
+        return this.container.Get();
+    };
+
+    this.Add = function(val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function(val) {
+        this.container.Remove(val);
+    };
+    
+    this.RemoveCookie = function () {
+        this.container.RemoveCookie();
+    };
+
+    this.RemoveAll = function() {
+        this.container.RemoveAll();
+    };
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+
+    this.UnbindItemRemovedEvent = function () {
+        this.target.removeListener("ItemRemoved", PortfolioItemRemovedHandler);
+    };
+
+    this.BindToItemRemovedEvent = function () {
+        this.target.addListener("ItemRemoved", PortfolioItemRemovedHandler);
+    };
+}
+
+
+function PortfolioComparisonContainer(containerKey) {
+
+//    Event are not needed anymore as GetFundMAsterData was getting called twice without any need
+//    this.target = new EventTarget();
+//    this.target.addListener("ItemAdded", PortfolioItemAddedHandler);
+//    this.target.addListener("ItemRemoved", PortfolioItemRemovedHandler);
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function() {
+        return this.container.Get();
+    };
+
+    this.Add = function(val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function(val) {
+        this.container.Remove(val);
+    };
+
+    this.RemoveAll = function() {
+        this.container.RemoveAll();
+    };
+    
+    this.RemoveCookie = function () {
+        this.container.RemoveCookie();
+    };
+    
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+}
+
+function ShortlistComparisonContainer(containerKey) {
+//    Event are not needed anymore as GetFundMAsterData was getting called twice without any need
+//    this.target = new EventTarget();
+//    this.target.addListener("ItemAdded", PortfolioItemAddedHandler);
+//    this.target.addListener("ItemRemoved", PortfolioItemRemovedHandler);
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function() {
+        return this.container.Get();
+    };
+
+    this.Add = function(val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function(val) {
+        this.container.Remove(val);
+    };
+
+    this.RemoveAll = function() {
+        this.container.RemoveAll();
+    };
+
+    this.RemoveCookie = function () {
+        this.container.RemoveCookie();
+    };
+
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+}
+
+function UserPortfoliosContainer(containerKey) {
+
+    this.target = new EventTarget();
+    this.target.addListener("ItemAdded", UserPortfolioAddedHandler);
+    this.target.addListener("ItemUpdated", UserPortfolioUpdatedHandler);
+    this.target.addListener("ItemRemoved", UserPortfolioRemovedHandler);
+
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function () {
+        return this.container.GetEncoded();
+    };
+
+    this.Add = function (val) {
+        this.container.AddEncoded(val);
+    };
+
+    this.Update = function (val) {
+        this.container.UpdateEncoded(val);
+    }
+    
+    this.Remove = function (val) {
+        this.container.RemoveEncoded(val);
+    };
+
+    this.RemoveAll = function () {
+        this.container.RemoveAllEncoded();
+    };
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollectionEncoded(collection);
+    };
+
+    this.PersistState = function () {
+        this.container.PersistStateEncoded();
+    };
+}
+
+function UserWatchlistsContainer(containerKey) {
+
+    this.container = new Container(containerKey, this.target);
+
+    this.Get = function () {
+        return this.container.Get();
+    };
+
+    this.Add = function (val) {
+        this.container.Add(val);
+    };
+
+    this.Remove = function (val) {
+        this.container.Remove(val);
+    };
+
+    this.RemoveCookie = function () {
+        this.container.RemoveCookie();
+    };
+
+    this.RemoveAll = function () {
+        this.container.RemoveAll();
+    };
+
+    this.AddCollection = function (collection) {
+        this.container.AddCollection(collection);
+    };
+
+    this.RemoveCollection = function (collection) {
+        this.container.RemoveCollection(collection);
+    };
+
+    this.PersistState = function () {
+        this.container.PersistState();
+    };
+}
+
+// note that below cookie names are also defined on server side in FE.Toolkit.ClientUI.Shared.Constants.CookieName
+// so make sure that both server side and client side cookie names are always in sync
+function MasterContainer(projectName, grsUserId) {
+    mpCodelistkey = projectName + "_mpCodelist";
+    this.shortListContainer = new ShortListContainer(projectName + "_shortlist");
+    this.dynamicShortListContainer = new DynamicShortListContainer(projectName + "_dynamicshortlist");
+    this.basketContainer = new BasketContainer(projectName + "_basket");
+    this.portfolioContainer = new PortfolioContainer(projectName + "_portfolio");
+    this.portfolioComparisonContainer = new PortfolioComparisonContainer(projectName + "_portfolioComparison");
+    this.shortlistComparisonContainer = new ShortlistComparisonContainer(projectName + "_shortlistComparison");
+    this.targetAllocationContainer = new TargetAllocationListContainer(projectName + "_targetAllocation");
+    if (modelContents.AllowSavingOfPortfolios === "True") {
+        this.userPortfoliosContainer = new UserPortfoliosContainer(projectName + '_' + grsUserId + '_userPortfolios');
+    }
+    if (modelContents.ShowMultipleWatchlists && parseInt(modelContents.GrsUserId) > 0) {
+        this.userWatchlistsContainer = new UserWatchlistsContainer(projectName + '_' + grsUserId + '_userWatchlists');
+    }
+}
+
+
+
+

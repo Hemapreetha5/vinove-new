@@ -1,0 +1,584 @@
+// <copyright file="ClientUI.js" company="FE">
+//   Copyright © FE 2011. All rights reserved.
+// </copyright>
+//
+//NOTE: If you are writting any shared code then please move or write the funtion in
+//      global.js in assets project so that it can be shared accross the projects
+//
+//******************************************************************************
+// This script file only containing functions for following modules/functionality
+// Grs Client Projects
+//******************************************************************************
+
+//#region References
+//http: //jsoutlining.codeplex.com/
+//#endregion
+
+// Global variables.
+var MaxExpExcelPortfolioPageSize = 100;
+var MaxExpExcelShortlistPageSize = 100;
+var MaxExpExcelFundCentrePageSize = 250;
+// Maximum time that the dialog showing the spinner/loading icon will be displayed when something goes wrong during an export Excel process.
+var MaxExportExcelProcessingTime = 70000;
+var tools = [ToolIds.FundCentreId, ToolIds.ChartingToolId, ToolIds.Shortlist, ToolIds.Portfolio, ToolIds.PortfolioScan, ToolIds.ModelPortfolio,
+    ToolIds.MPConstituents, ToolIds.SavedPortfolios, ToolIds.FundCentreAMId, ToolIds.AllFundsAMId, ToolIds.ResponsiveFactsheetId];
+var isKeypress = false;
+
+var amToolsArray = [14, 15];
+var storageAccessGranted = storageAccessChecked = isSafariCookieDebugMode = false;
+//#region Document Ready Function
+
+$(function () {
+   
+    var fundCentreTabs = $("#tab-fundCentre");
+    if (!(browser.msie && parseInt(browser.version, 10) < 8)) {
+
+        //Check Cookie Storage Access
+        isSafariCookieDebugMode = IsSafariCookieDebugMode();
+        GetCookieStorageAccess();
+        var stopAddresChangeCall = false;
+        if (fundCentreTabs.length > 0) {
+            // For forward and back (only works on Versions less than JQuery 1.9, for the higher versions we have to upgrade jquery.address plugin version to 1.6)
+            $.address.change(function (event) {
+                var hash = window.location.hash;
+                if (!stopAddresChangeCall) {
+                    ////TODO: verify jquery.address is needed
+                    ////$("#tab-fundCentre").tabs("option","active", 3);
+                }
+                stopAddresChangeCall = false;
+            });
+        }
+        
+        // when the tab is selected update the url with the hash
+        fundCentreTabs.on("tabsselect", function (event, ui) {
+            stopAddresChangeCall = true;
+            var hash = window.location.hash;
+            if (browser.msie) {
+                $('body').hideLoading();
+            }
+            var navMark = '';
+            if (hash.indexOf("!p_") >= 0) {
+                navMark = hash.substring(hash.indexOf("!"));
+            }
+            if (history.pushState) {
+                history.pushState(null, null, ui.tab.hash);
+            } else {
+                window.location.hash = ui.tab.hash; //+ navMark;
+            }
+        });
+    }
+    
+    // Dont cache the tabs in production to maintain state
+    $.ajaxSetup({
+        cache: false,
+        statusCode: {
+            401: function () {
+                if (modelContents.ExternalLoginEnabled == "True") {
+
+                    var errorMessage = modelContents.GetTranslation("ExternalLoginSessionTimeout");
+                    window.location.href = modelContents.ExternalLogonErrorUrl + '?errorMessage=' + errorMessage;
+                }
+                else {
+                    window.location.href = modelContents.LogoutUrl;
+                }
+            }
+        }
+    });
+
+    //Hide all data containers by default
+    //$(this).hideAllContainers();	
+
+    $('input').each(function () {
+        var current = $(this);
+        if (!current.type || current.type == "" || current.type == "text") {
+            HandlePlaceholder(current);
+        }
+    });
+
+    // Keep this line at the end! - it is used to handle Flash of unstyled content (TKBL-68)
+    $(document.body).toggleClass('displayNone', false);
+
+    // Create 'funky' html dropdowns
+    if ($.fn.mfs != undefined) {
+        $('body').mfs();
+        var zIndexNumber = 1000;
+
+        // Put your target element(s) in the selector below! Set 
+        $("div", "form.mfs").not('.fe-filterlist-content div').each(function () {
+            $(this).css('zIndex', zIndexNumber);
+            zIndexNumber -= 10;
+        });
+
+        // We dont want it on the saved portfolios tab as we have a multi-select here instead
+        $('.fe-savedportfolios-div').mfs('destroy');
+
+        // We dont want it on the advance search for amtoolkit as we have a select2 here instead
+        $(".select2SearchForm .select2FilterContainer").mfs('destroy');
+    }
+
+    if (modelContents.FundCentreAMEnabled) {
+        $(".select2SearchForm .select2FilterContainer .fe-search-fileters-dropdown").each(function () {
+            if (this.id) {
+                $("#" + this.id).select2({
+                    debug: true,
+                    formatSelectionCssClass: function(data, container) {
+                        $(container).attr('class', "select2-chosen");
+                        return data.css;
+                    }
+                });
+            }
+        });
+    }
+
+    ///Close any tooltip if open
+    if (modelContents.Accessibility) {
+        $('body').on("keydown", function (event) {
+            isKeypress = true;
+            if (event.key == "Escape") {
+                for (var i = 0; i < tools.length; i++) {
+                    toggleHelpText(event, tools[i], true);
+                }
+            }
+        });
+    }
+});
+
+function IsSafariCookieDebugMode() {
+    //If URL contains the parameter safariCookieDebugmode then it will blocks cookie creations \
+    //to debug cookie storage access across all browsers
+    var safariCookieDebugMode = getParameterByNameIgnoreCase("safariCookieDebugMode");
+    return safariCookieDebugMode == 1;
+}
+
+//#endregion
+function ValidateCookieStorageAccess()
+{
+    if (!storageAccessChecked) {
+        storageAccessChecked = true;
+        if (!storageAccessGranted) {
+            document.requestStorageAccess().then(function() {
+                    console.log("Storage access granted");
+                    storageAccessGranted = true;
+
+                    if (isSafariCookieDebugMode && !HasSafariCookie()) {
+                        storageAccessGranted = false;
+                        $("#fe-helptext-span-1-cookie-message").show();
+                        UpdatePlaceHolderOnPopupMessage();
+                    }
+                },
+                function() {
+                    $("#fe-helptext-span-1-cookie-message").show();
+                    UpdatePlaceHolderOnPopupMessage();
+                    storageAccessGranted = false;
+                }
+            );
+        }
+    }
+}
+
+//Test the current browser can create and read cookie
+function HasCookieAccess() {
+    if (isSafariCookieDebugMode)
+        return false;
+
+    //Create a new cookie "safariCookie"
+    createCookie("safariCookie", 1, 30);
+
+    return HasSafariCookie();
+}
+
+function HasSafariCookie() {
+    //Read the cookie value of "safariCookie" to validate browser has cookie access
+    var nameEQ = "safariCookie=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length) == 1;
+    }
+}
+
+function GetCookieStorageAccess() {
+    $("#fe-helptext-span-1-cookie-message").hide();
+    if (!HasCookieAccess()) {
+        if (SupportsStorageAccessAPI()) {
+                return document.hasStorageAccess().then(function(hasAccess) {
+                    storageAccessGranted = hasAccess && !isSafariCookieDebugMode;
+                    return hasAccess;
+                });
+        }
+        else {
+            console.log("This browser does not support Storage Access API");
+            storageAccessGranted = true;
+            return null;
+        }
+    }
+    else {
+        storageAccessGranted = true;
+    }
+}
+
+function SupportsStorageAccessAPI() {
+    if (typeof document.hasStorageAccess === 'function'
+        && typeof document.requestStorageAccess === 'function') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function UpdatePlaceHolderOnPopupMessage() {
+    var replacedContent = $("#div-fe-helptext-span-1-cookie-message .help-text-callout-middle").html().replace(/\~(.+?)\~/, '<a href="#" onclick="RedirectToCookieLandingPage()">$1 </a>')
+    $("#div-fe-helptext-span-1-cookie-message .help-text-callout-middle").html(replacedContent);
+    $("#fe-helptext-span-1-cookie-message").click();
+}
+function RedirectToCookieLandingPage() {
+    if (modelContents.ProjectName) {
+        var data = {
+            targetURL: window.location.origin + "/" + modelContents.ProjectName + "/" + modelContents.LanguageCode+ "/cookieconsent"
+        };
+        PostMessaging.Events.RequestRedirect(data);
+    }
+}
+
+function ClearControls(parentId, toolId) {
+    try {
+        suppressSearch = true;
+
+        var parent = $('.' + parentId);
+        parent.find('div[data-rangeslider]').each(function (i, item) {
+            var slider = $(this);
+            slider.slider("destroy");
+        });
+        GenerateSliders();
+        parent.find('select').each(function (i, item) {
+            if (item.selectedIndex > 0) {
+                item.selectedIndex = 0;
+            }
+        });
+
+        ///Clear list item selection
+        $('input[type=checkbox],input[type=radio]', '.fe-filterlist-content').prop('checked', false);
+        $('label.checked', '.fe-filterlist-content').removeClass('checked');
+
+        RetainUrlParametersOnClear(toolId);
+
+        if (modelContents.FundCentreAMEnabled)
+            $("." + parentId).find('select').select2({
+                debug: true,
+                formatSelectionCssClass: function (data, container) {
+                    $(container).attr('class', "select2-chosen");
+                    return data.css;
+                }
+            });
+        else
+            $("." + parentId).mfs('refresh');
+
+        parent.find('input[type=text]').each(function (i, item) {
+            item.value = '';
+        });
+
+    }
+    finally {
+        suppressSearch = false;
+    }
+
+    Search(toolId,true,true);
+}
+
+function GoBack() {
+    createCookie("FromBackButton", 'yes');
+    window.history.back();
+}
+
+function RetainUrlParametersOnClear(toolId) {
+    if ((modelContents.FundCentreClearBtnRetainUrlParams && toolId == 1) || (modelContents.AMFundCentreClearBtnRetainUrlParams && toolId == 14) || (modelContents.AMAllFundsClearBtnRetainUrlParams && toolId == 15)) {
+        var urlParams = $('#searchform-' + toolId).data('urlparams');
+        if (urlParams.DefaultRangeCode) {
+            RetainValuesInFilter('#RangeId-' + toolId, urlParams.DefaultRangeCode.toLowerCase());
+        }
+
+        if (urlParams.DefaultCategoryCode) {
+            RetainValuesInFilter('#CategoryId-' + toolId, urlParams.DefaultCategoryCode.toLowerCase());
+        }
+
+        if (urlParams.DefaultCategoryCode2) {
+            RetainValuesInFilter('#Category2Id-' + toolId, urlParams.DefaultCategoryCode2.toLowerCase());
+        }
+
+        if (urlParams.SectorCode) {
+            RetainValuesInFilter('#SectorCode-' + toolId, urlParams.SectorCode.toLowerCase());
+        }
+
+        if (urlParams.ManagerCode) {
+            RetainValuesInFilter('#ManagerCode-' + toolId, urlParams.ManagerCode.toLowerCase());
+        }
+        if (urlParams.BeSpokeColumn1) {
+            RetainValuesInFilter('#BespokeColumn1-' + toolId, urlParams.BeSpokeColumn1.toLowerCase());
+        }
+
+        if (urlParams.BeSpokeColumn2) {
+            RetainValuesInFilter('#BespokeColumn2-' + toolId, urlParams.BeSpokeColumn2.toLowerCase());
+        }
+        if (urlParams.BeSpokeColumn3) {
+            RetainValuesInFilter('#BespokeColumn3-' + toolId, urlParams.BeSpokeColumn3.toLowerCase());
+        }
+        if (urlParams.BeSpokeColumn4) {
+            RetainValuesInFilter('#BespokeColumn4-' + toolId, urlParams.BeSpokeColumn4.toLowerCase());
+        }
+        if (urlParams.BeSpokeColumn5) {
+            RetainValuesInFilter('#BespokeColumn5-' + toolId, urlParams.BeSpokeColumn5.toLowerCase());
+        }
+    }
+}
+
+function RetainValuesInFilter(filterNamePrefix, values) {
+    var listContainerId = filterNamePrefix + '-';
+    if ($(listContainerId).is('div') && $(listContainerId).attr('data-filtertype') == "List") {
+        var valueColl = values.split(',');
+        for (var i = 0; i < valueColl.length; i++) {
+            $('input[value="' + valueColl[i] + '"]', listContainerId).prop('checked', true);
+            $('input[value="' + valueColl[i] + '"]', listContainerId).closest('label').removeClass("checked").addClass("checked");;
+        }
+    } else {
+        $(filterNamePrefix + ' option').each(function () {
+            if ($(this).attr('value').toLowerCase() == values) {
+                $(this).prop('selected', true);
+            }
+        });
+    }
+}
+
+function HandlePlaceholder(input) {
+    // If you modify anything here, please check the GetModel function in default.js.
+    if (browser.msie || typeof (input[0].placeholder == "undefined")) {
+        var placeholder = input.attr("placeholder");
+        if (placeholder && placeholder.length > 0) {
+            input.val(placeholder);
+            input.attr("oldColour", input.css("color"));
+            input.css("color", "#c0c0c0");
+
+            input.on("focus", function () {
+                $(this).css("color", $(this).attr("oldColour"));
+                if ($(this).val() === placeholder) {
+                    $(this).val("");
+                }
+            });
+
+            input.on("blur", function () {
+                if ($(this).val() === "") {
+                    $(this).css("color", "#c0c0c0");
+                    $(this).val(placeholder);
+                }
+            });
+        }
+    }
+}
+
+function toggleToolHelpText(toolId) {
+    var divToolHelpTexts = $('#div-fe-helptext-tool-' + toolId);
+    if ($("#checkBoxHelpTextSwitch-" + toolId).is(":checked") == false) {
+        divToolHelpTexts.toggle();
+    }
+    else {
+        divToolHelpTexts.show();
+        divToolHelpTexts.off("click");
+    }
+}
+
+function keydowntoggleHelpText(event, toolid) {
+    if (event.which == 13) {
+        event.stopPropagation();
+        event.preventDefault();
+        toggleHelpText(event, toolid);
+    }
+}
+
+function tabFocustoggleHelpText(event, toolid) {
+    if (modelContents.Accessibility && !isTooltipVisible(event) && isKeypress) {
+        event.stopPropagation();
+        event.preventDefault();
+        toggleHelpText(event, toolid);
+        isKeypress = false;
+    }
+}
+
+function getSourceElement(event) {
+    var source = event.target || event.srcElement;
+    if (source.tagName == "SPAN") {
+        if ($(source).hasClass("fe-helptext-image-background")) {
+            source = source.parentNode;
+            event.stopPropagation(); // Stop stuff happening
+            event.preventDefault(); // Totally stop stuff happening
+        }
+    }
+
+    return source;
+}
+
+function isTooltipVisible(event) {
+    var source = getSourceElement(event);
+    var helpTextDiv = $(source).find("#div-" + source.id);
+    return helpTextDiv.is(":visible");
+}
+
+function toggleHelpText(event, toolId, isCloseOnly) {
+    var source = getSourceElement(event);
+
+    if ($("#checkBoxHelpTextSwitch-" + toolId).is(":checked") == false) {
+        var helpTextDiv = $(source).find("#div-" + source.id);
+        var isVisible = isTooltipVisible(event);
+        $('div[id^=div-fe-helptext-span-' + toolId + ']').hide();
+        
+        if (isVisible == false && !isCloseOnly) {
+            helpTextDiv.show();
+            helpTextDiv.on("click", function (event) {
+                if ($("#checkBoxHelpTextSwitch-" + toolId).is(":checked") == false) {
+                    helpTextDiv.hide();
+                    event.stopPropagation(); // Stop stuff happening
+                } else {
+                    event.stopPropagation();
+                }
+            });
+        }
+        else {
+            helpTextDiv.off("click");
+        }
+    } else if ($.inArray(parseInt(toolId), amToolsArray) > -1) {
+        var helpDiv = $(source).find("#div-" + source.id);
+        var isVisibleHelp = helpDiv.is(":visible");
+
+        $(source).parents('.fe-tabs-datacontainer').find('div.minFsData:not(:first)').each(function () {
+
+            $(this).find('div[id^=div-fe-helptext-span-' + toolId + ']').hide();
+        });
+       
+        if (isVisibleHelp == false) {
+            helpDiv.show();
+            helpDiv.on("click", function(event) {
+                helpDiv.hide();
+                event.stopPropagation(); // Stop stuff happening
+            });
+        }       
+    }
+
+}
+
+function toggleMultiDocument(event) {
+    var source = event.target || event.srcElement;
+    event = $.event.fix(event);    // specific fix for IE8
+    if (source.tagName != "A" && source.tagName != "UL" && source.tagName != "LI") {
+        var documenttDiv = $(source).find('.fe-multidocument-div-css')
+        var isVisible = documenttDiv.is(":visible");
+        $('div[class^=fe-multidocument-div-css]').hide();
+        if (isVisible == false) {
+            documenttDiv.show();
+        }
+    }
+}
+
+function toggleHelpTextForTool(toolId) {
+    var divHelpTexts;
+    if ($.inArray(parseInt(toolId), amToolsArray) > -1) {
+        divHelpTexts = $('#searchform-' + toolId).find('div[id^=div-fe-helptext-span-' + toolId + ']');
+        ShowHideHelpTextForTool(divHelpTexts, toolId);
+        $('.fe-tabs-datacontainer').each(function() {
+            var firstFundContainer = $(this).find('div.minFsData:first');
+            divHelpTexts = $(firstFundContainer).find('div[id^=div-fe-helptext-span-' + toolId + ']');
+            ShowHideHelpTextForTool(divHelpTexts, toolId);
+        });
+    } else {
+        divHelpTexts = $('div[id^=div-fe-helptext-span-' + toolId + ']');
+        ShowHideHelpTextForTool(divHelpTexts, toolId);
+    }
+    
+}
+
+function ShowHideHelpTextForTool(divHelpTexts, toolId) {
+    var divToolHelpTexts = $('#div-fe-helptext-tool-' + toolId);
+
+    if (($("#checkBoxHelpTextSwitch-" + toolId).is(":checked"))) {
+        divHelpTexts.show();
+        divToolHelpTexts.show();
+        divHelpTexts.on("click", function (event) {
+                event.stopPropagation(); // Stop stuff happening
+        });
+    }
+    else {
+        divHelpTexts.off("click");
+        divHelpTexts.hide();
+        divToolHelpTexts.hide();
+    }
+}
+
+function GetToolModelForCodes(selectedTypeCodes, separator, pagingState, sortingState) {
+    var codesList = listToArray(selectedTypeCodes, separator);
+       
+    var model = { CodesList: codesList };
+    AddBasicModelInformation(model, pagingState, sortingState);
+    return model;
+}
+
+function listToArray(inputString, separator) {
+    var outputArray = [];
+    if (inputString !== undefined && inputString != null && separator !== undefined && separator != null) {
+        if (inputString.indexOf(separator) == -1) {
+            outputArray.push(inputString);
+        } else {
+            outputArray = inputString.split(separator);
+        }
+    }
+    return outputArray;
+}
+
+function OnVideoLinkClicked(url, openMode, event) {
+    event.preventDefault();
+
+    if (url != null && url != '') {
+        if (openMode == 2) {
+            var title = $("#idVideoTitle").text();
+            $("#headerVideoTitle").text(title);
+            $("#videoFrame").attr("src", url);
+            $("#myModal").show();
+        }
+        else {
+            window.open(url, '_blank');
+        }
+    }
+}
+
+function OnResponsiveFactsheetClick(url, e) {
+
+    e.preventDefault();
+
+    var anchor = e.target.closest('a'); // Ensure the anchor is targeted
+    var target = anchor.getAttribute('target');
+
+    var currencyValue = $('#currencyList').val();
+
+    var region = getQueryStringValue("region").trim();
+    var usertype = getQueryStringValue("usertype").trim();
+
+    if (region || usertype) {
+        url = appendQueryParams(url, "UserType=" + usertype + "&Region=" + region);
+    }
+
+    if (currencyValue !== undefined) {
+        url = appendQueryParams(url, "PerformanceCurrency=" + currencyValue);
+    }
+
+    window.open(url, target);
+}
+
+
+
+function appendQueryParams(base, params) {
+    var newUrl = base.split("?")[0];
+    var queryParams = base.split("?")[1];
+    return newUrl + (queryParams ? '?' + queryParams : '?') + '&' + params;
+}
+function CloseModal() {
+    $("#videoFrame").attr("src", "");
+    $("#myModal").hide();
+}

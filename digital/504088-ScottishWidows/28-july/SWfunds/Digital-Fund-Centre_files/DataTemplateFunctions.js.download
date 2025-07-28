@@ -1,0 +1,364 @@
+﻿// <copyright file="DataTemplateFunctions.js" company="FE">
+//   Copyright © FE 2011. All rights reserved.
+// </copyright>
+// formatting will probably be moved on the server soon enough...
+
+//#region JQuery data template related. 
+
+function CreateMap(input) {
+    const jsonLike = '{' + input
+        .replace(/(\d+\.\d+|\w+)\s*:/g, '"$1":')     // Wrap keys in double quotes (handles decimal numbers and words)
+        .replace(/'([^']*)'/g, '"$1"')               // Convert single-quoted values to double quotes
+        + '}';
+    return JSON.parse(jsonLike);
+}
+
+function DataToImage(data, imageMap, cssClass, alt, tooltip, defaultImageUrl, defaultText) {
+    var map = CreateMap(imageMap);
+    var altComponent = alt ? 'alt="' + alt + ' ' + data + '"' : '';
+    var toolTipComponent = tooltip ? ' title="' + tooltip + '"' : '';
+    var keyData = data && typeof (data) == "string" ? data.replaceAll(' ', '') : data;   // white space removed from key to put it in Json format. ColumnDataTemplateParameters of rating column should not have white space(be a single word). Ex: columnId: 460
+    var imgClass = cssClass ? 'class="' + cssClass + '"' : '';
+
+    var imageSrc = map[keyData];
+    if (imageSrc) {
+        return imageSrc == 'ignoreimage' ? data : '<img src="' + imageSrc + '" ' + imgClass + altComponent + toolTipComponent + ' />';  // 'ignoreimage' has been used in ColumnDataTemplateParameters table. used for displaying text instead image for some ratings. Ex: columnId: 460
+    }
+    else {
+        if (defaultImageUrl != null) {
+            return '<img src="' + defaultImageUrl + '" ' + imgClass + altComponent + toolTipComponent + ' />';
+        }
+        else if (defaultText != null) {
+            return defaultText;
+        }
+        else {
+            return '';
+        }
+    }
+}
+
+function TemplatedLinkImage(linkLocation, imageLocation) {
+    if (linkLocation != null) {
+        return '<a href="' + linkLocation + '"><img src="' + imageLocation + '" alt="Link" /></a>';
+    }
+    else {
+        return '';
+    }
+}
+
+function FormatPercentage(data, nullDisplay, decimalPointDigits, decSeparator) {
+    var decimalFormated = FormatDecimal(data, nullDisplay, decimalPointDigits, decSeparator);
+    if (decimalFormated != nullDisplay) {
+        return decimalFormated + '%';
+    }
+    else {
+        return decimalFormated;
+    }
+}
+
+function FormatMoney(data, nullDisplay, decimalPointDigits, alwaysShowPlusSign, decSeparator) {
+
+    if (data != null) {
+        var num = new Number(data.DisplayAmount);
+        var prefix = data.Prefix;
+        if (alwaysShowPlusSign && prefix.charAt(0) != '-') {
+            prefix = '+' + prefix;
+        }
+        var amount = NumberToString(num, nullDisplay, decimalPointDigits, decSeparator, false);
+        return prefix + amount + data.Suffix;
+    }
+    else {
+        return nullDisplay;
+    }
+}
+
+function FormatData(data, nullDisplay) {
+    if (data != null) {
+        return data;
+    }
+    else {
+        return nullDisplay;
+    }
+}
+
+function FormatBenchmarkBreakdownData(breakdowndata, benchmarkData, standard, target, constraint, comparator, viewBenchmarks, nullvaluedisplaytext) {
+    var targetArray = new Array();
+    var constraintArray = new Array();
+    var comparatorArray = new Array();
+    var standardArray = new Array();
+
+    var standardTranslated = standard + ": ";
+    var targetTranslated = target + ": ";
+    var constraintTranslated = constraint + ": ";
+    var comparatorTranslated = comparator + ": ";
+    if (benchmarkData != null || breakdowndata.length > 0) {
+        if (benchmarkData != null) {
+            standardArray.push(benchmarkData);
+        }
+        if (breakdowndata.length > 0) {
+            for (var i = 0; i < breakdowndata.length; i++) {
+                if (breakdowndata[i].BenchmarkTypeCode.startsWith('T')) {
+                    if (!standardArray.includes(breakdowndata[i].BenchmarkName)) {
+                        targetArray.push(breakdowndata[i].BenchmarkName);
+                    }
+                } else if (breakdowndata[i].BenchmarkTypeCode.startsWith('C')) {
+                    if (!standardArray.includes(breakdowndata[i].BenchmarkName) &&
+                        !targetArray.includes(breakdowndata[i].BenchmarkName)) {
+                        constraintArray.push(breakdowndata[i].BenchmarkName);
+                    }
+                } else {
+                    if (!standardArray.includes(breakdowndata[i].BenchmarkName) &&
+                        !targetArray.includes(breakdowndata[i].BenchmarkName) &&
+                        !constraintArray.includes(breakdowndata[i].BenchmarkName)) {
+                        comparatorArray.push(breakdowndata[i].BenchmarkName);
+                    }
+                }
+            }
+        }
+        var innerHtml = '';
+        innerHtml = '<div class=\"tooltip\">';
+        innerHtml += viewBenchmarks;
+        innerHtml += '<div class=\"fe-benchmarkbreakdown-div-css\" style=\"display:block\"><ul>';
+        if (standardArray.length > 0) {
+            standardTranslated += standardArray.join(", ");
+            innerHtml += '<li>' + standardTranslated + '</li>';
+        }
+        if (targetArray.length > 0) {
+            targetTranslated += targetArray.join(", ");
+            innerHtml += '<li>' + targetTranslated + '</li>';
+        }
+        if (constraintArray.length > 0) {
+            constraintTranslated += constraintArray.join(", ");
+            innerHtml += '<li>' + constraintTranslated + '</li>';
+        }
+        if (comparatorArray.length > 0) {
+            comparatorTranslated += comparatorArray.join(", ");
+            innerHtml += '<li>' + comparatorTranslated + '</li>';
+        }
+        innerHtml += "</ul></div></div>";
+        return unescape(innerHtml);
+    } else {
+        return nullvaluedisplaytext;
+    }
+}
+
+
+function FormatToolTipData(toolTiptext, nullvaluedisplaytext) {
+    if (toolTiptext != null && toolTiptext != '') {
+        var innerHtml = '';
+        innerHtml = '<div class=\"tooltip fe-tooltipinfo\">';
+        innerHtml += '<div class=\"fe-tooltip-div-css\" style=\"display:block\"><ul>';
+        innerHtml += '<li>' + toolTiptext + '</li>';
+        innerHtml += "</ul></div></div>";
+        return unescape(innerHtml);
+    } else {
+        return nullvaluedisplaytext;
+    }
+
+}
+function FormatDocument(data, nullDisplay, openLinkConfigured, cssClass, additionalCssClass, toolTip, callingFunction, docAsAtDateFormat) {
+    if (data != null) {
+        var innerHtml = '';
+        if (data.indexOf('::') === -1) {
+            innerHtml = '<a class="' + cssClass + '" href="javascript:void(0)" role="button" aria-label="Document" onclick="' + callingFunction + '(\'' + data + '\', event); return false;" target="' + openLinkConfigured + '" title="' + toolTip + '" ><img src="/Assets/images/transparent-1x1.png" role="presentation" alt="' + toolTip + '" /></a >';
+        }
+        else if (data.split(',').length === 1) {
+            var documentDate = FormatDocumentAsAtDate(data, docAsAtDateFormat);
+            toolTip = formatDocDate(toolTip, documentDate);
+            var splittedData = data.split('::');
+            url = splittedData.length == 3 ? splittedData[2] : splittedData[1];
+            innerHtml = '<a class="' + cssClass + '" href="javascript:void(0)" role="button" aria-label="Document" onclick="' + callingFunction + '(\'' + url + '\', event); return false;" target="' + openLinkConfigured + '" title="' + toolTip + '" ><img src="/Assets/images/transparent-1x1.png" role="presentation" alt="' + toolTip + '" /></a >';
+        }
+        else {
+            innerHtml = "<div class=\"fe-documentdropdownbutton\"  title='" + toolTip + "' onClick=\"toggleMultiDocument(event)\" tabindex=\"0\">";
+            innerHtml += "<span class='fe-fund-multidocument-icon'>";
+            innerHtml += "<div class=\"fe-multidocument-div-css";
+            if (additionalCssClass) {
+                innerHtml += " " + additionalCssClass;
+            }
+            innerHtml += "\" style=\"display:none\"><ul>";
+            var arrayOfDocument = data.split(',');
+            for (i = 0; i < arrayOfDocument.length; i++) {
+                var details = arrayOfDocument[i].split('::');
+                var docNameWithDate = FormatDocumentAsAtDate(arrayOfDocument[i], docAsAtDateFormat);
+                docNameWithDate = docNameWithDate != "" ? docNameWithDate : removeDate(arrayOfDocument[i]);
+                url = details.length == 3 ? details[2] : details[1];
+                innerHtml += '<li><a href="javascript:void(0)" onclick="' + callingFunction + '(\'' + url + '\', event); return false;" target="' + openLinkConfigured + '" >' + docNameWithDate + '</a></li>';
+            }
+
+            innerHtml += "</ul></div>";
+            innerHtml += "</span></div>";
+        }
+
+        return unescape(innerHtml);
+    }
+    else {
+        return nullDisplay;
+    }
+}
+
+function FormatBool(data, nullDisplay, trueValue, falseValue) {
+    if (data != null) {
+        if (data) {
+            return trueValue;
+        }
+        else {
+            return falseValue;
+        }
+    }
+    else {
+        return nullDisplay;
+    }
+}
+
+function FormatDate(data, nullDisplay, dateTimeFormat) {
+    if (data != null) {
+        var jsDate = moment.utc(data);
+        if (!jsDate.isValid())	// -62135596800000 is datetime min.  Couldn't find a nicer way to compare this.
+            return nullDisplay;
+        return jsDate.format(ConvertToMomentSupportedFormat(dateTimeFormat));
+    }
+    return nullDisplay;
+}
+
+/**
+ * Function to convert the unsupport date formats to moment supported format
+ * e.g., yyyy converted to YYYY, respectively
+ * @param {any} dateTimeFormat
+ */
+function ConvertToMomentSupportedFormat(dateTimeFormat) {
+    dateTimeFormat = dateTimeFormat.replace(/yy/g, 'YY');
+    dateTimeFormat = dateTimeFormat.replace(/dd/g, 'DD');
+    return dateTimeFormat;
+}
+
+function FormatDecimal(data, nullDisplay, decimalPointDigits, decSeparator) {
+    return NumberToString(data, nullDisplay, decimalPointDigits, decSeparator, false);
+}
+
+function FormatDecimalWithPlus(data, nullDisplay) {
+    return NumberToString(data, nullDisplay, 2, '.', true);
+}
+
+function FormatInt(data, nullDisplay) {
+    if (data != null) {
+        var numericData = Number(data);
+        if (!isNaN(numericData)) {
+            return numericData.toFixed(0);
+        }
+        else {
+            return data;
+        }
+    }
+    else {
+        return nullDisplay;
+    }
+}
+
+function SwapImage(imageElement) {
+    var img = $(imageElement);
+    var temp = img.attr('src');
+    img.attr('src', img.data('swapimg'));
+    img.data('swapimg', temp);
+}
+
+function NumberToString(value, defaultValue, decimalPlaces, separator, alwaysShowSign) {
+    if (value != null) {
+        if (this.data != null && (this.data.Name == 'Quartile' || this.data.Name == 'NoOfFundsinSector')) {
+            decimalPlaces = 0;
+        }
+        var floatData = parseFloat(value);
+        floatData = roundToDecimalPlaces(floatData, decimalPlaces);
+        if (floatData != null) {
+            if (alwaysShowSign && floatData > 0) {
+                return '+' + floatData.toFixed(decimalPlaces).replace('.', separator);
+            }
+            else {
+                return floatData.toFixed(decimalPlaces).replace('.', separator);
+            }
+        }
+        else {
+            return value;
+        }
+    }
+    else {
+        return defaultValue;
+    }
+
+}
+
+function roundToDecimalPlaces(num, decimalPlaces) {
+    const multiplier = Math.pow(10, decimalPlaces);
+    return Math.round(num * multiplier) / multiplier;
+}
+function RankinSectorFormat(value, defaultValue, valueT) {
+    if (value != null && valueT != null) {
+        return (value + '/' + valueT);
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+function ShowPscanHtmlFootNote(footnote) {
+    return footnote ? "block" : "none";
+}
+
+function FormatDocumentAsAtDate(data, dateFormat) {
+    var result = "";
+    if (data != null && dateFormat && dateFormat != '') {
+        var datePart = null;
+
+        ///Example data: "Spain | es - es|ES::Date(1688083200000)::Literature/3B220C6069F301D80E8405C3401D6A2F/202292920.pdf"
+        var splittedData = data.split("::");
+        if (splittedData.length == 3) {
+            var documentDate = getDate(splittedData[1], dateFormat);
+            result = formatDocDate(splittedData[0], documentDate);
+        }
+        else if (splittedData.length == 2) {
+            result = getDate(splittedData[0], dateFormat);
+        }
+        ////Handles multiple document for generic and Priip
+        ////Example data: Priip -> Investment Bond||Date()
+        ////Example data: Generic Mutliple document -> Country name | Language Name |Date()
+        if (data.indexOf("||") > -1) {
+            var dataParts = data.split("||");
+            datePart = dataParts[1];
+            result = dataParts[0];
+            if (datePart != null) {
+                var documentDate = getDate(datePart, dateFormat);
+                result = formatDocDate(result, documentDate);
+            }
+        }
+    }
+
+    return result;
+}
+
+
+function removeDate(data) {
+    var documentName = data;
+    var splittedData = data.split("::");
+    ///Remove date part when not required and present
+    if (data.indexOf("||") > -1) {
+        documentName = data.split("||")[0];
+    }
+    else if (splittedData.length == 3) {
+        documentName = splittedData[0];
+    }
+    return documentName;
+}
+
+function getDate(dateString, dateFormat) {
+    if (dateString != null) {
+        var formattedDate = FormatDate(dateString, "-", dateFormat)
+        return formattedDate != "-" ? formattedDate : "";
+    }
+}
+
+function formatDocDate(docName, documentDate) {
+    if (docName != null && docName != "" && documentDate != "") docName += " | ";
+    else if (docName == null || docName == "") docName = "";
+    docName += documentDate;
+    return docName;
+}
