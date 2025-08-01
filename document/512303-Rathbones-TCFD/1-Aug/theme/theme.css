@@ -724,61 +724,50 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
   float: left;
   text-align: center;
 }
-
+.page:after{
+      content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-image: url(images/logo.svg);
+    background-position: bottom 0.4cm right 0.5cm;
+    background-repeat: no-repeat;
+    background-size: auto 12pt;
+        width: 200px;
+    height: 80px;
+    z-index: 9;
+}
+.page4:after{
+    background-image: url(images/transparentasset.png);
+}
+.page1:after{
+    background-image: none;
+}
+ /*
 @page {
   size: A4 landscape;
   @bottom-right {
     content: "";
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 0; */
     /* background-image: url(images/rathbones_footerlogo.jpg); */
-    background-image: url(images/logo.svg);
+    /* background-image: url(images/logo.svg);
     background-position: bottom 0.4cm right 0.5cm;
     background-repeat: no-repeat;
     background-size: auto 12pt;
     width: 5cm;
     height: 50px;
-    z-index: 999;
+    z-index: 999; 
   }
 }
 @page :-ro-nth(1) {
   @bottom-right {
     background-image: none;
   }
-}
-
-/* .page4 > .row2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-image: url(images/qqAssetqqew.jpg);
-  background-position: bottom 0.4cm right 0.5cm;
-  background-repeat: no-repeat;
-  background-size: auto 12pt;
-  width: 5cm;
-  height: 50px;
-  z-index: 999;
-} */
+}*/
 
 /* @page :-ro-nth(5) {
-  @bottom-right {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-image: url(images/transparentAsset.png);
-    background-position: bottom 0.4cm right 0.5cm;
-    background-repeat: no-repeat;
-    background-size: auto 12pt;
-    width: 5cm;
-    height: 50px;
-    z-index: 999;
-  }
-} */
-
-/* @page :-ro-nth(4) {
   @bottom-right {
     content: "";
     position: absolute;
@@ -1053,7 +1042,7 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 }
 .page5 > .row3 > .column > .row5 {
   /* height: 51px; */
-  height: 44px;
+  /* height: 44px; */
 }
 .page5 > .row3 > .column > .row6 {
   /* height: 203px; */
@@ -1132,5 +1121,17 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 }
 .page6 > .row2{
   margin-bottom: 0;
+}
+.page5 > .row3 > .column > .row5{
+  padding:0;
+  border:none;
+}
+.page5 > .row3 > .column1 > .row{
+ padding:0;
+}
+.page5 > .row3 > .column > .row5:has(.row1) {
+   height: 44px;
+   /* padding: 6px 10px; */
+      border-bottom: 1px solid #cccccc;
 }
 /* Theme name - Rathbone_TCFD */
