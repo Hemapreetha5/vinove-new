@@ -159,8 +159,9 @@ h3:empty {
 
 .page3.section > .row6.section,
 .page5.section > .row4.section {
-  display: none;
+  /* display: none; */
   margin-bottom: 0 !important;
+      font-size: 9pt;
 }
 
 .page2 > .row4 {
@@ -363,8 +364,13 @@ h3:empty {
 }
 .page2 > .row3 > .column1 > .row2 > .column1 > .row2,
 .page2 > .row3 > .column1 > .row2 > .column2 > .row2,
+.page2 > .row3 > .column2 > .row2 > .column1 .row2,
+.page2 > .row3 > .column2 > .row2 > .column2 .row2,
 .page3 > .row3 > .column1 > .row2 > .column1 > .row2,
-.page3 > .row3 > .column1 > .row2 > .column2 > .row2 {
+.page3 > .row3 > .column1 > .row2 > .column2 > .row2,
+.page3 > .row3 > .column2 > .row2 > .column1 .row2,
+.page3 > .row3 > .column2 > .row2 > .column2 .row2
+ {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0;
@@ -743,10 +749,10 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 .page1:after{
     background-image: none;
 }
- /*
+
 @page {
   size: A4 landscape;
-  @bottom-right {
+   /*@bottom-right {
     content: "";
     position: absolute;
     bottom: 0;
@@ -759,9 +765,9 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
     width: 5cm;
     height: 50px;
     z-index: 999; 
-  }
+  }*/
 }
-@page :-ro-nth(1) {
+/*@page :-ro-nth(1) {
   @bottom-right {
     background-image: none;
   }
@@ -1043,6 +1049,7 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 .page5 > .row3 > .column > .row5 {
   /* height: 51px; */
   /* height: 44px; */
+  padding: 0;
 }
 .page5 > .row3 > .column > .row6 {
   /* height: 203px; */
@@ -1123,15 +1130,37 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
   margin-bottom: 0;
 }
 .page5 > .row3 > .column > .row5{
-  padding:0;
-  border:none;
+  border-bottom: none;
 }
-.page5 > .row3 > .column1 > .row{
- padding:0;
+.page5 > .row3 .row5 > .row{
+    height: auto;
+    border-bottom: 1px solid #cccccc !important;
 }
-.page5 > .row3 > .column > .row5:has(.row1) {
-   height: 44px;
-   /* padding: 6px 10px; */
-      border-bottom: 1px solid #cccccc;
+.page5 > .row3 > .column1 .row5 > .row{
+    padding:6px 10px;
+    height:45px;
 }
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1 {
+    flex: 1;
+    padding: 0;
+    flex-wrap: wrap;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2 {
+    width: auto;
+    padding: 0;
+    flex-wrap: wrap;
+    display: inline-flex;
+    max-width: 50%;
+}
+
+
+
+
+
 /* Theme name - Rathbone_TCFD */
