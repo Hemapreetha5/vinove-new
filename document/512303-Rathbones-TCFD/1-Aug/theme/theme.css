@@ -340,6 +340,36 @@ h3:empty {
     border-bottom: 1px solid #E0E0E0;
     padding:5px;
 }
+.page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1,
+.page3 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
+.page3 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1{
+    border-left: 1px solid #E0E0E0;
+}
+.page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
+.page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2,
+.page3 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
+.page3 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2{
+    border-right: none;
+} 
+.page2 > .row3 > .column1 > .row2,
+.page2 > .row3 > .column2 > .row2,
+.page3 > .row3 > .column1 > .row2,
+.page3 > .row3 > .column2 > .row2{
+    position: relative;
+}
+.page2 > .row3 > .column1 > .row2::after,
+.page2 > .row3 > .column2 > .row2::after,
+.page3 > .row3 > .column1 > .row2::after,
+.page3 > .row3 > .column2 > .row2::after {
+  content:"";
+  position: absolute;
+  width:1px;
+  background-color: #fff;
+  height:100%;
+  right:0;
+  top:0;
+}
 .page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
 .page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2,
 .page3 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
@@ -1144,7 +1174,11 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 .page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1,
 .page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
 .page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1,
-.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1 {
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1,
+.page3 > .row3 > .column1 > .row2 > .column1 > .row2 > .column1,
+.page3 > .row3 > .column1 > .row2 > .column2 > .row2 > .column1,
+.page3 > .row3 > .column2 > .row2 > .column1 > .row2 > .column1,
+.page3 > .row3 > .column2 > .row2 > .column2 > .row2 > .column1 {
     flex: 1;
     padding: 0;
     flex-wrap: wrap;
@@ -1152,7 +1186,11 @@ p.Portfolio\.Overall\.MSCI\.Carbon\.Others\.CarbonRelatedAssetsExposure\.Value {
 .page2 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
 .page2 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
 .page2 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2,
-.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2 {
+.page2 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2,
+.page3 > .row3 > .column1 > .row2 > .column1 > .row2 > .column2,
+.page3 > .row3 > .column1 > .row2 > .column2 > .row2 > .column2,
+.page3 > .row3 > .column2 > .row2 > .column1 > .row2 > .column2,
+.page3 > .row3 > .column2 > .row2 > .column2 > .row2 > .column2 {
     width: auto;
     padding: 0;
     flex-wrap: wrap;
