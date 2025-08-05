@@ -1,7 +1,7 @@
 /* Minification failed. Returning unminified contents.
-(4106,76-77): run-time error JS1010: Expected identifier: .
-(4106,76-77): run-time error JS1195: Expected expression: .
-(4106,89-93): run-time error JS1034: Unmatched 'else'; no 'if' defined: else
+(4095,76-77): run-time error JS1010: Expected identifier: .
+(4095,76-77): run-time error JS1195: Expected expression: .
+(4095,89-93): run-time error JS1034: Unmatched 'else'; no 'if' defined: else
  */
 /*
  This file has been customized, we have done small changes within 'CreateSelect' and  'optionListOptions.click' methods for adding the color to dropdown texts. // Changes: We have set the css class for select options.
@@ -102,8 +102,11 @@
             //var containerId = 'mfs-container-' + Math.random().toString(36).substr(2, 9);
             var listboxId = 'mfs-listbox-' + Math.random().toString(36).substr(2, 9);
             var labelId = thisSelect.attr('id') ? thisSelect.attr('id').replace('-', '-label-') : '';
-            mfsHtml += '<a class="mfs-selected-option" href="javascript:void(0)" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="' + listboxId + '" aria-labelledby="' + labelId + '" tabindex="0">' + mfsLabel + '<span>&nbsp;</span></a>';
-            mfsHtml += '<div id="' + listboxId + '-live" aria-live="polite" aria-atomic="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;"></div>';
+            if (labelId) {
+                mfsHtml += '<a class="mfs-selected-option" href="javascript:void(0)" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="' + listboxId + '" aria-labelledby="' + labelId + '" tabindex="0">' + mfsLabel + '<span>&nbsp;</span></a>';
+            } else {
+                mfsHtml += '<a class="mfs-selected-option" href="javascript:void(0)" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="' + listboxId + '" aria-label="' + mfsLabel + '" tabindex="0">' + mfsLabel + '<span>&nbsp;</span></a>';
+            }
             mfsHtml += '<ul class="mfs-options" id="' + listboxId + '" role="listbox">' + mfsOptionsHtml + '</ul>';
         }
         else {
@@ -304,14 +307,7 @@
                                 newActiveOption.addClass('active');
                                 activeOption.removeClass('active');
                             }
-                            scrollToActiveOption(mfsSelectOpen);
-                            if (modelContents.Accessibility && modelContents.HigChartAccessibilitySettings.EnableAccessibilityFeatures && modelContents.HigChartAccessibilitySettings.AccessibilityFeaturesVersion >= 2) {
-                                var optionText = newActiveOption.find('a').text();
-                                var liveRegion = mfsSelectOpen.siblings('[id$="-live"]');
-                                if (liveRegion.length > 0) {
-                                    liveRegion.text(optionText);
-                                }
-                            }
+                            scrollToActiveOption(mfsSelectOpen);                           
                         }
                     }
                     else if (keyDown == 40) { // down
@@ -326,14 +322,7 @@
                                 newActiveOption.addClass('active');
                                 activeOption.removeClass('active');
                             }
-                            scrollToActiveOption(mfsSelectOpen);
-                            if (modelContents.Accessibility && modelContents.HigChartAccessibilitySettings.EnableAccessibilityFeatures && modelContents.HigChartAccessibilitySettings.AccessibilityFeaturesVersion >= 2) {
-                                var optionText = newActiveOption.find('a').text();
-                                var liveRegion = mfsSelectOpen.siblings('[id$="-live"]');
-                                if (liveRegion.length > 0) {
-                                    liveRegion.text(optionText);
-                                }
-                            }
+                            scrollToActiveOption(mfsSelectOpen);                           
                         }
                     }
                     else if (keyDown == 13) {
