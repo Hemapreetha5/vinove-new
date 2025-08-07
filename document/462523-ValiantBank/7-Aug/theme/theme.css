@@ -338,7 +338,7 @@ footer {
     columns: 1 !important;
 }
 .page{
-    padding: 10mm 14mm 10.5mm 14mm !important;
+    padding: 15mm 14mm 10.5mm 14mm !important;
 }
 .page1 {
     position: relative;
@@ -349,6 +349,7 @@ footer {
     /* background-position: 15.5cm 5mm; */
     background-position: right 14mm top 10mm;
     background-repeat: no-repeat;
+    padding-top: 10mm !important;
 }
 /* .page1::after {
     content: "";
@@ -397,18 +398,18 @@ footer {
     margin-bottom: 0;
 }
 .page1 > .row3 {
-    margin-top: 29mm !important;
+    margin-top: 26.7mm !important;
     /* width: 73%; */
     margin-bottom: 0;
 }
 .page1 > .row4 {
-    margin-top: 19mm;
+    margin-top: 16.7mm;
 }
 .page1 > .row4 > .row1 > .text1 > .item2{
     color: #7252ac;
     font-weight: bold;
     font-size: 12pt;
-    margin-bottom: 6mm;
+    margin-bottom: 4mm;
 }
 .page1 > .row4 > .row1 > .text1 > .item3{
     margin-bottom:0;
@@ -454,9 +455,6 @@ p.DocumentDate.displayname-tooltip {
     text-align: right;
     margin-right: 14mm;
 } */
-.page2 {
-    padding-top: 15mm !important;
-}
 .page2 > .row1 > .text1 > .item2,
 .page3 > .row1 > .text1 > .item2 {
     color: var(--primaryColor);
@@ -472,14 +470,14 @@ p.DocumentDate.displayname-tooltip {
 } 
 
 .page2 > .row2 > .row1 > .text1 > .item2 {
-    margin-top: 65px;
-    margin-bottom: 9mm;
+    margin-top: 60px;
+    margin-bottom: 8mm;
     font-size: 12pt;
     color: var(--primaryColor);
 }
 .page2 > .row2 > .row1 > .text1 > .item3 {
     /* padding-right: 48mm; */
-    padding-bottom:3px;
+    padding-bottom:12px;
     padding-right: 41mm;
 }
 .DonutChartKey .clientRating , .page2 > .row5 img{
@@ -488,13 +486,22 @@ p.DocumentDate.displayname-tooltip {
 }
 .page3 , .page4{
     page-break-before: always;
+    height:29.7cm;
+}
+.page3 > .row1 {
+    margin-bottom: 12px;
 }
 .page3 > .row2 > .row1 {
-    margin-top: 6.5mm;
+    /* margin-top: 6.5mm; */
+    margin-top: 0;
     margin-bottom: 0;
 }
 .page3 > .row2 > .row1 > .text1 > .item2 {
     padding-right: 53mm;
+    margin-bottom: 0;
+}
+.page3 > .row2{
+    margin-bottom: 30px;
 }
 .page3 > .row4 > .column1 > .row1 > .text1 > .item2 ,
 .page3 > .row4 > .column2 > .row1 > .text1 > .item2{
@@ -507,8 +514,10 @@ p.DocumentDate.displayname-tooltip {
     background-image:  url('./images/Icon_zweifarbig_CO2_Fussabdruck_RGB.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 10.2mm;
-    height: 10.2mm;
+    /* width: 10.2mm;
+    height: 10.2mm; */
+    width: 12.5mm;
+    height: 12.5mm;
     flex-shrink: 0; 
     margin-left: -5px;
   }
@@ -518,8 +527,10 @@ p.DocumentDate.displayname-tooltip {
     background-image:  url('./images/Icon_zweifarbig_Globale_Erwaêrmung_RGB.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 10.2mm;
-    height: 10.2mm;
+    /* width: 10.2mm;
+    height: 10.2mm; */
+    width: 12.5mm;
+    height: 12.5mm;
     flex-shrink: 0; 
     margin-left: -5px;
   }
@@ -577,17 +588,33 @@ p.DocumentDate.displayname-tooltip {
   }
   .page4 > .section.row.row8 {
     display: flex;
-    gap: 6.99mm !important;
+    /* gap: 6.99mm !important; */
     align-items: center;
     justify-content: flex-start;
     width: 80%;
     /* display: none; */
   }
+  .page4 .Disclaimer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.page4 {
+    position: relative;
+}
+.page4 .Disclaimer {
+    position: absolute;
+    bottom: 70px;
+    left: 14mm;
+    right:14mm;
+    width: calc(100% - 28mm);
+}
   .page4 > .row7 > .text1 > p {
-    padding-top: 8mm;
+    padding-top: 7mm;
     font-size: 6.5pt;
     color: #c3c3c3;
-    padding-right: 14mm;
+    padding-right: 0;
     line-height: 7pt;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -683,7 +710,7 @@ p.DocumentDate.displayname-tooltip {
       content:element(footerBlock);
       font-size: 6pt;
       margin-left: 14mm;
-      margin-bottom: 7.5mm;
+      margin-bottom: 10.5mm;
       font-family: var(--FontFamilyRegular);
       position: absolute;
       left:0;
@@ -694,7 +721,7 @@ p.DocumentDate.displayname-tooltip {
       content: "Seite " counter(page) " von " counter(pages);
       font-size: 6pt;
       margin-right: 14mm;
-      margin-bottom: 10.5mm;
+      margin-bottom: 13.5mm;
        font-family: var(--FontFamilyRegular);
    }
 }
@@ -791,7 +818,7 @@ tspan.highcharts-text-outline {
     margin-bottom: 0;
 }
 .page3 > .row5 {
-    margin-top: 10mm;
+    margin-top: 9.5mm;
     margin-bottom: 3px;
 }
 .page2 > .row4 > .column2 > .row1 > .standardtable1 > .CustomCss > tbody,
@@ -802,7 +829,7 @@ tspan.highcharts-text-outline {
 .page2 > .row4 > .column4 > .row1 > .standardtable1 > .CustomCss {
     position: absolute;
     /* margin-top: 70px; */
-    margin-top: 87px;
+    margin-top: 92px;
     left: 18px;
     line-height: 1.3;
 }
@@ -911,12 +938,12 @@ content: "\A0Reference fonds";
     background: none;
 } */
 .page1 > .row1 > .column1 > .row2 > .row2 {
-    margin-bottom: 0.55cm;
+    margin-bottom: 0.51cm;
 }
 .page1 > .row2 p.Date { 
     font-size: 8.5pt;
     color: #7252ac !important;
-    margin: 12px 0 0 0;
+    margin: 10px 0 0 0;
 }
 .page2 > .row4 > .column3 {
     position: relative;
@@ -946,6 +973,9 @@ content: "\A0Reference fonds";
     border-bottom: 1px solid #C6C6C6;
     padding: 0 0 12px 0;
     font-size: 7pt;
+}
+.page3 > .row3 > .row1 table.HorizontalCss th{
+    padding: 0 0 5px 0;
 }
 .page3 > .row3 > .row1 table.HorizontalCss th,
 .page3 > .row3 > .row1 table.HorizontalCss tbody tr.Row:last-child td{
@@ -1066,7 +1096,7 @@ content: "\A0Reference fonds";
 }
 .page2 > .row4 > .column3 p, .page2 > .row4 > .column1 p {
     font-weight: bold;
-    margin-bottom: 0;
+    margin-bottom: 5px;
     z-index: 9;
     position: relative;
 }
@@ -1086,5 +1116,15 @@ content: "\A0Reference fonds";
     height: 12px;
     background-color: #e5e4e4;
     left: -18px;
+}
+.page4 > .row7{
+    margin-bottom: 0;
+}
+.page4 > .row3 > .column>.section, .page4 > .row4 > .column>.section {
+    margin-left: 0.53cm;
+}
+.page4 > .row3 > .column1>.section, 
+.page4 > .row4 > .column1>.section {
+    margin-left: 0;
 }
 /* ValiantESG */
