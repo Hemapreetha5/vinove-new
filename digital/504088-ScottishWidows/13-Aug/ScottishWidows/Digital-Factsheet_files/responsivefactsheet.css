@@ -32,6 +32,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+  font-family: "ABCArizonaFlare-Medium";
+  src: url("fe_img/ABCArizonaFlare-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GT-Ultra-Standard-Lloyds-Regular";
+  src: url("fe_img/GT-Ultra-Standard-Lloyds-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GT-Ultra-Standard-Lloyds-Light";
+  src: url("fe_img/GT-Ultra-Standard-Lloyds-Light.ttf") format("truetype");
+}
 /* ---------- General classes --------------- */
 :root {
 	--teal:#0B3239;
@@ -42,7 +54,8 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 body {
-    font: normal 16px 'UnitRoundedRegular', Helvetica, sans-serif;
+    /* font: normal 16px 'UnitRoundedRegular', Helvetica, sans-serif; */
+    font: normal 14px "GT-Ultra-Standard-Lloyds-Regular";
     color: #222222;
     padding: 0px;
     margin: 0px;
@@ -79,7 +92,8 @@ li {
     list-style-image: none;
 }
 .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-    font: 400 16px 'UnitRoundedRegular', Helvetica, sans-serif !important;
+    /* font: 400 16px 'UnitRoundedRegular', Helvetica, sans-serif !important; */
+    font: 400 14px  "GT-Ultra-Standard-Lloyds-Regular" !important;
     background: none;
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-widget-header {
@@ -154,7 +168,8 @@ li.ui-state-default, li.ui-state-active {
     height: 145px;
 }
 .fe-responsivefactsheet-title.title h1 {
-    font: 300 66px GiorgioSansRegularWeb, Arial, sans-serif;
+    /* font: 300 66px GiorgioSansRegularWeb, Arial, sans-serif; */
+    font: 300 33px GiorgioSansRegularWeb, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 300 !important;
     color: #ffffff;
@@ -166,6 +181,7 @@ li.ui-state-default, li.ui-state-active {
     text-indent: 20px;
     display: table-cell;
     vertical-align: middle;
+    font-family: GT-Ultra-Standard-Lloyds-Regular;
 }
 .fe-section-vertical, .fe-section-chart, .fe-section-horizontal {
     border: 0;
@@ -181,7 +197,8 @@ li.ui-state-default, li.ui-state-active {
     padding: 0;
 }
 h2 {
-    font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+    /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+    font: normal 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
     color: #333;
     margin-top: 0;
     position: relative;
@@ -219,6 +236,8 @@ h5 {
 .fe-fund-performance-astext-element {
     font-weight: 400 !important;
     color: #222 !important;
+    font-size: 1em;
+    padding-top: 3px;
 }
 /**********navigation********************/
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
@@ -233,8 +252,10 @@ h5 {
     padding: 0;
 }
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all .ui-state-default a {
-    font-size: 16px;
-    font-family: UnitRoundedMedium, Arial, sans-serif !important;
+    /* font-size: 16px; */
+    font-size: 14px;
+    /* font-family: UnitRoundedMedium, Arial, sans-serif !important; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular" !important;
     padding: 16px 16px !important;
     margin-right: 0;
     color: #ffffff;
@@ -441,10 +462,12 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a 
     padding: 10px 0;
     border-left: 0px solid #eff1f3;
     color: #333333;
-    font: 300 18px "UnitRoundedRegular", Helvetica, sans-serif !important;
+    /* font: 300 18px "UnitRoundedRegular", Helvetica, sans-serif !important; */
+    font: 300 16px "GT-Ultra-Standard-Lloyds-Regular" !important;
 }
 .fe-tab-container-FundInfo .fe-section-vertical .fe-section-vertical-wrap.FECrownRating .fe-section-vertical-name {
-    font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+    /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+    font: normal 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
     margin-top: 0;
     margin-bottom: 10px;
     padding: 0 0 16px;
@@ -502,11 +525,15 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a 
     width: 100% !important;
 }
 g.highcharts-axis-labels.highcharts-xaxis-labels text tspan, g.highcharts-axis-labels.highcharts-yaxis-labels text {
-    font: 400 14px 'UnitRoundedRegular', Helvetica, sans-serif !important;
+    /* font: 400 14px 'UnitRoundedRegular', Helvetica, sans-serif !important; */
+    font: 400 12px "GT-Ultra-Standard-Lloyds-Regular" !important;
     fill: #837069 !important;
 }
 text.highcharts-title tspan, g.highcharts-legend-item text tspan {
-    font: 400 14px 'UnitRoundedRegular', Helvetica, sans-serif !important;
+    /* font: 400 14px 'UnitRoundedRegular', Helvetica, sans-serif !important; */
+    font: 400 12px "GT-Ultra-Standard-Lloyds-Regular" !important;
+
+     
 }
 .highcharts-background {
     fill: #ffffff;
@@ -564,10 +591,12 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     padding: 10px 5px;
     border-left: 1px solid #ffffff;
     color: #333333;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 12px;
     line-height: 16px;
     font-weight: 300;
-    font-family: 'UnitRoundedRegular';
+    /* font-family: 'UnitRoundedRegular'; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular";
     min-height: 17px;
     position: relative;
     z-index: 1;
@@ -579,10 +608,12 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     padding: 10px 5px;
     border-left: 1px solid #ffffff;
     color: #333333;
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: 14px;
     line-height: 16px;
     font-weight: 400;
-    font-family: 'UnitRoundedRegular';
+    /* font-family: 'UnitRoundedRegular'; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular";
     height: 20px;
 }
 [class*="Performance"] .fe-section-vertical.section_3_1 .fe-section-vertical-wrap:first-child .fe-section-vertical-val, [class*="Performance"] .fe-section-vertical.section_3_1 .clear+.fe-section-vertical-wrap .fe-section-vertical-val {
@@ -646,7 +677,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     background-position: 20px 20px;
 }
 .fe-section-text h2, .fe-section-textwithpicture h2 {
-    font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+    /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+    font: normal 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
     margin-top: 0;
 	text-transform: uppercase
 }
@@ -654,7 +686,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
 	text-transform: uppercase;
 }
 .fe-tab-container-FundInfo .fe-section-text {
-    font: 16px unitRoundedLight;
+    /* font: 16px unitRoundedLight; */
+    font: 14px "GT-Ultra-Standard-Lloyds-Light";
     padding: 30px;
     margin: 15px 0;
     /* background-color: white;
@@ -693,7 +726,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     min-height: 160px;
 }
 .fe-section-textwithpicture {
-    font: 16px unitRoundedLight;
+    /* font: 16px unitRoundedLight; */
+    font: 14px "GT-Ultra-Standard-Lloyds-Light";
     width: 100% !important;
     border: 0;
 	padding: 0;
@@ -755,7 +789,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     float: none;
     background-color: transparent;
     color: #333333;
-    font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important;
+    /* font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important; */
+    font: 400 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
     text-align: left;
     z-index: 1;
     position: relative;
@@ -771,7 +806,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
 }
 [class*=Performance] .section_1_1 .fe-section-horizontal-wrap .fe-section-horizontal-val a:after, .fe-tab-container-Risk .fe-section-horizontal.section_1_1 .fe-section-horizontal-wrap .fe-section-horizontal-val a:after {
     content: 'Fund Factsheet';
-    font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important;
+    /* font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important; */
+    font: 400 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
     color: #d8323a;
     position: relative;
     top: -5px;
@@ -783,7 +819,8 @@ text.highcharts-title tspan, g.highcharts-legend-item text tspan {
     padding: 12px 2% 12px 0;
     background-color: transparent;
     color: #333333;
-    font: 300 16px unitRoundedLight, Helvetica, sans-serif !important;
+    /* font: 300 16px unitRoundedLight, Helvetica, sans-serif !important; */
+    font: 300 14px "GT-Ultra-Standard-Lloyds-Light" !important;
     text-align: right;
     display: table-cell;    
 }
@@ -1241,8 +1278,10 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 }
 .fe-button.fe-back-button {
     color: #d9323b;
-    font-family: UnitRoundedMedium, Helvetica, sans-serif !important;
-    font-size: 16px;
+    /* font-family: UnitRoundedMedium, Helvetica, sans-serif !important; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular" !important;
+    /* font-size: 16px; */
+    font-size: 14px;
     background-color: transparent;
     border: 0;
 }
@@ -1274,7 +1313,9 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 .fe-chart-caveat h1 {
     margin: 10px 0 0 0;
     font-family: 'UnitRoundedLight';
-    font-size: 21px;
+    font-family: "GT-Ultra-Standard-Lloyds-Light";
+    /* font-size: 21px; */
+    font-size: 19px;
     font-weight: normal;
 }
 .fe-chart-caveat h1 a {
@@ -1284,14 +1325,17 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 .fe-chart-caveat h1 b {
     margin: 0 0 10px 0;
     display: block;
-    font-family: 'UnitRoundedMedium';
+    /* font-family: 'UnitRoundedMedium'; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular";
     font-weight: normal;
 }
 .fe-chart-caveat h2, .fe-chart-caveat h3 {
     margin: 10px 0 0 0;
     padding: 0;
-    font-family: 'UnitRoundedRegular';
-    font-size: 21px;
+    /* font-family: 'UnitRoundedRegular'; */
+    font-family: "GT-Ultra-Standard-Lloyds-Regular";
+    /* font-size: 21px; */
+    font-size: 19px;
     font-weight: normal;
 }
 .fe-chart-caveat h2:after {
@@ -1300,7 +1344,9 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 .fe-chart-caveat p {
     margin: 0;
     font-family: 'UnitRoundedLight';
-    font-size: 16px;
+    font-family: "GT-Ultra-Standard-Lloyds-Light";
+    /* font-size: 16px; */
+    font-size: 14px;
 }
 .fotterlinks {
     padding: 0;
@@ -1355,7 +1401,8 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
     color: #d73e42;
     text-decoration: none;
     position: relative;
-    font: 16px UnitRoundedRegular, sans-serif
+    /* font: 16px UnitRoundedRegular, sans-serif; */
+    font: 14px "GT-Ultra-Standard-Lloyds-Regular";
 }
 .advisorhome a::after {
     font-family: 'swfunds_v7';
@@ -1370,8 +1417,10 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 .footertext{
 	background-color: #333333;
 	padding: 30px 0;
-	font-family: 'UnitRoundedLight';
-    font-size: 16px;
+	/* font-family: 'UnitRoundedLight'; */
+    /* font-size: 16px; */
+    font-size: 14px;
+    font-family: "GT-Ultra-Standard-Lloyds-Light";
 	color: #fff;
 }
 .footertext-width{
@@ -1383,7 +1432,8 @@ a.showhiderowlink.showmore:hover, a.showhiderowlink.showless:hover {
 .footertext a{
 	color: #fff;
 	text-decoration: underline;
-	font: 16px UnitRoundedRegular, sans-serif;
+	/* font: 16px UnitRoundedRegular, sans-serif; */
+	font: 14px "GT-Ultra-Standard-Lloyds-Regular";
 }
 
 /*********media queries*********/
