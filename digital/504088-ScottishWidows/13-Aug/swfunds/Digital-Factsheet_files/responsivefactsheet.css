@@ -57,16 +57,35 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "ABCArizonaFlare-Medium";
+  src: url("fe_img/ABCArizonaFlare-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GT-Ultra-Standard-Lloyds-Regular";
+  src: url("fe_img/GT-Ultra-Standard-Lloyds-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GT-Ultra-Standard-Lloyds-Light";
+  src: url("fe_img/GT-Ultra-Standard-Lloyds-Light.ttf") format("truetype");
+}
+:root {
+	--teal:#0B3239;
+	--lightGray:#ede9ff;
+	--white:#fff;
+}
 /* ---------- General classes --------------- */
 html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  font: normal 16px "UnitRoundedRegular", Helvetica, sans-serif;
+  /* font: normal 16px "UnitRoundedRegular", Helvetica, sans-serif; */
+  font: normal 14px "GT-Ultra-Standard-Lloyds-Regular";
   color: #222222;
   padding: 0px;
   margin: 0px;
-  background-color: #f6f4f2;
+  /* background-color: #f6f4f2; */
+  background-color: var(--white);
 }
 body:before {
   /* 	content:""; */
@@ -107,7 +126,8 @@ li {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-  font: 400 16px "UnitRoundedRegular", Helvetica, sans-serif !important;
+  /* font: 400 16px "UnitRoundedRegular", Helvetica, sans-serif !important; */
+  font: 400 14px "GT-Ultra-Standard-Lloyds-Regular" !important;
   background: none;
 }
 .ui-state-default,
@@ -155,7 +175,8 @@ li.ui-state-active {
   width: 100%;
   display: block;
   margin: 0 auto;
-  background: url(fe_img/logo2.png) 0 50% no-repeat;
+  /* background: url(fe_img/logo2.png) 0 50% no-repeat; */
+  background: url(fe_img/logo-image-new.png) 0 23px / auto auto no-repeat;
 }
 .ui-logo-container img {
   display: none;
@@ -185,13 +206,15 @@ li.ui-state-active {
   display: table;
   width: 100%;
   vertical-align: middle;
-  background: #912228;
+  /* background: #912228; */
+  background: var(--teal);
   padding: 0;
   text-align: center;
   height: 145px;
 }
 .fe-responsivefactsheet-title.title h1 {
-  font: 300 66px GiorgioSansRegularWeb, Arial, sans-serif;
+  /* font: 300 66px GiorgioSansRegularWeb, Arial, sans-serif; */
+  font: 300 33px GT-Ultra-Standard-Lloyds-Regular;
   text-transform: uppercase;
   font-weight: 300 !important;
   color: #ffffff;
@@ -220,7 +243,8 @@ li.ui-state-active {
   padding: 0;
 }
 h2 {
-  font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+  /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+  font: normal 14px "ABCArizonaFlare-Medium"  !important;
   color: #333;
   margin-top: 0;
   position: relative;
@@ -260,7 +284,8 @@ h5 {
 }
 /**********navigation********************/
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
-  background: #791a23;
+  /* background: #791a23; */
+  background: var(--lightGray);
   line-height: normal;
   text-align: center;
   height: 53px;
@@ -274,7 +299,8 @@ h5 {
   .ui-state-default
   a {
   font-size: 16px;
-  font-family: UnitRoundedMedium, Arial, sans-serif !important;
+  /* font-family: UnitRoundedMedium, Arial, sans-serif !important; */
+  font-family: "ABCArizonaFlare-Medium" !important;
   padding: 16px 16px !important;
   margin-right: 0;
   color: #ffffff;
@@ -282,7 +308,9 @@ h5 {
   -moz-transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
   /* padding-right: 25px !important; */
-  border-right: 1px solid #8d383f;
+  /* border-right: 1px solid #8d383f; */
+  border-right: 1px solid #FFCCD9;
+  background: #FFCCD9;
 }
 li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
   a {
@@ -291,8 +319,8 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
   .ui-state-default.ui-state-active
   a {
-  color: #ffffff;
-  background: #551318;
+  /* color: #ffffff; */
+  /* background: #551318; */
 }
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
   .ui-state-default.ui-state-active
@@ -340,7 +368,8 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
   .ui-state-default.ui-state-active:after {
   border-color: rgba(255, 255, 255, 0);
-  border-top-color: #551318;
+  /* border-top-color: #551318; */
+  border-top-color: #FFCCD9;
   border-width: 10px;
   margin-left: -10px;
   background: transparent;
@@ -367,7 +396,9 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
 }
 .ui-widget-header.ui-corner-all.ui-scroll-tabs-header.show-controls-always {
   height: 54px;
-  background-color: #f6f4f2;
+  /* background-color: #f6f4f2; */
+  background-color: var(--white);
+
 }
 .ui-scroll-tabs-header .stNavMain .ui-button.ui-widget.ui-state-default {
   width: 100%;
@@ -503,13 +534,15 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
   padding: 10px 0;
   border-left: 0px solid #eff1f3;
   color: #333333;
-  font: 300 18px "UnitRoundedRegular", Helvetica, sans-serif !important;
+  /* font: 300 18px "UnitRoundedRegular", Helvetica, sans-serif !important; */
+  font: 300 16px "GT-Ultra-Standard-Lloyds-Regular" !important;
 }
 .fe-tab-container-FundInfo
   .fe-section-vertical
   .fe-section-vertical-wrap.FECrownRating
   .fe-section-vertical-name {
-  font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+  /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+  font: normal 14px "ABCArizonaFlare-Medium" !important;
   margin-top: 0;
   margin-bottom: 10px;
   padding: 0 0 16px;
@@ -584,12 +617,15 @@ li.fe-tab-Risk.fe-tabs-item.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab
 }
 g.highcharts-axis-labels.highcharts-xaxis-labels text tspan,
 g.highcharts-axis-labels.highcharts-yaxis-labels text {
-  font: 400 14px "UnitRoundedRegular", Helvetica, sans-serif !important;
+  /* font: 400 14px "UnitRoundedRegular", Helvetica, sans-serif !important; */
+ font: 400 12px "GT-Ultra-Standard-Lloyds-Regular" !important;
+  
   fill: #837069 !important;
 }
 text.highcharts-title tspan,
 g.highcharts-legend-item text tspan {
-  font: 400 14px "UnitRoundedRegular", Helvetica, sans-serif !important;
+  /* font: 400 14px "UnitRoundedRegular", Helvetica, sans-serif !important; */
+   font: 400 12px "GT-Ultra-Standard-Lloyds-Regular" !important;
 }
 .highcharts-background {
   fill: #ffffff;
@@ -658,10 +694,11 @@ g.highcharts-legend-item text tspan {
   padding: 10px 5px;
   border-left: 1px solid #ffffff;
   color: #333333;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   font-weight: 300;
-  font-family: "UnitRoundedRegular";
+  /* font-family: "UnitRoundedRegular"; */
+  font-family: "GT-Ultra-Standard-Lloyds-Regular";
   min-height: 17px;
   position: relative;
   z-index: 1;
@@ -670,15 +707,17 @@ g.highcharts-legend-item text tspan {
   .fe-section-vertical.section_3_1
   .fe-section-vertical-wrap
   .fe-section-vertical-val {
-  background-color: #f6f4f2;
+  /* background-color: #f6f4f2; */
+  background-color: var(--white);
   margin: 0;
   padding: 10px 5px;
   border-left: 1px solid #ffffff;
   color: #333333;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 16px;
   font-weight: 400;
-  font-family: "UnitRoundedRegular";
+  /* font-family: "UnitRoundedRegular"; */
+  font-family: "GT-Ultra-Standard-Lloyds-Regular";
   height: 20px;
 }
 [class*="Performance"]
@@ -707,7 +746,8 @@ g.highcharts-legend-item text tspan {
   .fe-section-vertical.section_3_1
   .fe-section-vertical-wrap
   .fe-section-vertical-val {
-  border-bottom: 1px solid #f6f4f2;
+  /* border-bottom: 1px solid #f6f4f2; */
+  border-bottom: 1px solid var(--white);
   background-color: #ffffff;
 }
 /********Fund Objective and Fund Details*****************/
@@ -752,7 +792,8 @@ g.highcharts-legend-item text tspan {
 }
 .fe-section-text h2,
 .fe-section-textwithpicture h2 {
-  font: normal 16px UnitRoundedMedium, Arial, sans-serif !important;
+  /* font: normal 16px UnitRoundedMedium, Arial, sans-serif !important; */
+  font: normal 14px "ABCArizonaFlare-Medium" !important;
   margin-top: 0;
   text-transform: uppercase;
 }
@@ -760,7 +801,8 @@ g.highcharts-legend-item text tspan {
   text-transform: uppercase;
 }
 .fe-tab-container-FundInfo .fe-section-text {
-  font: 16px unitRoundedLight;
+  /* font: 16px unitRoundedLight; */
+  font: 14px "GT-Ultra-Standard-Lloyds-Light";
   padding: 30px;
   margin: 15px 0;
   background-color: white;
@@ -798,7 +840,8 @@ g.highcharts-legend-item text tspan {
   min-height: 160px;
 }
 .fe-section-textwithpicture {
-  font: 16px unitRoundedLight;
+  /* font: 16px unitRoundedLight; */
+  font: 14px "GT-Ultra-Standard-Lloyds-Light";
   width: 100% !important;
   border: 0;
   padding: 0;
@@ -834,7 +877,8 @@ g.highcharts-legend-item text tspan {
   transition: all 0.3s ease-in-out 0s;
   -moz-transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
-  background-color: #f6f4f2;
+  /* background-color: #f6f4f2; */
+  background-color: var(--white);
 }
 .fe-section-horizontal.section_4_2 .fe-section-horizontal-wrap:hover,
 .fe-tab-container-FundInfo
@@ -842,7 +886,9 @@ g.highcharts-legend-item text tspan {
   .fe-section-horizontal-wrap:hover,
 .fe-tab-container-Risk .fe-section-horizontal .fe-section-horizontal-wrap:hover,
 [class*="Performance"] .fe-section-horizontal-wrap:hover {
-  background: #f6f4f2;
+  /* background: #f6f4f2; */
+  background: var(--white);
+
 }
 [class*="Performance"] .fe-section-horizontal-wrap,
 .fe-tab-container-Risk
@@ -854,7 +900,9 @@ g.highcharts-legend-item text tspan {
   height: 48px;
   position: relative;
   overflow: hidden;
-  background: #f6f4f2;
+  /* background: #f6f4f2; */
+  background: var(--white);
+
 }
 .fe-tab-container-FundInfo
   .fe-section-horizontal
@@ -864,7 +912,8 @@ g.highcharts-legend-item text tspan {
   .fe-section-horizontal:not(.section_1_1)
   .fe-section-horizontal-wrap:first-child {
   /* 	background-color: #faf9f8; */
-  border-top: 1px solid #f6f4f2;
+  /* border-top: 1px solid #f6f4f2; */
+  border-top: 1px solid var(--white);
 }
 .fe-section-horizontal.section_4_2
   .fe-section-horizontal-wrap
@@ -887,7 +936,8 @@ g.highcharts-legend-item text tspan {
   float: none;
   background-color: transparent;
   color: #333333;
-  font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important;
+  /* font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important; */
+  font: 400 14px  "ABCArizonaFlare-Medium" !important;
   text-align: left;
   z-index: 1;
   position: relative;
@@ -926,7 +976,8 @@ g.highcharts-legend-item text tspan {
   .fe-section-horizontal-val
   a:after {
   content: "Fund Factsheet";
-  font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important;
+  /* font: 400 16px "UnitRoundedMedium", Helvetica, sans-serif !important; */
+  font: 400 14px "ABCArizonaFlare-Medium" !important;
   color: #d8323a;
   position: relative;
   top: -5px;
@@ -952,7 +1003,8 @@ g.highcharts-legend-item text tspan {
   padding: 12px 2% 12px 0;
   background-color: transparent;
   color: #333333;
-  font: 300 16px unitRoundedLight, Helvetica, sans-serif !important;
+  /* font: 300 16px unitRoundedLight, Helvetica, sans-serif !important; */
+  font: 300 14px "GT-Ultra-Standard-Lloyds-Light" !important;
   text-align: right;
   display: table-cell;
 }
@@ -1445,7 +1497,8 @@ a.showhiderowlink.showless:hover {
 }
 .fe-button.fe-back-button {
   color: #d9323b;
-  font-family: UnitRoundedMedium, Helvetica, sans-serif !important;
+  /* font-family: UnitRoundedMedium, Helvetica, sans-serif !important; */
+  font-family: "ABCArizonaFlare-Medium" !important;
   font-size: 16px;
   background-color: transparent;
   border: 0;
@@ -1477,7 +1530,8 @@ a.showhiderowlink.showless:hover {
 }
 .fe-chart-caveat h1 {
   margin: 10px 0 0 0;
-  font-family: "UnitRoundedLight";
+  /* font-family: "UnitRoundedLight"; */
+  font-family: "GT-Ultra-Standard-Lloyds-Light";
   font-size: 21px;
   font-weight: normal;
 }
@@ -1488,15 +1542,17 @@ a.showhiderowlink.showless:hover {
 .fe-chart-caveat h1 b {
   margin: 0 0 10px 0;
   display: block;
-  font-family: "UnitRoundedMedium";
+  /* font-family: "UnitRoundedMedium"; */
+  font-family: "ABCArizonaFlare-Medium";
   font-weight: normal;
 }
 .fe-chart-caveat h2,
 .fe-chart-caveat h3 {
   margin: 10px 0 0 0;
   padding: 0;
-  font-family: "UnitRoundedRegular";
-  font-size: 21px;
+  /* font-family: "UnitRoundedRegular"; */
+  font-family: "GT-Ultra-Standard-Lloyds-Regular";
+  font-size: 19px;
   font-weight: normal;
 }
 .fe-chart-caveat h2:after {
@@ -1504,8 +1560,9 @@ a.showhiderowlink.showless:hover {
 }
 .fe-chart-caveat p {
   margin: 0;
-  font-family: "UnitRoundedLight";
-  font-size: 16px;
+  /* font-family: "UnitRoundedLight"; */
+  font-family: "GT-Ultra-Standard-Lloyds-Light";
+  font-size: 14px;
 }
 .fotterlinks {
   padding: 0;
@@ -1560,7 +1617,8 @@ a.showhiderowlink.showless:hover {
   color: #d73e42;
   text-decoration: none;
   position: relative;
-  font: 16px UnitRoundedRegular, sans-serif;
+  /* font: 16px UnitRoundedRegular, sans-serif; */
+  font: 14px "GT-Ultra-Standard-Lloyds-Regular";
 }
 .advisorhome a::after {
   font-family: "swfunds_v7";
@@ -1575,8 +1633,9 @@ a.showhiderowlink.showless:hover {
 .footertext {
   background-color: #333333;
   padding: 30px 0;
-  font-family: "UnitRoundedLight";
-  font-size: 16px;
+  /* font-family: "UnitRoundedLight"; */
+    font-family: "GT-Ultra-Standard-Lloyds-Light";
+  font-size: 14px;
   color: #fff;
 }
 .footertext-width {
@@ -1588,7 +1647,8 @@ a.showhiderowlink.showless:hover {
 .footertext a {
   color: #fff;
   text-decoration: underline;
-  font: 16px UnitRoundedRegular, sans-serif;
+  /* font: 16px UnitRoundedRegular, sans-serif; */
+  font: 14px  "GT-Ultra-Standard-Lloyds-Regular";
 }
 
 /*********media queries*********/
