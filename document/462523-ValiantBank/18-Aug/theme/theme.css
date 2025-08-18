@@ -450,9 +450,10 @@ p.DocumentDate.displayname-tooltip {
     font-size: 6.5pt;
     text-align: right;
     /* margin-right: 14mm; */
-    margin-right: 18mm;
+    /* margin-right: 18mm; */
     margin-bottom: 0;
-        display: none;
+        /* display: none; */
+    position: running(pagenumber);
 }
 /* .page1 > .row5 > .column2 > .row1 {
     margin-bottom: 0;
@@ -599,7 +600,7 @@ p.DocumentDate.displayname-tooltip {
     /* gap: 6.99mm !important; */
     align-items: center;
     justify-content: flex-start;
-    width: 80%;
+    width: 100%;
     /* display: none; */
   }
   .page4 .Disclaimer {
@@ -707,7 +708,7 @@ p.DocumentDate.displayname-tooltip {
 }
 /* Hide it in screen view */
 @media screen {
-   .page > .row .Date p.Date{
+   .page > .row .Date p.Date,.Pagination{
       display: none;
    }
 }
@@ -726,7 +727,8 @@ p.DocumentDate.displayname-tooltip {
    }
 
    @bottom-right {
-      content: "Seite " counter(page) " von " counter(pages);
+      /* content: "Seite " counter(page) " von " counter(pages); */
+         content: element(pagenumber);
       font-size: 6pt;
       margin-right: 14mm;
       margin-bottom: 13.5mm;
@@ -789,7 +791,8 @@ tspan.highcharts-text-outline {
     justify-content: center;
 }
 .page2 > .row3 > .column1 {
-    left: 37px;
+    left: 16px;
+    top: 76px;
 }
 .page2 > .row3 > .column2 {
     left: 380px;
@@ -1158,6 +1161,10 @@ content: "\A0Reference fonds";
 
 .page3 > .row5 > .column2 .row1 .text1 p {
 	    line-height: 14px;
+}
+.Pagination p {
+    text-align: right;
+    width: auto;
 }
 /* .page2 > .row4 > .column1 .highcharts-legend-item text {
     display: none;
