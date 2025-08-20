@@ -787,11 +787,15 @@ table {
 .page2>.row4>.column2>.row2>.column:not(.column1),
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child),
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr td:not(:first-child) {
-	width: 12.5mm;
+	/* width: 12.5mm; */
+	width: 17mm;
 	text-align: center;
 	min-height: 1mm;
 }
-
+.page2>.row4>.column2>.row2 > .column {
+    padding: 2px;
+    border-bottom: 0.5pt solid var(--Zurichblue);
+}
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr th:first-child::before {
 	content: 'Statistics';
 }
@@ -826,7 +830,9 @@ table {
 }
 
 .page2>.row4>.column2>.row2>.column1 {
-	width: calc(100% - 25mm);
+	/* width: calc(100% - 25mm); */
+	width: calc(100% - 34mm);
+
 }
 
 .page2>.row4 {
@@ -872,18 +878,26 @@ table {
 
 .page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Key .key-color {
 	display: block;
-	width: 2mm;
-	height: 2mm;
+	/* width: 2mm;
+	height: 2mm; */
+	width: 1.5mm;
+	height: 1.5mm;
 }
 
 .page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Name {
-	width: 45%;
+	/* width: 45%; */
+	width: auto;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Weight {
-	width: 50%;
-	text-align: right;
-	color: var(--darkblue);
+	width: auto;
+    text-align: left;
+    color: var(--darkblue);
+    display: inline-block;
+	vertical-align: top;
+	padding-left: 5px;
 }
 
 .page2>.row6>.column1 {
@@ -1664,7 +1678,41 @@ html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column2 .performancetable1 table
     width: 100%;
     height: auto;
 }
-
-
+.page2>.row5>.column1 .breakdown td,
+.page2>.row6 .breakdown td {
+    border-bottom: 0.5pt solid var(--border-btm-clr);
+    color: var(--Zurichblue);
+    padding: 2.4pt 0;
+	font-size: 8pt;
+}
+.page2>.row5>.column1 .breakdown td:last-child,
+.page2>.row6 .breakdown td:last-child {
+    text-align: right;
+}
+.page2>.row6 .breakdown{
+	width:50%;
+	padding-right: 2.625mm;
+}
+.page2>.row5>.column1 h2, .page2>.row6 h2 {
+    border-bottom: .5pt solid var(--Zurichblue);
+    font-weight: bold;
+    color: var(--Zurichblue);
+    padding: 2.4pt 0;
+	font-family: var(--font-zurich-regular);
+	font-size: 8pt;
+}
+.page2>.row7 {
+    padding-bottom: 9mm;
+    margin-bottom: 5.25mm;
+    bottom: 0;
+    position: absolute;
+    left: 1cm;
+    width: 19cm;
+    z-index: 9;
+}
+.page2>.row7 p {
+    font-size: 7pt;
+    color: var(--Zurichblue);
+}
 
 /*Theme: ZIAG_Carbon*/
