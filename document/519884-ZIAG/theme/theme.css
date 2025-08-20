@@ -1,0 +1,1665 @@
+@font-face {
+	font-family: 'zurich_sanslight';
+	src: url('images/zurichsans-light-webfont.woff2') format('woff2'),
+		url('images/zurichsans-light-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'zurich_sansregular';
+	src: url('images/zurichsans-regular-webfont.woff2') format('woff2'),
+		url('images/zurichsans-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'zurich_sansmedium';
+	src: url('images/zurichsans-medium-webfont.woff2') format('woff2'),
+		url('images/zurichsans-medium-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	--Zurichblue: #2167AE;
+	--darkblue: #23366F;
+	--border-btm-clr: #dce5e4;
+	--footprintblue: #9ddcf8;
+	--footprintgreen: #c6e4ce;
+	--table-border: #DDE4E3;
+	--lightblue: #e8eeed;
+	--blackcolor: #000;
+	--whitecolor: #ffffff;
+	--sandstone: #DAD2BD;
+	--headerlightblue: rgba(31, 177, 230, 0.6);
+	--dovelight: rgba(221, 228, 227, 0.6);
+	--font-zurich-light: zurich_sanslight;
+	--font-zurich-regular: zurich_sansregular;
+	--font-zurich-medium: zurich_sansmedium;
+}
+
+body {
+	font-family: var(--font-zurich-light);
+	font-weight: 400;
+	font-size: 9pt;
+}
+
+*:not(b) {
+	box-sizing: border-box;
+	font-weight: normal;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.page {
+	position: relative;
+	Padding: 1.05cm;
+	width: 21cm;
+	height: 29.7cm;
+
+}
+
+.page1 {
+	background: url(./images/header.jpg);
+	background-size: 21cm 82.047mm;
+	background-repeat: no-repeat;
+	padding: 0;
+}
+
+.page1 .logo {
+	background: url('./images/zurich-yellow.jpg');
+	height: 10.5mm;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 4.5cm;
+}
+
+.page1>.row1 {
+	height: 82.047mm;
+	padding: 10.5mm 10.5mm 5.25mm 10.5mm;
+	position: relative;
+}
+
+.page1>.row1>.column1>.row4>.text1>.item3 {
+	position: absolute;
+	bottom: 5.25mm;
+	left: 10.5mm;
+}
+
+.page3,
+.page4 {
+	padding: 0;
+}
+
+.horizontal-list span:first-child {
+	font-weight: normal;
+}
+
+table {
+	width: 100% !important;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+/*00*/
+.page1>.row1>.column1>.row3>.text1>.FundNameWB {
+	font-family: var(--font-zurich-regular);
+	font-size: 24pt;
+	line-height: 28.8pt;
+	color: var(--Zurichblue);
+	margin: 0;
+}
+
+/*01*/
+.page1>.row1>.column1>.row4>.text1>.ShareclassNameWB {
+	font-family: var(--font-zurich-light);
+	font-size: 14pt;
+	line-height: 16.8pt;
+	color: var(--Zurichblue);
+	margin: 0;
+}
+
+/*02*/
+.page1>.row1>.column1>.row4>.text1>.ShareclassNameWB,
+.page1>.row2>.column2>.row1>.text1>.item2,
+.page1>.row2>.column2>.row3>.text1>.item2,
+.page1>.row2>.column2>.row5>.text1>.item2,
+.page2>.row2>.column1>.row1>.text1>.item2,
+.page2>.row5>.column1>.row1>.holding1>h2,
+.page2>.row5>.column2>.row1>.breakdown1>h2,
+.page2>.row6>.column1>.row1>.profile>.item2,
+.page3>.row2>.column1>.row1>.benefits>.item2,
+.page3>.row3>.column1>.row1>.Risks>.item2,
+.page4>.row2>.column1>.row1>.text1>.item2 {
+	font-family: var(--font-zurich-medium);
+	font-size: 12pt;
+	line-height: 14.4pt;
+	color: var(--Zurichblue);
+	margin: 0;
+}
+
+/*04*/
+.page1>.row2>.column1>.row3>.text1 p,
+.page1>.row2>.column1>.row2>.text1 p,
+.page1>.row2>.column1>.row4>.text1 p,
+.page1>.row2>.column1>.row5 .text1 p,
+.page1>.row2>.column1>.row4>.column2 p,
+.page3>.row2>.column2>.row1>.text1>p,
+.page3>.row3>.column2>.row p,
+.page3>.row4>.text1>.item2 {
+	font-family: var(--font-zurich-regular);
+	font-size: 10pt;
+	line-height: 12pt;
+	color: var(--darkblue);
+}
+
+/*05*/
+.page1>.row1>.column1>.row2>.text1>p,
+.page1>.row1>.column1>.row4>.text1>.item3,
+.page1>.row2>.column1>.row5>.text1>.item2,
+.page1>.row2>.column2>.row6>.column1>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column1>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column2>.row1 p,
+.page1>.row2>.column2>.row8>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row8>.column2>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row8>.column2>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row6>.column3>.row1 p,
+.page1>.row2>.column2>.row7>.column1 .item2,
+.page1>.row2>.column2>.row7>.column2 .item2,
+.page1>.row2>.column2>.row9>.column1 .item2,
+.page1>.row2>.column2>.row9>.column2 .item2,
+.page1>.row2>.column2>.row8>.column1>.row1>.column3>.row1 p,
+.page2>.row3>.pdfperformancechart1>h2,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr th,
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr th,
+.page2>.row4>.column2>.row1>.ratios1 h2,
+.page1>.row2>.column2>.row8>.column1>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row2>.horizontal-list1>.FundNameWB>.value,
+.page2>.row2>.column2>.row2 .item2,
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>th,
+.page2>.row7>.kiirisk>.kiiRiskRating .header th,
+.page2>.row7>.kiirisk>.kiiRiskRating .description td,
+.page2>.row4>.column1>.row1>.column1>.row1>.performancetable1>h2,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th,
+.page1>.row2>.column2>.row10>.column1>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row10>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row10>.column2>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row10>.column2>.row1>.column3>.row1 p {
+	font-size: 7pt;
+	font-family: var(--font-zurich-light);
+	margin: 0;
+	color: var(--Zurichblue);
+	line-height: 9.6pt;
+}
+
+/*06*/
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr td,
+.page2>.row4>.column2>.row2>.column p,
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>td,
+.page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Name,
+.page1>.row2>.column2>.row6>.column2>.row:not(.row1) p,
+.page1>.row2>.column2>.row6>.column3>.row:not(.row1) p,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr td,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr td,
+.page1>.row2>.column2>.row2>.horizontal-list1 .label,
+.page1>.row2>.column2>.row2>.horizontal-list1 .value,
+.page1>.row2>.column2>.row4>.horizontal-list1 .label,
+.page1>.row2>.column2>.row4>.horizontal-list1 .value,
+.page4>.row2>.column1>.row:not(.row1) p,
+.page1>.row2>.column2>.row6>.column1>.row p,
+.page4>.row2>.column2>.row:not(.row1) p,
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th,
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr td,
+.page2>.row4>.column2>.row2>.ratios1 h2,
+.page2>.row8>.text1>p,
+.page2>.row4>.column2>.row3>.column1>.row1>.text1>.displayname-tooltip,
+.page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip,
+.page2>.row4>.column2>.row3>.column3>.row1>.text1>.displayname-tooltip {
+	font-size: 8pt;
+	font-family: var(--font-zurich-light);
+	margin: 0;
+	color: var(--darkblue);
+	line-height: 8.4pt;
+}
+
+/*07*/
+.page2>.row3>.pdfperformancechart1>.keyWrapper>.keyContainer>.label,
+.page2>.row9>.text1>p,
+.page2>.row10>.text1>p {
+	font-family: var(--font-zurich-light);
+	font-size: 6pt;
+	line-height: 7.2pt;
+	color: var(--darkblue);
+}
+
+/*footer footnote*/
+.page4>.row3>.text1>p {
+	font-size: 5pt;
+	line-height: 6pt;
+	padding: 0pt 0 3pt 0;
+	color: var(--darkblue);
+}
+
+/*page 1*/
+.page1>.row1>.column1>.row1 {
+	margin-bottom: .60cm;
+}
+
+.page1>.row1>.column1>.row2 {
+	margin-bottom: 0.35cm;
+}
+
+.page1>.row1>.column1>.row3 {
+	margin-bottom: 0.30cm;
+}
+
+.page1>.row2>.column1>.row2>.text1 p {
+	font-weight: bold;
+}
+
+.page1>.row1>.column1>.row4>.text1>.ShareclassNameWB {
+	margin-bottom: .40cm;
+}
+
+.page1>.row1>.column1>.row3>.text1>.FundNameWB {
+	padding-right: 15mm;
+}
+
+.page1>.row1>.column1>.row4>.text1>.item3 {
+	padding-right: 32mm;
+	width: 115mm;
+}
+
+.page1>.row1>.column2>.row1>.iconSection {
+	display: none;
+}
+
+.page1>.row2>.column1 {
+	width: 91.875mm;
+	background: var(--lightblue);
+	padding: 5.25mm 2.625mm 10.5mm 10.5mm;
+	margin-right: 5.25mm;
+}
+
+.page1>.row2>.column2 {
+	width: calc(100% - 94.5mm);
+	padding: 5.25mm 10.5mm 10.5mm 0mm;
+}
+
+.page1>.row2 {
+	display: flex;
+	position: relative;
+	height: 214.953mm;
+}
+
+.page1>.row2>.column1>.row1:after {
+	content: '';
+	background: url('./images/sustainability4_print.png');
+	display: block;
+	width: 4cm;
+	height: 4cm;
+	background-size: 100%;
+}
+
+.page1>.row2>.column1>.row1>img {
+	display: none;
+}
+
+.page1>.row2>.column1>.row1 {
+	margin-bottom: 0.52cm;
+}
+
+.page1>.row2>.column1>.row3>.text1 p {
+	margin-bottom: .39cm;
+}
+
+.page1>.row2>.column1>.row3>.text1 p sup {
+	font-size: 7pt;
+}
+
+.page1>.row2>.column1>.row4>.column1 {
+	display: none;
+}
+
+.page1>.row2>.column1>.row4>.column2 {
+	width: 100%;
+}
+
+.page1>.row2>.column1>.row4>.column2 p:before {
+	content: '.';
+	color: var(--darkblue);
+	font-size: 30px;
+	position: absolute;
+	top: -6px;
+	left: -2px;
+}
+
+.page1>.row2>.column1>.row4>.column2 p {
+	padding-left: 10px;
+	position: relative;
+}
+
+.page1>.row2>.column1>.row6>.text1 p {
+	padding: 1.5mm;
+	background: var(--whitecolor);
+	position: absolute;
+	width: calc(91.875mm - 5.25mm);
+	left: 2.625mm;
+	bottom: 2.5mm;
+	color: var(--darkblue);
+	font-family: var(--font-zurich-light);
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1 .label,
+.page1>.row2>.column2>.row4>.horizontal-list1 .label {
+	width: 45.5mm !important;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1 .value,
+.page1>.row2>.column2>.row4>.horizontal-list1 .value {
+	width: 56.875mm !important;
+}
+
+.page1>.row2>.column1>.row5>.text1>.item2 a {
+	color: var(--darkblue);
+	font-family: var(--font-zurich-medium);
+	font-weight: bolder;
+}
+
+.page1>.row2>.column2>.row1>.text1>.item2 {
+	padding-bottom: 1.313mm;
+}
+
+.page1>.row2>.column2>.row8>.column1>.row1>.column1>.row1,
+.page1>.row2>.column2>.row8>.column2>.row1>.column1>.row1,
+.page1>.row2>.column2>.row10>.column1>.row1>.column1>.row1,
+.page1>.row2>.column2>.row10>.column2>.row1>.column1>.row1 {
+	content: '';
+	background: url('./images/footprint.svg');
+	background-repeat: no-repeat;
+	display: block;
+	width: 12mm;
+	height: 12mm;
+}
+
+.page1>.row2>.column2>.row10>.column1>.row1>.column1>.row1 {
+	background: url('./images/windmill.svg');
+}
+
+.page1>.row2>.column2>.row8>.column2>.row1>.column1>.row1 {
+	background: url('./images/windmill.svg');
+}
+
+.page1>.row2>.column2>.row10>.column1>.row1>.column1>.row1 {
+	background: url('./images/business-involvement.svg');
+}
+
+.page1>.row2>.column2>.row10>.column2>.row1>.column1>.row1 {
+	background: url('./images/oil-barrel.svg');
+}
+
+.page1>.row2>.column2>.row8>.column1>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row8>.column2>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row8>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row8>.column2>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row10>.column1>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row10>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row10>.column2>.row1>.column2>.row1 p,
+.page1>.row2>.column2>.row10>.column2>.row1>.column3>.row1 p {
+	background: var(--footprintblue);
+	width: 12mm;
+	height: 12mm;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 13mm;
+	font-weight: bold;
+}
+
+.page1>.row2>.column2>.row8>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row8>.column2>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row10>.column1>.row1>.column3>.row1 p,
+.page1>.row2>.column2>.row10>.column2>.row1>.column3>.row1 p {
+	background: var(--footprintgreen);
+}
+
+.page1>.row2>.column2>.row4>.horizontal-list1 div,
+.page1>.row2>.column2>.row4>.horizontal-list1 div,
+.page1>.row2>.column2>.row2>.horizontal-list1 div,
+.page1>.row2>.column2>.row2>.horizontal-list1 div {
+	width: 100%;
+	display: flex;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1 .label,
+.page1>.row2>.column2>.row2>.horizontal-list1 .value,
+.page1>.row2>.column2>.row4>.horizontal-list1 .label,
+.page1>.row2>.column2>.row4>.horizontal-list1 .value,
+.page1>.row2>.column2>.row6>.column1>.row p,
+.page1>.row2>.column2>.row6>.column2>.row p,
+.page1>.row2>.column2>.row6>.column3>.row p,
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr td,
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th,
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr td,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr td,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr td,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th,
+.page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip,
+.page2>.row4>.column2>.row3>.column3>.row1>.text1>.displayname-tooltip {
+	border-bottom: .5pt solid var(--border-btm-clr);
+	width: 50%;
+	vertical-align: middle;
+	padding: 1.313mm 0;
+}
+
+.page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip,
+.page2>.row4>.column2>.row3>.column3>.row1>.text1>.displayname-tooltip {
+	border: none;
+	width: 100%;
+}
+
+.page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip,
+.page2>.row4>.column2>.row3>.column3>.row1>.text1>.displayname-tooltip {
+	text-align: right;
+}
+
+.page2>.row4>.column2>.row2 {
+	position: relative;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1 .label,
+.page1>.row2>.column2>.row2>.horizontal-list1 .value,
+.page1>.row2>.column2>.row4>.horizontal-list1 .label,
+.page1>.row2>.column2>.row4>.horizontal-list1 .value,
+.page1>.row2>.column2>.row6>.column1>.row p,
+.page1>.row2>.column2>.row6>.column2>.row p,
+.page1>.row2>.column2>.row6>.column3>.row p {
+	display: flex;
+	align-items: center;
+	padding: 1.2pt 0;
+}
+
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>td {
+	padding: 1.313mm 0;
+	border-bottom: 0.5pt solid var(--table-border);
+	line-height: normal;
+}
+
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>td:last-child {
+	text-align: right;
+}
+
+.page1>.row2>.column2>.row6>.column1>.row p,
+.page1>.row2>.column2>.row6>.column2>.row p,
+.page1>.row2>.column2>.row6>.column3>.row p,
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr td,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr td,
+.page2>.row4>.column2>.row2 {
+	width: auto;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr td:first-child {
+	width: calc(100% - 25mm);
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table {
+	table-layout: auto;
+}
+
+.page2>.row4>.column2>.row3>.column1 {
+	width: calc(100% - 45.5mm);
+}
+
+.page2>.row4>.column2>.row3 {
+	display: table;
+	width: 100%;
+}
+
+.page2>.row4>.column2>.row3>.column2,
+.page2>.row4>.column2>.row3>.column3 {
+	width: 22.75mm;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1,
+.page1>.row2>.column2>.row4,
+.page1>.row2>.column2>.row6 {
+	padding-bottom: 1.60mm;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1>.FundNameWB span {
+	font-weight: bold;
+	color: var(--Zurichblue);
+	font-size: 7pt !important;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1 .label,
+.page1>.row2>.column2>.row2>.horizontal-list1 .value,
+.page1>.row2>.column2>.row4>.horizontal-list1 .label,
+.page1>.row2>.column2>.row4>.horizontal-list1 .value,
+.page1>.row2>.column2>.row6>.column1>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column1>.row p,
+.page1>.row2>.column2>.row6>.column2>.row p,
+.page1>.row2>.column2>.row6>.column3>.row p {
+	color: var(--darkblue);
+}
+
+.page1>.row2>.column2>.row3 {
+	padding-bottom: 1.5mm;
+	border-bottom: .5pt solid var(--Zurichblue);
+}
+
+.page1>.row2>.column2>.row5,
+.page1>.row2>.column2>.row5>.text1>.item2 {
+	padding-bottom: 1.5mm;
+}
+
+.page1>.row2>.column2>.row6>.column1>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr th,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th,
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr th,
+.page1>.row2>.column2>.row2>.horizontal-list1>.FundNameWB span,
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>th {
+	border-bottom: .5pt solid var(--Zurichblue);
+	font-weight: bold;
+	color: var(--Zurichblue);
+	padding: 2.4pt 0;
+}
+
+.page1>.row2>.column2>.row2>.horizontal-list1>.FundNameWB span {
+	font-family: var(--font-zurich-medium) !important;
+	font-weight: normal;
+}
+
+
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2 {
+	text-align: center;
+	justify-content: center;
+}
+
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2,
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr.benchmark td {
+	position: relative;
+}
+
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2:before,
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2:before {
+	content: '';
+	width: 2.5mm;
+	height: 2.5mm;
+	background: var(--footprintblue);
+	display: block;
+	border-radius: 50%;
+	position: absolute;
+	left: -2px;
+	top: 3.5px;
+}
+
+.page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2:before {
+	background: var(--footprintgreen);
+	left: 26px;
+}
+
+.page1>.row2>.column2>.row6>.column2>.row p,
+.page1>.row2>.column2>.row6>.column3>.row p {
+	text-align: center;
+	justify-content: center;
+}
+
+.page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2>sup {
+	position: absolute;
+	top: 2px;
+	right: 3px;
+	font-family: var(--font-zurich-medium);
+	font-weight: normal;
+}
+
+.page1>.row2>.column2>.row7,
+.page1>.row2>.column2>.row8,
+.page1>.row2>.column2>.row9 {
+	padding-bottom: 2.625mm;
+}
+
+.page1>.row2>.column2>.row7>.column1 .item2,
+.page1>.row2>.column2>.row7>.column2 .item2,
+.page1>.row2>.column2>.row9>.column1 .item2,
+.page1>.row2>.column2>.row9>.column2 .item2 {
+	color: var(--darkblue);
+}
+
+.page2>.row4>.column1>.row1>.column2 {
+	margin-top: 0mm;
+}
+
+.page2>.row1>.column2 {
+	width: 100%;
+}
+
+.page2>.row1>.column2 .row1 .text1 p,
+.page3>.row1>.column2 .row1 .text1 p,
+.page4>.row1>.column2 .row1 .text1 p {
+	margin-bottom: 1.313pt;
+	font-size: 8pt;
+	line-height: 9.6pt;
+	font-family: var(--font-zurich-light);
+	color: var(--darkblue);
+	text-align: right;
+}
+
+.page2>.row1 {
+	display: flex;
+	width: 100%;
+	border-top: 0.3pt solid var(--Zurichblue);
+	margin-top: 1.313mm;
+	padding-top: 9.187mm;
+	margin-bottom: 0;
+}
+
+.page3>.row,
+.page4>.row {
+	width: 21cm;
+	padding: 0 10.5mm;
+	margin: 0 auto 0 auto;
+}
+
+.page3>.row1>.column1,
+.page4>.row1>.column1 {
+	width: 100%;
+	height: 0.3pt;
+	background: var(--Zurichblue);
+	margin-bottom: 9.19mm;
+	margin-top: 11.813mm;
+}
+
+.page2>.row1>.column2,
+.page3>.row1>.column2,
+.page4>.row1>.column2 {
+	position: absolute;
+	top: 30px;
+	right: 40px;
+}
+
+.page2>.row2 {
+	position: relative;
+}
+
+.page2>.row4>.column1 {
+	width: 50%;
+}
+
+.page2>.row4>.column2 {
+	width: 50%;
+	position: relative;
+	padding-top: 0mm;
+}
+
+.page2>.row4>.column2>.row2>.column p sup {
+	font-size: 6pt;
+}
+
+.page2>.row4>.column1>.row1>.column1>.row1>.performancetable1>h2 {
+	position: absolute;
+	top: -3.5mm;
+	font-weight: bold;
+	width: 16mm;
+}
+
+.page2>.row3>.pdfperformancechart1>h2 {
+	padding: 1.313mm 0 2mm 0;
+}
+
+.page2>.row2>.column2>.row2 .item2 {
+	position: absolute;
+	right: 42px;
+	top: 31px;
+}
+
+
+.page2>.row3>.pdfperformancechart1 .comboChart {
+	height: 100px !important;
+}
+
+.page2>.row3>.pdfperformancechart1>.keyWrapper>.keyContainer>.key-color {
+	height: .60mm;
+	margin-top: 1mm;
+}
+
+.page2>.row3>.pdfperformancechart1>.keyWrapper>.keyContainer:last-child>.key-color {
+	height: .70mm;
+	margin-top: .90mm;
+}
+
+.page2>.row3>.pdfperformancechart1>.keyWrapper {
+	padding-left: 3mm;
+}
+
+.page2>.row3 {
+	margin-bottom: 5.25mm;
+}
+
+.page2>.row4>.column1,
+.page2>.row5>.column1 {
+	padding-right: 2.625mm;
+}
+
+.page2>.row4>.column2,
+.page2>.row5>.column2 {
+	padding-left: 2.625mm;
+}
+
+.page2>.row4>.column2>.row1>.ratios1 h2 {
+	position: absolute;
+	top: 0px;
+	font-weight: bold;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 h2 {
+	display: none;
+}
+
+.page2>.row4>.column2>.row3 {
+	border-bottom: .5pt solid var(--border-btm-clr);
+}
+
+.page2>.row4>.column2>.row3>.column1>.row1>.text1>.displayname-tooltip {
+	padding: .5mm 0 1.3mm 0;
+}
+
+.page2>.row4>.column2>.row3>.column1>.row1>.text1>.displayname-tooltip sup {
+	font-size: 6pt;
+}
+
+.page2>.row4>.column2>.row2>.ratios1>table {
+	table-layout: fixed;
+}
+
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr th:not(:first-child),
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr td:not(:first-child),
+.page2>.row4>.column2>.row2>.column:not(.column1),
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child),
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr td:not(:first-child) {
+	width: 12.5mm;
+	text-align: center;
+	min-height: 1mm;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:first-child::before {
+	content: 'Statistics';
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:first-child {
+	width: calc(100% - 45.5mm) !important;
+	color: var(--Zurichblue);
+	font-weight: bold;
+	text-align: left;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child) {
+	width: 22.75mm !important;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr td:not(:first-child),
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child) {
+	text-align: right !important;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child) {
+	color: var(--Zurichblue);
+	font-weight: bold;
+}
+
+.page2>.row4>.column2>.row2>.ratios1 table tbody tr th {
+	border-bottom: .5pt solid var(--Zurichblue);
+}
+
+.page2>.row4>.column2 {
+	margin-top: -1.7mm;
+}
+
+.page2>.row4>.column2>.row2>.column1 {
+	width: calc(100% - 25mm);
+}
+
+.page2>.row4 {
+	margin-bottom: 5.25mm;
+	position: relative;
+}
+
+.page2>.row4>.column1>.row1>.column1>.row1>.performancetable1 table tbody tr th {
+	padding-top: 0;
+}
+
+.page2>.row5 {
+	margin-bottom: 5.25mm;
+}
+
+.page2>.row5>.column1>.row1>.holding1>h2,
+.page2>.row5>.column2>.row1>.breakdown1>h2 {
+	padding-bottom: 1.313mm;
+}
+
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>th:first-child {
+	text-align: left;
+}
+
+.page2>.row5>.column1>.row1>.holding1>table>tbody>tr>th:last-child {
+	text-align: right;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 .chart {
+	width: 42mm;
+	margin-right: 5.25mm;
+	float: left;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 table {
+	width: calc(100% - 47.25mm) !important;
+	margin-top: 2mm;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Key {
+	width: 5%;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Key .key-color {
+	display: block;
+	width: 2mm;
+	height: 2mm;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Name {
+	width: 45%;
+}
+
+.page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Weight {
+	width: 50%;
+	text-align: right;
+	color: var(--darkblue);
+}
+
+.page2>.row6>.column1 {
+	width: 100%;
+}
+
+.page2>.row6>.column2 {
+	width: 0%;
+}
+
+.page2>.row6>.column1>.row1>.profile>.item2 {
+	padding-bottom: 1.313mm;
+}
+
+.page2>.row7>.kiirisk {
+	position: relative;
+}
+
+.page2>.row7>.kiirisk>.kiiRiskRating .header,
+.page2>.row7>.kiirisk>.kiiRiskRating .description {
+	position: absolute;
+	bottom: -7.313mm;
+	width: 100%;
+	display: block;
+}
+
+.page2>.row7>.kiirisk>.kiiRiskRating .description {
+	bottom: -10.7mm;
+}
+
+.page2>.row7>.kiirisk>.kiiRiskRating .header th,
+.page2>.row7>.kiirisk>.kiiRiskRating .description td {
+	width: 50%;
+	display: block;
+	float: left;
+}
+
+.page2>.row7 .kiiRiskRating .rating {
+	background: var(--sandstone);
+}
+
+.page2>.row7 .kiiRiskRating .rating.selected {
+	background: var(--Zurichblue);
+	border: none;
+	color: #fff;
+}
+
+.page2>.row7 {
+	padding-bottom: 9mm;
+	margin-bottom: 5.25mm;
+}
+
+.page2>.row4>.column1>.row1>.column1 {
+	width: 65%;
+}
+
+.page2>.row4>.column1>.row1>.column2 {
+	width: 35%;
+	margin-top: 0mm;
+}
+
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:nth-child(2) {
+	vertical-align: bottom;
+}
+
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr th:first-child,
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr td:first-child {
+	width: 20%;
+	text-align: left;
+}
+
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr th:not(:first-child) {
+	vertical-align: bottom;
+}
+
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr th:not(:first-child),
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr td:not(:first-child) {
+	width: 11.42%;
+	text-align: center;
+}
+
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr td {
+	width: 11.42%;
+	text-align: center;
+}
+
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:first-child,
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr td:first-child,
+.page2>.row4>.column1>.row1>.column2 h2 {
+	display: none;
+}
+
+.page2>.row8>.text1>p {
+	margin-bottom: 1.313mm;
+}
+
+.page3>.row2>.column1>.row1>.benefits>.item2,
+.page3>.row3>.column1>.row1>.Risks>.item2,
+.page4>.row2>.column1>.row1>.text1>.item2 {
+	margin-bottom: 1.313mm;
+}
+
+.page3>.row2>.column1>.row2>.iconSection {
+	display: none;
+}
+
+.page3>.row2>.column1>.row2::before {
+	content: '';
+	background: url('./images/key_benefits.svg');
+	display: block;
+	width: 21.875mm;
+	height: 21.875mm;
+}
+
+.page3>.row2>.column1,
+.page3>.row3>.column1 {
+	width: 32.375mm;
+}
+
+.page4>.row2>.column1 {
+	margin-right: 5.25mm;
+	width: calc(210mm - (21mm + 5.25mm + 156.625mm));
+}
+
+.page3>.row2>.column2,
+.page3>.row3>.column2,
+.page4>.row2>.column2 {
+	width: 156.625mm;
+	padding-top: 5mm;
+}
+
+.page4>.row2>.column2 {
+	padding-top: 6.5mm;
+}
+
+.page3>.row2>.column2>.row1>.text1>p,
+.page4>.row2>.column2>.row:not(.row1) p {
+	padding-bottom: 5pt;
+	position: relative;
+}
+
+.page3>.row2>.column2>.row1>.text1>p:before {
+	content: '';
+	background: url(./images/tick.svg);
+	width: 3.104mm;
+	height: 3.104mm;
+	display: block;
+	background-repeat: no-repeat;
+	position: absolute;
+	left: -18px;
+	top: 3px;
+}
+
+.page3>.row2>.column2>.row1>.text1>p:last-child {
+	padding-bottom: 16.41mm;
+}
+
+.page3>.row1,
+.page3>.row2 {
+	background: var(--footprintblue);
+}
+
+.page3>.row2 {
+	margin-bottom: 16.57mm;
+}
+
+.page3>.row3>.column1>.row1>.Risks:after {
+	content: '';
+	background: url('./images/warning.svg');
+	display: block;
+	width: 21.875mm;
+	height: 21.875mm;
+}
+
+.page3>.row3>.column2>.row p {
+	padding-bottom: 4pt;
+}
+
+.page3>.row4>.text1>.item2 {
+	background: var(--darkblue);
+	width: 156.625mm;
+	padding: 2.625mm;
+	color: var(--whitecolor);
+	position: absolute;
+	bottom: 10.5mm;
+	right: 10.5mm;
+}
+
+.page4>.row1,
+.page4>.row2 {
+	background: var(--dovelight);
+}
+
+.page4>.row2>.column1>.row2 p {
+	padding-bottom: 7.5mm;
+}
+
+.page4>.row2>.column1>.row3 p {
+	padding-bottom: 2mm;
+}
+
+.page4>.row2>.column1>.row4 p {
+	padding-bottom: 4.75mm;
+}
+
+.page4>.row2>.column1>.row5 p {
+	padding-bottom: 1.75mm;
+}
+
+.page4>.row2>.column1>.row6 p {
+	padding-bottom: 4mm;
+}
+
+.page4>.row2>.column1>.row7 p {
+	padding-bottom: 3.5mm;
+}
+
+.page4>.row2>.column1>.row8 p {
+	padding-bottom: 1.5mm;
+}
+
+.page4>.row2>.column1>.row9 p {
+	padding-bottom: 8mm;
+}
+
+.page4>.row2>.column1>.row10 p {
+	padding-bottom: 3mm;
+}
+
+.page4>.row2>.column1>.row11 p {
+	padding-bottom: 2mm;
+}
+
+.page4>.row2>.column2>.row10 p {
+	padding-bottom: 3mm !important;
+}
+
+.page4>.row2>.column2>.row9 p {
+	padding-bottom: 2.5mm !important;
+}
+
+.page4>.row2>.column1>.row12 p {
+	padding-bottom: 4.5mm;
+}
+
+.page4>.row2>.column1>.row13 p {
+	padding-bottom: 7.75mm;
+}
+
+.page4>.row2>.column1>.row14 p {
+	padding-bottom: 2.5mm;
+}
+
+.page4>.row2 {
+	padding-bottom: 10.5mm;
+	margin-bottom: 10.5mm;
+}
+
+.page4>.row5 {
+	margin-bottom: 10mm;
+	position: absolute;
+	bottom: 10.5mm;
+	left: 10.5mm;
+	padding: 0 5.25mm 0 0;
+	width: 91.875mm;
+}
+
+.page4>.row5>.column1 {
+	width: 36%;
+}
+
+.page4>.row5>.column1 .row1 {
+	position: relative;
+}
+
+.page4>.row4>.column1>.row1.logo1 {
+	width: auto;
+	background: url('./images/logo-three-zurich.jpg');
+	height: 36px;
+	background-size: 95%;
+	background-repeat: no-repeat;
+}
+
+.page2>.row4>.column1>.row1>.column4 .item2 {
+	padding: 1pt 15pt 1pt 5pt;
+	font-size: 6pt;
+	margin: 0;
+	border-left: .5pt solid var(--Zurichblue);
+}
+
+.page4>.row5>.column2 {
+	width: 0%;
+}
+
+.page4>.row5>.column1>.row1>.column1,
+.page4>.row5>.column1>.row1>.column2 {
+	width: 0%;
+}
+
+.page4>.row5>.column1 {
+	width: 100%;
+}
+
+.page4>.row5>.column1>.row1>.column3 {
+	width: 36%;
+}
+
+.page4>.row5>.column1>.row1>.column4 {
+	width: 64%;
+}
+
+.page4>.row5>.column1>.row1>.column3>.row1 {
+	width: auto;
+	background: url(./images/logo-three-zurich.jpg);
+	height: 36px;
+	background-size: 95%;
+	background-repeat: no-repeat;
+}
+
+.page4>.row5>.column1>.row1>.column4>.row1>.text1>.item2 {
+	padding: 1pt 0pt 1pt 5pt;
+	font-size: 6pt;
+	margin: 0;
+	border-left: .5pt solid var(--Zurichblue);
+}
+
+.page4>.row4>.column1>.row1>.text1>p {
+	font-family: var(--font-zurich-light);
+	font-size: 9.5pt;
+	line-height: 11.4pt;
+	color: var(--blackcolor);
+	margin: 0;
+}
+
+.page4>.row4>.column1 {
+	width: 91.875mm;
+}
+
+.page4>.row4 {
+	position: absolute;
+	bottom: 30mm;
+}
+
+.page4>.row4>.column1>.row1>.text1 {
+	padding-bottom: 10mm;
+	margin-bottom: 10mm;
+	border-bottom: .5pt solid var(--Zurichblue);
+}
+
+.page1>.row2>.column2>.row8>.column1>.row1>.column1,
+.page1>.row2>.column2>.row8>.column1>.row1>.column2,
+.page1>.row2>.column2>.row8>.column1>.row1>.column3,
+.page1>.row2>.column2>.row8>.column2>.row1>.column1,
+.page1>.row2>.column2>.row8>.column2>.row1>.column2,
+.page1>.row2>.column2>.row8>.column2>.row1>.column3,
+.page1>.row2>.column2>.row10>.column1>.row1>.column1,
+.page1>.row2>.column2>.row10>.column1>.row1>.column2,
+.page1>.row2>.column2>.row10>.column1>.row1>.column3,
+.page1>.row2>.column2>.row10>.column2>.row1>.column1,
+.page1>.row2>.column2>.row10>.column2>.row1>.column2,
+.page1>.row2>.column2>.row10>.column2>.row1>.column3 {
+	width: auto;
+	margin-right: 2mm;
+}
+
+.page2>.row3>.pdfperformancechart1>.chart {
+	height: 150px;
+}
+
+.kiiRiskRating .arrow td {
+	background-image: url('./images/arrow.png');
+	background-size: 100%;
+	width: 100%;
+	height: 13px !important;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+.page2>.row7>.kiirisk>.kiiRiskRating>tbody>.arrow {
+	position: absolute;
+	top: 5mm;
+	height: 13px;
+	width: 100%;
+}
+
+.page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr.benchmark td:first-child:after {
+	content: '6';
+	font-size: 6pt;
+	position: absolute;
+	top: 1px;
+	right: 9px;
+}
+
+html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr.benchmark td:first-child:after {
+	right: 10.5px;
+}
+
+html[lang="it-IT"] .page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr.benchmark td:first-child:after {
+	right: 10px;
+}
+
+html[lang="de-DE"] .page2>.row4>.column1>.row1>.column1 .performancetable1 table tbody tr.benchmark td:first-child:after {
+	right: 10.5px;
+}
+
+.page2>.row10 {
+	position: absolute;
+	left: 0;
+	Padding: 0 1.05cm 1.05cm 1.05cm;
+	bottom: 0;
+}
+
+.page4>.row2>.column2>.row7 p {
+	padding-bottom: 5.5mm !important;
+}
+
+.pdfperformancechart1 .highcharts-container .highcharts-root text,
+.pdfperformancechart1 .highcharts-container .highcharts-axis-labels span {
+	color: var(--darkblue) !important;
+	fill: var(--darkblue) !important;
+}
+
+.page4 {
+	background: url(./images/footer-shape.jpg);
+	background-size: 44%;
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+
+.page1>.row2>.column1>.row5>.column1 {
+	width: 5% !important;
+}
+
+.page1>.row2>.column1>.row5>.column2 {
+	width: 95% !important;
+}
+
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th {
+	padding-top: 0;
+	position: relative;
+}
+
+.page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:nth-child(2)::before {
+	content: '5';
+	font-size: 5pt;
+	position: absolute;
+	top: -6px;
+	right: 6px;
+}
+
+.page1>.row2>.column1>.row5>.column1>.row4 {
+	padding-top: 4.5mm;
+}
+
+.page1>.row2>.column1>.row5>.column1>.row4 p {
+	line-height: normal;
+}
+
+html[lang="de-DE"] .page3>.row2>.column2>.row1>.text1>p:last-child {
+	padding-bottom: 3mm;
+}
+
+.page2>.row4>.column2>.row1>.ratios1 table tbody tr th {
+	padding-top: 0mm;
+}
+
+html[lang="de-DE"] .page3>.row2 {
+	margin-bottom: 3mm;
+}
+
+html[lang="de-DE"] .page3>.row3>.column2 {
+	padding-top: .5mm;
+}
+
+html[lang="de-DE"] .page3>.row1>.column1 {
+	margin-bottom: 0mm;
+}
+
+html[lang="de-DE"] .page4>.row4>.column1>.row1>.text1 {
+	padding-bottom: 2mm;
+	margin-bottom: 2mm;
+}
+
+html[lang="de-DE"] .page4>.row3>.text1>p.item4 {
+	padding: 0pt 120px 3pt 0;
+}
+
+html[lang="de-DE"] .page4>.row4 {
+	bottom: 19mm;
+}
+
+html[lang="de-DE"] .page4>.row5 {
+	margin-bottom: -3mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row2>.text1>p.item2 {
+	overflow-wrap: break-word;
+}
+
+html[lang="de-DE"] .page1>.row2>.column2>.row9 {
+	padding-bottom: 1mm;
+}
+
+html[lang="de-DE"] .page1>.row1 {
+	height: 76.3mm;
+	padding: 9mm 10.5mm 1.8mm 10.5mm;
+	position: relative;
+}
+
+html[lang="de-DE"] .page1 {
+	background: url(./images/header-german.jpg);
+	background-size: 21cm 76.3mm;
+	background-repeat: no-repeat;
+	padding: 0;
+}
+
+html[lang="de-DE"] .page1>.row1>.column1>.row2 {
+	margin-bottom: 0cm;
+}
+
+html[lang="de-DE"] .page1>.row1>.column1>.row3 {
+	margin-bottom: 0.10cm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row1 {
+	margin-bottom: 0.15cm;
+}
+
+html[lang="de-DE"] .page1>.row2 {
+	height: 220.7mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row3>.text1 p.item2 br {
+	display: none;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row3>.text1 p {
+	margin-bottom: 0cm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1 {
+	padding: 4mm 2.625mm 10.5mm 10.5mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column2 {
+	padding: 4mm 10.5mm 10.5mm 0mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row2 {
+	padding-bottom: 2mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row3 {
+	padding-bottom: 2mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row6 {
+	padding-bottom: 2mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row5>.column1>.row3 {
+	padding-top: 4mm;
+}
+
+html[lang="fr-FR"] .page1>.row2>.column1>.row5>.column1>.row2 {
+	padding-top: 4.35mm;
+}
+
+html[lang="it-IT"] .page1>.row2>.column1>.row5>.column1>.row2 {
+	padding-top: 4.5mm;
+}
+
+html[lang="it-IT"] .page3>.row2,
+html[lang="fr-FR"] .page3>.row2 {
+	margin-bottom: 2.57mm;
+}
+
+html[lang="fr-FR"] .page3>.row1>.column1 {
+	margin-bottom: 4mm;
+}
+
+html[lang="fr-FR"] .page3>.row3>.column2 {
+	padding-top: 3mm;
+}
+
+html[lang="it-IT"] .page3>.row2>.column2>.row1>.text1>p:last-child,
+html[lang="fr-FR"] .page3>.row2>.column2>.row1>.text1>p:last-child {
+	padding-bottom: 3.41mm;
+}
+
+html[lang="de-DE"] .page1>.row2>.column1>.row5>.column1>.row4 {
+	padding-top: 4.85mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row2 p {
+	padding-bottom: 11.15mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row3 p {
+	padding-bottom: 4mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row4 p {
+	padding-bottom: 8mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row5 p {
+	padding-bottom: 1.75mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row6 p {
+	padding-bottom: 4.35mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row7 p {
+	padding-bottom: 9mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column2>.row7 p {
+	padding-bottom: 2.5mm !important;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row8 p {
+	padding-bottom: 4.65mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row9 p {
+	padding-bottom: 10.85mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row10 p {
+	padding-bottom: 3.25mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row11 p {
+	padding-bottom: 4.75mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row12 p {
+	padding-bottom: 4.75mm;
+}
+
+html[lang="de-DE"] .page4>.row2>.column1>.row13 p {
+	padding-bottom: 7.75mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column2>.row3 p {
+	padding-bottom: 5mm !important;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row4 p {
+	padding-bottom: 7.65mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row5 p {
+	padding-bottom: 4.5mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row6 p {
+	padding-bottom: 2.15mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row7 p {
+	padding-bottom: 5.5mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column2>.row7 p {
+	padding-bottom: 2.5mm !important;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row8 p {
+	padding-bottom: 4.5mm !important;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row10 p {
+	padding-bottom: 5.8mm !important;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row11 p {
+	padding-bottom: 1.8mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row2 p {
+	padding-bottom: 8mm;
+}
+
+html[lang="it-IT"] .page4>.row2>.column1>.row9 p {
+	padding-bottom: 8.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row2 p {
+	padding-bottom: 10.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row2 p {
+	padding-bottom: 10.75mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column2>.row3 p {
+	padding-bottom: 4.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row4 p {
+	padding-bottom: 7.75mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row3 p {
+	padding-bottom: 2mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row5 p {
+	padding-bottom: 4.75mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row3 p {
+	padding-bottom: 1.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column2>.row5 p {
+	padding-bottom: 2mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column2>.row6 p {
+	padding-bottom: 4.2mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column2>.row7 p {
+	padding-bottom: 2.5mm !important;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row6 p {
+	padding-bottom: 4.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row7 p {
+	padding-bottom: 5.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row8 p {
+	padding-bottom: 4.75mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row9 p {
+	padding-bottom: 10.75mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row12 p {
+	padding-bottom: 1.85mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row10 p {
+	padding-bottom: 3.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2>.column1>.row13 p {
+	padding-bottom: 7.5mm;
+}
+
+html[lang="fr-FR"] .page4>.row2 {
+	padding-bottom: 2.5mm;
+	margin-bottom: 2.5mm;
+}
+
+html[lang="fr-FR"] .page1>.row2>.column1>.row5>.column1>.row1 {
+	padding-top: .25mm;
+}
+
+html[lang="it-IT"] .page4>.row2 {
+	margin-bottom: 7.5mm;
+}
+
+html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:last-child {
+	padding-left: 1mm;
+}
+
+/*Theme: ZIAG_Carbon*/
