@@ -522,19 +522,15 @@ table {
 	table-layout: auto;
 }
 
-.page2>.row4>.column2>.row3>.column1 {
-	width: calc(100% - 45.5mm);
-}
-
 .page2>.row4>.column2>.row3 {
 	display: table;
 	width: 100%;
 }
 
-.page2>.row4>.column2>.row3>.column2,
+/* .page2>.row4>.column2>.row3>.column2,
 .page2>.row4>.column2>.row3>.column3 {
 	width: 22.75mm;
-}
+} */
 
 .page1>.row2>.column2>.row2>.horizontal-list1,
 .page1>.row2>.column2>.row4,
@@ -771,10 +767,6 @@ table {
 
 .page2>.row4>.column2>.row2>.ratios1 h2 {
 	display: none;
-}
-
-.page2>.row4>.column2>.row3 {
-	border-bottom: .5pt solid var(--border-btm-clr);
 }
 
 .page2>.row4>.column2>.row3>.column1>.row1>.text1>.displayname-tooltip {
@@ -1803,5 +1795,64 @@ html[lang="de-DE"] .page5 > .row2 > .column1 > .row6,
 html[lang="de-DE"] .page5 > .row2 > .column2 > .row6{
 	min-height: 54px;
 	margin-bottom:6px;
+}
+.page2>.row4>.column2>.row3>.column1 > .row1 h2{
+	display: none;
+}
+.page2>.row4>.column2>.row3>.column1 > .row1 tr:first-child {
+    display: none;
+}
+.page2>.row4>.column2>.row3>.column2 span.label {
+    display: none;
+}
+.page2>.row4>.column2>.row3>.column1 > .row1 tr td.rowheader,
+.page2>.row4>.column2>.row3>.column1 .horizontal-list .label {
+    width: 195px;
+}
+.page2>.row4>.column2>.row3>.column1 > .row1 tr td.YAnnSinceLaunch,
+.page2>.row4>.column2>.row3>.column1 .horizontal-list .value{
+	width: 70px;
+	text-align: right;
+}
+.page2>.row4>.column2>.row3>.column1 {
+    width: 265px;
+}
+.page2>.row4>.column2>.row3>.column2, .page2>.row4>.column2>.row3>.column3{
+    width: 77px;
+	text-align: right;
+}
+.page2>.row4>.column2>.row3>.column2 span.value,
+.page2>.row4>.column2>.row3>.column1 > .row1 tr td.rowheader,
+.page2>.row4>.column2>.row3>.column1 .horizontal-list .label,
+.page2>.row4>.column2>.row3>.column1 > .row1 tr td.YAnnSinceLaunch,
+.page2>.row4>.column2>.row3>.column1 .horizontal-list .value,
+.page2>.row4>.column2>.row3>.column2 > .row1{
+	height: 21px;
+	min-height: 21px;
+	border-bottom: 0.5pt solid var(--border-btm-clr);
+	padding-top:5px;
+	font-size: 8pt;
+	line-height: normal;
+	color:var(--darkblue);
+	margin: 0;
+	vertical-align: top;
+}
+.page2>.row4>.column .horizontal-list span:first-child{
+	margin-left: 0;
+}
+.page2>.row4>.column .horizontal-list div,
+.page2>.row4>.column2>.row3>.column2 span.value {
+    width: 100%;
+}
+.page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip{
+	padding:0;
+	margin: 0;
+}
+.page2>.row4>.column2>.row3>.column1 table{
+	border:none !important;
+	border-spacing: 0;
+	height: 21px;
+	min-height: 21px;
+	border-collapse: separate;
 }
 /*Theme: ZIAG_Carbon*/
