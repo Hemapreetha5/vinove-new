@@ -26,8 +26,7 @@
 	--Zurichblue: #2167AE;
 	--darkblue: #23366F;
 	--border-btm-clr: #dce5e4;
-	/* --footprintblue: #9ddcf8; */
-	--footprintblue: #92DCF6;
+	--footprintblue: #9ddcf8;
 	--footprintgreen: #c6e4ce;
 	--table-border: #DDE4E3;
 	--lightblue: #e8eeed;
@@ -95,8 +94,7 @@ a {
 }
 
 .page3,
-.page4,
-.page5 {
+.page4 {
 	padding: 0;
 }
 
@@ -139,17 +137,14 @@ table {
 .page2>.row6>.column1>.row1>.profile>.item2,
 .page3>.row2>.column1>.row1>.benefits>.item2,
 .page3>.row3>.column1>.row1>.Risks>.item2,
-.page4>.row2>.column1>.row1>.text1>.item2,
-.page4>.row3>.column1>.row1>.text1>.item2,
-.page5>.row2>.column1>.row1>.text1>.item2,
-.page3>.row1>.column1>.row1>.text1>.item2,
-.Risk.profile h2.item2{
+.page4>.row2>.column1>.row1>.text1>.item2 {
 	font-family: var(--font-zurich-medium);
 	font-size: 12pt;
 	line-height: 14.4pt;
 	color: var(--Zurichblue);
 	margin: 0;
 }
+
 /*04*/
 .page1>.row2>.column1>.row3>.text1 p,
 .page1>.row2>.column1>.row2>.text1 p,
@@ -158,7 +153,6 @@ table {
 .page1>.row2>.column1>.row4>.column2 p,
 .page3>.row2>.column2>.row1>.text1>p,
 .page3>.row3>.column2>.row p,
-.page4 > .row3 > .column2 >.row p,
 .page3>.row4>.text1>.item2 {
 	font-family: var(--font-zurich-regular);
 	font-size: 10pt;
@@ -194,8 +188,6 @@ table {
 .page2>.row5>.column1>.row1>.holding1>table>tbody>tr>th,
 .page2>.row7>.kiirisk>.kiiRiskRating .header th,
 .page2>.row7>.kiirisk>.kiiRiskRating .description td,
-.kiirisk>.kiiRiskRating .header th,
-.kiirisk>.kiiRiskRating .description td,
 .page2>.row4>.column1>.row1>.column1>.row1>.performancetable1>h2,
 .page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th,
 .page1>.row2>.column2>.row10>.column1>.row1>.column2>.row1 p,
@@ -229,7 +221,6 @@ table {
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr td,
 .page2>.row4>.column2>.row2>.ratios1 h2,
 .page2>.row8>.text1>p,
-.page3>.row7>.text1>p,
 .page2>.row4>.column2>.row3>.column1>.row1>.text1>.displayname-tooltip,
 .page2>.row4>.column2>.row3>.column2>.row1>.text1>.displayname-tooltip,
 .page2>.row4>.column2>.row3>.column3>.row1>.text1>.displayname-tooltip {
@@ -251,7 +242,7 @@ table {
 }
 
 /*footer footnote*/
-.page4>.row3>.text1>p ,.page5 > .row3 p.item3{
+.page4>.row3>.text1>p {
 	font-size: 5pt;
 	line-height: 6pt;
 	padding: 0pt 0 3pt 0;
@@ -272,7 +263,7 @@ table {
 }
 
 .page1>.row2>.column1>.row2>.text1 p {
-	/* font-weight: bold; */
+	font-weight: bold;
 }
 
 .page1>.row1>.column1>.row4>.text1>.ShareclassNameWB {
@@ -560,14 +551,16 @@ table {
 	color: var(--darkblue);
 }
 
-.page1>.row2>.column2>.row3,
-.page1>.row2>.column2>.row5 {
+.page1>.row2>.column2>.row3 {
 	padding-bottom: 1.5mm;
 	border-bottom: .5pt solid var(--Zurichblue);
 }
-.page1>.row2>.column2>.row5 {
-	margin-bottom: 3px;
+
+.page1>.row2>.column2>.row5,
+.page1>.row2>.column2>.row5>.text1>.item2 {
+	padding-bottom: 1.5mm;
 }
+
 .page1>.row2>.column2>.row6>.column1>.row1>.text1>.item2,
 .page1>.row2>.column2>.row6>.column2>.row1>.text1>.item2,
 .page1>.row2>.column2>.row6>.column3>.row1>.text1>.item2,
@@ -673,14 +666,17 @@ table {
 	margin-bottom: 0;
 }
 
-.page3>.row, .page4>.row, .page5>.row1, .page5>.row2,.page5>.row3 {
+.page3>.row,
+.page4>.row {
 	width: 21cm;
 	padding: 0 10.5mm;
 	margin: 0 auto 0 auto;
 }
-.page5>.row1>.column1{
+
+.page3>.row1>.column1,
+.page4>.row1>.column1 {
 	width: 100%;
-	height: 1pt;
+	height: 0.3pt;
 	background: var(--Zurichblue);
 	margin-bottom: 9.19mm;
 	margin-top: 11.813mm;
@@ -693,9 +689,7 @@ table {
 	top: 30px;
 	right: 40px;
 }
-.page5>.row3{
-	padding-top:1cm;
-}
+
 .page2>.row2 {
 	position: relative;
 }
@@ -795,15 +789,11 @@ table {
 .page2>.row4>.column2>.row2>.column:not(.column1),
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr th:not(:first-child),
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr td:not(:first-child) {
-	/* width: 12.5mm; */
-	width: 17mm;
+	width: 12.5mm;
 	text-align: center;
 	min-height: 1mm;
 }
-.page2>.row4>.column2>.row2 > .column {
-    padding: 2px;
-    border-bottom: 0.5pt solid var(--Zurichblue);
-}
+
 .page2>.row4>.column2>.row2>.ratios1 table tbody tr th:first-child::before {
 	content: 'Statistics';
 }
@@ -838,9 +828,7 @@ table {
 }
 
 .page2>.row4>.column2>.row2>.column1 {
-	/* width: calc(100% - 25mm); */
-	width: calc(100% - 34mm);
-
+	width: calc(100% - 25mm);
 }
 
 .page2>.row4 {
@@ -895,9 +883,9 @@ table {
 }
 
 .page2>.row5>.column2>.row1>.breakdown1 table tbody tr td.Weight {
-	width: auto;
-    text-align: right;
-    color: var(--darkblue);
+	width: 50%;
+	text-align: right;
+	color: var(--darkblue);
 }
 
 .page2>.row6>.column1 {
@@ -912,46 +900,40 @@ table {
 	padding-bottom: 1.313mm;
 }
 
-.page2>.row7>.kiirisk ,.kiirisk {
+.page2>.row7>.kiirisk {
 	position: relative;
 }
 
 .page2>.row7>.kiirisk>.kiiRiskRating .header,
-.page2>.row7>.kiirisk>.kiiRiskRating .description,
-.kiirisk>.kiiRiskRating .header,
-.kiirisk>.kiiRiskRating .description {
+.page2>.row7>.kiirisk>.kiiRiskRating .description {
 	position: absolute;
 	bottom: -7.313mm;
 	width: 100%;
 	display: block;
 }
 
-.page2>.row7>.kiirisk>.kiiRiskRating .description,
-.kiirisk>.kiiRiskRating .description {
+.page2>.row7>.kiirisk>.kiiRiskRating .description {
 	bottom: -10.7mm;
 }
 
 .page2>.row7>.kiirisk>.kiiRiskRating .header th,
-.page2>.row7>.kiirisk>.kiiRiskRating .description td,
-.kiirisk>.kiiRiskRating .header th,
-.kiirisk>.kiiRiskRating .description td {
+.page2>.row7>.kiirisk>.kiiRiskRating .description td {
 	width: 50%;
 	display: block;
 	float: left;
 }
 
-.page2>.row7 .kiiRiskRating .rating ,.kiiRiskRating .rating {
+.page2>.row7 .kiiRiskRating .rating {
 	background: var(--sandstone);
 }
 
-.page2>.row7 .kiiRiskRating .rating.selected,
-.kiiRiskRating .rating.selected {
+.page2>.row7 .kiiRiskRating .rating.selected {
 	background: var(--Zurichblue);
 	border: none;
 	color: #fff;
 }
 
-.page2>.row7,.page3>.row6 {
+.page2>.row7 {
 	padding-bottom: 9mm;
 	margin-bottom: 5.25mm;
 }
@@ -997,26 +979,21 @@ table {
 	display: none;
 }
 
-.page2>.row8>.text1>p,
-.page3>.row7>.text1>p {
-	margin-bottom: 1.313mm;
-}
-.page3>.row1>.column1>.row1>.text1>.item2,
-.page3>.row2>.column1>.row1>.benefits>.item2,
-.page3>.row3>.column1>.row1>.Risks>.item2,
-.page4>.row2>.column1>.row1>.text1>.item2,
-.page5>.row2>.column1>.row1>.text1>.item2,
-.Risk.profile h2.item2 {
+.page2>.row8>.text1>p {
 	margin-bottom: 1.313mm;
 }
 
-.page3>.row2>.column1>.row2>.iconSection,
-.page4 > .row2 > .column1>.row2>.iconSection {
+.page3>.row2>.column1>.row1>.benefits>.item2,
+.page3>.row3>.column1>.row1>.Risks>.item2,
+.page4>.row2>.column1>.row1>.text1>.item2 {
+	margin-bottom: 1.313mm;
+}
+
+.page3>.row2>.column1>.row2>.iconSection {
 	display: none;
 }
 
-.page3>.row2>.column1>.row2::before,
-.page4 > .row2 > .column1>.row2::before {
+.page3>.row2>.column1>.row2::before {
 	content: '';
 	background: url('./images/key_benefits.svg');
 	display: block;
@@ -1026,57 +1003,32 @@ table {
 
 .page3>.row2>.column1,
 .page3>.row3>.column1 {
-	/* width: 32.375mm; */
+	width: 32.375mm;
 }
 
-.page4>.row2>.column1,.page4 > .row3 > .column1 {
+.page4>.row2>.column1 {
 	margin-right: 5.25mm;
 	width: calc(210mm - (21mm + 5.25mm + 156.625mm));
 }
-.page3>.row3>.column1{
-	width: 150mm;
-		/* margin-left:-80px; */
-}
-.page3>.row3>.column2{
-	width: 120mm;
-	/* margin-left:-80px; */
-}
-.page3 > .row3 {
-    /* display: flex; */
-}
-.page4>.row2>.column2,
-.page4>.row3>.column2{
+
+.page3>.row2>.column2,
+.page3>.row3>.column2,
+.page4>.row2>.column2 {
 	width: 156.625mm;
 	padding-top: 5mm;
 }
-.page5 > .row2 > .column1 {
-	margin-right: 5.25mm;
-	width: calc(210mm - (21mm + 5.25mm + 136.625mm));
-}
-.page5 > .row2 > .column2 {
-	width: 136.625mm;
-    padding-top: 6.5mm;
-}
-.page5 > .row2 > .column1 p{
-	word-break: break-word;
-}
+
 .page4>.row2>.column2 {
 	padding-top: 6.5mm;
 }
-.page3 .donutchart .chart {
-    height: 300px;
-}
-.page3 .donutchart .chart .highcharts-legend-item.highcharts-pie-series text {
-    font-size: 8px !important;
-}
+
 .page3>.row2>.column2>.row1>.text1>p,
 .page4>.row2>.column2>.row:not(.row1) p {
 	padding-bottom: 5pt;
 	position: relative;
 }
 
-.page3>.row2>.column2>.row1>.text1>p:before,
-.page4>.row2>.column2 p:before {
+.page3>.row2>.column2>.row1>.text1>p:before {
 	content: '';
 	background: url(./images/tick.svg);
 	width: 3.104mm;
@@ -1094,15 +1046,14 @@ table {
 
 .page3>.row1,
 .page3>.row2 {
-	/* background: var(--footprintblue); */
+	background: var(--footprintblue);
 }
 
 .page3>.row2 {
 	margin-bottom: 16.57mm;
 }
 
-.page3>.row3>.column1>.row1>.Risks:after,
-.page4 > .row3 > .column1>.row1>.Risks:after {
+.page3>.row3>.column1>.row1>.Risks:after {
 	content: '';
 	background: url('./images/warning.svg');
 	display: block;
@@ -1110,8 +1061,7 @@ table {
 	height: 21.875mm;
 }
 
-.page3>.row3>.column2>.row p,
-.page4 > .row3 > .column2 >.row p {
+.page3>.row3>.column2>.row p {
 	padding-bottom: 4pt;
 }
 
@@ -1127,7 +1077,7 @@ table {
 
 .page4>.row1,
 .page4>.row2 {
-	background: var(--footprintblue);
+	background: var(--dovelight);
 }
 
 .page4>.row2>.column1>.row2 p {
@@ -1191,24 +1141,10 @@ table {
 }
 
 .page4>.row2 {
-	/* padding-bottom: 10.5mm; */
+	padding-bottom: 10.5mm;
 	margin-bottom: 10.5mm;
-	padding-top: 1cm;
-    padding-bottom: 1cm;
 }
-.page5>.row2,.page5>.row1{
-	background-color: #EAEEEE;
-}
-.page4>.row2>.column1 .iconSection{
-	width:100%;
-	object-fit: contain;
-}
-.page4>.row2>.column2 p {
-    padding-bottom: 5pt;
-	position: relative;
-    color: var(--darkblue);
-	font-size: 10pt;;
-}
+
 .page4>.row5 {
 	margin-bottom: 10mm;
 	position: absolute;
@@ -1289,17 +1225,11 @@ table {
 	width: 91.875mm;
 }
 
-/* .page4>.row4 {
+.page4>.row4 {
 	position: absolute;
 	bottom: 30mm;
-} */
-.page4>.row4 {
-    width: 157mm;
-    margin: 35px 0 0 163px;
-    background: var(--darkblue);
-    color: var(--whitecolor);
-      padding: 2.625mm;
 }
+
 .page4>.row4>.column1>.row1>.text1 {
 	padding-bottom: 10mm;
 	margin-bottom: 10mm;
@@ -1335,8 +1265,7 @@ table {
 	display: block;
 }
 
-.page2>.row7>.kiirisk>.kiiRiskRating>tbody>.arrow ,
-.kiirisk>.kiiRiskRating>tbody>.arrow {
+.page2>.row7>.kiirisk>.kiiRiskRating>tbody>.arrow {
 	position: absolute;
 	top: 5mm;
 	height: 13px;
@@ -1468,8 +1397,7 @@ html[lang="de-DE"] .page1>.row1 {
 }
 
 html[lang="de-DE"] .page1 {
-	/* background: url(./images/header-german.jpg); */
-	background: url(./images/bg-image.png);
+	background: url(./images/header-german.jpg);
 	background-size: 21cm 76.3mm;
 	background-repeat: no-repeat;
 	padding: 0;
@@ -1733,76 +1661,5 @@ html[lang="it-IT"] .page4>.row2 {
 html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:last-child {
 	padding-left: 1mm;
 }
-.page1>.row2>.column2 .iconSection {
-    width: 100%;
-    height: auto;
-}
-.page2>.row5>.column1 .breakdown td,
-.page2>.row6 .breakdown td {
-    border-bottom: 0.5pt solid var(--border-btm-clr);
-    color: var(--Zurichblue);
-    padding: 2.4pt 0;
-	font-size: 8pt;
-}
-.page2>.row5>.column1 .breakdown td:last-child,
-.page2>.row6 .breakdown td:last-child {
-    text-align: right;
-}
-.page2>.row6 .breakdown{
-	width:50%;
-	padding-right: 2.625mm;
-}
-.page2>.row5>.column1 h2, .page2>.row6 h2 {
-    border-bottom: .5pt solid var(--Zurichblue);
-    font-weight: bold;
-    color: var(--Zurichblue);
-    padding: 2.4pt 0;
-	font-family: var(--font-zurich-regular);
-	font-size: 8pt;
-}
-.page2>.row7 {
-    padding-bottom: 9mm;
-    margin-bottom: 5.25mm;
-    bottom: 0;
-    position: absolute;
-    left: 1cm;
-    width: 19cm;
-    z-index: 9;
-}
-.page2>.row7 p {
-    font-size: 7pt;
-    /* color: var(--Zurichblue); */
-	color: var(--darkblue);
-}
-.page4 > .row3 > .column2 p,.page5 > .row p{
-	/* color: var(--Zurichblue); */
-	color: var(--darkblue);
-	font-size: 8pt;
-}
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row2,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row2{
-	min-height: 80px;
-	margin-bottom:6px;
-}
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row3,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row3{
-	/* min-height: 26px; */
-	min-height: 32px;
-	margin-bottom:6px;
-}
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row4,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row4{
-	min-height: 42px;
-	margin-bottom:6px;
-}
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row5,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row5{
-	min-height: 54px;
-	margin-bottom:6px;
-}
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row6,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row6{
-	min-height: 54px;
-	margin-bottom:6px;
-}
+
 /*Theme: ZIAG_Carbon*/
