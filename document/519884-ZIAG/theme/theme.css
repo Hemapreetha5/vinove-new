@@ -672,8 +672,7 @@ table {
 	padding: 0 10.5mm;
 	margin: 0 auto 0 auto;
 }
-
-.page3>.row1>.column1,.page5>.row1>.column1{
+.page5>.row1>.column1{
 	width: 100%;
 	height: 1pt;
 	background: var(--Zurichblue);
@@ -1011,16 +1010,24 @@ table {
 
 .page3>.row2>.column1,
 .page3>.row3>.column1 {
-	width: 32.375mm;
+	/* width: 32.375mm; */
 }
 
 .page4>.row2>.column1,.page4 > .row3 > .column1 {
 	margin-right: 5.25mm;
 	width: calc(210mm - (21mm + 5.25mm + 156.625mm));
 }
-
-.page3>.row2>.column2,
-.page3>.row3>.column2,
+.page3>.row3>.column1{
+	width: 150mm;
+		/* margin-left:-80px; */
+}
+.page3>.row3>.column2{
+	width: 120mm;
+	/* margin-left:-80px; */
+}
+.page3 > .row3 {
+    /* display: flex; */
+}
 .page4>.row2>.column2,
 .page4>.row3>.column2{
 	width: 156.625mm;
@@ -1040,7 +1047,12 @@ table {
 .page4>.row2>.column2 {
 	padding-top: 6.5mm;
 }
-
+.page3 .donutchart .chart {
+    height: 300px;
+}
+.page3 .donutchart .chart .highcharts-legend-item.highcharts-pie-series text {
+    font-size: 8px !important;
+}
 .page3>.row2>.column2>.row1>.text1>p,
 .page4>.row2>.column2>.row:not(.row1) p {
 	padding-bottom: 5pt;
@@ -1065,7 +1077,7 @@ table {
 
 .page3>.row1,
 .page3>.row2 {
-	background: var(--footprintblue);
+	/* background: var(--footprintblue); */
 }
 
 .page3>.row2 {
@@ -1434,8 +1446,8 @@ html[lang="de-DE"] .page1>.row1 {
 }
 
 html[lang="de-DE"] .page1 {
-	background: url(./images/header-german.jpg);
-	/* background: url(./images/bg-image.png); */
+	/* background: url(./images/header-german.jpg); */
+	background: url(./images/bg-image.png);
 	background-size: 21cm 76.3mm;
 	background-repeat: no-repeat;
 	padding: 0;
@@ -1737,10 +1749,12 @@ html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column2 .performancetable1 table
 }
 .page2>.row7 p {
     font-size: 7pt;
-    color: var(--Zurichblue);
+    /* color: var(--Zurichblue); */
+	color: var(--darkblue);
 }
-.page4 > .row3 > .column2 p{
-	color: var(--Zurichblue);
+.page4 > .row3 > .column2 p,.page5 > .row p{
+	/* color: var(--Zurichblue); */
+	color: var(--darkblue);
 }
 .page5 > .row3 p.item3 {
     font-size: 6.5pt;
