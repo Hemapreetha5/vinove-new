@@ -68,7 +68,7 @@ a {
 }
 
 .page1 {
-	background: url(./images/header.jpg);
+	background: url(./images/bg-image.png);
 	background-size: 21cm 82.047mm;
 	background-repeat: no-repeat;
 	padding: 0;
@@ -270,6 +270,14 @@ table {
 	margin-bottom: 0.30cm;
 }
 
+/* .page1>.row1>.column1>.row2 {
+	margin-bottom: 0;
+}
+
+.page1>.row1>.column1>.row3 {
+	margin-bottom: 0.10cm;
+} */
+
 .page1>.row2>.column1>.row2>.text1 p {
 	/* font-weight: bold; */
 }
@@ -300,7 +308,8 @@ table {
 
 .page1>.row2>.column2 {
 	width: calc(100% - 94.5mm);
-	padding: 5.25mm 10.5mm 10.5mm 0mm;
+	/* padding: 5.25mm 10.5mm 10.5mm 0mm; */
+	padding: 3.25mm 10.5mm 10.5mm 0mm;
 }
 
 .page1>.row2 {
@@ -321,7 +330,10 @@ table {
 .page1>.row2>.column1>.row1>img {
 	display: none;
 }
-
+/* 
+.page1>.row2>.column1>.row1 {
+		margin-bottom: 0.15cm;
+} */
 .page1>.row2>.column1>.row1 {
 	margin-bottom: 0.52cm;
 }
@@ -1024,17 +1036,12 @@ table {
 	margin-right: 5.25mm;
 	width: calc(210mm - (21mm + 5.25mm + 156.625mm));
 }
-.page3>.row3>.column1{
+/* .page3>.row3>.column1{
 	width: 150mm;
-		/* margin-left:-80px; */
 }
 .page3>.row3>.column2{
 	width: 120mm;
-	/* margin-left:-80px; */
-}
-.page3 > .row3 {
-    /* display: flex; */
-}
+} */
 .page4>.row2>.column2,
 .page4>.row3>.column2{
 	width: 156.625mm;
@@ -1053,9 +1060,6 @@ table {
 }
 .page4>.row2>.column2 {
 	padding-top: 6.5mm;
-}
-.page3 .donutchart .chart {
-    height: 300px;
 }
 .page3 .donutchart .chart .highcharts-legend-item.highcharts-pie-series text {
     font-size: 8px !important;
@@ -1371,7 +1375,7 @@ html[lang="de-DE"] .page2>.row4>.column1>.row1>.column1 .performancetable1 table
 	fill: var(--darkblue) !important;
 }
 
-.page4 {
+.page5 {
 	background: url(./images/footer-shape.jpg);
 	background-size: 44%;
 	background-repeat: no-repeat;
@@ -1392,7 +1396,7 @@ html[lang="de-DE"] .page2>.row4>.column1>.row1>.column1 .performancetable1 table
 }
 
 .page2>.row4>.column1>.row1>.column2 .performancetable1 table tbody tr th:nth-child(2)::before {
-	content: '5';
+	content: '2';
 	font-size: 5pt;
 	position: absolute;
 	top: -6px;
@@ -1451,7 +1455,6 @@ html[lang="de-DE"] .page4>.row2>.column1>.row2>.text1>p.item2 {
 html[lang="de-DE"] .page1>.row2>.column2>.row9 {
 	padding-bottom: 1mm;
 }
-
 html[lang="de-DE"] .page1>.row1 {
 	height: 76.3mm;
 	padding: 9mm 10.5mm 1.8mm 10.5mm;
@@ -1497,7 +1500,6 @@ html[lang="de-DE"] .page1>.row2>.column1 {
 html[lang="de-DE"] .page1>.row2>.column2 {
 	padding: 4mm 10.5mm 10.5mm 0mm;
 }
-
 html[lang="de-DE"] .page1>.row2>.column1>.row2 {
 	padding-bottom: 2mm;
 }
@@ -1770,29 +1772,29 @@ html[lang="fr-FR"] .page2>.row4>.column1>.row1>.column2 .performancetable1 table
 	color: var(--darkblue);
 	font-size: 8pt;
 }
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row2,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row2{
+.page5 > .row2 > .column1 > .row2,
+.page5 > .row2 > .column2 > .row2{
 	min-height: 80px;
 	margin-bottom:6px;
 }
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row3,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row3{
+.page5 > .row2 > .column1 > .row3,
+.page5 > .row2 > .column2 > .row3{
 	/* min-height: 26px; */
 	min-height: 32px;
 	margin-bottom:6px;
 }
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row4,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row4{
+.page5 > .row2 > .column1 > .row4,
+.page5 > .row2 > .column2 > .row4{
 	min-height: 42px;
 	margin-bottom:6px;
 }
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row5,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row5{
+.page5 > .row2 > .column1 > .row5,
+.page5 > .row2 > .column2 > .row5{
 	min-height: 54px;
 	margin-bottom:6px;
 }
-html[lang="de-DE"] .page5 > .row2 > .column1 > .row6,
-html[lang="de-DE"] .page5 > .row2 > .column2 > .row6{
+.page5 > .row2 > .column1 > .row6,
+.page5 > .row2 > .column2 > .row6{
 	min-height: 54px;
 	margin-bottom:6px;
 }
@@ -1837,6 +1839,11 @@ html[lang="de-DE"] .page5 > .row2 > .column2 > .row6{
 	margin: 0;
 	vertical-align: top;
 }
+.page2>.row4>.column2 > .row2 > .column p {
+    color: var(--Zurichblue);
+    font-weight: bold;
+	padding: 2.4pt 0;
+}
 .page2>.row4>.column .horizontal-list span:first-child{
 	margin-left: 0;
 }
@@ -1855,4 +1862,7 @@ html[lang="de-DE"] .page5 > .row2 > .column2 > .row6{
 	min-height: 21px;
 	border-collapse: separate;
 }
-/*Theme: ZIAG_Carbon*/
+.page3 .chart{
+	height:550px;
+}
+/*Theme: ZIAG_Carbon_Green_Bond*/
