@@ -1,0 +1,1614 @@
+﻿
+function sanitizeInput(input) {
+    return input.replace(/([;&,\.\+\*\~':"\!\^#$£¥€%@\[\]\(\)=>\|])/g, '').trim();
+}
+var DownloadTool = DownloadTool || {}
+var StatementData = {}
+
+$(function () {
+    var dt = new Date();
+    dt.setDate(dt.getDate() - 1);
+
+    SetCustomStartEndDatePicker("#price-start-date-picker");
+    SetCustomStartEndDatePicker("#price-end-date-picker");
+    SetCustomStartEndDatePicker("#dividend-start-date-picker");
+    SetCustomStartEndDatePicker("#dividend-end-date-picker");
+    SetCustomStartEndDatePicker("#SelectStatementDate-date-picker", null, dt, DownloadTool.Download.StatementDateChange);
+
+    $('form.mfs').mfs();
+
+    var firstRadioButton = $("input[name=historyType]").val();
+
+    if (firstRadioButton == "price") {
+        $("#radio-price").prop('checked', true);
+        $("#downloadtool_price").show();
+    }
+    else if (firstRadioButton == "dividend") {
+        $("#radio-dividend").prop('checked', true);
+        $("#downloadtool_dividend").show();
+    }
+    else if (firstRadioButton == "documents") {
+        $("#radio-documents").prop('checked', true);
+        $("#downloadtool_documents").show();
+    }
+
+    $("input[name=historyType]").on("change", function () {
+        var test = $(this).val();
+        $(".fe-downloadTool-container").hide();
+        $("#downloadtool_" + test).show();
+    });
+
+    var onlyStatementTabConfigured = ($('.fe-price-container').length + $('.fe-dividend-container').length + $('.fe-documents-container').length) === 0;
+    if (onlyStatementTabConfigured) {
+        $(".fe-statement-container").tabs();
+    }
+    
+    $('#btndownloadtool_addFundStatement').off('click').on('click', DownloadTool.Download.AddToMyStatement);
+    $('#SelectNumberofUnits').off('keypress').on('keypress', DownloadTool.Download.RestrictToNumeric);
+    $('#SelectNumberofUnits').attr('maxlength', 10);
+    
+    var citicode = $("#downloadtool_citicode").val();
+    if (citicode) {
+        citicode = String.prototype.trim.call(citicode);
+    }
+    var rangecode = $("#downloadtool_rangecode").val();
+    if (rangecode) {
+        rangecode = String.prototype.trim.call(rangecode);
+    }
+
+    var categoryCodes = getCategoryCodes();
+    var category = categoryCodes.category1;
+    var category2 = categoryCodes.category2;
+
+    var forSaleIn = $("#downloadtool_forsalein").val();
+    if (forSaleIn) {
+        forSaleIn = String.prototype.trim.call(forSaleIn);
+    }
+    var priipproductcode = $("#downloadtool_priipproductcode").val();
+    if (priipproductcode) {
+        priipproductcode = String.prototype.trim.call(priipproductcode);
+    }
+
+    var isDownloadToolWindow = window.location.href.toLowerCase().contains('downloadtool');
+    if (isDownloadToolWindow || modelContents.ShowAllFunds) {
+        DownloadTool.Download.GetFundOptions(citicode, rangecode, category, null, forSaleIn, priipproductcode, category2);
+    }
+
+    if (isDownloadToolWindow) {
+        GenerateAutoComplete(ToolIds.DownloadToolId, DownloadTool.Download.SelectFundFromAutoComplete, DownloadTool.Download.OnAutoCompleteTextChange, true);
+    }
+    });
+
+
+
+DownloadTool.Download = function (citicode) {
+
+    var StatementTabId = 65;
+    var ProviderFactsheetColumn = 562;
+
+    GetFundOptions = function (citicode, rangecode, category, referrerToolId, forSaleIn, priipProductCode, category2) {
+        ////Call this if download container is available
+        if ($('.downloadtool-page-container').length < 1) {
+            return;
+        }
+
+        if (referrerToolId == null) {
+            referrerToolId = getQueryStringValue('referrerToolId');
+        }
+
+        var citicodecopy = { origList: '', notFoundList: '' };
+        var isCiticodeAvailable = referrerToolId == '' || referrerToolId == 7 ? CheckCache(citicode, citicodecopy) : 0;
+        citicode = citicodecopy.notFoundList != '' ? citicodecopy.notFoundList : citicode;
+        if (window.location.href.toLowerCase().contains('downloadtool') || !(modelContents.ShowAllFunds) || !(isCiticodeAvailable == 1) || isCiticodeAvailable == 2) {
+
+            if (modelContents.ShowAllFunds && isCiticodeAvailable == 2 && referrerToolId == '') {
+                referrerToolId = 7;
+            }
+
+            var url = $(this).AttachObjectAsUrlQueryString(modelContents.DownloadToolFundOptionsUrl, GetFundSearchModel(ToolIds.DownloadToolId, citicode, rangecode, category, forSaleIn, priipProductCode, category2));
+            //$(this).sendJsonRequest($.ajaxTypes.post, modelContents.DownloadToolFundOptionsUrl, GetFundSearchModel(ToolIds.DownloadToolId, citicode, rangecode, category),
+            url = url + '&referrerToolId=' + referrerToolId;
+            $(this).sendJsonRequest($.ajaxTypes.get, url, null,
+                function (response) {
+                    if (window.location.href.toLowerCase().contains('downloadtool') || (!(modelContents.ShowAllFunds) && referrerToolId != 7) || (referrerToolId != '' && referrerToolId != 7)) {
+                        GetPriceFundOptions(citicode, response);
+                        GetDividendFundOptions(citicode, response);
+                        GetDocumentFundOptions(citicode, response);
+                    } else {
+                        citicode = citicodecopy.origList != '' ? citicodecopy.origList : citicode;
+                        CacheResponseAndRender(citicode, response);
+                    }
+                });
+        }
+    };
+
+    CheckCache = function (citicode, citicodecopy) {
+        var fundInfos = (GetCachedFundInfo('#downloadtool_fundlist') != undefined && GetCachedFundInfo('#downloadtool_fundlist').FundInfo.length > 0) ? GetCachedFundInfo('#downloadtool_fundlist').FundInfo : null;
+        var isFound = 0;
+        var codeArray = citicode.indexOf(',') > -1 ? citicode.split(',') : null;
+        if (fundInfos != null) {
+            isFound = 2;
+
+            if (codeArray == null) {
+                $(fundInfos).each(function (index, element) {
+                    if (element.Common.CitiCode == citicode) {
+                        isFound = 1;
+                        return false;
+                    }
+                });
+            } else {
+                $(fundInfos).each(function (index, element) {
+                    codeArray = jQuery.grep(codeArray, function (value) {
+                        return value != element.Common.CitiCode;
+                    });
+                    if (codeArray.length <= 0) {
+                        isFound = 1;
+                        return false;
+                    }
+                });
+            }
+
+            if (isFound == 1) {
+                RenderDropdown(citicode);
+            }
+
+            if (isFound == 2 && (codeArray != null && codeArray.length > 0)) {
+                citicodecopy.notFoundList = codeArray.join(',');
+                citicodecopy.origList = citicode;
+            }
+        }
+        return isFound;
+    };
+
+    CacheResponseAndRender = function (citicode, response) {
+        if (GetCachedFundInfo('#downloadtool_fundlist') != undefined &&
+            GetCachedFundInfo('#downloadtool_fundlist').FundInfo.length > 0) {
+            $.merge(GetCachedFundInfo('#downloadtool_fundlist').FundInfo, response.FundInfo);
+            var elementId = $('#pricefundOptions').length > 0 ? '#pricefundOptions' : $('#dividendfundOptions').length > 0 ? '#dividendfundOptions' : '#documentsfundOptions';
+            $(elementId).html(GetCachedFundInfo('#downloadtool_fundlist').Html);
+            $(response.FundInfo).each(function (index, element) {
+                if ($(elementId).find('#downloadtool_funds option[value="' + element.Common.CitiCode + '"]').length <= 0) {
+                    $(elementId).find('#downloadtool_funds').append('<option value= ' + element.Common.CitiCode + ' typecode=' + element.Common.TypeCode + '>' + element.Common.Name + '</option>');
+                }
+            });
+            GetCachedFundInfo('#downloadtool_fundlist').Html = $(elementId).html();
+        } else {
+            if (response.FundInfo != null) {
+                CacheFundInfo(response, '#downloadtool_fundlist');
+            }
+        }
+
+        RenderDropdown(citicode);
+    };
+
+    RenderDropdown = function (citicode) {
+        var cacheData = $.extend(true, {}, GetCachedFundInfo('#downloadtool_fundlist'));
+        if (citicode.indexOf(',') > -1 && cacheData.FundInfo != null) {
+            var arr = $.grep(cacheData.FundInfo, function (n, i) {
+                return citicode.contains(n.Common.CitiCode);
+            });
+
+            var elementId = $('#pricefundOptions').length > 0 ? '#pricefundOptions' : $('#dividendfundOptions').length > 0 ? '#dividendfundOptions' : '#documentsfundOptions';
+            cacheData.FundInfo = arr;
+            var sanitizedHtml = DOMPurify.sanitize(cacheData.Html);
+            $(elementId).html(sanitizedHtml);
+
+            $($(elementId).find('#downloadtool_funds option')).each(function () {
+
+                if (!(citicode.indexOf($(this).attr('value')) > -1)) {
+                    $(this).remove();
+                }
+            });
+            cacheData.Html = $(elementId).html();
+        }
+        GetPriceFundOptions(citicode, cacheData);
+        GetDividendFundOptions(citicode, cacheData);
+        GetDocumentFundOptions(citicode, cacheData);
+    };
+
+    GetPriceFundOptions = function (citicode, response) {
+        var sanitizedHtml = DOMPurify.sanitize(response.Html);
+        $('#pricefundOptions').html(sanitizedHtml);
+        CacheFundInfo(response.FundInfo, '#pricefundOptions');
+
+        $("#downloadtool_price #downloadtool_funds").on("change", function () {
+            RetainFundSelection($(this).val(), this);
+            var controls = ["#pricehistory-timeperiod", "#dividendhistory-timeperiod"];
+            UpdateDatePickerAndTimeperiod(controls, '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+        });
+
+        $("#downloadtool_price #downloadtool_funds").on("change", function () {
+            RefreshHistory(this, "#priceHtmlContainer", "#btnPriceHistory");
+        });
+
+        $("#price-start-date-picker").on("change", function () {
+            RefreshHistory(this, "#priceHtmlContainer", "#btnPriceHistory");
+            $("#pricehistory-timeperiod").val('');
+            $('form.mfs').mfs('refresh');
+        });
+
+        $("#price-end-date-picker").on("change", function () {
+            RefreshHistory(this, "#priceHtmlContainer", "#btnPriceHistory");
+            $("#pricehistory-timeperiod").val('');
+            $('form.mfs').mfs('refresh');
+        });
+
+        $("#downloadtool_price #pricehistory-timeperiod").off('change').on('change', function () {
+            RefreshHistory(this, "#priceHtmlContainer", "#btnPriceHistory");
+            UpdateDatePicker("#price-start-date-picker", '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+            UpdateDatePicker("#price-end-date-picker", '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+            var isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+            if (isChrome || navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+                $(this).siblings('.mfs-selected-option').trigger("focus");
+            }
+        });
+
+        $('#btnPriceHistory').off('click').on('click', function () {
+            GetPriceHistory(this);
+        });
+        $('#btnCSVPriceHistory').off('click').on('click', function () {
+            CSVPriceHistory(this);
+        });
+
+        if (citicode) {
+            $("#pricefundOptions .downloadtool_funds").each(function (index) {
+                $(this).val(citicode.toUpperCase());
+            });
+        }
+
+        $('form.mfs').mfs();
+
+        ///If dividend history is not enabled ssend this request
+        if ($("#downloadtool_dividend #downloadtool_funds").length == 0) {
+            var controls = ["#pricehistory-timeperiod", "#dividendhistory-timeperiod"];
+            UpdateDatePickerAndTimeperiod(controls, '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+        }
+    };
+
+    GetDividendFundOptions = function (citicode, response) {
+        var sanitizedHtml = DOMPurify.sanitize(response.Html);
+        $('#dividendfundOptions').html(sanitizedHtml);
+        CacheFundInfo(response.FundInfo, '#dividendfundOptions');
+
+        $("#downloadtool_dividend #downloadtool_funds").on("change", function () {
+            RetainFundSelection($(this).val(), this);
+            var controls = ["#pricehistory-timeperiod", "#dividendhistory-timeperiod"];
+            UpdateDatePickerAndTimeperiod(controls, '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+        });
+
+        $("#downloadtool_dividend #downloadtool_funds").on("change", function () {
+            RefreshHistory(this, "#dividendHtmlContainer", "#btnDividendHistory");
+        });
+
+        $("#dividend-start-date-picker").on("change", function () {
+            RefreshHistory(this, "#dividendHtmlContainer", "#btnDividendHistory");
+            $("#dividendhistory-timeperiod").val('');
+            $('form.mfs').mfs('refresh');
+        });
+
+        $("#dividend-end-date-picker").on("change", function () {
+            RefreshHistory(this, "#dividendHtmlContainer", "#btnDividendHistory");
+            $("#dividendhistory-timeperiod").val('');
+            $('form.mfs').mfs('refresh');
+        });
+
+        $("#downloadtool_dividend #dividendhistory-timeperiod").on("change", function () {
+            RefreshHistory(this, "#dividendHtmlContainer", "#btnDividendHistory");
+            UpdateDatePicker("#dividend-start-date-picker", '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+            UpdateDatePicker("#dividend-end-date-picker", '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+            var isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+            if (isChrome || navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+                $(this).siblings('.mfs-selected-option').trigger("focus");
+            }
+        });
+
+        $('#btnDividendHistory').off('click').on('click', function () {
+            GetDividendHistory(this);
+        });
+        $('#btnCSVDividendHistory').off('click').on('click', function () {
+            CSVDividendHistory(this);
+        });
+        if (citicode) {
+            $("#dividendfundOptions .downloadtool_funds").each(function (index) {
+                $(this).val(citicode.toUpperCase());
+            });
+        }
+
+        $('form.mfs').mfs();
+        ///If price history is not enabled call the below code.
+        if ($("#downloadtool_price #downloadtool_funds").length == 0) {
+            var controls = ["#pricehistory-timeperiod", "#dividendhistory-timeperiod"];
+            UpdateDatePickerAndTimeperiod(controls, '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+        }
+    };
+
+    
+    GetDocumentFundOptions = function (citicode, response) {
+        var sanitizedHtml = DOMPurify.sanitize(response.Html);
+        $('#documentsfundOptions').html(sanitizedHtml);
+        CacheFundInfo(response.FundInfo, '#documentsfundOptions');
+        $("#downloadtool_documents #downloadtool_funds").on("change", function () {
+            RetainFundSelection($(this).val(), this);
+            var controls = ["#pricehistory-timeperiod", "#dividendhistory-timeperiod"];
+            UpdateDatePickerAndTimeperiod(controls, '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+            DocumentsTabOnChange(this);
+        });
+        $('#downloadtool_addDocuments').off('click').on('click', function () {
+            AddDocuments(this);
+        });
+        $('.fe-complexcolumns-removecolumn').off('click').on('click', function () {
+            RemoveDocuments(this);
+        });
+        $('#btnZip').off('click').on('click', function () {
+            ZipDocuments(this);
+        });
+        $('#btnConcatenate').off('click').on('click', function () {
+            ConcatenateDocuments(this);
+        });
+        $('#downloadDocuments-deleteall-container').off('click').on('click', function () {
+            DeleteAllAddedDocuments(this);
+        });
+
+        if (citicode) {
+            $("#documentsfundOptions .downloadtool_funds").each(function (index) {
+                $(this).val(citicode.toUpperCase());
+            });
+        }
+
+        var selectAllFunds = modelContents.GetTranslation("SelectAllFunds");
+        var allFundsOption = $('<option value="AllFunds">' + selectAllFunds + '</option>');
+        allFundsOption.insertAfter('#documentsfundOptions .downloadtool_funds option[value=""]');
+
+        $('form.mfs').mfs();
+        DocumentsTabOnChange($("#downloadtool_documents #downloadtool_funds"));
+    };
+
+    DocumentsTabOnChange = function (control) {
+        EnableDocuments(control);
+        var isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+        if (isChrome || navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+            $(control).siblings('.mfs-selected-option').trigger("focus");
+        }
+    };
+
+    RetainFundSelection = function (citicode, sourceContorl) {
+        $('.downloadtool_funds').not(sourceContorl).val(citicode);
+    };
+
+    UpdateDatePickerAndTimeperiod = function (controls, fundddlControl, dropdownControl) {
+        UpdateDatePicker("#price-start-date-picker", '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+        UpdateDatePicker("#price-end-date-picker", '#pricefundOptions', "#downloadtool_price #downloadtool_funds");
+        UpdateDatePicker("#dividend-start-date-picker", '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+        UpdateDatePicker("#dividend-end-date-picker", '#dividendfundOptions', "#downloadtool_dividend #downloadtool_funds");
+        FilterOutTimePeriods(controls, fundddlControl, dropdownControl);
+    };
+
+    FilterOutTimePeriods = function (controls, fundddlControl, dropdownControl) {
+        if ($(dropdownControl).val()) {
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), fundddlControl);
+            var firstPriceDate = selectedCiticode[0].Price.FirstPriceDate;
+            if (firstPriceDate !== null) {
+                firstPriceDate = ToolkitUI.Common.GetDate(firstPriceDate);
+                var inputObj = { 'Value1': firstPriceDate };
+                $(this).sendJsonAsString(modelContents.DownloadToolTimePeriodUrl, inputObj,
+                    function (result) {
+                        if (result) {
+                            for (var i = 0; i < controls.length; i++) {
+                                var control = controls[i];
+                                $(control + " > option").each(function () {
+                                    var ddItem = $(this);
+                                    var ddmonths = parseInt(ddItem.val());
+
+                                    if (ddmonths > result.timePeriod) {
+                                        ddItem.addClass('hide');
+                                    } else {
+                                        ddItem.removeClass('hide');
+
+                                    }
+                                });
+
+                                $(control).val('');
+                            }
+                            $('form.mfs').mfs('refresh');
+                            $(fundddlControl).find('.mfs-selected-option').trigger("focus");
+                        } else {
+                            alert('Failure');
+                            weightedUnits = [];
+                        }
+                    });
+            }
+            else {
+                $(this).showMessage(modelContents.GetTranslation("InactiveFundsDownloadToolErrorMessage"));
+            }
+        }
+    };
+
+    UpdateDatePicker = function (control, fundddlControl, dropdownControl) {
+        if ($(dropdownControl).val()) {
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), fundddlControl);
+            var firstPriceDate = selectedCiticode[0].Price.FirstPriceDate;
+            if (firstPriceDate === null) {
+                $(this).showMessage(modelContents.GetTranslation("InactiveFundsDownloadToolErrorMessage"));
+            } else {
+                var minDate = ToolkitUI.Common.GetDate(firstPriceDate);
+                SetCustomStartEndDatePicker(control, minDate);
+                $('form.mfs').mfs();
+            }
+        }
+    };
+
+    RefreshHistory = function (obj, containerControl, htmlButtonControl) {
+        $(containerControl).hide();
+        $(htmlButtonControl).text(modelContents.GetTranslation("DownloadToolDisplayHtml"));
+    };
+
+    GetPriceHistory = function (obj) {
+        var timeperiodControl = "#pricehistory-timeperiod";
+        var startControl = "#price-start-date-picker";
+        var endControl = "#price-end-date-picker";
+        var dropdownControl = "#downloadtool_price #downloadtool_funds";
+        var historyPanel = $('#priceHtmlContainer');
+        var historyOpen = historyPanel.is(':visible');
+
+        var errorMsg = null;
+        if (!historyOpen)
+            errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, dropdownControl);
+        if (errorMsg == null) {
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), '#pricefundOptions');
+
+            var sectorCode = selectedCiticode[0].Documents.SectorClassCode;
+            var universe = sectorCode && sectorCode.trim() !== '' ? sectorCode.split(':')[0] : null;
+            var citiCode = selectedCiticode[0].Documents.CitiCode;
+            var typecode = selectedCiticode[0].Documents.TypeCode;
+            var currency = selectedCiticode[0].Price.Currency_UnitLevel;
+            var priceType = selectedCiticode[0].Price.PriceType;
+            var timeperiod = $(timeperiodControl).val() == "max" ? null : $(timeperiodControl).val();
+
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+
+                if (startDate) {
+                    startDate = ToolkitUI.Common.GetJsonDate(startDate);
+                }
+
+                if (endDate) {
+                    endDate = ToolkitUI.Common.GetJsonDate(endDate);
+                }
+            }
+            
+
+            var filters = {
+                CitiCode: citiCode,
+                Universe: universe,
+                TypeCode: typecode,
+                BaseCurrency: currency,
+                PriceType: priceType,
+                TimePeriod: (isNaN(timeperiod) || timeperiod == "" ? null : timeperiod),
+                StartDate: startDate,
+                EndDate: endDate
+            };
+
+            ////historyPanel[historyOpen ? 'hide' : 'show']();
+            if (historyOpen) {
+                $(obj).text(modelContents.GetTranslation("DownloadToolDisplayHtml"));
+                historyPanel.hide();
+            }
+            else {
+                $(".empty-div").showLoading();
+
+                var historyModel = $.extend(GetFundSearchModel(ToolIds.DownloadToolId), { UnitHistoryFilters: filters });
+                var region = getQueryStringValue("region");
+                var usertype = getQueryStringValue("usertype");
+
+                if (region != '' || usertype != '') {
+                    historyModel.UserType = usertype;
+                    historyModel.Region = region;
+                }
+
+
+                $(this).sendJsonAsString(modelContents.PriceHistoryUrl, historyModel,
+                    function (model) {
+                        $(".empty-div").hideLoading();
+                        var tabContainer = $("#priceHtmlContainer .fe-datatable");
+                        var parent = tabContainer.parent();
+                        $("#priceHtmlContainer").show();
+                        $(obj).text(modelContents.GetTranslation("DownloadToolHideHtml"));
+                        if (model.DataList && model.DataList.length > 0) {
+                            tabContainer.find("[data-id=docRows]").empty();
+                            var data = model.DataList;
+
+                            $("#template-" + tabContainer.attr('id').replace('-data-container', '')).tmpl(data).appendTo(tabContainer.find("[data-id=docRows]"));
+                            ShowHistoryFundTable(parent);
+                            HideHistoryNoResult(parent);
+                        } else {
+                            HideHistoryFundTable(parent);
+                            ShowHistoryNoResult(parent);
+                        }
+                    });
+            }
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+
+    GetDividendHistory = function (obj) {
+        var timeperiodControl = "#dividendhistory-timeperiod";
+        var startControl = "#dividend-start-date-picker";
+        var endControl = "#dividend-end-date-picker";
+        var dropdownControl = "#downloadtool_dividend #downloadtool_funds";
+        var historyPanel = $('#dividendHtmlContainer');
+        var historyOpen = historyPanel.is(':visible');
+
+        var errorMsg = null;
+        if (!historyOpen)
+            errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, dropdownControl);
+        if (errorMsg == null) {
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), '#dividendfundOptions');
+            var typecode = selectedCiticode[0].Documents.TypeCode;
+            var currency = selectedCiticode[0].Price.Currency_UnitLevel;
+            var priceType = selectedCiticode[0].Price.PriceType;
+            var timeperiod = $(timeperiodControl).val() == "max" ? "" : $(timeperiodControl).val();
+
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+
+                if (startDate) {
+                    startDate = ToolkitUI.Common.GetJsonDate(startDate);
+                }
+
+                if (endDate) {
+                    endDate = ToolkitUI.Common.GetJsonDate(endDate);
+                }
+            }
+
+            var filters = {
+                TypeCode: typecode,
+                BaseCurrency: currency,
+                PriceType: priceType,
+                TimePeriod: isNaN(timeperiod) || timeperiod == "" ? null : timeperiod,
+                StartDate: startDate,
+                EndDate: endDate
+            };
+
+            if (historyOpen) {
+                $(obj).text(modelContents.GetTranslation("DownloadToolDisplayHtml"));
+                historyPanel.hide();
+            }
+            else {
+                $(".empty-div").showLoading();
+                var historyModel = $.extend(GetFundSearchModel(ToolIds.DownloadToolId), { UnitHistoryFilters: filters });
+
+                var region = getQueryStringValue("region");
+                var usertype = getQueryStringValue("usertype");
+
+                if (region != '' || usertype != '') {
+                    historyModel.UserType = usertype;
+                    historyModel.Region = region;
+                }
+
+                $(this).sendJsonAsString(modelContents.DividendHistoryUrl, historyModel,
+                    function (model) {
+                        $(".empty-div").hideLoading();
+                        var tabContainer = $("#dividendHtmlContainer .fe-datatable");
+                        var parent = tabContainer.parent();
+                        $("#dividendHtmlContainer").show();
+                        $(obj).text(modelContents.GetTranslation("DownloadToolHideHtml"));
+                        if (model.DataList && model.DataList.length > 0) {
+                            tabContainer.find("[data-id=docRows]").empty();
+                            var data = model.DataList;
+
+                            $("#template-" + tabContainer.attr('id').replace('-data-container', '')).tmpl(data).appendTo(tabContainer.find("[data-id=docRows]"));
+                            ShowHistoryFundTable(parent);
+                            HideHistoryNoResult(parent);
+                        }
+                        else {
+                            HideHistoryFundTable(parent);
+                            ShowHistoryNoResult(parent);
+                        }
+                    });
+            }
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+
+    CSVPriceHistory = function (obj) {
+        var timeperiodControl = "#pricehistory-timeperiod";
+        var startControl = "#price-start-date-picker";
+        var endControl = "#price-end-date-picker";
+        var dropdownControl = "#downloadtool_price #downloadtool_funds";
+
+        var errorMsg = null;
+        errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, dropdownControl);
+        if (errorMsg == null) {
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), '#pricefundOptions');
+
+            var sectorCode = selectedCiticode[0].Documents.SectorClassCode;
+            var universe = sectorCode && sectorCode.trim() !== '' ? sectorCode.split(':')[0] : null;
+            var citiCode = selectedCiticode[0].Documents.CitiCode;
+            var typecode = selectedCiticode[0].Documents.TypeCode;
+            var currency = selectedCiticode[0].Price.Currency_UnitLevel;
+            var priceType = selectedCiticode[0].Price.PriceType;
+            var timeperiod = sanitizeInput($(timeperiodControl).val() == "max" ? "" : $(timeperiodControl).val());
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+            }
+
+            var fundname = sanitizeInput(selectedCiticode[0].Documents.Name);
+
+            var filters = {
+                CitiCode: citiCode,
+                Universe: universe,
+                TypeCode: typecode,
+                FundName: fundname,
+                BaseCurrency: currency,
+                PriceType: priceType,
+                TimePeriod: timeperiod,
+                StartDate: startDate,
+                EndDate: endDate
+            };
+
+            window.location = modelContents.CSVPriceHistoryUrl + "?modelString=" + encodeURIComponent(JSON.stringify(GetFundSearchModel(ToolIds.DownloadToolId))) + "&filtersString=" + encodeURIComponent(JSON.stringify(filters));
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+
+    CSVDividendHistory = function (obj) {
+        var timeperiodControl = "#dividendhistory-timeperiod";
+        var startControl = "#dividend-start-date-picker";
+        var endControl = "#dividend-end-date-picker";
+        var dropdownControl = "#downloadtool_dividend #downloadtool_funds";
+
+        var errorMsg = null;
+        errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, dropdownControl);
+        if (errorMsg == null) {
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var selectedCiticode = GetSelectedFundDetails($(dropdownControl).val(), '#dividendfundOptions');
+            var typecode = selectedCiticode[0].Documents.TypeCode;
+            var currency = selectedCiticode[0].Price.Currency_UnitLevel;
+            var priceType = selectedCiticode[0].Price.PriceType;
+            var timeperiod = $(timeperiodControl).val() == "max" ? "" : $(timeperiodControl).val();
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+            }
+
+            var fundname = selectedCiticode[0].Documents.Name.replace(/([;&,\.\+\*\~':"\!\^#$£¥€%@\[\]\(\)=>\|])/g, '');
+            var filters = {
+                TypeCode: typecode,
+                FundName: fundname,
+                BaseCurrency: currency,
+                PriceType: priceType,
+                TimePeriod: timeperiod ? encodeURIComponent(timeperiod) : timeperiod,
+                StartDate: startDate ? encodeURIComponent(startDate) : startDate,
+                EndDate: endDate ? encodeURIComponent(endDate) : endDate
+            };
+
+            window.location = modelContents.CSVDividendHistoryUrl + "?modelString=" + JSON.stringify(GetFundSearchModel(ToolIds.DownloadToolId)) + "&filtersString=" + JSON.stringify(filters);
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+
+    EnableDocuments = function (obj) {
+        var documentOptions = $("#documentOptions");
+        var documentOptionsCheckbox = documentOptions.find('input:checkbox');
+        documentOptionsCheckbox.prop('checked', false);
+
+        var documentOptionsCheckboxNames = [];
+        documentOptionsCheckbox.each(function () {
+            documentOptionsCheckboxNames.push($(this).attr("id"));
+        });
+
+        var citicode = $(obj).val();
+
+        if (citicode == 'AllFunds') {
+            var fundInfoOptions = GetCachedFundInfo('#documentsfundOptions');
+            EnableDisableDocuments(fundInfoOptions, documentOptionsCheckboxNames, documentOptions);
+        }
+        else if (citicode) {
+            var selectedCiticodes = [];
+            selectedCiticodes.push(GetSelectedFundDetails(citicode, '#documentsfundOptions')[0]);
+            EnableDisableDocuments(selectedCiticodes, documentOptionsCheckboxNames, documentOptions);
+        }
+        else {
+            $("#documentOptions").find('input:checkbox').prop("disabled", true);
+        }
+    };
+
+    EnableDisableDocuments = function (fundInfoOptionsList, propertiesToCheck, wrapperElem) {
+        var enableDisableResult = {};
+
+        // Set all document result properties to Disabled = true
+        $.each(propertiesToCheck, function (idx, propertyName) {
+            enableDisableResult[propertyName] = true;
+        });
+
+        $.each(fundInfoOptionsList, function (idx, fundInfoObj) {
+            var currentDocuments = fundInfoObj.Documents;
+            $.each(propertiesToCheck, function (idx, documentName) {
+                if (currentDocuments[documentName])
+                    enableDisableResult[documentName] = false;
+            });
+        });
+
+        $.each(propertiesToCheck, function (idx, propertyName) {
+            wrapperElem.find('#' + propertyName).prop("disabled", enableDisableResult[propertyName]);
+        });
+    }
+
+    DeleteAllAddedDocuments = function (obj) {
+        $("#downloadtool_selectedDocuments > li").each(function (index) {
+            if (!$(this).hasClass("fe-complexcolumns-template"))
+                $(this).remove();
+        });
+    };
+
+    AddDocuments = function (obj) {
+        if ($("#downloadtool_documents #downloadtool_funds").val() == 'AllFunds') {
+            var fundInfoOptions = GetCachedFundInfo('#documentsfundOptions');
+            $(fundInfoOptions).each(function (fundInfoindex) {
+                var fundInfo = this;
+                $("#documentOptions").find('input:checkbox').each(function (index) {
+                    if (this.checked)
+                        AddtoSelectedList($(obj).attr('columnId'), this.id, fundInfo.Documents.Name, fundInfo.Documents[this.id], this.name);
+                });
+            });
+        } else {
+            var selectedCiticode = GetSelectedFundDetails($("#downloadtool_documents #downloadtool_funds").val(), '#documentsfundOptions');
+            $("#documentOptions").find('input:checkbox').each(function (index) {
+                if (this.checked) {
+                    AddtoSelectedList($(obj).attr('columnId'), this.id, selectedCiticode[0].Documents.Name, selectedCiticode[0].Documents[this.id], this.name);
+                }
+            });
+        }
+
+    };
+
+    AddtoSelectedList = function (columnId, columnName, fundName, url, documentTypeName) {
+        if (url != undefined && url.length > 0 && url.trim()) {
+            ////Remove newly added date part for download tool
+            var urlPattern = /::(.*?\.pdf)/g;
+            var matches = url.match(urlPattern);
+
+            if (matches && matches.length > 0) {
+                url = matches[0].substring(2);
+            }
+
+            if (url.indexOf('::') === -1) {
+                AddColumnToSelectedList(columnId,
+                    columnName,
+                    fundName,
+                    url,
+                    documentTypeName);
+            } else if (url.split(',').length === 1) {
+                AddColumnToSelectedList(columnId,
+                    columnName,
+                    fundName,
+                    url.split('::')[1],
+                    documentTypeName + ' - ' + url.split('::')[0]);
+            } else {
+                var arrayOfDocument = url.split(',');
+                for (i = 0; i < arrayOfDocument.length; i++) {
+                    var details = arrayOfDocument[i].split('::');
+                    AddColumnToSelectedList(columnId,
+                        columnName,
+                        fundName,
+                        details[1],
+                        documentTypeName + ' - ' + details[0]);
+                }
+            }
+        }
+    };
+
+    RemoveDocuments = function (obj) {
+        var listItem = $(obj).parent();
+        listItem.remove();
+    };
+
+    ZipDocuments = function (obj) {
+        $(".fe-errormessage").remove();
+        var documentPaths = [];
+        $("#downloadtool_selectedDocuments > li").each(function (index) {
+            if ($(this).find("a.fe-cc-colname").attr("url"))
+                documentPaths.push($(this).find("a.fe-cc-colname").attr("docname") + "#" + $(this).find("a.fe-cc-colname").attr("url"));
+        });
+
+        if (documentPaths.length != 0) {
+            window.location = modelContents.DocumentsZipUrl + "?UseStaticDocumentUrl=" + modelContents.UseStaticDocumentUrl + "&fileList=" + encodeURIComponent(documentPaths.join(','));
+        }
+        else {
+            ShowError(modelContents.GetTranslation("DownloadToolDocumentsValidation"));
+        }
+    };
+
+    ConcatenateDocuments = function (obj) {
+        $(".fe-errormessage").remove();
+        var documentPaths = [];
+        $("#downloadtool_selectedDocuments > li").each(function (index) {
+            if ($(this).find("a.fe-cc-colname").attr("url"))
+                documentPaths.push($(this).find("a.fe-cc-colname").attr("docname") + "#" + $(this).find("a.fe-cc-colname").attr("url"));
+        });
+
+        if (documentPaths.length != 0) {
+            var validDocuments = true;
+            var documentModel = $.extend({ UseStaticDocumentUrl: modelContents.UseStaticDocumentUrl.toLowerCase() }, { ProjectName: modelContents.ProjectName.toLowerCase() }, { 'Value1': documentPaths.join(',') }, { 'Value2': true });
+            var model = $(this).getDataFromJsonString(modelContents.DocumentsConcatenateUrl, documentModel);
+
+            if (model != null) {
+                if (!model.IsSuccessful) {
+                    validDocuments = false;
+                    var issueFilesArray = model.IssueFiles.split(',');
+                    var issueFileList = [];
+
+                    $.each(issueFilesArray, function (index) {
+                        $('a[docname = "' + issueFilesArray[index] + '"]').append("<span class='fe-errormessage'> " + modelContents.GetTranslation("DownloadToolDocumentsUnavailable") + '</span>');
+                    });
+                }
+            }
+
+            if (validDocuments) {
+                var documentModel = $.extend({ UseStaticDocumentUrl: modelContents.UseStaticDocumentUrl.toLowerCase() }, { ProjectName: modelContents.ProjectName.toLowerCase() }, { 'Value1': documentPaths.join(',') });
+                window.open(modelContents.DocumentsConcatenateUrl + "?jsonString=" + encodeURIComponent(JSON.stringify(documentModel)));
+            }
+        }
+        else {
+            ShowError(modelContents.GetTranslation("DownloadToolDocumentsValidation"));
+        }
+    };
+
+    CacheFundInfo = function (options, control) {
+        $(control).data("fundInfoOptions", options);
+    };
+
+    GetCachedFundInfo = function (control) {
+        return $(control).data("fundInfoOptions");
+    };
+
+    GetSelectedFundDetails = function (citicode, control) {
+        var fundInfoOptions = GetCachedFundInfo(control);
+        return $.grep(fundInfoOptions, function (item) { return (item.Documents.CitiCode == citicode) });
+    };
+
+    GetFundSearchModel = function (toolId, citicode, rangecode, category, forSaleIn, priipProductCode, category2) {
+        var model = {};
+        model.GrsProjectId = modelContents.GrsProjectId;
+        model.ProjectName = modelContents.ProjectName;
+        model.ToolId = toolId;
+        model.LanguageId = modelContents.InternalLanguageId;
+        model.LanguageCode = modelContents.LanguageCode;
+        model.OverrideDocumentCountryCode = getParameterByNameIgnoreCase('DocumentCountry');
+        if (citicode) {
+            model.FilteringOptions = {};
+            model.FilteringOptions.CitiCode = String.prototype.trim.call(citicode);
+        }
+
+        if (priipProductCode) {
+            model.FilteringOptions = {};
+            model.FilteringOptions.priipProductCode = String.prototype.trim.call(priipProductCode);
+        }
+
+        if (forSaleIn) {
+            model.ForSaleIn = String.prototype.trim.call(forSaleIn);
+        }
+        if (!forSaleIn) {
+            model.forSaleIn = modelContents.forSaleIn;
+        }
+
+        model.FSIexclCT = modelContents.FSIexclCT;
+
+
+        if (rangecode) {
+            model.RangeCode = String.prototype.trim.call(rangecode);
+        }
+        if (category) {
+            model.Category = String.prototype.trim.call(category);
+        }
+
+        if (category2) {
+            model.Category2 = String.prototype.trim.call(category2);
+        }
+
+        return model;
+    };
+
+    HideHistoryFundTable = function (tabContainer) {
+        $(tabContainer).find('table.fe-datatable').hide();
+    };
+
+    ShowHistoryFundTable = function (tabContainer) {
+        $(tabContainer).find('table.fe-datatable').show();
+    };
+
+    ShowHistoryNoResult = function (tabContainer) {
+        $(tabContainer).find('div[data-id=NoResultsMessage]').removeClass('ui-helper-hidden');
+    };
+
+    HideHistoryNoResult = function (tabContainer) {
+        $(tabContainer).find('div[data-id=NoResultsMessage]').addClass('ui-helper-hidden');
+    };
+
+    AddColumnToSelectedList = function (columnId, columnName, fundName, url, displayColumnName) {
+        var docDescription = fundName + " - " + displayColumnName;
+        var docName = fundName.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '') + "-" + displayColumnName.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '');
+
+        var docAdded = $.grep($("#downloadtool_selectedDocuments > li"),
+            function (item) {
+                return (GetOnlyText($(item).find("a.fe-cc-colname")) == docDescription)
+            });
+
+        if (docAdded.length != 0)
+            return;
+
+        var parentList = $('#downloadtool_selectedDocuments');
+        var template = parentList.find("li.fe-complexcolumns-template").clone(true, true);
+        template.removeClass("fe-complexcolumns-template");
+        template.addClass("fe-complexcolumns");
+        var columnrUiRepresentation = template.clone(true, true);
+        var columnId = columnId;
+        var columnName = columnName;
+
+        columnrUiRepresentation.attr('columnId', columnId);
+        columnrUiRepresentation.find(".fe-cc-colname").text(docDescription);
+        columnrUiRepresentation.find(".fe-cc-colname").attr("docname", docName);
+        columnrUiRepresentation.find(".fe-cc-colname").attr("url", url);
+        columnrUiRepresentation.find(".fe-cc-colname").attr("onclick", "LoadOriginalDoc('" + url + "', event);");
+        parentList.append(columnrUiRepresentation);
+        parentList.sortable();
+    };
+
+    SetCustomStartEndDatePicker = function (control, minDate, maxDate, onSelectFunc) {
+        if ($(control).length > 0) {
+            var dateFormat = $(control).attr('data-dateFormat');
+            var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+            var jqueryMinDate = minDate ? jQuery.datepicker.parseDate("dd/mm/yy", minDate) : null;
+            var jqueryMaxDate = jQuery.datepicker.parseDate("dd/mm/yy", $.datepicker.formatDate('dd/mm/yy', maxDate ? maxDate : new Date()));
+            var languageCode = modelContents.MajorLanguageCode;
+            if ($.datepicker.regional[languageCode]) {
+                $.datepicker.regional[languageCode].dateFormat = jQueryDateFormat;
+            }
+            $(control).datepicker('destroy');
+
+            $(control).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                constrainInput: true,
+                numberOfMonths: 1,
+                minDate: jqueryMinDate,
+                maxDate: jqueryMaxDate,
+                dateFormat: jQueryDateFormat,
+                onSelect: onSelectFunc
+            });
+
+            $(control).val(dateFormat);
+        }
+    };
+
+    CheckDownloadToolSelection = function (errorMsg, timeperiodControl, startControl, endControl, dropdownControl) {
+        var timeperiod = $(timeperiodControl).val();
+
+        // check if benchmark is selected. Should have exactly one benchmark selected
+        if (dropdownControl != null) {
+            if (!$(dropdownControl).val()) {
+                errorMsg = modelContents.GetTranslation("DownloadToolFundValidation");
+                return errorMsg;
+            }
+        }
+
+        // should have exactly one time period selected
+        var dateFormat = $(timeperiodControl).attr('data-dateFormat');
+        if (!Validation.DateValidate.IsTimePeriodValid(dateFormat, timeperiodControl, startControl, endControl)) {
+            errorMsg = modelContents.GetTranslation("PScanTimePeriodValidation");
+            return errorMsg;
+        }
+
+        // if there is a start date selected as time period, check that date is valid and falls within the constituents history
+        if (timeperiod == "") {
+            if (!Validation.DateValidate.IsCustomDateValid(dateFormat, startControl)) {
+                errorMsg = modelContents.GetTranslation("InvalidDateError");
+                return errorMsg;
+            }
+        }
+
+        var startDate = $(startControl).val();
+        if (timeperiod == "" && (startDate == "" || startDate == dateFormat)) {
+            if (!Validation.DateValidate.IsCustomDateValid(dateFormat, endControl)) {
+                errorMsg = modelContents.GetTranslation("InvalidDateError");
+                return errorMsg;
+            }
+        }
+
+        if (typeof dateFormat === 'undefined') {
+            dateFormat = $(startControl).attr('data-dateFormat');
+        }
+
+        var startDate = $(startControl).val();
+        var endDate = $(endControl).val();
+        var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+        startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()) : null;
+        endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()) : null;
+
+        if (startDate != null && endDate != null && endDate < startDate) {
+            errorMsg = modelContents.GetTranslation("InvalidDateRangeError");
+            return errorMsg;
+        }
+    };
+
+    ShowError = function (errorMessage) {
+
+        var title = modelContents.GetTranslation("DownloadToolDialogErrorTitle");
+        var tempElement = document.createElement('div');
+        tempElement.innerHTML = title;
+
+        // Extract the decoded text
+        title = tempElement.textContent;
+        ShowErrorDialog(title, errorMessage);
+    };
+
+    DisplayDisclaimer = function () {
+        $(this).showDisclaimer($("#DisclaimerTextDiv").html());
+        return false;
+    };
+
+    GetOnlyText = function (obj) {
+        return $(obj).clone().children().remove().end().text();
+    };
+
+    GetOnlyCitiCode = function (obj) {
+        return obj.CitiCode;
+    }
+
+    ////Used for price and dividend download section
+    GetUnitPriceHistoryForAllFunds = function (model, container, state, isFirstTime) {
+
+        var dividendTemplateId = container[0].id.indexOf('-data-container') != -1 ? container[0].id.replace('-data-container', '_DownloadDividend') : container[0].id + '_DownloadDividend';
+        var dividendTemplate = $('[id*=' + dividendTemplateId + ']');
+        var priceTemplateId = container[0].id.indexOf('-data-container') != -1 ? container[0].id.replace('-data-container', '_DownloadPrice') : container[0].id + '_DownloadPrice';
+        var priceTemplate = $('[id*=' + priceTemplateId + ']');
+        if (dividendTemplate.length == 0 && priceTemplate.length == 0)
+            return;
+
+        var dividendSectionId = $(dividendTemplate).attr('id') != null ? $(dividendTemplate).attr('id').replace('template_' + model.ToolId + '_' + dividendTemplateId, '') : '';
+        var priceSectionId = $(priceTemplate).attr('id') != null ? $(priceTemplate).attr('id').replace('template_' + model.ToolId + '_' + priceTemplateId, '') : '';
+        var noOfRowsDividend = GetNoofRowsforDownloadSection("dividend", dividendSectionId);
+        var noOfRowsPrice = GetNoofRowsforDownloadSection("price", priceSectionId);
+
+        var citicodeWithFirstPriceDate = $.map(model.DataList, function (v) {
+            return {
+                CitiCode: v.FundInfo.CitiCode,
+                Universe: v.FundInfo.SectorClassCode && v.FundInfo.SectorClassCode.trim() !== '' ? v.FundInfo.SectorClassCode.split(':')[0] : null,
+                FirstPriceDate: v.FundInfo.FirstPriceDate,
+                TypeCode: v.FundInfo.TypeCode,
+                Currency: v.Price.Currency_UnitLevel
+            };
+        });
+
+        var filterOptions = { CitiCodes: citicodeWithFirstPriceDate, IsDividendDownloadEnabled: noOfRowsDividend > 0, IsPriceDownloadEnabled: noOfRowsPrice > 0, NoOfInitialDividendToShow: noOfRowsDividend, NoOfInitialPriceHistoryToShow: noOfRowsPrice };
+        var searchModel = GetFundSearchModel(model.ToolId);
+
+        var downloadModel = $.extend(searchModel, { DownloadFilterOptions: filterOptions });
+
+        if (state.DownloadSectionCacheModel[dividendTemplateId] && !isFirstTime && hasResultInCache(state.DownloadSectionCacheModel[dividendTemplateId], citicodeWithFirstPriceDate)) {
+            InitializeBothSection(state.DownloadSectionCacheModel[dividendTemplateId], container, citicodeWithFirstPriceDate, dividendSectionId, priceSectionId, model.ToolId, noOfRowsDividend, noOfRowsPrice, dividendTemplate, priceTemplate);
+        } else {
+            $(this).sendJsonAsString(modelContents.PriceHistoryForAllFundsUrl, downloadModel,
+                function (response) {
+                    state.DownloadSectionCacheModel[dividendTemplateId] = response;
+                    InitializeBothSection(state.DownloadSectionCacheModel[dividendTemplateId], container, citicodeWithFirstPriceDate, dividendSectionId, priceSectionId, model.ToolId, noOfRowsDividend, noOfRowsPrice, dividendTemplate, priceTemplate);
+                }, null, citicodeWithFirstPriceDate.length);
+        }
+    };
+
+
+    hasResultInCache = function (cachedData, requestedCodes) {
+        var hasAllCodes = true;
+        for (var i = 0; i < requestedCodes.length; i++) {
+            if ($.inArray(requestedCodes[i], cachedData) === -1) {
+                hasAllCodes = false;
+                break;
+            }
+        }
+
+        return hasAllCodes;
+    };
+
+    InitializeBothSection = function (response, container, citicodeWithFirstPriceDate, dividendSectionId, priceSectionId, toolId, noOfRowsDividend, noOfRowsPrice, dividendTemplate, priceTemplate) {
+        if (dividendTemplate.length > 0) {
+            var dividendModel = { templateName: '_DownloadDividend', timeperiodId: '#dividendhistorysection-timeperiod', viewButtonClass: '.fe-section-viewdividend-button', csvButtonClass: '.fe-section-downloadCSVdividend-button', containerPrefix: '#downloaddividend-', resultTableId: '#downloaddividendresulttable', sectionTypeName: 'dividend' };
+            InitializeDownloadSection(response, container, citicodeWithFirstPriceDate, dividendSectionId, toolId, dividendModel, noOfRowsDividend);
+        }
+        if (priceTemplate.length > 0) {
+            var priceModel = { templateName: '_DownloadPrice', timeperiodId: '#pricehistorysection-timeperiod', viewButtonClass: '.fe-section-viewprice-button', csvButtonClass: '.fe-section-downloadCSVprice-button', containerPrefix: '#downloadprice-', resultTableId: '#downloadpriceresulttable', sectionTypeName: 'price' };
+            InitializeDownloadSection(response, container, citicodeWithFirstPriceDate, priceSectionId, toolId, priceModel, noOfRowsPrice);
+        }
+    };
+
+    GetNoofRowsforDownloadSection = function (sectionName, sectionId) {
+        var noOfRows = parseInt($('#download' + sectionName + '-noofrowsoninitialload-' + sectionId).val());
+        return (noOfRows == NaN || noOfRows == undefined) || isNaN(noOfRows) ? 0 : noOfRows;
+    };
+
+    InitializeDownloadSection = function (response, container, citicodeWithFirstPriceDate, sectionId, toolId, model, noofrowstoshow) {
+        var templateId = container[0].id.replace('-data-container', model.templateName);
+        $.each(response, function (i, data) {
+            var typecode;
+            var currency;
+            $.each(citicodeWithFirstPriceDate, function (index, unitdetails) {
+                if (unitdetails.CitiCode == data.CitiCode) {
+                    typecode = unitdetails.TypeCode;
+                    currency = unitdetails.Currency;
+                    return false;
+                }
+                return true;
+            });
+            var containerId = model.containerPrefix + data.CitiCode + '-' + sectionId;
+            var resultTable = $(model.resultTableId, containerId);
+            var csvHistoryUrl;
+            var htmlHistoryUrl;
+            if (model.sectionTypeName == 'dividend') {
+                csvHistoryUrl = modelContents.CSVDividendHistoryUrl;
+                htmlHistoryUrl = modelContents.DividendHistoryUrl;
+                currency = '';
+            }
+            else if (model.sectionTypeName == 'price') {
+                csvHistoryUrl = modelContents.CSVPriceHistoryUrl;
+                htmlHistoryUrl = modelContents.PriceHistoryUrl;
+            }
+
+            $(model.csvButtonClass, containerId).off('click').on('click', function () {
+                var csvModel = { CSVHistoryUrl: csvHistoryUrl, parentId: containerId, toolId: toolId, sectionId: sectionId, timeperiodId: model.timeperiodId, currency: currency, sectionType: ' #' + model.sectionTypeName };
+                var fundname = $(this).attr('data-fundname');
+                downloadSectionCSV(typecode, data.CitiCode, csvModel, fundname);
+            });
+
+            $(model.viewButtonClass, containerId).off('click').on('click', function () {
+                var htmlDisplayModel = {
+                    HistoryUrl: htmlHistoryUrl,
+                    templateId: templateId,
+                    containerId: containerId,
+                    toolId: toolId,
+                    sectionId: sectionId,
+                    timeperiodId: model.timeperiodId,
+                    currency: currency,
+                    sectionType: ' #' + model.sectionTypeName
+                };
+                downloadsectionHtmlDisplay(resultTable, typecode, data.CitiCode, htmlDisplayModel);
+            });
+
+            $('.fe-downloadSection-datePicker', containerId).each(function (idx, control) {
+                SetCustomStartEndDatePicker(control, ToolkitUI.Common.GetDate(data.StartDate));
+            });
+
+            $(model.timeperiodId, containerId).each(function (idx, control) {
+                $("option", control).each(function () {
+                    var ddItem = $(this);
+                    var ddmonths = parseInt(ddItem.val());
+
+                    if (ddmonths > data.TimePeriod) {
+                        ddItem.remove();
+                    }
+
+                    $(control).val('');
+                });
+
+            });
+
+            if ($('.fe-section-view' + model.sectionTypeName + '-button', containerId).length > 0) {
+                var isDividend = model.sectionTypeName == 'dividend';
+                $('[id*=' + templateId + ']').tmpl(isDividend ? data.Dividend : data.Price).appendTo(resultTable);
+                setEvenOddClasses(resultTable);
+                setnodatamessage((isDividend ? (data.Dividend && data.Dividend.length > 0) : (data.Price && data.Price.length > 0)), data.CitiCode, noofrowstoshow, model.sectionTypeName);
+            }
+        });
+
+        $('form.mfs').mfs();
+    };
+
+    setnodatamessage = function (isHide, code, noofrowstoshow, sectionType) {
+        // expected selector format div.X[citicode]#nodividend data
+        var controlId = 'div.X' + code + '#no' + sectionType + 'Data';
+        if ((noofrowstoshow != null && noofrowstoshow == "0") || isHide) {
+            $(controlId).removeClass('ui-helper-hidden').addClass('ui-helper-hidden');
+        } else {
+            $(controlId).removeClass('ui-helper-hidden');
+        }
+    };
+
+    downloadsectionHtmlDisplay = function (resultTable, typecode, code, htmlDisplayModel) {
+        var timeperiodControl = htmlDisplayModel.containerId + ' ' + htmlDisplayModel.timeperiodId;
+        var startControl = htmlDisplayModel.containerId + htmlDisplayModel.sectionType + "start-date-picker-" + code + "-" + htmlDisplayModel.sectionId;
+        var endControl = startControl.replace('start', 'end');
+        var errorMsg = null;
+        errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, null);
+        if (errorMsg == null) {
+
+            var parts = typecode.split(":");
+            var universe = (parts.length > 0) ? parts[0].substring(1) : null;
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var timeperiod = $(timeperiodControl).val() == "max" ? "" : $(timeperiodControl).val();
+
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+            
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+
+                if (startDate) {
+                    startDate = ToolkitUI.Common.GetJsonDate(startDate);
+                }
+
+                if (endDate) {
+                    endDate = ToolkitUI.Common.GetJsonDate(endDate);
+                }
+            }
+
+            var filters = {
+                CitiCode: code,
+                Universe: universe,
+                TypeCode: typecode,
+                BaseCurrency: htmlDisplayModel.currency,
+                PriceType: '',
+                TimePeriod: timeperiod,
+                StartDate: startDate,
+                EndDate: endDate
+            };
+
+            ////$(".empty-div").showLoading();
+            var sectionTypeName = htmlDisplayModel.containerId.indexOf("dividend") > -1 ? "dividend" : "price";
+
+            var historyModel = $.extend(GetFundSearchModel(htmlDisplayModel.toolId), { UnitHistoryFilters: filters });
+
+            $(this).sendJsonAsString(htmlDisplayModel.HistoryUrl, historyModel,
+                function (model) {
+                    $('div.fe-section-download-data-row', resultTable).remove();
+                    ////Hide the message show when no of rows to show on initial load is 0
+                    $('div.no' + sectionTypeName + 'initialdata-' + code).removeClass('ui-helper-hidden').addClass('ui-helper-hidden');
+                    $('[id*=' + htmlDisplayModel.templateId + ']').tmpl(model.DataList).appendTo(resultTable);
+                    setEvenOddClasses(resultTable);
+                    setnodatamessage(model.DataList && model.DataList.length > 0, code, 1, sectionTypeName);
+                    ToolkitUI.Common.ResizeIFrame();
+                });
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+    setEvenOddClasses= function(resultTable) {
+        var selector = ".fe-section-download-data#" + resultTable.attr("id");
+        $(selector + " div.fe-section-download-data-row:even").addClass("even");
+        $(selector + " div.fe-section-download-data-row:odd").addClass("odd");
+    };
+    downloadSectionCSV = function (typecode, code, csvModel, fundname) {
+
+        var timeperiodControl = $(csvModel.timeperiodId, csvModel.parentId);
+        var startTxtId = csvModel.sectionType + "start-date-picker-" + code + "-" + csvModel.sectionId;
+        var startControl = $(startTxtId, csvModel.parentId);
+        var endControl = $(startTxtId.replace('start', 'end'), csvModel.parentId);
+
+        var errorMsg = null;
+        errorMsg = CheckDownloadToolSelection(errorMsg, timeperiodControl, startControl, endControl, null);
+        if (errorMsg == null) {
+
+            var parts = typecode.split(":");
+            var universe = (parts.length > 0) ? parts[0].substring(1) : null;
+
+            var dateFormat = $(startControl).attr('data-dateFormat');
+            var timeperiod = $(timeperiodControl).val() == "max" ? "" : $(timeperiodControl).val();
+            var startDate = $(startControl).val();
+            var endDate = $(endControl).val();
+
+            if ($(startControl).length > 0) {
+                var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+                startDate = startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(startControl).val()).toDateString() : null;
+                endDate = endDate && endDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, $(endControl).val()).toDateString() : null;
+
+                if (startDate) {
+                    startDate = ToolkitUI.Common.GetJsonDate(startDate);
+                }
+
+                if (endDate) {
+                    endDate = ToolkitUI.Common.GetJsonDate(endDate);
+                }
+            }
+
+            var filters = {
+                CitiCode: code,
+                Universe: universe,
+                TypeCode: typecode,
+                FundName: escape(fundname.replace(/([;&,\.\+\*\~':"\!\^#$£¥€%@\[\]\(\)=>\|])/g, '')),
+                BaseCurrency: csvModel.currency,
+                PriceType: '',
+                TimePeriod: timeperiod,
+                StartDate: startDate,
+                EndDate: endDate
+            };
+
+            LoadDocument(csvModel.CSVHistoryUrl + "?modelString=" + JSON.stringify(GetFundSearchModel(csvModel.toolId)) + "&filtersString=" + JSON.stringify(filters) + "&sectionId=" + csvModel.sectionId);
+        }
+        else {
+            ShowError(errorMsg);
+        }
+    };
+
+    addToMyStatement = function () {
+        var dateControl = "#SelectStatementDate-date-picker";
+        var statementDate = getStatementDate();
+        var noOfUnits = $("#SelectNumberofUnits").val();
+        var errorMessages = new Array(5);
+
+        var index = parseInt($('#SelectNumberofUnits').attr('data-position'));
+        if ((noOfUnits === '' || isNaN(noOfUnits)) && index) {
+            errorMessages[index - 1] = setErrorMessage(modelContents.GetTranslation("UnitCountNotEnteredWarning"),'Please select number of units before continuing.');
+        }
+
+        index = parseInt($(dateControl).attr('data-position'));
+        if (statementDate == null && index) {
+            errorMessages[index - 1] = setErrorMessage(modelContents.GetTranslation("NoDateWarning"),'Please select statement date before continuing.');
+        }
+
+        index = parseInt($('#SearchText-16').attr('data-position'));
+        if (StatementData.LastAdded == null || StatementData.LastAdded === '') {
+            errorMessages[index - 1] = setErrorMessage(modelContents.GetTranslation("NoFundSelectionWarning"),'Please select a fund before continuing.');
+        }
+
+        if (StatementData.Data && StatementData.Data[StatementData.LastAdded]) {
+            errorMessages[3] = setErrorMessage(modelContents.GetTranslation("StatementTabFundExistWarning"), 'The fund is already listed in the funds table');
+        }
+
+        if (StatementData.Data && $.map(StatementData.Data, GetOnlyCitiCode).length >= 20) {
+            errorMessages[4] = setErrorMessage(modelContents.GetTranslation("StatementTabMaxLimitWarning"), 'You have reached the maximum amount of funds that can be added to your portfolio');
+        }
+
+        var isValid = true;
+        for (var i = 0; i < errorMessages.length; i++) {
+            if (errorMessages[i]) {
+                isValid = false;
+                ShowError(errorMessages[i]);
+                break;
+            }
+        }
+
+        if (isValid && StatementData.Data[StatementData.LastAdded] == null) {
+            StatementData.Data[StatementData.LastAdded] =
+            {
+                CitiCode: StatementData.LastAdded,
+                NoOfUnits: parseFloat(noOfUnits),
+                Index: $.map(StatementData.Data, GetOnlyCitiCode).length
+            }
+
+            setUiState('block');
+            $('.fe-tab-container-DownloadStatementTab').showLoading();
+
+            loadStatementTabData(StatementData.LastAdded);
+        }
+    }
+
+    setErrorMessage = function(translatedMessage, defaultMessage) {
+        return translatedMessage ? translatedMessage : defaultMessage;
+    }
+
+    setUiState = function(state) {
+        $('.fe-tab-container-DownloadStatementTab').css('display', state);
+        $('#btndownloadtool_ExportStatement').off('click').on('click', exportStatement);
+    }
+
+    exportStatement = function () {
+        window.location = modelContents.ExportStatementUrl + "?jsonString=" + JSON.stringify(getStatementInputModel());
+    }
+
+    onStatementDateChange = function () {
+        if ($.map(StatementData.Data, GetOnlyCitiCode).length > 0) {
+            $('.fe-tab-container-DownloadStatementTab').showLoading();
+            loadStatementTabData();
+        }
+    }
+
+    getStatementDate = function () {
+        var dateControl = "#SelectStatementDate-date-picker";
+        var dateFormat = $(dateControl).attr('data-dateFormat');
+        var startDate = $(dateControl).val();
+        var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+        return startDate && startDate != dateFormat ? jQuery.datepicker.parseDate(jQueryDateFormat, startDate).toDateString() : null;
+    }
+
+    getCitiCodeWithWeight = function (citicode) {
+        var codeWithNoOfUnits = {};
+        if (citicode) {
+            codeWithNoOfUnits[citicode] = StatementData.Data[citicode].NoOfUnits;
+        } else {
+            $.each(StatementData.Data, function (index, item) {
+                codeWithNoOfUnits[item.CitiCode] = StatementData.Data[item.CitiCode].NoOfUnits;
+            });
+        }
+        
+        return codeWithNoOfUnits;
+    }
+
+    getStatementInputModel = function (citicode) {
+        var isStatementDateChanged = citicode == null;
+        var categoryCodes = getCategoryCodes();
+        return {
+            ProjectName: modelContents.ProjectName,
+            GrsProjectId: modelContents.GrsProjectId,
+            LanguageCode: modelContents.LanguageCode,
+            Theme: modelContents.Theme,
+            LanguageId: modelContents.InternalLanguageId,
+            CodesList: isStatementDateChanged ? $.map(StatementData.Data, GetOnlyCitiCode) : [citicode],
+            CitiCodeWithUnitCount: getCitiCodeWithWeight(citicode),
+            StatementDate: ToolkitUI.Common.GetJsonDate(getStatementDate()),
+            IsStatementDateChanged: isStatementDateChanged,
+            Category: categoryCodes.category1,
+            Category2: categoryCodes.category2
+        };
+    }
+    
+    loadStatementTabData = function (citicode) {
+        var inputModel = getStatementInputModel(citicode);
+        $(this).sendJsonAsString(modelContents.StatementUrl, inputModel,
+            function (model) {
+                $('.fe-tab-container-DownloadStatementTab').hideLoading();
+                var tabContainer = $(".fe-tab-container-DownloadStatementTab .fe-datatable");
+                var parent = tabContainer.parent();
+                
+                if (model && model.Result && model.Result.length > 0) {
+                    if ($("[data-id=docRows]").length === 0 || model.IsStatementDateChanged ||
+                        ///On adding the first fund
+                        ($.map(StatementData.Data, GetOnlyCitiCode).length === 1)) {
+                        tabContainer.find("[data-id=docRows]").empty();
+                    }
+                    
+                    $.each(model.Result, function (k, v) { StatementData.Data[v.CitiCode].Result = v; });
+                    updateTotalValue(model);
+
+                    $("#template-" + tabContainer.attr('id').replace('-data-container', '')).tmpl(model.Result).appendTo(tabContainer.find("[data-id=docRows]"));
+                    ShowHistoryFundTable(parent);
+                    HideHistoryNoResult(parent);
+                } else {
+                    HideHistoryFundTable(parent);
+                    ShowHistoryNoResult(parent);
+                }
+
+            }, function () {
+                if (StatementData.LastAdded && StatementData.LastAdded !== '') {
+                    removeFromStatement(StatementData.LastAdded);
+                }
+                
+                onAjaxError();
+            });
+    }
+
+    updateTotalValue = function (model) {
+        var citicodes = $.map(StatementData.Data, GetOnlyCitiCode);
+        var totalValueStatementDate = 0, totalValueToday = 0;
+        for (var i = 0; i < citicodes.length; i++) {
+            var code = citicodes[i];
+            if (StatementData.Data[code].Result) {
+                totalValueStatementDate += GetStatmentDateValue(StatementData.Data[code].Result);
+                totalValueToday += GetTodayValue(StatementData.Data[code].Result);
+            }
+        }
+
+        if (StatementData && !StatementData.Money) { StatementData.Money = model.TotalPortfolioValueatCurrentDate; }
+        ////
+        if (!model) {
+            model = {};
+            model.TotalPortfolioValueatStatementDate = $.extend({}, StatementData.Money);
+            model.TotalPortfolioValueatCurrentDate = $.extend({}, StatementData.Money);
+        }
+
+        model.TotalPortfolioValueatStatementDate.Amount = model.TotalPortfolioValueatStatementDate.DisplayAmount = totalValueStatementDate;
+        model.TotalPortfolioValueatCurrentDate.Amount = model.TotalPortfolioValueatCurrentDate.DisplayAmount = totalValueToday;
+        
+        updateValueInControl('TotalPortfolioValueatStatementDate', model);
+        updateValueInControl('TotalPortfolioValueatCurrentDate', model);
+    }
+
+    updateValueInControl = function (control, value) {
+        var spn = $('#spn' + control);
+        spn.html('');
+        $('#template-' + control).tmpl(value).appendTo(spn);
+    }
+
+    GetStatmentDateValue = function(data) {
+        return data.StatementData.StatementDateValue;
+    }
+
+    GetTodayValue = function (data) {
+        return data.StatementData.StatementLatestValue;
+    }
+
+    onSelectFundFromAutoComplete = function (event, ui) {
+        if (StatementData.Data == null) {
+            StatementData.Data = {};
+        }
+        StatementData.LastAdded = ui.item.id;
+    }
+
+    onAutoCompleteTextChange = function (event, ui) {
+        if (ui.item == null && StatementData && StatementData.LastAdded) {
+            StatementData.LastAdded = '';
+        }
+    }
+
+    restrictToNumeric = function(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        var v = $(evt.target).val();
+        if (v.split('.').length > 1 && v.split('.')[1].length > 2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    removeFromStatement = function(codeToRemove) {
+        if (StatementData.Data[codeToRemove]) {
+            delete StatementData.Data[codeToRemove];
+            updateTotalValue();
+        }
+
+        if ($.map(StatementData.Data, GetOnlyCitiCode).length === 0) {
+            setUiState('none');
+        }
+    }
+
+    return {
+        GetFundOptions: GetFundOptions,
+        GetUnitPriceHistoryForAllFunds: GetUnitPriceHistoryForAllFunds,
+        ShowError: ShowError,
+        SetCustomStartEndDatePicker: SetCustomStartEndDatePicker,
+        InitializeDownloadSection: InitializeDownloadSection,
+        setnodatamessage: setnodatamessage,
+        SelectFundFromAutoComplete: onSelectFundFromAutoComplete,
+        AddToMyStatement: addToMyStatement,
+        StatementDateChange: onStatementDateChange,
+        RestrictToNumeric: restrictToNumeric,
+        UpdateTotalValue: updateTotalValue,
+        SetUiState: setUiState,
+        RemoveFromStatement: removeFromStatement,
+        OnAutoCompleteTextChange: onAutoCompleteTextChange
+    };
+}();
+
+function RemoveFromStatement(value, event) {
+    var eventObj = (window.event || event) ? $.event.fix(event || window.event) : null;
+    if (eventObj) eventObj.preventDefault();
+
+    var codeToRemove = $(event.currentTarget || event.srcElement).attr("data-code");
+    $(event.currentTarget || event.srcElement).closest('tr').remove();
+
+    DownloadTool.Download.RemoveFromStatement(codeToRemove);
+}

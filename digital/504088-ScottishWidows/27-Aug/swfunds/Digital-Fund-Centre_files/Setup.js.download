@@ -1,0 +1,226 @@
+﻿
+/* File Created: October 16, 2012 */
+//Initialize and configure tabs
+
+$(function () {
+
+    var fundCentreTabs = $("#tab-fundCentre");
+
+    // Moved from default.js
+    if ($(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').length > 0) {
+        $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-FundCentreAM').prop('checked', true);
+    }
+
+    if ($(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').length > 0) {
+        $(" .fe-paging-showmainunits input[name='showmainunits']", '.fe-tabs-container-AllFundsAM').prop('checked', true);
+    }
+
+    if (fundCentreTabs.length > 0 && fundCentreTabs.FundInformationTable) {
+        fundCentreTabs.FundInformationTable({
+            GetModel: GetFundCentreModel            
+        });
+
+        $("#tabs-shortList").FundInformationTable({
+            GetModel: GetShortlistModel,
+            OnTabRendered: OnShortlistRendered
+        });
+
+        $("#tabs-portfolio").FundInformationTable({
+            GetModel: GetPortfolioModel,
+            OnTabRendered: OnPortfolioRendered
+        });
+
+        if (dynamicShortListFn) {
+            // This now don't have any tabs and on first load we load the count before the tab loading.
+            // This should be removed once the data loading logic have been implemented
+            dynamicShortListFn.UpdateFundCentreViewForDynamicShortlist();
+        }
+
+        $("#tabs-modelPortfolio").FundInformationTable({
+            GetModel: GetShortlistModel // TODO : this should not use the shortlist model            
+        });
+
+        if (modelContents.AllowSavingOfPortfolios == "True") {
+            $("#tabs-savedportfolios").FundInformationTable({
+                GetModel: GetSavedPortfoliosModel
+            });
+
+            SavedPortfoliosChanged($('#savedPortfoliosTabs'), true);
+
+        };
+
+        $("#tabs-mpconstituents").FundInformationTable({
+            GetModel: GetMPConstituentModel,
+            OnTabRendered: OnMpConstituentsRendered
+		});
+
+        var tabOptions = {
+            beforeActivate: function(event, ui) {
+
+                var currentTabid = ui.newTab.find('a').attr('id');
+                if (currentTabid == "ClientSpecificMasterTab") {
+                    OnClientSpecificMasterTabSelected(currentTabid);
+                    return false;
+                }
+
+                if (BasketViewModel != null) {
+                    BasketViewModel.SetCurrentTab(currentTabid);
+                }
+
+                $(ui.oldTab).find('a').removeClass('selected');
+                $(ui.oldTab).removeClass('selected ui-tabs-selected');
+                $(ui.newTab).find('a').removeClass('selected').addClass('selected');
+                $(ui.newTab).removeClass('selected ui-tabs-selected').addClass('selected ui-tabs-selected');
+
+                if (currentTabid == "ShortListMasterTab") {
+                    RefreshShortListBasketView();
+                } else if (currentTabid == "PortfolioMasterTab") {
+                    RefreshPortfolioBasketView();
+                } else if (currentTabid == "ModelPortfolioMasterTab") {
+                    SlideUpBasket();
+                    if (window.isBackFromMPConstituent) {
+                        $("#tabs-modelPortfolio").FundInfoLoadData(false, false, false, false, 'mpConstituent-back');
+                        window.isBackFromMPConstituent = false;
+                    } else {
+                        $("#tabs-modelPortfolio").FundInfoLoadData(true, true);
+                    }
+                } else if (currentTabid != "FundCentreMasterTab") {
+                    SlideUpBasket();
+                }
+
+                var previousTabId = ui.oldTab.find('a').attr('id');;
+                if (previousTabId == "PortfolioMasterTab") {
+                    OnPortfolioTabUnselected();
+                } else if (previousTabId == "SavedPortfoliosMasterTab") {
+                    OnSavedPortfolioTabUnselected();
+                } else if (previousTabId == "ModelPortfolioMasterTab") {
+                    OnModelPortfolioTabUnselected();
+                }
+            },
+            activate: function (event, ui) {
+                var activeInnerTabId = ui.newPanel
+                    .find('.fe-tabs-container li.ui-state-active a, .fe-tabs-autoLoad li.ui-state-active a').attr('href') ||
+                    ui.newPanel
+                        .find('.fe-tabs-container li.ui-state-active a, .fe-tabs-autoLoad li.ui-state-active a').attr('data-target');//Accessibility href fix
+                if (activeInnerTabId) {
+                    $(DOMPurify.sanitize(activeInnerTabId)).find('.fe-datatable').trigger('fe-datatable:shown');
+                }
+                // This event is used to send the height of the container after the tool is rendered
+                if (document.readyState === "complete")
+                    ToolkitUI.Common.ResizeIFrame();
+                //accessibility  
+                enableAccessibilityFeaturesV1(ui.oldTab, false);
+                enableAccessibilityFeaturesV1(ui.newTab, true);
+            },
+            create: function(event, ui) {
+                ui.tab.addClass("ui-tabs-selected");
+                //accessibility
+                setAriaHiddenValue(ui.tab, true);
+                enableAccessibilityFeaturesV1(ui.tab, true);
+            }
+		};
+
+		if (modelContents.EnableScrollTabs) {
+			tabOptions.scrollOptions = modelContents.scrollTabsOptions;
+			$("#menuTabs").scrollTabs(tabOptions);
+        }
+        else {
+		    $("#menuTabs").tabs(tabOptions);
+        }     
+
+    } else {
+
+        var fundCentreAMTabs = $("#tab-fundCentreAM");
+
+        if (fundCentreAMTabs.FundInformationTable) {
+            fundCentreAMTabs.FundInformationTable({
+                GetModel: GetFundCentreModel
+            });
+        }
+
+        var allFundsAMTabs = $("#tab-allFundsAM");
+
+        if (allFundsAMTabs.FundInformationTable) {
+            allFundsAMTabs.FundInformationTable({
+                GetModel: GetFundCentreModel
+            });
+        }
+
+        var beforeActivateFn = function(event, ui) {
+            ui.oldTab.find('a').removeClass('selected ui-tabs-selected');
+            ui.oldTab.removeClass('selected ui-tabs-selected');
+        };
+
+        var activateFn = function(event, ui) {
+            ui.newTab.find('a').removeClass('selected').addClass('selected');
+            ui.newTab.removeClass('selected ui-tabs-selected').addClass('selected ui-tabs-selected');
+            var selectedToolTabscontainer = ui.newPanel.find(".fe-tabs-container");
+            selectedToolTabscontainer.FundInfoLoadData(false);
+            ui.newPanel.find('.fe-datatable').trigger('fe-datatable:shown');
+        };
+
+        if (modelContents.EnableScrollTabs) {
+            $("#menuTabs").scrollTabs({
+                beforeActivate: beforeActivateFn,
+                activate: activateFn
+            });
+        } else {
+            $("#menuTabs").tabs({
+                beforeActivate: beforeActivateFn,
+                activate: activateFn
+            });
+        }
+    }
+
+
+    var selectedTool = $('#menuTabs a.selected');
+
+    if (selectedTool == null || selectedTool.length == 0) {
+        selectedTool = $("#menuTabs a[href='#tab1']");
+
+        if (selectedTool != null && selectedTool.length > 0) {
+            selectedTool.addClass('selected');
+            selectedTool.parent().addClass('selected');
+        }
+    }
+
+    if (selectedTool) selectedTool.trigger("click");
+
+    //Initialize toolbar events/actions
+    //$("#tab-fundCentre").initializeToolbar();
+
+});
+
+function OnPortfolioTabUnselected() {
+    var isOpen = $("#benchmarkContainer").hasClass('ui-dialog-content') && $("#benchmarkContainer").dialog("isOpen");
+    if (isOpen == true) {
+        $("#benchmarkContainer").dialog("close");
+    }
+}
+
+function OnSavedPortfolioTabUnselected() {
+
+    var isOpen = $("#benchmarkContainer").hasClass('ui-dialog-content') && $("#benchmarkContainer").dialog("isOpen");
+    if (isOpen == true) {
+        $("#benchmarkContainer").dialog("close");
+    }
+
+    isOpen = $(".fe-portfolioconstituents-dialog").hasClass('ui-dialog-content') && $('.fe-portfolioconstituents-dialog').dialog("isOpen");
+    if (isOpen == true) {
+        $(".fe-portfolioconstituents-dialog").dialog("close");
+    }
+}
+
+function OnModelPortfolioTabUnselected() {
+    var isOpen = $("#PortfolioExportDlg").hasClass('ui-dialog-content') && $("#PortfolioExportDlg").dialog("isOpen");
+    if (isOpen == true) {
+        $("#PortfolioExportDlg").dialog("close");
+    }
+}
+
+function OnClientSpecificMasterTabSelected(tabId) {
+    var clientMasterTabUrl = $("#" + DOMPurify.sanitize(tabId)).attr('clientMasterTabUrl');
+    if (clientMasterTabUrl) {
+        window.open(clientMasterTabUrl, '_blank');
+    }
+}

@@ -1,0 +1,1062 @@
+﻿var dynamicShortListFn = {};
+(function (publicFn) {
+    /**
+     * Loads when page is loaded on initial stage
+     */
+    var isWeightageSaved = true;
+    var colours = [];
+    var assetClassDictionary = {};
+    var doc = $(document);
+    var isAllocationBarchartEnabled = false;
+
+    $(function () {
+        // Check if tabs are configured, before continuing to initialize
+        if (modelContents.DynamicShortlistEnabled.toLowerCase() === "true"
+            && $('#dynamic-shortlist-tabs .dynamic-shortlist-tab-list').length > 0) {
+            compileTemplates();
+            colours = $('#DynamicShortlistToolView_AllocationColours').val().split(',');
+            isAllocationBarchartEnabled = $('.dshortlist-allocationbarchart-container').length > 0;
+
+            var model = {};
+            var urlParams = $('#searchform-1').data('urlparams');
+
+            model.GrsProjectId = modelContents.GrsProjectId;
+            model.ProjectRangeId = urlParams.DefaultRangeCode ? urlParams.DefaultRangeCode : null;
+            model.LanguageId = modelContents.InternalLanguageId;
+            var container = masterContainer.dynamicShortListContainer.Get();
+            if (container !== null && container.length > 0) {
+                model.InstrumentCodeList = new Array();
+
+                var codeFromCookieWithOutWeight = false;
+                $(container).each(function (index, item) {
+                    if (item) {
+                        model.InstrumentCodeList.push(item.Code);
+                        // If no weight value is saved yet, then it throws error
+                        if (_.isUndefined(item.Value)) {
+                            codeFromCookieWithOutWeight = true;
+                        }
+                    }
+                });
+
+                if (model.InstrumentCodeList.length > 0 && !codeFromCookieWithOutWeight) {
+                    renderAllLineCharts();
+                }
+
+                var actionUrl = "/" + modelContents.ProjectName + "/Data/FundInformationData/GetDynamicToolShortlistHoldings";
+                $(this).sendJsonRequest($.ajaxTypes.get,
+                    $(this).AttachObjectAsUrlQueryString(actionUrl, model),
+                    null,
+                    function (src) {
+                        bindHoldingData(src);
+                        getAssetClassData(src);
+                    });
+            } else {
+                //the method is in fundInformationtable.js
+                HideFundTablesAndShowNoResultInTool($("#tabs-shortList"));
+            }
+
+            initializeDynamicToolTabs();
+        }
+    });
+
+    function compileTemplates() {
+        $.template("holdingBodyTemplate", $("#template-dShortList_holdingTable").html());
+        $.template("targetAllocationRow", $("#template-dShortList_targetAllocationRow").html());
+    }
+
+    /**
+     * show hide the shortlist which have animation process
+     * @param {any} isFirstTime - is First Time
+     */
+    function onDynamicShortlistRendered(isFirstTime) {
+        var dynamicShortListToggleElem = $(".dynamic-shortlist-slider-arrow a");
+        var dynamicShortlistContainer = $("#dynamic-shortlist-container");
+
+        if (!isFirstTime) {
+            var tabHeight = parseInt($(".dynamic-shortlist-tabs").attr("data-grid-height"));
+            tabHeight = isNaN(tabHeight) ? 0 : tabHeight;
+            if (!dynamicShortListToggleElem.hasClass("down-arrow")) {
+                dynamicShortListToggleElem.addClass("down-arrow").removeClass("up-arrow");
+                dynamicShortlistContainer.css({ 'display': "block", 'height': 0 }).animate({
+                    height: tabHeight * 80
+                },
+                    {
+                        duration: 'slow',
+                        start: function () {
+                            _.each(dynamicShortlistContainer.find('.ui-tabs-panel')
+                                .filter('[aria-hidden=false]')
+                                .find('.dshortlist-hcwrapper'),
+                                function (container) {
+                                    var chartObj = $(container).highcharts();
+                                    if (chartObj) {
+                                        chartObj.reflow();
+                                    }
+                                });
+                        },
+                        always: function () {
+                            ToolkitUI.Common.ResizeIFrame();
+                        }
+                    });
+            } else {
+                dynamicShortListToggleElem.addClass("up-arrow").removeClass("down-arrow");
+                dynamicShortlistContainer.animate({ height: 0 },
+                    'slow',
+                    function () {
+                        $(this).css({
+                            "display": "none"
+                        });
+                        ToolkitUI.Common.ResizeIFrame();
+                    });
+            }
+        }
+        ToolkitUI.Common.ResizeIFrame();
+        ToolkitUI.Common.ResizeIFrame();
+    }
+
+    /**
+     * Adds the set of fund codes to the dynamic shortlist & clears the original array using
+     * passed clearFn - callback function.
+     * @param {any} codes - codes
+     * @param {any} clearFn - clear fn
+     */
+    publicFn.AddCodesToDynamicShortList = function (codes, clearFn) {
+        var processCodes = codes.slice();
+        if (clearFn)
+            clearFn();
+        var basketContainer = [], targetAllocation = [];
+        $.each(processCodes,
+            function (idx, item) {
+                var model = {
+                    Citicode: item
+                };
+
+                if (GetInternalState($("#tab-fundCentre")).CachedModel !== null) {
+                    $(GetInternalState($("#tab-fundCentre")).CachedModel.DataList).each(function (index, element) {
+                        if (item === element.FundInfo.TypeCode) {
+                            model.UnitFullName = element.FundInfo.Name;
+                            model.AssetClassCode = element.FundInfo.AssetClassCode;
+                            model.AssetClassName = element.FundInfo.AssetClass;
+                            model.UniverseCode = _.trimLeft(element.FundInfo.TypeCode.split(':')[0], 'F');
+                            model.Weight = "";
+                            assetClassDictionary[model.AssetClassCode] = model.AssetClassName;
+                            return;
+                        }
+                    });
+                }
+                bindHoldingTableItem(model);
+
+                if ($(".target-allocation-asset-class[data-code=" + model.AssetClassCode + "]").length === 0) {
+                    var allocation = {
+                        Code: model.AssetClassCode,
+                        Name: model.AssetClassName,
+                        Value: ""
+                    };
+                    bindTargetAllocation(allocation);
+                    targetAllocation.push(new BasketContainerInfo(model.AssetClassCode));
+                }
+
+                basketContainer.push(new BasketContainerInfo(item));
+            });
+
+        masterContainer.targetAllocationContainer.AddCollection(targetAllocation);
+        masterContainer.dynamicShortListContainer.AddCollection(basketContainer);
+
+        fixClass(masterContainer.dynamicShortListContainer.Get().length);
+        noBorder(masterContainer.dynamicShortListContainer.Get().length);
+        dynamicShortListFn.UpdateFundCentreViewForDynamicShortlist();
+    };
+
+    function renderAllLineCharts() {
+        var model = {};
+        model.LanguageCode = modelContents.LanguageCode;
+        var container = masterContainer.dynamicShortListContainer.Get();
+        if (container !== null && container.length > 0) {
+            var instrumentCodeList = new Array();
+            model.InstrumentCodeList = '';
+            $(container).each(function (index, item) {
+                if (item !== null) {
+                    instrumentCodeList.push(item.Code + '(' + item.Value + ')');
+                }
+            });
+
+            model.InstrumentCodeList = instrumentCodeList.join(",");
+
+            var actionUrl = "/" + modelContents.ProjectName + "/Data/FundInformationData/GetDynamicShortlistPortfolioHistories" ;
+
+            var dynamicShortlistContainers =
+                $('.dynamic-shortlist-tabs').find('.dynamic-shortlist-linechart-container');
+
+            _.each(dynamicShortlistContainers,
+                function (lineChartContainer) {
+                    model.TimePeriod = $(lineChartContainer).siblings('input#PerformanceTimePeriod').val();
+                    $(this).sendJsonRequest($.ajaxTypes.get,
+                        $(this).AttachObjectAsUrlQueryString(actionUrl, model),
+                        null,
+                        function (data) {
+                            renderLineChart(data, lineChartContainer);
+                        },
+                        null);
+                });
+        }
+    }
+
+    function renderLineChart(model, $chart) {
+        // Get the data for the chart
+        var portfolioData = {};
+        var series = [];
+        var xAxisLabel = 'Date';
+        var labelText = '';
+        var yAxisLabel = 'Return';
+        var decimalSeparator = '.';
+        var dateFormat = 'dd/MM/yyyy';
+        var xAxisMinDate = undefined;
+        var xAxisMaxDate = undefined;
+
+        if (model) {
+            if (model.PortfolioHistories) {
+                portfolioData = model.PortfolioHistories;
+            }
+
+            xAxisMinDate = model.MinHistoryDate;
+            xAxisMaxDate = model.MaxHistoryDate;
+            xAxisLabel = model.XAxisLabel;
+            yAxisLabel = model.YAxisLabel;
+            decimalSeparator = model.DecimalSeparator;
+            dateFormat = model.DateFormat;
+            labelText = model.LabelText;
+        }
+
+        // Bind the data into the correct format and assign colours
+        if (portfolioData) {
+            var portfolioSeries = {};
+            portfolioSeries.data = [];
+            portfolioSeries.name = portfolioData.InstrumentName;
+            portfolioSeries.color = '#' + $($chart).siblings('input#LineColour').val();;
+
+            if (portfolioData.Histories) {
+                $.map(portfolioData.Histories,
+                    function (n, i) {
+                        portfolioSeries.data.push([moment.utc(n.HistoryDate).valueOf(), n.PercentageChange]);
+                    });
+            }
+
+            series.push(portfolioSeries);
+
+            Highcharts.setOptions({
+                lang: {
+                    decimalPoint: decimalSeparator
+                }
+            });
+
+            // Draw the chart									
+            jQuery($chart).highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    //plotBorderWidth: 1, //null,
+                    plotShadow: false,
+                    backgroundColor: null
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: labelText,
+                    align: 'right',
+                    style: {
+                        fontSize: '11px'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                xAxis: {
+                    type: 'datetime',
+                    minRange: 30 * 24 * 3600000,
+                    minTickInterval: 5 * 24 * 3600000,
+                    title: {
+                        text: xAxisLabel
+                    },
+                    labels: {
+                        format: getHighChartDateFormat(dateFormat, 'value')
+                    },
+                    min: moment.utc(xAxisMinDate).valueOf(),
+                    max: moment.utc(xAxisMaxDate).valueOf()
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: getHighChartDateFormat(dateFormat, 'point.x') + ': {point.y:.2f}%',
+                    hideDelay: 0
+                },
+                yAxis: {
+                    title: {
+                        text: yAxisLabel
+                    },
+                    labels: {
+                        format: '{value:.2f}%'
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                responsive: {
+                    rules: [
+                        {
+                            condition: {
+                                maxWidth: 600
+                            },
+                            // Make the labels less space demanding on mobile
+                            chartOptions: {
+                                xAxis: {
+                                    tickPixelInterval: 85,
+                                    labels: {
+                                        rotation: -45
+                                    }
+                                }
+                            }
+                        }, {
+                            condition: {
+                                minWidth: 601
+                            },
+                            chartOptions: {
+                                xAxis: {
+                                    tickPixelInterval: getPxIntervalBasedOnFormat(
+                                        getHighChartDateFormat(dateFormat, 'point.x')),
+                                    labels: {
+                                        rotation: 0
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                series: series
+            });
+        }
+    }
+
+    function createJsonArrayForAllocationChart() {
+        var allocationJson = [];
+        var tableElement = $('.dynamic-shortlist-holding-table-tbody');
+
+        tableElement.find('.holding-table-row').each(function (index, rowElem) {
+            var jqRowElem = $(rowElem);
+            var elemWeight = jqRowElem.find(".holdings-instrument-weightage");
+            var parsedValue = ConvertToFloat(elemWeight.val().replace(/[^0-9\.]/g, ""), 0);
+            if (parsedValue < 0) {
+                parsedValue = 0;
+            }
+
+            var assetClass = jqRowElem.attr("data-assetClassCode");
+            var currentInstrumentName = jqRowElem.find(".holding-instrument-name").text();
+            var isAlreadyAvailable = false;
+            for (var i in allocationJson) {
+                if (allocationJson.hasOwnProperty(i)) {
+                    if (allocationJson[i].assetClass == assetClass) {
+                        allocationJson[i].Weight = allocationJson[i].Weight + parsedValue;
+                        allocationJson[i].breakdown.push({
+                            name: currentInstrumentName,
+                            weight: parsedValue
+                        });
+                        isAlreadyAvailable = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!isAlreadyAvailable) {
+                var item = {};
+                item["assetClass"] = assetClass;
+                item["Weight"] = parsedValue;
+                item["breakdown"] = [{
+                    name: currentInstrumentName,
+                    weight: parsedValue
+                }];
+                allocationJson.push(item);
+            }
+        });
+
+        renderAllocationCharts(allocationJson);
+    }
+
+    function renderAllocationCharts(allocationJson) {
+        var data = [];
+        var targetData = [];
+
+        allocationJson = _.sortByOrder(allocationJson, ['Weight', 'assetClass'], [false, true]);
+        var targetAllocations = masterContainer.targetAllocationContainer.Get();
+
+        for (var i = 0; i < allocationJson.length; i++) {
+            var assetClassCode = allocationJson[i].assetClass;
+            var assetClassCodeName = assetClassDictionary[assetClassCode];
+            data.push({
+                name: assetClassCodeName,
+                y: allocationJson[i].Weight,
+                code: assetClassCode,
+                breakdown: allocationJson[i].breakdown
+            });
+
+            var matchingTarget = _.find(targetAllocations, function (o) {
+                return o.Code === assetClassCode;
+            });
+
+            if (matchingTarget) {
+                targetData.push({
+                    name: assetClassCodeName,
+                    y: matchingTarget.Value,
+                    code: assetClassCode
+                });
+            }
+        }
+
+        renderAllocationPieChart(data);
+        if (isAllocationBarchartEnabled) renderAllocationBarChart(data, targetData);
+    }
+
+    /**
+     * Renders allocation pie chart
+     * @param {any} data - chart data points
+     */
+    function renderAllocationPieChart(data) {
+        var $allocationPieChart = $('.dynamic-shortlist-allocationchart-container');
+        var chartOptions = {
+            chart: {
+                type: 'pie',
+                plotBackgroundColor: null,
+                //plotBorderWidth: 1, //null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '{point.name} : <b>{point.percentage:.2f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors: colours,
+                    borderWidth: 0,
+                    chartInnerSize: 0,
+                    dataLabels: {
+                        enabled: false,
+                        format: '{point.percentage:.2f} %'
+                    }
+                },
+                series: {
+                    states: {
+                        hover: {
+                            halo: false
+                        }
+                    }
+                }
+            },
+            series: [
+                {
+                    data: data
+                }
+            ]
+        };
+
+        var borderWidth = $('#ChartSliceMargin').val();
+        if (borderWidth) {
+            chartOptions.plotOptions.pie.borderWidth = parseInt(borderWidth);
+        }
+
+        var chartInnerSize = $('#ChartInnerSize').val();
+        if (chartInnerSize) {
+            chartOptions.plotOptions.pie.innerSize = parseInt(chartInnerSize) + '%';
+        }
+
+        // Draw the chart									
+        $allocationPieChart.highcharts(chartOptions);
+    }
+
+    /**
+     /**
+     * Renders allocation bar chart
+     * @param {any} data - chart data points
+     * @param {any} targets - target allocation data
+     */
+    function renderAllocationBarChart(data, targets) {
+        var $allocationBarChart = $('.dshortlist-allocationbarchart-container');
+        var categories = [];
+        var actual = {
+            name: 'Current Allocation',
+            data: data
+        };
+
+        var target = {
+            name: 'Target Allocation',
+            data: []
+        };
+
+        var parentContainer = $allocationBarChart.closest(".dshortlist-allocation-wrapper");
+        var currentAllocationColour = parentContainer.find("#CurrentAllocationBarColour");
+        var targetAllocationColour = parentContainer.find("#TargetAllocationBarColour");
+
+        if (currentAllocationColour.length) {
+            actual.color = '#' + currentAllocationColour.val();
+        }
+
+        if (targetAllocationColour.length) {
+            target.color = '#' + targetAllocationColour.val();
+        }
+
+
+        _.each(data,
+            function (assetClass) {
+                categories.push(assetClass.name);
+                var targetItem = _.find(targets,
+                    function (o) {
+                        return o.code === assetClass.code;
+                    });
+                if (targetItem) {
+                    target.data.push(targetItem.y);
+                } else target.data.push(0);
+            });
+        var chartOptions = {
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotShadow: false,
+                backgroundColor: null
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: null
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                useHTML: true,
+                headerFormat: '',
+                outside: true, // Only available from High-charts 6.x
+                formatter: function () {
+                    var s = '';
+                    if (this.point.breakdown) {
+                        s = '<b>' + this.x + '</b><br/>';
+                        var breakdownUnits = '';
+                        _.each(this.point.breakdown,
+                            function (b) {
+                                breakdownUnits += '<li>' + b.name + ': <b>' + b.weight.toFixed(2) + '%</b></li>';
+                            });
+                        if (breakdownUnits) {
+                            s += '<ul>' + breakdownUnits + '</ul>';
+                        }
+                    } else {
+                        s = '<b>' + this.x + '</b>: ' + this.y + '%';
+                    }
+                    return s;
+                }
+            },
+            legend: {
+                enabled: true,
+                floating: true,
+                layout: 'vertical',
+                verticalAlign: 'bottom',
+                align: 'right',
+                y: -30,
+                itemStyle: {
+                    fontSize: '9px',
+                    textOverflow: 'ellipsis',
+                    fontWeight: 'normal'
+                }
+            },
+            series: [
+                actual,
+                target
+            ]
+        };
+
+        // Draw the chart									
+        $allocationBarChart.highcharts(chartOptions);
+    }
+
+    /**
+     * Removes the set of fund codes from the dynamic shortlist & clears the original array using
+     * passed clearFn - callback function.
+     * @param {string[]} codes - codes
+     * @param {function()} clearFn - clear fn
+     */
+    publicFn.RemoveCodesFromDynamicShortList = function (codes, clearFn) {
+        var processCodes = codes.slice(0);
+        if (clearFn)
+            clearFn();
+        $.each(processCodes,
+            function (idx, item) {
+                rebindingHoldingDelete(item);
+            });
+    };
+
+    publicFn.UpdateFundCentreViewForDynamicShortlist = function () {
+        var dynamicShortList = masterContainer.dynamicShortListContainer.Get();
+
+        // Show remove icons of previously selected funds on the main fund view.
+        $.each(dynamicShortList,
+            function (dynamicShortListIndex, dynamicShortListItem) {
+                var fundItem = $('.fe-icon-dynamicshortlist-add a, .fe-fund-tableBody').filter(function (index) {
+                    typeCode = dynamicShortListItem.Code;
+                    return $(this).attr('data-code') === dynamicShortListItem.Code;
+                });
+
+                if (fundItem.length > 0) {
+                    fundItem.parent().removeClass('fe-icon-dynamicshortlist-add');
+                    fundItem.parent().addClass('fe-icon-dynamicshortlist-remove');
+                }
+            });
+
+        ShowHideNoOfFunds(".fe-DynamicShortlistMasterTab-nooffunds", dynamicShortList.length, "true");
+    };
+
+    function initializeDynamicToolTabs() {
+        bindDynamicShortlistGlobalEvents();
+
+        $(".holding-table-confirm_changes button").html(modelContents.GetTranslation("ConfirmChanges"));
+        var othersTkn = modelContents.GetTranslation("OthersHoldingHeader");
+        var groupHoldingsEnabled = $('#GroupHoldingsEnabled').val();
+
+        if (othersTkn && groupHoldingsEnabled !== undefined && groupHoldingsEnabled.toLowerCase() === 'true') {
+            $('div.holding-group-container[data-groupname="OTHER"] > h4').text(othersTkn);
+        }
+
+        var dynamicTabs = $('#dynamic-shortlist-tabs > .dynamic-shortlist-tab');
+        var dynamicToolHeight = $('#dynamic-shortlist-tabs').data('grid-height');
+        if (dynamicTabs.length > 0) {
+            _.each(dynamicTabs,
+                function (tab) {
+                    $(tab).children('.grid-stack').gridstack(_.defaults({
+                        float: true
+                    },
+                        {
+                            width: 10,
+                            height: dynamicToolHeight,
+                            animate: true,
+                            float: true,
+                            staticGrid: true,
+                            disableDrag: true,
+                            disableResize: true
+                        }));
+                    var grid = $(tab).children('.grid-stack').data('gridstack');
+                    var sections = $(tab).children('.grid-stack').children('grid-stack-item');
+                    _.each(sections,
+                        function (section) {
+                            var sectionId = $(section).attr('id');
+                            grid.makeWidget(sectionId);
+                        });
+                });
+        }
+
+        $("#dynamic-shortlist-tabs").tabs({
+            activate: function (e, ui) {
+                _.each($(ui.newPanel).find('.dshortlist-hcwrapper'),
+                    function (container) {
+                        var chartObj = $(container).highcharts();
+                        if (chartObj) {
+                            chartObj.reflow();
+                        }
+                    });
+            }
+        });
+
+        bindHoldingEvents();
+        bindAllocationEvents();
+    }
+
+    /**
+     * Bind all events related to holding section
+     */
+    function bindHoldingEvents() {
+        doc.on('click',
+            '#holding-table-confirm-changes',
+            function (e) {
+                e.preventDefault();
+                var total = $(".holding-table-total_value").html();
+                total = ConvertToFloat(total.replace(/[^0-9\.]/g, ""), 0);
+                if (total !== 100) {
+                    ShowErrorDialog(modelContents.GetTranslation("HoldingWeightError"),
+                        modelContents.GetTranslation("HoldingWeightErrorMessage"),
+                        true);
+                } else {
+                    isWeightageSaved = true;
+                    calculateTotalWeight($('.dynamic-shortlist-holding-table-tbody'), true);
+                    ShowErrorDialog(modelContents.GetTranslation("HoldingWeightSuccess"),
+                        modelContents.GetTranslation("HoldingWeightSuccessMessage"),
+                        true);
+                    createJsonArrayForAllocationChart();
+                    renderAllLineCharts();
+                }
+            });
+        doc.on('click',
+            '.delete-holding-icon',
+            function (e) {
+                e.preventDefault();
+                var code = encodeURIComponent($(this).attr("data-code"));
+                rebindingHoldingDelete(code);
+                calculateTotalWeight($('.dynamic-shortlist-holding-table-tbody'), true);
+                isWeightageSaved = false;
+            });
+    }
+
+    /**
+     * Bind all global events related to dynamic shortlist
+     */
+    function bindDynamicShortlistGlobalEvents() {
+        doc.on('click',
+            '.fe-menuTabs-list li a',
+            function (e) {
+                e.preventDefault();
+                if (parseInt($(this).attr("data-toolId"), 10) === ToolIds.DynamicShortlistToolId ||
+                    parseInt($(this).attr("data-toolId"), 10) === ToolIds.FundCentreId) {
+                    if (parseInt($(this).attr("data-toolId"), 10) === ToolIds.DynamicShortlistToolId) {
+                        $(".fe-mastertabs-FundCentreMasterTab").css("display", "block");
+                        onDynamicShortlistRendered(false);
+                    } else {
+                        $(".fe-mastertabs-FundCentreMasterTab").css("display", "block");
+                    }
+                } else {
+                    $(".fe-mastertabs-FundCentreMasterTab").css("display", "none");
+                }
+            });
+
+        doc.on('click',
+            '.dynamic-shortlist-slider-arrow a',
+            function (e) {
+                e.preventDefault();
+                onDynamicShortlistRendered(false);
+            });
+
+        doc.on('click',
+            '.dynamic-shortlist-tabs li a',
+            function (e) {
+                e.preventDefault();
+                if (!isWeightageSaved) {
+                    var confirmDlgId = "#dlgConfirmMessage_" + ToolIds.FundCentreId;
+                    var messageSpanId = "#confirmMessage_" + ToolIds.FundCentreId;
+                    var uiDialogsFunctions = new UIDialogs();
+                    uiDialogsFunctions.ShowConfirmDialogWithCallbackParam(
+                        modelContents.GetTranslation("HoldingWeightWarning"),
+                        modelContents.GetTranslation("HoldingWeightWarningMessage"),
+                        onConfirmClick,
+                        this,
+                        confirmDlgId,
+                        messageSpanId,
+                        true);
+                }
+            });
+    }
+
+    function bindHoldingData(src) {
+        if (src.IsSuccessful) {
+            var value;
+            var dynamicShortList = masterContainer.dynamicShortListContainer.Get();
+            $(src.HoldingUnitData).each(function (idx, item) {
+                var code = item.Citicode;
+                assetClassDictionary[item.AssetClassCode] = item.AssetClassName;
+                dynamicShortList.forEach(function (e) {
+                    if (code === e.Code) {
+                        value = e.Value === undefined ? "" : e.Value;
+                        return;
+                    }
+                });
+
+                item.Weight = value;
+                bindHoldingTableItem(this);
+            });
+
+            windowResizeEvent(src.TotalRows);
+            fixClass(src.TotalRows);
+            noBorder(src.TotalRows);
+            calculateTotalWeight($('.dynamic-shortlist-holding-table-tbody'), false);
+        }
+    }
+
+    /**
+     * Holding Weight Change - calculate individual weight and update in total weight 
+     * @param {event} event - argument event
+     */
+    publicFn.HoldingWeightChange = function (event) {
+        weightValueChanges(event);
+        isWeightageSaved = false;
+        calculateTotalWeight($(".dynamic-shortlist-holding-table-tbody"), false);
+    };
+
+    function calculateTotalWeight(tableElement, isConfirmChangeClick) {
+        var total = 0.0;
+        tableElement.find(".holdings-instrument-weightage").each(function (index, txt) {
+            var parsedValue = ConvertToFloat(txt.value.replace(/[^0-9\.]/g, ""), 0);
+            if (parsedValue < 0) {
+                parsedValue = 0;
+            }
+            if (isConfirmChangeClick) {
+                var code = $(txt).attr("data-code");
+                var containerItem = GetItemWithCode(masterContainer.dynamicShortListContainer, code);
+                if (containerItem !== null) {
+                    containerItem.Value = parsedValue;
+                    masterContainer.dynamicShortListContainer.PersistState();
+                }
+            }
+            total = total + parsedValue;
+        });
+        $(".holding-table-total_value").html(total.toFixed(2));
+        if (total > 100) {
+            ShowErrorDialog(modelContents.GetTranslation("HoldingWeightError"),
+                modelContents.GetTranslation("HoldingWeightErrorMessage"),
+                true);
+        }
+    }
+
+    function windowResizeEvent(items) {
+        $(window).on('resize',
+            function () {
+
+                if (items <= 1) {
+                    $('.dynamic-shortlist-holding-table-header').addClass('single').removeClass('split');
+                } else {
+                    if ($(window).width() < 768) {
+                        $('.dynamic-shortlist-holding-table-header').addClass('single').removeClass('split');
+
+                    } else {
+                        $('.dynamic-shortlist-holding-table-header').addClass('split').removeClass('single');
+
+                    }
+                }
+            });
+    }
+
+    function fixClass(items) {
+
+        if (items <= 1) {
+            $('.dynamic-shortlist-holding-table-header').addClass('single').removeClass('split');
+        } else {
+            if ($(window).width() < 768) {
+                $('.dynamic-shortlist-holding-table-header').addClass('single').removeClass('split');
+
+            } else {
+                $('.dynamic-shortlist-holding-table-header').addClass('split').removeClass('single');
+
+            }
+        }
+    }
+
+    function noBorder(items) {
+        if (items % 2 !== 0) {
+            $('.dynamic-shortlist-holding-table-tbody .holding-table-row').removeClass('no-border').last()
+                .addClass('no-border');
+        } else {
+            $('.dynamic-shortlist-holding-table-tbody .holding-table-row').removeClass('no-border');
+        }
+    }
+
+    function bindHoldingTableItem(model) {
+        var elemHoldingRow = $.tmpl("holdingBodyTemplate", model);
+        var groupHoldingsEnabled = $('#GroupHoldingsEnabled').val();
+
+        if (groupHoldingsEnabled.toLowerCase() === 'true') {
+            var found = false;
+            _.each($('div.holding-group-container'),
+                function (container) {
+                    var containerGroup = $(container).data('groupuniverses');
+                    if (containerGroup && _.indexOf(containerGroup.split(','), model.UniverseCode) > -1) {
+                        $(container).find('.dynamic-shortlist-holding-table-tbody').append(elemHoldingRow);
+                        $(container).show();
+                        found = true;
+                    }
+                });
+
+            if (!found) {
+                $('div.holding-group-container[data-groupname="OTHER"] > .dynamic-shortlist-holding-table-tbody')
+                    .append(elemHoldingRow);
+                $('div.holding-group-container[data-groupname="OTHER"]').show();
+            }
+        } else {
+            $('.dynamic-shortlist-holding-table-tbody')
+                .append(elemHoldingRow);
+        }
+    }
+
+    function rebindingHoldingDelete(code) {
+        updateAddToButtonUiStates(code, 'fe-icon-dynamicshortlist-add', 'fe-icon-dynamicshortlist-remove');
+        $(".holding-table-row[data-code='" + code + "']").remove();
+        $(".fe-fund-tableBody .fe-icon-dynamicshortlist[data-code='" + code + "']")
+            .removeClass('fe-icon-dynamicshortlist-remove');
+        $(".fe-fund-tableBody .fe-icon-dynamicshortlist[data-code='" + code + "']")
+            .addClass('fe-icon-dynamicshortlist-add');
+
+        var groupHoldingsEnabled = $('#GroupHoldingsEnabled').val();
+
+        if (groupHoldingsEnabled.toLowerCase() === 'true') {
+            _.each($('div.holding-group-container'),
+                function (container) {
+                    var containerGroup = $(container).find('.holding-table-row');
+                    if (containerGroup.length > 0) {
+                        $(container).show();
+                    } else {
+                        $(container).hide();
+                    }
+                });
+        }
+
+        var container = [];
+        container.push(new ContainerInfo(null, code));
+        masterContainer.dynamicShortListContainer.RemoveCollection(container);
+
+
+        var dynamicShortList = masterContainer.dynamicShortListContainer.Get();
+        ShowHideNoOfFunds(".fe-DynamicShortlistMasterTab-nooffunds", dynamicShortList.length, "true");
+        removeTargetAllocation();
+    }
+
+    function onConfirmClick(e) {
+        if (e) {
+            $("#holding-table-confirm-changes").click();
+        }
+    }
+
+    /**
+     * Binds all events related to allocation section
+     */
+    function bindAllocationEvents() {
+        doc.on('click',
+            '#edit-target-allocation',
+            function (e) {
+                e.preventDefault();
+                $(".dynamic-shortlist-allocationchart-container").hide();
+                $(".target-allocation-container").show();
+                $("#edit-target-allocation").hide();
+                $("#save-target-allocation").show();
+            });
+
+        doc.on('click',
+            '#save-target-allocation',
+            function (e) {
+                e.preventDefault();
+                var total = $(".target-allocation-total").html();
+                total = ConvertToFloat(total.replace(/[^0-9\.]/g, ""), 0);
+                if (total !== 100) {
+                    ShowErrorDialog(modelContents.GetTranslation("HoldingWeightError"),
+                        modelContents.GetTranslation("HoldingWeightErrorMessage"),
+                        true);
+                } else {
+                    $(".target-allocation-data").find(".target-allocation-asset-class").each(function (index, txt) {
+                        var parsedValue =
+                            ConvertToFloat($(txt).find(".target-allocation-weightage").val().replace(/[^0-9\.]/g, ""),
+                                0);
+                        if (parsedValue < 0) {
+                            parsedValue = 0;
+                        }
+                        var code = $(txt).attr("data-code");
+                        var containerItem = GetItemWithCode(masterContainer.targetAllocationContainer, code);
+                        if (containerItem !== null) {
+                            containerItem.Value = parsedValue;
+                            masterContainer.targetAllocationContainer.PersistState();
+                        }
+                    });
+                    $(".target-allocation-container").hide();
+                    $(".dynamic-shortlist-allocationchart-container").show();
+                    $("#save-target-allocation").hide();
+                    $("#edit-target-allocation").show();
+
+                    createJsonArrayForAllocationChart();
+                }
+            });
+    }
+
+    function getAssetClassData(src) {
+        if (isAllocationBarchartEnabled) {
+            var targetAllocation = masterContainer.targetAllocationContainer.Get();
+            var allocation = {};
+
+            targetAllocation.forEach(function (e) {
+                allocation.Code = e.Code;
+                var name = _.find(src.HoldingUnitData, function (obj) { return obj.AssetClassCode === e.Code; });
+                allocation.Name = name === undefined ? "" : name.AssetClassName;
+                allocation.Value = e.Value === undefined ? "" : e.Value;
+                assetClassDictionary[allocation.Code] = allocation.Name;
+                bindTargetAllocation(allocation);
+            });
+        }
+        createJsonArrayForAllocationChart();
+    }
+
+    function bindTargetAllocation(model) {
+        $(".target-allocation-data").append($.tmpl("targetAllocationRow", model));
+    }
+
+    publicFn.TargetAllocationWeightChange = function (event) {
+        weightValueChanges(event);
+        var total = 0.0;
+        calculateAssetClass(total);
+        if (total > 100) {
+            ShowErrorDialog(modelContents.GetTranslation("HoldingWeightError"),
+                modelContents.GetTranslation("HoldingWeightErrorMessage"),
+                true);
+        }
+    };
+
+    function weightValueChanges(event) {
+        // event.srcElement for IE prior to 9
+        var eventSource = $(event.currentTarget || event.srcElement);
+        var typedValue = ConvertToFloat(eventSource.val().replace(/[^0-9\.]/g, ""), 0);
+        if (typedValue < 0) {
+            typedValue = 0;
+        }
+        if (typedValue > 100) {
+            ShowErrorDialog(modelContents.GetTranslation("HoldingWeightError"),
+                modelContents.GetTranslation("HoldingWeightErrorMessage"),
+                true);
+            return;
+        }
+        eventSource.val(typedValue.toLocaleString());
+    };
+
+    function calculateAssetClass(total) {
+
+        $(".target-allocation-data").find(".target-allocation-weightage").each(function (index, txt) {
+            var parsedValue = ConvertToFloat(txt.value.replace(/[^0-9\.]/g, ""), 0);
+            if (parsedValue < 0) {
+                parsedValue = 0;
+            }
+            var code = $(txt).attr("data-code");
+            var containerItem = GetItemWithCode(masterContainer.targetAllocationContainer, code);
+            if (containerItem !== null) {
+                containerItem.Value = parsedValue;
+                masterContainer.targetAllocationContainer.PersistState();
+            }
+            total = total + parsedValue;
+        });
+        $(".target-allocation-total").html(total.toFixed(2));
+        return total;
+    }
+
+    function removeTargetAllocation() {
+        var targetAllocation = masterContainer.targetAllocationContainer.Get();
+
+        targetAllocation.forEach(function (e) {
+            if ($(".holding-table-row[data-assetclasscode=" + e.Code + "]").length === 0) {
+                $(".target-allocation-asset-class[data-code=" + e.Code + "]").remove();
+                var container = [];
+                container.push(new ContainerInfo(null, e.Code));
+                masterContainer.targetAllocationContainer.RemoveCollection(container);
+            }
+        });
+        calculateAssetClass(0);
+    }
+})(dynamicShortListFn);

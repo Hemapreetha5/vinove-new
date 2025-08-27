@@ -1,0 +1,185 @@
+﻿/* File Created: November 28, 2012 */
+
+///Set isModal to true, when you want to show this dialog along with other modal popup 
+function ShowErrorDialog(title, errorMessage, isModal) {
+    $('.errorMessage-identity', '.dlgErrorMessage').html(errorMessage).text();
+    var OKText = modelContents.GetTranslation("Ok");
+    $('.dlgErrorMessage').dialog({
+        resizable: false,
+        dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+        stack: true,
+        title: title,
+        modal: isModal,
+        buttons:
+                [{
+            text: OKText,
+            "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                    }
+                }],
+        open: function (event) {
+            hideDuplicateImage($(".fe-ui-error-dialog"));
+            MakeCloseButtonWorking($(".fe-ui-error-dialog"));
+        },
+        beforeClose: function (event)
+        {
+            RemoveAddedClassOnClose($(".fe-ui-error-dialog"));
+        },
+        close : function(event) {
+            $(this).dialog( "destroy" );
+        }
+    });
+}
+
+// message on portfolio tab, while moving away from unsaved portfolio 
+function ShowConfirmDialog(title, message, OnConfirm, OnCancel) {
+    $('#confirmMessage', '#dlgConfirmMessage').html(message).text();
+    var confirmText = modelContents.GetTranslation("ContinueButtonText");
+    $('#dlgConfirmMessage').dialog({
+        resizable: false,
+        dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+        stack: true,
+        title: title,
+        buttons:[
+                {
+                text: confirmText,
+                "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                        OnConfirm();
+                    }
+                    },{
+                text: "Cancel",
+                "class": "ui-state-default ui-button-text-only",
+                    click: function () {
+                        $(this).dialog('close');
+                        OnCancel();
+                    }
+                }]
+    });
+}
+
+var UIDialogs = UIDialogs || {};
+
+var UIDialogs = function () { };
+
+UIDialogs.prototype = function() {
+
+// Dialog message for confirming an action. The callback function will be called with the provided control/input model 
+// as a parameter together with a boolean that indicates which option was selected. Continue = true and Cancel = false.
+// A continue button and a cancel button will be shown.
+
+    function showConfirmDlgWithCallbackParam(title, message, onConfirmCallback, callbackParam, dialogSelector, msgSelector, isConfirm) {
+        if (typeof dialogSelector == "undefined" || !dialogSelector) {
+            dialogSelector = '#confirmMessage';
+        }
+
+        if (typeof msgSelector == "undefined" || !msgSelector) {
+            msgSelector = "'#confirmMessage', '#dlgConfirmMessage'";
+        }
+
+        $(msgSelector).html(message).text();
+        var confirmText = isConfirm ? "Confirm" : modelContents.GetTranslation("ContinueButtonText");
+        var cancelText = modelContents.GetTranslation("Cancel");
+        if (modelContents.Accessibility && modelContents.HigChartAccessibilitySettings.EnableAccessibilityFeatures && modelContents.HigChartAccessibilitySettings.AccessibilityFeaturesVersion >= 2) {
+            $(dialogSelector).dialog({
+                resizable: false,
+                dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+                zIndex: 9999,
+                stack: false,
+                //Accessibility Dialog fix
+                modal: true,
+                open: function (event, ui) {
+                    var $dialog = $(this).closest('.ui-dialog');
+                    $dialog.attr('aria-modal', 'true');
+                    $dialog.attr('role', 'dialog');
+
+                    $(this).data('previousFocus', document.activeElement);
+
+                    setTimeout(function () {
+                        var $firstFocusable = $dialog.find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])').first();
+                        if ($firstFocusable.length) {
+                            $firstFocusable.focus();
+                        }
+                    }, 100);
+
+                    $dialog.on('keydown.focustrap', function (e) {
+                        if (e.keyCode === 9) {
+                            var $focusableElements = $dialog.find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                            var $firstFocusable = $focusableElements.first();
+                            var $lastFocusable = $focusableElements.last();
+
+                            if (e.shiftKey) {
+                                if (document.activeElement === $firstFocusable[0]) {
+                                    e.preventDefault();
+                                    $lastFocusable.focus();
+                                }
+                            } else {
+                                if (document.activeElement === $lastFocusable[0]) {
+                                    e.preventDefault();
+                                    $firstFocusable.focus();
+                                }
+                            }
+                        }
+                    });
+                },
+                close: function (event, ui) {
+                    $(this).closest('.ui-dialog').off('keydown.focustrap');
+
+                    var previousFocus = $(this).data('previousFocus');
+                    if (previousFocus && $(previousFocus).is(':visible')) {
+                        $(previousFocus).focus();
+                    }
+                },
+                //
+                title: title,
+                buttons: [
+                    {
+                        text: confirmText,
+                        "class": "ui-state-default ui-button-text-only",
+                        click: function () {
+                            $(this).dialog('close');
+                            onConfirmCallback(true, callbackParam);
+                        }
+                    }, {
+                        text: cancelText,
+                        "class": "ui-state-default ui-button-text-only",
+                        click: function () {
+                            $(this).dialog('close');
+                            onConfirmCallback(false, callbackParam);
+                        }
+                    }]
+            });
+        }
+        else {
+            $(dialogSelector).dialog({
+                resizable: false,
+                dialogClass: "fe-ui-dialog fe-ui-error-dialog",
+                zIndex: 9999,
+                stack: false,                
+                title: title,
+                buttons: [
+                    {
+                        text: confirmText,
+                        "class": "ui-state-default ui-button-text-only",
+                        click: function() {
+                            $(this).dialog('close');
+                            onConfirmCallback(true, callbackParam);
+                        }
+                    }, {
+                        text: cancelText,
+                        "class": "ui-state-default ui-button-text-only",
+                        click: function() {
+                            $(this).dialog('close');
+                            onConfirmCallback(false, callbackParam);
+                        }
+                    }]
+            });
+        }
+    }
+
+    return {
+        ShowConfirmDialogWithCallbackParam: showConfirmDlgWithCallbackParam
+    };
+}();

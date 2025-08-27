@@ -1,0 +1,40 @@
+﻿
+$(function () {
+
+    $('.fe-portfolioSettings-portfoliodetails-pdf').off('click', '#btnShowNextPdf').on('click','#btnShowNextPdf', function (e) {
+        e.preventDefault();
+        runEffect(PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource);
+        $('#benchmarkContainer').dialog("option", "title", modelContents.GetTranslation("PScanBenchmarkDialogTitle"));
+
+    });
+
+    $('.fe-portfolioSettings-portfoliodetails-html').off('click', '#btnShowNextHtml').on('click','#btnShowNextHtml', function (e) {
+        e.preventDefault();
+        runEffect(PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource);
+        $('#benchmarkContainer').dialog("option", "title", modelContents.GetTranslation("PScanBenchmarkDialogTitle"));
+        setTimeout(function() {
+            $('#benchmarkContainer a.mfs-selected-option')[0].focus();
+        }, 1000);
+       
+    });
+
+});
+
+function runEffect(source) {
+
+    if (source == PortfolioTool.PortfolioScanSource.PortfolioScanPdfSource) {
+        // run the effect
+        $(".fe-portfolioSettings-portfoliodetails-pdf").hide('slide', { direction: "right" }, 400, callback);
+    }
+    else if (source == PortfolioTool.PortfolioScanSource.PortfolioScanHtmlSource) {
+        // run the effect
+        $(".fe-portfolioSettings-portfoliodetails-html").hide('slide', { direction: "right" }, 400, callback);
+    }
+};
+
+// callback function to bring a hidden box back
+function callback() {
+
+    $(".fe-portfolioSettings-selectbenchmark").show('slide', { direction: "left" });
+
+};

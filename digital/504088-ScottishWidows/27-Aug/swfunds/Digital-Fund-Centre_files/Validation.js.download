@@ -1,0 +1,47 @@
+﻿var Validation = Validation || {}
+
+Validation.DateValidate = function () {
+    isTimePeriodValid = function (dateFormat, timeperiodControl, startControl, endControl) {
+        var startDate = $(startControl).val();
+        var endDate = $(endControl).val();
+        var timeperiod = $(timeperiodControl).val();
+
+        // both time period and start date is there
+        if ((startDate && startDate != dateFormat && timeperiod) || (endDate && endDate != dateFormat && timeperiod)) {
+            return false;
+        }
+
+        // has neither start date nor time period
+        if (((!startDate || startDate == dateFormat) && (!endDate || endDate == dateFormat)) && !timeperiod) {
+            return false;
+        }
+
+        return true;
+    };
+
+    isCustomDateValid = function (dateFormat, control) {
+        var date = $(control).val()
+        if (isDateValid(date, dateFormat)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    isDateValid = function (value, dateFormat) {
+        try {
+            var jQueryDateFormat = getJqueryDatePickerFormatMapping(dateFormat);
+            jQuery.datepicker.parseDate(jQueryDateFormat, value);
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+    };
+
+    return {
+        IsTimePeriodValid: isTimePeriodValid,
+        IsCustomDateValid: isCustomDateValid
+    };
+} ();

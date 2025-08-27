@@ -1,0 +1,369 @@
+﻿
+var ExportExcel = ExportExcel || {};
+
+var ExportExcel = function () { };
+
+ExportExcel.prototype = function () {
+
+    // This feature uses v1.4.3 of the jQuery.fileDownload plugin taken from: http://jqueryfiledownload.apphb.com/
+    // which was created by John Culviner (http://johnculviner.com/jquery-file-download-plugin-for-ajax-like-feature-rich-file-downloads/) 
+    // The plug-in may still contain minor bugs that have not yet been discovered.
+
+    $(function () {
+        $("button.fe-project-tool-column-select-dlg-btn").on("click", function () {
+            var projectToolId = $(this).attr('data-ProjectToolId');
+            var projectToolName = $(this).attr('data-ProjectToolName');
+            if (!projectToolId || !projectToolName) { // Perform some basic checks.
+                return false;
+            }
+
+            // When using the Fund Centre/Fund Centre AM check the total number of funds that can be exported in order to display warning if required.
+            if (modelContents.FundCentreAMEnabled || (BasketViewModel && BasketViewModel.isFundMasterTabActive())) {
+                var totalFunds;
+                if (modelContents.FundCentreAMEnabled) {
+                    totalFunds = getTotalFunds($("#tab-fundCentreAM"));
+                } else {
+                    ////Read data count from active tab. if active tab not present then get it from the whole pagenation 
+                    var activeTab = $('#tab-fundCentre ul .ui-state-active').data('containerid');
+                    if (activeTab != null) {
+                        totalFunds = getTotalFunds($("#tab-fundCentre #" + activeTab + "-data-container"));
+                    } else {
+                        totalFunds = getTotalFunds($("#tab-fundCentre"));
+                    }
+                }
+
+                if (totalFunds > MaxExpExcelFundCentrePageSize) {
+                    var title = modelContents.GetTranslation("ExpExcelDlgMaxFundsErrorTitle");
+                    var message = modelContents.GetTranslation("ExpExcelDlgMaxFundsErrorMsg");
+                    var confirmDlgId = "#dlgConfirmMessage_" + projectToolId;
+                    var messageSpanId = "#confirmMessage_" + projectToolId;
+                    if (typeof UIDialogs !== 'undefined') {
+                        var uiDialogsFunctions = new UIDialogs();
+                        uiDialogsFunctions.ShowConfirmDialogWithCallbackParam(title, message, displayColumnSelectionDialog, this, confirmDlgId, messageSpanId, false);
+                    }
+                } else {
+                    // Total funds is less than the maximum so produce Excel export.
+                    displayColumnSelectionDialog(true, this);
+                }
+            } else {
+                // For Portfolio and Shortlist tools, the total funds will always be less than the maximum so produce Excel export.
+                displayColumnSelectionDialog(true, this);
+            }
+
+            return false; //This is critical to stop the click event which will trigger a normal file download!
+        });
+    });
+
+    function displayColumnSelectionDialog(continueWithMaxFunds, selectedControl) {
+        if (!continueWithMaxFunds || !selectedControl) {
+            return;
+        }
+
+        var projectToolId = $(selectedControl).attr('data-ProjectToolId');
+        var expExcelDlgHeader = modelContents.GetTranslation("ExpExcelDlgHeader");
+        var noSelectedFundsErrorTitle = modelContents.GetTranslation("ExpExcelDlgNoFundsSelectedErrorTitle");
+        var noSelectedFundsErrorMsg = modelContents.GetTranslation("ExpExcelDlgNoFundsSelectedErrorMsg");
+        var activeTab, containerSelector, selectedInstruments;
+
+        if (!modelContents.FundCentreAMEnabled) {
+            if (BasketViewModel != undefined && BasketViewModel && BasketViewModel.isShortListTabActive()) {
+                activeTab = ToolsCommon.GetActiveTabForTool(Tool.Shortlist);
+                containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');//Accessibility href fix
+                selectedInstruments = $(DOMPurify.sanitize(containerSelector)).find(':checkbox:checked');
+                if (selectedInstruments.length == 0) {
+                    ShowErrorDialog(noSelectedFundsErrorTitle, noSelectedFundsErrorMsg, true);
+                    return;
+                }
+            } else if (BasketViewModel != undefined && BasketViewModel && BasketViewModel.isPortfolioTabActive()) {
+                //// Check for selected funds.
+                activeTab = ToolsCommon.GetActiveTabForTool(Tool.Portfolio);
+                containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');//Accessibility href fix
+                selectedInstruments = $(DOMPurify.sanitize(containerSelector)).find(':checkbox:checked');
+                if (selectedInstruments.length == 0) {
+                    ShowErrorDialog(noSelectedFundsErrorTitle, noSelectedFundsErrorMsg, true);
+                    return;
+                }
+            }
+        }
+
+        var dlgColumnsToExportFormId = '#dlgColumnsToExportForm_' + projectToolId;
+        var continueExportBtnText = modelContents.GetTranslation("ContinueButtonText");
+        var cancelBtnText = modelContents.GetTranslation("Cancel");
+        /// Load and display the correct dialog for the button that was clicked.
+        $('#columnSelectionDlgContentContainer_' + projectToolId).dialog({
+            autoOpen: true,
+            modal: true,
+            resizable: true,
+            height: 700,
+            width: 670,
+            title: expExcelDlgHeader,
+            buttons: [
+                {
+                    text: continueExportBtnText,
+                    click: function () {
+                        generateExcelExport($(this).find(dlgColumnsToExportFormId), $(this), projectToolId);
+                    }
+                }, {
+                    text: cancelBtnText,
+                    click: function () {
+                        if (($(this).find(dlgColumnsToExportFormId)).length > 0 && ($(this).find(dlgColumnsToExportFormId)[0])) {
+                            $(this).find(dlgColumnsToExportFormId)[0].reset();
+                        }
+
+                        $(this).dialog('close');
+                    }
+                }],
+            close: function () {
+                if (($(this).find(dlgColumnsToExportFormId)).length > 0 && ($(this).find(dlgColumnsToExportFormId)[0])) {
+                    $(this).find(dlgColumnsToExportFormId)[0].reset();
+                }
+            }
+        });
+        if (modelContents.FundCentreAMEnabled) {
+            // Find the main container dialog.
+            var dlgParentElement = $('#columnSelectionDlgContentContainer_' + projectToolId).parents('div.ui-dialog.ui-resizable.ui-draggable').eq(0);
+            // Find the title container element to enable the cursor to be changed.
+            var dlgTitleElement = $('#columnSelectionDlgContentContainer_' + projectToolId).siblings('div.ui-dialog-titlebar').eq(0);
+            // Prevent the dialog from being draggable because it has a strange jumpy effect as a result of a jQuery bug relating to the height of the page on AM projects.
+            $('#columnSelectionDlgContentContainer_' + projectToolId).dialog("option", "draggable", false);
+            // Restore the original styles on the container dialog so that after making the dialog non-draggable it looks right. The non-draggable feature has a side effect on some of the styles/classes.
+            if (dlgParentElement.length) {
+                dlgParentElement.addClass("ui-resizable");
+                dlgParentElement.addClass("ui-draggable");
+            }
+            // Correct the cursor from a moveable pointer to a simple pointer.
+            if (dlgTitleElement.length) {
+                dlgTitleElement.addClass("fe-expexcel-not-draggable");
+            }
+        }
+    }
+
+    function generateExcelExport(columnSelectionForm, dialogInstance, projectToolId) {
+        var typeCodeAttribute = 'value';
+        var separator = ',';
+        var selectAllChkbx = '#dlgColumnsToExportSelectAllChkbx_' + projectToolId;
+        var selectedColumnsArray = new Array();
+        // Get selected column details.
+        $("input[type=checkbox]:not(" + selectAllChkbx + "):checked", columnSelectionForm).map(function (index) {
+            selectedColumnsArray.push(
+                {
+                    ColumnId: $(this).attr('data-ColumnId'),
+                    OrderId: index + 1
+                });
+        });
+
+        // Ensure that another column other than the default one has been selected.
+        if (selectedColumnsArray.length > 1) {
+            // Check what tool is currently active.
+            var model = {};
+            var pagingState = { PageNo: 1 };
+
+            var sortingState = { OrderByColumn: "UnitName", IsOrderByAsc: true };
+            var activeTab, containerSelector, selectedInstruments, selectedTypeCodes = '';
+
+            if (modelContents.FundCentreAMEnabled) {
+                pagingState.PageSize = MaxExpExcelFundCentrePageSize;
+                var fundCentreAMTabs = $("#tab-fundCentreAM");
+                model = GetFundCentreModel(fundCentreAMTabs, pagingState, sortingState);
+                model.RowIDs = GetRowIdDetails();
+                // Check if search term is not set properly and reset it so that the search does not crash. 
+                // TODO: Modify the backend code to test for empty string and whitespace specified as the search term.
+                if (model.FilteringOptions.SearchText == "" || ((model.FilteringOptions.SearchText) && (model.FilteringOptions.SearchText.trim() == ""))) {
+                    model.FilteringOptions.SearchText = null;
+                }
+            } else {
+                if (BasketViewModel && BasketViewModel.isShortListTabActive()) {
+                    // Check for selected funds.
+                    activeTab = ToolsCommon.GetActiveTabForTool(Tool.Shortlist);
+                    containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');//Accessibility href fix
+                    selectedInstruments = $(DOMPurify.sanitize(containerSelector)).find(':checkbox:checked');
+
+                    selectedInstruments.each(function () {
+                        var instrument = $(this);
+                        selectedTypeCodes = selectedTypeCodes + instrument.attr(typeCodeAttribute) + separator;
+                    });
+
+                    var shortlistTabs = $("#tabs-shortlist");
+                    if (shortlistTabs.length != 0) {
+                        pagingState.PageSize = shortlistTabs.find(".record-count, input").val();
+                    } else {
+                        pagingState.PageSize = MaxExpExcelShortlistPageSize;
+                    }
+
+                    model = GetToolModelForCodes(selectedTypeCodes, separator, pagingState, sortingState);
+                } else if (BasketViewModel && BasketViewModel.isPortfolioTabActive()) {
+                    // Check for selected funds.
+                    activeTab = ToolsCommon.GetActiveTabForTool(Tool.Portfolio);
+                    containerSelector = $('a', activeTab).attr('href') || $('a', activeTab).attr('data-target');//Accessibility href fix
+                    selectedInstruments = $(DOMPurify.sanitize(containerSelector)).find(':checkbox:checked');
+
+                    selectedInstruments.each(function () {
+                        var instrument = $(this);
+                        selectedTypeCodes = selectedTypeCodes + instrument.attr(typeCodeAttribute) + separator;
+                    });
+
+                    var portfolioTabs = $("#tabs-portfolio");
+                    if (portfolioTabs.length != 0) {
+                        pagingState.PageSize = portfolioTabs.find(".record-count, input").val();
+                    } else {
+                        pagingState.PageSize = MaxExpExcelPortfolioPageSize;
+                    }
+
+                    model = GetToolModelForCodes(selectedTypeCodes, separator, pagingState, sortingState);
+                } else if (BasketViewModel && BasketViewModel.isFundMasterTabActive()) {
+                    pagingState.PageSize = MaxExpExcelFundCentrePageSize;
+                    var fundCentreTabs = $("#tab-fundCentre");
+                    model = GetFundCentreModel(fundCentreTabs, pagingState, sortingState);
+                    model.RowIDs = GetRowIdDetails();
+                    // Check if search term is not set properly and reset it so that the search does not crash. 
+                    // TODO: Modify the backend code to test for empty string and whitespace specified as the search term.
+                    if (model.FilteringOptions.SearchText == "" || ((model.FilteringOptions.SearchText) && (model.FilteringOptions.SearchText.trim() == ""))) {
+                        model.FilteringOptions.SearchText = null;
+                    }
+                }
+            }
+
+            // Add the selected columns and other details.
+            model.ToolId = projectToolId;
+            model.ColumnInfoList = selectedColumnsArray;
+            // Insert the model data as a JSON string in a hidden input field which will be serialized in the HTTP Post to the backend controller.
+            columnSelectionForm.find('input[name=modelString]').val(JSON.stringify(model));
+            var $preparingFileModal = $("#preparing-file-modal");
+            var $spinnerDiv = $preparingFileModal.find(".fe-expexcel-loading-icon-div");
+            var opts = getSpinnerOptions();
+            $spinnerDiv.spin(opts);
+            $preparingFileModal.dialog({ modal: true });
+
+            // Initialise a timeout function that will ensure that the spinner/loading dialog will always be closed when an error occurs during an export of data to an Excel document.
+            var handleExtraLongProcessing = setTimeout(function () {
+                $spinnerDiv.spin(false);
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({ modal: true });
+            }, MaxExportExcelProcessingTime);
+
+            $.fileDownload(modelContents.ExportExcelUrl, {
+                successCallback: function (url) {
+                    $spinnerDiv.spin(false);
+                    $preparingFileModal.dialog('close');
+                    clearTimeout(handleExtraLongProcessing);
+                },
+                failCallback: function (responseHtml, url) {
+                    $spinnerDiv.spin(false);
+                    $preparingFileModal.dialog('close');
+                    $("#error-modal").dialog({ modal: true });
+                    clearTimeout(handleExtraLongProcessing);
+                },
+                httpMethod: "POST",
+                data: columnSelectionForm.serialize()
+            });
+
+            columnSelectionForm[0].reset();
+            dialogInstance.dialog('close');
+        } else {
+            ShowErrorDialog(modelContents.GetTranslation("ExpExcelDlgErrorTitle"), modelContents.GetTranslation("ExpExcelDlgNoColsSelectedMsg"), true);
+        }
+    }
+
+    function GetRowIdDetails() {
+        var rowIdCollection = '';
+
+        if (modelContents.RowIdSubRowIdPair && modelContents.RowIdSubRowIdPair.length > 0) {
+            const allRowIds = modelContents.RowIdSubRowIdPair.flatMap((pair) => {
+                const rowIds = [];
+
+                // Add the primary RowId as a string
+                rowIds.push(String(pair.RowId)); // Convert to string before adding
+
+                // Add SubRowIds if it's a valid array of integers, converted to strings
+                if (Array.isArray(pair.SubRowIds)) {
+                    rowIds.push(...pair.SubRowIds.map(String)); // Convert to strings and add
+                }
+
+                return rowIds; // Return the list of string row IDs
+            });
+
+            // Join the unique row IDs into a comma-separated string
+            rowIdCollection = Array.from(new Set(allRowIds)).join(','); // Ensure uniqueness
+        }
+
+        return rowIdCollection; // Return the final comma-separated string
+    }
+ 
+
+    function getSpinnerOptions() {
+        var opts = {
+            lines: 11, // The number of lines to draw
+            length: 5, // The length of each line
+            width: 4, // The line thickness
+            radius: 6, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 0.8, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
+
+        return opts;
+    }
+
+    $(function () {
+        // Check if the current version of JQuery supports the use of the "prop" function. Before version 1.6 only the "attr" function was supported. 
+        var propFn = typeof $.fn.prop === 'function' ? 'prop' : 'attr';
+
+        $('.fe-dlg-expexcel-select-all-chkbx-input').on("click", function () {
+            var controlId = $(this)[propFn]('id');
+            if (!controlId) {
+                return;
+            }
+
+            var controlIdArray = controlId.split('_');
+            var projectToolId = ((controlIdArray) && controlIdArray.length > 1) ? controlIdArray[1] : -1;
+            if (projectToolId < 0) {
+                return;
+            }
+
+            var formId = 'form#dlgColumnsToExportForm_' + projectToolId;
+            $(this).parents(formId + ':eq(0)').find(':checkbox')[propFn]('checked', this.checked);
+            //// Fund name column should remain checked.
+            $("input[type=checkbox]#dlgColumnsToExportFundNameChkbx", $(formId))[propFn]('checked', true);
+        });
+
+        $("input[type=checkbox]:not(.fe-dlg-expexcel-select-all-chkbx-input)", $('form.fe-dlg-expexcel-form')).on("click", function () {
+            var formControl = $(this).parents('form');
+            if (!formControl) {
+                return;
+            }
+
+            var controlId = $(formControl)[propFn]('id');
+            if (!controlId) {
+                return;
+            }
+
+            var controlIdArray = controlId.split('_');
+            var projectToolId = ((controlIdArray) && controlIdArray.length > 1) ? controlIdArray[1] : -1;
+            if (projectToolId < 0) {
+                return;
+            }
+
+            var formId = 'form#dlgColumnsToExportForm_' + projectToolId;
+            var selectAllChkbx = '#dlgColumnsToExportSelectAllChkbx_' + projectToolId;
+
+            if (!this.checked) {
+                $(selectAllChkbx, $(formId))[propFn]('checked', this.checked);
+            } else {
+                $(selectAllChkbx, $(formId))[propFn]('checked', !$("input[type=checkbox]:not(" + selectAllChkbx + ")", $(formId)).filter(':not(:checked)').length);
+            }
+            //// Fund name column should remain checked.
+            $("input[type=checkbox]#dlgColumnsToExportFundNameChkbx", $(formId))[propFn]('checked', true);
+        });
+    });
+
+    return {};
+} ();

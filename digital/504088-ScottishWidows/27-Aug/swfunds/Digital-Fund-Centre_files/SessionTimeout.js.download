@@ -1,0 +1,80 @@
+﻿$(function () {
+
+    //Seconds
+    var sessionTimeoutTime = 178; //Send message two minutes before expiry
+    var dialogWaitTime = 1;
+
+    var logoutTimer = null;
+    var sessionTimer = null;
+    var sessionTimeout = sessionTimeoutTime * 60 * 1000;
+    var sessionDialogWait = dialogWaitTime * 60 * 1000;
+
+    $(document).ready(function () {
+        var OKText = modelContents.GetTranslation("Ok");
+        var LogoutText = modelContents.GetTranslation("Logout");
+        var authCookie = readCookie(".ASPXAUTH");
+        if (authCookie != null) {
+
+            $('#sessionEndDialog').dialog({
+                title: modelContents.GetTranslation("SessionExpiring"),
+                autoOpen: false,
+                bgiframe: true,
+                modal: true,
+                buttons:
+                [
+                    {
+                        text: OKText,
+                        click: function() {
+                            $(this).dialog('close');
+                            extendSession();
+                        }
+                    }, {
+                        text: LogoutText,
+                        click: logoutOnSessionExpires
+                    }
+                ]
+            });
+            $(document).ajaxStart(function () { scheduleSessionPrompt(); });
+
+            scheduleSessionPrompt();
+        }
+    });
+
+    function extendSession() {
+        var url = modelContents.ExtendSessionTimeoutUrl;
+        $.get(url, scheduleSessionPrompt, 'html');
+    }
+
+    function scheduleSessionPrompt() {
+        if (logoutTimer)
+            clearTimeout(logoutTimer);
+        if (sessionTimer)
+            clearTimeout(sessionTimer);
+
+        sessionTimer = setTimeout(sessionExpiring, sessionTimeout);
+    }
+
+    function sessionExpiring() {
+        logoutTimer = setTimeout(logoutOnSessionExpires, sessionDialogWait);
+        if (modelContents.InternalLoginEnabled == "True" || modelContents.ExternalLoginEnabled == "True") {
+
+            $('#sessionEndDialog').dialog('open');
+        }
+        else {
+            extendSession();
+        }
+    }
+
+    function logoutOnSessionExpires() {
+        if (modelContents.ExternalLoginEnabled == "True") {
+
+            var errorMessage = modelContents.GetTranslation("ExternalLoginSessionTimeout");
+            window.location.href = modelContents.ExternalLogonErrorUrl + '?errorMessage=' + errorMessage;
+        }
+        else {
+            window.location.href = modelContents.LogoutUrl;
+        }
+    }
+
+});
+

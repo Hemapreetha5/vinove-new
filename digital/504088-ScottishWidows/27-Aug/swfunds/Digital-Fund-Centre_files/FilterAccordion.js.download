@@ -1,0 +1,39 @@
+﻿
+var FilterAccordion = FilterAccordion || {};
+
+var FilterAccordion = function () { };
+
+FilterAccordion.prototype = function () {
+
+    function initFilter(container) {
+        $(".fe-collapsiblefilter-content[data-collapsiblestate='1']", container).hide();
+    };
+
+    function initFilterClick(container) {
+        $('.fe-collapsiblefilter-header', container).on("click", function () {
+            expandCollapse($(this).parent());
+        });
+
+        $('.fe-collapsiblefilter-header', container).on("keypress", function (e) {
+            if (e.which == 13) {
+                expandCollapse($(this).parent());
+            }
+        });
+
+        function expandCollapse(headerControl) {
+            var parentcontainer = headerControl;
+            var accordioncontainer = $(parentcontainer).find('.fe-collapsiblefilter-content');
+
+            if (accordioncontainer != null) {
+                var accordioncontainerOpen = accordioncontainer.is(':visible');
+                accordioncontainer[accordioncontainerOpen ? 'slideUp' : 'slideDown'](400, "swing");
+                $(parentcontainer).find('.fe-expandcollapse-icon').toggleClass("fe-filter-icon-expand", !accordioncontainerOpen).toggleClass("fe-filter-icon-collapse", accordioncontainerOpen);
+            }
+        }
+    }
+
+    return {
+        InitFilterClick: initFilterClick,
+        InitFilter: initFilter
+    };
+}();

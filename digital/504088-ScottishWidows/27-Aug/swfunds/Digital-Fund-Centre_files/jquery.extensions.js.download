@@ -1,0 +1,54 @@
+﻿
+$.fn.AnimateTransition = function (destinationObject, cssClass) {
+    var options = { to: destinationObject, className: cssClass };
+    $(this).effect("transfer", options, 700, null);
+};
+
+$.fn.AnimateTransitionToBasket = function () {
+
+    if (modelContents.ShowAddToBasketAnimation == 'True') {
+        var basketHeader = $("#floatcontainer .fe-fundsInBasket .fe-basketHeader");
+        $(this).AnimateTransition(basketHeader, "fe-effects-moveToBasket");
+    }
+};
+
+//function sortDropDownListByText(selectId, context) {
+//    var foption = $('#' + selectId + ' option:first', '#' + context);
+//    var soptions = $('#' + selectId + ' option:not(:first)', '#' + context).sort(function (a, b) {
+//        return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+//    });
+
+//    $('#' + selectId, '#' + context).html(soptions).prepend(foption);
+//};
+
+
+function sortDropDownListByText(element) {
+    var foption = element.find('option:first');
+    var soptions = null;
+    if (foption.val() == '') {
+        var soptions = element.find('option:not(:first)');
+        sortList(soptions);
+    }
+    else {
+        var soptions = element.find('option');
+        sortList(soptions);
+    }
+
+    element.html(soptions).prepend(foption);
+};
+
+function sortList(soptions) {
+    var arr = soptions.map(function (_, o) {
+        return {
+            t: $(o).text(),
+            v: o.value
+        };
+    }).get();
+    arr.sort(function (o1, o2) {
+        return o1.t.toUpperCase() > o2.t.toUpperCase() ? 1 : o1.t.toUpperCase() < o2.t.toUpperCase() ? -1 : 0;
+    });
+    soptions.each(function (i, o) {
+        o.value = arr[i].v;
+        $(o).text(arr[i].t);
+    });
+}
