@@ -61,6 +61,7 @@ src:  url('fe_img/swfunds_v7.eot?vj63ej');
 	--teal:#0B3239;
 	--lightGray:#ede9ff;
 	--white:#fff;
+    --red:#FF222F;
 }
 html {
 	-ms-text-size-adjust: 100%;
@@ -251,7 +252,8 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li,
 popover-container .ui-noscroll-tabs-header ul.nav-tabs li a,
 .chart-table-panel-tabs .ui-noscroll-tabs-header ul.nav-tabs li a {
 	background: none;
-	color: #D3292E;
+	/* color: #D3292E; */
+	color: var(--red);
 }
 .ui-scroll-tabs-view {
 
@@ -265,6 +267,7 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li a,
     /* font-family: 'UnitRoundedMedium'; */
     font-family: "ABCArizonaFlare-Medium";
     /* background: #571417; */
+    background: var(--teal);
 }
 .chart-table-panel-tabs .ui-noscroll-tabs-header ul.nav-tabs li.active a{
 	
@@ -302,7 +305,8 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li.active a:before,
 .ui-noscroll-tabs-header ul.nav-tabs li.active:after {
 	border-color: transparent;
 	/* border-top-color: #571417; */
-	border-top-color: #FFCCD9;
+	/* border-top-color: #FFCCD9; */
+	border-top-color: var(--teal);
 	border-width: 10px;
 	margin-left: -10px;
 	background: transparent;
@@ -350,7 +354,8 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li.active a,
     max-width: 100%;
 }
 .fe-responsive-chart-tab .chart-options-wrapper>button {
-    background: #d9323b;
+    /* background: #d9323b; */
+    background: var(--red);
     color: #fff;
     padding: 10px 15px;
     border: 0;
@@ -360,7 +365,7 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li.active a,
     float: right;
     margin-top: 20px;
 }
-.fe-responsive-chart-tab .chart-options-wrapper .btn-chart-filters {background:none;color: #D3292E;font-size:0;padding:5px 0;}
+.fe-responsive-chart-tab .chart-options-wrapper .btn-chart-filters {background:none;color: #D3292E;color:var(--red);font-size:0;padding:5px 0;}
 .fe-responsive-chart-tab .chart-options-wrapper .btn-chart-filters:after { content:"Chart settings"; font-size:20px; font-size:18px;}
 .fe-responsive-chart-tab .chart-options-wrapper .btn-chart-filters .fa.fa-filter:before {content:"";  background-image:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxNiA1MTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxNiA1MTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNEOTMyM0I7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01MTAsMjAzYy0yLTgtOC0xMy0xNi0xNGwtNDItNmMtMi02LTEtMy00LTlsMjYtMzRjNS02LDUtMTUsMS0yMmMwLTEtMTEtMTgtMzUtNDJzLTQxLTM1LTQyLTM1DQoJCQkJYy03LTQtMTYtNC0yMiwxbC0zNCwyNmMtNi0zLTMtMi05LTRsLTYtNDJjLTEtOC02LTE0LTE0LTE2Yy0xLDAtMjEtNi01NS02cy01NCw2LTU1LDZjLTgsMi0xMyw4LTE0LDE2bC02LDQyYy02LDItMywxLTksNA0KCQkJCWwtMzQtMjZjLTYtNS0xNS01LTIyLTFjLTEsMC0xOCwxMS00MiwzNXMtMzUsNDEtMzUsNDJjLTQsNy00LDE2LDEsMjJsMjYsMzRjLTMsNi0yLDQtNCwxMGwtNDIsNWMtOCwxLTE0LDYtMTYsMTRjMCwxLTYsMjEtNiw1NQ0KCQkJCXM2LDU0LDYsNTVjMiw4LDgsMTMsMTYsMTRsNDIsNmMyLDYsMSwzLDQsOWwtMjYsMzRjLTUsNi01LDE1LTEsMjJjMCwxLDExLDE4LDM1LDQyczQxLDM1LDQyLDM1YzcsNCwxNiw0LDIyLTFsMzQtMjYNCgkJCQljNiwzLDQsMiwxMCw0bDUsNDJjMSw4LDYsMTQsMTQsMTZjMSwwLDIxLDYsNTUsNnM1NC02LDU1LTZjOC0yLDEzLTgsMTQtMTZsNi00MmM2LTIsMy0xLDktNGwzNCwyNmM2LDUsMTUsNSwyMiwxDQoJCQkJYzEsMCwxOC0xMSw0Mi0zNXMzNS00MSwzNS00MmM0LTcsNC0xNi0xLTIybC0yNi0zNGMzLTYsMi0zLDQtOWw0Mi02YzgtMSwxNC02LDE2LTE0YzAtMSw2LTIxLDYtNTVTNTEwLDIwNCw1MTAsMjAzeiBNNDc1LDI5MQ0KCQkJCWwtNDAsNWMtNywxLTE0LDYtMTYsMTNjLTYsMTctNCwxMi0xMSwyN2MtMyw3LTIsMTUsMiwyMWwyNSwzMWMtNSw2LTEyLDE1LTIyLDI1cy0xOCwxNy0yNCwyMmwtMzItMjVjLTYtNC0xNC01LTIxLTINCgkJCQljLTE3LDgtOSw1LTI3LDExYy03LDItMTIsOS0xMywxNmwtNSw0MGMtOCwxLTE5LDItMzMsMnMtMjUtMS0zMy0ybC01LTQwYy0xLTctNi0xNC0xMy0xNmMtMTctNi0xMi00LTI3LTExYy03LTMtMTQtMi0yMCwyDQoJCQkJbC0zMiwyNWMtNi01LTE1LTEyLTI1LTIycy0xNi0xOC0yMS0yNGwyNC0zMmM0LTYsNS0xNCwyLTIxYy04LTE1LTUtMTAtMTEtMjdjLTItNy05LTEyLTE2LTEzbC00MC01Yy0xLTgtMi0xOS0yLTMzDQoJCQkJYzAtMTQsMS0yNSwyLTMzbDQwLTVjNy0xLDE0LTYsMTYtMTNzNS0xMyw1LTE0YzAsMCwzLTcsNi0xM2MzLTcsMi0xNC0yLTIwbC0yNC0zMmM1LTYsMTEtMTUsMjEtMjVzMTktMTYsMjUtMjFsMzIsMjQNCgkJCQljNiw0LDEzLDUsMjAsMmMxNS04LDEwLTUsMjctMTFjNy0yLDEyLTksMTMtMTZsNS00MGM4LTEsMTktMiwzMy0yczI1LDEsMzMsMmw1LDQwYzEsNyw2LDE0LDEzLDE2YzE3LDYsMTIsNCwyNywxMWM3LDMsMTUsMiwyMS0yDQoJCQkJbDMyLTI0YzYsNSwxNCwxMSwyNCwyMXMxNywxOSwyMiwyNWwtMjUsMzJjLTQsNi01LDEzLTIsMjBjOCwxNyw2LDksMTIsMjdjMiw3LDgsMTIsMTUsMTNsNDAsNWMxLDgsMiwxOSwyLDMzDQoJCQkJQzQ3NywyNzIsNDc2LDI4Myw0NzUsMjkxeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTI1OCwxMzVjLTY4LDAtMTIzLDU1LTEyMywxMjNzNTUsMTIzLDEyMywxMjNzMTIzLTU1LDEyMy0xMjNTMzI2LDEzNSwyNTgsMTM1eiBNMjU4LDM0MmMtNDcsMC04NC0zNy04NC04NA0KCQkJCXMzNy04NCw4NC04NHM4NCwzNyw4NCw4NFMzMDUsMzQyLDI1OCwzNDJ6Ii8+DQoJCTwvZz4NCgk8L2c+DQo8L2c+DQo8L3N2Zz4NCg==')
 ; background-repeat: no-repeat;  display:inline-block; margin-right:5px; width: 16px; height: 16px; }
@@ -394,7 +399,8 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li.active a,
     font-family: "ABCArizonaFlare-Medium";
 	/* font-size: 14px; */
 	font-size: 12px;
-	color: #d9323b;
+	/* color: #d9323b; */
+    color:var(--red);
 	margin-top:3px;
 	position: absolute;
 	right: 56px;
@@ -442,7 +448,8 @@ popover-container .ui-noscroll-tabs-header ul.nav-tabs li.active a,
 .fe-responsive-chart-tab .chart-options-subheader { color:#333333; font-family: UnitRoundedMedium, sans-serif;font-family: "ABCArizonaFlare-Medium";}
 .fe-responsive-chart-tab .chart-options-timeperiod .btn-primary {
     background: #ffffff;
-    color: #d9323b;
+    /* color: #d9323b; */
+    color:var(--red);
     border: 2px solid #e1e1e2;
     border-radius: 0;
     box-shadow: none;
@@ -805,7 +812,8 @@ popover-container  .ui-noscroll-tabs-header ul.nav-tabs {
     background: #fff;
 }
 header-section .backButtonText a{
-    color: #d9323b;
+    /* color: #d9323b; */
+    color:var(--red);
     /* font-family: UnitRoundedMedium,Helvetica,sans-serif; */
     font-family: "ABCArizonaFlare-Medium";
     margin-top: 10px;
@@ -898,7 +906,8 @@ td.fe-responsive-datafield-name{
 	    position: absolute;
 	    right: 16px;
 	    top: 3px;
-	    color: #d9323b;
+	    /* color: #d9323b; */
+        color:var(--red);
 	    opacity: 30%;
 }
 .fe-responsive-table-asatdatetextcontainer::after {
@@ -1134,7 +1143,8 @@ button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split.btn-add-to-chart-sp
     content: "GET A CHART REPORT";
     position: absolute;
     left: 0;
-    background: url(fe_img/Fund_prices.png) no-repeat 24px top/62px auto;
+    /* background: url(fe_img/Fund_prices.png) no-repeat 24px top/62px auto; */
+    background: url(fe_img/Fund_prices-new.jpg) no-repeat 24px top/62px auto;
     width: 100%;
     height: 62px;
     text-align: left;
