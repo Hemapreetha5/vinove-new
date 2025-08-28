@@ -1,0 +1,3176 @@
+@font-face {
+    font-family: zurich_sanslight;
+    src: url('images/zurichsans-light-webfont.woff2') format('woff2'),
+        url('images/zurichsans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'zurich_sansregular';
+    src: url('images/zurichsans-regular-webfont.woff2') format('woff2'),
+        url('images/zurichsans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'zurich_sansmedium';
+    src: url('images/zurichsans-medium-webfont.woff2') format('woff2'),
+        url('images/zurichsans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --Zurichblue: #2167AE;
+    --darkblue: #23366F;
+    --border-btm-clr: #DDE4E3;
+
+    --font-zurich-light: zurich_sanslight;
+    --font-zurich-regular: zurich_sansregular;
+    --font-zurich-medium: zurich_sansmedium;
+}
+
+body {
+    font-family: var(--font-zurich-light);
+    font-weight: 400;
+    font-size: 9pt;
+}
+
+* {
+    box-sizing: border-box;
+
+}
+
+.page {
+    position: relative;
+    Padding: 1.05cm;
+
+}
+
+.row {
+    margin-bottom: 0.5cm;
+}
+
+.column>.section {
+    margin-left: 0cm;
+    /*margin-left: 0.5cm;*/
+}
+
+.column:first-child>.section {
+    margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    color: #3399FF;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div {
+    margin-bottom: 0.25cm;
+}
+
+.vertical-list div span:first-child {
+    color: #3399FF;
+}
+
+/*.page > .row1 { border-bottom: 3px solid #3399FF; }*/
+.page>.row1 h2 {
+    font-size: 24pt;
+    padding-left: 3cm;
+    min-height: 2cm;
+    background-image: url('./Images/zurich-logo-test.png');
+    background-repeat: no-repeat;
+    margin-bottom: 0.5cm;
+}
+
+.page1>.row2>.column2>.section {
+    background-color: #efefef;
+    border-radius: 0.25cm;
+    padding: 0.25cm;
+}
+
+.tabs.breakdowns {
+    border: none;
+    margin: 10px;
+}
+
+.tabs.breakdowns>.tabpanes {
+    border: none;
+}
+
+.tabs.breakdowns>.tabpanes>.slider>.tab {
+    padding-bottom: 20px;
+}
+
+.tabs.breakdowns>.tabbuttons {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+}
+
+.tabs.breakdowns>.tabbuttons>.tab {
+    border: none;
+    background-color: #000;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    text-indent: -10000px;
+}
+
+.cler {
+    font-size: 24pt;
+}
+
+.reportheader {
+    font-size: 34pt;
+    color: rgb(253, 226, 17);
+    padding-left: 0.5cm;
+}
+
+.headerbackground {
+    background-color: rgb(138, 216, 216);
+    height: 10cm;
+    background-image: url('ClientLogos/df50df39-1368-4376-bee7-fda5e90bc682.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bottomrightheaderpage {
+    margin-top: 10cm;
+}
+
+.compositepadding {
+    padding-left: 1cm;
+    background-color: rgb(138, 216, 216);
+    margin-left: 1cm;
+    margin-right: 1cm;
+    padding-bottom: 1.6cm;
+}
+
+.securityaccount {
+    background-color: rgb(138, 216, 216);
+    padding-top: 7cm;
+    font-size: 34pt;
+    padding-bottom: .5cm;
+}
+
+.esgdata {
+    background-color: rgb(167, 179, 179);
+    padding-top: 4cm;
+    font-size: 34pt;
+    padding-bottom: 3cm
+}
+
+.FooterCSS .column1 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column2 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column3 {
+    width: 15%;
+    float: left;
+}
+
+.FooterCSS .column5 {
+    width: 15%;
+    float: left;
+}
+
+
+.FooterCSS .column4 {
+    width: 40%;
+    float: left;
+    text-align: center;
+}
+
+
+footer {
+    position: running(footerIdentifier)
+}
+
+@page {
+
+    @bottom-left {
+        content: element(footerIdentifier)
+    }
+}
+
+
+.compositefooter {
+    width: 20cm;
+    padding: 0;
+    position: absolute;
+    bottom: 0.5cm;
+    left: 0;
+    z-index: 1;
+    font-size: 7.5pt;
+}
+
+.compositefooter .content {
+    margin-right: 0cm;
+    position: relative;
+    overflow: visible;
+}
+
+.compositefooter .content:before {
+    content: '';
+    width: 1px;
+    /* height: 100px; */
+    background-color: #a7a5a6;
+    position: absolute;
+    top: 0;
+    left: -3px;
+}
+
+
+@page: first {
+
+    @bottom-left {
+        content: "";
+    }
+}
+
+.FooterCSS {
+
+    width: 20cm;
+
+    padding: 0px 0px 0px 4px;
+
+    position: absolute;
+
+    bottom: 0.3cm;
+
+    left: 0;
+
+    z-index: 1;
+
+    border-top: 0.5px solid #909090;
+
+    font-size: 7.5pt;
+
+}
+
+
+
+.FooterCSS .content {
+
+    margin-right: 0cm;
+
+    position: relative;
+
+    overflow: visible;
+
+}
+
+.FooterCSS .row {
+    margin-bottom: 0.05cm;
+}
+
+.FooterCSS .iconSection {
+    height: 23px;
+}
+
+.FooterCSS .content:before {
+
+    content: '';
+
+    width: 1px;
+
+    height: 60px;
+
+    background-color: #a7a5a6;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 1px;
+
+}
+
+.EsgCoverPageImage {
+    width: 100%;
+}
+
+
+.EsgCoverPage {
+    width: 100%
+}
+
+
+.page1 .logo {
+    background: url('images/zurich-logo-final.png');
+    height: 10.5mm;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 4.5cm;
+}
+
+.page1 .column2 .row1 .animation-None.section.contentSection.text.text1 {
+    text-align: right;
+}
+
+.page1 .row1 .column2 .row1 .animation-None.text1 p.FundNameWB {
+    color: var(--darkblue);
+    font-size: 10pt;
+    font-family: var(--font-zurich-light);
+    line-height: 9.6pt;
+    font-weight: normal;
+    margin-bottom: 6pt;
+}
+
+.page1 .column2 .row1 .animation-None.section.contentSection.text.text1 p.item3 {
+    color: var(--darkblue);
+    font-size: 8pt;
+    font-family: var(--font-zurich-light);
+    line-height: 9.6pt;
+    font-weight: 600;
+    margin-bottom: 4.8pt;
+}
+
+/*00*/
+.ShareclassNameWB {
+    font-size: 24pt;
+    line-height: 28.8pt;
+    color: var(--Zurichblue);
+    margin-bottom: 0px;
+}
+
+/*01*/
+
+.DataAsAtDate {
+    font-size: 14pt;
+    line-height: 16.8pt;
+    color: var(--Zurichblue);
+    margin-bottom: 0px;
+}
+
+.page1>.row3>.column1,
+.page1>.row4>.column1 {
+    float: left;
+    width: 91.875mm;
+    /*padding-right: 5.25mm;*/
+}
+
+.page1>.row3>.column2,
+.page1>.row4>.column2 {
+    float: left;
+    width: 91.875mm;
+}
+
+.page1>.row3>.column1 .row1 {
+    background: rgb(145 191 227 / 40%);
+    padding: 5.25mm 3mm;
+    /*margin-bottom: 8.75mm;*/
+    min-height: 306px;
+}
+
+.page1>.row3>.column1 .row1 .text1 p {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding: 3.5mm 0mm;
+    color: var(--darkblue);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+
+.page1>.row3>.column2 {
+    /*margin-bottom: 8.75mm;*/
+}
+
+.page1>.row3>.column2 .row1 {
+    margin-bottom: 0px;
+}
+
+.page1>.row3>.column1 .row1 h2 {
+    color: var(--darkblue);
+    font-size: 10pt;
+    line-height: 12pt;
+    font-weight: 700;
+}
+
+.page1>.row3>.column1 .row1 .ObjectiveText {
+    margin-bottom: 0px;
+    font-size: 10pt;
+    line-height: 12pt;
+    padding: 3.5mm 0mm;
+    color: var(--darkblue);
+}
+
+.comboChart {
+    height: 178px;
+}
+
+.keyContainer {
+    height: 5mm;
+    display: block;
+    width: fit-content;
+}
+
+.keyWrapper .key-color {
+    width: 10mm;
+    height: 0.5mm;
+}
+
+.keyWrapper div:nth-child(3) .key-color {
+    width: 10mm;
+    height: 2.5mm !important;
+}
+
+.keyWrapper .keyContainer .label {
+    position: relative;
+    top: -4px;
+}
+
+.page1>.row4>.column1 .row1 .contentSection h2 {
+    font-size: 12pt;
+    line-height: 14.4pt;
+    color: var(--Zurichblue);
+    padding-bottom: 3px;
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div .label {
+    margin-left: 0mm;
+    float: left;
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    line-height: 4.612mm;
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div .label {
+    width: calc(100% - 59.5mm);
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div .value {
+    width: 59.5mm;
+    padding-left: 0px;
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div .value {
+    float: right;
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    line-height: 4.612mm;
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div {
+    line-height: 1.3;
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page1>.row4>.column1 .row1 .contentSection>div.clear {
+    border-bottom: 0px;
+}
+
+.page1>.row4>.column1 .row1 {
+    margin-bottom: 0.1cm;
+}
+
+.page1>.row4>.column1 .row2 p,
+.page1>.row4>.column2 .row2 p,
+.page1>.row4>.column2 .row6 p {
+    margin-bottom: 0cm;
+    color: var(--darkblue);
+    font-size: 6pt;
+    line-height: 7.2pt;
+    font-family: var(--font-zurich-light);
+}
+
+.page1>.row4>.column2 .row1 .performancetable {
+    position: relative;
+}
+
+.page1>.row4>.column2 .row1 .performancetable h2 {
+    font-size: 7pt;
+    color: var(--Zurichblue);
+    box-sizing: border-box;
+    font-family: var(--font-zurich-light);
+    line-height: 8.4pt;
+    position: absolute;
+    top: 1px;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table,
+.page1>.row4>.column2 .row3 .contentSection table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tr th,
+.page1>.row4>.column2 .row3 .contentSection table tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    box-sizing: border-box;
+    font-family: var(--font-zurich-light);
+    line-height: 8.4pt;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tr th,
+.page1>.row4>.column2 .row3 .contentSection table tr th {
+    border-bottom: 1px solid #0077be;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tr.unitWorkbook td,
+.page1>.row4>.column2 .row1 .performancetable table tr.benchmark td,
+.page1>.row4>.column2 .row3 .contentSection table td {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    border-bottom: 1px solid var(--border-btm-clr);
+    line-height: 4.612mm;
+    text-align: right;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tbody tr td.rowheader {
+    text-align: inherit;
+}
+
+.page1>.row4>.column2 .row1 {
+    margin-bottom: 0.1cm;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.column.column1>div,
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.column.column1>div {
+    margin-bottom: 0cm;
+}
+
+.page1>.row4>.column2 .row6 {
+    margin-top: 0.1cm;
+}
+
+.page1>.row4>.column2 .row3 .contentSection h2 {
+    font-size: 12pt;
+    line-height: 14.4pt;
+    color: var(--Zurichblue);
+    margin-bottom: 5px;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table {
+    width: 100%;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr td {
+    text-align: right;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr td.rowheader {
+    text-align: left;
+}
+
+.keyWrapper .keyContainer .label {
+    font-size: 6pt;
+    color: var(--darkblue);
+}
+
+.horizontal-list div {
+    float: left;
+    width: 100%;
+}
+
+.page1>.row3,
+.page1>.row4,
+.page4>.row3 {
+    display: flex;
+}
+
+.page1>.row3>.column1,
+.page1>.row4>.column1,
+.page4>.row3>.column1 {
+    /* flex-basis: 50%;*/
+}
+
+.page4>.row3>.column1 {
+    flex-basis: 50%;
+}
+
+.page1>.row3>.column2,
+.page1>.row4>.column2,
+.page4>.row3>.column2 {
+    /*flex-basis: 50%;
+   padding-left: 20px;*/
+}
+
+.page4>.row3>.column2 {
+    flex-basis: 50%;
+    padding-left: 20px;
+}
+
+.page1>.row3>.column2 {
+    padding-left: 20px;
+}
+
+.page1>.row4>.column2 .row5,
+.page1>.row4>.column2 .row4,
+.page1>.row4>.column2 .row6 {
+    margin-bottom: 0px;
+}
+
+.page1>.row4 {
+    margin-bottom: 0px;
+}
+
+.page4>.row1 {
+    float: right;
+    width: 100%;
+    border-bottom: 1px solid #0077be;
+    margin-bottom: 8.5mm;
+}
+
+.page2>.row1 {
+    border-bottom: 1px solid #0077be;
+    margin-bottom: 10mm;
+}
+
+.page4>.row1>.column2 .row1,
+.page2>.row1>.column2 .row1 {
+    margin-bottom: 0px;
+}
+
+.page4>.row1>.column2 .row1 .text1 p,
+.page2>.row1>.column2 .row1 .text1 p {
+    margin-bottom: 4px;
+    font-size: 8pt;
+    line-height: 9.6pt;
+    font-family: var(--font-zurich-light);
+    color: var(--darkblue);
+    text-align: right;
+
+}
+
+.page4>.row3>.column1 .row .text1 p,
+.page4>.row3>.column2 .row .text1 p {
+    font-weight: initial;
+    color: var(--darkblue);
+    font-size: 10pt;
+    font-family: var(--font-zurich-light);
+    line-height: 12pt;
+}
+
+.page4>.row3>.column1 .row,
+.page4>.row3>.column2 .row {
+    margin-bottom: 0px;
+}
+
+.page4>.row2>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page4>.row2>.column1 .row1 .text1 p {
+    font-size: 12pt;
+    color: var(--Zurichblue);
+    font-weight: bold;
+    line-height: 14.4pt;
+    margin-bottom: 0px;
+}
+
+/*.page4 > .row5, .page4 > .row6, .page4 > .row7 {
+   display: flex;
+}
+
+.page4 > .row5 > .column1, .page4 > .row6 > .column1, .page4 > .row7 > .column1 {
+    flex-basis: 50%;
+}*/
+
+.page4 {
+    position: relative;
+}
+
+.page4>.row5 {
+    position: absolute;
+    bottom: 95px;
+
+}
+
+.page4>.row5>.column1 .row1 .text1 p {
+    font-size: 9.5pt;
+    color: #000;
+    line-height: 11.4pt;
+    margin-bottom: 3px;
+}
+
+.page4>.row5>.column1 .row1 {
+    margin-bottom: 10mm;
+}
+
+.page4>.row5>.column1 .row1 .clear {
+    display: none;
+}
+
+.page4>.row5>.column2 {
+    display: none;
+}
+
+.page4>.row6 {
+    position: absolute;
+    bottom: 67px;
+    margin-bottom: 0px;
+
+}
+
+.page4>.row7 {
+    position: absolute;
+    bottom: 0px;
+    margin-top: 10mm;
+}
+
+.page4>.row6>.column1>.row1>.column1 {
+    background: url('images/three-logos-test-green-bond.png');
+    background-repeat: no-repeat;
+    height: 28px;
+    border-right: 1px solid #0070b8;
+    background-size: contain;
+}
+
+.page4>.row6>.column1 {
+    width: 50%;
+}
+
+.page4>.row6>.column1>.row1>.column2,
+.page4>.row6>.column1>.row1>.column3 {
+    display: none;
+}
+
+.page4>.row6>.column1>.row1>.column4 {
+    width: 60%;
+}
+
+.page4>.row6>.column1>.row1>.column1 {
+    float: left;
+    width: 40%;
+}
+
+.page4>.row6>.column1>.row1>.column1 .row1 .logo {
+    width: unset;
+    height: unset;
+    background-size: unset;
+    background-repeat: unset;
+}
+
+.page4>.row6>.column1>.row1>.column4 .row1 .text1 p {
+    color: #000;
+    font-size: 5.50pt;
+    margin-bottom: 0px;
+
+    padding-left: 5px;
+    position: relative;
+    bottom: -15px;
+}
+
+.page4>.row7>.column1,
+.page4>.row5>.column1 {
+    float: left;
+    width: 100%;
+}
+
+.page2>.row2 {
+    display: flex;
+    margin-bottom: 0px;
+}
+
+.page2>.row5 {
+    margin-bottom: 0.1cm;
+    display: flex;
+}
+
+.page2>.row3,
+.page2>.row6 {
+    margin-bottom: 0px;
+}
+
+.page2>.row2>.column1 {
+    flex-basis: 50%;
+    float: left;
+    width: 91.875mm;
+}
+
+.page2>.row2>.column2 {
+    flex-basis: 50%;
+    padding-left: 20px;
+    float: left;
+    width: 91.875mm;
+}
+
+.page2>.row2>.column1 .row1 .section h2,
+.page2>.row2>.column2 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding-bottom: 5pt;
+    color: var(--darkblue);
+}
+
+.page2>.row2>.column1 .row1 .section table tbody tr td,
+.page2>.row2>.column2 .row1 .section table tbody tr td,
+.page2>.row3>.column2 .row1 .section table tbody tr td,
+.page2>.row3>.column1 .row1 .section table tbody tr td {
+    font-size: 8pt;
+    color: var(--darkblue);
+    line-height: 1.3;
+
+}
+
+.page2>.row2>.column2 .row1 .section table tbody tr td {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row2>.column2 .row1 .section table {
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.page2>.row2>.column2 .row1 .section table tbody tr th {
+    text-align: left;
+    color: var(--darkblue)
+}
+
+.page2>.row2>.column2 .row1 .section table tbody tr th:nth-child(2),
+.page2>.row2>.column2 .row1 .section table tbody tr td:nth-child(2) {
+    text-align: right;
+}
+
+.page2>.row5>.column2 .row1 .section h2,
+.page2>.row5>.column3 .row1 .section h2 {
+    display: none;
+}
+
+.page2>.row5>.column2 .row1 .section table tbody tr td.rowheader,
+.page2>.row5>.column3 .row1 .section table tbody tr td.rowheader {
+    display: none;
+}
+
+.page2>.row5>.column1 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.page2>.row5>.column1 .row1 .section table tbody tr:nth-child(1),
+.page2>.row5>.column2 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row5>.column1 .row1 .section table tbody th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    width: 7.14%;
+}
+
+.page2>.row5>.column1 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 0px;
+    line-height: 4.612mm;
+    text-align: center;
+}
+
+.page2>.row5>.column1 .row1 .section table tbody tr.sector td.rowheader {
+    padding-left: 0px;
+    padding-top: 5px;
+}
+
+.page2>.row5>.column2 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+/* .page2 > .row5 > .column2 .row1 .section table tbody {
+    position: absolute;
+   top: 26px;
+   left: 72px;
+   width: 100%;
+} */
+
+.page2>.row5>.column2 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row5>.column2 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row5>.column2 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding: 0px 8px;
+    padding-bottom: 3px;
+    width: 7.14%;
+}
+
+.page2>.row5>.column2 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 8px;
+    line-height: 4.612mm;
+    width: 7.14%;
+}
+
+.page2>.row5>.column3 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row5>.column2 .row1 .section table tbody tr td:nth-child(1) {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+}
+
+
+.page2>.row5>.column3 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+/* .page2 > .row5 > .column3 .row1 .section table tbody {
+       position: absolute;
+   top: 16.6px;
+   left: -22px;
+} */
+
+/* .page2 > .row5 > .column3 .row1 .section table tbody tr.unitWorkbook {
+   position: absolute;
+   top: 19.75px;
+   left: -5px;
+} */
+
+.page2>.row5>.column3 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 3px;
+    width: 7.14%;
+}
+
+.page2>.row5>.column3 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 16px;
+    line-height: 4.612mm;
+    width: 7.14%;
+
+}
+
+.page2>.row5>.column3 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row5>.column1 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr.unitWorkbook td.rowheader {
+    padding-left: 0px;
+    padding-top: 5px;
+}
+
+.page2 .row7 p,
+.page2 .row6 p {
+    font-size: 6pt;
+    line-height: 7.2pt;
+    color: var(--darkblue);
+    margin-bottom: 0px;
+}
+
+.page2>.row4>.column1 .row1,
+.page2>.row4 {
+    margin-bottom: 0px;
+}
+
+.page4>.row5 {
+    width: 91.875mm;
+    border-bottom: 0.5pt solid #0070b8;
+    margin-bottom: 10mm;
+}
+
+.page4>.row7>.column1 .row1 .text1 p {
+    font-size: 7pt;
+    line-height: 8.4pt;
+    color: #000;
+    margin-bottom: 0px;
+}
+
+.page4>.row7>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page4>.row6>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page1>.row4>.column2 .row4,
+.page1>.row4>.column2 .row5 {
+    border-bottom: 1px solid var(--border-btm-clr);
+    margin-bottom: 0px;
+}
+
+.page1 .column2 .row1 .animation-None.section.contentSection.text.text1 p,
+.page1 .column2 .row1 .animation-None.section.contentSection.text.text1 p {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    line-height: 4.612mm;
+    text-align: right;
+    margin-bottom: 0px;
+
+}
+
+.page1>.row4>.column2>.row4>.column1 .row1 .text1 p,
+.page1>.row4>.column2>.row5>.column1 .row1 .text1 p {
+    text-align: left !important;
+}
+
+.page1>.row4>.column2 .row3 {
+    margin-bottom: 0px;
+}
+
+
+.page1>.row2 {
+    padding-bottom: 8.5mm;
+    margin-bottom: 0px;
+}
+
+.page1>.row3 {
+    margin-bottom: 0px;
+}
+
+.page1>.row4 {
+    position: relative;
+}
+
+.page1>.row4>.column2 {
+    position: absolute;
+    right: 0px;
+    top: -5px;
+}
+
+.page1>.row4>.column2 .row2 {
+    margin-bottom: 3.75mm;
+}
+
+.page1>.row1>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page2 .row7 p {
+    /*    position: absolute;
+   bottom: 42px;
+   width: 70%;*/
+}
+
+.section.page.page4 {
+    background: url('images/paage-3-bottom-bg.png') no-repeat;
+    background-position: bottom right;
+    background-size: 45%;
+}
+
+
+.section.page.page2 {
+    background: url('images/page-2-bottom-bg.png') no-repeat;
+    background-position: 100% 100%;
+    background-size: 23%;
+}
+
+.page1>.row4 .column2 .row7 {
+    margin-bottom: 0px;
+}
+
+.page1>.row3>.column2 .row1 .pdfperformancechart h2 {
+    color: var(--Zurichblue);
+    font-size: 8pt;
+    padding-bottom: 2px;
+    padding-left: 44px;
+}
+
+.page1 .column2 .row1 .animation-None.section.contentSection.text.text1 p {
+    line-height: 4.612mm;
+    padding-bottom: 0px;
+}
+
+.page1>.row3>.column2 .row1 .text1 p {
+    text-align: left !important;
+}
+
+.page1>.row3>.column2 .row1 .text1 p:nth-child(1) {
+    font-size: 12pt !important;
+    color: var(--Zurichblue) !important;
+    font-weight: 600 !important;
+    line-height: 14.4pt !important;
+    padding-bottom: 5px !important;
+}
+
+.page1>.row3>.column2 .row2 .pdfperformancechart1 h2 {
+    font-size: 7pt;
+    padding-left: 44px;
+    color: var(--Zurichblue);
+}
+
+.page1>.row5>.column2 .row1 .performancetable table tr th.PYTD:after {
+    content: "2";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+
+}
+
+.page1>.row5>.column2 .row1 .performancetable table tr th.PSinceLaunch:after {
+    content: "3";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+
+}
+
+/* .page2 > .row5 > .column1 {
+   float: left;
+   width: 64%;
+}
+
+.page2 > .row5 > .column2 {
+   float: left;
+   width: 25%;
+}
+
+.page2 > .row5 > .column3 {
+   float: left;
+   width: 11%;
+} */
+
+.page2>.row5>.column1 .row1 .section table tbody tr td.rowheader {
+    padding-left: 0px;
+    text-align: inherit;
+    font-size: 7.4pt;
+}
+
+.page2>.row5>.column1 .row1 .section table tr.unitWorkbook,
+.page2>.row5>.column1 .row1 .section table tr.benchmark,
+.page2>.row5>.column2 .row1 .section table tbody tr.unitWorkbook,
+.page2>.row5>.column3 .row1 .section table tbody tr.unitWorkbook {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row2>.column1 .row1,
+.page2>.row2>.column2 .row1 {
+    margin-bottom: 0cm;
+}
+
+.page2>.row3 {
+    display: flex;
+    margin-bottom: 9.5mm;
+    margin-top: 10.5mm;
+}
+
+.page2>.row3>.column1 {
+    flex-basis: 50%;
+    float: left;
+    width: 91.875mm;
+}
+
+.page2>.row3>.column2 {
+    flex-basis: 50%;
+    padding-left: 20px;
+    float: left;
+    width: 91.875mm;
+}
+
+.page2>.row3>.column1 .row1 .section h2,
+.page2>.row3>.column2 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding-bottom: 5pt;
+    color: var(--darkblue);
+}
+
+.page2>.row3>.column2 .row1 .breakdown1 table {
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.page2>.row3>.column2 .row1 .section table tbody tr td {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row3>.column2 .row1 .section table tbody tr th:nth-child(2),
+.page2>.row3>.column2 .row1 .section table tbody tr td:nth-child(2) {
+    text-align: right;
+}
+
+.page2>.row3>.column1 .row1,
+.page2>.row3>.column2 .row1 {
+    margin-bottom: 0cm;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr.sector {
+    position: absolute;
+    top: 15px;
+    left: -2px;
+}
+
+.page2>.row4>.column3 .row1 .section table tbody tr.sector {
+    position: absolute;
+    top: 25px;
+    left: -2px;
+}
+
+.page2>.row5>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page2>.row4>.column1 .row1 {
+    position: relative;
+}
+
+.page2>.row4>.column1 .row1 .text1 p {
+    position: absolute;
+    bottom: -365px;
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    font-weight: 600;
+    left: 1px;
+}
+
+body>div.section.page.page1>div.section.row.row3>div.section.column.column2>div.section.row.row1>div.animation-None.section.contentSection.text.text1>p.item2 {
+    line-height: 1;
+    padding-bottom: 5px;
+}
+
+.keyContainer {
+    height: 3mm;
+    display: block;
+    width: fit-content;
+}
+
+.keyWrapper .key-color {
+    width: 10mm;
+    height: 0.5mm;
+}
+
+.keyContainer .label {
+    line-height: 3mm;
+    margin-left: 1mm;
+}
+
+body>div.section.page.page1>div.section.row.row3>div.section.column.column2>div.section.row.row2>div.section.contentSection.pdfperformancechart.pdfperformancechart1>div.keyWrapper>div:nth-child(3)>span.label {
+    top: -1px;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tbody tr.benchmark td.rowheader {
+    position: relative;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tbody tr.benchmark td.rowheader:after {
+    content: "4";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tr th.PYTD:after {
+    content: "2";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+}
+
+.page1>.row4>.column2 .row1 .performancetable table tr th.PSinceLaunch:after {
+    content: "3";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+}
+
+.page2>.row5>.column1 {
+    width: 71.4%;
+}
+
+.page2>.row5>.column2 {
+    /*width: 14.28%;
+   margin-top: 26px;*/
+}
+
+.page2>.row5>.column3 {
+    /*width: 14.28%;
+       margin-top: 25px;*/
+}
+
+.page2>.row5>.column2 .row1 {
+    margin-bottom: 0px;
+}
+
+.page1>.row3>.column2 .row1 .text1 p:nth-child(1) sup {
+    font-size: 6pt;
+}
+
+body>div.section.page.page2>div.section.row.row5 {
+    /* margin-top: 250px;*/
+}
+
+.page2>.row2>.column2 .row1 .section table tbody {
+    border-top: 1px solid #0077be;
+}
+
+.page2>.row2>.column2 .row1 .section table tbody tr:last-child td {
+    border-bottom: 0px solid var(--border-btm-clr);
+}
+
+.page2>.row3 .column2 .row1 .holding table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.page2>.row3 .column2 .row1 .holding table tbody {
+    /* border-top: 1px solid #0077be;*/
+}
+
+.page2>.row3 .column2 .row1 .holding table tbody tr th {
+    text-align: left;
+    color: var(--darkblue);
+}
+
+.page2>.row3 .column2 .row1 .holding table tbody tr th:nth-child(2) {
+    text-align: right;
+}
+
+.page2>.row3 .column2 .row1 .holding table tbody tr td {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row4>.column1 .row1 .breakdown h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding-bottom: 15pt;
+    color: var(--darkblue);
+}
+
+.page2>.row4>.column2 .row1 .breakdown h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    padding-bottom: 15pt;
+    color: var(--darkblue);
+}
+
+.page2>.row4>.column1 .row1 .breakdown table tbody tr td {
+    font-size: 8pt;
+    color: var(--darkblue);
+    line-height: 1.3;
+}
+
+.page2>.row4 {
+    display: flex;
+    margin-bottom: 10.5mm;
+}
+
+/*.page2 > .row4 > .column1 {
+   flex-basis: 50%;
+   float: left;
+   width: 91.875mm;
+}
+
+.page2 > .row4 > .column2 {
+   flex-basis: 50%;
+   padding-left: 20px;
+   float: left;
+   width: 91.875mm;
+}*/
+
+.page2>.row4>.column2 .row1 .breakdown table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.page2>.row4>.column2 .row1 .breakdown table tbody tr {
+    border-bottom: 1px solid var(--border-btm-clr);
+    font-size: 8pt;
+    color: var(--darkblue);
+    line-height: 1.3;
+}
+
+.page2>.row4>.column2 .row1 .breakdown table tbody tr td:nth-child(2) {
+    text-align: right;
+}
+
+.page2>.row4>.column2 .row1 .breakdown table tbody {
+    border-top: 1px solid #0077be;
+}
+
+.page2>.row4>.column2 .row1 .section h2,
+.page2>.row4>.column3 .row1 .section h2 {
+    display: none;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr td.rowheader,
+.page2>.row4>.column3 .row1 .section table tbody tr td.rowheader {
+    display: none;
+}
+
+.page2>.row4>.column1 {
+    /*width: 71.4%;*/
+}
+
+/*.page2 > .row4 > .column2 {
+   width: 14.28%;
+   margin-top: 26px;
+}
+.page2 > .row4 > .column3 {
+   width: 14.28%;
+       margin-top: 25px;
+}*/
+
+.page2>.row4>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page2>.row4>.column1 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+}
+
+.page2>.row4>.column1 .row1 .section table {
+    /* border-collapse: collapse;
+   width: 100%;
+   table-layout: fixed;*/
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr:nth-child(1),
+.page2>.row4>.column2 .row1 .section table tbody tr:nth-child(1) {
+    /*  border-bottom: 1px solid #0077be;*/
+}
+
+.page2>.row4>.column1 .row1 .section table tbody th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    width: 7.14%;
+}
+
+.page2>.row4 {
+    margin-bottom: 0.1cm;
+    display: flex;
+}
+
+.page2>.row4>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page2>.row4>.column1 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+}
+
+.page2>.row4>.column1 .row1 .section table {
+    /*  border-collapse: collapse;
+       width: 100%;*/
+    table-layout: fixed;
+    margin-top: 20px;
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr:nth-child(1),
+.page2>.row4>.column2 .row1 .section table tbody tr:nth-child(1) {
+    /*   border-bottom: 1px solid #0077be;*/
+}
+
+.page2>.row4>.column1 .row1 .section table tbody th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    width: 7.14%;
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr td {
+    /*	color: var(--darkblue);
+   font-size: 8pt;
+   padding: 0px 0px;
+   line-height: 4.612mm;
+       text-align: center;*/
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr.sector td.rowheader {
+    padding-left: 0px;
+    padding-top: 5px;
+}
+
+.page2>.row4>.column2 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+
+.page2>.row4>.column2 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding: 0px 8px;
+    padding-bottom: 3px;
+    width: 7.14%;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 8px;
+    line-height: 4.612mm;
+    width: 7.14%;
+}
+
+.page2>.row4>.column3 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row4>.column2 .row1 .section table tbody tr td:nth-child(1) {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+}
+
+
+.page2>.row4>.column3 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+
+.page2>.row4>.column3 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 3px;
+    width: 7.14%;
+}
+
+.page2>.row4>.column3 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 16px;
+    line-height: 4.612mm;
+    width: 7.14%;
+
+}
+
+.page2>.row4>.column3 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row4>.column1 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr.unitWorkbook td.rowheader {
+    padding-left: 0px;
+    text-align: inherit;
+    font-size: 7.4pt;
+}
+
+.page2 .row5 p {
+    font-size: 6pt;
+    line-height: 7.2pt;
+    color: var(--darkblue);
+    margin-bottom: 0px;
+}
+
+.page2>.row3,
+.page2>.row6 {
+    /*  position: absolute;
+   bottom: 42px;
+   width: 70%;*/
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr.unitWorkbook,
+.page2>.row4>.column1 .row1 .section table tbody tr.benchmark {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr.benchmark td.rowheader {
+    text-align: left;
+
+}
+
+body>div.section.page.page1>div.section.row.row3>div.section.column.column2>div.section.row.row1>div.section.column.column2>div>div.animation-None.section.contentSection.text.text1>p {
+    font-size: 7pt !important;
+    color: var(--Zurichblue) !important;
+    position: relative;
+    bottom: -41px;
+    margin-left: 105px;
+}
+
+.page1>.row4 .column2 .row7 {
+    /* border-bottom: 1px solid #0077be;*/
+    margin-top: 6.5mm;
+}
+
+.page1>.row4 .column2 .row7 .section .row {
+    border-bottom: 1px solid #0077be;
+}
+
+.page1>.row4>.column2>.row7>.column1 .row1 .text1 p,
+.page1>.row4>.column2>.row7>.column2 .row1 .text1 p,
+.page1>.row4>.column2>.row7>.column2 .row1 .text1 p,
+.page1>.row4>.column2>.row7>.column3 .row1 .text1 p {
+    color: var(--Zurichblue) !important;
+    font-size: 7pt !important;
+    box-sizing: border-box;
+    font-family: var(--font-zurich-light);
+
+    vertical-align: bottom !important;
+    text-align: right !important;
+    font-weight: bold !important;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row7>div.section.column.column1>div>div.animation-None.section.contentSection.text.text1>p {
+    text-align: left !important;
+}
+
+.page1>.row4>.column2>.row8>.column1 .row1 .horizontal-list div span,
+.page1>.row4>.column2>.row8>.column2 .row1 .Fundfigurebm p {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+
+    line-height: 4.612mm;
+    margin-left: 0mm;
+}
+
+.page1>.row4>.column2>.row8>.column2 {
+    float: left;
+    width: 25%;
+}
+
+.page1>.row4>.column2>.row8>.column1 {
+    float: left;
+    width: 75%;
+}
+
+.page1>.row4>.column2 .row1 .horizontal-list>div,
+.page1>.row4>.column2>.row8>.column2 .row1>div>p {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page1>.row4>.column2>.row7>.column2 .row1 .text1 p {
+    text-align: right !important;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row7>div.section.column.column1>div {
+    margin-bottom: 0px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row8>div.section.column.column1>div>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.Yield_To_Maturity_WB {
+    border-bottom: 0px;
+}
+
+.key-color {
+    display: block;
+    width: 2mm;
+    height: 2mm;
+}
+
+.page3>.row1 {
+    border-bottom: 1px solid #0077be;
+    margin-bottom: 8.5mm;
+}
+
+.page3>.row1>.column2 .row1 {
+    margin-bottom: 0px;
+}
+
+.page3>.row1>.column2 .row1 .text1 p {
+    margin-bottom: 4px;
+    font-size: 8pt;
+    line-height: 9.6pt;
+    font-family: var(--font-zurich-light);
+    color: var(--darkblue);
+    text-align: right;
+}
+
+.page3>.row2 {
+    margin-bottom: 0px;
+}
+
+.page3>.row2>.column1 .row1 .text1 h2 {
+    color: var(--Zurichblue);
+    font-size: 12pt;
+    line-height: 14.4pt;
+    padding-bottom: 5.5mm;
+}
+
+.page3>.row2>.column1 .row1 .text1 p.DataAsAtDate {
+    font-size: 10pt;
+    color: var(--darkblue);
+    padding-top: 5pt;
+    padding-bottom: 8mm;
+    font-weight: 600;
+}
+
+
+
+.page3 .barChartSection .chart .highcharts-title {
+    font-size: 10pt !important;
+    color: var(--darkblue) !important;
+    fill: var(--darkblue) !important;
+    font-weight: 600;
+    font-family: var(--font-zurich-light);
+    text-align: left;
+    display: none !important;
+
+}
+
+.page3>.row4 .barChartSection1 .highcharts-xaxis-labels span,
+.page3>.row3 .barChartSection1 .highcharts-xaxis-labels span {
+    font-size: 9px !important;
+    text-align: center;
+
+}
+
+
+.page3 .barChartSection .chart {
+    height: 220px;
+}
+
+.page3>.row2>.column1 .row1 {
+    margin-bottom: 0px;
+}
+
+.page3>.row7 {
+    display: flex;
+    margin-bottom: 8.5mm;
+    margin-top: 8.5mm;
+}
+
+.page3>.row7>.column1 {
+    flex-basis: 50%;
+    float: left;
+    width: 91.875mm;
+}
+
+.page3>.row7>.column2 {
+    flex-basis: 50%;
+    padding-left: 20px;
+    float: left;
+    width: 91.875mm;
+}
+
+.page3>.row7>.column1 .row1 .text1 h2 {
+    font-size: 10pt;
+    color: var(--darkblue);
+    font-weight: 600;
+}
+
+.page3>.row7>.column2 .row1 .text1 h2 {
+    font-size: 10pt;
+    color: var(--darkblue);
+    font-weight: 600;
+}
+
+.page3>.row6 {
+    margin-bottom: 0px;
+}
+
+
+
+.page3>.row7>.column1 .row1,
+.page3>.row7>.column2 .row1 {
+    margin-bottom: 0.2cm;
+}
+
+.page3>.row7>.column2 .row2 {
+    margin-bottom: 0px;
+}
+
+.page3>.row7>.column1 .row2 .horizontal-list>div,
+.page3>.row7>.column2 .row2 .horizontal-list>div {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.section.page.page3>div.section.row.row7>div.section.column.column1>div.section.row.row2>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.clear,
+body>div.section.page.page3>div.section.row.row7>div.section.column.column2>div.section.row.row2>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.clear,
+body>div.section.page.page3>div.section.row.row6>div.section.column.column1>div.section.row.row2>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.clear {
+    border-bottom: 0px;
+}
+
+.page3>.row7>.column1 .row2 .horizontal-list>div>span,
+.page3>.row7>.column2 .row2 .horizontal-list>div>span {
+    font-size: 8pt;
+    color: var(--darkblue);
+    line-height: 1.5;
+    margin-left: 0px;
+    font-weight: inherit;
+}
+
+.page3>.row8>.column1 .row1 .text1 h2 {
+    font-size: 10pt;
+    color: var(--darkblue);
+    font-weight: 600;
+}
+
+.page3>.row8>.column1 .row1 {
+    margin-bottom: 0.2cm;
+}
+
+.page3>.row8>.column1 .row2 .horizontal-list>div {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page3>.row8>.column1 .row2 .horizontal-list>div span {
+    font-size: 8pt;
+    color: var(--darkblue);
+    line-height: 1.5;
+    margin-left: 0px;
+    font-weight: inherit;
+}
+
+.page3>.row8>.column1 .row2 .horizontal-list>div span sup {
+    font-size: 6px;
+}
+
+.page3>.row8>.column1 .row3 .text1 p {
+    font-size: 6pt;
+    line-height: 7.2pt;
+    color: var(--darkblue);
+    margin-bottom: 0px;
+}
+
+.page3>.row8>.column1 .row2,
+.page3>.row6>.column1 .row3 {
+    margin-bottom: 0px;
+}
+
+.page3>.row8>.column1 .row3 {
+    margin-top: 0.1cm;
+}
+
+.section.page.page3 {
+    background: url('images/page-3-down-bg.png') no-repeat;
+    background-position: 0% 100%;
+    background-size: 35%;
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr td:nth-child(1) {
+    width: 14px;
+}
+
+.page2>.row4>.column1 .row1 .section table tbody tr td:nth-child(2) {
+    width: 153px;
+}
+
+.page2>.row3>.column1 .row1 .section table tbody tr td,
+.page2>.row4>.column1 .row1 .section table tbody tr td {
+    line-height: 0.8;
+}
+
+.page2>.row3>.column1>.row1>.breakdown1 table {
+    margin-top: 20px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(1):before {
+    content: '';
+    background-image: url('images/icon-6.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    /*width: 96px;
+   height: 50px;
+   display: block;
+   background-size: 55%;
+   background-repeat: no-repeat;
+   background-position: 20%;
+       margin-top: 18px;
+   margin-bottom: 4px;*/
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(1):after {
+    content: ' SDG6';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 24px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(2):before {
+    content: '';
+    background-image: url('images/icon-7.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(2):after {
+    content: ' SDG7';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 24px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(3):before {
+    content: '';
+    background-image: url('images/icon-9.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(3):after {
+    content: ' SDG9';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 24px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(4):before {
+    content: '';
+    background-image: url('images/icon-11.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(4):after {
+    content: ' SDG11';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 21px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(5):before {
+    content: '';
+    background-image: url('images/icon-12.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(5):after {
+    content: ' SDG12';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 21px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(6):before {
+    content: '';
+    background-image: url('images/icon-13.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(6):after {
+    content: ' SDG13';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 21px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(7):before {
+    content: '';
+    background-image: url('images/icon-14.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(7):after {
+    content: ' SDG14';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 21px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(8):before {
+    content: '';
+    background-image: url('images/icon-15.png');
+    width: 75px;
+    height: 35px;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.page3>.row4 .barChartSection .chart .highcharts-xaxis-labels span:nth-child(8):after {
+    content: ' SDG15';
+    display: block;
+    font-family: var(--font-zurich-light);
+    font-size: 7pt;
+    color: var(--darkblue);
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    left: 21px;
+}
+
+.section.page.page3 .row6 .barChartSection .chart .highcharts-container .highcharts-legend span {
+    font-size: 8pt !important;
+    color: var(--darkblue) !important;
+    line-height: 1.5 !important;
+    margin-left: 0px !important;
+    font-weight: inherit !important;
+}
+
+.page3>.row4 {
+    margin-bottom: 0cm;
+}
+
+.page2>.row5 {
+    display: flex;
+    /* margin-top: 140px;*/
+}
+
+.page2>.row6>.column1 {
+    width: 71.4%;
+}
+
+.page2>.row6>.column2 {
+    width: 14.28%;
+    margin-top: 0px;
+}
+
+.page2>.row6>.column3 {
+    width: 14.28%;
+    margin-top: -1px;
+}
+
+.page2>.row6>.column2 .row1 .section h2,
+.page2>.row6>.column3 .row1 .section h2 {
+    display: none;
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr td.rowheader,
+.page2>.row6>.column3 .row1 .section table tbody tr td.rowheader {
+    display: none;
+}
+
+.page2>.row6>.column1 .row1 .section h2 {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+}
+
+.page2>.row6>.column1 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.page2>.row6>.column1 .row1 .section table tbody tr:nth-child(1),
+.page2>.row6>.column2 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row6>.column1 .row1 .section table tbody th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    width: 7.14%;
+}
+
+.page2>.row6>.column1 .row1 .section table tr.unitWorkbook,
+.page2>.row6>.column1 .row1 .section table tr.benchmark,
+.page2>.row6>.column2 .row1 .section table tbody tr.unitWorkbook,
+.page2>.row6>.column3 .row1 .section table tbody tr.unitWorkbook {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row6>.column1 .row1 .section table tbody tr td.rowheader {
+    padding-left: 0px;
+    text-align: inherit;
+}
+
+.page2>.row6>.column1 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 0px;
+    line-height: 4.612mm;
+    text-align: center;
+}
+
+.page2>.row6>.column1 .row1 .section table tbody tr.unitWorkbook td.rowheader {
+    padding-left: 0px;
+    text-align: inherit;
+    font-size: 7.4pt;
+}
+
+.page2>.row6>.column2 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding: 0px 8px;
+    padding-bottom: 3px;
+    width: 7.14%;
+    text-align: right;
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 8px;
+    line-height: 4.612mm;
+    width: 7.14%;
+    text-align: right;
+}
+
+.page2>.row6>.column3 .row1 .section table tbody tr th.rowheader {
+    display: none;
+}
+
+.page2>.row6>.column3 .row1 .section table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    table-layout: fixed;
+}
+
+.page2>.row6>.column3 .row1 .section table tbody tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 3px;
+    width: 7.14%;
+}
+
+.page2>.row6>.column3 .row1 .section table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #0077be;
+}
+
+.page2>.row6>.column3 .row1 .section table tbody tr td {
+    color: var(--darkblue);
+    font-size: 8pt;
+    padding: 0px 11px;
+    line-height: 4.612mm;
+    width: 7.14%;
+    text-align: right;
+}
+
+.page2>.row5>.column3 .row1 {
+    position: relative;
+}
+
+.page2>.row5>.column3 .row1 p {
+    position: absolute;
+    bottom: -26px;
+    left: -6px;
+    width: max-content;
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    font-weight: bold;
+    font-family: var(--font-zurich-light);
+}
+
+.page2>.row5>.column4 {
+    position: relative;
+}
+
+.page2>.row5>.column4 .text1 p {
+    position: absolute;
+    width: max-content;
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    font-weight: bold;
+    font-family: var(--font-zurich-light);
+    bottom: 0px;
+    left: -32px;
+}
+
+.page2>.row6>.column1 .row1 {
+    margin-bottom: 0.1cm;
+}
+
+.page2>.row8>.text1 p {
+    font-size: 6pt;
+    line-height: 7.2pt;
+    color: var(--darkblue);
+    margin-bottom: 0px;
+}
+
+.page2>.row8 {
+    position: absolute;
+    bottom: 20px;
+    width: 70%;
+}
+
+.page1>.row3>.column2>.row1>.column1 {
+    float: left;
+    width: 67%;
+}
+
+.page1>.row3>.column2>.row1>.column2 {
+    float: left;
+    width: 33%;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column1>div.section.row.row1>div.animation-None.section.contentSection.horizontal-list.horizontal-list1.fund.details>div.TER>span.label sup {
+    font-size: 6px;
+    position: relative;
+    top: -3px;
+    left: 0px;
+}
+
+.page1>.row4>.column2 .row9 p,
+.page1>.row4>.column2 .row9 p {
+    margin-bottom: 0cm;
+    color: var(--darkblue);
+    font-size: 7pt;
+    line-height: 7.2pt;
+    font-family: var(--font-zurich-light);
+}
+
+.page1>.row4>.column2 .row8 {
+    margin-bottom: 0cm;
+    margin-top: 0px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row8>div.section.column.column2>div {
+    margin-bottom: 0px;
+}
+
+.page1>.row4>.column2 .row9 {
+    margin-bottom: 0px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row8>div.section.column.column1>div>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.clear {
+    border-bottom: 0px;
+}
+
+.page1>.row4>.column2>.row4>.column2 {
+    float: left;
+    width: 31%;
+}
+
+.page1>.row4>.column2>.row4>.column3 {
+    float: left;
+    width: 14%;
+}
+
+.page1>.row4>.column2>.row4>.column4 {
+    float: left;
+    width: 15%;
+}
+
+.page1>.row4>.column2>.row4>.column5 {
+    float: left;
+    width: 17%;
+}
+
+.page1>.row3>.column1 {
+    width: 40%;
+}
+
+.page1>.row3>.column2 {
+    width: 60%;
+}
+
+.page1>.row3>.column2 .row2 .pdfperformancechart .chart {
+    height: 240px;
+}
+
+.page1>.row3>.column2 .row2 .pdfperformancechart .chart .highcharts-axis-labels text {
+    color: var(--darkblue) !important;
+    cursor: default;
+    font-size: 11px;
+    fill: var(--darkblue) !important;
+}
+
+.page1>.row3>.column2 .row2 .pdfperformancechart .chart .highcharts-axis .highcharts-axis-line {
+    stroke: var(--darkblue);
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr.Volatility {
+    position: relative;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr.Volatility td.rowheader:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "1";
+}
+
+.page1>.row4>.column2>.row4>.column1 .row1 {
+    position: relative;
+}
+
+.page1>.row4>.column2>.row4>.column1 .row1 .text1 p:after {
+    content: "1";
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    right: 13px;
+}
+
+.page1>.row4>.column2>.row5>.column1 {
+    float: left;
+    width: 40%;
+}
+
+.page1>.row4>.column2>.row5>.column2 {
+    float: left;
+    width: 18%;
+}
+
+.page2>.row5>.column1 .row1 .text1 p {
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--darkblue);
+    padding-bottom: 10px;
+    font-weight: 600;
+
+}
+
+.page2>.row6>.column1 .row1 .performancetable {
+    position: relative;
+}
+
+.page2>.row6>.column1 .row1 .performancetable h2 {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    padding-bottom: 2px;
+    width: 7.14%;
+    position: absolute;
+    bottom: 34px;
+}
+
+.page3 .barChartSection .chart .highcharts-data-label text {
+    color: var(--darkblue) !important;
+    font-size: 11px;
+    font-weight: bold;
+    fill: var(--darkblue) !important;
+    font-family: var(--font-zurich-light) !important;
+    text-align: center;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr.RecoveryPeriods {
+    position: relative;
+}
+
+.page1>.row4>.column2 .row3 .contentSection table tr.RecoveryPeriods td.rowheader:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "2";
+}
+
+.page2>.row4>.column1>.row1>.breakdown1 table {
+    width: 60%;
+    float: left;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.page2>.row3>.column1>.row1>.breakdown1 table {
+    width: 60%;
+    float: left;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.page3>.row3 .text1 h2,
+.page3>.row5 .text1 h2 {
+    font-size: 10pt !important;
+    color: var(--darkblue) !important;
+    fill: var(--darkblue) !important;
+    font-weight: 600;
+    font-family: var(--font-zurich-light);
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+body>div.section.page.page3>div.section.row.row8>div.section.column.column1>div.section.row.row2>div.animation-None.section.contentSection.horizontal-list.horizontal-list1>div.clear {
+    border-bottom: 0px;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(1) {
+    left: 56.1875px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(2) {
+    left: 137.562px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(3) {
+    left: 219.938px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(4) {
+    left: 313.312px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(5) {
+    left: 396.688px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(6) {
+    left: 468.062px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(7) {
+    left: 555.438px !important;
+}
+
+.page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(8) {
+    left: 635.812px !important;
+
+}
+
+.page3>.row5 .text1 h2 {
+    margin-top: 6.5mm;
+}
+
+.page4>.row5>.column1 .row1 .text1 p.item4 {
+    margin-bottom: 0px;
+}
+
+.page1>.row4>.column2>.row4>.column1 {
+    float: left;
+    width: 32%;
+}
+
+.page1>.row4>.column2>.row4>.column2 {
+    float: left;
+    width: 18%;
+}
+
+.page1>.row4>.column2>.row4>.column3 {
+    float: left;
+    width: 14%;
+}
+
+.page1>.row4>.column2>.row4>.column4 {
+    float: left;
+    width: 13%;
+}
+
+.page1>.row4>.column2>.row4>.column5 {
+    float: left;
+    width: 23%;
+}
+
+.page1>.row4>.column2>.row5>.column2 {
+    float: left;
+    width: 15%;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.column.column2>div,
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.column.column3>div,
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.column.column4>div,
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.column.column5>div,
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.column.column2>div {
+    margin-bottom: 0px;
+}
+
+body>div.page2.page.section>div.row3.row.section>div.column1.column.section>div>div.breakdown1.breakdown.contentSection.section>table>tbody>tr>td.Weight {
+    text-align: right;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row7.row.section>div.column2.column.section>div,
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row7.row.section>div.column3.column.section>div {
+    margin-bottom: 0px;
+}
+
+.page1>.row4>.column2>.row5>.column2 {
+    float: left;
+    width: 11%;
+}
+
+.page1>.row4>.column2>.row5>.column1 {
+    float: left;
+    width: 39%;
+}
+
+.page1>.row4>.column2>.row5>.column2 {
+    float: left;
+    width: 12%;
+}
+
+body>div.page1.page.section>div.row2.row.section>div.text1.text.contentSection.section.animation-None>p.displayname-tooltip.FundNameWB {
+    font-size: 24pt;
+    line-height: 28.8pt;
+    color: var(--Zurichblue);
+    margin-bottom: 0px;
+}
+
+.page1>.row4>.column2 .row4 {
+    margin-top: 0px;
+}
+
+.page1>.row4>.column2 .row4 .ratios h2 {
+    font-size: 12pt;
+    line-height: 14.4pt;
+    color: var(--Zurichblue);
+    margin-bottom: 5px;
+    display: none;
+}
+
+.page1>.row4>.column2 .row4 .ratios table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+}
+
+.page1>.row4>.column2 .row4 .ratios table tr th {
+    color: var(--Zurichblue);
+    font-size: 7pt;
+    box-sizing: border-box;
+    font-family: var(--font-zurich-light);
+    line-height: 8.4pt;
+    vertical-align: bottom;
+    text-align: right;
+    border-bottom: 1px solid #0077be;
+}
+
+
+.page1>.row4>.column2 .row4 .ratios table tr td {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    text-align: right;
+    line-height: 4.612mm;
+}
+
+.page1>.row4>.column2 .row4 .ratios table tr td.rowheader {
+    width: 121px;
+    text-align: left;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row6.row.section {
+    margin-top: 0px;
+    border-bottom: 0px solid var(--border-btm-clr);
+    margin-bottom: 5px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(1) {
+    width: 122px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row6.row.section>div.column1.column.section>div>div.text1.text.contentSection.section.animation-None>p {
+    text-align: left;
+}
+
+.page1>.row4 .column2 .row7 {
+    margin-top: 0px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row7.row.section>div.text1.text.contentSection.section.animation-None>p {
+    margin-bottom: 0cm;
+    color: var(--darkblue);
+    font-size: 6pt;
+    line-height: 7.2pt;
+    font-family: var(--font-zurich-light);
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row6.row.section>div.column1.column.section>div,
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row6.row.section>div.column2.column.section>div {
+    margin-bottom: 0px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row8.row.section>div.column1.column.section>div>div.text1.text.contentSection.section.animation-None>p,
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row8.row.section>div.column2.column.section>div>div.text1.text.contentSection.section.animation-None>p,
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row8.row.section>div.column3.column.section>div>div.text1.text.contentSection.section.animation-None>p {
+    /*    color: var(--Zurichblue);
+   font-size: 7pt;
+   box-sizing: border-box;
+   font-family: var(--font-zurich-light);
+   line-height: 8.4pt;
+   vertical-align: bottom;
+   text-align: right;
+   border-bottom: 1px solid #0077be;
+   font-weight: 600;*/
+}
+
+.page1>.row4>.column2>.row8>.column1 {
+    /*float: left;
+   width: 50%;*/
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row9>div.animation-None.section.contentSection.text.text1>p {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    line-height: 4.612mm;
+    margin-left: 0mm;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row8>div.section.column.column1>div {
+    margin-bottom: 0px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row8.row.section>div.column1.column.section>div>div.text1.text.contentSection.section.animation-None>p {
+    text-align: left;
+}
+
+.page1>.row4>.column2>.row9>.column1 .row1 .horizontal-list div span {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    line-height: 4.612mm;
+    margin-left: 0mm;
+}
+
+.page1>.row4>.column2>.row9>.column1 {
+    float: left;
+    width: 75%;
+}
+
+.page1>.row4>.column2>.row9>.column2 {
+    float: left;
+    width: 25%;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row9.row.section>div.column1.column.section>div>div.horizontal-list1.horizontal-list.contentSection.section.animation-None>div.clear {
+    border-bottom: 0px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row9.row.section>div.column2.column.section>div>div.text1.fundfiguresbm.text.contentSection.section.animation-None>p {
+
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr:nth-child(1) {
+    display: none;
+}
+
+body>div.section.page.page2>div.section.row.row5 {
+    position: absolute;
+    bottom: 247px;
+    width: 100%;
+}
+
+body>div.section.page.page2>div.section.row.row6 {
+    position: absolute;
+    bottom: 195px;
+    max-width: 95%;
+}
+
+body>div.section.page.page2>div.section.row.row7 {
+    position: absolute;
+    bottom: 162px;
+    width: 90%;
+    margin-bottom: 0px;
+}
+
+.page2>.row6>.column1 {
+    width: 67.4%;
+}
+
+.page2>.row6>.column2 {
+    width: 13.28%;
+    margin-top: 0px;
+}
+
+.page2>.row6>.column3 {
+    width: 14.28%;
+    margin-top: -1px;
+}
+
+.page1>.row4>.column2>.row9>.column1 {
+    float: left;
+    width: 88%;
+}
+
+.page1>.row4>.column2>.row9>.column2 {
+    float: left;
+    width: 12%;
+}
+
+body>div.page2.page.section>div.row6.row.section>div.column3.column.section>div,
+body>div.page2.page.section>div.row6.row.section>div.column2.column.section>div {
+    margin-bottom: 0cm;
+}
+
+.page2>.row6>.column3 .row1 .section table tr.benchmark,
+.page2>.row6>.column2 .row1 .section table tr.benchmark {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y1Ann {
+    width: 130px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y3Ann {
+    width: 50px;
+}
+
+body>div.page1.page.section>div.row2.row.section>div.text1.text.contentSection.section.animation-None>p.displayname-tooltip.FundNameWB-ShareclassNameWB {
+    font-size: 24pt;
+    line-height: 28.8pt;
+    color: var(--Zurichblue);
+    margin-bottom: 0px;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row9.row.section>div.column1.column.section>div>div.horizontal-list1.horizontal-list.contentSection.section.animation-None>div>span.displayname-tooltip.value {
+    width: 67px;
+}
+
+[lang="de-DE"] .page1>.row4>.column2 .row4 .ratios table tr td.rowheader {
+    width: 127px;
+}
+
+[lang="de-DE"] body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y1Ann {
+    width: 103px;
+}
+
+[lang="de-DE"] .page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(6) {
+    left: 453.062px !important;
+    text-align: center;
+}
+
+[lang="fr-FR"] body>div.section.page.page2>div.section.row.row5 {
+    position: absolute;
+    bottom: 238px;
+    width: 100%;
+}
+
+[lang="fr-FR"] body>div.section.page.page2>div.section.row.row6 {
+    position: absolute;
+    bottom: 185px;
+    max-width: 95%;
+}
+
+[lang="fr-FR"] .page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(6) {
+    left: 454.062px !important;
+}
+
+[lang="it-IT"] .page3>.row6 .barChartSection .chart .highcharts-container .highcharts-xaxis-labels span:nth-child(6) {
+    left: 448.062px !important;
+}
+
+[lang="it-IT"] .page1>.row4>.column2 .row4 .ratios table tr td.rowheader {
+    /*width: 80px;*/
+    text-align: left;
+}
+
+[lang="it-IT"] .page1>.row4>.column2 .row4 .ratios table tr td.rowheader {
+    width: 148px;
+    text-align: left;
+}
+
+[lang="it-IT"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y5Ann {
+    width: 45px;
+}
+
+[lang="it-IT"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(1) {
+    width: 148px;
+}
+
+[lang="it-IT"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(4) {
+    width: 47px;
+}
+
+
+
+[lang="fr-FR"] .page1>.row4>.column2 .row4 .ratios table tr td.rowheader {
+   width: 138px;
+    text-align: left;
+}
+
+[lang="fr-FR"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y5Ann {
+    width: 40px;
+}
+
+[lang="it-IT"] body>div.section.page.page2>div.section.row.row6 {
+    position: absolute;
+    bottom: 193px;
+    max-width: 95%;
+}
+
+[lang="it-IT"] body>div.section.page.page2>div.section.row.row5 {
+    position: absolute;
+    bottom: 246px;
+    width: 100%;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.rowheader:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "1";
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row5.row.section>div.column1.column.section>div>div.text1.text.contentSection.section.animation-None {
+    position: relative;
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row5.row.section>div.column1.column.section>div>div.text1.text.contentSection.section.animation-None>p:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "1";
+}
+
+body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y5Ann {
+    width: 48px;
+}
+
+body>div.page2.page.section>div.row6.row.section>div.column1.column.section>div>div.performancetable1.performancetable.contentSection.section>table>tbody>tr.even.benchmark {
+    position: relative;
+}
+
+body>div.page2.page.section>div.row6.row.section>div.column1.column.section>div>div.performancetable1.performancetable.contentSection.section>table>tbody>tr.even.benchmark>td.rowheader:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "2";
+}
+
+[lang="de-DE"] .page1>.row2 {
+    padding-bottom: 5.5mm;
+}
+
+[lang="de-DE"] .page2>.row3 {
+    margin-top: 0mm;
+}
+
+[lang="de-DE"] .page2>.row5>.column1 {
+    width: 73%;
+}
+
+[lang="de-DE"] .page2>.row5>.column3 .row1 p {
+    bottom: -27px;
+}
+
+[lang="de-DE"] .page2>.row5>.column4 .text1 p {
+    bottom: -1px;
+}
+
+[lang="de-DE"] .page2>.row6>.column3 {
+    width: 14.28%;
+    margin-top: -1px;
+}
+
+[lang="it-IT"] .page2>.row3 {
+    margin-top: 1.5mm;
+}
+
+[lang="it-IT"] .page2>.row6>.column3 .row1 .section table tbody tr td {
+    text-align: right;
+}
+
+[lang="it-IT"] .page2>.row6>.column2 .row1 .section table tbody tr td {
+    text-align: right;
+    padding: 0px 11px;
+}
+
+[lang="fr-FR"] .page2>.row3 {
+    margin-top: 2.5mm;
+}
+
+
+[lang="fr-FR"] .page2>.row6>.column2 .row1 .section table tbody tr td {
+    text-align: right;
+    padding: 0px 14px;
+}
+
+[lang="fr-FR"] body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y5Ann {
+    width: 39px;
+}
+
+[lang="fr-FR"] body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y3Ann {
+    width: 40px;
+}
+
+[lang="it-IT"] body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y3Ann {
+    width: 44px;
+}
+
+[lang="it-IT"] body>div.page1.page.section>div.row4.row.section>div.column2.column.section>div.row4.row.section>div.ratios1.ratios.contentSection.section>table>tbody>tr.odd.Volatility>td.Y5Ann {
+    width: 43px;
+}
+
+body>div.section.page.page2>div.section.row.row4>div.section.column.column1>div>div.section.contentSection.breakdown.breakdown1>table>tbody>tr>td.Weight {
+    text-align: right;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr>td {
+    font-weight: normal;
+    color: var(--darkblue);
+    font-family: var(--font-zurich-light);
+    font-size: 8pt;
+    text-align: right;
+    line-height: 4.612mm;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr>td:nth-child(1) {
+    text-align: left;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y1Ann {
+    width: 55px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y3Ann {
+    width: 53px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y5Ann {
+    width: 54px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr>td {
+
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.clear {
+    border-bottom: 0px solid var(--border-btm-clr);
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(4)>td {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row9>div.animation-None.section.contentSection.text.text1>p {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(2) {
+    width: 54px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(3) {
+    width: 53px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(4) {
+    width: 55px;
+}
+
+[lang="fr-FR"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(4) {
+    width: 42px;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.even.Volatility>td.rowheader {
+    position: relative;
+}
+
+body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.even.Volatility>td.rowheader:after {
+    font-size: 6px;
+    position: absolute;
+    top: -4px;
+    content: "1";
+}
+
+.page1>.row4>.column2 .row4>.ratios1>table>tbody>tr:not(:last-child) {
+    border-bottom: 1px solid var(--border-btm-clr);
+}
+
+.page2>.row6>.column2 .row1 .section table tbody tr th.P36M {
+    padding: 0px 0px 0px 8px;
+}
+
+.page1>.row4>.column2 .row5 {
+	border-bottom: 0px;
+}
+
+[lang="de-DE"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(2) {
+    width: 46px;
+} 
+
+[lang="de-DE"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y5Ann {
+    width: 36px;
+}
+
+[lang="de-DE"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(4) {
+    width: 38px;
+}
+
+[lang="de-DE"] .page3>.row4 .highcharts-container  > svg > g.highcharts-data-labels.highcharts-series-0.highcharts-column-series.highcharts-tracker > g:nth-child(5), [lang="fr-FR"] .page3>.row4 .highcharts-container  > svg > g.highcharts-data-labels.highcharts-series-0.highcharts-column-series.highcharts-tracker > g:nth-child(5), [lang="it-IT"] .page3>.row4 .highcharts-container  > svg > g.highcharts-data-labels.highcharts-series-0.highcharts-column-series.highcharts-tracker > g:nth-child(5) {
+	/*display: none;*/
+}
+
+[lang="fr-FR"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(1) {
+    width: 138px;
+}
+
+body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.YSinceLaunch {
+	width: 65px;
+}
+
+body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.Y5 {
+	    width: 53px;
+}
+
+[lang="it-IT"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.YSinceLaunch {
+    width: 47px;
+}
+
+[lang="it-IT"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.Y5 {
+    width: 45px;
+}
+
+[lang="de-DE"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row4 > div.section.contentSection.ratios.ratios1.fundstat2 > table > tbody > tr.odd.TrackingError > td.YAnnSinceLaunch {
+	    width: 58px;
+}
+
+[lang="de-DE"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row4>div.section.contentSection.ratios.ratios1.fundstat2>table>tbody>tr.odd.TrackingError>td.Y3Ann {
+    width: 48px;
+}
+
+[lang="de-DE"] body>div.section.page.page1>div.section.row.row4>div.section.column.column2>div.section.row.row5>div.section.contentSection.standardtable.standardtable1>table>tbody>tr:nth-child(1)>td:nth-child(1) {
+    width: 149px;
+}
+
+[lang="fr-FR"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.YSinceLaunch {
+    width: 62px;
+}
+
+[lang="fr-FR"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.Y5 {
+    width: 39px;
+}
+
+[lang="de-DE"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.YSinceLaunch {
+    width: 63px;
+}
+
+[lang="de-DE"] body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.Y5 {
+    width: 38px;
+}
+
+[lang="it-IT"] .page3>.row4 .highcharts-container > svg > g.highcharts-data-labels.highcharts-series-0.highcharts-column-series.highcharts-tracker > g:nth-child(5) {
+	display: block;
+}
+
+body > div.section.page.page1 > div.section.row.row4 > div.section.column.column2 > div.section.row.row3 > div.section.contentSection.ratios.ratios1.fundstat1 > table > tbody > tr.odd.MaxDrawdown > td.Y3 {
+	    width: 53px;
+}
+/*Theme: ZIAG_Green_Bond*/
