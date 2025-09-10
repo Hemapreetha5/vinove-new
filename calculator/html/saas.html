@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SaaS Calculator</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans">
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <div class="grid lg:grid-cols-3 gap-12">
+<section class="lg:col-span-2">
+    <!-- Input Form -->
+    <div class="bg-white shadow rounded-2xl border p-6 space-y-6">
+      <h2 class="text-xl font-semibold">SaaS Requirements</h2>
+      <p class="text-sm text-gray-500">Define your SaaS product specifications</p>
+
+      <!-- Project Type -->
+      <div>
+        <label class="font-medium block mb-2">Project Type</label>
+        <select id="projectType" class="w-full border rounded p-2">
+          <option value="b2c_saas">B2C SaaS</option>
+          <option value="b2b_saas">B2B SaaS</option>
+          <option value="marketplace">Marketplace</option>
+          <option value="fintech">FinTech</option>
+          <option value="healthtech">HealthTech</option>
+          <option value="edtech">EdTech</option>
+        </select>
+      </div>
+
+      <!-- Core Modules -->
+      <div>
+        <label class="font-medium block mb-2">Core Modules</label>
+        <div class="grid grid-cols-2 gap-2" id="modules">
+          <!-- JS will populate checkboxes -->
+        </div>
+      </div>
+
+      <!-- Expected Users -->
+      <div>
+        <label class="font-medium block mb-2">Expected Users (Year 1)</label>
+        <select id="userBase" class="w-full border rounded p-2">
+          <option value="1k">Under 1K</option>
+          <option value="10k">1K - 10K</option>
+          <option value="100k">10K - 100K</option>
+          <option value="1m">100K - 1M</option>
+          <option value="10m">1M+</option>
+        </select>
+      </div>
+
+      <!-- UI Complexity -->
+      <div>
+        <label class="font-medium block mb-2">UI Complexity</label>
+        <select id="uiComplexity" class="w-full border rounded p-2">
+          <option value="simple">Simple (Standard Components)</option>
+          <option value="standard" selected>Standard (Custom Components)</option>
+          <option value="advanced">Advanced (Complex UI)</option>
+          <option value="custom">Custom (Unique Design)</option>
+        </select>
+      </div>
+
+      <!-- Third-party Integrations -->
+      <div class="space-y-3">
+        <label class="text-gray-800 font-medium">Third-party Integrations</label>
+        <div class="grid grid-cols-2 gap-3" id="integrations">
+          <!-- JS will inject checkboxes -->
+        </div>
+      </div>
+ 
+      <!-- Hosting -->
+      <div>
+        <label class="font-medium block mb-2">Hosting</label>
+        <select id="hosting" class="w-full border rounded p-2">
+          <option value="cloud">Cloud (AWS/Azure/GCP)</option>
+          <option value="managed">Managed Platform (Heroku/Vercel)</option>
+          <option value="on-premise">On-premise</option>
+        </select>
+      </div>
+
+      <!-- Compliance -->
+      <div>
+        <label class="font-medium block mb-2">Compliance</label>
+        <div class="grid grid-cols-2 gap-2" id="compliance"></div>
+      </div>
+
+      <button id="calculateBtn" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+        Calculate SaaS Costs
+      </button>
+    </div>
+  </section>
+
+    <!-- Results -->
+    <div id="results" class="hidden bg-white shadow rounded-2xl border p-6 space-y-4 lg:col-span-1">
+      <h2 class="text-xl font-semibold flex items-center gap-2">💰 Cost Estimate (Preview)</h2>
+      <p class="text-sm text-gray-500">Blurred preview - submit details for full TCO breakdown</p>
+
+      <div class="text-center bg-blue-50 p-6 rounded-lg relative z-0">
+        <div class="absolute inset-0 bg-background/60 backdrop-blur-[2px] z-10"></div>
+        <div class="text-4xl font-bold mb-2" id="totalCost">$0</div>
+        <div class="text-lg font-semibold text-blue-700">Development Cost</div>
+        <p class="text-sm text-gray-600 mt-2">+ <span id="infraCost">$0</span>/month infra</p>
+      </div>
+
+      <div class="flex justify-between bg-gray-100 p-2 rounded">
+        <span>Timeline:</span>
+        <span id="timeline">0 weeks</span>
+      </div>
+      <div class="flex justify-between bg-gray-100 p-2 rounded">
+        <span>Year 1 TCO:</span>
+        <span id="tco1">$0</span>
+      </div>
+      <div class="flex justify-between bg-gray-100 p-2 rounded">
+        <span>Year 3 TCO:</span>
+        <span id="tco3">$0</span>
+      </div>
+          <div class="mt-4">
+            <button id="openDialog" class="w-full max-w-xs bg-blue-900 text-white text-lg font-semibold py-3 px-6 rounded-2xl hover:bg-blue-800 transition">
+    Get Full SaaS Breakdown
+  </button>
+             <!-- Overlay -->
+  <div id="dialogOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
+
+  <!-- Dialog -->
+  <div id="dialogContent" class="fixed inset-0 flex items-center justify-center hidden">
+    <div class="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative">
+      
+      <!-- Close Button -->
+      <button id="closeDialog" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+      
+      <!-- Header -->
+      <h2 class="text-xl font-bold mb-2">Almost there—get your detailed estimate</h2>
+      <p class="text-gray-600 mb-6">We'll show the full breakdown and email you a shareable PDF.</p>
+      
+      <!-- Form -->
+      <form id="leadForm" class="space-y-4">
+        
+        <!-- Name -->
+        <div>
+          <label for="lead-name" class="text-gray-800 font-medium mb-2 block">Name</label>
+          <input id="lead-name" type="text" placeholder="Your full name" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"/>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="lead-email" class="text-gray-800 font-medium mb-2 block">Work Email</label>
+          <input id="lead-email" type="email" placeholder="you@company.com" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"/>
+        </div>
+
+        <!-- Consent -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="consent" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+          <label for="consent" class="text-sm text-gray-700">
+            I agree to receive the estimate and related communications
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="w-full bg-blue-900 text-white text-lg font-semibold py-3 px-6 rounded-2xl hover:bg-blue-800 transition">
+          Get Architect Review (Free)
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="./js/saas.js"></script>
+</body>
+</html>

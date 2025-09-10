@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cost Comparison Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+  <!-- Header -->
+  <header class="bg-white border-b sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <h1 class="text-xl font-bold">Cost Comparison Calculator</h1>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <main class="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-2 gap-8">
+    
+    <!-- Input Form -->
+    <div class="bg-white p-6 rounded-2xl shadow">
+      <h2 class="text-lg font-semibold mb-4">Comparison Parameters</h2>
+      <p class="text-sm text-gray-500">Define your team requirements for accurate comparison</p>
+      <form id="calculatorForm" class="space-y-6">
+        
+        <!-- Team Size -->
+        <div>
+          <label class="block mb-1 font-medium">Team Size</label>
+          <input type="number" id="teamSize" min="1" max="20" value="5"
+            class="w-full border rounded p-2" />
+        </div>
+
+        <!-- Required Roles -->
+        <div>
+          <label class="block mb-2 font-medium">Required Roles</label>
+          <div class="grid grid-cols-2 gap-2" id="rolesContainer"></div>
+        </div>
+
+        <!-- Duration -->
+        <div>
+          <label class="block mb-1 font-medium">Project Duration (months)</label>
+          <input type="number" id="duration" min="3" max="36" value="12"
+            class="w-full border rounded p-2" />
+        </div>
+
+        <!-- Comparator -->
+        <div>
+          <label class="block mb-1 font-medium">Compare Against</label>
+          <select id="comparator" class="w-full border rounded p-2">
+            <option value="in_house">In-house Team</option>
+            <option value="big4">Big 4 Consulting</option>
+            <option value="boutique">Boutique Agency</option>
+          </select>
+        </div>
+
+        <!-- Urgency -->
+        <div>
+          <label class="block mb-1 font-medium">Project Urgency</label>
+          <select id="urgency" class="w-full border rounded p-2">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+
+        <button type="button" id="compareBtn"
+          class="w-full bg-blue-600 text-white rounded p-3 font-medium hover:bg-blue-700">
+          Compare Costs
+        </button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsCard" class="bg-white p-6 rounded-2xl shadow hidden">
+      <h2 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+        ⚖️ Cost Comparison (Preview)
+      </h2>
+      <p class="text-sm text-gray-500 mb-6">
+        Blurred preview — full results available after details
+      </p>
+      <div id="resultsContent" class="space-y-4"></div>
+      
+      <!-- Get Detailed Comparison Button -->
+      <button id="detailedBtn"
+        class="mt-6 w-full bg-indigo-600 text-white rounded p-3 font-medium hover:bg-indigo-700">
+        Get Detailed Comparison
+      </button>
+    </div>
+  </main>
+
+<!-- Popup Overlay -->
+<div id="popupOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative">
+    <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">✕</button>
+    
+    <!-- Header -->
+    <h3 class="text-lg font-bold mb-2">Almost there—get your detailed estimate</h3>
+    <p class="text-sm text-gray-600 mb-6">
+      We'll show the full breakdown and email you a shareable PDF.
+    </p>
+    
+    <!-- Form -->
+    <form id="leadForm" class="space-y-4">
+      <!-- Name -->
+      <div class="space-y-2">
+        <label for="lead-name" class="text-sm font-medium block">Name</label>
+        <input id="lead-name" type="text" placeholder="Your full name"
+          class="w-full border rounded p-2" required />
+      </div>
+
+      <!-- Email -->
+      <div class="space-y-2">
+        <label for="lead-email" class="text-sm font-medium block">Work Email</label>
+        <input id="lead-email" type="email" placeholder="you@company.com"
+          class="w-full border rounded p-2" required />
+      </div>
+
+      <!-- Consent -->
+      <div class="flex items-center space-x-2">
+        <input id="consent" type="checkbox" class="h-4 w-4" />
+        <label for="consent" class="text-sm">
+          I agree to receive the estimate and related communications
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="w-full bg-indigo-600 text-white rounded p-3 font-medium hover:bg-indigo-700">
+        See Candidate Profiles
+      </button>
+    </form>
+  </div>
+</div>
+
+  <script src="./js/comparison.js"></script>
+</body>
+</html>

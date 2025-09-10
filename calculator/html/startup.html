@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Startup Product Development Calculator</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white font-sans">
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Form Column -->
+      <section class="lg:col-span-2">
+        <div class="bg-white rounded-2xl border shadow p-6">
+          <h2 class="text-2xl font-semibold mb-4">Project Requirements</h2>
+
+          <!-- Project Type -->
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">Project Type</label>
+              <select id="projectType" class="w-full rounded border px-3 py-2">
+                <option value="">Select project type</option>
+                <option value="mvp">MVP Development</option>
+                <option value="full_product">Full Product Development</option>
+                <option value="enterprise">Enterprise Application</option>
+              </select>
+            </div>
+
+            <!-- Platforms -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Target Platforms</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center space-x-2"><input type="checkbox" value="ios" data-group="platform" />
+                  <span>iOS</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="android"
+                    data-group="platform" /> <span>Android</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="web" data-group="platform" />
+                  <span>Web</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="desktop"
+                    data-group="platform" /> <span>Desktop</span></label>
+              </div>
+            </div>
+
+            <!-- Stage -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Development Stage</label>
+              <select id="stage" class="w-full rounded border px-3 py-2">
+                <option value="">Select development stage</option>
+                <option value="idea">Idea Stage</option>
+                <option value="prototype">Prototype Exists</option>
+                <option value="development">In Development</option>
+                <option value="launch">Ready to Launch</option>
+              </select>
+            </div>
+
+            <!-- Complexity -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Project Complexity</label>
+              <select id="complexity" class="w-full rounded border px-3 py-2">
+                <option value="">Select complexity level</option>
+                <option value="simple">Simple - Basic features, simple UI</option>
+                <option value="moderate">Moderate - Standard features, custom UI</option>
+                <option value="complex">Complex - Advanced features, complex workflows</option>
+                <option value="enterprise">Enterprise - Full-scale system</option>
+              </select>
+            </div>
+
+            <!-- Design Level -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Design Level</label>
+              <select id="designLevel" class="w-full rounded border px-3 py-2">
+                <option value="">Select design level</option>
+                <option value="basic">Basic - Template-based design</option>
+                <option value="standard">Standard - Custom design system</option>
+                <option value="premium">Premium - Advanced UI/UX</option>
+                <option value="custom">Custom - Unique brand design</option>
+              </select>
+            </div>
+
+            <!-- Core Features -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Core Features</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center space-x-2"><input type="checkbox" value="user_auth"
+                    data-group="feature" /> <span>User auth</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="payment"
+                    data-group="feature" /> <span>Payment</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="admin_panel"
+                    data-group="feature" /> <span>Admin panel</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="api_integration"
+                    data-group="feature" /> <span>API integration</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="real_time"
+                    data-group="feature" /> <span>Real-time</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="analytics"
+                    data-group="feature" /> <span>Analytics</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="notifications"
+                    data-group="feature" /> <span>Notifications</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="search" data-group="feature" />
+                  <span>Search</span></label>
+              </div>
+            </div>
+
+            <!-- Integrations -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Third-party Integrations</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center space-x-2"><input type="checkbox" value="crm"
+                    data-group="integration" /> <span>CRM</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="erp"
+                    data-group="integration" /> <span>ERP</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="payment_gateway"
+                    data-group="integration" /> <span>Payment gateway</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="social_media"
+                    data-group="integration" /> <span>Social media</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="analytics_tools"
+                    data-group="integration" /> <span>Analytics tools</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" value="email_service"
+                    data-group="integration" /> <span>Email service</span></label>
+              </div>
+            </div>
+
+            <!-- Timeline -->
+            <div>
+              <label class="block text-sm font-medium mb-2">Preferred Timeline</label>
+              <select id="timeline" class="w-full rounded border px-3 py-2">
+                <option value="">Select timeline</option>
+                <option value="asap">ASAP (Rush project)</option>
+                <option value="3months">3 months</option>
+                <option value="6months">6 months</option>
+                <option value="12months">12+ months</option>
+              </select>
+            </div>
+
+            <div>
+              <button id="getPreview" class="w-full bg-indigo-600 text-white py-3 rounded-lg disabled:opacity-20"
+                disabled>Get Cost Preview →</button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Column -->
+      <aside class="lg:col-span-1">
+        <div id="resultsCard" class="bg-white rounded-2xl border shadow p-6 text-center">
+          <div id="initialCard">
+            <div class="text-center py-8">
+              <div class="text-4xl">🧮</div>
+              <h3 class="text-lg font-semibold mt-3">Get Your Estimate</h3>
+              <p class="text-sm text-slate-600">Fill out the form to see your project cost preview</p>
+            </div>
+          </div>
+
+          <div id="previewCard" class="hidden">
+            <div class="pb-4 mb-4">
+              <h3 class="flex items-center gap-2 text-lg font-semibold">
+                <!-- Calculator Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <rect x="4" y="3" width="16" height="18" rx="2" ry="2"></rect>
+                  <line x1="8" y1="7" x2="16" y2="7"></line>
+                  <line x1="9" y1="11" x2="9" y2="11"></line>
+                  <line x1="15" y1="11" x2="15" y2="11"></line>
+                  <line x1="9" y1="15" x2="9" y2="15"></line>
+                  <line x1="15" y1="15" x2="15" y2="15"></line>
+                </svg>
+                Cost Estimate Preview
+              </h3>
+              <p class="text-sm text-left text-slate-600 mt-1">
+                Get your detailed breakdown by providing your contact information
+              </p>
+            </div>
+            <div class="p-6 rounded-lg border-2 border-indigo-200 bg-indigo-50/60 relative z-0">
+              <div class="absolute inset-0 bg-background/60 backdrop-blur-[2px] z-10"></div>
+              <div class="text-sm text-slate-600 mb-2">Estimated Cost Range</div>
+              <div id="costRange" class="text-3xl font-bold mt-2">$0 - $0</div>
+              <div id="timelineText" class="text-sm text-slate-600 mt-1">Timeline: ~0 weeks</div>
+            </div>
+            <div class="mt-4">
+              <button id="getFullEstimate" class="w-full bg-sky-600 text-white py-2 rounded-lg">Get Detailed Analysis &
+                Report</button>
+            </div>
+          </div>
+
+          <div id="fullResultsCard" class="hidden mt-6 text-left">
+            <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">✅ Detailed Cost Analysis</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+              <div class="p-3 bg-slate-50 rounded text-center">
+                <div class="text-sm">Total Investment</div>
+                <div id="totalInvestment" class="text-2xl font-bold">$0</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded text-center">
+                <div class="text-sm">Timeline</div>
+                <div id="totalTimeline" class="text-2xl font-bold">0 weeks</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded text-center">
+                <div class="text-sm">Team Size</div>
+                <div class="text-2xl font-bold">5-8</div>
+              </div>
+            </div>
+
+            <div>
+              <h5 class="font-medium mb-2">Breakdown</h5>
+              <ul id="breakdownList" class="space-y-2 text-sm text-slate-700"></ul>
+            </div>
+
+            <div class="mt-4">
+              <h5 class="font-medium mb-2">Project Phases</h5>
+              <ul id="phasesList" class="space-y-2 text-sm text-slate-700"></ul>
+            </div>
+
+            <div class="mt-6 text-center">
+              <button id="requestProfiles" class="px-4 py-2 rounded bg-emerald-600 text-white">Request 3 Sample
+                Profiles</button>
+            </div>
+            <div class="mt-4">
+              <button id="resetUnlock" class="text-xs text-slate-500 underline">Reset Unlock</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Lead Gate Modal -->
+  <div id="leadModal" class="hidden">
+    <div class="fixed inset-0  d-flex justify-center items-center z-50">
+      <div class="backdrop absolute inset-0"></div>
+      <div class="relative bg-white rounded-lg shadow-lg max-w-md w-full p-6 z-10">
+        <button id="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">&times;</button>
+
+        <h3 class="text-lg font-semibold mb-2">Almost there—get your detailed estimate</h3>
+        <p class="text-sm text-slate-600 mb-4">We'll show the full breakdown and email you a shareable PDF.</p>
+
+        <div class="space-y-3">
+          <div>
+            <label class="text-sm block mb-1">Name</label>
+            <input id="leadName" class="w-full rounded border px-3 py-2" placeholder="Your full name" />
+          </div>
+          <div>
+            <label class="text-sm block mb-1">Work Email</label>
+            <input id="leadEmail" type="email" class="w-full rounded border px-3 py-2" placeholder="you@company.com" />
+          </div>
+          <div class="flex items-start gap-2">
+            <input id="leadConsent" type="checkbox" />
+            <label class="text-sm text-slate-600">I agree to receive the PDF estimate and occasional updates from ValueCoders</label>
+          </div>
+          <div>
+            <button id="unlockSubmit" class="w-full bg-indigo-600 text-white py-2 rounded">Unlock Full Estimate →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/startup.js"></script>
+</body>
+
+</html>
