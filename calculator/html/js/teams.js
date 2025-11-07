@@ -55,7 +55,7 @@
     const rolesContainer = document.getElementById('roles-container');
     rolesList.forEach(role => {
       const div = document.createElement('div');
-      div.className = "flex items-center space-x-2";
+      div.className = "flex items-center space-x-2 form-checkboxes";
       div.innerHTML = `
         <input type="checkbox" id="${role}" class="checkbox">
         <label for="${role}" class="text-sm">${role}</label>
@@ -71,7 +71,7 @@
     const certContainer = document.getElementById('certifications-container');
     certList.forEach(cert => {
       const div = document.createElement('div');
-      div.className = "flex items-center space-x-2";
+      div.className = "flex items-center space-x-2 form-checkboxes";
       div.innerHTML = `
         <input type="checkbox" id="${cert}" class="checkbox">
         <label for="${cert}" class="text-sm">${cert}</label>
@@ -200,3 +200,48 @@ const inputsVal = { fteCount: 3, duration: 6 };
     alert("Thank you! Your estimate will be sent shortly.");
     modal.classList.add('hidden');
   });
+
+
+  const resultsPopup = document.getElementById('results');
+const closeResultsBtn = document.getElementById('closeResultsBtn');
+const openModalBtn = document.getElementById('openModalBtn');
+const leadModal = document.getElementById('leadModal');
+const closeLeadBtn = document.getElementById('closeModalBtn');
+
+// Show results popup after calculation
+document.getElementById('calculateBtn').addEventListener('click', () => {
+  if(inputs.roles.length === 0){
+    alert("Please select at least one role");
+    return;
+  }
+  const { monthlyEstimate, projectCost, blendedRate } = calculateCosts();
+
+  document.getElementById('monthlyEstimate').textContent = `$${monthlyEstimate.toLocaleString()}/month`;
+  document.getElementById('projectCost').textContent = `$${projectCost.toLocaleString()} total project cost`;
+  document.getElementById('blendedRate').textContent = `Blended rate: $${blendedRate.toFixed(0)}/hour`;
+
+  resultsPopup.classList.remove('hidden');
+});
+
+// Close results popup
+closeResultsBtn.addEventListener('click', () => {
+  resultsPopup.classList.add('hidden');
+});
+
+// Open lead modal from inside results popup
+openModalBtn.addEventListener('click', () => {
+  leadModal.classList.remove('hidden');
+});
+
+// Close lead modal
+closeLeadBtn.addEventListener('click', () => {
+  leadModal.classList.add('hidden');
+});
+
+// Close on overlay click
+resultsPopup.addEventListener('click', e => {
+  if (e.target === resultsPopup) resultsPopup.classList.add('hidden');
+});
+leadModal.addEventListener('click', e => {
+  if (e.target === leadModal) leadModal.classList.add('hidden');
+});

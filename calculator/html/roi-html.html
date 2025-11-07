@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Calculator</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="calculator-container">
+    <div class="grid">
+
+      <!-- Input Form -->
+      <div class="card">
+        <h2 class="card-title">Investment Details</h2>
+
+        <div class="form-group">
+          <label>Project Cost ($)</label>
+          <input id="projectCost" type="number" value="100000">
+        </div>
+
+        <div class="form-group">
+          <label>Time Savings (hrs/week per employee)</label>
+          <input id="timeSavings" type="number" value="20">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Employee Hourly Cost ($)</label>
+            <input id="hourlyCost" type="number" value="50">
+          </div>
+          <div class="form-group">
+            <label>Number of Employees</label>
+            <input id="employeeCount" type="number" value="10">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Annual Revenue ($)</label>
+          <input id="addedRevenue" type="number" value="50000">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="industry">Industry</label>
+            <select id="industry">
+              <option value="technology">Technology</option>
+              <option value="finance">Finance</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="retail">Retail</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="education">Education</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="category">Project Category</label>
+            <select id="category">
+              <option value="automation">Process Automation</option>
+              <option value="digitization">Digital Transformation</option>
+              <option value="optimization">System Optimization</option>
+              <option value="innovation">Innovation & R&D</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Analysis Duration (months)</label>
+          <select id="durationMonths">
+            <option value="12" selected>12 months</option>
+            <option value="24">24 months</option>
+            <option value="36">36 months</option>
+            <option value="60">60 months</option>
+          </select>
+        </div>
+
+        <button id="calculateBtn" class="btn-primary">Calculate ROI</button>
+      </div>
+
+      <!-- Results -->
+      <div id="resultsCard" class="calculator-modal modal hidden">
+        <div class="modal-overlay"></div>
+        <div id="resultsContent" class="modal-content">
+          <button id="closeResults" class="modal-close">&times;</button>
+          <div class="section-header">
+            <h3>ROI Analysis (Preview)</h3>
+            <p class="muted">Blurred preview - submit details for full analysis</p>
+          </div>
+          <div class="blur-box">
+              <div class="preview-grid">
+                <div class="preview-item">
+                  <div id="roiPercentage" class="preview-value">+0%</div>
+                  <div class="preview-label">ROI</div>
+                </div>
+                <div class="preview-item">
+                  <div id="netGain" class="preview-value">$0</div>
+                  <div class="preview-label">Net Gain</div>
+                </div>
+              </div>
+          </div>
+
+          <div class="info-list">
+            <div class="info-item"><span>Payback Period:</span><span id="paybackMonths">0 months</span></div>
+            <div class="info-item"><span>Monthly Savings:</span><span id="monthlySavings">$0</span></div>
+            <div class="info-item"><span>Break-even Date:</span><span id="breakEvenDate">-</span></div>
+            <div class="info-item"><span>Total Benefit:</span><span id="totalBenefit">$0</span></div>
+          </div>
+
+          <div id="ctaSection">
+            <button id="unlockBtn" class="btn-secondary mt-2">Get Full ROI Analysis</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+  <div id="dialogOverlay" class="calculator-modal modal hidden">
+    <div class="modal-overlay"></div>
+    <div id="dialogContent" class="modal-content">
+      <button id="closeDialog" class="modal-close">&times;</button>
+      <h2>Almost there—get your detailed estimate</h2>
+      <p>We'll show the full breakdown and email you a shareable PDF.</p>
+
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="lead-name">Name</label>
+          <input id="lead-name" type="text" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label for="lead-email">Work Email</label>
+          <input id="lead-email" type="email" placeholder="you@company.com">
+        </div>
+        <div class="form-check">
+          <input id="consent" type="checkbox">
+          <label for="consent">I agree to receive the estimate and related communications</label>
+        </div>
+        <button type="submit" class="btn-secondary mt-2">Get Custom ROI Model</button>
+      </form>
+    </div>
+  </div>
+  <script src="./js/roi.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Filter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Open Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            margin: 0;
+        }
+      .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: #F5F5F5;
+        }
+        .filter-btn {
+            /* background: #e8e8e8; */
+            border: none;
+            padding: 14px 8px;
+            /* border-radius: 20px; */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            color: #000000;
+            flex:1;
+            font-family: "Montserrat", Sans-serif;
+            position: relative;
+        }
+        .filter-btn.active {
+            background: #fff;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+            font-weight: 500;
+        }
+        .filter-btn:after{
+            content: "";
+            position: absolute;
+            top: 6px;
+            right: 0;
+            width: 1px;
+            height: 32px;
+            background-color: #3C3C432E;
+        }
+        .filter-btn:last-child:after{
+            display: none;
+        }
+    .news-title {
+      font-family: "Montserrat", Sans-serif;
+      font-size: 46px;
+      font-weight: 500;
+      color: #0D1B2A;
+      margin: 0 0 15px 0;
+    }
+    .news-section {
+      padding: 60px 60px;
+    }
+    .news-section.news-section-nospace {
+      padding: 0;
+    }
+    .news-section .news-container {
+      width: 100%;
+    }
+    .news-section h2 {
+      font-size: 32px;
+      color: #0b1c3f;
+      margin-bottom: 10px;
+    }
+    .news-section .subtitle {
+      color: #000;
+      margin-bottom: 42px;
+      font-size: 20px;
+    }
+    .news-grid {
+      display: block;
+      white-space: nowrap;
+    }
+    .news-container {
+      white-space: normal;
+    }
+    .news-card {
+      background: #FCFCFC;
+      border-radius: 10px 0 0 10px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      flex-wrap: wrap;
+      width: 75%;
+      vertical-align: top;
+      margin-right: 13px;
+      min-width: 550px;
+    }
+    .news-container .news-card {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .news-card .news-image {
+      position: relative;
+      width: 35%;
+      object-fit: cover;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .news-card .news-image img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+    .news-card .news-image .tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 18px;
+    }
+    .news-card .news-content {
+      text-align: left;
+      padding: 20px;
+      position: relative;
+      width: 64%;
+      display: inline-block;
+      vertical-align: top;
+      white-space: normal;
+    }
+    .news-card .news-content-info {
+      font-size: 13px;
+      color: #6b7280;
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .news-card .news-content-info span {
+      align-items: center;
+      display: inline-flex;
+      gap: 10px;
+      margin-right: 20px;
+    }
+    .news-card .news-content h3 {
+      font-size: 22px;
+      color: #0D1B2A;
+      margin: 5px 0;
+      font-family: "Montserrat", Sans-serif;
+      font-weight: 500;
+    }
+    .news-card .news-content .news-description {
+      font-size: 18px;
+      color: #868686;
+      margin-bottom: 10px;
+    }
+    .news-card .news-card-share {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #868686;
+      text-decoration: none;
+      font-size: 18px;
+      background-color: #fff;
+      padding: 4px 7px;
+      z-index: 1;
+    }
+    @media(max-width:1200px) {
+        .project-card .project-content-info span {
+            margin-right: 6px;
+        }
+        .filter-bar{
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            justify-content: start;
+        }
+        .filter-btn {
+            white-space: nowrap;
+        }
+    }
+    @media(max-width:767px) {
+      .news-section {
+        padding: 20px;
+      }
+    }
+    </style>
+</head>
+
+<body>
+  <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Posts</button>
+      <button class="filter-btn" data-filter="Blogs">Blogs</button>
+      <button class="filter-btn" data-filter="Press Release">Press Release</button>
+  </div>
+  <section class="news-section news-section-nospace">
+    <div class="news-container">
+      <div class="news-grid news-container">
+        <div class="news-card card-filter" data-category="Blogs">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image2.jpg" alt="News Image">
+            <span class="tag">Blog</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> January 15, 2024</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> Industry Expert</span>
+            </div>
+            <h3>Sustainable Mining Practices: A New Approach</h3>
+            <p class="news-description">Exploring innovative approaches to sustainable mining operations and environmental responsibility.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="news-card card-filter" data-category="Blogs">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image3.jpg" alt="News Image">
+            <span class="tag">Blog</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> January 15, 2024</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> Agriculture Team</span>
+            </div>
+            <h3>Agricultural Technology Integration Success</h3>
+            <p class="news-description">Case study on successful implementation of modern agricultural technologies in developing markets.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="news-card card-filter" data-category="Blogs">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image5.jpg" alt="News Image">
+            <span class="tag">Blog</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> December 15, 2023</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> Healthcare Team</span>
+            </div>
+            <h3>Healthcare Infrastructure Development Insights</h3>
+            <p class="news-description">Key insights from recent healthcare infrastructure projects and best practices for implementation.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="news-card card-filter" data-category="Press Release">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image1.jpg" alt="News Image">
+            <span class="tag">ProLink Team</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> January 15, 2024</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> ProLink Team</span>
+            </div>
+            <h3>ProLink Expands Operations in West Africa</h3>
+            <p class="news-description">Strategic expansion into new markets demonstrates our commitment to driving growth across the region.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="news-card card-filter" data-category="Press Release">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image4.jpg" alt="News Image">
+            <span class="tag">ProLink Team</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> January 15, 2024</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> ProLink Team</span>
+            </div>
+            <h3>ProLink Achieves ISO Certification</h3>
+            <p class="news-description">Company receives international certification recognizing commitment to quality and excellence.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="news-card card-filter" data-category="Press Release">
+          <div class="news-image">
+            <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/news-image6.jpg" alt="News Image">
+            <span class="tag">ProLink Team</span>
+          </div>
+          <div class="news-content">
+            <div class="news-content-info">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M6.12467 0.791992V2.37533H10.8747V0.791992H12.458V2.37533H15.6247C16.0619 2.37533 16.4163 2.72977 16.4163 3.16699V15.8337C16.4163 16.2709 16.0619 16.6253 15.6247 16.6253H1.37467C0.937453 16.6253 0.583008 16.2709 0.583008 15.8337V3.16699C0.583008 2.72977 0.937453 2.37533 1.37467 2.37533H4.54134V0.791992H6.12467ZM14.833 8.70866H2.16634V15.042H14.833V8.70866ZM4.54134 3.95866H2.16634V7.12533H14.833V3.95866H12.458V5.54199H10.8747V3.95866H6.12467V5.54199H4.54134V3.95866Z"
+                    fill="#929292" />
+                </svg> December 10, 2023</span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18" fill="none">
+                  <path
+                    d="M12.8337 17.417H11.2503V15.8337C11.2503 14.5219 10.187 13.4587 8.87533 13.4587H4.12533C2.81365 13.4587 1.75033 14.5219 1.75033 15.8337V17.417H0.166992V15.8337C0.166992 13.6476 1.9392 11.8753 4.12533 11.8753H8.87533C11.0614 11.8753 12.8337 13.6476 12.8337 15.8337V17.417ZM6.50033 10.292C3.87697 10.292 1.75033 8.16534 1.75033 5.54199C1.75033 2.91864 3.87697 0.791992 6.50033 0.791992C9.12367 0.791992 11.2503 2.91864 11.2503 5.54199C11.2503 8.16534 9.12367 10.292 6.50033 10.292ZM6.50033 8.70866C8.2492 8.70866 9.66699 7.29089 9.66699 5.54199C9.66699 3.79309 8.2492 2.37533 6.50033 2.37533C4.75142 2.37533 3.33366 3.79309 3.33366 5.54199C3.33366 7.29089 4.75142 8.70866 6.50033 8.70866Z"
+                    fill="#929292" />
+                </svg> ProLink Team</span>
+            </div>
+            <h3>Global Partnership Announcement</h3>
+            <p class="news-description">New strategic partnerships expand our capabilities and reach across international markets.</p>
+            <a href="" class="news-card-share"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                viewBox="0 0 16 17" fill="none">
+                <path
+                  d="M9.74791 12.6735L5.70239 10.4668C5.20155 10.964 4.51181 11.2712 3.75033 11.2712C2.22003 11.2712 0.979492 10.0306 0.979492 8.50033C0.979492 6.97003 2.22003 5.72949 3.75033 5.72949C4.51176 5.72949 5.20146 6.03663 5.70229 6.53377L9.74791 4.32709C9.70857 4.14104 9.68783 3.94811 9.68783 3.75033C9.68783 2.22003 10.9284 0.979492 12.4587 0.979492C13.989 0.979492 15.2295 2.22003 15.2295 3.75033C15.2295 5.28062 13.989 6.52116 12.4587 6.52116C11.6972 6.52116 11.0075 6.214 10.5066 5.71682L6.46102 7.92344C6.50043 8.10956 6.52116 8.30249 6.52116 8.50033C6.52116 8.69808 6.50044 8.89101 6.46106 9.07705L10.5066 11.2838C11.0075 10.7867 11.6972 10.4795 12.4587 10.4795C13.989 10.4795 15.2295 11.72 15.2295 13.2503C15.2295 14.7806 13.989 16.0212 12.4587 16.0212C10.9284 16.0212 9.68783 14.7806 9.68783 13.2503C9.68783 13.0526 9.70857 12.8596 9.74791 12.6735Z"
+                  fill="#656565" />
+              </svg></a>
+          </div>
+        </div>
+    </div>
+    </div>
+    </section>
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card-filter');
+        function filterCards(filter) {
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category.includes(filter)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const selected = btn.getAttribute('data-filter');
+                filterCards(selected);
+            });
+        });
+        filterCards('all');
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="glider.min.css" />
+    <script src="glider.min.js"></script>
+</head>
+
+<body>
+    <div class="glider-contain">
+        <div class="glider">
+            <div>your content here</div>
+            <div>your content here</div>
+            <div>your content here</div>
+            <div>your content here</div>
+        </div>
+
+        <button aria-label="Previous" class="glider-prev">«</button>
+        <button aria-label="Next" class="glider-next">»</button>
+        <!-- <div role="tablist" class="dots"></div> -->
+    </div>
+    <script>
+        new Glider(document.querySelector('.glider'), {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            draggable: true,
+            dots: false,
+            arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Timeline Test</title>
+  <style>
+   body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.timeline-scroll {
+  position: relative;
+  height: 750vh;
+}
+
+.timeline-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: auto;
+}
+
+/* --- Base line --- */
+.line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  background: #ccc;
+  width: max-content;
+  min-width: 100%;
+}
+
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  background: #98F034;
+  width: 0;
+  transition: width 0.1s linear;
+}
+
+/* --- Car --- */
+.car-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 9;
+}
+.car {
+  width: clamp(50px, 8vw, 80px);
+  height: auto;
+}
+
+/* --- Year Blocks --- */
+.year-block {
+  position: relative;
+  width: 270px;
+  flex-shrink: 0;
+  padding-bottom: 20px;
+}
+
+.year-block:nth-child(1),
+.year-block:nth-child(odd) {
+  align-self: flex-start;
+}
+.year-block:nth-child(even) {
+  top: 100px;
+  /* min-height: 130px; */
+}
+
+.year-block .circle {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  transition: background 0.3s;
+  position: absolute;
+  left: 0;
+  bottom: -39px;
+}
+.year-block:nth-child(even) .circle {
+  top: -38px;
+  bottom: auto;
+}
+.year-block.active .circle {
+  background: #98F034;
+}
+
+.year-block .year {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #555;
+}
+.year-block.active .year {
+  color: #98F034;
+}
+
+.year-block .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.year-block .desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Scrollbar */
+.timeline::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.timeline::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timeline {
+    overflow-y: hidden;
+}
+.year-block {
+    min-height: 165px;
+}
+
+.year-block:nth-child(even) .circle {
+    top: -28px;
+}
+.year-block .circle {
+    bottom: 0;
+}
+
+  </style>
+</head>
+<body>
+<section class="timeline-scroll">
+  <div class="timeline-pin">
+    <div class="timeline">
+      <div class="line"></div>
+      <div class="progress-line"></div>
+
+      <div class="car-wrapper">
+         <img src="{{PLUGIN_URL}}assets/images/car.png" alt="Car" class="car">
+      </div>
+
+      <!-- Year Blocks -->
+      <div class="year-block" data-year="2015">
+        <h2 class="year">2015</h2>
+        <h3 class="title">AVIN Starts Its Commercial Operations.</h3>
+        <p class="desc">AVIN started its commercial operations. AVIN starts its Development Centre in Pune.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2016">
+        <h2 class="year">2016</h2>
+        <h3 class="title">Expanded to New Markets.</h3>
+        <p class="desc">AVIN opened new offices and hired key talent to scale operations.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2017">
+        <h2 class="year">2017</h2>
+        <h3 class="title">Major Product Launch.</h3>
+        <p class="desc">Introduced a flagship product that transformed the industry.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2018">
+        <h2 class="year">2018</h2>
+        <h3 class="title">Entered Global Markets.</h3>
+        <p class="desc">Started operations in multiple countries and grew client base.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2019">
+        <h2 class="year">2019</h2>
+        <h3 class="title">Innovation & Recognition.</h3>
+        <p class="desc">AVIN received industry awards for innovation and service excellence.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2020">
+        <h2 class="year">2020</h2>
+        <h3 class="title">Entered Global Markets.</h3>
+        <p class="desc">Started operations in multiple countries and grew client base.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2021">
+        <h2 class="year">2021</h2>
+        <h3 class="title">Innovation & Recognition.</h3>
+        <p class="desc">AVIN received industry awards for innovation and service excellence.</p>
+        <span class="circle"></span>
+      </div>
+      <div class="year-block" data-year="2022">
+        <h2 class="year">2022</h2>
+        <h3 class="title">Innovation & Recognition.</h3>
+        <p class="desc">AVIN received industry awards for innovation and service excellence.</p>
+        <span class="circle"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const section = document.querySelector('.timeline-scroll');
+      const timeline = document.querySelector('.timeline');
+      const car = document.querySelector('.car-wrapper');
+      const progressLine = document.querySelector('.progress-line');
+      const years = document.querySelectorAll('.year-block');
+      const carWidth = car.offsetWidth;
+
+      function updateCar() {
+        const rect = section.getBoundingClientRect();
+        const winH = window.innerHeight;
+        const total = section.offsetHeight - winH;
+        const scrolled = Math.min(Math.max(-rect.top, 0), total);
+        const progress = scrolled / total;
+
+        const lineW = timeline.offsetWidth;
+        const x = (lineW - carWidth) * progress;
+
+        car.style.left = x + 'px';
+        progressLine.style.width = (x + carWidth / 2) + 'px';
+
+        years.forEach(y => {
+          const center = y.offsetLeft + y.offsetWidth / 2;
+          if (progress > 0 && (x + carWidth / 2) >= center - 10) {
+            y.classList.add('active');
+          } else {
+            y.classList.remove('active');
+          }
+        });
+
+        if (scrolled >= total - 1) {
+          years[years.length - 1].classList.add('active');
+        }
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateCar();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', updateCar);
+      updateCar();
+    });
+  </script>
+</body>
+</html>

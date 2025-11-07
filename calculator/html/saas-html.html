@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SaaS Calculator</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="calculator-container">
+    <div class="grid">
+      <section class="form-section">
+        <!-- Input Form -->
+        <div class="card">
+          <h2>SaaS Requirements</h2>
+          <p class="muted">Define your SaaS product specifications</p>
+
+          <!-- Project Type -->
+          <div class="form-group">
+            <label>Project Type</label>
+            <select id="projectType">
+              <option value="b2c_saas">B2C SaaS</option>
+              <option value="b2b_saas">B2B SaaS</option>
+              <option value="marketplace">Marketplace</option>
+              <option value="fintech">FinTech</option>
+              <option value="healthtech">HealthTech</option>
+              <option value="edtech">EdTech</option>
+            </select>
+          </div>
+
+          <!-- Core Modules -->
+          <div class="form-group">
+            <label>Core Modules</label>
+            <div id="modules" class="grid-2 form-checkboxes"></div>
+          </div>
+
+          <!-- Expected Users -->
+          <div class="form-group">
+            <label>Expected Users (Year 1)</label>
+            <select id="userBase">
+              <option value="1k">Under 1K</option>
+              <option value="10k">1K - 10K</option>
+              <option value="100k">10K - 100K</option>
+              <option value="1m">100K - 1M</option>
+              <option value="10m">1M+</option>
+            </select>
+          </div>
+
+          <!-- UI Complexity -->
+          <div class="form-group">
+            <label>UI Complexity</label>
+            <select id="uiComplexity">
+              <option value="simple">Simple</option>
+              <option value="standard" selected>Standard</option>
+              <option value="advanced">Advanced</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+
+          <!-- Integrations -->
+          <div class="form-group">
+            <label>Third-party Integrations</label>
+            <div id="integrations" class="grid-2 form-checkboxes"></div>
+          </div>
+
+          <!-- Hosting -->
+          <div class="form-group">
+            <label>Hosting</label>
+            <select id="hosting">
+              <option value="cloud">Cloud</option>
+              <option value="managed">Managed Platform</option>
+              <option value="on-premise">On-premise</option>
+            </select>
+          </div>
+
+          <!-- Compliance -->
+          <div class="form-group">
+            <label>Compliance</label>
+            <div id="compliance" class="grid-2 form-checkboxes"></div>
+          </div>
+
+          <button id="calculateBtn" class="btn-primary">Calculate SaaS Costs</button>
+        </div>
+      </section>
+
+  
+    </div>
+  </main>
+
+      <!-- Results -->
+      <div id="results" class="card hidden calculator-modal modal results-section">
+          <div class="modal-overlay"></div>
+        <div class="modal-content">
+    <button id="closeResults" class="modal-close">&times;</button>
+      <div class="section-header">
+        <h3>💰 Cost Estimate (Preview)</h3>
+        <p class="muted">Blurred preview - submit details for full TCO breakdown</p>
+      </div>
+
+        <div class="result-box blur-box">
+          <div id="totalCost">$0</div>
+          <div class="result-label">Development Cost</div>
+          <div>+ <span id="infraCost">$0</span>/month infra</div>
+        </div>
+
+         <div class="info-list">
+          <div class="info-item"><span>Timeline:</span><span id="timeline">0 weeks</span></div>
+          <div class="info-item"><span>Year 1 TCO:</span><span id="tco1">$0</span></div>
+          <div class="info-item"><span>Year 3 TCO:</span><span id="tco3">$0</span></div>
+        </div>
+
+        <button id="openDialog" class="btn-secondary mt-2">Get Full SaaS Breakdown</button>
+
+        <!-- Overlay -->
+        <div id="dialogOverlay" class="overlay hidden"></div>
+
+       
+      </div>
+      </div>
+   <!-- Dialog -->
+        <div id="dialogContent" class="calculator-modal modal hidden">
+                <div class="modal-overlay"></div>
+          <div class="modal-content">
+            <button id="closeDialog" class="modal-close">&times;</button>
+            <h2>Almost there—get your detailed estimate</h2>
+            <p class="muted">We'll show the full breakdown and email you a shareable PDF.</p>
+
+            <form id="leadForm">
+              <div class="form-group">
+                <label for="lead-name">Name</label>
+                <input id="lead-name" type="text" placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="lead-email">Work Email</label>
+                <input id="lead-email" type="email" placeholder="you@company.com">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="consent">
+                <label for="consent">I agree to receive the estimate</label>
+              </div>
+              <button type="submit" class="btn-primary mt-2">Get Architect Review (Free)</button>
+            </form>
+          </div>
+        </div>
+  <script src="./js/saas.js"></script>
+</body>
+</html>

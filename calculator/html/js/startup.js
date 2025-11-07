@@ -216,3 +216,32 @@
   }
 
 })();
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const getPreviewBtn = document.getElementById("getPreview");
+  const resultsPopup = document.getElementById("resultsPopup");
+  const closeResults = document.getElementById("closeResults");
+
+  if (getPreviewBtn && resultsPopup) {
+    getPreviewBtn.addEventListener("click", () => {
+      resultsPopup.classList.remove("hidden");
+    });
+  }
+
+  if (closeResults && resultsPopup) {
+    closeResults.addEventListener("click", () => {
+      resultsPopup.classList.add("hidden");
+    });
+  }
+
+  // Close popup when clicking overlay
+  const overlays = document.querySelectorAll(".modal-overlay");
+  overlays.forEach(overlay => {
+    overlay.addEventListener("click", () => {
+      if (resultsPopup) {
+        resultsPopup.classList.add("hidden");
+      }
+    });
+  });
+});

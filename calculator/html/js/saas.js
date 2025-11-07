@@ -199,3 +199,32 @@ form.addEventListener("submit", function (e) {
   alert("Form submitted successfully! 🎉");
   closeDialog();
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const calculateBtn = document.getElementById("calculateBtn");
+  const results = document.getElementById("results");
+  const closeResults = document.getElementById("closeResults");
+
+  const openDialog = document.getElementById("openDialog");
+  const dialogContent = document.getElementById("dialogContent");
+  const closeDialog = document.getElementById("closeDialog");
+
+  // Open results modal
+  calculateBtn.addEventListener("click", () => {
+    results.classList.remove("hidden");
+  });
+
+  // Close results modal
+  closeResults.addEventListener("click", () => {
+    results.classList.add("hidden");
+  });
+
+  // Open dialog from results
+  openDialog.addEventListener("click", () => {
+    dialogContent.classList.remove("hidden");
+  });
+
+  // Close dialog
+  closeDialog.addEventListener("click", () => {
+    dialogContent.classList.add("hidden");
+  });
+});

@@ -1,0 +1,289 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="glider.min.css" />
+    <script src="glider.min.js"></script>
+    <style>
+        .glider-slider-item {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #FAFAFA;
+            margin-right: 20px;
+        }
+        .slider-item-image {
+            width: 294px;
+            height: 328px;
+            position: relative;
+        }
+        .slider-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .slider-play-icon {
+            position: absolute;
+            bottom: 10px;
+            left: 40px;
+        }
+        .slider-right-content {
+            flex: 1;
+            padding: 10px 10px 5px 20px;
+            align-items: flex-end;
+            align-content: flex-end;
+        }
+        .slider-right-content .quote-icon {
+            color: #143592;
+            line-height: 20px;
+            font-size: 60px;
+        }
+        .slider-text {
+            font-size: 18px;
+            color: #5E6373;
+            margin: 0 0 15px 0;
+            font-family: "Inter", sans-serif;
+        }
+        .slider-author-name {
+            font-family: "DM Sans", sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3F3F3F;
+            margin: 0 0 10px 0;
+        }
+        .slider-author-description {
+            color: #666666;
+            font-size: 16px;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+        }
+        .slider-nav-icons .glider-prev {
+            position: absolute;
+            bottom: 10px;
+            left: 5px;
+            z-index: 99;
+            top: auto;
+        }
+        .slider-nav-icons .glider-next {
+            position: absolute;
+            bottom: 10px;
+            left: auto;
+            z-index: 99;
+            top: auto;
+            right: 5px;
+        }
+        .video-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .video-popup iframe {
+            width: 80%;
+            height: 60%;
+            border: none;
+            border-radius: 10px;
+        }
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        @media(max-width:767px){
+            .slider-item-image {
+                width: 30%;
+                height: 100%;
+                position: relative;
+            }
+            .slider-text {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            .slider-author-name {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+            .slider-author-description {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glider-contain">
+        <div class="glider">
+            <div class="glider-slider-item">
+                <div class="slider-item-image">
+                    <img src="slider-image1.png" alt="slider-image" />
+                    <div class="slider-play-icon" data-video="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="28" cy="28.5" rx="28" ry="28.5" fill="#143592" />
+                            <path d="M37.7188 29.3621L23.6764 21.2547V37.4694L37.7188 29.3621Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="slider-right-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="slider-text">Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed posuere
+                        egestas nunc ut tempus fu nunc ut tempus.</p>
+                    <h4 class="slider-author-name">Miles, Esther</h4>
+                    <p class="slider-author-description">Lorem ipsum dolor sit ametris .</p>
+                </div>
+            </div>
+            <div class="glider-slider-item">
+                <div class="slider-item-image">
+                    <img src="slider-image1.png" alt="slider-image" />
+                    <div class="slider-play-icon" data-video="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="28" cy="28.5" rx="28" ry="28.5" fill="#143592" />
+                            <path d="M37.7188 29.3621L23.6764 21.2547V37.4694L37.7188 29.3621Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="slider-right-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="slider-text">Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed posuere
+                        egestas nunc ut tempus fu nunc ut tempus.</p>
+                    <h4 class="slider-author-name">Miles, Esther</h4>
+                    <p class="slider-author-description">Lorem ipsum dolor sit ametris .</p>
+                </div>
+            </div>
+            <div class="glider-slider-item">
+                <div class="slider-item-image">
+                    <img src="slider-image1.png" alt="slider-image" />
+                    <div class="slider-play-icon" data-video="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="28" cy="28.5" rx="28" ry="28.5" fill="#143592" />
+                            <path d="M37.7188 29.3621L23.6764 21.2547V37.4694L37.7188 29.3621Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="slider-right-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="slider-text">Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed posuere
+                        egestas nunc ut tempus fu nunc ut tempus.</p>
+                    <h4 class="slider-author-name">Miles, Esther</h4>
+                    <p class="slider-author-description">Lorem ipsum dolor sit ametris .</p>
+                </div>
+            </div>
+            <div class="glider-slider-item">
+                <div class="slider-item-image">
+                    <img src="slider-image1.png" alt="slider-image" />
+                    <div class="slider-play-icon" data-video="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="28" cy="28.5" rx="28" ry="28.5" fill="#143592" />
+                            <path d="M37.7188 29.3621L23.6764 21.2547V37.4694L37.7188 29.3621Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="slider-right-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="slider-text">Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed posuere
+                        egestas nunc ut tempus fu nunc ut tempus.</p>
+                    <h4 class="slider-author-name">Miles, Esther</h4>
+                    <p class="slider-author-description">Lorem ipsum dolor sit ametris .</p>
+                </div>
+            </div>
+            <div class="glider-slider-item">
+                <div class="slider-item-image">
+                    <img src="slider-image1.png" alt="slider-image" />
+                    <div class="slider-play-icon" data-video="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="28" cy="28.5" rx="28" ry="28.5" fill="#143592" />
+                            <path d="M37.7188 29.3621L23.6764 21.2547V37.4694L37.7188 29.3621Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="slider-right-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="slider-text">Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed posuere
+                        egestas nunc ut tempus fu nunc ut tempus.</p>
+                    <h4 class="slider-author-name">Miles, Esther</h4>
+                    <p class="slider-author-description">Lorem ipsum dolor sit ametris .</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav-icons">
+            <button aria-label="Previous" class="glider-prev">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="-0.643759" y="0.643759" width="32.7125" height="32.7125" rx="14.8065"
+                        transform="matrix(-1 0 0 1 32.7125 0)" stroke="white" stroke-width="1.28752" />
+                    <path
+                        d="M13.1065 18.3689L24.0465 18.4849C24.2927 18.4872 24.5013 18.4044 24.6723 18.2365C24.8429 18.069 24.9293 17.8621 24.9316 17.6159C24.9339 17.3697 24.851 17.1611 24.6831 16.9901C24.5156 16.8195 24.3088 16.7331 24.0626 16.7308L13.1223 16.6456L17.843 12.011C18.019 11.8382 18.1083 11.6338 18.1109 11.3979C18.1126 11.162 18.0271 10.956 17.8543 10.78C17.6815 10.604 17.4772 10.5147 17.2413 10.5121C17.0053 10.5104 16.7994 10.5959 16.6234 10.7687L10.412 16.8669C10.236 17.0396 10.1469 17.2438 10.1447 17.4793C10.1426 17.7157 10.2279 17.9218 10.4006 18.0978L16.4988 24.3092C16.6716 24.4852 16.876 24.5741 17.1119 24.5758C17.3478 24.5784 17.5538 24.4933 17.7298 24.3205C17.9058 24.1478 17.9946 23.9434 17.9964 23.7075C17.999 23.4715 17.9139 23.2656 17.7411 23.0896L13.1065 18.3689Z"
+                        fill="white" />
+                </svg>
+
+            </button>
+            <button aria-label="Next" class="glider-next"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.643759" y="0.643759" width="32.7125" height="32.7125" rx="14.8065" stroke="white"
+                        stroke-width="1.28752" />
+                    <path
+                        d="M20.8935 18.3689L9.95352 18.4849C9.70733 18.4872 9.49872 18.4044 9.3277 18.2365C9.1571 18.069 9.07066 17.8621 9.0684 17.6159C9.06613 17.3697 9.14895 17.1611 9.31685 16.9901C9.48435 16.8195 9.69119 16.7331 9.93739 16.7308L20.8777 16.6456L16.157 12.011C15.981 11.8382 15.8917 11.6338 15.8891 11.3979C15.8874 11.162 15.9729 10.956 16.1457 10.78C16.3185 10.604 16.5228 10.5147 16.7587 10.5121C16.9947 10.5104 17.2006 10.5959 17.3766 10.7687L23.588 16.8669C23.764 17.0396 23.8531 17.2438 23.8553 17.4793C23.8574 17.7157 23.7721 17.9218 23.5994 18.0978L17.5012 24.3092C17.3284 24.4852 17.124 24.5741 16.8881 24.5758C16.6522 24.5784 16.4462 24.4933 16.2702 24.3205C16.0942 24.1478 16.0054 23.9434 16.0036 23.7075C16.001 23.4715 16.0861 23.2656 16.2589 23.0896L20.8935 18.3689Z"
+                        fill="white" />
+                </svg>
+            </button>
+            <!-- <div role="tablist" class="dots"></div> -->
+        </div>
+        <div class="video-popup" id="videoPopup">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <iframe id="popupVideo" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+    </div>
+    <script>
+        new Glider(document.querySelector('.glider'), {
+            slidesToShow: 1.25,
+            slidesToScroll: 1,
+            draggable: true,
+            dots: false,
+            arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+            }
+        });
+        const popup = document.getElementById('videoPopup');
+        const iframe = document.getElementById('popupVideo');
+        const closePopup = document.getElementById('closePopup');
+        document.querySelectorAll('.slider-play-icon').forEach(icon => {
+            icon.addEventListener('click', function () {
+                const videoUrl = this.getAttribute('data-video');
+                iframe.src = videoUrl + "?autoplay=1";
+                popup.style.display = 'flex';
+            });
+        });
+        closePopup.addEventListener('click', function () {
+            popup.style.display = 'none';
+            iframe.src = "";
+        });
+        popup.addEventListener('click', function (e) {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+                iframe.src = "";
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cost Comparison Calculator</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1>Cost Comparison Calculator</h1>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <main class="calculator-container">
+    
+    <!-- Input Form -->
+    <div class="card">
+      <h2>Comparison Parameters</h2>
+      <p class="muted">Define your team requirements for accurate comparison</p>
+      <form id="calculatorForm">
+        
+        <!-- Team Size -->
+        <div class="form-group">
+          <label for="teamSize">Team Size</label>
+          <input type="number" id="teamSize" min="1" max="20" value="5" />
+        </div>
+
+        <!-- Required Roles -->
+        <div class="form-group">
+          <label>Required Roles</label>
+          <div id="rolesContainer" class="grid-2 form-checkboxes"></div>
+        </div>
+
+        <!-- Duration -->
+        <div class="form-group">
+          <label for="duration">Project Duration (months)</label>
+          <input type="number" id="duration" min="3" max="36" value="12" />
+        </div>
+
+        <!-- Comparator -->
+        <div class="form-group">
+          <label for="comparator">Compare Against</label>
+          <select id="comparator">
+            <option value="in_house">In-house Team</option>
+            <option value="big4">Big 4 Consulting</option>
+            <option value="boutique">Boutique Agency</option>
+          </select>
+        </div>
+
+        <!-- Urgency -->
+        <div class="form-group">
+          <label for="urgency">Project Urgency</label>
+          <select id="urgency">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+
+        <button type="button" id="compareBtn" class="btn btn-primary">
+          Compare Costs
+        </button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsCard" class="card hidden">
+      <h2>⚖️ Cost Comparison (Preview)</h2>
+      <p class="muted">Blurred preview — full results available after details</p>
+      <div id="resultsContent"></div>
+      
+      <button id="detailedBtn" class="btn btn-secondary">
+        Get Detailed Comparison
+      </button>
+    </div>
+  </main>
+
+  <!-- Popup Overlay -->
+  <div id="popupOverlay" class="overlay hidden">
+    <div class="popup">
+      <button id="closePopup" class="close-btn">✕</button>
+      
+      <h3>Almost there—get your detailed estimate</h3>
+      <p class="muted">
+        We'll show the full breakdown and email you a shareable PDF.
+      </p>
+      
+      <form id="leadForm">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="lead-name">Name</label>
+          <input id="lead-name" type="text" placeholder="Your full name" required />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="lead-email">Work Email</label>
+          <input id="lead-email" type="email" placeholder="you@company.com" required />
+        </div>
+
+        <!-- Consent -->
+        <div class="form-group checkbox-group">
+          <input id="consent" type="checkbox" />
+          <label for="consent">I agree to receive the estimate and related communications</label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary">
+          See Candidate Profiles
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/comparison.js"></script>
+</body>
+</html>

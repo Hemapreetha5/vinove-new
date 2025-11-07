@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sectors & Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      margin: 0;
+    }
+    .services-section {
+      padding: 85px 70px;
+    }
+    .services-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 46px;
+      font-weight: 500;
+      color: var(--e-global-color-primary);
+      margin: 0 0 23px 0;
+    }
+    .services-description {
+      font-size: 20px;
+      margin: 0 0 45px 0;
+      width: 60%;
+      line-height: 24px;
+      color:#000000;
+    }
+    .our-sectors-row {
+      padding: 65px 60px;
+      background-color: #0D1B2A;
+      border-radius: 9px;
+      color: #fff;
+    }
+    .our-sectors-left h2 {
+      font-family: "Montserrat", Sans-serif;
+      font-size: 46px;
+      font-weight: 700;
+      margin: 2px 0 1px;
+    }
+    .our-sectors-subheader {
+      color: #FF7A00;
+    }
+    .our-sectors-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .our-sectors-left .sectors-description {
+      font-size: 20px;
+      line-height: 30px;
+      padding-right: 100px;
+    }
+    .our-sectors-left {
+      width: 55%;
+      padding-top: 20px;
+    }
+    .our-sectors-right {
+      width: 45%;
+    }
+    .our-sectors-right img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .orange-button-right {
+      text-align: right;
+    }
+    .orange-button-right a {
+      margin-right: -40px;
+      z-index: 1;
+      position: relative;
+    }
+    .orange-button a {
+      background-color: #ff7a00;
+      padding: 10px 23px;
+      font-size: 15px;
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9px;
+    }
+    .services-items h2 {
+      font-family: "Montserrat", Sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #656565;
+      margin-bottom: 15px;
+    }
+    .services-items h3 {
+      font-family: "Montserrat", Sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .services-block {
+      padding: 50px 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+    }
+    .services-items {
+      width: calc(33.3% - 20px);
+      border: 1px solid #D9E3FF;
+      padding: 0;
+      height: 360px;
+      overflow: hidden;
+      border-radius: 9px;
+      margin: 10px 10px;
+    }
+    .our-sectors-image img {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+    }
+    .our-sectors-description,
+    .services-items .orange-button,
+    .services-items:hover .our-sectors-image {
+      display: none;
+    }
+    .services-items:hover .our-sectors-description {
+      display: flex;
+    }
+    .services-items:hover {
+      background-color: #0D1B2A
+    }
+    .services-items:hover .orange-button {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .services-items-row {
+      padding: 30px 28px 20px;
+    }
+    .services-items:hover h2 {
+      color: #008F5D;
+    }
+    .services-items:hover h3,
+    .services-items .our-sectors-description {
+      color: #fff;
+    }
+    .our-sectors-description {
+      line-height: 26px;
+    }
+    @media(max-width:1200px){
+      .services-description{
+        width:100%;
+        font-size: 16px;
+        line-height: normal;
+      }
+      .our-sectors-left h2{
+        font-size: 25px;
+      }
+      .our-sectors-left .sectors-description {
+        font-size: 16px;
+        padding-right: 0;
+      }
+      .services-items {
+        width: calc(50% - 20px);
+      }
+    }
+    @media(max-width:767px){
+      .services-block {
+        margin: 0 -10px;
+        padding: 20px 0;
+      }
+      .services-items {
+        width: 100%;
+      }
+      .services-section {
+        padding: 30px 15px;
+      }
+      .services-title {
+        font-size: 25px;
+      }
+      .our-sectors-row {
+        padding: 20px;
+      }
+      .our-sectors-left,.our-sectors-right{
+        width: 100%;
+        padding: 5px 0;
+      }
+      .orange-button-right a {
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="services-section">
+    <div class="service-container">
+      <div class="services-row">
+        <h2 class="services-title">Our Sectors & Services</h2>
+        <p class="services-description">Comprehensive solutions across multiple industries, delivering excellence and
+          driving growth in every sector we serve.</p>
+      </div>
+      <div class="our-sectors-row">
+        <div class="our-sectors-left">
+          <h2 class="our-sectors-header">Procurement &</h2>
+          <h2 class="our-sectors-subheader">Supply Chain</h2>
+          <p class="sectors-description">“Driving efficiency through smart sourcing and seamless delivery”</p>
+          <div class="orange-button orange-button-right">
+            <a href="#">
+              <span class="elementor-button-text">Explore More </span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                <path
+                  d="M4.93176 17.3057L3.69434 16.0684L13.7002 6.0625H8.81266V4.3125H16.6877V12.1875H14.9377V7.29991L4.93176 17.3057Z"
+                  fill="white"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="our-sectors-right">
+          <img src="https://prolink.dev.vinove.com/wp-content/uploads/2025/10/services-bgimage.jpg">
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

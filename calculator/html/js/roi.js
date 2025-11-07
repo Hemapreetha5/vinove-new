@@ -2,6 +2,7 @@
 const calcBtn = document.getElementById("calculateBtn");
 const resultsCard = document.getElementById("resultsCard");
 
+
 calcBtn.addEventListener("click", () => {
   const cost = parseFloat(document.getElementById("projectCost").value) || 0;
   const timeSavings = parseFloat(document.getElementById("timeSavings").value) || 0;
@@ -73,4 +74,52 @@ document.getElementById("leadForm").addEventListener("submit", (e) => {
   alert("Form submitted! PDF will be generated (mock).");
   overlay.classList.add("hidden");
   dialog.classList.add("hidden");
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const calcBtn = document.getElementById("calculateBtn");
+const resultsCard = document.getElementById("resultsCard");
+const resultsContent = document.getElementById("resultsContent");
+const closeResults = document.getElementById("closeResults");
+
+calcBtn.addEventListener("click", () => {
+  // calculations here...
+  resultsCard.classList.remove("hidden");
+});
+
+// Close Results Modal
+closeResults.addEventListener("click", () => {
+  resultsCard.classList.add("hidden");
+});
+
+// Close if click outside
+resultsCard.addEventListener("click", (e) => {
+  if (!resultsContent.contains(e.target)) {
+    resultsCard.classList.add("hidden");
+  }
+});
+
+
+// --- Lead Form Modal ---
+const unlockBtn = document.getElementById("unlockBtn");
+const dialogOverlay = document.getElementById("dialogOverlay");
+const dialogContent = document.getElementById("dialogContent");
+const closeDialog = document.getElementById("closeDialog");
+
+unlockBtn.addEventListener("click", () => {
+  dialogOverlay.classList.remove("hidden");
+});
+
+// Close Lead Form Modal
+closeDialog.addEventListener("click", () => {
+  dialogOverlay.classList.add("hidden");
+});
+
+dialogOverlay.addEventListener("click", (e) => {
+  if (!dialogContent.contains(e.target)) {
+    dialogOverlay.classList.add("hidden");
+  }
+});
+
 });

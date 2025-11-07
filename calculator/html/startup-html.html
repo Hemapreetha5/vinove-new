@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Startup Product Development Calculator</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <main class="calculator-container">
+    <div class="calculator-layout">
+      <!-- Form Column -->
+      <section class="form-section calculator-form">
+        <div class="card">
+          <h2 class="card-title">Project Requirements</h2>
+
+          <!-- Project Type -->
+          <div class="form-group">
+            <label>Project Type</label>
+            <select id="projectType">
+              <option value="">Select project type</option>
+              <option value="mvp">MVP Development</option>
+              <option value="full_product">Full Product Development</option>
+              <option value="enterprise">Enterprise Application</option>
+            </select>
+          </div>
+
+          <!-- Platforms -->
+          <div class="form-group">
+            <label>Target Platforms</label>
+            <div class="grid-2 form-labels">
+              <label><input type="checkbox" value="ios" data-group="platform" /> iOS</label>
+              <label><input type="checkbox" value="android" data-group="platform" /> Android</label>
+              <label><input type="checkbox" value="web" data-group="platform" /> Web</label>
+              <label><input type="checkbox" value="desktop" data-group="platform" /> Desktop</label>
+            </div>
+          </div>
+
+          <!-- Stage -->
+          <div class="form-group">
+            <label>Development Stage</label>
+            <select id="stage">
+              <option value="">Select development stage</option>
+              <option value="idea">Idea Stage</option>
+              <option value="prototype">Prototype Exists</option>
+              <option value="development">In Development</option>
+              <option value="launch">Ready to Launch</option>
+            </select>
+          </div>
+
+          <!-- Complexity -->
+          <div class="form-group">
+            <label>Project Complexity</label>
+            <select id="complexity">
+              <option value="">Select complexity level</option>
+              <option value="simple">Simple - Basic features, simple UI</option>
+              <option value="moderate">Moderate - Standard features, custom UI</option>
+              <option value="complex">Complex - Advanced features, complex workflows</option>
+              <option value="enterprise">Enterprise - Full-scale system</option>
+            </select>
+          </div>
+
+          <!-- Design Level -->
+          <div class="form-group">
+            <label>Design Level</label>
+            <select id="designLevel">
+              <option value="">Select design level</option>
+              <option value="basic">Basic - Template-based design</option>
+              <option value="standard">Standard - Custom design system</option>
+              <option value="premium">Premium - Advanced UI/UX</option>
+              <option value="custom">Custom - Unique brand design</option>
+            </select>
+          </div>
+
+          <!-- Core Features -->
+          <div class="form-group">
+            <label>Core Features</label>
+            <div class="grid-2 form-labels">
+              <label><input type="checkbox" value="user_auth" data-group="feature" /> User auth</label>
+              <label><input type="checkbox" value="payment" data-group="feature" /> Payment</label>
+              <label><input type="checkbox" value="admin_panel" data-group="feature" /> Admin panel</label>
+              <label><input type="checkbox" value="api_integration" data-group="feature" /> API integration</label>
+              <label><input type="checkbox" value="real_time" data-group="feature" /> Real-time</label>
+              <label><input type="checkbox" value="analytics" data-group="feature" /> Analytics</label>
+              <label><input type="checkbox" value="notifications" data-group="feature" /> Notifications</label>
+              <label><input type="checkbox" value="search" data-group="feature" /> Search</label>
+            </div>
+          </div>
+
+          <!-- Integrations -->
+          <div class="form-group">
+            <label>Third-party Integrations</label>
+            <div class="grid-2 form-labels">
+              <label><input type="checkbox" value="crm" data-group="integration" /> CRM</label>
+              <label><input type="checkbox" value="erp" data-group="integration" /> ERP</label>
+              <label><input type="checkbox" value="payment_gateway" data-group="integration" /> Payment gateway</label>
+              <label><input type="checkbox" value="social_media" data-group="integration" /> Social media</label>
+              <label><input type="checkbox" value="analytics_tools" data-group="integration" /> Analytics tools</label>
+              <label><input type="checkbox" value="email_service" data-group="integration" /> Email service</label>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="form-group">
+            <label>Preferred Timeline</label>
+            <select id="timeline">
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP (Rush project)</option>
+              <option value="3months">3 months</option>
+              <option value="6months">6 months</option>
+              <option value="12months">12+ months</option>
+            </select>
+          </div>
+
+          <div>
+            <button id="getPreview" class="btn-primary" disabled>Get Cost Preview →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Column -->
+       <!-- Results Popup -->
+<div id="resultsPopup" class="modal hidden calculator-modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content large">
+    <button id="closeResults" class="modal-close">&times;</button>
+      <aside class="results-section">
+        <div id="resultsCard" class="card text-center">
+          <div id="initialCard">
+            <div class="empty-state">
+              <div class="emoji">🧮</div>
+              <h3>Get Your Estimate</h3>
+              <p>Fill out the form to see your project cost preview</p>
+            </div>
+          </div>
+
+          <div id="previewCard" class="hidden">
+            <div class="preview-header">
+              <h3>Cost Estimate Preview</h3>
+              <p>Get your detailed breakdown by providing your contact information</p>
+            </div>
+            <div class="preview-box">
+              <div class="text-muted">Estimated Cost Range</div>
+              <div id="costRange" class="cost-range">$0 - $0</div>
+              <div id="timelineText" class="text-muted">Timeline: ~0 weeks</div>
+            </div>
+            <div class="mt-4">
+              <button id="getFullEstimate" class="btn-secondary">Get Detailed Analysis & Report</button>
+            </div>
+          </div>
+
+          <div id="fullResultsCard" class="hidden mt-6 text-left">
+            <h4>✅ Detailed Cost Analysis</h4>
+            <div class="grid-3">
+              <div class="stat-box">
+                <div>Total Investment</div>
+                <div id="totalInvestment" class="stat-value">$0</div>
+              </div>
+              <div class="stat-box">
+                <div>Timeline</div>
+                <div id="totalTimeline" class="stat-value">0 weeks</div>
+              </div>
+              <div class="stat-box">
+                <div>Team Size</div>
+                <div class="stat-value">5-8</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Breakdown</h5>
+              <ul id="breakdownList"></ul>
+            </div>
+
+            <div class="mt-4">
+              <h5>Project Phases</h5>
+              <ul id="phasesList"></ul>
+            </div>
+
+            <div class="mt-6 text-center">
+              <button id="requestProfiles" class="btn-success">Request 3 Sample Profiles</button>
+            </div>
+            <div class="mt-4">
+              <button id="resetUnlock" class="btn-link">Reset Unlock</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+      </div>
+      </div>
+      </div>
+      </main>
+
+  <!-- Lead Gate Modal -->
+  <div id="leadModal" class="modal hidden calculator-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close">&times;</button>
+      <h3>Almost there—get your detailed estimate</h3>
+      <p>We'll show the full breakdown and email you a shareable PDF.</p>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input id="leadName" type="text" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label>Work Email</label>
+        <input id="leadEmail" type="email" placeholder="you@company.com" />
+      </div>
+      <div class="form-group checkbox">
+        <input id="leadConsent" type="checkbox" />
+        <label for="leadConsent">I agree to receive the PDF estimate and occasional updates from ValueCoders</label>
+      </div>
+      <button id="unlockSubmit" class="btn-primary">Unlock Full Estimate →</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/startup.js"></script>
+</body>
+
+</html>

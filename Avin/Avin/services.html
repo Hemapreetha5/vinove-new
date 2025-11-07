@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .services-section {
+      padding: 30px;
+      background-color: #F5F8FF;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      border-radius: 16px;
+    }
+    .service-feature {
+      width: 400px;
+    }
+    .service-content {
+      flex: 1;
+      padding-left: 34px;
+    }
+    .service-content-row {
+      width: 100%;
+    }
+    .service-content-row h2 {
+      margin: 5px 0 15px;
+      font-size: 36px;
+      font-weight: bold;
+      color: #1D2B36;
+    }
+    .service-content-row p {
+      margin: 0 0 55px 0;
+      font-size: 16px;
+      font-weight: normal;
+      color: #666666;
+      line-height: 26px;
+    }
+    .service-feature .services-image-row {
+      margin: 0;
+      position: relative;
+      height: 390px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .service-feature .services-image-row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-feature .services-image-row .image-overlay {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      padding: 20px 25px;
+      color: #fff;
+      background-color: #15369287;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .service-detail-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .service-detail-row .service-detail {
+      display: inline-flex;
+      position: relative;
+      cursor: pointer;
+      width: calc(25% - 12px);
+      border-radius: 11px;
+      overflow: hidden;
+    }
+    .service-detail-row .service-detail .service-detail-overlay {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      padding: 10px;
+      color: #fff;
+      background-color: #02030FA1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    .service-detail-row .service-detail img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .service-title-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .read-more-text {
+      color: #4B5162;
+      padding-top: 10px;
+      min-width: 100px;
+      text-align: right;
+    }
+    .read-more-text a {
+      text-decoration: none;
+      color: #4B5162;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    @media(max-width:1200px) {
+      .service-detail-row .service-detail img {
+        width: 100%;
+        height: 120px;
+      }
+      .service-feature {
+        width: 300px;
+      }
+    }
+    @media(max-width:767px) {
+      .service-detail-row .service-detail img {
+        height: 100px;
+      }
+      .service-content {
+        padding-left: 0;
+      }
+      .service-feature {
+        width: 100%;
+      }
+      .services-section {
+        padding: 15px;
+      }
+      .service-content-row p {
+        margin: 0 0 15px 0;
+      }
+      .service-feature .services-image-row{
+        height:250px;
+      }
+      .service-content-row h2 {
+        font-size: 25px;
+      }
+    }
+    @media(max-width:480px) {
+      .service-detail-row .service-detail img {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="services-section">
+    <div class="service-feature" id="service-left1">
+      <div class="services-image-row">
+        <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-2428.png" alt="AI Assisted ADAS" />
+        <div class="image-overlay">AI Assisted ADAS</div>
+      </div>
+    </div>
+    <div class="service-feature" id="service-left2">
+      <div class="services-image-row">
+        <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1186.png"
+          alt="Telematics Platform" />
+        <div class="image-overlay">Telematics Platform</div>
+      </div>
+    </div>
+    <div class="service-feature" id="service-left3">
+      <div class="services-image-row">
+        <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1187.png"
+          alt="Connected Car Solutions" />
+        <div class="image-overlay">Connected Car Solutions</div>
+      </div>
+    </div>
+    <div class="service-feature" id="service-left4">
+      <div class="services-image-row">
+        <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1188.png"
+          alt="Embedded Software" />
+        <div class="image-overlay">Embedded Software</div>
+      </div>
+    </div>
+    <div class="service-feature" id="service-left5">
+      <div class="services-image-row">
+        <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1189.png" alt="Cyber security" />
+        <div class="image-overlay">Cyber security</div>
+      </div>
+    </div>
+    <div class="service-content">
+      <div class="service-content-row">
+        <div class="service-description-block" id="service-content1">
+          <div class="service-title-row">
+            <h2>AI Assisted ADAS</h2>
+            <span class="read-more-text"><a href="#">Read More <img src="./arrow-top.png" /></a></span>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="service-description-block" id="service-content2">
+          <div class="service-title-row">
+            <h2>Telematics Platform</h2>
+            <span class="read-more-text"><a href="#">Read More <img src="./arrow-top.png" /></a></span>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="service-description-block" id="service-content3">
+          <div class="service-title-row">
+            <h2>Connected Car Solutions</h2>
+            <span class="read-more-text"><a href="#">Read More <img src="./arrow-top.png" /></a></span>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="service-description-block" id="service-content4">
+          <div class="service-title-row">
+            <h2>Embedded Software</h2>
+            <span class="read-more-text"><a href="#">Read More <img src="./arrow-top.png" /></a></span>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="service-description-block" id="service-content5">
+          <div class="service-title-row">
+            <h2>Cyber security</h2>
+            <span class="read-more-text"><a href="#">Read More <img src="./arrow-top.png" /></a></span>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
+      <div class="service-detail-row">
+        <div class="service-detail" id="service-detail1">
+          <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-2428.png" alt="AI Assisted ADAS">
+          <div class="service-detail-overlay">AI Assisted ADAS</div>
+        </div>
+        <div class="service-detail" id="service-detail2">
+          <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1186.png"
+            alt="Telematics Platform">
+          <div class="service-detail-overlay">Telematics Platform</div>
+        </div>
+        <div class="service-detail" id="service-detail3">
+          <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1187.png"
+            alt="Connected Car Solutions">
+          <div class="service-detail-overlay">Connected Car Solutions</div>
+        </div>
+        <div class="service-detail" id="service-detail4">
+          <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1188.png"
+            alt="Embedded Software">
+          <div class="service-detail-overlay">Embedded Software</div>
+        </div>
+        <div class="service-detail" id="service-detail5">
+          <img src="http://avinsystems.dev.vinove.com/wp-content/uploads/2025/09/image-1189.png" alt="Cyber security">
+          <div class="service-detail-overlay">Cyber security</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function hideAll() {
+        document.querySelectorAll('[id^="service-left"]').forEach(el => el.style.display = "none");
+        document.querySelectorAll('[id^="service-content"]').forEach(el => el.style.display = "none");
+        document.querySelectorAll('[id^="service-detail"]').forEach(el => el.style.display = "inline-flex");
+      }
+      document.querySelectorAll('[id^="service-detail"]').forEach(detail => {
+        detail.addEventListener("click", () => {
+          let num = detail.id.replace("service-detail", "");
+          hideAll();
+          detail.style.display = "none";
+          document.getElementById("service-left" + num).style.display = "block";
+          document.getElementById("service-content" + num).style.display = "block";
+        });
+      });
+      hideAll();
+      document.getElementById("service-left1").style.display = "block";
+      document.getElementById("service-content1").style.display = "block";
+      document.getElementById("service-detail1").style.display = "none";
+    });
+  </script>
+</body>
+</html>
