@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      margin: 0;
+    }
+    .membership-section {
+      background-color: #fff;
+      padding: 85px 60px 70px 60px;
+    }
+    .membership-block {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .membership-items {
+      width: 100%;
+      border: 1px solid #D9E3FF;
+      padding: 0;
+      height: 422px;
+      overflow: hidden;
+      border-radius: 16px;
+      background-color: #fff;
+    }
+    .membership-items-row {
+      padding: 22px 14px;
+    }
+    .logo-tag {
+      font-family: "DM Sans", sans-serif;
+      font-weight: 500;
+      color: #050B20;
+      background-color: #14359221;
+      padding: 4px 15px;
+      display: inline-flex;
+      border-radius: 30px;
+      margin-bottom: 16px;
+    }
+    .logo-tag.popup-open:hover {
+      background-color: #14359242;
+      cursor: pointer;
+    }
+    .membership-items-row h2 {
+      margin: 0 0 6px 0;
+      font-family: "DM Sans", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .membership-items-description {
+      color: #4B5162;
+      font-size: 14px;
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      line-height: 22px;
+    }
+    .membership-items-row h3 {
+      margin-bottom: 10px;
+      margin-top: 2px;
+      text-align: left;
+      font-family: "Montserrat", Sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: normal;
+      color: #868686;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .membership-image {
+      display: flex;
+    }
+    .membership-image img {
+      width: 100%;
+      height: 202px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding:10px;
+    }
+    .popup {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .membership-popup {
+      max-width: 700px;
+      padding: 45px 20px 25px 20px;
+      background-color: #fff;
+      border-radius: 15px;
+      position: relative;
+    }
+    .membership-popup .close-button {
+        cursor: pointer;
+        padding: 0;
+        border: none;
+        background: transparent;
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 9;
+    }
+    .membership-popup .membership-items {
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .membership-popup .membership-image {
+      display: inline-flex;
+      width: 230px;
+    }
+    .membership-popup .membership-items-row {
+      padding: 22px 14px;
+      flex: 1;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @media(max-width:767px) {
+      .membership-section {
+        padding: 20px;
+      }
+      .membership-popup .membership-image {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="membership-section">
+    <div class="membership-container">
+      <div class="membership-block">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="membership-items">
+                <div class="membership-image">
+                  <img src="./membership-image.png" alt="membership-image">
+                </div>
+                <div class="membership-items-row">
+                  <span class="logo-tag popup-open">Logo Name</span>
+                  <h2>Fringilla Nullam</h2>
+                  <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+                    nisl.
+                    Proin porta est convallis lacus bl</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="membership-items">
+                <div class="membership-image">
+                  <img src="./membership-image.png" alt="membership-image">
+                </div>
+                <div class="membership-items-row">
+                  <span class="logo-tag popup-open">Logo Name</span>
+                  <h2>Fringilla Nullam</h2>
+                  <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+                    nisl.
+                    Proin porta est convallis lacus bl</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="membership-items">
+                <div class="membership-image">
+                  <img src="./membership-image.png" alt="membership-image">
+                </div>
+                <div class="membership-items-row">
+                  <span class="logo-tag popup-open">Logo Name</span>
+                  <h2>Fringilla Nullam</h2>
+                  <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+                    nisl.
+                    Proin porta est convallis lacus bl</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="membership-items">
+                <div class="membership-image">
+                  <img src="./membership-image.png" alt="membership-image">
+                </div>
+                <div class="membership-items-row">
+                  <span class="logo-tag popup-open">Logo Name</span>
+                  <h2>Fringilla Nullam</h2>
+                  <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+                    nisl.
+                    Proin porta est convallis lacus bl</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="membership-items">
+                <div class="membership-image">
+                  <img src="./membership-image.png" alt="membership-image">
+                </div>
+                <div class="membership-items-row">
+                  <span class="logo-tag popup-open">Logo Name</span>
+                  <h2>Fringilla Nullam</h2>
+                  <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+                    nisl.
+                    Proin porta est convallis lacus bl</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="swiper-pagination"></div> -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </div>
+      <!-- Popup -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="membership-popup">
+      <button id="closePopup" class="close-button">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.36396 4.94978L11.3138 0L12.728 1.41421L7.77816 6.36398L12.728 11.3137L11.3138 12.7279L6.36396 7.77818L1.41422 12.7279L0 11.3137L4.94976 6.36398L0 1.41421L1.41422 0L6.36396 4.94978Z" fill="#143592"/>
+        </svg>
+      </button>
+       <div class="membership-items">
+          <div class="membership-image">
+            <img src="./membership-image.png" alt="membership-image">
+          </div>
+          <div class="membership-items-row">
+            <span class="logo-tag">Logo Name</span>
+            <h2>Fringilla Nullam</h2>
+            <p class="membership-items-description">Vestibulum eu quam nec neque pellentesque efficitur id eget
+              nisl.
+              Proin porta est convallis lacus bl</p>
+          </div>
+        </div>
+    </div>
+  </div>
+  </section>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      speed: 500,
+      spaceBetween: 30,
+      slidesPerView: 3,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+      },
+    });
+
+    const popupOverlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+    document.querySelectorAll('.popup-open').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const logoName = tag.getAttribute('data-name');
+        popupOverlay.style.display = 'flex';
+      });
+    });
+    closePopup.addEventListener('click', () => {
+      popupOverlay.style.display = 'none';
+    });
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) popupOverlay.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>
