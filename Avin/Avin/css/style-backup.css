@@ -1,0 +1,756 @@
+/* 
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme-child/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 2.0.0
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* Add your custom styles here */
+
+p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.btn .elementor-button,
+.btn-primary,
+.elementor-widget-shortcode:not(.newsletterForm) .everest-forms-submit-button {
+  position: relative;
+  padding: 0 !important;
+  background: linear-gradient(to right, #012060, #98f034, #012060) !important;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  z-index: 1;
+  color: #ffffff;
+	text-decoration:none !important;
+}
+.btn *,.btn-primary,.btn-primary *{
+	text-decoration:none !important;
+}
+.btn .elementor-button .elementor-button-content-wrapper,
+.btn-primary .btn-content-wrap {
+  padding: 15px 10px;
+  background: #143592;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+  min-width: 180px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn.btn-sm .elementor-button .elementor-button-content-wrapper,
+.btn-primary.btn-sm .btn-content-wrap {
+  padding: 8px 15px;
+  min-width: 140px;
+  font-size: 15px;
+}
+
+.btn.white-btn.sm .elementor-button .elementor-button-content-wrapper {
+  padding: 3px 16px;
+  border-radius: 7px;
+  min-width: 86px;
+}
+
+.btn.white-btn .elementor-button .elementor-button-content-wrapper {
+  background: #ffffff;
+}
+
+.btn:not(.shadow-btn):hover .elementor-button-content-wrapper {
+  background: #98f034;
+}
+
+.btn .elementor-button .elementor-button-content-wrapper::after,
+.btn-primary .btn-content-wrap::after,
+.elementor-widget-shortcode:not(.newsletterForm)
+  .everest-forms-submit-button::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("images/button-icon.svg") no-repeat;
+  background-size: 100%;
+  transition: all 0.3s ease;
+  margin-right: -18px;
+  opacity: 0;
+}
+
+.btn.btn-sm .elementor-button .elementor-button-content-wrapper::after,
+.btn-primary.btn-sm .btn-content-wrap::after {
+  width: 12px;
+  height: 12px;
+}
+
+.btn .elementor-button:hover .elementor-button-content-wrapper::after,
+.btn-primary:hover .btn-content-wrap::after,
+.elementor-widget-shortcode:not(.newsletterForm)
+  .everest-forms-submit-button:hover:after {
+  margin: 0 !important;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.btn .elementor-button::after,
+.btn-primary:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #012060, #98f034, #012060);
+  transform: scale(0);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.btn.shadow-btn .elementor-button:hover::after,
+.btn-primary:hover::after {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+.elementor-widget-shortcode:not(.newsletterForm)
+  .everest-forms
+  .everest-forms-submit-button {
+  padding: 15px 10px !important;
+  background: #143592 !important;
+  border-radius: 15px !important;
+  background: linear-gradient(to right, #012060, #98f034, #012060) !important;
+  border: 2px solid transparent !important;
+  position: relative;
+  z-index: 1;
+  min-width: 180px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: #ffffff !important;
+  overflow: hidden;
+}
+
+.elementor-widget-shortcode:not(.newsletterForm)
+  .everest-forms
+  .everest-forms-submit-button:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: #143592;
+  transition: all 0.3s ease;
+  z-index: -1;
+  border-radius: 12px;
+}
+.elementor-widget-shortcode:not(.newsletterForm)
+  .everest-forms
+  .everest-forms-submit-button:hover {
+  box-shadow: 0 1px 10px rgba(152, 240, 52, 0.8) !important;
+}
+.ft_links ul {
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.ft_links a {
+  color: #fff;
+}
+
+.ft_links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footermenu .elementor-heading-title {
+  position: relative;
+  padding-bottom: 7px;
+}
+
+.footermenu .elementor-heading-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #98f034;
+  width: 145px;
+}
+
+.footer {
+  position: relative;
+}
+
+.footer .e-con-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 302px;
+  height: 226px;
+  background: url("images/footer-ellipse-1.png") no-repeat;
+  background-size: 100%;
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 10%;
+  width: 450px;
+  height: 226px;
+  background: url("images/footer-ellipse-3.png") no-repeat;
+  background-size: 100%;
+}
+
+body:not(.elementor-editor-active) .header {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  left: 0;
+  width: 100%;
+  background: transparent !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.header .btn .elementor-button .elementor-button-content-wrapper {
+  min-width: 120px;
+  padding: 6px 12px;
+  border-radius: 9px;
+}
+
+.header .btn .elementor-button {
+  border-radius: 9px;
+}
+
+.header .btn .elementor-button .elementor-button-content-wrapper::after {
+  width: 11px;
+  height: 11px;
+  margin-right: -11px;
+}
+
+.elementor-location-header.header-sticky .header {
+  background: #fff !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.elementor-widget-n-accordion summary.e-n-accordion-item-title {
+  display: flex;
+  justify-content: space-between;
+  border-right: 0;
+  border-left: 0;
+  padding-inline: 0;
+  padding-block-end: 0;
+}
+
+.elementor-widget-n-accordion
+  summary.e-n-accordion-item-title
+  .e-n-accordion-item-title-icon {
+  width: 48px;
+  aspect-ratio: 1/1;
+  border: 0.77px solid #d1d1e1;
+  border-bottom: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-feat-img.elementor-widget.elementor-widget-image,
+.service-feat-img.elementor-widget.elementor-widget-image figure.wp-caption {
+  height: 100%;
+}
+
+figure.wp-caption,
+.product-grid .product-box,
+.custom-post-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+figcaption.widget-image-caption.wp-caption-text {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  padding: 23px 25px;
+}
+
+.product-grid .product-box img,
+.custom-post-card .elementor-widget-theme-post-featured-image img {
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.product-grid .product-box:hover img,
+.custom-post-card:hover .elementor-widget-theme-post-featured-image img {
+  transform: scale(1.2);
+}
+
+.product-grid .product-box .product-data,
+.custom-post-card .custom-card-info {
+  background: linear-gradient(360deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+  height: 100%;
+}
+
+.product-grid .product-box:hover .product-data,
+.custom-post-card:hover .custom-card-info {
+  /* background: linear-gradient(360deg,
+            #143592 20.67%,
+            rgba(20, 53, 146, 0) 100%); */
+}
+
+.product-grid .product-box .product-data .elementor-widget-button,
+.custom-post-card .custom-card-info .elementor-widget-button {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.3s ease;
+  opacity: 0;
+}
+
+.product-grid .product-box:hover .product-data .elementor-widget-button,
+.custom-post-card:hover .custom-card-info .elementor-widget-button {
+  height: 54px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+overflow: visible;
+}
+
+.post_card {
+  overflow: hidden;
+}
+
+.post_card:hover {
+  background: #143592;
+}
+
+.post_card:hover .post_info {
+  background-color: #98f034 !important;
+}
+
+.post_card:hover .post_title * {
+  color: #ffffff !important;
+}
+
+.post_card:hover .post_excerpt *,
+.post_card:hover .post_date *,
+.post_card:hover .post_content * {
+  color: #c0c0c0;
+}
+
+.post_card .post_content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.post-content-demo * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.post_loop_grid .elementor-widget-loop-grid .elementor-widget-container {
+  display: flex;
+}
+.post_loop_grid
+  .elementor-widget-loop-grid
+  .elementor-widget-container
+  .elementor-loop-container {
+  width: 100%;
+}
+
+.btn-white-outline {
+  border: none !important;
+}
+
+.box-shadow .elementor-icon {
+  box-shadow: 0px 10px 30px 0px #6875a11a !important;
+}
+
+.direct-links-list .elementor-icon-list-item,
+.direct-links-list .elementor-icon-list-item a{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.direct-links-list .elementor-icon-list-item a:hover *{
+	color: #98F034 !important;
+	fill:#98F034 !important;
+}
+.faq .e-n-accordion .e-n-accordion-item {
+  border: 1px solid #d4e0ed;
+  border-radius: 6px;
+}
+
+.faq.elementor-widget-n-accordion summary.e-n-accordion-item-title {
+  border: none;
+  padding: 0;
+}
+
+.faq.elementor-widget-n-accordion details.e-n-accordion-item {
+  padding: 24px 32px;
+}
+
+.faq.elementor-widget-n-accordion
+  summary.e-n-accordion-item-title
+  .e-n-accordion-item-title-icon {
+  border: none;
+}
+
+/* Header Mega Mneu Style */
+
+body.menu-is-open .header,
+.header-sticky .header {
+  background: #fff !important;
+}
+
+.headerlogo {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 48px;
+}
+
+.headerlogo .darklogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-is-open .headerlogo .darklogo,
+.header-sticky .headerlogo .darklogo {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-is-open .headerlogo .whitelogo,
+.header-sticky .headerlogo .whitelogo {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.headerlogo .whitelogo,
+.mega-menu-link .mega-indicator {
+  transition: all 0.3s ease-in-out;
+}
+
+.mega-menu-item a.mega-menu-link {
+  font-weight: 500 !important;
+  font-family: "DM Sans", Sans-serif !important;
+}
+
+.menu-is-open .mega-menu-item a.mega-menu-link,
+.header-sticky .mega-menu-item a.mega-menu-link {
+  color: #143592 !important;
+}
+
+.menu-is-open .mega-toggle-on a.mega-menu-link,
+.header-sticky .mega-toggle-on a.mega-menu-link {
+  font-weight: 700 !important;
+}
+
+.menu-is-open .mega-toggle-on a.mega-menu-link .mega-indicator,
+.header-sticky .mega-toggle-on a.mega-menu-link .mega-indicator {
+  transform: rotate(180deg);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-is-open .header-search .elementor-icon svg path,
+.header-sticky .header-search .elementor-icon svg path {
+  stroke: #143592 !important;
+}
+
+.menu-is-open .headertop .elementor-icon-list-text,
+.header-sticky .headertop .elementor-icon-list-text {
+  color: #143592 !important;
+}
+
+.menu-is-open .headertop .elementor-icon-list-icon svg path,
+.header-sticky .headertop .elementor-icon-list-icon svg path {
+  fill: #143592 !important;
+}
+
+.header .custom-post-card:hover .custom-card-info .elementor-widget-button {
+/*   height: 30px; */
+}
+
+.header .custom-post-card .custom-card-info p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header .custom-post-card:hover .custom-card-info p {
+  text-overflow: initial;
+  -webkit-line-clamp: 8;
+}
+
+/* Header Mega Mneu Style */
+.newsletterForm #evf-208,
+.newsletterForm form.everest-form .evf-field,
+.newsletterForm form.everest-form .evf-field input {
+  margin: 0 !important;
+}
+.newsletterForm form.everest-form .evf-field input:focus {
+  border-color: #98f034 !important;
+}
+
+.newsletterForm form.everest-form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletterForm form.everest-form .input-text {
+  background: transparent;
+  border: 1px solid #5a76c6;
+  width: 267px;
+  border-radius: 9px;
+  padding: 8px;
+  color: #ffffff;
+}
+
+.newsletterForm form.everest-form .input-text::placeholder {
+  color: #ffffff;
+}
+
+.newsletterForm form.everest-form .evf-frontend-grid,
+.newsletterForm form.everest-form .evf-submit-container {
+  padding: 0 !important;
+}
+
+.newsletterForm
+  form.everest-form
+  .evf-submit-container
+  button.everest-forms-submit-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #143592;
+  padding: 8px 21px;
+  border-radius: 12px;
+  border: 0!important;
+}
+
+.service_offering p {
+  font-family: "Inter", Sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--e-global-color-text);
+}
+
+.service_offering :is(h1, h2, h3, h4, h5, h6) {
+  margin-block-end: 5px;
+  margin-bottom: 0;
+  font-family: "DM Sans", Sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--e-global-color-cd105eb);
+  position: relative;
+  padding-left: 25px;
+}
+
+.service_offering :is(h1, h2, h3, h4, h5, h6)::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  aspect-ratio: 1/1;
+  background: url(/wp-content/uploads/2025/10/check-dot-1.svg) no-repeat center;
+  background-size: contain;
+  left: 0;
+  top: 0;
+}
+
+.service_offering :is(h1, h2, h3, h4, h5, h6) + p {
+  padding-left: 25px;
+}
+
+.direct-links a {
+  font-family: "Inter", Sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--e-global-color-text);
+  transition: color 0.3s;
+  background: url(/wp-content/uploads/2025/10/Vector-3.svg) no-repeat right
+    center;
+  background-size: 14px;
+  padding-right: 20px;
+  display: block;
+}
+
+.post_card .elementor-widget-image a,
+.blogcard1 .elementor-widget-image a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.post_card .elementor-widget-theme-post-featured-image {
+  height: 165px !important;
+  width: 100%;
+}
+
+.blogcard1 .elementor-widget-theme-post-featured-image {
+  height: 335px !important;
+}
+
+.accordion-content {
+  display: none;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-header {
+  cursor: pointer;
+  border-bottom: 2px solid #d5d8dc;
+  padding: 15px 55px 15px 0;
+}
+
+.accordion-header::after {
+  content: "+";
+  position: absolute;
+  width: 48px;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  border-width: 2px 2px 0;
+  border-style: solid;
+  border-color: #d5d8dc;
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.accordion-item.open .accordion-header::after {
+  content: "–";
+}
+
+.accordion-header.active::after {
+  transform: rotate(180deg);
+}
+.serviceMegaMenu .e-n-tabs-heading button:hover svg path {
+  fill: var(--n-tabs-icon-color-active) !important;
+}
+.post_info :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 35px;
+  color: #143592;
+}
+.mega-sub-menu:has(.mega-serviceMegamenu) {
+  padding: 0 !important;
+}
+.mega-serviceMegamenu .mega-sub-menu .mega-menu-item {
+  padding: 0 !important;
+}
+#mega-menu-wrap-menu-1 #mega-menu-menu-1 > li.mega-menu-item:not(:last-child) {
+  margin-right: 22px;
+}
+#mega-menu-wrap-menu-1
+  #mega-menu-menu-1
+  > li.mega-menu-item
+  > a.mega-menu-link {
+  padding: 0px;
+}
+.contactForm .everest-form label {
+  color: #ffffff;
+}
+.contactForm .everest-form input[type="text"],
+.contactForm .everest-form input[type="email"],
+.contactForm .everest-form textarea {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  background: transparent;
+  border-radius: 9px;
+  padding: 15px;
+}
+a{
+        color: #0F172B;
+    }
+    a:hover{
+        color: #98F034;
+/* 		text-decoration:underline; */
+    }
+a:hover svg,
+a:hover svg path,
+{
+        fill: #98F034;
+    }
+.hover-bg:hover * {
+    color: #ffffff !important;
+	fill:#ffffff;
+}
+.cstm-search-box .elementor-shortcode {
+    display: flex;
+}
+@media only screen and (max-width: 767px) {
+  .btn .elementor-button .elementor-button-content-wrapper,
+  .btn-primary .btn-content-wrap {
+    padding: 11px 10px;
+    border-radius: 12px;
+    min-width: 145px;
+    font-size: 14px;
+  }
+  .newsletterForm form.everest-form .input-text {
+    width: 190px;
+  }
+  .btn .elementor-button .elementor-button-content-wrapper::after,
+  .btn-primary .btn-content-wrap::after,
+  .elementor-widget-shortcode:not(.newsletterForm)
+    .everest-forms-submit-button::after {
+    width: 12px;
+    height: 12px;
+  }
+  .newsletterForm
+    form.everest-form
+    .evf-submit-container
+    button.everest-forms-submit-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .direct-links a {
+    font-size: 14px;
+  }
+  .post_info :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 25px;
+  }
+}
