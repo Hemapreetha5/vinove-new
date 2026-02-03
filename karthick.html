@@ -72,6 +72,9 @@
             margin: 0 0 5px 0;
         }
 
+        table{
+            width:100%;
+        }
         table,
         pre {
             color: #fff;
@@ -139,13 +142,20 @@
             background: transparent;
             /*  color: inherit;  */
         }
+        .topic-list li,.topic-list{
+            padding-left:10px;
+        }
+        .topic-list li,.topic-list li::marker{
+            font-size: 18px;
+            color:#fff;
+        }
     </style>
 </head>
 
 <body>
     <div class="markdown prose w-full break-words dark:prose-invert light">
         <h1>Topics</h1>
-        <ol>
+        <ol class="topic-list">
             <li>Hardware</li>
             <li>Computer Network</li>
             <li>Hub</li>
@@ -162,20 +172,870 @@
             <li>Types of Memory (Volatile, Nonvolatile, ROM, RAM, Flash memory) </li>
             <li>OS Layer (7)</li>
             <li>TCP / IP</li>
-            <li>Topology & Types</li>            
+            <li>Topology & Types</li>
             <li>Types of Passwords</li>
-            <li>Remote control authentication protocol & Types</li>            
+            <li>Remote control authentication protocol & Types</li>
             <li>Telnet</li>
-            <li>SSH</li>            
+            <li>SSH</li>
             <li>Routing & Types</li>
-            <li>RIP</li>            
+            <li>RIP</li>
             <li>EIGRP</li>
-            <li>OSPF</li>            
+            <li>OSPF</li>
             <li>BGP</li>
-            <li>Stright Cable</li>            
+            <li>Stright Cable</li>
             <li>Crossover Cable</li>
             <li>Rollover Cable</li>
             <li>DHCP</li>
+        </ol>
+        <ol>
+            <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">
+
+           <div class="markdown prose dark:prose-invert w-full wrap-break-word light markdown-new-styling">
+                    <hr data-start="194" data-end="197">
+                    <h3 data-start="199" data-end="220"><strong data-start="203" data-end="218">1. Hardware</strong>
+                    </h3>
+                    <ul data-start="221" data-end="736">
+                        <li data-start="221" data-end="308">
+                            <p data-start="223" data-end="308">Hardware refers to the physical components of a computer
+                                system that you can touch.</p>
+                        </li>
+                        <li data-start="309" data-end="453">
+                            <p data-start="311" data-end="453">It includes input devices (keyboard, mouse), output
+                                devices (monitor, printer), storage devices (HDD, SSD), and processing units (CPU, GPU).
+                            </p>
+                        </li>
+                        <li data-start="454" data-end="536">
+                            <p data-start="456" data-end="536">Hardware works in conjunction with software to perform
+                                tasks and run programs.</p>
+                        </li>
+                        <li data-start="537" data-end="643">
+                            <p data-start="539" data-end="643">Types of hardware include internal (motherboard, RAM,
+                                processor) and external (USB devices, printers).</p>
+                        </li>
+                        <li data-start="644" data-end="736">
+                            <p data-start="646" data-end="736">Proper hardware is crucial for performance, speed, and
+                                reliability of a computer system.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="738" data-end="741">
+                    <h3 data-start="743" data-end="772"><strong data-start="747" data-end="770">2. Computer
+                            Network</strong></h3>
+                    <ul data-start="773" data-end="1223">
+                        <li data-start="773" data-end="873">
+                            <p data-start="775" data-end="873">A computer network is a system of interconnected
+                                computers that communicate and share resources.</p>
+                        </li>
+                        <li data-start="874" data-end="977">
+                            <p data-start="876" data-end="977">Networks can be LAN (Local Area Network), WAN (Wide Area
+                                Network), MAN (Metropolitan Area Network).</p>
+                        </li>
+                        <li data-start="978" data-end="1068">
+                            <p data-start="980" data-end="1068">Networks enable sharing of files, printers, internet
+                                connections, and other resources.</p>
+                        </li>
+                        <li data-start="1069" data-end="1136">
+                            <p data-start="1071" data-end="1136">Components include routers, switches, hubs, and network
+                                cables.</p>
+                        </li>
+                        <li data-start="1137" data-end="1223">
+                            <p data-start="1139" data-end="1223">Network security protocols are essential to protect
+                                data from unauthorized access.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="1225" data-end="1228">
+                    <h3 data-start="1230" data-end="1246"><strong data-start="1234" data-end="1244">3. Hub</strong></h3>
+                    <ul data-start="1247" data-end="1621">
+                        <li data-start="1247" data-end="1326">
+                            <p data-start="1249" data-end="1326">A hub is a basic networking device that connects
+                                multiple devices in a LAN.</p>
+                        </li>
+                        <li data-start="1327" data-end="1396">
+                            <p data-start="1329" data-end="1396">It operates at the <strong data-start="1348" data-end="1376">Physical Layer (Layer 1)</strong> of the OSI model.</p>
+                        </li>
+                        <li data-start="1397" data-end="1481">
+                            <p data-start="1399" data-end="1481">Hub broadcasts incoming data packets to all ports,
+                                causing more network traffic.</p>
+                        </li>
+                        <li data-start="1482" data-end="1543">
+                            <p data-start="1484" data-end="1543">It has no intelligence; it does not filter or route
+                                data.</p>
+                        </li>
+                        <li data-start="1544" data-end="1621">
+                            <p data-start="1546" data-end="1621">Hubs are largely replaced by switches due to
+                                inefficiency and collisions.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="1623" data-end="1626">
+                    <h3 data-start="1628" data-end="1647"><strong data-start="1632" data-end="1645">4. Switch</strong>
+                    </h3>
+                    <ul data-start="1648" data-end="2051">
+                        <li data-start="1648" data-end="1721">
+                            <p data-start="1650" data-end="1721">A switch is a network device that connects multiple
+                                devices in a LAN.</p>
+                        </li>
+                        <li data-start="1722" data-end="1806">
+                            <p data-start="1724" data-end="1806">Operates at <strong data-start="1736" data-end="1765">Data Link Layer (Layer 2)</strong> and sometimes <strong data-start="1780" data-end="1791">Layer 3</strong> for routing.</p>
+                        </li>
+                        <li data-start="1807" data-end="1890">
+                            <p data-start="1809" data-end="1890">It sends data only to the device for which it is
+                                intended, reducing collisions.</p>
+                        </li>
+                        <li data-start="1891" data-end="1964">
+                            <p data-start="1893" data-end="1964">Switches maintain a MAC address table to forward
+                                packets efficiently.</p>
+                        </li>
+                        <li data-start="1965" data-end="2051">
+                            <p data-start="1967" data-end="2051">Common in modern networks because it improves speed and
+                                security compared to hubs.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="2053" data-end="2056">
+                    <h3 data-start="2058" data-end="2077"><strong data-start="2062" data-end="2075">5. Router</strong>
+                    </h3>
+                    <ul data-start="2078" data-end="2471">
+                        <li data-start="2078" data-end="2157">
+                            <p data-start="2080" data-end="2157">A router is a device that forwards data packets between
+                                different networks.</p>
+                        </li>
+                        <li data-start="2158" data-end="2223">
+                            <p data-start="2160" data-end="2223">Operates at the <strong data-start="2176" data-end="2203">Network Layer (Layer 3)</strong> of the OSI model.</p>
+                        </li>
+                        <li data-start="2224" data-end="2308">
+                            <p data-start="2226" data-end="2308">Determines the best path for data to reach its
+                                destination using routing tables.</p>
+                        </li>
+                        <li data-start="2309" data-end="2391">
+                            <p data-start="2311" data-end="2391">Routers connect LANs to WANs (like connecting a home
+                                network to the Internet).</p>
+                        </li>
+                        <li data-start="2392" data-end="2471">
+                            <p data-start="2394" data-end="2471">Can provide additional features like DHCP, NAT, and
+                                firewall functionality.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="2473" data-end="2476">
+                    <h3 data-start="2478" data-end="2499"><strong data-start="2482" data-end="2497">6. Protocol</strong>
+                    </h3>
+                    <ul data-start="2500" data-end="2854">
+                        <li data-start="2500" data-end="2588">
+                            <p data-start="2502" data-end="2588">Protocols are standardized rules that allow computers
+                                to communicate over a network.</p>
+                        </li>
+                        <li data-start="2589" data-end="2656">
+                            <p data-start="2591" data-end="2656">They define how data is transmitted, received, and
+                                interpreted.</p>
+                        </li>
+                        <li data-start="2657" data-end="2707">
+                            <p data-start="2659" data-end="2707">Examples include HTTP, FTP, TCP/IP, UDP, SMTP.</p>
+                        </li>
+                        <li data-start="2708" data-end="2783">
+                            <p data-start="2710" data-end="2783">Protocols ensure data integrity, proper sequencing, and
+                                error handling.</p>
+                        </li>
+                        <li data-start="2784" data-end="2854">
+                            <p data-start="2786" data-end="2854">Without protocols, devices would not understand each
+                                other’s data.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="2856" data-end="2859">
+                    <h3 data-start="2861" data-end="2909"><strong data-start="2865" data-end="2907">7. TCP (Transmission
+                            Control Protocol)</strong></h3>
+                    <ul data-start="2910" data-end="3263">
+                        <li data-start="2910" data-end="2988">
+                            <p data-start="2912" data-end="2988">TCP is a connection-oriented protocol that ensures
+                                reliable communication.</p>
+                        </li>
+                        <li data-start="2989" data-end="3062">
+                            <p data-start="2991" data-end="3062">It divides data into packets and reassembles them at
+                                the destination.</p>
+                        </li>
+                        <li data-start="3063" data-end="3126">
+                            <p data-start="3065" data-end="3126">Provides error checking and retransmission of lost
+                                packets.</p>
+                        </li>
+                        <li data-start="3127" data-end="3180">
+                            <p data-start="3129" data-end="3180">Operates at the Transport Layer of the OSI model.</p>
+                        </li>
+                        <li data-start="3181" data-end="3263">
+                            <p data-start="3183" data-end="3263">Commonly used for web browsing (HTTP), email (SMTP),
+                                and file transfers (FTP).</p>
+                        </li>
+                    </ul>
+                    <hr data-start="3265" data-end="3268">
+                    <h3 data-start="3270" data-end="3311"><strong data-start="3274" data-end="3309">8. UDP (User
+                            Datagram Protocol)</strong></h3>
+                    <ul data-start="3312" data-end="3655">
+                        <li data-start="3312" data-end="3389">
+                            <p data-start="3314" data-end="3389">UDP is a connectionless protocol used for fast,
+                                low-latency transmission.</p>
+                        </li>
+                        <li data-start="3390" data-end="3464">
+                            <p data-start="3392" data-end="3464">It does <strong data-start="3400" data-end="3407">not</strong> guarantee packet delivery, order, or error correction.
+                            </p>
+                        </li>
+                        <li data-start="3465" data-end="3541">
+                            <p data-start="3467" data-end="3541">Ideal for real-time applications like video streaming,
+                                gaming, and VoIP.</p>
+                        </li>
+                        <li data-start="3542" data-end="3604">
+                            <p data-start="3544" data-end="3604">Less overhead than TCP, so it is faster but less
+                                reliable.</p>
+                        </li>
+                        <li data-start="3605" data-end="3655">
+                            <p data-start="3607" data-end="3655">Operates at the Transport Layer alongside TCP.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="3657" data-end="3660">
+                    <h3 data-start="3662" data-end="3683"><strong data-start="3666" data-end="3681">9. Firewall</strong>
+                    </h3>
+                    <ul data-start="3684" data-end="4068">
+                        <li data-start="3684" data-end="3781">
+                            <p data-start="3686" data-end="3781">A firewall is a security system that monitors and
+                                controls incoming/outgoing network traffic.</p>
+                        </li>
+                        <li data-start="3782" data-end="3836">
+                            <p data-start="3784" data-end="3836">It can be hardware-based, software-based, or both.</p>
+                        </li>
+                        <li data-start="3837" data-end="3924">
+                            <p data-start="3839" data-end="3924">Firewalls filter traffic based on rules like IP
+                                address, port number, and protocol.</p>
+                        </li>
+                        <li data-start="3925" data-end="3996">
+                            <p data-start="3927" data-end="3996">Protects against unauthorized access, malware, and
+                                network attacks.</p>
+                        </li>
+                        <li data-start="3997" data-end="4068">
+                            <p data-start="3999" data-end="4068">Examples include Windows Defender Firewall, Cisco ASA,
+                                and pfSense.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="4070" data-end="4073">
+                    <h3 data-start="4075" data-end="4113"><strong data-start="4079" data-end="4111">10. DNS (Domain Name
+                            System)</strong></h3>
+                    <ul data-start="4114" data-end="4485">
+                        <li data-start="4114" data-end="4201">
+                            <p data-start="4116" data-end="4201">DNS translates human-readable domain names (like <a data-start="4165" data-end="4179" rel="noopener" target="_new" class="decorated-link cursor-pointer">www.google.com<span aria-hidden="true" class="ms-0.5 inline-block align-middle leading-none"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" data-rtl-flip="" class="block h-[0.75em] w-[0.75em] stroke-current stroke-[0.75]">
+                                            <use href="/cdn/assets/sprites-core-c9exbsc1.svg#304883" fill="currentColor"></use>
+                                        </svg></span></a>) into IP addresses.</p>
+                        </li>
+                        <li data-start="4202" data-end="4257">
+                            <p data-start="4204" data-end="4257">Operates at the Application Layer of the OSI model.</p>
+                        </li>
+                        <li data-start="4258" data-end="4338">
+                            <p data-start="4260" data-end="4338">Without DNS, users would need to remember numeric IP
+                                addresses for websites.</p>
+                        </li>
+                        <li data-start="4339" data-end="4405">
+                            <p data-start="4341" data-end="4405">DNS servers can be recursive, authoritative, or caching
+                                types.</p>
+                        </li>
+                        <li data-start="4406" data-end="4485">
+                            <p data-start="4408" data-end="4485">It is essential for web browsing, email routing, and
+                                many network services.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="4487" data-end="4490">
+                    <h3 data-start="4492" data-end="4533"><strong data-start="4496" data-end="4531">11. 3-Tier Network
+                            Architecture</strong></h3>
+                    <p data-start="4534" data-end="4574"><strong data-start="4534" data-end="4572">Layers: Core,
+                            Distribution, Access</strong></p>
+                    <div class="TyagGW_tableContainer">
+                        <div tabindex="-1" class="group TyagGW_tableWrapper flex flex-col-reverse w-fit">
+                            <table data-start="4576" data-end="5062" class="w-fit min-w-(--thread-content-width)">
+                                <thead data-start="4576" data-end="4671">
+                                    <tr data-start="4576" data-end="4671">
+                                        <th data-start="4576" data-end="4593" data-col-size="sm">Layer</th>
+                                        <th data-start="4593" data-end="4645" data-col-size="md">Purpose</th>
+                                        <th data-start="4645" data-end="4671" data-col-size="sm">Key Devices</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-start="4766" data-end="5062">
+                                    <tr data-start="4766" data-end="4865">
+                                        <td data-start="4766" data-end="4789" data-col-size="sm"><strong data-start="4768" data-end="4782">Core Layer</strong></td>
+                                        <td data-col-size="md" data-start="4789" data-end="4839">High-speed backbone,
+                                            handles large data traffic</td>
+                                        <td data-col-size="sm" data-start="4839" data-end="4865">Routers, Core Switches
+                                        </td>
+                                    </tr>
+                                    <tr data-start="4866" data-end="4964">
+                                        <td data-start="4866" data-end="4891" data-col-size="sm"><strong data-start="4868" data-end="4890">Distribution Layer</strong></td>
+                                        <td data-col-size="md" data-start="4891" data-end="4938">Policy control,
+                                            routing, filtering, and QoS</td>
+                                        <td data-col-size="sm" data-start="4938" data-end="4964">Layer 3 Switches</td>
+                                    </tr>
+                                    <tr data-start="4965" data-end="5062">
+                                        <td data-start="4965" data-end="4988" data-col-size="sm"><strong data-start="4967" data-end="4983">Access Layer</strong></td>
+                                        <td data-col-size="md" data-start="4988" data-end="5036">Connect end devices
+                                            (PC, printer, etc.)</td>
+                                        <td data-col-size="sm" data-start="5036" data-end="5062">Switches, Hubs</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <ul data-start="5064" data-end="5262">
+                        <li data-start="5064" data-end="5127">
+                            <p data-start="5066" data-end="5127">Core: Fast forwarding of packets, connects different
+                                sites.</p>
+                        </li>
+                        <li data-start="5128" data-end="5196">
+                            <p data-start="5130" data-end="5196">Distribution: Aggregates access layer data and applies
+                                policies.</p>
+                        </li>
+                        <li data-start="5197" data-end="5262">
+                            <p data-start="5199" data-end="5262">Access: Directly connects users and endpoints to the
+                                network.</p>
+                        </li>
+                    </ul>
+                    <hr data-start="5264" data-end="5267">
+
+                    <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">
+                        <div class="markdown prose dark:prose-invert w-full wrap-break-word light markdown-new-styling">
+
+                            <h3 data-start="71" data-end="107"><strong data-start="75" data-end="105">12. Types of
+                                    Communication</strong></h3>
+                            <ul data-start="108" data-end="717">
+                                <li data-start="108" data-end="235">
+                                    <p data-start="110" data-end="235"><strong data-start="110" data-end="122">Unicast:</strong> One-to-one communication where a single
+                                        sender transmits data to a single receiver. Example: Sending an email.</p>
+                                </li>
+                                <li data-start="236" data-end="365">
+                                    <p data-start="238" data-end="365"><strong data-start="238" data-end="252">Broadcast:</strong> One-to-all communication where data is
+                                        sent to all devices in a network segment. Example: ARP requests in LAN.</p>
+                                </li>
+                                <li data-start="366" data-end="486">
+                                    <p data-start="368" data-end="486"><strong data-start="368" data-end="382">Multicast:</strong> One-to-many communication where data is
+                                        sent to a specific group of devices. Example: IPTV streaming.</p>
+                                </li>
+                                <li data-start="487" data-end="626">
+                                    <p data-start="489" data-end="626"><strong data-start="489" data-end="501">Anycast:</strong> One-to-nearest communication where data is
+                                        delivered to the nearest or best node in a group. Example: DNS query responses.
+                                    </p>
+                                </li>
+                                <li data-start="627" data-end="717">
+                                    <p data-start="629" data-end="717">Each type optimizes network resources depending
+                                        on the data distribution requirements.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="719" data-end="722">
+                            <h3 data-start="724" data-end="752"><strong data-start="728" data-end="750">13. Types of
+                                    Ports</strong></h3>
+                            <ul data-start="753" data-end="1208">
+                                <li data-start="753" data-end="860">
+                                    <p data-start="755" data-end="860"><strong data-start="755" data-end="774">Physical
+                                            Ports:</strong> Hardware interfaces on devices, like USB, Ethernet (RJ-45),
+                                        HDMI, and Serial ports.</p>
+                                </li>
+                                <li data-start="861" data-end="962">
+                                    <p data-start="863" data-end="962"><strong data-start="863" data-end="889">Logical/Network Ports:</strong> Numbered endpoints for
+                                        network communication, ranging from 0 to 65535.</p>
+                                </li>
+                                <li data-start="963" data-end="1039">
+                                    <p data-start="965" data-end="1039"><strong data-start="965" data-end="982">Common
+                                            Ports:</strong> HTTP – 80, HTTPS – 443, FTP – 21, SMTP – 25, DNS – 53.</p>
+                                </li>
+                                <li data-start="1040" data-end="1129">
+                                    <p data-start="1042" data-end="1129">Ports allow multiple applications to use a
+                                        single network interface without conflict.</p>
+                                </li>
+                                <li data-start="1130" data-end="1208">
+                                    <p data-start="1132" data-end="1208">Proper port management ensures secure and
+                                        efficient network communication.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="1210" data-end="1213">
+                            <h3 data-start="1215" data-end="1244"><strong data-start="1219" data-end="1242">14. Types of
+                                    Memory</strong></h3>
+                            <div class="TyagGW_tableContainer">
+                                <div tabindex="-1" class="group TyagGW_tableWrapper flex flex-col-reverse w-fit">
+                                    <table data-start="1246" data-end="1942" class="w-fit min-w-(--thread-content-width)">
+                                        <thead data-start="1246" data-end="1345">
+                                            <tr data-start="1246" data-end="1345">
+                                                <th data-start="1246" data-end="1266" data-col-size="sm">Type</th>
+                                                <th data-start="1266" data-end="1345" data-col-size="md">Description
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-start="1445" data-end="1942">
+                                            <tr data-start="1445" data-end="1545">
+                                                <td data-start="1445" data-end="1465" data-col-size="sm"><strong data-start="1447" data-end="1459">Volatile</strong></td>
+                                                <td data-col-size="md" data-start="1465" data-end="1545">Requires power
+                                                    to retain data. Example: RAM. Data is lost when power is off.</td>
+                                            </tr>
+                                            <tr data-start="1546" data-end="1644">
+                                                <td data-start="1546" data-end="1566" data-col-size="sm"><strong data-start="1548" data-end="1564">Non-volatile</strong></td>
+                                                <td data-col-size="md" data-start="1566" data-end="1644">Retains data
+                                                    even when power is off. Example: ROM, Flash memory.</td>
+                                            </tr>
+                                            <tr data-start="1645" data-end="1744">
+                                                <td data-start="1645" data-end="1665" data-col-size="sm"><strong data-start="1647" data-end="1654">ROM</strong></td>
+                                                <td data-col-size="md" data-start="1665" data-end="1744">Read-Only
+                                                    Memory, preloaded with firmware, cannot be easily modified.</td>
+                                            </tr>
+                                            <tr data-start="1745" data-end="1843">
+                                                <td data-start="1745" data-end="1765" data-col-size="sm"><strong data-start="1747" data-end="1754">RAM</strong></td>
+                                                <td data-col-size="md" data-start="1765" data-end="1843">Random Access
+                                                    Memory, used for temporary storage during operations.</td>
+                                            </tr>
+                                            <tr data-start="1844" data-end="1942">
+                                                <td data-start="1844" data-end="1864" data-col-size="sm"><strong data-start="1846" data-end="1862">Flash Memory</strong></td>
+                                                <td data-col-size="md" data-start="1864" data-end="1942">Non-volatile
+                                                    memory, rewritable, used in SSDs, USB drives, smartphones.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="sticky h-0 select-none end-(--thread-content-margin) self-end"></div>
+                                </div>
+                            </div>
+                            <ul data-start="1944" data-end="2021">
+                                <li data-start="1944" data-end="2021">
+                                    <p data-start="1946" data-end="2021">Memory types differ in speed, cost, and purpose
+                                        within a computer system.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2023" data-end="2026">
+                            <h3 data-start="2028" data-end="2062"><strong data-start="2032" data-end="2060">15. OSI
+                                    Layer (7 Layers)</strong></h3>
+                            <div class="TyagGW_tableContainer">
+                                <div tabindex="-1" class="group TyagGW_tableWrapper flex flex-col-reverse w-fit">
+                                    <table data-start="2064" data-end="2885" class="w-fit min-w-(--thread-content-width)">
+                                        <thead data-start="2064" data-end="2154">
+                                            <tr data-start="2064" data-end="2154">
+                                                <th data-start="2064" data-end="2078" data-col-size="sm">Layer</th>
+                                                <th data-start="2078" data-end="2154" data-col-size="md">Function</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-start="2244" data-end="2885">
+                                            <tr data-start="2244" data-end="2335">
+                                                <td data-start="2244" data-end="2262" data-col-size="sm"><strong data-start="2246" data-end="2261">1. Physical</strong></td>
+                                                <td data-col-size="md" data-start="2262" data-end="2335">Transmission of
+                                                    raw bits over physical media. Devices: Hub, Cables.</td>
+                                            </tr>
+                                            <tr data-start="2336" data-end="2427">
+                                                <td data-start="2336" data-end="2355" data-col-size="sm"><strong data-start="2338" data-end="2354">2. Data Link</strong></td>
+                                                <td data-col-size="md" data-start="2355" data-end="2427">Error
+                                                    detection, MAC addressing, frames. Devices: Switch, Bridge.</td>
+                                            </tr>
+                                            <tr data-start="2428" data-end="2519">
+                                                <td data-start="2428" data-end="2447" data-col-size="sm"><strong data-start="2430" data-end="2444">3. Network</strong></td>
+                                                <td data-col-size="md" data-start="2447" data-end="2519">Routing and
+                                                    logical addressing (IP). Device: Router.</td>
+                                            </tr>
+                                            <tr data-start="2520" data-end="2610">
+                                                <td data-start="2520" data-end="2539" data-col-size="sm"><strong data-start="2522" data-end="2538">4. Transport</strong></td>
+                                                <td data-col-size="md" data-start="2539" data-end="2610">Reliable data
+                                                    transfer, flow control, segmentation.</td>
+                                            </tr>
+                                            <tr data-start="2611" data-end="2701">
+                                                <td data-start="2611" data-end="2630" data-col-size="sm"><strong data-start="2613" data-end="2627">5. Session</strong></td>
+                                                <td data-col-size="md" data-start="2630" data-end="2701">Manages
+                                                    sessions between applications, e.g., login sessions.</td>
+                                            </tr>
+                                            <tr data-start="2702" data-end="2793">
+                                                <td data-start="2702" data-end="2724" data-col-size="sm"><strong data-start="2704" data-end="2723">6. Presentation</strong></td>
+                                                <td data-col-size="md" data-start="2724" data-end="2793">Data
+                                                    translation, encryption, compression, formatting.</td>
+                                            </tr>
+                                            <tr data-start="2794" data-end="2885">
+                                                <td data-start="2794" data-end="2815" data-col-size="sm"><strong data-start="2796" data-end="2814">7. Application</strong></td>
+                                                <td data-col-size="md" data-start="2815" data-end="2885">Provides
+                                                    network services to end-users, e.g., HTTP, FTP, DNS.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <ul data-start="2887" data-end="2987">
+                                <li data-start="2887" data-end="2987">
+                                    <p data-start="2889" data-end="2987">Each layer has a specific function that ensures
+                                        smooth communication from source to destination.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2989" data-end="2992">
+                            <h3 data-start="2994" data-end="3014"><strong data-start="2998" data-end="3012">16.
+                                    TCP/IP</strong></h3>
+                            <ul data-start="3015" data-end="3385">
+                                <li data-start="3015" data-end="3107">
+                                    <p data-start="3017" data-end="3107">TCP/IP is a suite of communication protocols
+                                        used for the Internet and private networks.</p>
+                                </li>
+                                <li data-start="3108" data-end="3173">
+                                    <p data-start="3110" data-end="3173">Consists of 4 layers: Link, Internet,
+                                        Transport, Application.</p>
+                                </li>
+                                <li data-start="3174" data-end="3251">
+                                    <p data-start="3176" data-end="3251"><strong data-start="3176" data-end="3183">TCP</strong> ensures reliable delivery; <strong data-start="3211" data-end="3217">IP</strong> handles addressing and
+                                        routing.</p>
+                                </li>
+                                <li data-start="3252" data-end="3300">
+                                    <p data-start="3254" data-end="3300">Other protocols: UDP, ICMP, HTTP, FTP, SMTP.
+                                    </p>
+                                </li>
+                                <li data-start="3301" data-end="3385">
+                                    <p data-start="3303" data-end="3385">TCP/IP allows heterogeneous networks to
+                                        interconnect and communicate seamlessly.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3387" data-end="3390">
+                            <h3 data-start="3392" data-end="3422"><strong data-start="3396" data-end="3420">17. Topology
+                                    &amp; Types</strong></h3>
+                            <ul data-start="3423" data-end="3496">
+                                <li data-start="3423" data-end="3496">
+                                    <p data-start="3425" data-end="3496"><strong data-start="3425" data-end="3438">Topology:</strong> The physical or logical arrangement of
+                                        network devices.</p>
+                                </li>
+                            </ul>
+                            <div class="TyagGW_tableContainer">
+                                <div tabindex="-1" class="group TyagGW_tableWrapper flex flex-col-reverse w-fit">
+                                    <table data-start="3498" data-end="4248" class="w-fit min-w-(--thread-content-width)">
+                                        <thead data-start="3498" data-end="3590">
+                                            <tr data-start="3498" data-end="3590">
+                                                <th data-start="3498" data-end="3511" data-col-size="sm">Type</th>
+                                                <th data-start="3511" data-end="3590" data-col-size="md">Description
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-start="3683" data-end="4248">
+                                            <tr data-start="3683" data-end="3779">
+                                                <td data-start="3683" data-end="3697" data-col-size="sm"><strong data-start="3685" data-end="3692">Bus</strong></td>
+                                                <td data-col-size="md" data-start="3697" data-end="3779">Single backbone
+                                                    cable, all devices connected. Easy to set up, but fault-prone.</td>
+                                            </tr>
+                                            <tr data-start="3780" data-end="3873">
+                                                <td data-start="3780" data-end="3794" data-col-size="sm"><strong data-start="3782" data-end="3790">Star</strong></td>
+                                                <td data-col-size="md" data-start="3794" data-end="3873">Devices
+                                                    connected to a central hub/switch. Reliable, easy troubleshooting.
+                                                </td>
+                                            </tr>
+                                            <tr data-start="3874" data-end="3967">
+                                                <td data-start="3874" data-end="3888" data-col-size="sm"><strong data-start="3876" data-end="3884">Ring</strong></td>
+                                                <td data-col-size="md" data-start="3888" data-end="3967">Devices
+                                                    connected in a circular manner. Data flows in one direction.</td>
+                                            </tr>
+                                            <tr data-start="3968" data-end="4060">
+                                                <td data-start="3968" data-end="3982" data-col-size="sm"><strong data-start="3970" data-end="3978">Mesh</strong></td>
+                                                <td data-col-size="md" data-start="3982" data-end="4060">Devices
+                                                    interconnected with multiple paths. Very reliable but expensive.
+                                                </td>
+                                            </tr>
+                                            <tr data-start="4061" data-end="4154">
+                                                <td data-start="4061" data-end="4075" data-col-size="sm"><strong data-start="4063" data-end="4071">Tree</strong></td>
+                                                <td data-col-size="md" data-start="4075" data-end="4154">Hierarchical
+                                                    combination of star and bus topologies.</td>
+                                            </tr>
+                                            <tr data-start="4155" data-end="4248">
+                                                <td data-start="4155" data-end="4169" data-col-size="sm"><strong data-start="4157" data-end="4167">Hybrid</strong></td>
+                                                <td data-col-size="md" data-start="4169" data-end="4248">Combination of
+                                                    two or more topologies for flexibility.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr data-start="4315" data-end="4318">
+                            <h3 data-start="4320" data-end="4352"><strong data-start="4324" data-end="4350">18. Types of
+                                    Passwords</strong></h3>
+                            <ul data-start="4353" data-end="4864">
+                                <li data-start="4353" data-end="4423">
+                                    <p data-start="4355" data-end="4423"><strong data-start="4355" data-end="4372">Alphanumeric:</strong> Contains letters and numbers.
+                                        Example: Hema1234.</p>
+                                </li>
+                                <li data-start="4424" data-end="4517">
+                                    <p data-start="4426" data-end="4517"><strong data-start="4426" data-end="4456">Complex/Special Character:</strong> Includes symbols,
+                                        numbers, and letters. Example: H3m@2026.</p>
+                                </li>
+                                <li data-start="4518" data-end="4624">
+                                    <p data-start="4520" data-end="4624"><strong data-start="4520" data-end="4536">Passphrases:</strong> Longer phrases that are easy to
+                                        remember but strong. Example: “MyBabyDueInMarch2026!”</p>
+                                </li>
+                                <li data-start="4625" data-end="4711">
+                                    <p data-start="4627" data-end="4711"><strong data-start="4627" data-end="4656">One-Time Passwords (OTP):</strong> Temporary password valid
+                                        for a single login/session.</p>
+                                </li>
+                                <li data-start="4712" data-end="4792">
+                                    <p data-start="4714" data-end="4792"><strong data-start="4714" data-end="4738">Biometric Passwords:</strong> Uses fingerprint, face, or
+                                        iris for authentication.</p>
+                                </li>
+                                <li data-start="4794" data-end="4864">
+                                    <p data-start="4796" data-end="4864">Strong passwords prevent unauthorized access
+                                        and improve security.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="4866" data-end="4869">
+                            <h3 data-start="4871" data-end="4931"><strong data-start="4875" data-end="4929">19. Remote
+                                    Control Authentication Protocol &amp; Types</strong></h3>
+                            <ul data-start="4932" data-end="5400">
+                                <li data-start="4932" data-end="5007">
+                                    <p data-start="4934" data-end="5007">Protocols allow secure access to network
+                                        devices from remote locations.</p>
+                                </li>
+                                <li data-start="5008" data-end="5314">
+                                    <p data-start="5010" data-end="5022"><strong data-start="5010" data-end="5020">Types:</strong></p>
+                                    <ul data-start="5025" data-end="5314">
+                                        <li data-start="5025" data-end="5086">
+                                            <p data-start="5027" data-end="5086"><strong data-start="5027" data-end="5061">RDP (Remote Desktop Protocol):</strong> Windows
+                                                remote access.</p>
+                                        </li>
+                                        <li data-start="5089" data-end="5151">
+                                            <p data-start="5091" data-end="5151"><strong data-start="5091" data-end="5102">Telnet:</strong> Older remote access, unencrypted
+                                                (not secure).</p>
+                                        </li>
+                                        <li data-start="5154" data-end="5229">
+                                            <p data-start="5156" data-end="5229"><strong data-start="5156" data-end="5179">SSH (Secure Shell):</strong> Encrypted remote access
+                                                for Linux/Unix devices.</p>
+                                        </li>
+                                        <li data-start="5232" data-end="5314">
+                                            <p data-start="5234" data-end="5314"><strong data-start="5234" data-end="5268">VPN (Virtual Private Network):</strong> Secure
+                                                network tunneling for remote access.</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-start="5315" data-end="5400">
+                                    <p data-start="5317" data-end="5400">Proper authentication ensures only authorized
+                                        users can control devices remotely.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="5402" data-end="5405">
+                            <h3 data-start="5407" data-end="5427"><strong data-start="5411" data-end="5425">20.
+                                    Telnet</strong></h3>
+                            <ul data-start="5428" data-end="5746">
+                                <li data-start="5428" data-end="5493">
+                                    <p data-start="5430" data-end="5493">Telnet is a network protocol used to access
+                                        devices remotely.</p>
+                                </li>
+                                <li data-start="5494" data-end="5535">
+                                    <p data-start="5496" data-end="5535">Operates over TCP, typically port 23.</p>
+                                </li>
+                                <li data-start="5536" data-end="5614">
+                                    <p data-start="5538" data-end="5614">Provides command-line access to network devices
+                                        like routers and switches.</p>
+                                </li>
+                                <li data-start="5615" data-end="5686">
+                                    <p data-start="5617" data-end="5686">Sends data in plain text, making it insecure
+                                        for sensitive systems.</p>
+                                </li>
+                                <li data-start="5687" data-end="5746">
+                                    <p data-start="5689" data-end="5746">Mostly replaced by SSH due to security
+                                        vulnerabilities.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="5748" data-end="5751">
+                            <h3 data-start="5753" data-end="5785"><strong data-start="5757" data-end="5783">21. SSH
+                                    (Secure Shell)</strong></h3>
+                            <ul data-start="5786" data-end="6059">
+                                <li data-start="5786" data-end="5829">
+                                    <p data-start="5788" data-end="5829">SSH is a secure replacement for Telnet.</p>
+                                </li>
+                                <li data-start="5830" data-end="5892">
+                                    <p data-start="5832" data-end="5892">Provides encrypted communication over an
+                                        insecure network.</p>
+                                </li>
+                                <li data-start="5893" data-end="5921">
+                                    <p data-start="5895" data-end="5921">Operates on TCP port 22.</p>
+                                </li>
+                                <li data-start="5922" data-end="5984">
+                                    <p data-start="5924" data-end="5984">Allows remote login, command execution, and
+                                        file transfer.</p>
+                                </li>
+                                <li data-start="5985" data-end="6059">
+                                    <p data-start="5987" data-end="6059">Widely used in Linux/Unix administration for
+                                        security and reliability.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="6061" data-end="6064">
+
+                        </div>
+                    </div>
+                
+                    <div class="markdown prose dark:prose-invert w-full wrap-break-word light markdown-new-styling">
+
+<h3 data-start="80" data-end="109"><strong data-start="84" data-end="107">22. Routing &amp; Types</strong></h3>
+<ul data-start="110" data-end="671">
+<li data-start="110" data-end="194">
+<p data-start="112" data-end="194">Routing is the process of selecting paths in a network for sending data packets.</p>
+</li>
+<li data-start="195" data-end="276">
+<p data-start="197" data-end="276">Routers use routing tables and protocols to determine the best path for data.</p>
+</li>
+<li data-start="277" data-end="583">
+<p data-start="279" data-end="302"><strong data-start="279" data-end="300">Types of Routing:</strong></p>
+<ol data-start="305" data-end="583">
+<li data-start="305" data-end="386">
+<strong data-start="308" data-end="327">Static Routing:</strong><p data-start="308" data-end="386"> Manual configuration of routes. Simple but not scalable.</p>
+</li>
+<li data-start="389" data-end="488">
+<strong data-start="392" data-end="412">Dynamic Routing:</strong><p data-start="392" data-end="488"> Routers automatically update paths using protocols like RIP, OSPF, EIGRP.</p>
+</li>
+<li data-start="491" data-end="583">
+<strong data-start="494" data-end="514">Default Routing:</strong><p data-start="494" data-end="583"> Single route used when no specific route exists for a destination.</p>
+</li>
+</ol>
+</li>
+<li data-start="584" data-end="671">
+<p data-start="586" data-end="671">Proper routing ensures efficient, fast, and reliable communication across networks.</p>
+</li>
+</ul>
+<hr data-start="673" data-end="676">
+<h3 data-start="678" data-end="726"><strong data-start="682" data-end="724">23. RIP (Routing Information Protocol)</strong></h3>
+<ul data-start="727" data-end="1054">
+<li data-start="727" data-end="788">
+<p data-start="729" data-end="788">RIP is a dynamic routing protocol used in small networks.</p>
+</li>
+<li data-start="789" data-end="872">
+<p data-start="791" data-end="872">Uses <strong data-start="796" data-end="809">hop count</strong> as a metric to determine the best path; max 15 hops allowed.</p>
+</li>
+<li data-start="873" data-end="936">
+<p data-start="875" data-end="936">Routers periodically share routing tables every 30 seconds.</p>
+</li>
+<li data-start="937" data-end="1021">
+<p data-start="939" data-end="1021">Simple to configure but not suitable for large networks due to slow convergence.</p>
+</li>
+<li data-start="1022" data-end="1054">
+<p data-start="1024" data-end="1054">Operates using UDP port 520.</p>
+</li>
+</ul>
+<hr data-start="1056" data-end="1059">
+<h3 data-start="1061" data-end="1125"><strong data-start="1065" data-end="1123">24. EIGRP (Enhanced Interior Gateway Routing Protocol)</strong></h3>
+<ul data-start="1126" data-end="1476">
+<li data-start="1126" data-end="1186">
+<p data-start="1128" data-end="1186">EIGRP is an advanced Cisco proprietary routing protocol.</p>
+</li>
+<li data-start="1187" data-end="1268">
+<p data-start="1189" data-end="1268">Uses a combination of <strong data-start="1211" data-end="1254">bandwidth, delay, load, and reliability</strong> as metrics.</p>
+</li>
+<li data-start="1269" data-end="1361">
+<p data-start="1271" data-end="1361">Supports faster convergence and loop-free paths using Diffusing Update Algorithm (DUAL).</p>
+</li>
+<li data-start="1362" data-end="1404">
+<p data-start="1364" data-end="1404">Works for both IPv4 and IPv6 networks.</p>
+</li>
+<li data-start="1405" data-end="1476">
+<p data-start="1407" data-end="1476">Preferred in medium to large enterprise networks due to efficiency.</p>
+</li>
+</ul>
+<hr data-start="1478" data-end="1481">
+<h3 data-start="1483" data-end="1528"><strong data-start="1487" data-end="1526">25. OSPF (Open Shortest Path First)</strong></h3>
+<ul data-start="1529" data-end="1830">
+<li data-start="1529" data-end="1583">
+<p data-start="1531" data-end="1583">OSPF is a widely used link-state routing protocol.</p>
+</li>
+<li data-start="1584" data-end="1654">
+<p data-start="1586" data-end="1654">Uses <strong data-start="1591" data-end="1615">Dijkstra’s algorithm</strong> to calculate the shortest path tree.</p>
+</li>
+<li data-start="1655" data-end="1726">
+<p data-start="1657" data-end="1726">Sends updates only when network topology changes, saving bandwidth.</p>
+</li>
+<li data-start="1727" data-end="1795">
+<p data-start="1729" data-end="1795">Suitable for large, hierarchical networks with multiple routers.</p>
+</li>
+<li data-start="1796" data-end="1830">
+<p data-start="1798" data-end="1830">Operates using IP protocol 89.</p>
+</li>
+</ul>
+<hr data-start="1832" data-end="1835">
+<h3 data-start="1837" data-end="1880"><strong data-start="1841" data-end="1878">26. BGP (Border Gateway Protocol)</strong></h3>
+<ul data-start="1881" data-end="2216">
+<li data-start="1881" data-end="1946">
+<p data-start="1883" data-end="1946">BGP is an inter-domain routing protocol used on the Internet.</p>
+</li>
+<li data-start="1947" data-end="2030">
+<p data-start="1949" data-end="2030">Known as the “protocol of the Internet” for connecting Autonomous Systems (AS).</p>
+</li>
+<li data-start="2031" data-end="2090">
+<p data-start="2033" data-end="2090">Uses <strong data-start="2038" data-end="2062">path vector protocol</strong> to determine best routes.</p>
+</li>
+<li data-start="2091" data-end="2145">
+<p data-start="2093" data-end="2145">Supports policy-based routing and loop prevention.</p>
+</li>
+<li data-start="2146" data-end="2216">
+<p data-start="2148" data-end="2216">Operates over TCP port 179, making it reliable for global routing.</p>
+</li>
+</ul>
+<hr data-start="2218" data-end="2221">
+<h3 data-start="2223" data-end="2251"><strong data-start="2227" data-end="2249">27. Straight Cable</strong></h3>
+<ul data-start="2252" data-end="2564">
+<li data-start="2252" data-end="2329">
+<p data-start="2254" data-end="2329">Used to connect <strong data-start="2270" data-end="2291">different devices</strong> like a computer to a switch/router.</p>
+</li>
+<li data-start="2330" data-end="2394">
+<p data-start="2332" data-end="2394">Pins are wired <strong data-start="2347" data-end="2354">1:1</strong> (Pin 1 → Pin 1, Pin 2 → Pin 2, etc.).</p>
+</li>
+<li data-start="2395" data-end="2448">
+<p data-start="2397" data-end="2448">Common for LAN connections to networking devices.</p>
+</li>
+<li data-start="2449" data-end="2495">
+<p data-start="2451" data-end="2495">Supports fast Ethernet speeds efficiently.</p>
+</li>
+<li data-start="2496" data-end="2564">
+<p data-start="2498" data-end="2564">Not used for connecting similar devices (like switch-to-switch).</p>
+</li>
+</ul>
+<hr data-start="2566" data-end="2569">
+<h3 data-start="2571" data-end="2600"><strong data-start="2575" data-end="2598">28. Crossover Cable</strong></h3>
+<ul data-start="2601" data-end="2966">
+<li data-start="2601" data-end="2688">
+<p data-start="2603" data-end="2688">Used to connect <strong data-start="2619" data-end="2638">similar devices</strong>, like switch-to-switch or computer-to-computer.</p>
+</li>
+<li data-start="2689" data-end="2763">
+<p data-start="2691" data-end="2763">Transmit and receive pairs are swapped (Pin 1 ↔ Pin 3, Pin 2 ↔ Pin 6).</p>
+</li>
+<li data-start="2764" data-end="2838">
+<p data-start="2766" data-end="2838">Allows devices to communicate directly without an intermediary device.</p>
+</li>
+<li data-start="2839" data-end="2890">
+<p data-start="2841" data-end="2890">Ideal for testing and peer-to-peer connections.</p>
+</li>
+<li data-start="2891" data-end="2966">
+<p data-start="2893" data-end="2966">Can also be replaced by Auto-MDI/MDIX-enabled ports on modern switches.</p>
+</li>
+</ul>
+<hr data-start="2968" data-end="2971">
+<h3 data-start="2973" data-end="3001"><strong data-start="2977" data-end="2999">29. Rollover Cable</strong></h3>
+<ul data-start="3002" data-end="3332">
+<li data-start="3002" data-end="3072">
+<p data-start="3004" data-end="3072">Used primarily to connect a PC to a router or switch console port.</p>
+</li>
+<li data-start="3073" data-end="3132">
+<p data-start="3075" data-end="3132">Pins are reversed (Pin 1 ↔ Pin 8, Pin 2 ↔ Pin 7, etc.).</p>
+</li>
+<li data-start="3133" data-end="3175">
+<p data-start="3135" data-end="3175">Also called a <strong data-start="3149" data-end="3172">Cisco console cable</strong>.</p>
+</li>
+<li data-start="3176" data-end="3260">
+<p data-start="3178" data-end="3260">Allows device configuration using terminal software like PuTTY or HyperTerminal.</p>
+</li>
+<li data-start="3261" data-end="3332">
+<p data-start="3263" data-end="3332">Not used for general network traffic; only for management purposes.</p>
+</li>
+</ul>
+<hr data-start="3334" data-end="3337">
+<h3 data-start="3339" data-end="3395"><strong data-start="3343" data-end="3393">30. DHCP (Dynamic Host Configuration Protocol)</strong></h3>
+<ul data-start="3396" data-end="3763">
+<li data-start="3396" data-end="3487">
+<p data-start="3398" data-end="3487">DHCP automatically assigns <strong data-start="3425" data-end="3441">IP addresses</strong> and other network configuration to devices.</p>
+</li>
+<li data-start="3488" data-end="3545">
+<p data-start="3490" data-end="3545">Operates using UDP ports 67 (server) and 68 (client).</p>
+</li>
+<li data-start="3546" data-end="3620">
+<p data-start="3548" data-end="3620">Reduces manual configuration errors and simplifies network management.</p>
+</li>
+<li data-start="3621" data-end="3696">
+<p data-start="3623" data-end="3696">Can provide IP address lease times, DNS server, gateway info, and more.</p>
+</li>
+<li data-start="3697" data-end="3763">
+<p data-start="3699" data-end="3763">Essential for large networks with frequently changing devices.</p>
+</li>
+</ul>
+<hr data-start="3765" data-end="3768">
+
+
+</div>
+                
+                </div>
+
+            </div>
         </ol>
     </div>
 </body>
