@@ -18,7 +18,7 @@
         }
 
         h4 {
-            color: #8a2ae4;
+            color: #55A2F3;
             font-size: 16px;
             margin-bottom: 15px;
             line-height: 24px;
@@ -38,9 +38,13 @@
             /* list-style-position: inside; */
         }
 
+        ol ul p {
+            display: inline-block;
+        }
+
         ::marker,
         ol>li {
-            color: #8a2ae4;
+            color: #68ff3c;
         }
 
         li {
@@ -63,12 +67,13 @@
             color: #ff6ecd;
         }
 
-        .markdown h3 {
+        .markdown h3,
+        .markdown h2 {
             color: #68ff3c;
+            font-size: 20px;
         }
 
         code h2 {
-            font-size: 16px;
             margin: 0 0 5px 0;
         }
 
@@ -159,6 +164,10 @@
         h2 {
             color: #ff00ff;
         }
+
+        p>strong {
+            color: #21fdff;
+        }
     </style>
 </head>
 
@@ -196,6 +205,8 @@
             <li>Crossover Cable</li>
             <li>Rollover Cable</li>
             <li>DHCP</li>
+            <li>NAT</li>
+            <li>NAT types</li>
         </ol>
         <ol>
             <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">
@@ -931,18 +942,86 @@
                                 <ol data-start="305" data-end="583">
                                     <li data-start="305" data-end="386">
                                         <strong data-start="308" data-end="327">Static Routing:</strong>
-                                        <p data-start="308" data-end="386"> Manual configuration of routes. Simple but
-                                            not scalable.</p>
+                                        <ul data-start="98" data-end="446">
+                                            <li data-start="98" data-end="188">
+                                                <p data-start="101" data-end="188">Static routing means routes are
+                                                    <strong data-start="133" data-end="156">manually configured</strong>
+                                                    by the network administrator.
+                                                </p>
+                                            </li>
+                                            <li data-start="189" data-end="269">
+                                                <p data-start="192" data-end="269">The router does not change the path
+                                                    automatically when the network changes.</p>
+                                            </li>
+                                            <li data-start="270" data-end="330">
+                                                <p data-start="273" data-end="330">It is simple, secure, and uses
+                                                    <strong data-start="304" data-end="327">less CPU and
+                                                        memory</strong>.
+                                                </p>
+                                            </li>
+                                            <li data-start="331" data-end="387">
+                                                <p data-start="334" data-end="387">Best suited for <strong
+                                                        data-start="350" data-end="368">small networks</strong> with few
+                                                    routes.</p>
+                                            </li>
+                                            <li data-start="388" data-end="446">
+                                                <p data-start="391" data-end="446">If a link fails, the admin must
+                                                    manually fix the route.</p>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li data-start="389" data-end="488">
                                         <strong data-start="392" data-end="412">Dynamic Routing:</strong>
-                                        <p data-start="392" data-end="488"> Routers automatically update paths using
-                                            protocols like RIP, OSPF, EIGRP.</p>
+                                        <ul data-start="478" data-end="768">
+                                            <li data-start="478" data-end="567">
+                                                <p data-start="481" data-end="567">Dynamic routing uses <strong
+                                                        data-start="502" data-end="523">routing protocols</strong> to
+                                                    learn and update routes automatically.</p>
+                                            </li>
+                                            <li data-start="568" data-end="623">
+                                                <p data-start="571" data-end="623">Routers share routing information
+                                                    with each other.</p>
+                                            </li>
+                                            <li data-start="624" data-end="687">
+                                                <p data-start="627" data-end="687">It adapts automatically when the
+                                                    network topology changes.</p>
+                                            </li>
+                                            <li data-start="688" data-end="732">
+                                                <p data-start="691" data-end="732">Used in <strong data-start="699"
+                                                        data-end="729">large and complex networks</strong>.</p>
+                                            </li>
+                                            <li data-start="733" data-end="768">
+                                                <p data-start="736" data-end="768">Examples: RIP, OSPF, EIGRP, BGP.</p>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li data-start="491" data-end="583">
                                         <strong data-start="494" data-end="514">Default Routing:</strong>
-                                        <p data-start="494" data-end="583"> Single route used when no specific route
-                                            exists for a destination.</p>
+                                        <ul data-start="800" data-end="1098">
+                                            <li data-start="800" data-end="873">
+                                                <p data-start="803" data-end="873">Default routing uses a <strong
+                                                        data-start="826" data-end="842">single route</strong> to send
+                                                    all unknown traffic.</p>
+                                            </li>
+                                            <li data-start="874" data-end="937">
+                                                <p data-start="877" data-end="937">It is used when no specific route
+                                                    matches the destination.</p>
+                                            </li>
+                                            <li data-start="938" data-end="996">
+                                                <p data-start="941" data-end="996">Commonly used in <strong
+                                                        data-start="958" data-end="993">small networks and edge
+                                                        routers</strong>.</p>
+                                            </li>
+                                            <li data-start="997" data-end="1041">
+                                                <p data-start="1000" data-end="1041">Simplifies routing table
+                                                    configuration.</p>
+                                            </li>
+                                            <li data-start="1042" data-end="1098">
+                                                <p data-start="1045" data-end="1098">Usually points to the <strong
+                                                        data-start="1067" data-end="1081">ISP router</strong> or main
+                                                    gateway.</p>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ol>
                             </li>
@@ -1151,6 +1230,105 @@
                             </li>
                         </ul>
                         <hr data-start="3765" data-end="3768">
+
+                        <h3 data-start="125" data-end="173">31. What is NAT (Network Address Translation)?</h3>
+                        <ul data-start="175" data-end="639">
+                            <li data-start="175" data-end="293">
+                                <p data-start="177" data-end="293">NAT is a method used in routers to translate <strong
+                                        data-start="222" data-end="246">private IP addresses</strong> into <strong
+                                        data-start="252" data-end="275">public IP addresses</strong> and vice versa.</p>
+                            </li>
+                            <li data-start="294" data-end="394">
+                                <p data-start="296" data-end="394">It allows many devices in a local network (LAN) to
+                                    use <strong data-start="351" data-end="368">one public IP</strong> to access the
+                                    Internet.</p>
+                            </li>
+                            <li data-start="395" data-end="470">
+                                <p data-start="397" data-end="470">NAT helps in <strong data-start="410"
+                                        data-end="435">saving IPv4 addresses</strong>, because public IPs are limited.
+                                </p>
+                            </li>
+                            <li data-start="471" data-end="567">
+                                <p data-start="473" data-end="567">It also adds a layer of <strong data-start="497"
+                                        data-end="509">security</strong> by hiding internal IP addresses from the
+                                    outside world.</p>
+                            </li>
+                            <li data-start="568" data-end="639">
+                                <p data-start="570" data-end="639">NAT works mainly at the <strong data-start="594"
+                                        data-end="621">Network Layer (Layer 3)</strong> of the OSI model.</p>
+                            </li>
+                        </ul>
+                        <hr data-start="641" data-end="644">
+                        <h3 data-start="646" data-end="669">32. Main Types of NAT?</h3>
+                        <h3 data-start="671" data-end="691">1️⃣ Static NAT</h3>
+                        <ul data-start="692" data-end="978">
+                            <li data-start="692" data-end="749">
+                                <p data-start="694" data-end="749">Maps <strong data-start="699" data-end="746">one
+                                        private IP to one public IP permanently</strong>.</p>
+                            </li>
+                            <li data-start="750" data-end="780">
+                                <p data-start="752" data-end="780">The mapping never changes.</p>
+                            </li>
+                            <li data-start="781" data-end="862">
+                                <p data-start="783" data-end="862">Used when a server inside the LAN must always be
+                                    reachable from the Internet.</p>
+                            </li>
+                            <li data-start="863" data-end="910">
+                                <p data-start="865" data-end="910">Example: A web server with fixed public IP.</p>
+                            </li>
+                            <li data-start="911" data-end="978">
+                                <p data-start="913" data-end="978">Not suitable for large networks because it needs many
+                                    public IPs.</p>
+                            </li>
+                        </ul>
+                        <hr data-start="980" data-end="983">
+                        <h3 data-start="985" data-end="1006">2️⃣ Dynamic NAT</h3>
+                        <ul data-start="1007" data-end="1301">
+                            <li data-start="1007" data-end="1068">
+                                <p data-start="1009" data-end="1068">Maps private IPs to a <strong data-start="1031"
+                                        data-end="1053">pool of public IPs</strong> dynamically.</p>
+                            </li>
+                            <li data-start="1069" data-end="1142">
+                                <p data-start="1071" data-end="1142">When a device accesses the Internet, it gets a
+                                    public IP temporarily.</p>
+                            </li>
+                            <li data-start="1143" data-end="1199">
+                                <p data-start="1145" data-end="1199">Once the session ends, the IP goes back to the
+                                    pool.</p>
+                            </li>
+                            <li data-start="1200" data-end="1244">
+                                <p data-start="1202" data-end="1244">Saves public IPs compared to Static NAT.</p>
+                            </li>
+                            <li data-start="1245" data-end="1301">
+                                <p data-start="1247" data-end="1301">Still limited by the number of public IPs in the
+                                    pool.</p>
+                            </li>
+                        </ul>
+                        <hr data-start="1303" data-end="1306">
+                        <h3 data-start="1308" data-end="1363">3️⃣ PAT (Port Address Translation) / NAT Overload</h3>
+                        <ul data-start="1364" data-end="1646">
+                            <li data-start="1364" data-end="1442">
+                                <p data-start="1366" data-end="1442">Many private IPs use <strong data-start="1387"
+                                        data-end="1411">one single public IP</strong> with different port numbers.</p>
+                            </li>
+                            <li data-start="1443" data-end="1497">
+                                <p data-start="1445" data-end="1497">Most common type of NAT used in homes and offices.
+                                </p>
+                            </li>
+                            <li data-start="1498" data-end="1555">
+                                <p data-start="1500" data-end="1555">Router tracks connections using <strong
+                                        data-start="1532" data-end="1552">IP + Port number</strong>.</p>
+                            </li>
+                            <li data-start="1556" data-end="1611">
+                                <p data-start="1558" data-end="1611">Allows thousands of devices to share one public IP.
+                                </p>
+                            </li>
+                            <li data-start="1612" data-end="1646">
+                                <p data-start="1614" data-end="1646">Also called <strong data-start="1626"
+                                        data-end="1645">NAT Overloading</strong>.</p>
+                            </li>
+                        </ul>
+                        <hr data-start="1648" data-end="1651">
 
 
                     </div>
