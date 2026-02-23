@@ -168,6 +168,9 @@
         p>strong {
             color: #21fdff;
         }
+        button.flex.gap-1.items-center.select-none.rounded-full{
+            display: none;
+        }
     </style>
 </head>
 
@@ -207,6 +210,29 @@
             <li>DHCP</li>
             <li>NAT</li>
             <li>NAT types</li>
+            <li>VPN</li>
+            <li>Firewall</li>
+            <li>IP V6</li>
+            <li>IP V6 types</li>
+            <li>NTP</li>
+            <li>Reference clock</li>
+            <li>NTP Hierarchy</li>
+            <li>Primary server</li>
+            <li>Secondary server</li>
+            <li>Wireless</li>
+            <li>Network Fundamental</li>
+            <li>Wireless Topology</li>
+            <li>Wireless Topology Types</li>
+            <li>Infrastructure mode</li>
+            <li>BSS ID</li>
+            <li>Service Set Identifier (SSID)</li>
+            <li>Distribution system</li>
+            <li>Extended service set</li>
+            <li>Independent Basice service set (or) Adhoc mode</li>
+            <li>AP Architecture</li>
+            <li>Autonomous AP Architecture</li>
+            <li>Wireless Aurthentication and types </li>
+            <li>Wireless encryption method</li>
         </ol>
         <ol>
             <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">
@@ -631,7 +657,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="sticky h-0 select-none end-(--thread-content-margin) self-end"></div>
+                                   
                                 </div>
                             </div>
                             <ul data-start="1944" data-end="2021">
@@ -1328,14 +1354,518 @@
                                         data-end="1645">NAT Overloading</strong>.</p>
                             </li>
                         </ul>
-                        <hr data-start="1648" data-end="1651">
-
+                        <div class="markdown prose dark:prose-invert w-full wrap-break-word light markdown-new-styling">
+                            <hr data-start="160" data-end="163">
+                            <h3 data-start="165" data-end="199">33) VPN (Virtual Private Network)</h3>
+                            <ul data-start="201" data-end="496">
+                                <li data-start="201" data-end="267">
+                                    <p data-start="203" data-end="267">VPN na public internet mela secure private tunnel
+                                        create pannum.</p>
+                                </li>
+                                <li data-start="268" data-end="333">
+                                    <p data-start="270" data-end="333">Data encrypt panni send pannum, so hacker read
+                                        panna mudiyathu.</p>
+                                </li>
+                                <li data-start="334" data-end="393">
+                                    <p data-start="336" data-end="393">Remote users office network connect panna use
+                                        pannuvanga.</p>
+                                </li>
+                                <li data-start="394" data-end="457">
+                                    <p data-start="396" data-end="457">Site-to-Site VPN branch offices connect panna use
+                                        pannuvanga.</p>
+                                </li>
+                                <li data-start="458" data-end="496">
+                                    <p data-start="460" data-end="496">IPSec, SSL/TLS protocols use pannum.</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="498" data-end="510">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="512"
+                                data-end="611"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>User PC ---- Internet ---- VPN Tunnel ---- Office Network</span><br><span>        (Encrypted Communication)</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="613" data-end="616">
+                            <h3 data-start="618" data-end="631">34) Firewall</h3>
+                            <ul data-start="633" data-end="830">
+                                <li data-start="633" data-end="668">
+                                    <p data-start="635" data-end="668">Firewall network security device.</p>
+                                </li>
+                                <li data-start="669" data-end="713">
+                                    <p data-start="671" data-end="713">Incoming &amp; outgoing traffic filter pannum.
+                                    </p>
+                                </li>
+                                <li data-start="714" data-end="752">
+                                    <p data-start="716" data-end="752">Rules base la allow or block pannum.</p>
+                                </li>
+                                <li data-start="753" data-end="792">
+                                    <p data-start="755" data-end="792">Hardware or Software firewall irukum.</p>
+                                </li>
+                                <li data-start="793" data-end="830">
+                                    <p data-start="795" data-end="830">Unauthorized access prevent pannum.</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="832" data-end="844">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="846"
+                                data-end="902"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>Internet ---- [ FIREWALL ] ---- Internal Network</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="904" data-end="907">
+                            <h3 data-start="909" data-end="945">VPN vs Firewall (Difference Table)</h3>
+                            <div class="TyagGW_tableContainer">
+                                <div tabindex="-1" class="group TyagGW_tableWrapper flex flex-col-reverse w-fit">
+                                    <table data-start="947" data-end="1184"
+                                        class="w-fit min-w-(--thread-content-width)">
+                                        <thead data-start="947" data-end="975">
+                                            <tr data-start="947" data-end="975">
+                                                <th data-start="947" data-end="957" data-col-size="sm" class="">Feature
+                                                </th>
+                                                <th data-start="957" data-end="963" data-col-size="sm" class="">VPN</th>
+                                                <th data-start="963" data-end="975" data-col-size="sm" class="">Firewall
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-start="1008" data-end="1184">
+                                            <tr data-start="1008" data-end="1055">
+                                                <td data-start="1008" data-end="1018" data-col-size="sm">Purpose</td>
+                                                <td data-col-size="sm" data-start="1018" data-end="1034">Secure tunnel
+                                                </td>
+                                                <td data-col-size="sm" data-start="1034" data-end="1055">Traffic
+                                                    filtering</td>
+                                            </tr>
+                                            <tr data-start="1056" data-end="1094">
+                                                <td data-start="1056" data-end="1069" data-col-size="sm">Encryption</td>
+                                                <td data-col-size="sm" data-start="1069" data-end="1075">Yes</td>
+                                                <td data-col-size="sm" data-start="1075" data-end="1094">No (by default)
+                                                </td>
+                                            </tr>
+                                            <tr data-start="1095" data-end="1139">
+                                                <td data-start="1095" data-end="1106" data-col-size="sm">Location</td>
+                                                <td data-col-size="sm" data-start="1106" data-end="1119">End-to-End</td>
+                                                <td data-col-size="sm" data-start="1119" data-end="1139">Network
+                                                    boundary</td>
+                                            </tr>
+                                            <tr data-start="1140" data-end="1184">
+                                                <td data-start="1140" data-end="1148" data-col-size="sm">Usage</td>
+                                                <td data-start="1148" data-end="1164" data-col-size="sm">Remote access
+                                                </td>
+                                                <td data-col-size="sm" data-start="1164" data-end="1184">Security
+                                                    control</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr data-start="1186" data-end="1189">
+                            <h3 data-start="1191" data-end="1200">35) IPv6</h3>
+                            <ul data-start="1202" data-end="1361">
+                                <li data-start="1202" data-end="1239">
+                                    <p data-start="1204" data-end="1239">IPv6 = Internet Protocol version 6.</p>
+                                </li>
+                                <li data-start="1240" data-end="1269">
+                                    <p data-start="1242" data-end="1269">128-bit address use pannum.</p>
+                                </li>
+                                <li data-start="1270" data-end="1299">
+                                    <p data-start="1272" data-end="1299">Address format hexadecimal.</p>
+                                </li>
+                                <li data-start="1300" data-end="1323">
+                                    <p data-start="1302" data-end="1323">Example: 2001:0db8::1</p>
+                                </li>
+                                <li data-start="1324" data-end="1361">
+                                    <p data-start="1326" data-end="1361">IPv4 shortage problem solve pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="1363" data-end="1366">
+                            <h3 data-start="1368" data-end="1383">36) IPv6 Types</h3>
+                            <ul data-start="1385" data-end="1532">
+                                <li data-start="1385" data-end="1422">
+                                    <p data-start="1387" data-end="1422">Unicast – One to One communication.</p>
+                                </li>
+                                <li data-start="1423" data-end="1449">
+                                    <p data-start="1425" data-end="1449">Multicast – One to Many.</p>
+                                </li>
+                                <li data-start="1450" data-end="1484">
+                                    <p data-start="1452" data-end="1484">Anycast – One to nearest device.</p>
+                                </li>
+                                <li data-start="1485" data-end="1506">
+                                    <p data-start="1487" data-end="1506">Link Local Address.</p>
+                                </li>
+                                <li data-start="1507" data-end="1532">
+                                    <p data-start="1509" data-end="1532">Global Unicast Address.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="1534" data-end="1537">
+                            <h3 data-start="1539" data-end="1571">37) NTP (Network Time Protocol)</h3>
+                            <ul data-start="1573" data-end="1746">
+                                <li data-start="1573" data-end="1615">
+                                    <p data-start="1575" data-end="1615">Network devices time synchronize pannum.</p>
+                                </li>
+                                <li data-start="1616" data-end="1642">
+                                    <p data-start="1618" data-end="1642">Port 123 UDP use pannum.</p>
+                                </li>
+                                <li data-start="1643" data-end="1675">
+                                    <p data-start="1645" data-end="1675">Accurate time maintain pannum.</p>
+                                </li>
+                                <li data-start="1676" data-end="1710">
+                                    <p data-start="1678" data-end="1710">Logging &amp; security ku important.</p>
+                                </li>
+                                <li data-start="1711" data-end="1746">
+                                    <p data-start="1713" data-end="1746">Internet time servers use pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="1748" data-end="1751">
+                            <h3 data-start="1753" data-end="1773">38) Reference Clock</h3>
+                            <ul data-start="1775" data-end="1931">
+                                <li data-start="1775" data-end="1798">
+                                    <p data-start="1777" data-end="1798">Accurate time source.</p>
+                                </li>
+                                <li data-start="1799" data-end="1826">
+                                    <p data-start="1801" data-end="1826">Atomic clock / GPS clock.</p>
+                                </li>
+                                <li data-start="1827" data-end="1846">
+                                    <p data-start="1829" data-end="1846">Stratum 0 device.</p>
+                                </li>
+                                <li data-start="1847" data-end="1891">
+                                    <p data-start="1849" data-end="1891">Direct network ku connect panna mudiyathu.</p>
+                                </li>
+                                <li data-start="1892" data-end="1931">
+                                    <p data-start="1894" data-end="1931">NTP primary server ku connect pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="1933" data-end="1936">
+                            <h3 data-start="1938" data-end="1956">39) NTP Hierarchy</h3>
+                            <ul data-start="1958" data-end="2109">
+                                <li data-start="1958" data-end="1987">
+                                    <p data-start="1960" data-end="1987">Stratum 0 – Reference Clock</p>
+                                </li>
+                                <li data-start="1988" data-end="2016">
+                                    <p data-start="1990" data-end="2016">Stratum 1 – Primary Server</p>
+                                </li>
+                                <li data-start="2017" data-end="2047">
+                                    <p data-start="2019" data-end="2047">Stratum 2 – Secondary Server</p>
+                                </li>
+                                <li data-start="2048" data-end="2077">
+                                    <p data-start="2050" data-end="2077">Stratum 3+ – Client devices</p>
+                                </li>
+                                <li data-start="2078" data-end="2109">
+                                    <p data-start="2080" data-end="2109">Lower stratum = more accurate</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="2111" data-end="2123">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="2125"
+                                data-end="2251"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>Stratum 0 (Atomic Clock)</span><br><span>        ↓</span><br><span>Stratum 1 (Primary Server)</span><br><span>        ↓</span><br><span>Stratum 2 (Secondary Server)</span><br><span>        ↓</span><br><span>Clients</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="2253" data-end="2256">
+                            <h3 data-start="2258" data-end="2277">40) Primary Server</h3>
+                            <ul data-start="2279" data-end="2426">
+                                <li data-start="2279" data-end="2298">
+                                    <p data-start="2281" data-end="2298">Stratum 1 server.</p>
+                                </li>
+                                <li data-start="2299" data-end="2335">
+                                    <p data-start="2301" data-end="2335">Direct ah reference clock connect.</p>
+                                </li>
+                                <li data-start="2336" data-end="2367">
+                                    <p data-start="2338" data-end="2367">Accurate time provide pannum.</p>
+                                </li>
+                                <li data-start="2368" data-end="2407">
+                                    <p data-start="2370" data-end="2407">Enterprise network la use pannuvanga.</p>
+                                </li>
+                                <li data-start="2408" data-end="2426">
+                                    <p data-start="2410" data-end="2426">Reliable source.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2428" data-end="2431">
+                            <h3 data-start="2433" data-end="2454">41) Secondary Server</h3>
+                            <ul data-start="2456" data-end="2599">
+                                <li data-start="2456" data-end="2475">
+                                    <p data-start="2458" data-end="2475">Stratum 2 server.</p>
+                                </li>
+                                <li data-start="2476" data-end="2516">
+                                    <p data-start="2478" data-end="2516">Primary server la irunthu time vangum.</p>
+                                </li>
+                                <li data-start="2517" data-end="2543">
+                                    <p data-start="2519" data-end="2543">Backup role play pannum.</p>
+                                </li>
+                                <li data-start="2544" data-end="2565">
+                                    <p data-start="2546" data-end="2565">Load reduce pannum.</p>
+                                </li>
+                                <li data-start="2566" data-end="2599">
+                                    <p data-start="2568" data-end="2599">Clients ku time provide pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2601" data-end="2604">
+                            <h3 data-start="2606" data-end="2620">42) Wireless</h3>
+                            <ul data-start="2622" data-end="2765">
+                                <li data-start="2622" data-end="2658">
+                                    <p data-start="2624" data-end="2658">Cable illama data transmit pannum.</p>
+                                </li>
+                                <li data-start="2659" data-end="2684">
+                                    <p data-start="2661" data-end="2684">Radio waves use pannum.</p>
+                                </li>
+                                <li data-start="2685" data-end="2700">
+                                    <p data-start="2687" data-end="2700">WiFi example.</p>
+                                </li>
+                                <li data-start="2701" data-end="2727">
+                                    <p data-start="2703" data-end="2727">Mobility provide pannum.</p>
+                                </li>
+                                <li data-start="2728" data-end="2765">
+                                    <p data-start="2730" data-end="2765">IEEE 802.11 standard follow pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2767" data-end="2770">
+                            <h3 data-start="2772" data-end="2797">43) Network Fundamental</h3>
+                            <ul data-start="2799" data-end="2864">
+                                <li data-start="2799" data-end="2811">
+                                    <p data-start="2801" data-end="2811">IP Address</p>
+                                </li>
+                                <li data-start="2812" data-end="2825">
+                                    <p data-start="2814" data-end="2825">MAC Address</p>
+                                </li>
+                                <li data-start="2826" data-end="2834">
+                                    <p data-start="2828" data-end="2834">Router</p>
+                                </li>
+                                <li data-start="2835" data-end="2843">
+                                    <p data-start="2837" data-end="2843">Switch</p>
+                                </li>
+                                <li data-start="2844" data-end="2864">
+                                    <p data-start="2846" data-end="2864">Protocol (TCP/UDP)</p>
+                                </li>
+                            </ul>
+                            <hr data-start="2866" data-end="2869">
+                            <h3 data-start="2871" data-end="2894">44) Wireless Topology</h3>
+                            <ul data-start="2896" data-end="3064">
+                                <li data-start="2896" data-end="2925">
+                                    <p data-start="2898" data-end="2925">Wireless network structure.</p>
+                                </li>
+                                <li data-start="2926" data-end="2965">
+                                    <p data-start="2928" data-end="2965">Device connect pattern define pannum.</p>
+                                </li>
+                                <li data-start="2966" data-end="3004">
+                                    <p data-start="2968" data-end="3004">Infrastructure &amp; Adhoc common types.</p>
+                                </li>
+                                <li data-start="3005" data-end="3035">
+                                    <p data-start="3007" data-end="3035">Coverage area depend pannum.</p>
+                                </li>
+                                <li data-start="3036" data-end="3064">
+                                    <p data-start="3038" data-end="3064">Scalability affect pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3066" data-end="3069">
+                            <h3 data-start="3071" data-end="3100">45) Wireless Topology Types</h3>
+                            <ul data-start="3102" data-end="3182">
+                                <li data-start="3102" data-end="3123">
+                                    <p data-start="3104" data-end="3123">Infrastructure Mode</p>
+                                </li>
+                                <li data-start="3124" data-end="3136">
+                                    <p data-start="3126" data-end="3136">Adhoc Mode</p>
+                                </li>
+                                <li data-start="3137" data-end="3143">
+                                    <p data-start="3139" data-end="3143">Mesh</p>
+                                </li>
+                                <li data-start="3144" data-end="3160">
+                                    <p data-start="3146" data-end="3160">Point-to-Point</p>
+                                </li>
+                                <li data-start="3161" data-end="3182">
+                                    <p data-start="3163" data-end="3182">Point-to-Multipoint</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3184" data-end="3187">
+                            <h3 data-start="3189" data-end="3214">46) Infrastructure Mode</h3>
+                            <ul data-start="3216" data-end="3355">
+                                <li data-start="3216" data-end="3243">
+                                    <p data-start="3218" data-end="3243">AP (Access Point) irukum.</p>
+                                </li>
+                                <li data-start="3244" data-end="3277">
+                                    <p data-start="3246" data-end="3277">All devices AP moolama connect.</p>
+                                </li>
+                                <li data-start="3278" data-end="3303">
+                                    <p data-start="3280" data-end="3303">Central control irukum.</p>
+                                </li>
+                                <li data-start="3304" data-end="3334">
+                                    <p data-start="3306" data-end="3334">Office/Home WiFi use pannum.</p>
+                                </li>
+                                <li data-start="3335" data-end="3355">
+                                    <p data-start="3337" data-end="3355">Stable &amp; scalable.</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="3357" data-end="3369">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="3371"
+                                data-end="3452"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>      Laptop</span><br><span>         |</span><br><span>Laptop -- AP -- Mobile</span><br><span>         |</span><br><span>       Internet</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="3454" data-end="3457">
+                            <h3 data-start="3459" data-end="3470">47) BSSID</h3>
+                            <ul data-start="3472" data-end="3601">
+                                <li data-start="3472" data-end="3503">
+                                    <p data-start="3474" data-end="3503">Basic Service Set Identifier.</p>
+                                </li>
+                                <li data-start="3504" data-end="3521">
+                                    <p data-start="3506" data-end="3521">AP MAC address.</p>
+                                </li>
+                                <li data-start="3522" data-end="3546">
+                                    <p data-start="3524" data-end="3546">Unique identification.</p>
+                                </li>
+                                <li data-start="3547" data-end="3575">
+                                    <p data-start="3549" data-end="3575">Each AP ku separate BSSID.</p>
+                                </li>
+                                <li data-start="3576" data-end="3601">
+                                    <p data-start="3578" data-end="3601">Roaming ku help pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3603" data-end="3606">
+                            <h3 data-start="3608" data-end="3643">48) SSID (Service Set Identifier)</h3>
+                            <ul data-start="3645" data-end="3790">
+                                <li data-start="3645" data-end="3665">
+                                    <p data-start="3647" data-end="3665">WiFi network name.</p>
+                                </li>
+                                <li data-start="3666" data-end="3700">
+                                    <p data-start="3668" data-end="3700">User connect panna visible name.</p>
+                                </li>
+                                <li data-start="3701" data-end="3721">
+                                    <p data-start="3703" data-end="3721">Max 32 characters.</p>
+                                </li>
+                                <li data-start="3722" data-end="3747">
+                                    <p data-start="3724" data-end="3747">Example: "HemaHomeWiFi"</p>
+                                </li>
+                                <li data-start="3748" data-end="3790">
+                                    <p data-start="3750" data-end="3790">Same SSID multiple AP use panna mudiyum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3792" data-end="3795">
+                            <h3 data-start="3797" data-end="3822">49) Distribution System</h3>
+                            <ul data-start="3824" data-end="3958">
+                                <li data-start="3824" data-end="3859">
+                                    <p data-start="3826" data-end="3859">Multiple AP connect panna system.</p>
+                                </li>
+                                <li data-start="3860" data-end="3885">
+                                    <p data-start="3862" data-end="3885">Usually wired backbone.</p>
+                                </li>
+                                <li data-start="3886" data-end="3911">
+                                    <p data-start="3888" data-end="3911">Roaming support pannum.</p>
+                                </li>
+                                <li data-start="3912" data-end="3936">
+                                    <p data-start="3914" data-end="3936">Network extend pannum.</p>
+                                </li>
+                                <li data-start="3937" data-end="3958">
+                                    <p data-start="3939" data-end="3958">LAN connect pannum.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="3960" data-end="3963">
+                            <h3 data-start="3965" data-end="3997">50) Extended Service Set (ESS)</h3>
+                            <ul data-start="3999" data-end="4134">
+                                <li data-start="3999" data-end="4034">
+                                    <p data-start="4001" data-end="4034">Multiple AP same SSID use pannum.</p>
+                                </li>
+                                <li data-start="4035" data-end="4057">
+                                    <p data-start="4037" data-end="4057">Large coverage area.</p>
+                                </li>
+                                <li data-start="4058" data-end="4077">
+                                    <p data-start="4060" data-end="4077">Roaming possible.</p>
+                                </li>
+                                <li data-start="4078" data-end="4106">
+                                    <p data-start="4080" data-end="4106">Enterprise use pannuvanga.</p>
+                                </li>
+                                <li data-start="4107" data-end="4134">
+                                    <p data-start="4109" data-end="4134">Infrastructure mode base.</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="4136" data-end="4148">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="4150"
+                                data-end="4206"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>AP1 ---- Switch ---- AP2 ---- AP3</span><br><span>   (Same SSID)</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="4208" data-end="4211">
+                            <h3 data-start="4213" data-end="4236">51) IBSS (Adhoc Mode)</h3>
+                            <ul data-start="4238" data-end="4358">
+                                <li data-start="4238" data-end="4272">
+                                    <p data-start="4240" data-end="4272">AP illama direct device connect.</p>
+                                </li>
+                                <li data-start="4273" data-end="4289">
+                                    <p data-start="4275" data-end="4289">Small network.</p>
+                                </li>
+                                <li data-start="4290" data-end="4306">
+                                    <p data-start="4292" data-end="4306">Temporary use.</p>
+                                </li>
+                                <li data-start="4307" data-end="4328">
+                                    <p data-start="4309" data-end="4328">No central control.</p>
+                                </li>
+                                <li data-start="4329" data-end="4358">
+                                    <p data-start="4331" data-end="4358">Peer-to-peer communication.</p>
+                                </li>
+                            </ul>
+                            <h3 data-start="4360" data-end="4372">Diagram:</h3>
+                            <pre class="overflow-visible! px-0!" data-start="4374"
+                                data-end="4410"><div class="w-full my-4"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0" style="width: 100%; transform: none;"><div class="border corner-superellipse/1.1 border-token-border-light bg-token-bg-elevated-secondary rounded-3xl"><div class="sticky z-2 select-none top-(--sticky-padding-top)"><div class="flex w-full items-center justify-between py-1.5 ps-4 pe-1.5 font-sans md:ps-5 corner-superellipse/1.1 bg-token-bg-elevated-secondary rounded-3xl"><div class="flex max-w-[75%] min-w-0 cursor-default items-center text-sm font-medium justify-self-start text-token-text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm me-2.5 shrink-0"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#e45ab3" fill="currentColor"></use></svg>Code</div><div class="flex flex-row items-center gap-0.5 justify-self-end"><button class="flex gap-1 items-center select-none rounded-full px-2 py-2 hover:bg-token-bg-secondary text-sm font-medium" aria-label="Copy" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-md"><use href="/cdn/assets/sprites-core-jxe2m7va.svg#ce3544" fill="currentColor"></use></svg></button></div></div></div><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(calc(var(--sticky-padding-top) + 48px) - 1px * 3); margin-bottom: calc(-4px); height: calc(4px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-border-light" style="top: calc(var(--sticky-padding-top) + 48px); height: 1px;"></div></div></div><div class="pointer-events-none absolute inset-x-px top-0 bottom-96"><div class="pointer-events-none sticky z-40 shrink-0 z-1!" style="top: calc(var(--sticky-padding-top) - 48px * 3); margin-bottom: calc(-192px); height: calc(192px); mask-image: linear-gradient(transparent 25%, white 75%);"><div class="sticky bg-token-bg-elevated-secondary" style="top: var(--sticky-padding-top); height: 48px;"></div></div></div><div class="corner-superellipse/1.1 rounded-3xl bg-token-bg-elevated-secondary" style="transform: none;"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼ5 ͼj"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>Laptop  ↔  Mobile  ↔  Laptop</span></div></div></div></div></div></div></div></div><div class=""><div class="" style="width: 100%; transform: none;"></div></div></div></div></div></pre>
+                            <hr data-start="4412" data-end="4415">
+                            <h3 data-start="4417" data-end="4438">52) AP Architecture</h3>
+                            <ul data-start="4440" data-end="4526">
+                                <li data-start="4440" data-end="4453">
+                                    <p data-start="4442" data-end="4453">Centralized</p>
+                                </li>
+                                <li data-start="4454" data-end="4466">
+                                    <p data-start="4456" data-end="4466">Autonomous</p>
+                                </li>
+                                <li data-start="4467" data-end="4480">
+                                    <p data-start="4469" data-end="4480">Cloud-based</p>
+                                </li>
+                                <li data-start="4481" data-end="4499">
+                                    <p data-start="4483" data-end="4499">Controller-based</p>
+                                </li>
+                                <li data-start="4500" data-end="4526">
+                                    <p data-start="4502" data-end="4526">Distributed architecture</p>
+                                </li>
+                            </ul>
+                            <hr data-start="4528" data-end="4531">
+                            <h3 data-start="4533" data-end="4565">53) Autonomous AP Architecture</h3>
+                            <ul data-start="4567" data-end="4698">
+                                <li data-start="4567" data-end="4583">
+                                    <p data-start="4569" data-end="4583">Standalone AP.</p>
+                                </li>
+                                <li data-start="4584" data-end="4613">
+                                    <p data-start="4586" data-end="4613">Each AP separate configure.</p>
+                                </li>
+                                <li data-start="4614" data-end="4642">
+                                    <p data-start="4616" data-end="4642">Small network ku suitable.</p>
+                                </li>
+                                <li data-start="4643" data-end="4659">
+                                    <p data-start="4645" data-end="4659">No controller.</p>
+                                </li>
+                                <li data-start="4660" data-end="4698">
+                                    <p data-start="4662" data-end="4698">Management complex in large network.</p>
+                                </li>
+                            </ul>
+                            <hr data-start="4700" data-end="4703">
+                            <h3 data-start="4705" data-end="4740">54) Wireless Authentication Types</h3>
+                            <ul data-start="4742" data-end="4809">
+                                <li data-start="4742" data-end="4763">
+                                    <p data-start="4744" data-end="4763">Open Authentication</p>
+                                </li>
+                                <li data-start="4764" data-end="4779">
+                                    <p data-start="4766" data-end="4779">WPA2-Personal</p>
+                                </li>
+                                <li data-start="4780" data-end="4786">
+                                    <p data-start="4782" data-end="4786">WPA3</p>
+                                </li>
+                                <li data-start="4787" data-end="4795">
+                                    <p data-start="4789" data-end="4795">802.1X</p>
+                                </li>
+                                <li data-start="4796" data-end="4809">
+                                    <p data-start="4798" data-end="4809">EAP methods</p>
+                                </li>
+                            </ul>
+                            <hr data-start="4811" data-end="4814">
+                            <h3 data-start="4816" data-end="4849">55) Wireless Encryption Methods</h3>
+                            <ul data-start="4851" data-end="4921">
+                                <li data-start="4851" data-end="4863">
+                                    <p data-start="4853" data-end="4863">WEP (Weak)</p>
+                                </li>
+                                <li data-start="4864" data-end="4869">
+                                    <p data-start="4866" data-end="4869">WPA</p>
+                                </li>
+                                <li data-start="4870" data-end="4882">
+                                    <p data-start="4872" data-end="4882">WPA2 (AES)</p>
+                                </li>
+                                <li data-start="4883" data-end="4901">
+                                    <p data-start="4885" data-end="4901">WPA3 (Strongest)</p>
+                                </li>
+                                <li data-start="4902" data-end="4921">
+                                    <p data-start="4904" data-end="4921">TKIP (Old method)</p>
+                                </li>
+                            </ul>
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
         </ol>
     </div>
 </body>
