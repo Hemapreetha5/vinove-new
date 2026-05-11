@@ -1,0 +1,158 @@
+Linux basic Commands
+
+cal - Calander
+whoami - what's your user name
+who - who and all loggin your system
+halt - Bring the system down immediately                   
+shutdown - Shutdown the system
+reboot - Reboot the system
+
+
+File Management
+
+Type
+Normal files
+Directories
+Special files
+
+Commands:
+pwd - your path location
+ls -  your path all files and folders
+ls -l - To list the all files and folders with details
+ls -a - To list the Hidden files
+
+
+sudo apt-get update - Update all files
+sudo su - - Change root user
+ls - just check folders and files in the root user
+apt install vim -vi install
+vim --version - show the version 
+
+
+vi have 2 modes
+edit and escape
+press i u will enter the edit mode                                             
+press esc to enter escape mode
+Create file
+vi sample.txt - Create file
+press i - u will enter edit mode and insert u r commamnd
+esc press
+:wq! - save and exit
+cat sample.txt - U will see the insert message of sample file 
+
+
+
+
+Coping file:
+cp sample.txt simple.txt - copy the file sample.txt to simple.txt
+pwd - file location
+cp sample.txt desktop/ simple.txt- sample.txt file copy to the desktop
+cd desktop/ - go to the desktop
+ls - check sample.txt in desktop location
+
+Rename and Move the file
+mv sample.txt taddy.txt - Rename the file
+ls - check the file name
+mv taddy.txt /home/sakti - Moving to the file location
+
+Word countin the file
+wc sample.txt
+
+1 Column - no of lines in the file
+2 Column - no of words in the file
+3 Column - no of bytes in the file
+4 Column - file name
+
+Removing files
+rm ddd.txt - one file remove at a time
+rm ddd.txt aaa.txt - multiple file remove at a time
+rm Desktop/aaa.txt - File remove specific file path
+
+Folder Creation:
+mkdir dee - create folder
+cd dee/ - into the folder
+touch emp.txt - Create empty file
+cat emp.txt - view the inside content of emp.txt
+ls - check the file
+mkdir subfolder - Create subfolder
+rmdir subfolder/ - remove subfolder
+cd .. - exit the folder
+rmdir dee - remove the folder inside without file
+
+rm -rf dee/ - remove folder inside with all file
+(or)
+rm -r Keerthi - remove folder inside with all file
+
+cd .. - Back to the one folder
+cd ../.. - Back to double folder
+ls -l sample.txt - explain that one file path location
+r - read(4)
+w - write(2)
+e - execute(1)
+
+chmod 777 sample.txt
+
+
+
+Sorting
+
+cat sample - list the so much items
+sort sample - inside items atomatically assign assending order
+sort -n sample - numerical order vice assign
+sort -r sample - reverse order vice assign
+sort -f sample - upper case and lower case togather
+
+top - cpu related informations
+kill -9 1601 - the process will delete , bt dont do that
+ps -ef - processor related information shown
+ps -ef|grep python - perticular phython details only shown
+
+==================================================================================
+
+Grep commands
+================
+Grep  means Global regular expression print
+
+paragraph:
+===========
+unix is great os. unix was developed in Bell labs.
+learn operating system.
+Unix linux which one you choose.
+uNix is easy to learn.unix is a multiuser os.Learn unix .unix is a powerful.
+
+
+ 
+1. Case insensitive search
+grep -i "UNix" file.txt
+
+2. Displaying the Count of Number of Matches Using grep(line)
+grep -c "unix" file.txt
+
+3.Display the File Names that Matches the Pattern Using grep
+grep -l "unix" *
+
+4. Checking for the Whole Words in a File Using grep
+grep -w "unix" file.txt
+
+5.Displaying only the matched pattern Using grep
+grep -o "unix" file.txt
+
+6. Show Line Number While Displaying the Output Using grep -n
+grep -n "unix" file.txt
+
+7. Inverting the Pattern Match Using grep
+grep -v "unix" file.txt
+
+8. Matching the Lines that Start with a String Using grep
+grep "^unix" file.txt
+
+9. Print n Specific Lines from a File Using grep
+grep -A 2 'unix' textfile.txt
+grep -B 1 'unix' textfile.txt
+grep -C 1 'unix' textfile.txt
+
+
+
+
+Remove empty folder: 
+rmdir

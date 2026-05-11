@@ -1,0 +1,58 @@
+you can get the ID of any username
+1. id username
+
+ useradd command
+2. sudo useradd eapl
+
+passwd command
+3.passwd eapl
+
+4. cat /etc/passwd
+
+change the user ID for a user
+5.sudo usermod -u 1005 eapl
+
+change the group id for a user
+6. sudo groupmod -g 1005 eapl
+
+change the user login name
+7.sudo usermod -l new_eapl eapl
+   
+
+command to change the home directory
+8
+   usermod -d new_home_directory_path eapl
+  
+
+delete a user name
+9.sudo userdel zz
+
+Group:
+
+version
+1.groups --version
+
+Create the groups
+1.sudo groupadd tennis;
+
+
+ Viewing Group Memberships
+2.groups [username]
+
+display group membership
+3.groups
+
+the user account "root"
+4.groups root
+
+ Rename the football group to foot.
+5.sudo groupmod -n foot football
+
+group delete
+6. sudo groupdel zz
+
+group search:
+7. getent group | grep mygroup
+
+check all group:
+8.  getent group
